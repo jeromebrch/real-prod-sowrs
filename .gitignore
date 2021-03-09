@@ -4,6 +4,7 @@
 /.env
 /.env.local.php
 /.env.*.local
+/symfony.lock
 /config/secrets/prod/prod.decrypt.private.php
 /public/bundles/
 /var/
