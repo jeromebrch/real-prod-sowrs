@@ -1,0 +1,56 @@
+*{
+    font-family: 'KohinoorBangla', Arial, serif;
+}
+
+/*----------------FILTER-------------------------------*/
+
+.jobOffer_filter{
+    border: 2px solid lightgray;
+    border-radius: 20px;
+    background-color: #1dca91;
+
+}
+
+/*--------------------CANDIDATE LIST--------------------------*/
+
+.job_offer_row{
+    border: 2px solid lightgray;
+    border-radius: 20px;
+}
+.jobOffer_img{
+    margin-left: 15px;
+}
+
+.entity_pdp{
+    width: 6em;
+    border:none;
+    -moz-border-radius: 100px;
+    -webkit-border-radius: 100px;
+    display: block;
+}
+.jobOffer_text a {
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+}
+.jobOffer_text p {
+    margin-bottom: 1px;
+}
+.btn_contract_type{
+    font-size: 1em;
+    width: 10em;
+    pointer-events: none;
+    box-shadow: none;
+}
+
+.btn_jobOffer_filter {
+    font-family: 'KohinoorBangla', Arial, serif;
+    width: 100%;
+    height: 2.5em;
+    border-radius: 50px;
+    background: white;
+    border: none;
+    font-size: medium;
+    color: #1dca91;
+    margin: auto;
+}

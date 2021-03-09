@@ -1,0 +1,61 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Sowrs | Nos offres{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('css/jobOffersList.css') }}">
+{% endblock %}
+{% block body %}
+
+    <div class="container">
+        <div class="row p-3">
+            <div class="col-lg-4 p-3">
+                <div class="jobOffer_filter p-3">
+                    {{ form_start(formSearchHome) }}
+                    <div class="p-1">
+                        {{ form_row(formSearchHome.q) }}
+                    </div>
+                    <div class="p-1">
+                        {{ form_row(formSearchHome.contractType) }}
+                    </div>
+                    <div class="p-1">
+                        {{ form_row(formSearchHome.country) }}
+                    </div>
+                    <div class="p-1">
+                        {{ form_row(formSearchHome.cause) }}
+                    </div>
+                    <div class="p-1">
+                        {{ form_row(formSearchHome.levelStudy) }}
+                    </div>
+                    <div class="p-1">
+                        {{ form_row(formSearchHome.levelExperience) }}
+                    </div>
+                    <div class="p-1">
+                        {{ form_row(formSearchHome.remuneration) }}
+                    </div>
+                    <div class="p-1">
+                        {{ form_row(formSearchHome.freshness) }}
+                    </div>
+                    <div class="position-static">
+                        <button type="submit" class="btn_jobOffer_filter">
+                            Rechercher
+                        </button>
+                    </div>
+                    {{ form_end(formSearchHome) }}
+                </div>
+            </div>
+
+
+            <div class="col-lg-8 p-3">
+                {% for jobOffer in jobOffers %}
+                    <div class="job_offer_row bg-white p-3 mb-3">
+                        {% include 'main/_cardJobOfferMain.html.twig' with {jobOffer: jobOffer} only %}
+                    </div>
+                {% endfor %}
+                {{ knp_pagination_render(jobOffers) }}
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

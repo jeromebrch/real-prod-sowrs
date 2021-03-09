@@ -1,0 +1,14 @@
+.main-nav {
+    color: #1DCA91;
+}
+
+.navbar-toggler {
+    color: #1DCA91;
+}
+
+.custom-toggler.navbar-toggler {
+    border-color: #1DCA91;
+}
+.navbar-light .navbar-toggler-icon {
+    border-color: #1DCA91;
+}

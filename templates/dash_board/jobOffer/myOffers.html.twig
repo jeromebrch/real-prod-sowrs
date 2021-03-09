@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css">
+{% endblock %}
+{% block title %}Sowrs | Création offre{% endblock %}
+
+{% block body %}
+
+    <div class="container-fluid">
+        <div class="row gx-0">
+            <div class="col-lg-3 border-end border-2">
+                {{ render(controller('App\\Controller\\DashBoardNavController::navBar'))}}
+            </div>
+            <div class="col-lg-9 gx-0">
+
+                <div class="container mb-5 background-title">
+                    <div class="row h-100">
+                        <div class="col-sm-6 text-center align-self-center text-white">
+                            <h3 class="title">Mes offres</h3>
+                        </div>
+                        <div class="col-sm-6 text-center align-self-center">
+                            <a class="btn-title align-middle" href="{{ path('dash_board_job_offer_create') }}" role="button">Créer
+                                une offre</a>
+                        </div>
+                    </div>
+                </div>
+
+                {% for message in app.flashes('success') %}
+                    <div class="alert alert-success">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+                <div class="m-3">
+                    {% for jobOffer in jobOffers %}
+                        {% include '/dash_board/jobOffer/_cardJobOffer.html.twig' %}
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

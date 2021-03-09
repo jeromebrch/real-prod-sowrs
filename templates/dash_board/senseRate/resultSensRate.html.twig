@@ -1,0 +1,86 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"></script>
+{% endblock %}
+{% block body %}
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-3 border-end border-2">
+               {{ render(controller('App\\Controller\\DashBoardNavController::navBar'))}}
+            </div>
+            <div class="col-lg-9">
+                <div class="">
+                    <div class="matching_back_ground">
+                        <h1 class="matching_title">
+                            Votre entité a un profil à dominante {{ scoringUser.dominantSens }}
+                        </h1>
+                        <div class="matching_text">
+                            <p>Juste avant, nous avons besoins de quelques informations pour créer votre profil
+                                de responsabilité. Sils avaient le choix entre deux emplis, sept jeunes sur dix
+                                privilégieraient celui «&nbsp;qui a du sens&nbsp;», au sein dune entreprise a la
+                                fois humainement et écologiquement responsable.*</p>
+                            <p>Nous vous proposons ici de créer en quelques étapes le profil de responsabilité de
+                                votre entreprise pour attirer les candidats qui soutiennent activement les mèmes
+                                causes et partagent ses valeurs.</p>
+                            <p>*Source&nbsp;: Le Monde</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                    <div class="col-lg-5">
+                        <p>Le Lorem Ipsum est simplement du faux texte employé dans la composition et la mise en page
+                            avant impression. Le Lorem Ipsum est le faux texte standard de l'imprimerie depuis les
+                            années 1500, quand un imprimeur anonyme assembla ensemble des morceaux de texte pour
+                            réaliser un livre spécimen de polices de texte. Il n'a pas fait que survivre cinq siècles,
+                            mais s'est aussi adapté à la bureautique informatique, sans que son contenu n'en soit
+                            modifié. Il a été popularisé dans les années 1960 grâce à la vente de feuilles Letraset
+                            contenant des passages du Lorem Ipsum, et, plus récemment, par son inclusion dans des
+                            applications de mise en page de texte, comme Aldus PageMaker.</p>
+                    </div>
+                    <div class="col-lg-7">
+                        <h3 class="result_sens_rate_h3">Vous matchez avec </h3><br>
+
+
+                        {% for user in matchingArray %}
+
+                                {% include 'dash_board/senseRate/_cardMatch.html.twig' with { user: user } only %}
+
+                        {% endfor %}
+
+                        <hr>
+                    </div>
+                    </div>
+            <h3 class="result_sens_rate_h3">Vos résultats en détails</h3><br>
+                <div class="doughnut">
+                    <canvas id="myChart"></canvas>
+                </div>
+        </div>
+    </div>
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        const ctx = document.getElementById('myChart');
+        const myChart = new Chart(ctx, {
+            type: 'doughnut',
+            data: {
+                labels: ['Social', 'Environnement', 'Economie', 'Societal'],
+                datasets: [{
+                    data: [
+                        {{ scoringUser.social }},
+                        {{ scoringUser.environment }},
+                        {{ scoringUser.economy }},
+                        {{ scoringUser.societal }}
+                    ],
+                    backgroundColor: [
+                        'rgb(64, 192, 255)',
+                        'rgb(32, 160, 224)',
+                        'rgb(32, 128, 128)',
+                        '#827399',
+                    ],
+                }]
+            },
+        });
+    </script>
+{% endblock %}

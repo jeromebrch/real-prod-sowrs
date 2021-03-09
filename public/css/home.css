@@ -1,0 +1,65 @@
+.background-picture {
+    background-size: cover;
+    background-image: url("background/hero-baneer.png");
+    width: 100%;
+    height: 100%;
+    font-family: 'KohinoorBangla', Arial, serif;
+}
+
+.Background-jobOffer-filter-home {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.field-jobOffer-filter-home {
+    opacity: 1;
+}
+
+.btn-filter-home {
+    font-family: 'KohinoorBangla', Arial, serif;
+    width: 100%;
+    height: 2.5em;
+    border-radius: 50px;
+    background: #1DCA91;
+    border: none;
+    font-size: medium;
+    color: white;
+    margin: auto;
+}
+
+
+
+.title-background {
+    font-size: 2.5em;
+    font-weight: bolder;
+}
+
+.subtitle-background {
+    font-size: 2em;
+}
+
+.sub-subtitle-background {
+    font-size: 1.2em;
+}
+
+.test {
+    opacity: 1;
+}
+
+.text-white {
+    font-family: 'KohinoorBangla', Arial, serif;
+    font-size: 1.1em;
+}
+.texte-green {
+    font-family: 'KohinoorBangla', Arial, serif;
+    font-size: 1.1em;
+    color: #1DCA91;
+}
+
+.home_btn_candidate_recruiter {
+    background: none;
+    border: 1px solid white;
+}
+.home_btn_candidate_recruiter:hover {
+    background: white;
+    color: black;
+}

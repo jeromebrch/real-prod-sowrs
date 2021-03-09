@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+
+{% endblock %}
+{% block title %}Sowrs | Modification offre{% endblock %}
+
+{% block body %}
+
+    <div class="container-fluid">
+        <div class="row">
+
+            <div class="col-lg-2 offset-lg-1 border-end border-2">
+                {{ render(controller('App\\Controller\\DashBoardNavController::navBar'))}}
+            </div>
+
+            <div class="col-lg-8">
+                <div class="">
+                    <h1>Modifier votre offre</h1>
+                    <div class="error">{{ form_errors(jobOfferForm) }}</div>
+                    {{ form_start(jobOfferForm) }}
+
+                    <h3>Descriptif de l'offre</h3>
+                    {{ form_widget(jobOfferForm) }}
+
+                    <button type="submit" class="btn btn-lg btn-primary">Modifier</button>
+                    <a class="btn btn-lg" href="{{ path('dash_board_my_offers') }}" role="button">Annuler</a>
+                    {{ form_end(jobOfferForm) }}
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

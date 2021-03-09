@@ -1,0 +1,71 @@
+<nav>
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <div class="container-fluid">
+            <div class="border-bottom">
+                <a class="navbar-brand"></a>
+            </div>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+                    aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
+                <ul class="navbar-nav">
+                    {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+                        {% if "ROLE_RECRUITER" in app.user.roles %}
+                            <li class="nav-item">
+                                <a class="nav-link active" id="primary-nav" aria-current="page"
+                                   href="{{ path('main_candidate_list') }}">Consulter
+                                    les cv</a>
+                            </li>
+                        {% endif %}
+                        <li class="nav-item">
+                            <a class="nav-link" id="primary-nav" href="{{ path('main_job_offers_list') }}">Consulter les offres</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="primary-nav" href="{{ path('main_about_sowrs') }}">Qui sommes nous ?</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="primary-nav" href="https://fr.tipeee.com/sowrs" target="_blank">Soutenez
+                                Sowrs</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="primary-nav" href="#" tabindex="-1" aria-disabled="true">Webzine</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link disabled" id="primary-nav" href="#" tabindex="-1" aria-disabled="true">Contactez-nous</a>
+                        </li>
+                    {% else %}
+                        <li class="nav-item">
+                            <a class="nav-link active" id="primary-nav" aria-current="page"
+                               href="{{ path('main_job_offers_list') }}">Consulter les offres</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="primary-nav" href="{{ path('main_about_sowrs') }}">Qui sommes nous
+                                ?</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="primary-nav" href="https://fr.tipeee.com/sowrs" target="_blank">Soutenez
+                                Sowrs</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link disabled" id="primary-nav" href="#" tabindex="-1" aria-disabled="true">Webzine</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link disabled" id="primary-nav" href="#" tabindex="-1" aria-disabled="true">Contactez-nous</a>
+                        </li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </nav>
+</nav>
+
+
+{% block javascripts %}
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.5.4/umd/popper.min.js"></script>
+{% endblock %}
+
+

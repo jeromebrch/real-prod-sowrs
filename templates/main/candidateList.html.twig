@@ -1,0 +1,60 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Sowrs | Nos cv's{% endblock %}
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('css/list_cv.css') }}">
+{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="row p-3">
+            <div class="col-lg-4 p-3">
+                <div class="candidate_filter p-3">
+                    {{ form_start(formSearch) }}
+                    <div class="p-1">
+                        {{ form_row(formSearch.txt) }}
+                    </div>
+                    <div class="p-1">
+                        {{ form_row(formSearch.localization) }}
+                    </div>
+                    <div class="p-1">
+                        {{ form_row(formSearch.remuneration) }}
+                    </div>
+                    <div class="p-1">
+                        {{ form_row(formSearch.contractType) }}
+                    </div>
+                    <div class="p-1">
+                        {{ form_row(formSearch.cause) }}
+                    </div>
+                    <div class="p-1">
+                        {{ form_row(formSearch.levelStudy) }}
+                    </div>
+                    <div class="p-1">
+                        {{ form_row(formSearch.levelExp) }}
+                    </div>
+                    <div class="p-1">
+                        {{ form_row(formSearch.authorizedCountry) }}
+                    </div>
+                    <div class="text-right">
+                        <button type="submit" class="btn btn-lg"
+                                style="width: 7em; font-size: 1em; background: #FFFFFF; color: #1dca91">Rechercher
+                        </button>
+                    </div>
+                    {{ form_end(formSearch) }}
+                </div>
+            </div>
+
+
+            <div class="col-lg-8 p-3">
+                {% for candidate in listCandidates %}
+                        <div class="candidate_row bg-white p-3 mb-3">
+                            {% include '/main/_cardCandidate.html.twig' with {candidate: candidate} only %}
+                        </div><br>
+                    {% endfor %}
+                </div>
+                {{ knp_pagination_render(listCandidates) }}
+            </div>
+        </div>
+    </div>
+{% endblock %}

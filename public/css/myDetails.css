@@ -1,0 +1,118 @@
+.background-title {
+    background: #827399;
+    text-align: center;
+    font-family: 'KohinoorBangla', Arial, serif;
+    font-weight: bolder;
+    height: 10em;
+    max-width: 100%;
+}
+
+.title {
+    text-transform: uppercase;
+}
+
+.title-dashBord {
+
+}
+
+.btn-title {
+    justify-self: end;
+    width: auto;
+    border-radius: 50px;
+    background: #1DCA91;
+    border: none;
+    font-family: 'KohinoorBangla', Arial, serif;    padding: 10px;
+    font-size: larger;
+    color: white;
+    margin: auto;
+    text-decoration:none;
+}
+
+.btn-title:hover {
+    background-color: #555555;
+    text-decoration:none;
+    background-position: inherit;
+}
+
+.subtitle-myDetail  {
+    font-family: 'KohinoorBangla', Arial, serif;
+    color: #1dca91;
+    font-weight: bolder;
+}
+
+.green-line {
+    width: 10%;
+    border-top: 3px solid #1dca91;
+}
+
+.paragraph {
+    color: #555555;
+    font-family: 'KohinoorBangla', Arial, serif;
+    font-weight: bolder;
+    text-align: justify;
+}
+
+.text-area {
+    height: 8em;
+}
+
+.btn-recognition {
+    width: 25px;
+    height: 25px;
+    border-radius: 25px;
+    background: #1DCA91;
+    border: none;
+    font: normal 15px 'KohinoorBangla';
+    font-size: larger;
+    color: white;
+    margin: auto;
+}
+
+.contenu-scroll{
+    height: 170px;
+    overflow: auto;
+    background-color: white;
+    border: 1px solid #D3D3D3;
+}
+#btnAnnulerAjoutCauseRecruiter {
+    width: 2%;
+    cursor: pointer;
+}
+#btnAjoutCauseRecruiter {
+    margin: 1em;
+}
+#formOne {
+    margin-bottom: 1em;
+}
+
+.subtitle {
+    font-family: 'KohinoorBangla', Arial, serif;
+    font-weight: bolder;
+    color: #1DCA91;
+    text-transform: uppercase;
+}
+
+.content-subtitle-item {
+    background-color: white;
+    height: 366px;
+    width: 438px;
+}
+.content-subtitle-sense {
+    background-color: white;
+    height: 366px;
+    width: 438px;
+}
+.button-creerUne {
+    width: 125px;
+    height: 35px;
+    border-radius: 25px;
+    background: #827399;
+    border: none;
+    font-family: 'KohinoorBangla', Arial, serif;
+    font-size: larger;
+    color: white;
+}
+.pourcent {
+    font-weight: bolder;
+    font-size: 3.5em;
+}

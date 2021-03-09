@@ -1,0 +1,196 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+{% endblock %}
+
+{% block title %}Sowrs | Choix des sens{% endblock %}
+
+{% block body %}
+
+    <div class="container-fluid gx-0">
+        <div class="row gx-0">
+            <div class="col-lg-3 border-end border-3">
+                {{ render(controller('App\\Controller\\DashBoardNavController::navBar')) }}
+            </div>
+
+            <div class="col-lg-9">
+
+                {% if "ROLE_CANDIDATE" in app.user.roles %}
+
+                <div class="container background-title-choices">
+                    <div class="text-center align-self-center text-white p-4">
+                        <h3 class="title-choises">Quel est le taux de sens de votre entreprise ?</h3>
+                        <p class="text-choices m-0">
+                            Juste avant, nous avons besoin de quelques informations pour créer votre profil
+                            de responsabilité. S'ils avaient le choix entre deux emplois, sept jeunes sur dix
+                            privilégieraient celui "qui a du sens", au sein d'une entreprise à la fois
+                            humainement et écologiquement responsable.*
+                        </p>
+                        <br>
+                        <p class="text-choices m-0">
+                            Nous vous proposons ici de créer en quelques étapes le profil de responsabilité de
+                            votre entreprise pour attirer les candidats qui soutiennent activement les mêmes causes
+                            et partagent ses valeurs.
+                        </p>
+                        <br>
+                        <p class="text-choices m-0">
+                            *Source : Le Monde
+                        </p>
+                    </div>
+                </div>
+                <div class="matching_content">
+                    <div class="matching_title text-choices p-5">
+                        Parmi les 17 objectifs de développement durable présentés ci-dessous, merci de renseigner
+                        les cinq éléments qui correspondent le mieux à vos engagements et à vos valeurs !
+                    </div>
+
+                    {% elseif "ROLE_RECRUITER" in app.user.roles %}
+
+                        <div class="container background-title-choices">
+                            <div class="text-center align-self-center text-white p-4">
+                                <h3 class="title-choises">Quel est le taux de sens de votre entreprise ?</h3>
+                                <p class="text-choices m-0">
+                                    Juste avant, nous avons besoin de quelques informations pour créer votre profil
+                                    de responsabilité. S'ils avaient le choix entre deux emplois, sept jeunes sur
+                                    dix
+                                    privilégieraient celui "qui a du sens", au sein d'une entreprise à la fois
+                                    humainement et écologiquement responsable.*
+                                </p>
+                                <br>
+                                <p class="text-choices m-0">
+                                    Nous vous proposons ici de créer en quelques étapes le profil de responsabilité
+                                    de
+                                    votre entreprise pour attirer les candidats qui soutiennent activement les mêmes
+                                    causes
+                                    et partagent ses valeurs.
+                                </p>
+                                <br>
+                                <p class="text-choices m-0">
+                                    *Source : Le Monde
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="matching_title text-choices p-5">
+                            Parmi les 17 objectifs de développement durable présentés ci-dessous, merci de renseigner
+                            les cinq éléments qui corespondent le mieux aux engagements et aux valeurs de votre
+                            entreprise !
+                        </div>
+
+                    {% endif %}
+                </div>
+                <div>
+                    <ul class="px-5" id="listChoices">
+                        {% for choice in choices %}
+                            <li class="matching_choice_list_item">
+                                <img class="matching_img" data-val="{{ choice.id }}"
+                                     src="{{ asset('img/sens/' ~ choice.url ~ '.png') }}" alt="choise">
+                            </li>
+                        {% endfor %}
+                    </ul>
+
+                    <div class="text-center">
+                        <button id="matching-submit" class="btn config-btn matching__btn">C'est parti !
+                        </button>
+                    </div>
+                    <br>
+                    <div class="text-center">
+                        <div class="text-secondary" role="status" id="matching-inner">
+                            <span class="visually-hidden">Loading...</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+{% endblock %}
+
+{% block javascripts %}
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    {{ parent() }}
+
+    <script>
+        {% if "ROLE_CANDIDATE" in app.user.roles %}
+        let type = "applicant";
+        {% else %}
+        let type = "company";
+        {% endif %}
+
+        // on instancie un tableau vide
+        let matchingValuesArr = [];
+
+        //à chaque clic sur une des images
+        $(".matching_img").on('click', function () {
+
+            //data-val = id de la cause
+            // on va chercher si cette valeur est dans le tableau
+            let valIndexInArray = matchingValuesArr.indexOf($(this).attr("data-val"));
+
+            //si oui
+            if (valIndexInArray > -1) {
+                //on enleve cet id du tableau
+                matchingValuesArr.splice(valIndexInArray, 1);
+                //et on enleve l'opacité de l'image
+                $(this).removeClass(("matching_img_active"));
+            } else {
+                //si le tableau a déjà 5 valeur
+                if (matchingValuesArr.length >= 5) {
+                    alert("Veuillez selectionner 5 choix uniquement");
+                } else {
+                    // on ajoute l'id dans le tableau
+                    matchingValuesArr.push($(this).attr("data-val"));
+                    // on ajoute l'opacité
+                    $(this).addClass("matching_img_active");
+                }
+            }
+
+            //trie dans l'ordre croissant ASC
+            matchingValuesArr.sort(function (a, b) {
+                return a - b;
+            });
+
+        });
+        // au clic du bouton valider
+        $("#matching-submit").on('click', function () {
+
+            //on vérifie si le tableau a bien 5 valeurs
+            if (matchingValuesArr.length === 5) {
+                // si oui on ajoute le spinner
+                $('#matching-inner').addClass('spinner-border');
+                //et on fait l'appel a l'api interne avec fetch
+                fetch(baseURL + '/user/api/score',
+                    {
+                        method: "POST",
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        //on passe les arguments à l'api au format json
+                        body: JSON.stringify({"choices": matchingValuesArr, "id": "{{ app.user.id }}", "type": type})
+                    }
+                )
+                    //si l'api ok statut 200
+                    // retourne un objet JSON du
+                    // response.json() résultat (si le résultat a été écrit au format JSON,
+                    // sinon cela déclenche une erreur)
+                    .then(response => response.json())
+                    .then(response => {
+                        //fin du traitement scoring
+                        //début du traitement matching
+                        window.location.href = baseURL + "/user/api/matching";
+                    })
+                    //si l'api pas ok
+                    .catch(e => {
+                        $('#matching-inner').removeClass('spinner-border');
+                        alert("Oups !");
+                    });
+            } else {
+
+                alert("Merci de sélectionner 5 causes");
+            }
+        })
+
+    </script>
+{% endblock %}

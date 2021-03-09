@@ -1,0 +1,50 @@
+.background-title-choices {
+    display: inline-block;
+    border-left: 15em;
+    background: #1DCA91;
+    max-width: 100%;
+}
+.text-choices {
+    font-family: 'KohinoorBangla', Arial, serif;
+    font-weight: initial;
+}
+.matching_content{
+
+}
+.matching_title{
+    text-align: center;
+    font-weight: bold;
+    font-size: larger;
+    color: #000000;
+}
+.matching_choice_list{
+    text-align: center;
+}
+.matching_choice_list_item{
+    height: 8.6em;
+    width: 8.6em;
+    display: inline-block;
+    margin: 1em;
+}
+.matching_img{
+    border-radius: 20px;
+    opacity: 0.5;
+    cursor: pointer;
+    width: 100%;
+}
+.matching_img_active{
+    border-radius: 20px;
+    opacity: 1;
+    cursor: pointer;
+    box-shadow: 7px 7px 15px grey;
+    height: 8.8em;
+    width: 8.8em;
+
+}
+.title-choises {
+    text-transform: uppercase;
+}
+#matching-inner {
+    width: 3rem;
+    height: 3rem;
+}

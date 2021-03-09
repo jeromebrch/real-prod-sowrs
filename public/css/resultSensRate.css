@@ -1,0 +1,53 @@
+.result_sens_rate_h3 {
+    color: #1dca91;
+    font-weight: bold;
+}
+.matching_back_ground{
+    background: #30c994;
+}
+.matching_title {
+    text-align: center;
+    color: #FFFFFF;
+}
+.matching_text {
+    text-align: center;
+    color: #FFFFFF;
+}
+.matching_text p {
+    color: #FFFFFF;
+}
+.match_card {
+    margin-bottom: 1em;
+}
+.match_card_sensrate {
+    text-align: center;
+}
+.match_card_sensrate {
+    background-color: #827399;
+    width: 100%;
+    height: 100%;
+}
+.match_card_picture img {
+    margin: 0;
+    width: 100%;
+}
+.match_card_description div p{
+    margin-bottom: 0;
+}
+.match_card_btn a {
+    width: 100%;
+}
+.doughnut{
+    width: 23em;
+    height: 15em;
+}
+.subtitle {
+    color: #1dca91;
+    font-weight: bold;
+}
+
+
+.result_sensrate_picture {
+    width: 100%;
+    height: 100%;
+}

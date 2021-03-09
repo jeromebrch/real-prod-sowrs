@@ -1,0 +1,39 @@
+<div class="row abstractJobOffer border border-2 p-3 m-3 gx-0 shadow bg-light">
+    <div class="col-lg-7 align-self-center">
+        <h6 class="abstractJobOfferTextTitle">{{ jobOffer.title }}</h6>
+
+        <div class="row p-1">
+            <img class="abstractJobOfferImgStopwatch col-lg-3" src="{{ asset('img/boostrap/stopwatch.svg') }}"/>
+            <p class="abstractJobOfferText col-lg-9 m-0">{{ jobOffer.creationDate|date("y-m-d H:i") }}</p>
+        </div>
+    </div>
+
+    <div class="row col-lg-5 text-center align-self-center gx-0">
+        {% if jobOffer.published == true %}
+            <a class="abstractJobOfferButtonPause col-lg-3 m-2 text-center align-self-center"
+               href="{{ path('jobOffer_pauseAndPlayOffer', {'id':jobOffer.id}) }}"
+               role="button">
+                <img class="abstractJobOfferPause" src="{{ asset('img/boostrap/pause-fill-white.svg') }}"/>
+            </a>
+        {% else %}
+            <a class="abstractJobOfferButton col-lg-3 m-2 text-center align-self-center"
+               href="{{ path('jobOffer_pauseAndPlayOffer', {'id':jobOffer.id}) }}"
+               role="button">
+                <img class="abstractJobOfferImgPlay" src="{{ asset('img/boostrap/play-fill-white.svg') }}"/>
+            </a>
+        {% endif %}
+
+        <a class="abstractJobOfferButton col-lg-3 m-2 text-center align-self-center" href="{{ path('jobOffer_refreshOffer', {'id':jobOffer.id}) }}"
+           role="button">
+            <img class="abstractJobOfferImgRepeat" src="{{ asset('img/boostrap/arrow-repeat-white.svg') }}"/>
+        </a>
+        <a class="abstractJobOfferButton col-lg-3 m-2 text-center align-self-center" href="{{ path('jobOffer_modifyJobOffer', {'id':jobOffer.id}) }}"
+           role="button">
+            <img class="abstractJobOfferImgPencil" src="{{ asset('img/boostrap/pencil-fill-white.svg') }}"/>
+        </a>
+        <a class="abstractJobOfferButtonTrash col-lg-3 m-2 text-center align-self-center"
+           href="{{ path('jobOffer_deleteOffer', {'id':jobOffer.id}) }}" role="button">
+            <img class="abstractJobOfferImgTrash" src="{{ asset('img/boostrap/trash-fill-white.svg') }}">
+        </a>
+    </div>
+</div>

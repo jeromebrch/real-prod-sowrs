@@ -1,0 +1,88 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css">
+{% endblock %}
+{% block title %}Sowrs | Création offre{% endblock %}
+
+{% block body %}
+
+    <div class="container-fluid">
+        <div class="row gx-0">
+            <div class="col-lg-3 border-end border-2">
+                {{ render(controller('App\\Controller\\DashBoardNavController::navBar'))}}
+            </div>
+            <div class="col-lg-9 gx-0">
+
+                <div class="container mb-5 background-title">
+                    <div class="row h-100">
+                        <div class="col-sm-6 text-center align-self-center text-white">
+                            <h3 class="title">Nouvelle offre !</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="m-5">
+                    <div class="error">{{ form_errors(jobOfferForm) }}</div>
+                    {{ form_start(jobOfferForm) }}
+                    <h3 style="color: #1dca91">Descriptif de l'offre</h3>
+                    <hr class="green-line m-3" size=3>
+
+                    <div class="row">
+                        <div class="col-sm-6 col-lg-6 pt-3">
+                            {{ form_row(jobOfferForm.title) }}
+                        </div>
+                        <div class="col-sm-6 col-lg-6 pt-3">
+                            {{ form_row(jobOfferForm.contractType) }}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6 col-lg-6 pt-3">
+                            {{ form_row(jobOfferForm.category) }}
+                        </div>
+                        <div class="col-sm-6 col-lg-6 pt-3">
+                            {{ form_row(jobOfferForm.remuneration) }}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6 col-lg-6 pt-3">
+                            {{ form_row(jobOfferForm.levelStudy) }}
+
+                        </div>
+                        <div class="col-sm-6 col-lg-6 pt-3">
+                            {{ form_row(jobOfferForm.levelExperience) }}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6 col-lg-6 pt-3">
+                            {{ form_row(jobOfferForm.country) }}
+                        </div>
+                        <div class="col-sm-6 col-lg-6 pt-3">
+                            {{ form_row(jobOfferForm.city) }}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6 col-lg-6 pt-3">
+                            {{ form_row(jobOfferForm.description) }}
+
+                        </div>
+                        <div class="col-sm-6 col-lg-6 pt-3">
+                            {{ form_row(jobOfferForm.tags) }}
+                        </div>
+                    </div>
+                    <div class="row mt-4">
+                        <div class="col-sm-6 col-lg-6 pt-3" style="text-align: center">
+                    <button type="submit" class="btn btn-lg btn-primary">Publier</button>
+                        </div>
+                        <div class="col-sm-6 col-lg-6 pt-3" style="text-align: center">
+                    <a class="btn btn-lg" href="{{ path('main_dash_board') }}"
+                       role="button" style="background: #999999">Annuler</a>
+                        </div>
+                    </div>
+                    {{ form_end(jobOfferForm) }}
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

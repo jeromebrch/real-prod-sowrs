@@ -1,0 +1,348 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css">
+{% endblock %}
+
+{% block title %}Sowrs | Mes informations{% endblock %}
+
+{% block body %}
+    <div class="container-fluid gx-0">
+        <div class="row gx-0">
+            <div class="col-lg-3 border-end border-3">
+                {{ render(controller('App\\Controller\\DashBoardNavController::navBar')) }}
+            </div>
+            <div class="col-lg-9">
+                {% if "ROLE_CANDIDATE" in app.user.roles %}
+                    <div class="container mb-4 background-title">
+                        <div class="row h-100">
+                            <div class="col-sm-6 text-center align-self-center text-white">
+                                <h3 class="title">QUI ETES VOUS ?</h3>
+                            </div>
+                            <div class="col-sm-6 text-center align-self-center">
+                                <button class="btn-title align-middle">Importer votre CV*</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="m-5">
+                        <div class="error">
+                            {{ form_errors(modifyUserForm) }}
+                        </div>
+                        {{ form_start(modifyUserForm) }}
+
+                        <div class="row">
+                            <div class="col-sm-6 col-lg-6 pt-3">
+                                {{ form_row(modifyUserForm.lastname) }}
+                            </div>
+                            <div class="col-sm-6 col-lg-6 pt-3">
+                                {{ form_row(modifyUserForm.firstname) }}
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-6 col-lg-6 pt-3">
+                                {{ form_row(modifyUserForm.email) }}
+                            </div>
+                            <div class="col-sm-6 col-lg-6 pt-3">
+                                {{ form_row(modifyUserForm.currentRole) }}
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-6 col-lg-6 pt-3">
+                                {{ form_row(modifyUserForm.phone) }}
+                            </div>
+                        </div>
+
+
+                        <div class="row">
+                            <div class="col-sm-6 col-lg-3 pt-3">
+                                {{ form_row(modifyUserForm.socialNetwork.webSite) }}
+                            </div>
+                            <div class="col-sm-6 col-lg-3 pt-3">
+                                {{ form_row(modifyUserForm.socialNetwork.linkedin) }}
+                            </div>
+                            <div class="col-sm-6 col-lg-3 pt-3">
+                                {{ form_row(modifyUserForm.socialNetwork.stackOverflow) }}
+                            </div>
+                            <div class="col-sm-6 col-lg-3 pt-3">
+                                {{ form_row(modifyUserForm.socialNetwork.github) }}
+                            </div>
+                        </div>
+
+
+                        <h4 class="subtitle-myDetail mb-3 ms-3 me-3 mt-5">Vos études et expériences</h4>
+                        <hr class="green-line m-3" size=3>
+
+                        <div class="row">
+                            <div class="col-sm-6 col-lg-6 pt-3">
+                                {{ form_row(modifyUserForm.levelStudy) }}
+                            </div>
+                            <div class="col-sm-6 col-lg-6 pt-3">
+                                {{ form_row(modifyUserForm.businessProfile) }}
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-6 col-lg-6 pt-3">
+                                {{ form_row(modifyUserForm.levelExperience) }}
+                            </div>
+                            <div class="col-sm-6 col-lg-6 pt-3">
+                                {{ form_row(modifyUserForm.authorizedCountry) }}
+                            </div>
+                        </div>
+
+                        <h4 class="subtitle-myDetail mb-3 ms-3 me-3 mt-5">Pour en savoir un peu plus sur vous...</h4>
+                        <hr class="green-line m-3" size=3>
+
+                        <div>
+                            <p class="paragraph">Au delà de votre CV, les recruteurs aiment en savoir
+                                plus sur les candidats. Prenez votre plus belle plume et présentez-vous en quelques
+                                lignes !
+                                Quel est votre parcours ? Quel sens voulez-vous donner à votre carrière ? Quelles
+                                valeurs
+                                sont essentielles à vos yeux ?</p>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-6 col-lg-6 pt-3">
+                                {{ form_row(modifyUserForm.about, {'attr': {'class':'text-area'}}) }}
+                            </div>
+                            <div class="col-sm-6 col-lg-6 pt-3">
+                                {{ form_row(modifyUserForm.inspiration, {'attr': {'class':'text-area'}}) }}
+                            </div>
+                        </div>
+
+
+                        {{ form_row(modifyUserForm.socialNetwork.facebook.setRendered()) }}
+                        {{ form_row(modifyUserForm.socialNetwork.twitter.setRendered()) }}
+                        {{ form_row(modifyUserForm.socialNetwork.skype.setRendered()) }}
+
+                        <h4 class="subtitle-myDetail mb-3 ms-3 me-3 mt-5">Que recherchez-vous</h4>
+                        <hr class="green-line m-3" size=3>
+
+                        <div class="row">
+                            <div class="col-sm-6 col-lg-6 pt-3">
+                                {{ form_row(modifyUserForm.jobSearch.desiredRemuneration) }}
+                            </div>
+                            <div class="col-sm-6 col-lg-6 pt-3">
+                                {{ form_row(modifyUserForm.jobSearch.contractType) }}
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-6 col-lg-6 pt-3">
+                                {{ form_row(modifyUserForm.jobSearch.indemnity) }}
+                            </div>
+                            <div class="col-sm-6 col-lg-6 pt-3">
+                                {{ form_row(modifyUserForm.jobSearch.jobTitle) }}
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-6 col-lg-6 pt-3">
+                                {{ form_row(modifyUserForm.jobSearch.country) }}
+                            </div>
+                            <div class="col-sm-6 col-lg-6 pt-3">
+                                {{ form_row(modifyUserForm.jobSearch.cause) }}
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-6 pt-3">
+                                {{ form_row(modifyUserForm.jobSearch.region) }}
+                            </div>
+                            <div class="col-sm-6 pt-3">
+                                {{ form_row(modifyUserForm.jobSearch.city) }}
+                            </div>
+                        </div>
+                        <div class="pt-3">
+                            {{ form_row(modifyUserForm.jobSearch.tags) }}
+                        </div>
+                    </div>
+
+                    <button type="submit"
+                            class="btn btn-lg position-relative bottom-0 start-50 translate-middle-x mb-4">
+                        Enregistrer
+                    </button>
+                    {{ form_end(modifyUserForm) }}
+
+                {% elseif "ROLE_RECRUITER" in app.user.roles %}
+
+                    <div class="container mb-4 background-title">
+                        <div class="row h-100">
+                            <div class="col-sm-6 text-center align-self-center text-white">
+                                <h3 class="title ">Mes informations</h3>
+                            </div>
+                            <div class="col-sm-6 text-center align-self-center">
+                                <button class="float-right btn btn-title btn-lg">Importer le logo de votre entité
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="m-5">
+                        <div class="error">
+                            {{ form_errors(modifyUserForm) }}
+                        </div>
+                        {{ form_start(modifyUserForm) }}
+
+                        <div class="row">
+                            <div class="col-sm-6 col-lg-6 pt-3">
+                                {{ form_row(modifyUserForm.lastname) }}
+                            </div>
+                            <div class="col-sm-6 col-lg-6 pt-3">
+                                {{ form_row(modifyUserForm.firstname) }}
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-6 col-lg-6 pt-3">
+                                {{ form_row(modifyUserForm.email) }}
+                            </div>
+                            <div class="col-sm-6 col-lg-6 pt-3">
+                                {{ form_row(modifyUserForm.phone) }}
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-6 col-lg-6 pt-3">
+                                {{ form_row(modifyUserForm.function) }}
+                            </div>
+                            <div class="col-sm-6 col-lg-6 pt-3">
+                                {{ form_row(modifyUserForm.activityNumber) }}
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-6 col-lg-6 pt-3">
+                                {{ form_row(modifyUserForm.entityName) }}
+                            </div>
+                            <div class="col-sm-6 col-lg-6 pt-3">
+                                {{ form_row(modifyUserForm.legalStatus) }}
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-6 col-lg-6 pt-3">
+                                {{ form_row(modifyUserForm.mainCause) }}
+                            </div>
+                            <div class="col-sm-6 col-lg-6 pt-3">
+                                {{ form_row(modifyUserForm.secondaryCauses) }}
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-6 pt-3">
+                                {{ form_row(modifyUserForm.socialNetwork.webSite) }}
+                            </div>
+                            <div class="col-sm-6 pt-3">
+                                {{ form_row(modifyUserForm.socialNetwork.linkedin) }}
+                            </div>
+                            <div class="col-sm-6 pt-3">
+                                {{ form_row(modifyUserForm.socialNetwork.stackOverflow) }}
+                            </div>
+                            <div class="col-sm-6 pt-3">
+                                {{ form_row(modifyUserForm.socialNetwork.github) }}
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-6 col-lg-6 pt-3">
+                                {{ form_row(modifyUserForm.reasonToBe) }}
+                            </div>
+                            <div class="col-sm-6 col-lg-6 pt-3">
+                                {{ form_row(modifyUserForm.about) }}
+                            </div>
+                        </div>
+                        <br>
+                        {# AFFICHAGE DU MULTI SELECT RECONNAISSANCE #}
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <h5>Reconnaissances et labels</h5>
+                            </div>
+                            <div class="col-lg-6">
+                                <h5>Mes reconnaissances</h5>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="contenu-scroll col-sm-6 col-lg-6 p-0">
+                                <ul class="list-group" id="listCauses">
+                                    {% for cause in listcauses %}
+                                        <li class="list-group-item" data-id="{{ cause.id }}"
+                                            data-name="{{ cause.text }}">
+                                            <button class="btn-recognition text-center">+</button>
+                                            <span>{{ cause.text }}</span>
+                                        </li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                            <div class="contenu-scroll col-sm-6 col-lg-6 p-0">
+                                <ul class="list-group" id="listCausesRecruiter">
+                                    {% for recognition in recognitions %}
+                                        <li class="list-group-item"
+                                            data-id="{{ recognition.id }}"
+                                            data-id-cause="{{ recognition.cause.id }}"
+                                            data-name-cause="{{ recognition.cause.text }}">
+                                            <button class="btn-recognition btn-sm">-</button>
+                                            <span>{{ recognition.cause.text }}</span><br>
+                                            <br>{{ recognition.description }}
+                                        </li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-lg">Enregistrer</button>
+
+
+                        {{ form_row(modifyUserForm.socialNetwork.facebook.setRendered()) }}
+                        {{ form_row(modifyUserForm.socialNetwork.twitter.setRendered()) }}
+                        {{ form_row(modifyUserForm.socialNetwork.skype.setRendered()) }}
+
+
+                        {{ form_end(modifyUserForm) }}
+
+
+                    <div id="formOne" class="position-relative m-4"
+                         style="background: #FFFFFF; border: 1px solid darkgrey">
+                        {{ form_start(recognitionForm) }}
+                        {{ form_errors(recognitionForm) }}
+                        <img src="{{ asset('img/boostrap/close.svg') }}" alt="fermer"
+                             class="position-absolute top-0 end-0"
+                             id="btnAnnulerAjoutCauseRecruiter">
+                        <h6 id="nameForm">Cause : </h6>
+                        {{ form_widget(recognitionForm) }}
+                        <button class="btn" id="btnAjoutCauseRecruiter">Valider</button>
+
+                        {{ form_end(recognitionForm) }}
+                    </div>
+                    </div>
+
+                {% endif %}
+
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+
+    {% block javascripts %}
+        {{ parent() }}
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+        <script type="text/javascript">
+            //double select pour causes secondaires
+            $("select").select2();
+        </script>
+
+        <script>
+            //----MUTLI SELECT RECONNAISSANCES
+
+            // on mémorise le user connecté
+            const recruiter = {{ app.user.id }};
+            // variable pour la sélection de l'action de gauche
+            let idCause = 0;
+        </script>
+
+        <script src="{{ asset('js/myDetails.js') }}"></script>
+    {% endblock %}

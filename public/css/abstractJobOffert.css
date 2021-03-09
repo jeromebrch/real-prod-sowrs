@@ -1,0 +1,74 @@
+.abstractJobOffer {
+    border-radius: 20px;
+}
+
+.abstractJobOfferButton {
+    width: 2.5em;
+    height: 2em;
+    border-radius: 1em;
+    background: #1DCA91;
+    border: none;
+}
+
+.abstractJobOfferButtonTrash {
+    width: 2.5em;
+    height: 2em;
+    border-radius: 1em;
+    background: #555555;
+    border: none;
+}
+
+.abstractJobOfferButtonPause {
+    width: 2.5em;
+    height: 2em;
+    border-radius: 1em;
+    background: #555555;
+    border: none;
+}
+.abstractJobOfferTextTitle {
+    font-family: 'KohinoorBangla', Arial, serif;
+    color: #1DCA91;
+}
+.abstractJobOfferText {
+    font-family: 'KohinoorBangla', Arial, serif;
+}
+.abstractJobOfferImgGlobe2 {
+    height: 1.3em;
+    width: auto;
+}
+.abstractJobOfferImgStopwatch {
+    height: 1.3em;
+    width: auto;
+}
+.abstractJobOfferImgEye {
+    height: 1.3em;
+    width: auto;
+}
+.abstractJobOfferImgPeople {
+    height: 1.3em;
+    width: auto;
+}
+.abstractJobOfferButtonImage {
+    height: 1.5em;
+    width: auto;
+}
+.abstractJobOfferPause {
+    height: 1.5em;
+    width: auto;
+}
+.abstractJobOfferImgPlay {
+    height: 1.5em;
+    width: auto;
+}
+.abstractJobOfferImgRepeat {
+    height: 1.5em;
+    width: auto;
+}
+.abstractJobOfferImgPencil {
+    height: 1em;
+    width: auto;
+}
+.abstractJobOfferImgTrash {
+    height: 1em;
+    width: auto;
+}

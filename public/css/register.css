@@ -1,0 +1,14 @@
+.register_title{
+    font-family: 'KohinoorBangla', Arial, serif;
+    text-align: center;
+}
+.btnRegisterSelected{
+    color: #FFFFFF;
+}
+.btnRegisterNoSelect{
+    background: grey;
+}
+.text-register {
+    font-family: 'KohinoorBangla', Arial, serif;
+
+}

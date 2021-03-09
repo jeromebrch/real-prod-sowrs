@@ -1,0 +1,33 @@
+*{
+    font-family: 'KohinoorBangla', Arial, serif;
+}
+/*----------------FILTER-------------------------------*/
+
+.candidate_filter{
+    border: 2px solid lightgray;
+    border-radius: 20px;
+    background-color: #1dca91;
+}
+
+/*--------------------CANDIDATE LIST--------------------------*/
+
+.candidate_row{
+    border: 2px solid lightgray;
+    border-radius: 20px;
+    background-color: #FFFFFF;
+}
+
+.candidate_text a {
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+}
+.candidate_text p {
+    margin-bottom: 1px;
+}
+.btn_contract_type{
+    font-size: 1em;
+    width: 10em;
+    pointer-events: none;
+    box-shadow: none;
+}

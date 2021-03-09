@@ -1,0 +1,75 @@
+
+.names {
+    color: black;
+    line-height: 30px;
+    font-family: 'KohinoorBangla', Arial, serif;
+    font-weight: bolder;
+}
+
+#photo_profile {
+    width: 10rem;
+    height: auto;
+    border: none;
+    -moz-border-radius: 100px;
+    -webkit-border-radius: 100px;
+    display: block;
+    margin: 1rem auto;
+
+}
+.dashBoardList {
+    display: block;
+    text-align: left;
+    margin: auto;
+}
+
+.dashBoardList li {
+    color: #827399;
+    list-style-type: none;
+}
+
+.buttonDashBoardNav {
+    display: block;
+    margin: 1rem auto;
+}
+
+.nav-link {
+    color: #827399;
+    font-family: 'KohinoorBangla', Arial, serif;
+    font-weight: bolder;
+    font-size: 1.2em;
+}
+
+.btn {
+    width: 225px;
+    border-radius: 50px;
+    background: #1DCA91;
+    border: none;
+    font-family: 'KohinoorBangla', Arial, serif;
+    padding: 10px;
+    font-size: larger;
+    color: white;
+    margin: auto;
+}
+
+.btn:hover {
+    background-color: #555555;
+    text-decoration:none;
+}
+
+.nav-link:hover {
+    color: #555555;
+}
+
+.text-dash-board {
+    font-family: 'KohinoorBangla', Arial, serif;
+    color: black;
+    font-weight: bolder;
+    text-align: center;
+    font-size: larger;
+}
+
+.entityName {
+    text-align: center;
+    font-family: 'KohinoorBangla', Arial, serif;
+    font-weight: bolder;
+}

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="viewport" content="width width=device-width, initial-scale=1">
+    <title>{% block title %}SOWRS{% endblock %}</title>
+
+    {% block stylesheets %}
+        <link rel="shortcut icon" type="image/jpg" href="{{ asset('img/favicon.jpg') }}"/>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+              integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1"
+              crossorigin="anonymous">
+        <link rel="stylesheet" href="{{ asset("css/app.css") }}">
+        <link rel="stylesheet" href="{{ asset("css/footer.css") }}">
+        <link rel="stylesheet" href="{{ asset("css/abstractJobOffert.css") }}">
+        <link rel="stylesheet" href="{{ asset('css/dashBoardNav.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/myDetails.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/mainNav.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/register.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/resultSensRate.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/showCandidate.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/nav.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/principalNav.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/home.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/senseRate.css') }}">
+
+    {% endblock %}
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+</head>
+
+
+<body>
+<div class="container">
+    <header>
+        <div>
+            {% include ('nav/nav.html.twig') %}
+        </div>
+        <div>
+            {% include ('nav/principalNav.html.twig') %}
+        </div>
+    </header>
+</div>
+<div class="container-fluid page border-top border-3 gx-0">
+    {% block body %}{% endblock %}
+    <br>
+</div>
+</body>
+
+<footer>
+    {% include'footer/footerMain.html.twig' %}
+</footer>
+
+{% block javascripts %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.5.4/umd/popper.min.js"></script>
+    <script>const baseURL = "{{ app.request.basePath }}";</script>
+
+{% endblock %}

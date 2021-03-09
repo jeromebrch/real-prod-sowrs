@@ -1,0 +1,59 @@
+<nav class="navbar navbar-expand-lg navbar-light" id="main_navbar">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="{{ path('main') }}" title="Sowrs | Home">
+            <img class="m-3" id="logo_sowrs" src="{{ asset('img/logo-base-50px-haut.png') }}" alt="Sowrs">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+
+                    <li class="nav-item"><a class="nav-link mx-3 my-1" id="secondary-nav"
+                                            href="{{ path('main_dash_board') }}">TABLEAU DE BORD</a></li>
+                    <li class="nav-item"><a class="nav-link  mx-3 my-1" id="secondary-nav"
+                                            href="{{ path('app_logout') }}">DECONNEXION</a></li>
+                {% else %}
+                    <li class="nav-item"><a class="nav-link mx-3 my-1" id="secondary-nav"
+                                            href="{{ path('app_login') }}">CONNEXION</a></li>
+                    <li class="nav-item"><a class="nav-link mx-3 my-1" id="secondary-nav"
+                                            href="{{ path('app_register') }}">CREER UN COMPTE</a></li>
+                {% endif %}
+
+                <li class="nav-item"><a class="nav-link" id="secondary-nav"
+                                        href="https://www.facebook.com/sowrscom"
+                                        target="_blank"><img class="logo_facebook mx-3 my-1"
+                                                             src="{{ asset('img/facebook_violet.png') }}"
+                                                             alt="Page Facebook"></a></li>
+                <li class="nav-item"><a class="nav-link" id="secondary-nav"
+                                        href="https://www.linkedin.com/company/sowrs/" target="_blank"><img
+                                class="logo_linkedin mx-3 my-1" src="{{ asset('img/linkedin_violet.png') }}"
+                                alt="Page linkedin"></a></li>
+                <li class="nav-item"><a class="nav-link mx-1" id="secondary-nav"
+                                        href="https://www.instagram.com/we.are.sowrs/" target="_blank"><img
+                                class="logo_instagram  mx-3 my-1" src="{{ asset('img/instagram_violet.png') }}"
+                                alt="Page instagram"></a></li>
+                <li class="nav-item"><a class="nav-link" id="secondary-nav" href="https://twitter.com/sowrs_com"
+                                        target="_blank"><img class="logo_twitter mx-3 my-1"
+                                                             src="{{ asset('img/twitter_violet.png') }}"
+                                                             alt="Page twitter"></a></li>
+                <li class="nav-item"><a class="nav-link" id="secondary-nav" href="https://fr.tipeee.com/sowrs"
+                                        target="_blank"><img class="logo_tipeee mx-3 my-1"
+                                                             src="{{ asset('img/tipeee_violet.png') }}"
+                                                             alt="Page tipeee"></a></li>
+            </ul>
+        </div>
+
+    </div>
+</nav>
+
+{% block javascripts %}
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.5.4/umd/popper.min.js"></script>
+{% endblock %}
+

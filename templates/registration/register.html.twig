@@ -1,0 +1,206 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Sowrs | Inscription{% endblock %}
+
+
+
+{% block body %}
+
+    {% for flashError in app.flashes('verify_email_error') %}
+        <div class="alert alert-danger" role="alert">{{ flashError }}</div>
+    {% endfor %}
+    <div class="col-10 offset-1 pt-4 pb-3 register_title">
+        <h1>Bonjour et bienvenue sur SOWRS </h1>
+        <h2>On fait connaissance ?</h2>
+    </div>
+    {% for message in app.flashes('error') %}
+        <div class="alert alert-success">
+            {{ message }}
+        </div>
+    {% endfor %}
+
+    <div class="row">
+        <div class="col-4 offset-2 col-md-2 offset-md-1 p-1 col-lg-2 offset-lg-2" style="text-align: center; cursor: pointer">
+            <div style="background: #1dca91; border-radius: 20px" class="pb-3 pt-3" id="btnCandidat">
+                <h2>Je suis</h2>
+                <h3>Candidat</h3>
+            </div>
+        </div>
+        <div class="col-md-6 col-lg-5 d-none d-md-block d-lg-block d-xl-block">
+            <ul>
+                <li>
+                    <p class="text-register">Vous êtes candidat ? Vous pouvez créer votre CV,postuler et matcher avec
+                        des entreprises à
+                        impactpositif !</p>
+                </li>
+                <li>
+                    <p class="text-register">Vous êtes recruteur ? Vous pouvez créer des offres,accéder à la CVthèque et
+                        matcher avec des
+                        candidatsengagés !</p>
+                </li>
+            </ul>
+        </div>
+        <div class="col-4 p-1 col-lg-2 " style="text-align: center; cursor: pointer">
+            <div style="background: #1dca91; border-radius: 20px" class="pb-3 pt-3" id="btnRecruteur">
+                <h2>Je suis</h2>
+                <h3>Recruteur</h3>
+            </div>
+        </div>
+        <div class="col-10 offset-1 d-md-none d-lg-none d-xl-none mt-4">
+            <ul>
+                <li>
+                    <p class="text-register">Vous êtes candidat ? Vous pouvez créer votre CV,postuler et matcher avec
+                        des entreprises à
+                        impactpositif !</p>
+                </li>
+                <li>
+                    <p class="text-register">Vous êtes recruteur ? Vous pouvez créer des offres,accéder à la CVthèque et
+                        matcher avec des
+                        candidatsengagés !</p>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <br>
+    <div class="container" id="candidate">
+        {# Formulaire candidat #}
+        <div class="error">{{ form_errors(formCandidate) }}</div>
+        {{ form_start(formCandidate, {'attr': {'class':'d-none', 'autocomplete': 'false'}}) }}
+
+        <div class="row">
+            <div class="col-lg-4 p-2">
+                {{ form_row(formCandidate.email) }}
+            </div>
+            <div class="col-lg-4 p-2">
+                {{ form_row(formCandidate.currentRole) }}
+            </div>
+            <div class="col-lg-4 p-2">
+                {{ form_row(formCandidate.plainPassword.first) }}
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-4 p-2">
+                {{ form_row(formCandidate.firstname) }}
+            </div>
+            <div class="col-lg-4 p-2">
+                {{ form_row(formCandidate.levelExperience) }}
+            </div>
+            <div class="col-lg-4 p-2">
+                {{ form_row(formCandidate.plainPassword.second) }}
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-4 p-0">
+                <div class="p-2 m-0">
+                    {{ form_row(formCandidate.lastname) }}
+                </div>
+                <div class="p-2 m-0">
+                    {{ form_row(formCandidate.phone) }}
+                </div>
+            </div>
+            <div class="col-lg-4 p-0">
+                <div class="p-2 m-0">
+                    {{ form_row(formCandidate.levelStudy) }}
+                </div>
+                <div class="p-2 m-0">
+                    {{ form_row(formCandidate.businessProfile) }}
+                </div>
+            </div>
+            <div class="position-relative col-lg-4 p-2">
+                {# recaptcha #}
+                <div class="g-recaptcha position-absolute top-50 start-50 translate-middle" data-sitekey="6LcqEgIaAAAAAEtDy88bfJXRtrhQDfRxwFD-0_Ca"></div>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div>
+                <a class="legalNotice" href="{{ path('main_legalNotice') }}">Mentions légales & conditions générales
+                    d'utilisation</a>
+                {{ form_row(formCandidate.agreeTerms) }}
+            </div>
+            <div style="text-align: center">
+            <button type="submit" class="btn btn-lg">Créer mon compte</button>
+            </div>
+        </div>
+        {{ form_end(formCandidate) }}
+    </div>
+    {# fin recaptcha #}
+
+    <div class="container" id="recruiter">
+        {# Formulaire recruteur #}
+        <div class="error">{{ form_errors(formRecruiter) }}</div>
+        {{ form_start(formRecruiter, {'attr': {'class':'d-none', 'autocomplete': 'false'}}) }}
+        <div class="row p-0">
+            <div class="col-lg-4 p-2">
+                {{ form_row(formRecruiter.email) }}
+            </div>
+            <div class="col-lg-4 p-2">
+                {{ form_row(formRecruiter.entityName) }}
+            </div>
+            <div class="col-lg-4 p-2">
+                {{ form_row(formRecruiter.plainPassword.first) }}
+            </div>
+        </div>
+        <div class="row p-0">
+            <div class="col-lg-4 p-2">
+                {{ form_row(formRecruiter.lastname) }}
+            </div>
+            <div class="col-lg-4 p-2">
+                {{ form_row(formRecruiter.activityNumber) }}
+            </div>
+            <div class="col-lg-4 p-2">
+                {{ form_row(formRecruiter.plainPassword.second) }}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-4 p-0">
+                <div class="p-2 m-0">
+                    {{ form_row(formRecruiter.firstname) }}
+                </div>
+                <div class="p-2 m-0">
+                    {{ form_row(formRecruiter.phone) }}
+                </div>
+            </div>
+            <div class="col-lg-4 p-0">
+                <div class="p-2 m-0">
+                    {{ form_row(formRecruiter.legalStatus) }}
+                </div>
+                <div class="p-2 m-0">
+                    {{ form_row(formRecruiter.mainCause) }}
+                </div>
+            </div>
+            <div class="position-relative col-lg-4 p-2">
+                {# recaptcha #}
+                <div class="g-recaptcha position-absolute top-50 start-50 translate-middle" data-sitekey="6LcqEgIaAAAAAEtDy88bfJXRtrhQDfRxwFD-0_Ca"></div>
+            </div>
+        </div>
+        <div class="row p-0">
+            <div class="col-lg-4 p-2">
+                {{ form_row(formRecruiter.function) }}
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div>
+                <a class="legalNotice" href="{{ path('main_legalNotice') }}">Mentions légales & conditions générales
+                    d'utilisation</a>
+                {{ form_row(formRecruiter.agreeTerms) }}
+            </div>
+            <div style="text-align: center">
+                <button type="submit" class="btn btn-lg">Créer mon compte</button>
+            </div>
+        </div>
+        {{ form_end(formRecruiter) }}
+    </div>
+
+
+{% endblock %}
+
+{% block javascripts %}
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="{{ asset('js/register.js') }}"></script>
+    echo '<script type="text/javascript">window.alert("Commencez par nous dire si vous êtes candidat ou recruteur");</script>';
+{% endblock %}

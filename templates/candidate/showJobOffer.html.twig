@@ -1,0 +1,133 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Sowrs | {{ jobOffer.title }}{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"></script>
+
+{% endblock %}
+
+{% block body %}
+    <div class="show_candidate_jumbotron pt-3">
+        <div class="col-lg-1 mx-auto">
+            {% if entity.picture.pictureName %}
+                <img style="width: 100%" class="rounded-circle"
+                     src="{{ asset('images/profils/' ~entity.picture.pictureName ) }}"
+                     alt="photo du profil">
+            {% else %}
+                <img style="width: 100%" class="rounded-circle"
+                     src="{{ asset('images/profils/avatar.jpg') }}"
+                     alt="photo du profil">
+            {% endif %}
+        </div>
+        <div class="col-lg-5 mx-auto">
+            <h5 class="show_candidate_jumbotron_name" style="color: #dfdfdf">{{ entity.entityName | capitalize }}</h5>
+        </div>
+        <div class="col-lg-5 mx-auto">
+            <h4 class="show_candidate_jumbotron_name" style="color: #FFFFFF">{{ jobOffer.title | capitalize }}</h4>
+        </div>
+        <h5 class="show_candidate_jumbotron_infos">{{ jobOffer.city | capitalize }}
+            - {{ jobOffer.contractType.wording |capitalize }}
+
+            {% if jobOffer.remuneration.text %}
+                - {{ jobOffer.remuneration.text |capitalize }}
+            {% endif %}
+            - {{ jobOffer.category.wording | capitalize }}
+        </h5>
+        {# Gerer les tags #}
+
+        <div class="col-lg-auto mx-auto" style="text-align: center">
+            <ul class="list-unstyled list-inline">
+                <li class="list-inline-item">
+                    <a class="nav-link" id="secondary-nav" href="https://www.facebook.com/sowrscom"
+                       target="_blank"><img class="logo_facebook" src="{{ asset('img/facebook_gris-footer.png') }}"
+                                            alt="Page Facebook"></a>
+                </li>
+                <li class="list-inline-item">
+                    <a class="nav-link"
+                       href="https://www.linkedin.com/company/sowrs/" target="_blank"><img
+                                class="logo_linkedin" src="{{ asset('img/linkedin_grist-footer.png') }}" alt="Page linkedin"></a>
+                </li>
+                <li class="list-inline-item">
+                    <a class="nav-link" href="https://twitter.com/sowrs_com"
+                       target="_blank"><img class="logo_twitter" src="{{ asset('img/twitter_gris-footer.png') }}"
+                                            alt="Page twitter"></a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-7">
+            <h3 class="subtitle">À propos de </h3>
+            <p>njbkjahlbhdhdzhdzhxdnkkjzhdjkzhjndnjbkjahlbhdhdzhdzhxdnkkjzhdjkzhjnd
+                njbkjahlbhdhdzhdzhxdnkkjzhdjkzhjndnjbkjahlbhdhdzhdzhxdnkkjzhdjkzhjndnjbkjahlbhdhdzhdzhxdnkkjzhdjkz
+                njbkjahlbhdhdzhdzhxdnkkjzhdjkzhjndnjbkjahlbhdhdzhdzhxdnkkjzhdjkzhjnd</p>
+
+            <h3 class="subtitle">est engagé dans </h3>
+            <p>njbkjahlbhdhdzhdzhxdnkkjzhdjkzhjndnjbkjahlbhdhdzhdzhxdnkkjzhdjkzhjnd
+            ◊◊◊◊</p>
+        </div>
+        <div class="col-lg-5">
+            <div class="show_candidate_sens_rate">
+                <div class="row align-items-center">
+                    <div class="col-lg-2">
+                        <img src="" alt="taux de sens">
+                    </div>
+                    <div class="col-lg-8">
+                        <h5>Taux de sens</h5>
+                        <h5>{{ entity.scoring.dominantPourcent }}% {{ entity.scoring.dominantSens }}</h5>
+                    </div>
+                    <div class="col-lg-1 ">
+                        <img src="{{ asset('img/boostrap/flecheBas.svg') }}" alt="flèche vers le bas" width="100%"
+                             style="margin: 0" id="btn_doughnut">
+                    </div>
+                </div>
+                <br>
+                <div class="doughnut col-lg-8 mx-auto pb-1 collapse" id="doughnut">
+                    <canvas id="myChart"></canvas>
+                    <br>
+                </div>
+            </div>
+            <br>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        const btn_doughnut = document.getElementById('btn_doughnut');
+        const doughnut = document.getElementById('doughnut');
+
+        btn_doughnut.addEventListener('click', function (e) {
+            e.currentTarget.classList.toggle('rotate');
+            doughnut.classList.toggle('collapse');
+        })
+
+
+        var ctx = document.getElementById('myChart');
+        var myChart = new Chart(ctx, {
+            type: 'doughnut',
+            data: {
+                labels: ['Social', 'Environnement', 'Economie', 'Societal'],
+                datasets: [{
+                    label: '# of Votes',
+                    data: [
+                        {{ entity.scoring.social }},
+                        {{ entity.scoring.environment }},
+                        {{ entity.scoring.economy }},
+                        {{ entity.scoring.societal }}
+                    ],
+                    backgroundColor: [
+                        'rgba(161, 14, 214, 0.53)',
+                        'rgba(44, 168, 19, 0.68)',
+                        'rgba(89, 121, 252, 1)',
+                        'rgba(252, 187, 89, 0.71)',
+                    ],
+                }]
+            },
+            options: {}
+        });
+    </script>
+{% endblock %}

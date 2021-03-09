@@ -1,0 +1,16 @@
+.login_title {
+    text-align: center;
+}
+
+.btn_login {
+    width: 100%;
+    margin: 0;
+    text-align: center;
+    color: #FFFFFF;
+}
+.email_login{
+    font-weight: bold;
+}
+.mdp_login{
+    font-weight: bold;
+}

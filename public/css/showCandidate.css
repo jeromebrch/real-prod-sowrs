@@ -1,0 +1,42 @@
+.show_candidate_jumbotron {
+    background: #827399;
+    margin-bottom: 5em;
+}
+.show_candidate_jumbotron_name {
+    color: #FFFFFF;
+    font-weight: bold;
+    text-align: center;
+}
+#show_candidate_photo_profile {
+    text-align: center;
+    margin: 0em;
+}
+.show_candidate_jumbotron_infos {
+    color: #dfdfdf;
+    text-align: center;
+}
+.show_candidate_jumbotron_inspiration {
+    color: #e0e0e0;
+    text-align: center;
+    font-style: italic;
+}
+.show_candidate_sens_rate {
+    background: #FFFFFF;
+}
+#btn_doughnut {
+    cursor: pointer;
+}
+.rotate {
+    transform: rotate(180deg);
+}
+.show_candidate_infos_text {
+    color: #1dca91;
+    font-weight: bold;
+}
+.show_candidate_socialButton {
+    height: 2em;
+    background: #1dca91;
+    text-align: center;
+    cursor: pointer;
+}
+
