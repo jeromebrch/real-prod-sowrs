@@ -4,5 +4,89 @@
 
 
 {% block body %}
-
+    <div id="main_content_about" class="col-10 offset-1">
+        <div class="row">
+            <div class="col-12 about_us_banner" id="about_banner_top">
+                <h2 class="interest_point_about" id="title_about_banner">QUI SOMMES-NOUS ?</h2>
+            </div>
+        </div>
+        <div class="row">
+            <h2 class="interest_point_about">WORK FOR CHANGE</h2>
+        </div>
+        <div class="row">
+            <div class="col-lg-6 col-md-12 block_info_about">
+                <p>
+                    Nous sommes de plus en plus nombreux à ouvrir les yeux sur les problèmes du monde.
+                    Alors que les scientifiques et les associations donnent des chiffres alarmants sur le climat,
+                    que nous ne pouvons ignorer les souffrances humaines,
+                    animales ou toute autre cause qui nous touche,
+                    nous sommes plus que jamais à l’ère de la <span class="important_sentence_about">prise de conscience</span>.
+                </p>
+                <p>
+                    Parallèlement, nous vivons actuellement dans une société gouvernée par le choix,
+                    où nous sommes noyés d’informations et où les bullshit jobs fourmillent.
+                    Mais pourquoi travaillons-nous ? Outre le besoin de gagner notre vie,
+                    les raisons sont multiples : exister socialement, suivre nos passions,
+                    nous épanouir professionnellement et personnellement…
+                    Quelles que soient les raisons qui nous animent,
+                    avec une moyenne de 8 heures par jour consacrées au travail,
+                    il est essentiel <span class="important_sentence_about">de trouver un sens à notre métier pour atteindre ces objectifs</span>.
+                </p>
+            </div>
+            <div class="col-lg-6 col-md-12 block_info_about">
+                <p>
+                    De là, naissent plusieurs ambitions.
+                    Celle de limiter notre impact écologique.
+                    Celle d’œuvrer pour un projet vraiment utile aux personnes et à la planète.
+                    Celle de lutter, à notre échelle, contre les inégalités.
+                    Notre ambition à nous est de vous aider à ajouter votre pierre à l’édifice à travers le choix de votre travail.
+                </p>
+                <p>
+                    Sowrs est <span class="important_sentence_about">le site d’emploi IT responsable qui met en relation
+                        les entreprises qui veulent sauver le monde avec les ingénieurs informatiques en quête de sens</span>.
+                    Si vous êtes de celles et ceux qui préfèrent les actes
+                    aux paroles et souhaitent agir au quotidien pour avoir un impact positif sur le monde,
+                    nous sommes ici pour vous aider à accomplir vos projets.
+                </p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 about_us_banner" id="about_banner_bottom">
+                <h2 class="interest_point_about" id="title_about_banner">Et vous, quelle est la valeur que vous souhaitez donner à votre métier ?</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-6 col-md-12 about_nav">
+                <img class="about_logo" src="{{ asset('img/chercher-job-greentech-itx120.png') }}" alt="Job Greentech" title="Job Greentech SOWRS"/>
+                <h3 class="interest_point_about">VOUS CHERCHEZ UN EMPLOI DANS LA TECH ET VOUS VOULEZ DONNER <br> DU SENS À VOTRE CARRIÈRE ?</h3>
+                <p>
+                    Nous proposons aux professionnels de l’informatique la possibilité de travailler
+                    pour des entreprises responsables d’un point de vue social et environnemental.
+                </p>
+                <p>
+                    Vous pouvez consulter les offres d’entreprises sélectionnées et postuler
+                    à celles qui vous correspondent, tant d’un point de vue métier que valeurs !
+                </p>
+                <a href="{{ path('app_register') }}" class="btn about_nav_btn">Créez votre compte candidat</a>
+            </div>
+            <div class="col-lg-6 col-md-12 about_nav">
+                <img class="about_logo" src="{{ asset('img/recruter-developpeur-entreprise-ecoresponsablex120.png') }}" alt="Job Greentech" title="Job Greentech SOWRS"/>
+                <h3 class="interest_point_about">LA RESPONSABILITÉ EST IMPORTANTE POUR VOTRE ENTREPRISE ET VOUS CHERCHEZ DES COLLABORATEURS ?</h3>
+                <p>
+                    Côté entreprise, nous sommes aux côtés des acteurs de la Green Tech
+                    et des entreprises ayant à cœur de travailler de manière éthique
+                    et en limitant leur impact environnemental.
+                </p>
+                <p>
+                    Nous vous permettons de diffuser vos offres d’emploi et d’accéder
+                    à une CVthèque de candidats qualifiés qui partagent vos valeurs.
+                </p>
+                {% if is_granted('ROLE_RECRUITER') %}
+                    <a href="{{ path('dash_board_job_offer_create') }}" class="btn about_nav_btn">Diffusez votre offre</a>
+                {% else %}
+                    <a href="{{ path('app_register') }}" class="btn about_nav_btn">Diffusez votre première offre</a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
 {% endblock %}

@@ -1,0 +1,83 @@
+#main_content_about{
+
+}
+.about_us_banner{
+    padding: 80px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+#about_banner_top{
+    background: url("../img/about-us-banner.jpg") no-repeat center;
+}
+#about_banner_bottom{
+    background: url("../img/valeur-metier-banner.jpg") no-repeat center;
+}
+#about_banner_bottom h2{
+    color: #827399;
+}
+#title_about_banner{
+    font-size: 1.3em;
+}
+.about_illustration {
+    padding: 20px;
+}
+.interest_point_about{
+    color: #1DCA91;
+    font-weight: normal;
+}
+h2.interest_point_about{
+    margin-top: 50px;
+}
+h3.interest_point_about{
+    font-size: 1.4em;
+}
+.block_info_about{
+    padding: 20px;
+    text-align: left;
+    font-size: 1em;
+    vertical-align: middle;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.block_info_about p{
+    color: #555555;
+}
+.about_logo{
+    height: 120px;
+    width: auto;
+}
+.about_nav{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.about_nav p{
+    color: #555555;
+}
+.about_nav h3,p{
+    padding: 10px;
+    text-align: center;
+}
+.about_nav img{
+    margin: 20px;
+}
+.about_nav_btn{
+    width: 300px;
+}
+.important_sentence_about{
+    color: #1DCA91;
+    font-weight: bold;
+}
+
+@media screen and (max-width: 540px){
+    .about_nav{
+        margin-bottom: 40px;
+        margin-top: 20px;
+    }
+}
