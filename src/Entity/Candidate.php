@@ -1,3 +1,4 @@
+<?php
 namespace App\Entity;
 
 use App\Repository\CandidateRepository;
