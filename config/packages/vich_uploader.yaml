@@ -10,3 +10,12 @@ vich_uploader:
             inject_on_load: false
             delete_on_update: true
             delete_on_remove: true
+
+        cv:
+            uri_prefix: /fichiers/cv
+            upload_destination: '%kernel.project_dir%/public/fichiers/cv'
+            namer: Vich\UploaderBundle\Naming\UniqidNamer
+
+            inject_on_load: false
+            delete_on_update: true
+            delete_on_remove: true

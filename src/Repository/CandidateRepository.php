@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Data\SearchCandidate;
 use App\Entity\Candidate;
+use App\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\NonUniqueResultException;
 use Doctrine\Persistence\ManagerRegistry;
@@ -17,6 +18,7 @@ use mysql_xdevapi\Result;
  */
 class CandidateRepository extends ServiceEntityRepository
 {
+
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Candidate::class);
@@ -70,6 +72,20 @@ class CandidateRepository extends ServiceEntityRepository
         }
     }
 
+
+
+    function findCandidate(Candidate $candidate, User $user)
+    {
+        $query = $this
+            ->createQueryBuilder('c')
+            ->addselect('u')
+            ->leftJoin('c.user', 'u')
+            ->setParameter('c', $candidate)
+            ->setParameter('u', $user);
+
+        return $query->getQuery()->getResult();
+
+    }
     /**
      * @param SearchCandidate $data
      * @return Candidate[]

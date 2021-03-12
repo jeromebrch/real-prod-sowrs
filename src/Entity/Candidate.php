@@ -11,9 +11,10 @@ use Doctrine\ORM\Mapping as ORM;
 class Candidate extends User
 {
     /**
-     * @ORM\Column(type="string", length=150, nullable=true)
+     * @ORM\OneToOne(targetEntity=Cv::class)
+     * @ORM\JoinColumn(nullable=true)
      */
-    private $cv;
+    protected $cv;
 
     /**
      * @ORM\Column(type="string", length=150, nullable=true)
@@ -70,20 +71,6 @@ class Candidate extends User
     {
         return parent::setRoles($roles);
     }
-
-
-    public function getCv(): ?string
-    {
-        return $this->cv;
-    }
-
-    public function setCv(?string $cv): self
-    {
-        $this->cv = $cv;
-
-        return $this;
-    }
-
 
     public function getCurrentRole(): ?string
     {
@@ -183,5 +170,16 @@ class Candidate extends User
         return $this;
     }
 
+    public function getCv(): ?Cv
+    {
+        return $this->cv;
+    }
+
+    public function setCv(?Cv $cv): self
+    {
+        $this->cv = $cv;
+
+        return $this;
+    }
     
 }

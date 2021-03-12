@@ -102,10 +102,6 @@ class User implements UserInterface, \Serializable
     protected $picture;
 
 
-
-
-
-
     public function __construct()
     {
         $this->registrationDate = new DateTime;

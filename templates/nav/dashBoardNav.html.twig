@@ -20,15 +20,13 @@
             <label for="dash_board_nav_pictureFile" class="btn required buttonDashBoardNav">Importer votre photo</label>
         </div>
         <br>
+
         <ul class="dashBoardList d-flex flex-column align-items-start">
             <li>
                 <a class="nav-link" href="{{ path('main_dash_board') }}">Tableau de bord</a>
             </li>
             <li>
                 <a class="nav-link" href="{{ path('dashboard_details') }}">Qui êtes-vous ?</a>
-            </li>
-            <li>
-                <a class="nav-link" href="">Importez votre CV</a>
             </li>
 
             {% if app.user.scoring %}
@@ -50,6 +48,14 @@
                 <a class="nav-link" href="{{ path('app_logout') }}">Déconnexion</a>
             </li>
         </ul>
+        <div class="error">
+            {{ form_errors(formCv) }}
+            {{ form_start(formCv, {'attr': {'id':'updatecvform', 'class':'d-none'}}) }}
+            {{ form_widget(formCv) }}
+            {{ form_end(formCv) }}
+            <label for="create_cv_cvFile" class="btn required buttonDashBoardNav">Importer votre cv</label>
+        </div>
+
         <br>
         {% if app.user.private %}
             <a class="btn" type="button" href="{{ path('dash_board_account_status') }}">Enlever la cape d'invisibilité</a>
@@ -109,7 +115,6 @@
             </li>
         </ul>
         <br>
-
         {% if app.user.private %}
             <a class="btn" type="button" href="{{ path('dash_board_account_status') }}">Mettre le compte en ligne</a>
         {% else %}
@@ -127,6 +132,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.5.4/umd/popper.min.js"></script>
 
     <script>
+
         const elementFormPicture = document.getElementById('updateavatarform');
         const elementInputPicture = document.getElementById('dash_board_nav_pictureFile');
         const elementPhotoProfile = document.getElementById('photo_profile');
@@ -134,6 +140,7 @@
         elementInputPicture.addEventListener("change", function () {
             console.log("onchange");
             let formData = new FormData(elementFormPicture);
+            console.log(formData);
             fetch('{{ path('register_picture') }}', {method: 'POST', body: formData})
                 .then(response => response.json())
                 .then(response => {
@@ -143,6 +150,33 @@
             });
         });
         elementFormPicture.addEventListener("submit", function (e) {
+            e.preventDefault();
+            console.log("submit");
+        });
+
+        const elementFormCv = document.getElementById('updatecvform');
+        const elementInputCv = document.getElementById('create_cv_cvFile');
+
+        elementInputCv.addEventListener("change", function () {
+            console.log("onchange");
+            let formData = new FormData(elementFormCv);
+            console.log(elementInputCv)
+            fetch('{{ path('register_cv') }}',
+                {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(response => response.json())
+                .then(response => {
+                    console.log(response);
+                    alert(response.succes)
+                })
+                .catch(e => {
+                    alert(e);
+                });
+        });
+
+        elementFormCv.addEventListener("submit", function (e) {
             e.preventDefault();
             console.log("submit");
         });

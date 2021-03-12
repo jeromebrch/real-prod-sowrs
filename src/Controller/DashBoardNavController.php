@@ -2,7 +2,10 @@
 
 namespace App\Controller;
 
+use App\Entity\Candidate;
+use App\Entity\Cv;
 use App\Entity\Picture;
+use App\Form\CreateCvType;
 use App\Form\DashBoardNavType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -23,8 +26,14 @@ class DashBoardNavController extends AbstractController
         $picture = new Picture();
         $formPicture = $this->createForm(DashBoardNavType::class, $picture);
 
+        $candidate = new Candidate();
+        $cv = $candidate->getCv();
+        $formCv = $this->createForm(CreateCvType::class, $cv);
+
         return $this->render('nav/dashBoardNav.html.twig', [
             'formPicture' => $formPicture->createView(),
+            'formCv' => $formCv->createView(),
+            'candidate'=>$candidate
         ]);
     }
 
@@ -55,6 +64,32 @@ class DashBoardNavController extends AbstractController
         return new JsonResponse($formPicture->getErrors(), 400);
     }
 
+    /**
+     * @Route("/user/register/cv", name="register_cv")
+     * @param Request $request
+     * @param EntityManagerInterface $em
+     * @return JsonResponse
+     */
+    public function registerCv(Request $request, EntityManagerInterface $em): JsonResponse
+    {
+        $cv = new Cv();
+        $formCv = $this->createForm(CreateCvType::class, $cv);
+        $formCv->handleRequest($request);
+
+        if ($formCv->isSubmitted() && $formCv->isValid()) {
+
+            $user = $this->getUser();
+            $user->setCv($cv);
+
+            $em->persist($cv);
+            $em->persist($user);
+            $em->flush();
+            $em->refresh($user);
+
+            return new JsonResponse(['succes' => 'Votre cv a bien été téléchargé']);
+        }
+        return new JsonResponse($formCv->getErrors(), 400);
+    }
     /**
      * puts the account in private
      * @Route("/user/account/status", name="dash_board_account_status")
