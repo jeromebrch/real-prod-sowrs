@@ -7,11 +7,12 @@
 }
 
 #photo_profile {
-    width: 10rem;
+    width: 12rem;
     height: auto;
     border: none;
-    -moz-border-radius: 100px;
-    -webkit-border-radius: 100px;
+    clip-path: circle();
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
     display: block;
     margin: 1rem auto;
 
@@ -73,3 +74,4 @@
     font-family: 'KohinoorBangla', Arial, serif;
     font-weight: bolder;
 }
+

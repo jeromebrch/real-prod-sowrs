@@ -1,5 +1,3 @@
-<?php
-
 namespace App\Entity;
 
 use App\Repository\UserRepository;
@@ -100,10 +98,6 @@ class User implements UserInterface, \Serializable
      * @ORM\JoinColumn(nullable=true)
      */
     protected $picture;
-
-
-
-
 
 
     public function __construct()
@@ -318,3 +312,4 @@ class User implements UserInterface, \Serializable
         list ($this->id, $this->email, $this->password) = unserialize($serialized, array('allowed_classes' => false));
     }
 }
+
