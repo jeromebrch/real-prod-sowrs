@@ -73,6 +73,42 @@ class Recruiter extends User
      */
     private $recognitions;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $city;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $country;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $carbonFootPrintProofFilename;
+
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $selectiveSorting;
+
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $zeroPaperGoal;
+
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $zeroWasteGoal;
+
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $zeroPlasticGoal;
+
+
 
 
    public function __construct()
@@ -274,6 +310,90 @@ class Recruiter extends User
                 $recognition->setRecruiter(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getCity(): ?string
+    {
+        return $this->city;
+    }
+
+    public function setCity(?string $city): self
+    {
+        $this->city = $city;
+
+        return $this;
+    }
+
+    public function getCountry(): ?string
+    {
+        return $this->country;
+    }
+
+    public function setCountry(?string $country): self
+    {
+        $this->country = $country;
+
+        return $this;
+    }
+
+    public function getCarbonFootPrintProofFilename(): ?string
+    {
+        return $this->carbonFootPrintProofFilename;
+    }
+
+    public function setCarbonFootPrintProofFilename(?string $carbonFootPrintProofFilename): self
+    {
+        $this->carbonFootPrintProofFilename = $carbonFootPrintProofFilename;
+
+        return $this;
+    }
+
+    public function getSelectiveSorting(): ?bool
+    {
+        return $this->selectiveSorting;
+    }
+
+    public function setSelectiveSorting(?bool $selectiveSorting): self
+    {
+        $this->selectiveSorting = $selectiveSorting;
+
+        return $this;
+    }
+
+    public function getZeroPaperGoal(): ?bool
+    {
+        return $this->zeroPaperGoal;
+    }
+
+    public function setZeroPaperGoal(?bool $zeroPaperGoal): self
+    {
+        $this->zeroPaperGoal = $zeroPaperGoal;
+
+        return $this;
+    }
+
+    public function getZeroWasteGoal(): ?bool
+    {
+        return $this->zeroWasteGoal;
+    }
+
+    public function setZeroWasteGoal(?bool $zeroWasteGoal): self
+    {
+        $this->zeroWasteGoal = $zeroWasteGoal;
+
+        return $this;
+    }
+
+    public function getZeroPlasticGoal(): ?bool
+    {
+        return $this->zeroPlasticGoal;
+    }
+
+    public function setZeroPlasticGoal(?bool $zeroPlasticGoal): self
+    {
+        $this->zeroPlasticGoal = $zeroPlasticGoal;
 
         return $this;
     }

@@ -7,11 +7,14 @@ use App\Entity\LegalStatus;
 use App\Entity\Recruiter;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\File;
 use function Sodium\add;
 
 class RecruiterModificationType extends AbstractType
@@ -74,6 +77,44 @@ class RecruiterModificationType extends AbstractType
                 'attr' => [
                     'placeholder' => 'fonction']
             ])
+            ->add('city', TextType::class, [
+                'required' => false,
+                'label' => false,
+                'attr' => [
+                    'placeholder' => 'Ville']
+            ])
+            ->add('country', TextType::class, [
+                'required' => false,
+                'label' => false,
+                'attr' => [
+                    'placeholder' => 'Pays']
+            ])
+            ->add('carbonFootPrint', TextType::class, [
+                'required' => false,
+                'label' => false,
+                'attr' => [
+                    'placeholder' => 'Empreinte carbone']
+            ])
+            //Upload the carbon footprint proof in PDF
+            ->add('carbonFootPrintProof', FileType::class, [
+                'required' => false,
+                'mapped' => false,
+                'label' => 'Justificatif',
+                /*
+                'attr' => [
+                    'placeholder' => 'Empreinte carbone'],
+                */
+                'constraints' => [
+                    new File([
+                        'maxSize' => '1024k',
+                        'mimeTypes' => [
+                            'application/pdf',
+                            'application/x-pdf',
+                        ],
+                        'mimeTypesMessage' => 'Merci d\'uploader un fichier au format PDF',
+                    ])
+                ],
+            ])
             ->add('legalStatus', EntityType::class, [
                 'class'=> LegalStatus::class,
                 'choice_label' => 'text',
@@ -96,6 +137,31 @@ class RecruiterModificationType extends AbstractType
                 'label' => false,
                 'placeholder' => '---Sélectionner des causes secondaires---'
             ])
+            ->add('selectiveSorting', CheckboxType::class, [
+                'label' => 'Tri sélectif',
+                'required' => false,
+                'attr' => [
+                    'class' => 'checkbox_engagements'],
+            ])
+            ->add('zeroPaperGoal', CheckboxType::class, [
+                'label' => 'Objectif zéro papier',
+                'required' => false,
+                'attr' => [
+                    'class' => 'checkbox_engagements'],
+            ])
+            ->add('zeroWasteGoal', CheckboxType::class, [
+                'label' => 'Objectif zéro déchets',
+                'required' => false,
+                'attr' => [
+                    'class' => 'checkbox_engagements'],
+            ])
+            ->add('zeroPlasticGoal', CheckboxType::class, [
+                'label' => 'Objectif zéro plastique',
+                'required' => false,
+                'attr' => [
+                    'class' => 'checkbox_engagements'],
+            ])
+
             ->add('socialNetwork', SocialNetworkType::class, [
 
             ]);

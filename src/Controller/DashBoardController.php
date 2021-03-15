@@ -11,10 +11,15 @@ use App\Repository\DevelopmentGoalsRepository;
 use App\Repository\JobOfferRepository;
 use App\Repository\RecognitionRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Mailer\MailerInterface;
+use Symfony\Component\Mime\Email;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\String\Slugger\SluggerInterface;
 
 class DashBoardController extends AbstractController
 {
@@ -28,7 +33,10 @@ class DashBoardController extends AbstractController
      * @return Response
      */
     public function myDetails(Request $request, EntityManagerInterface $em,
-                              RecognitionRepository $recognitionRepository, CauseRepository $causeRepository): Response
+                              RecognitionRepository $recognitionRepository,
+                              CauseRepository $causeRepository,
+                              MailerInterface $mailer,
+                              SluggerInterface $slugger): Response
     {
         //récupère l'utilisateur en cours
         $user = $this->getUser();
@@ -53,9 +61,38 @@ class DashBoardController extends AbstractController
 
             $listeRecognitionRecruiter = $recognitionRepository->findBy(["recruiter" => $this->getUser()]);
             $recognitionForm = $this->createForm(RecognitionType::class);
-            dump($modifyUserForm);
             if ($modifyUserForm->isSubmitted() && $modifyUserForm->isValid()) {
-                dump('jusque la c ok');
+
+                $footPrintProofFile = $modifyUserForm->get('carbonFootPrintProof')->getData();
+                if($footPrintProofFile){
+
+                    $originalFilename = pathinfo($footPrintProofFile->getClientOriginalName(), PATHINFO_FILENAME);
+                    // this is needed to safely include the file name as part of the URL
+                    $safeFilename = $slugger->slug($originalFilename);
+                    $newFilename = $safeFilename.'-'.uniqid().'.'.$footPrintProofFile->guessExtension();
+
+                    try {
+                        $footPrintProofFile->move(
+                            $this->getParameter('carbonFootPrintProof_directory'),
+                            $newFilename
+                        );
+                    } catch (FileException $e) {
+                        $this->addFlash('error', 'Il y a eu une erreur lors de l\'upload du fichier');
+                    }
+
+                    // send email to sowrs with the PDF file in attachment
+                    $email = (new Email())
+                        ->from($this->getUser()->getEmail())
+                        ->to('jerome.brch@gmail.com') // todo : mettre l'adresse de sowrs !!!
+                        ->subject('Footprint proof from ' . $this->getUser()->getEmail())
+                        ->text('La preuve de l\'empreint carbone')
+                        ->attachFromPath('uploads/carbonFootPrintProof/' . $newFilename)
+                        ->html('<p>Veuillez trouver ci-joint mon justificatif.</p><p>Cordialement</p>');
+
+                    $mailer->send($email);
+
+                    $user->setCarbonFootPrintProofFilename($newFilename);
+                }
                 $em->persist($user);
                 $em->flush();
             }
@@ -64,7 +101,8 @@ class DashBoardController extends AbstractController
                 'modifyUserForm' => $modifyUserForm->createView(),
                 'listcauses' => $listeCauses,
                 'recognitions' => $listeRecognitionRecruiter,
-                'recognitionForm' => $recognitionForm->createView()
+                'recognitionForm' => $recognitionForm->createView(),
+                'user' => $user
             ]);
         }
     }
@@ -101,4 +139,32 @@ class DashBoardController extends AbstractController
             'choices' => $choices,
         ]);
     }
+
+    /**
+     * Delete the user profil in DB, return to home page
+     * @Route("/user/unsubscribe", name="unsubscribe")
+     */
+    public function unsubscribe(EntityManagerInterface $em){
+
+        $user = $this->getUser();
+
+        //logout the user
+        $session = $this->get('session');
+        $session = new Session();
+        $session->invalidate();
+
+        //Delete user profil in DB
+        $em->remove($user);
+        $em->flush();
+
+        $this->addFlash("success", "Le compte a bien été supprimé");
+
+        return $this->redirectToRoute('main', [
+
+        ]);
+
+    }
+
+
+
 }

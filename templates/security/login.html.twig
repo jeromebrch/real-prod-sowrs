@@ -37,6 +37,8 @@
                         <label class="my-2">
                             <input type="checkbox" name="_remember_me"> Se souvenir de moi
                         </label>
+                        {# forgotten password, for reset the user password #}
+                        <a href="{{ path('app_forgot_password_request') }}">Mot de passe oublié</a>
                     </div>
                     <div>
                         <button class="btn btn-lg btn_login" type="submit">

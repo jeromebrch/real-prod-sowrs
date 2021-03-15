@@ -213,6 +213,32 @@
                                 {{ form_row(modifyUserForm.activityNumber) }}
                             </div>
                         </div>
+                        <div class="row">
+                            <div class="col-sm-6 col-lg-6 pt-3">
+                                {{ form_row(modifyUserForm.country) }}
+                            </div>
+                            <div class="col-sm-6 col-lg-6 pt-3">
+                                {{ form_row(modifyUserForm.city) }}
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-6 col-lg-6 pt-3">
+                                {{ form_row(modifyUserForm.carbonFootPrint) }}
+                            </div>
+                            <div class="col-sm-6 col-lg-6 pt-3 container_input_file_proof">
+                                {# send the carbon footprint proof in PDF #}
+                                <div class="btn required">
+                                    {{ form_row(modifyUserForm.carbonFootPrintProof) }}
+                                </div>
+
+                            </div>
+                        </div>
+                        {% if app.user.CarbonFootPrintProofFilename %}
+                            <div class="row">
+                                <a class="btn" id="download_actual_proof" href="{{ asset('uploads/carbonFootPrintProof/' ~ user.CarbonFootPrintProofFilename) }}">Votre justificatif actuel</a>
+                            </div>
+                        {% endif %}
 
                         <div class="row">
                             <div class="col-sm-6 col-lg-6 pt-3">
@@ -255,6 +281,34 @@
                                 {{ form_row(modifyUserForm.about) }}
                             </div>
                         </div>
+                        <div class="row">
+                            <div id="details_engagements_block">
+                                <div class="row">
+                                    <p id="p_engagements">
+                                        Engagements quotidiens
+                                    </p>
+                                </div>
+                                <div class="row">
+                                    <div class="col-6">
+                                        <div class="row details_checkbox_input">
+                                            {{ form_row(modifyUserForm.selectiveSorting) }}
+                                        </div>
+                                        <div class="row details_checkbox_input">
+                                            {{ form_row(modifyUserForm.zeroPaperGoal) }}
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="row details_checkbox_input">
+                                            {{ form_row(modifyUserForm.zeroWasteGoal) }}
+                                        </div>
+                                        <div class="row details_checkbox_input">
+                                            {{ form_row(modifyUserForm.zeroPlasticGoal) }}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                         <br>
                         {# AFFICHAGE DU MULTI SELECT RECONNAISSANCE #}
                         <div class="row">
@@ -292,7 +346,19 @@
                                 </ul>
                             </div>
                         </div>
-                        <button type="submit" class="btn btn-lg">Enregistrer</button>
+                        <div id="actions_mydetails">
+                            <div class="row">
+                                {# Save change #}
+                                <button type="submit" class="btn btn-lg long_btn col-4 col-sm-12">Enregistrer</button>
+                            </div>
+                            <div class="row">
+                                {# reset password with Reset Password Feature #}
+                                <a href="{{ path('app_forgot_password_request') }}" class="col-6 link_action_mydetails">Réinitialiser le mot de passe</a>
+                                {# Save change #}
+                                {# delete the user account #}
+                                <a href="{{ path('unsubscribe') }}" class="col-6 link_action_mydetails">Supprimer mon compte</a>
+                            </div>
+                        </div>
 
 
                         {{ form_row(modifyUserForm.socialNetwork.facebook.setRendered()) }}

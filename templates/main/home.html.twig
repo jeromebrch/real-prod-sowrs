@@ -8,6 +8,14 @@
 
 
 {% block body %}
+    {# Flash message #}
+    {% for label, messages in app.flashes %}
+        {% for message in messages %}
+            <div class="alert-{{ label }}">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endfor %}
     <div class="background-picture">
         <div class="row text-white p-5">
             <div class="col-lg-6 offset-lg-1 p-3 d-none d-md-block d-lg-block d-xl-block">

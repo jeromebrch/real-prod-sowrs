@@ -44,13 +44,11 @@ hr {
     color: white;
     margin: auto;
 }
-
 .btn:hover {
     background-color: #555555;
     text-decoration:none;
     background-position: inherit;
 }
-
 .navbar {
     padding-top: 0;
 }
