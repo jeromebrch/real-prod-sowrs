@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}SOWRS - Modification du mot de passe{% endblock %}
+
+{% block body %}
+    <h1 class="reset_password_title">Modifiez votre mot de passe</h1>
+
+    <div class="row" id="send_mail_reset">
+        <div class="col-lg-4 offset-lg-4 col-md-8 offset-md-2 col-sm-10 offset-sm-1">
+            {{ form_start(resetForm) }}
+            {{ form_row(resetForm.plainPassword) }}
+            <div class="container_btn_reset">
+                <button class="btn btn-primary btn_validate_email">Modifier</button>
+            </div>
+            {{ form_end(resetForm) }}
+        </div>
+    </div>
+{% endblock %}
