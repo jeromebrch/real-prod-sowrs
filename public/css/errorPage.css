@@ -1,0 +1,32 @@
+@font-face {
+    font-family: 'KohinoorBangla', Arial, serif;
+    src: url('polices/KohinoorBangla.ttc'),
+    url('polices/KohinoorBangla.ttf');
+}
+.error_container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-top: 200px;
+    padding-bottom: 200px;
+}
+.error_container a{
+    text-align: center;
+    text-decoration: none;
+    font-family: 'KohinoorBangla', Arial, serif;
+    margin-top: 30px;
+}
+.error_title{
+    color: #1dca91;
+    font-family: 'KohinoorBangla', Arial, serif;
+    font-size: 3em;
+}
+.error_title_forbidden{
+    color: #B0413E;
+    font-family: 'KohinoorBangla', Arial, serif;
+}
+.explain_error{
+    font-family: 'KohinoorBangla', Arial, serif;
+    color: #937FA4;
+}

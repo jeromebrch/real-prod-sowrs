@@ -1,0 +1,23 @@
+{% extends 'bundles/TwigBundle/Exception/error.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+{% endblock %}
+
+{% block title %}
+    Erreur 500 - Internal server error
+{% endblock %}
+
+
+{% block body %}
+    <div class="error_container">
+        <h1 class="error_title">Erreur interne au serveur</h1>
+        <h3 class="explain_error">
+            Il y a eu un problème lors de l'éxécution de la requête demandée.
+        </h3>
+        <h3 class="explain_error">
+            Merci de réessayer ultérieurement.
+        </h3>
+        <a href="{{ path('main') }}" class="btn required">Accueil</a>
+    </div>
+{% endblock %}

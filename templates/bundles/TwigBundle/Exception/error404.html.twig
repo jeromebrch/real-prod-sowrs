@@ -1,0 +1,20 @@
+{% extends 'bundles/TwigBundle/Exception/error.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+{% endblock %}
+
+{% block title %}
+    Erreur 404 - Not found
+{% endblock %}
+
+
+{% block body %}
+    <div class="error_container">
+        <h1 class="error_title">Page non trouvée</h1>
+        <h3 class="explain_error">
+            La page demandée n'existe pas !
+        </h3>
+        <a href="{{ path('main') }}" class="btn required">Accueil</a>
+    </div>
+{% endblock %}
