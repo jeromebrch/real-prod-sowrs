@@ -28,26 +28,40 @@
         <link rel="stylesheet" href="{{ asset('css/dashBoard.css') }}">
         <link rel="stylesheet" href="{{ asset('css/resetPassword.css') }}">
         <link rel="stylesheet" href="{{ asset('css/errorPage.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/contactUs.css') }}">
+
+
+
     {% endblock %}
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 </head>
 
 
 <body>
-<div class="container">
+
     <header>
-        <div>
-            {% include ('nav/nav.html.twig') %}
-        </div>
-        <div>
-            {% include ('nav/principalNav.html.twig') %}
-        </div>
+
+            <div>
+                {% include ('nav/nav.html.twig') %}
+            </div>
+            <div>
+                {% include ('nav/principalNav.html.twig') %}
+            </div>
     </header>
-</div>
+
+
 <div class="container-fluid page border-top border-3 gx-0">
+    {% block flash_messages %}
+        {% for type, messages in app.session.flashbag.all() %}
+            {% for message in messages %}
+                {{ message }}
+            {% endfor %}
+        {% endfor %}
+    {% endblock %}
     {% block body %}{% endblock %}
     <br>
 </div>
+
 </body>
 
 <footer>

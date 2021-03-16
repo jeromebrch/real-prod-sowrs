@@ -2,6 +2,24 @@
     color: #1dca91;
     font-family: 'KohinoorBangla', Arial, serif;
     font-weight: bolder;
-    font-size: 1.2em;
+    font-size: 1.4em;
     text-transform: uppercase;
+    margin-right: 10px;
+}
+#primary-nav:active{
+    color: #827399;
+}
+#primary-nav:hover{
+    color: #827399;
+}
+#navbarNavDropdown{
+position: relative;
+}
+div#navbarNavDropdown:after {
+    position: absolute;
+    width: 90px;
+    height: 3Px;
+    content: '';
+    background: #555555;
+    left: -15px;
 }

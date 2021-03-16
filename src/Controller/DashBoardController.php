@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Candidate;
 use App\Form\CandidateModificationType;
+use App\Form\CreateCvType;
 use App\Form\RecognitionType;
 use App\Form\RecruiterModificationType;
 use App\Repository\CauseRepository;
@@ -61,6 +62,7 @@ class DashBoardController extends AbstractController
 
             $listeRecognitionRecruiter = $recognitionRepository->findBy(["recruiter" => $this->getUser()]);
             $recognitionForm = $this->createForm(RecognitionType::class);
+
             if ($modifyUserForm->isSubmitted() && $modifyUserForm->isValid()) {
 
                 $footPrintProofFile = $modifyUserForm->get('carbonFootPrintProof')->getData();
@@ -93,16 +95,24 @@ class DashBoardController extends AbstractController
 
                     $user->setCarbonFootPrintProofFilename($newFilename);
                 }
+
                 $em->persist($user);
                 $em->flush();
             }
+
+            $candidate = new Candidate();
+            $cv = $candidate->getCv();
+            $formCv = $this->createForm(CreateCvType::class, $cv);
+
 
             return $this->render('dash_board/myDetails.html.twig', [
                 'modifyUserForm' => $modifyUserForm->createView(),
                 'listcauses' => $listeCauses,
                 'recognitions' => $listeRecognitionRecruiter,
                 'recognitionForm' => $recognitionForm->createView(),
-                'user' => $user
+                'user' => $user,
+                'formCv'=>$formCv->createView()
+
             ]);
         }
     }

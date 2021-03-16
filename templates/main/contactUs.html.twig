@@ -1,0 +1,77 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Sowrs | Contactez-nous{% endblock %}
+
+
+{% block body %}
+
+    <div class="container p-2 mt-4">
+        {{ form_start(formContact, {'attr': {'class': 'row'}}) }}
+            <div class="col-5">
+                <div class="row justify-content-center mb-4">
+                    <div class="col-6">
+                        <br>
+                        <div style="background: #1dca91; cursor: pointer;border-radius: 20px"
+                             class="text-center text-white p-4" name="btnCandidat" id="btnCandidat">
+                            <input style=" visibility: hidden; cursor: pointer" type="radio" id="contactChoice1"
+                                   name="contact" value="candidat">
+                            <label class="d_none" for="contactChoice1"><h3>Je suis</h3>
+                                <h3>Candidat</h3></label>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <br>
+                        <div style="background: #1dca91; cursor: pointer;border-radius: 20px"
+                             class="text-center text-white p-4" name="btnRecruteur" id="btnRecruteur">
+                            <input type="radio" style=" visibility: hidden; cursor: pointer" id="contactChoice2"
+                                   name="contact" value="candidat">
+                            <label class="d_none" for="contactChoice2"> <h3>Je suis</h3>
+                                <h3>Recruteur</h3></label>
+                        </div>
+                    </div>
+                </div>
+                {{ form_row(formContact.nom) }}
+                {{ form_row(formContact.email) }}
+                {{ form_row(formContact.telephone) }}
+            </div>
+            <div class="col-7">
+                {{ form_row(formContact.message)}}
+                <div class="col-12 input-group-text">{{ form_row(formContact.fichier, {'attr': {'class': 'input-group-text '}})}}
+                    <div class="col-7"></div>
+                    {% if formContact.fichier %}
+                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class=" col-4 bi bi-trash btn" viewBox="0 0 16 16" id="iconButton">
+                            <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+                            <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4L4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+                        </svg>
+                    {% endif %}
+                </div>
+                {{ form_row(formContact.autreFichier, {'attr': {'class': 'd-none', 'id': 'contact_fichier'}}) }}
+                <label for="contact_autreFichier" class="btn required"> + Ajouter un fichier</label>
+            </div>
+            <div class="row my-4">
+                <div class="col-6"></div>
+                <div class="g-recaptcha col-4" data-sitekey="6LcqEgIaAAAAAEtDy88bfJXRtrhQDfRxwFD-0_Ca"></div>
+                <div class="col-2">
+                    <button type="submit" class="btn">Envoyer</button>
+                </div>
+            </div>
+        {{ form_end(formContact) }}
+    </div>
+
+{% endblock %}
+{% block javascripts %}
+<script>
+
+    const elementInputIcon = document.getElementById('iconButton');
+    const elementInputFile = document.getElementById('contact_fichier');
+
+    elementInputIcon.addEventListener("onclick", function () {
+        $(function () {
+            $this = elementInputFile;
+            $this.remove();
+        })
+    });
+
+</script>
+{% endblock %}
+

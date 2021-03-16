@@ -4,14 +4,13 @@
 
 
 {% block body %}
+        <div class="about_us_banner" id="about_banner_top">
+            <h2 class="interest_point_about" id="title_about_banner">QUI SOMMES-NOUS ?</h2>
+    </div>
     <div id="main_content_about" class="col-10 offset-1">
+
         <div class="row">
-            <div class="col-12 about_us_banner" id="about_banner_top">
-                <h2 class="interest_point_about" id="title_about_banner">QUI SOMMES-NOUS ?</h2>
-            </div>
-        </div>
-        <div class="row">
-            <h2 class="interest_point_about">WORK FOR CHANGE</h2>
+            <h2 class="col-12 interest_point_about">WORK FOR CHANGE</h2>
         </div>
         <div class="row">
             <div class="col-lg-6 col-md-12 block_info_about">
@@ -27,14 +26,14 @@
                     où nous sommes noyés d’informations et où les bullshit jobs fourmillent.
                     Mais pourquoi travaillons-nous ? Outre le besoin de gagner notre vie,
                     les raisons sont multiples : exister socialement, suivre nos passions,
-                    nous épanouir professionnellement et personnellement…
-                    Quelles que soient les raisons qui nous animent,
-                    avec une moyenne de 8 heures par jour consacrées au travail,
-                    il est essentiel <span class="important_sentence_about">de trouver un sens à notre métier pour atteindre ces objectifs</span>.
+                    nous épanouir professionnellement et personnellement…  Quelles que soient les raisons qui nous animent,
+                    avec une moyenne de 8 heures par jour
+
                 </p>
             </div>
             <div class="col-lg-6 col-md-12 block_info_about">
                 <p>
+                    consacrées au travail, il est essentiel <span class="important_sentence_about">de trouver un sens à notre métier pour atteindre ces objectifs</span>.
                     De là, naissent plusieurs ambitions.
                     Celle de limiter notre impact écologique.
                     Celle d’œuvrer pour un projet vraiment utile aux personnes et à la planète.
@@ -81,6 +80,7 @@
                     Nous vous permettons de diffuser vos offres d’emploi et d’accéder
                     à une CVthèque de candidats qualifiés qui partagent vos valeurs.
                 </p>
+                <br>
                 {% if is_granted('ROLE_RECRUITER') %}
                     <a href="{{ path('dash_board_job_offer_create') }}" class="btn about_nav_btn">Diffusez votre offre</a>
                 {% else %}

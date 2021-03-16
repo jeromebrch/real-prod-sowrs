@@ -6,18 +6,11 @@
 
 {% block body %}
 
-    {% for flashError in app.flashes('verify_email_error') %}
-        <div class="alert alert-danger" role="alert">{{ flashError }}</div>
-    {% endfor %}
+
     <div class="col-10 offset-1 pt-4 pb-3 register_title">
         <h1>Bonjour et bienvenue sur SOWRS </h1>
         <h2>On fait connaissance ?</h2>
     </div>
-    {% for message in app.flashes('error') %}
-        <div class="alert alert-success">
-            {{ message }}
-        </div>
-    {% endfor %}
 
     <div class="row">
         <div class="col-4 offset-2 col-md-2 offset-md-1 p-1 col-lg-2 offset-lg-2" style="text-align: center; cursor: pointer">
