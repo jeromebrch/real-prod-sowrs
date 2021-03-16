@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}SOWRS - Réinitialisation du mot de passe{% endblock %}
+
+{% block body %}
+    {% for flashError in app.flashes('reset_password_error') %}
+        <div class="alert alert-danger" role="alert">{{ flashError }}</div>
+    {% endfor %}
+    <h1 class="reset_password_title">Modifiez votre mot de passe</h1>
+
+    <div class="row" class="send_mail_reset">
+        <div class="col-lg-4 offset-lg-4 col-md-8 offset-md-2 col-sm-10 offset-sm-1">
+            {{ form_start(requestForm) }}
+                {{ form_row(requestForm.email) }}
+                <div>
+                    <small>
+                        Veuillez indiquer votre adresse mail, et nous vous enverrons un lien pour la réinitialisation du mot de passe.
+                    </small>
+                </div>
+                <div id="container_btn_reset">
+                    <button class="btn btn-primary btn_validate_email">M'envoyer le lien</button>
+                </div>
+            {{ form_end(requestForm) }}
+        </div>
+    </div>
+{% endblock %}

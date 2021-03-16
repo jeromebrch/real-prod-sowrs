@@ -1,0 +1,20 @@
+{% extends 'bundles/TwigBundle/Exception/error.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+{% endblock %}
+
+{% block title %}
+    Erreur 403 - Forbidden
+{% endblock %}
+
+
+{% block body %}
+    <div class="error_container">
+        <h1 class="error_title_forbidden">Vous n'avez pas accès à cette page</h1>
+        <h3 class="explain_error">
+            Il faut avoir les droits adéquats pour accéder à cette page !
+        </h3>
+        <a href="{{ path('main') }}" class="btn required">Accueil</a>
+    </div>
+{% endblock %}

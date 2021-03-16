@@ -1,3 +1,8 @@
+@font-face {
+    font-family: 'KohinoorBangla', Arial, serif;
+    src: url('polices/KohinoorBangla.ttc'),
+    url('polices/KohinoorBangla.ttf');
+}
 .background-title {
     background: #827399;
     text-align: center;
@@ -6,15 +11,12 @@
     height: 10em;
     max-width: 100%;
 }
-
 .title {
     text-transform: uppercase;
 }
-
 .title-dashBord {
 
 }
-
 .btn-title {
     justify-self: end;
     width: auto;
@@ -84,7 +86,6 @@
 #formOne {
     margin-bottom: 1em;
 }
-
 .subtitle {
     font-family: 'KohinoorBangla', Arial, serif;
     font-weight: bolder;
@@ -115,4 +116,81 @@
 .pourcent {
     font-weight: bolder;
     font-size: 3.5em;
+}
+#download_actual_proof{
+    margin-top: 15px;
+}
+#details_engagements_block{
+    margin-top: 20px;
+}
+.details_checkbox_input{
+    padding: 10px;
+    padding-left: 60px;
+}
+.details_checkbox_input div div input{
+    margin-right: 20px;
+    margin-left: 20px;
+}
+#actions_mydetails{
+    padding: 20px;
+}
+[type="checkbox"]:not(:checked),
+[type="checkbox"]:checked{
+    color: #1dca91;
+}
+#recruiter_modification_carbonFootPrintProof{
+    display: none;
+}
+.custom-file{
+    display: none;
+}
+.form-check-input:checked[type=checkbox]{
+    background-color: #1dca91;
+}
+#p_engagements{
+    font-family: 'KohinoorBangla', Arial, serif;
+}
+.form-check-label{
+    font-family: 'KohinoorBangla', Arial, serif;
+}
+.link_action_mydetails{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    color: #313131;
+    text-decoration: none;
+    font-family: 'KohinoorBangla', Arial, serif;
+    margin-top: 20px;
+    text-align: center;
+}
+
+@media screen and (max-width: 520px){
+    body .details_checkbox_input{
+        padding: 0;
+        margin: 0;
+        min-height: 120px;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: nowrap;
+    }
+    body .details_checkbox_input .form-group{
+        padding: 0;
+        margin: 0;
+    }
+    body .details_checkbox_input .form-group .form-check{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 0;
+    }
+    body .details_checkbox_input .form-group .form-check input{
+        margin: 0;
+    }
+    body .details_checkbox_input .form-group .form-check label{
+        text-align: center;
+    }
 }

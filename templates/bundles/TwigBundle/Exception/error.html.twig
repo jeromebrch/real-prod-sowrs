@@ -1,0 +1,16 @@
+<!doctype html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{% block title %}Erreur{% endblock %}</title>
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}" />
+    <link rel="stylesheet" href="{{ asset('css/errorPage.css') }}" />
+</head>
+<body>
+{% block body %}
+    <h1>une erreur est survenue</h1>
+{% endblock %}
+</body>
+</html>
