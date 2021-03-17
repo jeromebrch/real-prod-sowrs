@@ -21,7 +21,13 @@
                                 <h3 class="title">QUI ETES VOUS ?</h3>
                             </div>
                             <div class="col-sm-6 text-center align-self-center">
-                                <button class="btn-title align-middle">Importer votre CV*</button>
+                                <div class="error">
+                                    {{ form_errors(formCv) }}
+                                    {{ form_start(formCv, {'attr': {'id':'updatecvform', 'class':'d-none'}}) }}
+                                    {{ form_widget(formCv) }}
+                                    {{ form_end(formCv) }}
+                                    <label for="create_cv_cvFile" class="btn required buttonDashBoardNav">Importer votre cv</label>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -167,6 +173,15 @@
                         Enregistrer
                     </button>
                     {{ form_end(modifyUserForm) }}
+                    <div id="actions_mydetails">
+                        <div class="row">
+                            {# reset password with Reset Password Feature #}
+                            <a href="{{ path('app_forgot_password_request') }}" class="col-6 link_action_mydetails">Réinitialiser le mot de passe</a>
+                            {# Save change #}
+                            {# delete the user account #}
+                            <a href="{{ path('unsubscribe') }}" class="col-6 link_action_mydetails">Supprimer mon compte</a>
+                        </div>
+                    </div>
 
                 {% elseif "ROLE_RECRUITER" in app.user.roles %}
 

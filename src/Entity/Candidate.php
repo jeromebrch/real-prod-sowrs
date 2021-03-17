@@ -13,7 +13,7 @@ class Candidate extends User
      * @ORM\OneToOne(targetEntity=Cv::class)
      * @ORM\JoinColumn(nullable=true)
      */
-    protected $cv;
+    public $cv;
 
     /**
      * @ORM\Column(type="string", length=150, nullable=true)
