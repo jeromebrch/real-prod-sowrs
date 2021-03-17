@@ -11,7 +11,7 @@
 {% block body %}
     <div class="show_candidate_jumbotron pt-3">
         <div class="col-lg-1 mx-auto">
-            {% if entity.picture.pictureName %}
+            {% if entity.picture %}
                 <img style="width: 100%" class="rounded-circle"
                      src="{{ asset('images/profils/' ~entity.picture.pictureName ) }}"
                      alt="photo du profil">

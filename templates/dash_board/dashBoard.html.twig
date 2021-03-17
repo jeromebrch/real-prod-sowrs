@@ -20,6 +20,9 @@
                             {{ message }}
                         </div>
                     {% endfor %}
+
+                    {# ROLE CANDIDAT #}
+
                     {% if "ROLE_CANDIDATE" in app.user.roles %}
                         <div class="container mb-4 background-title">
                             <div class="row h-100">
@@ -97,6 +100,7 @@
                             </div>
                         {% endif %}
 
+                    {# ROLE RECRUTEUR #}
 
                     {% elseif "ROLE_RECRUITER" in app.user.roles %}
                         <div class="container mb-4 background-title">
@@ -105,7 +109,7 @@
                                     <h3 class="title-dashBord">Heureux de vous revoir {{ app.user.entityName }}</h3>
                                 </div>
                                 <div class="col-sm-6 text-center align-self-center">
-                                    <button class="btn-title align-middle"> Voir votre profil</button>
+                                    <a id="link_recruiter_profil" href="{{ path('recruiter_profil') }}" type="button" class="btn-title align-middle">Voir votre profil</a>
                                 </div>
                             </div>
                         </div>
@@ -180,7 +184,7 @@
                                             <h4 class="subtitle m-0">Vos offres</h4>
                                         </div>
                                         <div class="col-lg-6 text-end">
-                                            <button class="button-creerUne m-0">Créer une</button>
+                                            <button class="button-creerUne m-0">Créer une</button> {# todo : régler le bouton #}
                                         </div>
                                     </div>
 
@@ -198,7 +202,7 @@
                                             <h4 class="subtitle m-0">Candidatures reçues</h4>
                                         </div>
                                         <div class="col-lg-4 text-end">
-                                            <button class="button-creerUne m-0">Voir tout</button>
+                                            <button class="button-creerUne m-0">Voir tout</button> {# todo : régler le bouton #}
                                         </div>
                                     </div>
                                     <div class="content-subtitle-item">
