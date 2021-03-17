@@ -17,7 +17,11 @@
             {{ form_start(formPicture, {'attr': {'id':'updateavatarform', 'class':'d-none'}}) }}
             {{ form_widget(formPicture) }}
             {{ form_end(formPicture) }}
-            <label for="dash_board_nav_pictureFile" class="btn required buttonDashBoardNav">Importer votre photo</label>
+            {% if app.user.picture %}
+                <label for="dash_board_nav_pictureFile" class="btn required buttonDashBoardNav">Changez votre photo</label>
+            {% else %}
+                 <label for="dash_board_nav_pictureFile" class="btn required buttonDashBoardNav">Importez votre photo</label>
+            {% endif %}
         </div>
         <br>
 
@@ -53,7 +57,11 @@
             {{ form_start(formCv, {'attr': {'id':'updatecvform', 'class':'d-none'}}) }}
             {{ form_widget(formCv) }}
             {{ form_end(formCv) }}
-            <label for="create_cv_cvFile" class="btn required buttonDashBoardNav">Importer votre cv</label>
+            {% if app.user.cv %}
+                <label for="create_cv_cvFile" class="btn required buttonDashBoardNav">Changez votre cv</label>
+            {% else %}
+                <label for="create_cv_cvFile" class="btn required buttonDashBoardNav">Importer votre cv</label>
+           {% endif %}
         </div>
 
         <br>
@@ -81,8 +89,11 @@
             {{ form_start(formPicture, {'attr': {'id':'updateavatarform', 'class':'d-none'}}) }}
             {{ form_widget(formPicture) }}
             {{ form_end(formPicture) }}
-            <label for="dash_board_nav_pictureFile" class="btn required buttonDashBoardNav">Importer le logo de votre
-                entité</label>
+            {% if app.user.picture %}
+                <label for="dash_board_nav_pictureFile" class="btn required buttonDashBoardNav">Changez votre logo</label>
+            {% else %}
+                <label for="dash_board_nav_pictureFile" class="btn required buttonDashBoardNav">Importez votre logo</label>
+            {% endif %}
         </div>
         <br>
         <ul class="dashBoardList d-flex flex-column align-items-start">

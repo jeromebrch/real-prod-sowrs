@@ -14,15 +14,8 @@
                 {{ render(controller('App\\Controller\\DashBoardNavController::navBar')) }}
             </div>
             <div class="col-lg-9">
-                <div class="container">
-                    {% for message in app.flashes('success') %}
-                        <div class="alert alert-success">
-                            {{ message }}
-                        </div>
-                    {% endfor %}
 
                     {# ROLE CANDIDAT #}
-
                     {% if "ROLE_CANDIDATE" in app.user.roles %}
                         <div class="container mb-4 background-title">
                             <div class="row h-100">
@@ -31,7 +24,7 @@
                                         revoir<br>{{ app.user.firstname }} {{ app.user.lastname }}</h3>
                                 </div>
                                 <div class="col-sm-6 text-center align-self-center">
-                                    <button class="btn-title align-middle"> Voir votre profil</button>
+                                    <a href="{{ path('dashboard_details') }}" class="btn-title align-middle"> Voir votre profil</a>
                                 </div>
                             </div>
                         </div>
@@ -218,7 +211,7 @@
                 </div>
             </div>
         </div>
-    </div>
+
 {% endblock %}
 {% block javascripts %}
     {{ parent() }}

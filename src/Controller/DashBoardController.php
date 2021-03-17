@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Candidate;
+use App\Entity\Cv;
 use App\Form\CandidateModificationType;
 use App\Form\CreateCvType;
 use App\Form\RecognitionType;
@@ -45,6 +46,9 @@ class DashBoardController extends AbstractController
         if ($user instanceof Candidate) {
             $modifyUserForm = $this->createForm(CandidateModificationType::class, $user);
             $modifyUserForm->handleRequest($request);
+            $cv = new Cv();
+            $formCv = $this->createForm(CreateCvType::class, $cv);
+
 
             if ($modifyUserForm->isSubmitted() && $modifyUserForm->isValid()) {
                 $em->persist($user);
@@ -52,6 +56,7 @@ class DashBoardController extends AbstractController
             }
             return $this->render('dash_board/myDetails.html.twig', [
                 'modifyUserForm' => $modifyUserForm->createView(),
+                'formCv'=>$formCv->createView()
             ]);
         } else {
 
@@ -100,9 +105,6 @@ class DashBoardController extends AbstractController
                 $em->flush();
             }
 
-            $candidate = new Candidate();
-            $cv = $candidate->getCv();
-            $formCv = $this->createForm(CreateCvType::class, $cv);
 
 
             return $this->render('dash_board/myDetails.html.twig', [
@@ -111,7 +113,6 @@ class DashBoardController extends AbstractController
                 'recognitions' => $listeRecognitionRecruiter,
                 'recognitionForm' => $recognitionForm->createView(),
                 'user' => $user,
-                'formCv'=>$formCv->createView()
 
             ]);
         }

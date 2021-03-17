@@ -51,7 +51,14 @@ class DashBoardNavController extends AbstractController
         if ($formPicture->isSubmitted() && $formPicture->isValid()) {
 
             $user = $this->getUser();
-            $user->setPicture($picture);
+            $pict = $user->getPicture();
+
+            if($pict){
+                $user->setPicture($picture);
+                $em->remove($pict);
+            }else{
+                $user->setPicture($picture);
+            }
 
             $em->persist($picture);
             $em->persist($user);
@@ -78,7 +85,14 @@ class DashBoardNavController extends AbstractController
         if ($formCv->isSubmitted() && $formCv->isValid()) {
 
             $user = $this->getUser();
-            $user->setCv($cv);
+            $cVitae = $user->getCv();
+
+            if($cVitae){
+                $user->setcV($cv);
+                $em->remove($cVitae);
+            }else{
+                $user->setCv($cv);
+            }
 
             $em->persist($cv);
             $em->persist($user);

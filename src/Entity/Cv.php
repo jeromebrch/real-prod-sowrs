@@ -26,12 +26,12 @@ class Cv
      * @Vich\UploadableField (mapping = "cv", fileNameProperty = "CvName", size = "CvSize")
      * @var File | null
      */
-    private $CvFile;
+    public $CvFile;
 
     /**
      * @ORM\Column(type="string", length=150, nullable=true)
      */
-    private $CvName;
+    public $CvName;
 
     /**
      * @ORM\Column(type="integer", nullable=true)
