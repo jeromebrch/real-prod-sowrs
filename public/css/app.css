@@ -31,7 +31,10 @@ hr {
     color: white;
 }
 .page {
+    /* anciennement
     background: #F4F6F7;
+    */
+    background-color: #F7FAF7;
 }
 .btn {
     width: 225px;

@@ -43,11 +43,11 @@
                 <div class="row header_presentation">
                     {% if "ROLE_CANDIDATE" in user.roles %}
                         <p>
-                            {{ user.currentRole }} - {{ user.jobSearch.city }} / {{ user.jobSearch.region }} - {{ user.jobSearch.contractType.wording }} - {{ user.jobSearch.desiredRemuneration.text }}
+                            {{ user.currentRole }} &bull; {{ user.jobSearch.city }} - {{ user.jobSearch.region }} &bull; {{ user.jobSearch.contractType.wording }} &bull; {{ user.jobSearch.desiredRemuneration.text }}
                         </p>
                     {% else %}
                         <p>
-                            {{ user.legalStatus.text }} - {{ user.city }} / {{ user.country }} - {{ user.carbonFootPrint }} kg CO² / an
+                            {{ user.legalStatus.text }} &bull; {{ user.city }} - {{ user.country }} &bull; {{ user.carbonFootPrint }} kg CO² / an
                         </p>
                     {% endif %}
                 </div>
@@ -88,7 +88,7 @@
                 {# about the entity #}
                 <div class="container_category_profil">
                     <div class="row">
-                        <h3 class="profil_category_title">A propos de {{ user.entityName }}</h3>
+                        <h3 class="profil_category_title">&Agrave; propos de {{ user.entityName }}</h3>
                     </div>
                     <div class="row">
                         <p>
@@ -123,7 +123,7 @@
                                     </p>
                                 </div>
                             {% else %}
-                                <p class="alert alert-danger" role="alert">
+                                <p class="alert alert-light alert-light-grey" role="alert">
                                     Pas encore engagée pour le tri sélectif
                                 </p>
                             {% endif %}
@@ -138,7 +138,7 @@
                                     </p>
                                 </div>
                             {% else %}
-                                <p class="alert alert-danger" role="alert">
+                                <p class="alert alert-light alert-light-grey" role="alert">
                                     Pas encore engagée dans un objectif zéro papier
                                 </p>
                             {% endif %}
@@ -155,7 +155,7 @@
                                     </p>
                                 </div>
                             {% else %}
-                                <p class="alert alert-danger" role="alert">
+                                <p class="alert alert-light alert-light-grey" role="alert">
                                     Pas encore engagée dans un objectif zéro déchets
                                 </p>
                             {% endif %}
@@ -170,7 +170,7 @@
                                     </p>
                                 </div>
                             {% else %}
-                                <p class="alert alert-danger" role="alert">
+                                <p class="alert alert-light alert-light-grey" role="alert">
                                     Pas encore engagée dans un objectif zéro plastique
                                 </p>
                             {% endif %}
@@ -232,43 +232,44 @@
                 {# complementary informations #}
 
                 {# secondary causes #}
-                <div class="row">
-                    {% if user.secondaryCauses is not empty %}
-                        <p class="other_content_title">
-                            Causes secondaires : <br>
+                <div class="complementary_infos_container">
+                    <div class="row">
+                        {% if user.secondaryCauses is not empty %}
+                            <h3 class="profil_category_title_bottom">Causes secondaires : </h3>
+                            <p class="other_content_title">
+                                <ul class="list-group">
+                                    {% for secondaryCause in user.secondaryCauses %}
+                                        <li class="list-group-item col-8 offset-2 list_causes">{{ secondaryCause.text }}</li>
+                                    {% endfor %}
+                                </ul>
+                            </p>
+                        {% else %}
+                            <p class="alert alert-light">
+                                Pas de cause secondaire défini
+                            </p>
+                        {% endif %}
+                    </div>
+
+                    {# recognitions #}
+                    <div class="row">
+                        {% if user.recognitions is not empty %}
+                            <h3 class="profil_category_title_bottom">Reconnaissances : </h3>
+                            <p class="other_content_title">
                             <ul class="list-group">
-                                {% for secondaryCause in user.secondaryCauses %}
-                                    <li class="list-group-item col-8 offset-2 list_causes">{{ secondaryCause.text }}</li>
+                                {% for recognition in user.recognitions %}
+                                    <li class="list-group-item col-8 offset-2 list_causes">{{ recognition.description }}</li>
                                 {% endfor %}
                             </ul>
-                        </p>
-                    {% else %}
-                        <p class="alert alert-danger">
-                            Pas de cause secondaire défini
-                        </p>
-                    {% endif %}
+                            </p>
+                        {% else %}
+                            <p class="alert alert-light">
+                                Pas de reconnaissance défini
+                            </p>
+                        {% endif %}
+                    </div>
                 </div>
-
-                {# recognitions #}
-                <div class="row">
-                    {% if user.recognitions is not empty %}
-                        <p class="other_content_title">
-                            Reconnaissances : <br>
-                        <ul class="list-group">
-                            {% for recognition in user.recognitions %}
-                                <li class="list-group-item col-8 offset-2 list_causes">{{ recognition.description }}</li>
-                            {% endfor %}
-                        </ul>
-                        </p>
-                    {% else %}
-                        <p class="alert alert-danger">
-                            Pas de cause secondaire défini
-                        </p>
-                    {% endif %}
-                </div>
-
                 {# social network #}
-                <div class="row">
+                <div class="row container_social_link">
                     {% if user.socialNetwork %}
                         {% if user.socialNetwork.website %}
                             <a href="{{ user.socialNetwork.website }}" target="_blank" class="btn required btn_social"><img src="{{ asset('img/lieux_mini.png') }}" alt="mon facebook" title="Facebook" class="social_link_mini" /></a>
@@ -283,7 +284,7 @@
                             <a href="{{ user.socialNetwork.github }}" target="_blank" class="btn required btn_social"><img src="{{ asset('img/logo_github_mini.png') }}" alt="mon github" title="Github" class="social_link_mini" /></a>
                         {% endif %}
                     {% else %}
-                        <p class="alert alert-danger">
+                        <p class="alert alert-light">
                             Entreprise pas présente sur les réseaux
                         </p>
                     {% endif %}
