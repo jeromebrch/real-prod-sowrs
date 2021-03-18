@@ -26,4 +26,15 @@ class CandidateController extends AbstractController
             return $this->render('error/CandidateNotFound.html.twig');
         }
     }
+
+    /**
+     * Show the candidat profil (user)
+     * @Route("/candidate/profil", name="candidat_profil")
+     */
+    public function candidatprofil(){
+        $user = $this->getUser();
+        return $this->render('user/userProfil.html.twig', [
+            'user' => $user,
+        ]);
+    }
 }

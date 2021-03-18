@@ -1,0 +1,300 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+{% endblock %}
+
+{% block title %}
+    {% if "ROLE_CANDIDATE" in user.roles %}
+        {{ user.firstname }} {{ user.lastname }}
+    {% else %}
+        {{ user.entityName }}
+    {% endif %}
+{% endblock %}
+
+{% block body %}
+
+    {# HEADER PAGE #}
+
+    <div class="row">
+        <div class="col-12 entity_title">
+            <div>
+                {# profil picture #}
+                <div class="row">
+                    {% if user.picture %}
+                        <img id="photo_profile" src="{{ asset('images/profils/' ~ user.picture.pictureName )}}"
+                             alt="photo du profil" title="Photo de profil">
+                    {% else %}
+                        <img id="photo_profile" src="{{ asset('images/profils/avatar.jpg' )}}"
+                             alt="photo par défaut" title="Avatar SOWRS">
+                    {% endif %}
+                </div>
+
+                {# entity name or user identity #}
+                <div class="row header_presentation">
+                    {% if "ROLE_CANDIDATE" in user.roles %}
+                        <h3>{{ user.firstname }} {{ user.lastname }}</h3>
+                    {% else %}
+                        <h3>{{ user.entityName }}</h3>
+                    {% endif %}
+                </div>
+
+                {# complementary informations #}
+                <div class="row header_presentation">
+                    {% if "ROLE_CANDIDATE" in user.roles %}
+                        <p>
+                            {{ user.currentRole }} - {{ user.jobSearch.city }} / {{ user.jobSearch.region }} - {{ user.jobSearch.contractType.wording }} - {{ user.jobSearch.desiredRemuneration.text }}
+                        </p>
+                    {% else %}
+                        <p>
+                            {{ user.legalStatus.text }} - {{ user.city }} / {{ user.country }} - {{ user.carbonFootPrint }} kg CO² / an
+                        </p>
+                    {% endif %}
+                </div>
+
+                {# tags #}
+                {# todo : gérer les tags #}
+
+                {# inspiration or main cause #}
+                <div class="row header_presentation">
+                    <p>
+                        {% if "ROLE_CANDIDATE" in user.roles %}
+                            "{{ user.inspiration }}"
+                        {% else %}
+                            Cause : {{ user.mainCause.text }}
+                        {% endif %}
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {# BODY PAGE #}
+
+    {# CANDIDAT #}
+
+    {% if "ROLE_CANDIDATE" in user.roles %}
+
+        {# todo : Anne-Lise #}
+        {# todo : faire la présentation du profil du candidat #}
+
+    {% else %}
+
+    {# RECRUITER #}
+
+        <div class="row">
+            {# LEFT PART #}
+            <div class=" col-lg-8 col-md-12 left_part_profil">
+                {# about the entity #}
+                <div class="container_category_profil">
+                    <div class="row">
+                        <h3 class="profil_category_title">A propos de {{ user.entityName }}</h3>
+                    </div>
+                    <div class="row">
+                        <p>
+                            {{ user.about }}
+                        </p>
+                    </div>
+                </div>
+                {# reason to be #}
+                <div class="container_category_profil">
+                    <div class="row">
+                        <h3 class="profil_category_title">Raison d'être de {{ user.entityName }}</h3>
+                    </div>
+                    <div class="row">
+                        <p>
+                            {{ user.reasonToBe }}
+                        </p>
+                    </div>
+                </div>
+                {# engagements #}
+                <div class="container_category_profil">
+                    <div class="row">
+                        <h3 class="profil_category_title">Engagements de {{ user.entityName }}</h3>
+                    </div>
+                    <div class="row">
+                        {# selective sorting #}
+                        <div class="col-6">
+                            {% if user.selectiveSorting %}
+                                <div  class="container_engagements">
+                                    <img src="{{ asset('img/logo_checked_mini.png') }}" alt="tri sélectif" title="Engagement pour le tri sélectif" />
+                                    <p>
+                                        Engagé pour le tri sélectif
+                                    </p>
+                                </div>
+                            {% else %}
+                                <p class="alert alert-danger" role="alert">
+                                    Pas encore engagée pour le tri sélectif
+                                </p>
+                            {% endif %}
+                        </div>
+                        {# zero paper goal #}
+                        <div class="col-6">
+                            {% if user.zeroPaperGoal %}
+                                <div class="container_engagements">
+                                    <img src="{{ asset('img/logo_checked_mini.png') }}" alt="zéro papier" title="Objectif zéro papier" />
+                                    <p>
+                                        Engagé dans un objectif zéro papier
+                                    </p>
+                                </div>
+                            {% else %}
+                                <p class="alert alert-danger" role="alert">
+                                    Pas encore engagée dans un objectif zéro papier
+                                </p>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="row">
+                        {# zero waste goal #}
+                        <div class="col-6">
+                            {% if user.zeroWasteGoal %}
+                                <div class="container_engagements">
+                                    <img src="{{ asset('img/logo_checked_mini.png') }}" alt="zéro déchets" title="Objectif zéro déchets" />
+                                    <p>
+                                        Engagé dans un objectif zéro déchets
+                                    </p>
+                                </div>
+                            {% else %}
+                                <p class="alert alert-danger" role="alert">
+                                    Pas encore engagée dans un objectif zéro déchets
+                                </p>
+                            {% endif %}
+                        </div>
+                        {# zero plastic goal #}
+                        <div class="col-6">
+                            {% if user.zeroPlasticGoal %}
+                                <div class="container_engagements">
+                                    <img src="{{ asset('img/logo_checked_mini.png') }}" alt="zéro plastique" title="Objectif zéro plastique" />
+                                    <p>
+                                        Engagé dans un objectif zéro plastique
+                                    </p>
+                                </div>
+                            {% else %}
+                                <p class="alert alert-danger" role="alert">
+                                    Pas encore engagée dans un objectif zéro plastique
+                                </p>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            {# RIGHT PART #}
+
+            <div class="col-lg-4 col-md-12 right_part">
+                <div class="row sense_rate_line">
+                    <div class="col-lg-10 offset-lg-1 col-md-4 offset-md-4 container_sense_rate">
+                        <div class="row">
+                            {# senseRate illustration #}
+                            <div class="col-4 picture_sense_rate">
+                                {% if user.scoring.dominantSens %}
+                                    <div>
+                                        {% if user.scoring.dominantSens is same as 'social' %}
+                                            <a href="{{ path('dash_board_entitySenseRate') }}">
+                                                <img class="img-fluid" src="{{ asset('img/social500.png') }}"
+                                                     alt="sens-social">
+                                            </a>
+                                        {% elseif user.scoring.dominantSens is same as 'economique' %}
+                                            <a href="{{ path('dash_board_entitySenseRate') }}">
+                                                <img class="img-fluid" src="{{ asset('img/econonomie500.png') }}"
+                                                     alt="sens-social">
+                                            </a>
+                                        {% elseif user.scoring.dominantSens is same as 'societal' %}
+                                            <a href="{{ path('dash_board_entitySenseRate') }}">
+                                                <img class="img-fluid" src="{{ asset('img/societal500.png') }}"
+                                                     alt="sens-social">
+                                            </a>
+                                        {% elseif user.scoring.dominantSens is same as 'environnemental' %}
+                                            <a href="{{ path('dash_board_entitySenseRate') }}">
+                                                <img class="img-fluid" src="{{ asset('img/environnemental500.png') }}"
+                                                     alt="sens-social">
+                                            </a>
+                                        {% endif %}
+                                    </div>
+                                {% else %}
+                                    <a href="#"><img src="{{ asset('img/calcul-taux-sens.jpg') }}" alt="calcul du taux de sens" title="Taux de sens SOWRS" /></a>
+                                    {# todo : lien vers calcul taux de sens #}
+                                {% endif %}
+                            </div>
+                            {# senseRate info #}
+                            <div class="col-8 content_sense_rate">
+                                <div class="row">
+                                    <p class="info_sense_rate">
+                                        <span id="sense_rate_minititle">Taux de sens</span><br>
+                                        {{ user.scoring.dominantPourcent }}% {{ user.scoring.dominantSens }}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                {# complementary informations #}
+
+                {# secondary causes #}
+                <div class="row">
+                    {% if user.secondaryCauses is not empty %}
+                        <p class="other_content_title">
+                            Causes secondaires : <br>
+                            <ul class="list-group">
+                                {% for secondaryCause in user.secondaryCauses %}
+                                    <li class="list-group-item col-8 offset-2 list_causes">{{ secondaryCause.text }}</li>
+                                {% endfor %}
+                            </ul>
+                        </p>
+                    {% else %}
+                        <p class="alert alert-danger">
+                            Pas de cause secondaire défini
+                        </p>
+                    {% endif %}
+                </div>
+
+                {# recognitions #}
+                <div class="row">
+                    {% if user.recognitions is not empty %}
+                        <p class="other_content_title">
+                            Reconnaissances : <br>
+                        <ul class="list-group">
+                            {% for recognition in user.recognitions %}
+                                <li class="list-group-item col-8 offset-2 list_causes">{{ recognition.description }}</li>
+                            {% endfor %}
+                        </ul>
+                        </p>
+                    {% else %}
+                        <p class="alert alert-danger">
+                            Pas de cause secondaire défini
+                        </p>
+                    {% endif %}
+                </div>
+
+                {# social network #}
+                <div class="row">
+                    {% if user.socialNetwork %}
+                        {% if user.socialNetwork.website %}
+                            <a href="{{ user.socialNetwork.website }}" target="_blank" class="btn required btn_social"><img src="{{ asset('img/lieux_mini.png') }}" alt="mon facebook" title="Facebook" class="social_link_mini" /></a>
+                        {% endif %}
+                        {% if user.socialNetwork.linkedin %}
+                            <a href="{{ user.socialNetwork.linkedin }}" target="_blank" class="btn required btn_social"><img src="{{ asset('img/linkedin_grist-10mm.png') }}" alt="mon linkedIn" title="LinkedIn" class="social_link_mini" /></a>
+                        {% endif %}
+                        {% if user.socialNetwork.stackOverflow %}
+                            <a href="{{ user.socialNetwork.stackOverflow }}" target="_blank" class="btn required btn_social"><img src="{{ asset('img/logo_stackoverflow_mini.png') }}" alt="mon stackoverflow" title="StackOverflow" class="social_link_mini" /></a>
+                        {% endif %}
+                        {% if user.socialNetwork.github %}
+                            <a href="{{ user.socialNetwork.github }}" target="_blank" class="btn required btn_social"><img src="{{ asset('img/logo_github_mini.png') }}" alt="mon github" title="Github" class="social_link_mini" /></a>
+                        {% endif %}
+                    {% else %}
+                        <p class="alert alert-danger">
+                            Entreprise pas présente sur les réseaux
+                        </p>
+                    {% endif %}
+                </div>
+
+            </div>
+        </div>
+
+
+    {% endif %}
+
+
+
+{% endblock %}
