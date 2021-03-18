@@ -14,8 +14,8 @@ class RecruiterController extends AbstractController
     public function recruiterProfil(): Response
     {
         $user = $this->getUser();
-        return $this->render('recruiter/showRecruiterProfil.html.twig', [
-            'recruiter' => $user,
+        return $this->render('user/userProfil.html.twig', [
+            'user' => $user,
         ]);
     }
 }
