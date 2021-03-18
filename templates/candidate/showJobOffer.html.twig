@@ -11,18 +11,22 @@
 {% block body %}
     <div class="show_candidate_jumbotron pt-3">
         <div class="col-lg-1 mx-auto">
-            {% if entity.picture %}
-                <img style="width: 100%" class="rounded-circle"
-                     src="{{ asset('images/profils/' ~entity.picture.pictureName ) }}"
-                     alt="photo du profil">
-            {% else %}
-                <img style="width: 100%" class="rounded-circle"
-                     src="{{ asset('images/profils/avatar.jpg') }}"
-                     alt="photo du profil">
-            {% endif %}
+            <a href="{{ path('show_recruiter_profil', {"id":entity.id}) }}" class="link_recruiter">
+                {% if entity.picture %}
+                    <img style="width: 100%" class="rounded-circle"
+                         src="{{ asset('images/profils/' ~entity.picture.pictureName ) }}"
+                         alt="photo du profil">
+                {% else %}
+                    <img style="width: 100%" class="rounded-circle"
+                         src="{{ asset('images/profils/avatar.jpg') }}"
+                         alt="photo du profil">
+                {% endif %}
+            </a>
         </div>
         <div class="col-lg-5 mx-auto">
-            <h5 class="show_candidate_jumbotron_name" style="color: #dfdfdf">{{ entity.entityName | capitalize }}</h5>
+            <a href="{{ path('show_recruiter_profil', {"id":entity.id}) }}" class="link_recruiter">
+                <h5 class="show_candidate_jumbotron_name" style="color: #dfdfdf">{{ entity.entityName | capitalize }}</h5>
+            </a>
         </div>
         <div class="col-lg-5 mx-auto">
             <h4 class="show_candidate_jumbotron_name" style="color: #FFFFFF">{{ jobOffer.title | capitalize }}</h4>

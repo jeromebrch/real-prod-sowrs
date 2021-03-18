@@ -26,4 +26,5 @@ class CandidateController extends AbstractController
             return $this->render('error/CandidateNotFound.html.twig');
         }
     }
+
 }
