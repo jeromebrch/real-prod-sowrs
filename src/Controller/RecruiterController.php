@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Form\ContactRecruiterType;
 use App\Repository\RecruiterRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -25,8 +26,13 @@ class RecruiterController extends AbstractController
      */
     public function showRecruiterProfil($id, RecruiterRepository $recruiterRepo){
         $recruiter = $recruiterRepo->find($id);
+        $contactRecruiterForm = $this->createForm(ContactRecruiterType::class);
+        if($contactRecruiterForm->isSubmitted() && $contactRecruiterForm->isValid()){
+            // todo : Anne-Lise -> gérer l'envoi du message dans la messagerie du recruteur
+        }
         return $this->render('candidate/showRecruiter.html.twig', [
-            'recruiter'=> $recruiter
+            'recruiter'=> $recruiter,
+            'contactForm' => $contactRecruiterForm->createView()
         ]);
     }
 }

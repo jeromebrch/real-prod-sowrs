@@ -34,7 +34,18 @@
                 {# complementary informations #}
                 <div class="row header_presentation">
                         <p>
-                            {{ recruiter.legalStatus.text }} &bull; {{ recruiter.city }} - {{ recruiter.country }} &bull; {{ recruiter.carbonFootPrint }} kg CO² / an
+                            {% if recruiter.legalStatus %}
+                                {{ recruiter.legalStatus.text }}
+                            {% endif %}
+                            {% if recruiter.city and recruiter.country %}
+                                &bull; {{ recruiter.city }} - {{ recruiter.country }}
+                            {% endif %}
+                            {% if recruiter.country and not recruiter.city %}
+                                &bull; {{ recruiter.country }}
+                            {% endif %}
+                            {% if recruiter.carbonFootprint %}
+                                &bull; {{ recruiter.carbonFootPrint }} kg CO² / an
+                            {% endif %}
                         </p>
                 </div>
 
@@ -260,6 +271,19 @@
                         </p>
                     {% endif %}
                 </div>
+
+                {# contact form #}
+                {# todo : anne-Lise -> gérer l'envoi du message #}
+                <div class="row container_contact">
+                    <div>
+                        <h3 class="profil_category_title_bottom">Contact </h3>
+                        {{ form_start(contactForm) }}
+                        {{ form_widget(contactForm) }}
+                        <button type="submit" class="btn required btn_send_message">Envoyer</button>
+                        {{ form_end(contactForm) }}
+                    </div>
+                </div>
+
 
             </div>
         </div>
