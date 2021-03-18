@@ -39,4 +39,6 @@
     text-align: center;
     cursor: pointer;
 }
-
+.link_recruiter{
+    text-decoration: none;
+}

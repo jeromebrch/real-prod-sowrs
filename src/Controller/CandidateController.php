@@ -37,4 +37,5 @@ class CandidateController extends AbstractController
             'user' => $user,
         ]);
     }
+
 }

@@ -117,6 +117,33 @@
 .alert-light-grey{
     background-color: #EEEEEE;
 }
+.container_contact{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: self-start;
+    padding: 20px;
+    margin: 20px;
+    background-color: #ffffff;
+    border-radius: 30px;
+    border: #E6E9E9;
+}
+.alert-light-grey{
+    background-color: #EEEEEE;
+}
+#contact_recruiter div label{
+    color: #555555;
+    font-family: 'KohinoorBangla', Arial, serif;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+#contact_recruiter div input, textarea{
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+.btn_send_message{
+    margin-top: 10px;
+}
 
 @media screen and (max-width: 992px) {
     .sense_rate_line{
