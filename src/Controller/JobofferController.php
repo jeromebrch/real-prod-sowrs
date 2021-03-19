@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\JobOffer;
+use App\Form\ApplyType;
 use App\Form\JobOfferType;
 use App\Repository\JobOfferRepository;
 use App\Repository\RecruiterRepository;
@@ -179,10 +180,12 @@ class JobofferController extends AbstractController
 
         if ($jobOffer) {
             $entity = $recruiterRepo->find($jobOffer->getEntity()->getId());
+            $applyForm = $this->createForm(ApplyType::class);
 
             return $this->render('candidate/showJobOffer.html.twig', [
                 'jobOffer' => $jobOffer,
-                'entity' => $entity
+                'entity' => $entity,
+                'applyForm' => $applyForm->createView()
             ]);
         } else {
             return $this->render('error/notFound.html.twig');

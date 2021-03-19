@@ -10,7 +10,7 @@
 
 {% block body %}
     <div class="show_candidate_jumbotron pt-3">
-        <div class="col-lg-1 mx-auto">
+        <div class="col-lg-1 mx-auto container_entity_picture">
             <a href="{{ path('show_recruiter_profil', {"id":entity.id}) }}" class="link_recruiter">
                 {% if entity.picture %}
                     <img style="width: 100%" class="rounded-circle"
@@ -41,37 +41,59 @@
         </h5>
         {# Gerer les tags #}
 
-        <div class="col-lg-auto mx-auto" style="text-align: center">
-            <ul class="list-unstyled list-inline">
-                <li class="list-inline-item">
-                    <a class="nav-link" id="secondary-nav" href="https://www.facebook.com/sowrscom"
-                       target="_blank"><img class="logo_facebook" src="{{ asset('img/facebook_gris-footer.png') }}"
-                                            alt="Page Facebook"></a>
-                </li>
-                <li class="list-inline-item">
-                    <a class="nav-link"
-                       href="https://www.linkedin.com/company/sowrs/" target="_blank"><img
-                                class="logo_linkedin" src="{{ asset('img/linkedin_grist-footer.png') }}" alt="Page linkedin"></a>
-                </li>
-                <li class="list-inline-item">
-                    <a class="nav-link" href="https://twitter.com/sowrs_com"
-                       target="_blank"><img class="logo_twitter" src="{{ asset('img/twitter_gris-footer.png') }}"
-                                            alt="Page twitter"></a>
-                </li>
-            </ul>
-        </div>
+        {% if entity.socialNetwork %}
+            <div class="col-lg-auto mx-auto" style="text-align: center">
+                <ul class="list-unstyled list-inline">
+                    {% if entity.socialNetwork.website %}
+                        <li class="list-inline-item">
+                            <a class="nav-link" id="secondary-nav" href="{{ entity.socialNetwork.website }}"
+                               target="_blank"><img class="logo_website" src="{{ asset('img/lieux_mini.png') }}"
+                                                    alt="Site internet"></a>
+                        </li>
+                    {% endif %}
+                    {% if entity.socialNetwork.linkedin %}
+                        <li class="list-inline-item">
+                            <a class="nav-link"
+                               href="{{ entity.socialNetwork.linkedin }}" target="_blank"><img
+                                        class="logo_linkedin" src="{{ asset('img/linkedin_grist-10mm.png') }}" alt="Page linkedin"></a>
+                        </li>
+                    {% endif %}
+                    {% if entity.socialNetwork.github %}
+                        <li class="list-inline-item">
+                            <a class="nav-link" href="{{ entity.socialNetwork.github }}"
+                               target="_blank"><img class="logo_github" src="{{ asset('img/logo_github_mini.png') }}"
+                                                    alt="Page Github"></a>
+                        </li>
+                    {% endif %}
+                    {% if entity.socialNetwork.stackOverflow %}
+                        <li class="list-inline-item">
+                            <a class="nav-link" id="secondary-nav" href="{{ entity.socialNetwork.stackOverflow }}"
+                               target="_blank"><img class="logo_stackoverflow" src="{{ asset('img/logo_stackoverflow_mini.png') }}"
+                                                    alt="Stack Overflow"></a>
+                        </li>
+                    {% endif %}
+                </ul>
+            </div>
+        {% endif %}
     </div>
-    <div class="row">
-        <div class="col-lg-7">
-            <h3 class="subtitle">À propos de </h3>
-            <p>njbkjahlbhdhdzhdzhxdnkkjzhdjkzhjndnjbkjahlbhdhdzhdzhxdnkkjzhdjkzhjnd
-                njbkjahlbhdhdzhdzhxdnkkjzhdjkzhjndnjbkjahlbhdhdzhdzhxdnkkjzhdjkzhjndnjbkjahlbhdhdzhdzhxdnkkjzhdjkz
-                njbkjahlbhdhdzhdzhxdnkkjzhdjkzhjndnjbkjahlbhdhdzhdzhxdnkkjzhdjkzhjnd</p>
 
-            <h3 class="subtitle">est engagé dans </h3>
-            <p>njbkjahlbhdhdzhdzhxdnkkjzhdjkzhjndnjbkjahlbhdhdzhdzhxdnkkjzhdjkzhjnd
-            ◊◊◊◊</p>
+    {# LEFT PART #}
+
+    <div class="row">
+        <div class="col-lg-7 container_info_offer">
+            <h3 class="subtitle">À propos de {{ entity.entityName }}</h3>
+            <p>
+                {{ entity.about }}
+            </p>
+
+            <h3 class="subtitle">Descriptif du poste</h3>
+            <p>
+                {{ jobOffer.description }}
+            </p>
         </div>
+
+        {# RIGHT PART #}
+
         <div class="col-lg-5">
             <div class="show_candidate_sens_rate">
                 <div class="row align-items-center">
@@ -93,7 +115,22 @@
                     <br>
                 </div>
             </div>
-            <br>
+
+            {# apply form #}
+
+            <div class="row container_contact">
+                {{ form_start(applyForm) }}
+                <div class="row">
+                    <div class="col-6">{{ form_row(applyForm.lastname, {'attr': {'value':app.user.lastname}}) }}</div>
+                    <div class="col-6">{{ form_row(applyForm.firstname, {'attr': {'value':app.user.firstname}}) }}</div>
+                </div>
+                {{ form_row(applyForm.email, {'attr': {'value':app.user.email}}) }}
+                {{ form_row(applyForm.message, {'attr': {'placeholder':'Votre message'}}) }}
+                {{ form_row(applyForm.file, {'attr': {'id':'apply_input_file'}}) }}
+                <button type="submit" class="btn required">Postuler</button>
+                {{ form_end(applyForm) }}
+            </div>
+
         </div>
     </div>
 {% endblock %}

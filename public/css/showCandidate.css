@@ -22,6 +22,9 @@
 }
 .show_candidate_sens_rate {
     background: #FFFFFF;
+    margin: 20px;
+    border-radius: 30px;
+    padding: 20px;
 }
 #btn_doughnut {
     cursor: pointer;
@@ -41,4 +44,28 @@
 }
 .link_recruiter{
     text-decoration: none;
+}
+.logo_website, .logo_linkedin, .logo_github, .logo_stackoverflow{
+    width: 35px;
+    height: 35px;
+}
+.custom-file-input #apply_file{
+    display: block;
+}
+.container_contact label{
+    padding: 10px;
+    font-weight: bold;
+    color: #555555;
+}
+.container_info_offer{
+    padding: 40px;
+}
+.container_info_offer p{
+    text-align: left;
+}
+.container_entity_picture{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
 }

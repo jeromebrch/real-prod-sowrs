@@ -100,10 +100,6 @@ class RecruiterModificationType extends AbstractType
                 'required' => false,
                 'mapped' => false,
                 'label' => 'Justificatif',
-                /*
-                'attr' => [
-                    'placeholder' => 'Empreinte carbone'],
-                */
                 'constraints' => [
                     new File([
                         'maxSize' => '1024k',
