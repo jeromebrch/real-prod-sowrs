@@ -44,6 +44,7 @@ class Picture
     private $updatedAt;
 
 
+
     public function __construct()
     {
         $this->updatedAt = new \DateTime();

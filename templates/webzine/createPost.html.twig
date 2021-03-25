@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+{% endblock %}
+
+{% block title %}Sowrs | Création d'un article{% endblock %}
+
+{% block body %}
+    {% if "ROLE_ADMIN" in app.user.roles %}
+        <h1 class="create_post_title">Création d'un nouvel article</h1>
+        {{ form_start(postForm) }}
+        <div class="row head_form_post">
+            <div class="col-md-3 col-sm-12">
+                {{ form_row(postForm.title) }}
+            </div>
+            <div class="col-md-3 col-sm-12">
+                {{ form_row(postForm.presentationText) }}
+            </div>
+            <div class="col-md-3 illus_post col-sm-12">
+                {{ form_row(postForm.picture) }}
+            </div>
+            <div class="col-md-3 col-sm-12">
+                {{ form_row(postForm.cause) }}
+            </div>
+        </div>
+        <div class="row content_post_create">
+            {{ form_row(postForm.content, {'attr':{'class':'col-12'}}) }}
+        </div>
+        <div class="row container_btn_save">
+            <button type="submit" class="btn required btn_save_post">Enregistrer</button>
+        </div>
+        {{ form_end(postForm) }}
+        <div class="container_tips_admin">
+            <h3>Bonjour Admin</h3>
+            <p>
+                Quelques astuces pour bien utiliser cet éditeur (si jamais l'admin change) :
+                <ul>
+                    <li>Attention au format des images, leur position est centrale, mais une taille trop grande la fera se décentraliser</li>
+                    <li>Ne pas abuser des retours chariots, leur espacement est déja configuré</li>
+                    <li>Les copier/coller d'autres articles conserveront le style défini, gain de temps non négligeable au début</li>
+                    <li>Couleurs de la charte graphique : <div class="color1DCA91">#1DCA91</div><div class="color716387">#716387</div><div class="color555555">#555555</div></li>
+                    <li>Le texte de présentation est utile pour la miniature sur le webzine, c'est un résumé court</li>
+                    <li><a href="{{ asset('uploads/Manuel_import_photos.pdf') }}" download class="link_manual">Consulter le manuel d'import photo</a> </li>
+            </ul>
+            </p>
+        </div>
+    {% endif %}
+{% endblock %}

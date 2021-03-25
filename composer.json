@@ -11,7 +11,9 @@
         "doctrine/doctrine-bundle": "^2.2",
         "doctrine/doctrine-migrations-bundle": "^3.0",
         "doctrine/orm": "^2.7",
+        "friendsofsymfony/ckeditor-bundle": "^2.3",
         "google/recaptcha": "~1.1",
+        "helios-ag/fm-elfinder-bundle": "^10.1",
         "knplabs/knp-paginator-bundle": "^5.4",
         "phpdocumentor/reflection-docblock": "^5.2",
         "sensio/framework-extra-bundle": "^5.6",
@@ -78,7 +80,8 @@
         "auto-scripts": {
             "cache:clear": "symfony-cmd",
             "assets:install %PUBLIC_DIR%": "symfony-cmd",
-            "requirements-checker": "script"
+            "requirements-checker": "script",
+            "elfinder:install": "symfony-cmd"
         },
         "post-install-cmd": [
             "@auto-scripts"

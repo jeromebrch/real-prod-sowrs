@@ -1,0 +1,85 @@
+.title_post_detail{
+    text-align: center;
+    color: #555555;
+    font-size: 2.5em;
+    font-family: 'KohinoorBangla', Arial, serif;
+    padding: 30px;
+}
+.info_post_detail{
+    color: #827399;
+    font-family: 'KohinoorBangla', Arial, serif;
+    font-size: 0.9em;
+    padding: 20px;
+}
+.content_post_detail p{
+    padding: 20px;
+    text-align: left;
+}
+.content_post_detail a{
+    color: #827399;
+    text-decoration: none;
+}
+.content_post_detail:first-child{
+
+ }
+.content_post_detail:first-child::first-letter{
+    color: #1dca91;
+    font-size: 4em;
+    float: left;
+    position: relative;
+    bottom: 40px;
+}
+.recently_add_post{
+    background-color: #55555529;
+    padding: 0;
+    margin-top: 150px;
+}
+.right_section_title{
+    text-align: center;
+    color: #988CAA;
+    font-family: 'KohinoorBangla', Arial, serif;
+    font-size: 1.1em;
+    padding: 15px;
+}
+.latest_post_title{
+    color: #988CAA;
+    font-size: 0.9em;
+    text-align: center;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 10px;
+    font-family: 'KohinoorBangla', Arial, serif;
+}
+.background_link{
+    margin: 0;
+    padding: 5px;
+    background-color: black;
+}
+.link_read_more{
+    text-align: center;
+    color: white;
+    font-size: 1.3em;
+    text-decoration: none;
+    font-family: 'KohinoorBangla', Arial, serif;
+}
+.container_social_sharer{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+.container_social_sharer *{
+    padding: 20px;
+}
+.link_post{
+    text-decoration: none;
+}
+
+@media screen and (max-width: 767px){
+    .content_post_detail{
+        padding: 30px;
+    }
+    .content_post_detail span img{
+        width: auto;
+    }
+}

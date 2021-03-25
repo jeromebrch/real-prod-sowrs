@@ -1,0 +1,30 @@
+.unpublished_post_title{
+    text-align: center;
+    padding: 30px;
+    color: #555555;
+    font-family: 'KohinoorBangla', Arial, serif;
+}
+.unpublished_post{
+    border: 1px solid #B0413E55;
+    border-radius: 5px;
+    padding: 30px;
+    margin-top: 50px;
+}
+.no_unpublished_title{
+    text-align: center;
+    border: 1px solid #B0413E55;
+    border-radius: 5px;
+    padding: 30px;
+    margin-right: 30px;
+    margin-left: 30px;
+    background-color: #B0413E55;
+    margin-top: 250px;
+    margin-bottom: 250px;
+    font-family: 'KohinoorBangla', Arial, serif;
+    color: #555555;
+}
+.unpublished_post div a{
+    color: #827399;
+    text-decoration: none;
+    padding: 0;
+}

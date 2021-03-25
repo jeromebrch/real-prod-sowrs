@@ -1,0 +1,34 @@
+.main_title_webzine{
+    text-align: center;
+    color: #555555;
+    font-family: 'KohinoorBangla', Arial, serif;
+    padding: 40px;
+    font-weight: normal;
+}
+.container_posts {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+.illustration_post{
+    height: auto;
+}
+.post_abstract{
+    padding: 10px;
+}
+.post_mini{
+    padding: 10px;
+}
+.post_mini *{
+    margin-bottom: 20px;
+}
+.post_mini .post_mini_date{
+    padding-left: 20px;
+}
+blockquote{
+    border-left: 3px solid #55555555;
+    padding-left: 30px;
+}
+.btn_admin{
+    background-color: #B0413E;
+}

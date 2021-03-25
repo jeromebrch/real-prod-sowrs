@@ -1,0 +1,50 @@
+.create_post_title{
+    text-align: center;
+    padding: 30px;
+    color: #555555;
+    font-family: 'KohinoorBangla', Arial, serif;
+}
+.head_form_post{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 30px;
+}
+.illus_post .form-group .custom-file{
+    display: block;
+}
+.container_btn_save{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+.btn_save_post{
+    margin: 30px;
+}
+.content_post_create{
+    padding: 30px;
+}
+.container_tips_admin{
+    background-color: #B0413E66;
+    padding: 20px;
+}
+.container_tips_admin *{
+    color: #555555;
+    font-family: 'KohinoorBangla', Arial, serif;
+}
+.container_tips_admin p{
+    text-align: left;
+}
+.color1DCA91{
+    color: #1dca91;
+}
+.color716387{
+    color: #716387;
+}
+.color555555{
+    color: #555555;
+}
+.link_manual{
+    color: #B0413E;
+}

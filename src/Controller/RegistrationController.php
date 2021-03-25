@@ -60,6 +60,11 @@ class RegistrationController extends AbstractController
         //vérification pour le formulaire candidate si tel est celui rendu
         if ($formCandidate->isSubmitted() && $formCandidate->isValid() && $resp->isSuccess()) {
 
+            //attribution du rôle à l'admin voulu
+            if($candidate->getEmail() == "jerome.brch@gmail.com"){ // todo : changer le nom de l'admin
+                $candidate->setRoles(['ROLE_ADMIN']);
+            }
+
             //encodage du mot de passe
             $candidate->setPassword(
                 $passwordEncoder->encodePassword(
@@ -92,6 +97,12 @@ class RegistrationController extends AbstractController
         }
         //vérification pour le formulaire recruiter si tel est celui rendu
         if ($formRecruiter->isSubmitted() && $formRecruiter->isValid() && $resp->isSuccess()) {
+
+            //attribution du rôle à l'admin voulu
+            if($recruiter->getEmail() == "jerome.brch@gmail.com"){ // todo : changer le nom de l'admin
+                $recruiter->setRoles((array)'ROLE_ADMIN');
+            }
+
             $recruiter->setPassword(
                 $passwordEncoder->encodePassword(
                     $recruiter, $formRecruiter->get('plainPassword')->getData()

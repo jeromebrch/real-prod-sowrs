@@ -55,4 +55,19 @@ hr {
 .navbar {
     padding-top: 0;
 }
-
+.admin_options{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 30px;
+    background-color: #B0413E44;
+}
+.admin_options *{
+    margin: 30px;
+}
+.admin_options_title{
+    font-family: 'KohinoorBangla', Arial, serif;
+    font-size: 1.4em;
+    color: #B0413E;
+}

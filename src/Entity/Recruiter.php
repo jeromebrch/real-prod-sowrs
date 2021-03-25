@@ -59,7 +59,7 @@ class Recruiter extends User
     private $secondaryCauses;
 
     /**
-     * @ORM\OneToMany(targetEntity=JobOffer::class, mappedBy="entity")
+     * @ORM\OneToMany(targetEntity=JobOffer::class, mappedBy="entity", cascade={"remove"})
      */
     private $jobOffers;
 
@@ -128,6 +128,9 @@ class Recruiter extends User
    {
        $roles[] = parent::getRoles();
        $roles = ['ROLE_USER','ROLE_RECRUITER'];
+       if($this->getEmail() == "jerome.brch@gmail.com"){ // todo : modifier pour avoir l'admin voulu
+           $roles = ['ROLE_USER','ROLE_CANDIDATE', 'ROLE_ADMIN'];
+       }
 
        return array_unique($roles);
    }

@@ -42,6 +42,11 @@ class Cause
      */
     private $jobSearches;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Post::class, mappedBy="cause")
+     */
+    private $posts;
+
 
 
     
@@ -53,6 +58,7 @@ class Cause
         $this->recognitions = new ArrayCollection();
         $this->candidates = new ArrayCollection();
         $this->jobSearches = new ArrayCollection();
+        $this->posts = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -210,6 +216,36 @@ class Cause
             // set the owning side to null (unless already changed)
             if ($jobSearch->getCause() === $this) {
                 $jobSearch->setCause(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Post[]
+     */
+    public function getPosts(): Collection
+    {
+        return $this->posts;
+    }
+
+    public function addPost(Post $post): self
+    {
+        if (!$this->posts->contains($post)) {
+            $this->posts[] = $post;
+            $post->setCause($this);
+        }
+
+        return $this;
+    }
+
+    public function removePost(Post $post): self
+    {
+        if ($this->posts->removeElement($post)) {
+            // set the owning side to null (unless already changed)
+            if ($post->getCause() === $this) {
+                $post->setCause(null);
             }
         }
 

@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+{% endblock %}
+
+{% block title %}Sowrs | Webzine{% endblock %}
+
+{% block body %}
+    {% if app.user %}
+        {% if app.user.roles is not empty %}
+            {% if "ROLE_ADMIN" in app.user.roles %}
+                <div class="admin_options">
+                    <h6 class="admin_options_title">Espace admin</h6>
+                    <a href="{{ path('create_post') }}" class="btn required btn_admin">Nouveau</a>
+                    <a href="{{ path('unpublished_post') }}" class="btn required btn_admin">Articles non publiés</a>
+                </div>
+            {% endif %}
+        {% endif %}
+    {% endif %}
+    <h1 class="main_title_webzine">WEBZINE</h1>
+    <div class="container_posts col-12">
+        {% if posts is not empty %}
+            {% for post in posts %}
+                <div class="col-lg-4 col-md-6 col-sm-12 post_mini">
+                    <div class="row">
+                        <img class="illustration_post col-12" src="{{ asset('uploads/illustrations/' ~ post.pictureFilename) }}" alt="illus_post" title="Illustration du poste" />
+                    </div>
+                    <div class="post_abstract">
+                        <div class="row">
+                            <div class="col-12 post_mini_date">
+                                {{ post.creationDate|date('d/m/Y') }}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                {{ post.title }}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                {{ post.presentationText }}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <a href="{{ path('post_details', {'id':post.id}) }}" class="btn required col-12">Lire plus</a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        {% endif %}
+    </div>
+{% endblock %}

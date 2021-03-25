@@ -1,0 +1,123 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+{% endblock %}
+
+{% block title %}Sowrs | Article {{ post.id }}{% endblock %}
+
+{% block body %}
+    {% if app.user %}
+        {% if app.user.roles is not empty %}
+            {% if "ROLE_ADMIN" in app.user.roles %}
+                <div class="admin_options">
+                    <h6 class="admin_options_title">Espace admin</h6>
+                    {% if post.isPublished %}
+                        <a href="{{ path('hide_post', {"id":post.id}) }}" class="btn required btn_admin">Masquer</a>
+                    {% else %}
+                        <a href="{{ path('publish_post', {"id":post.id}) }}" class="btn required btn_admin">Valider la publication</a>
+                    {% endif %}
+                    <a href="{{ path('delete_post', {"id":post.id}) }}" class="btn required btn_admin">Supprimer l'article</a>
+                </div>
+            {% endif %}
+        {% endif %}
+    {% endif %}
+
+    {# post header #}
+    <div class="col-md-10 offset-md-1 col-sm-12">
+        <div class="row">
+            <h1 class="title_post_detail">{{ post.title }}</h1>
+        </div>
+        <div class="row">
+            <p class="info_post_detail">
+                {% if post.cause %}
+                    {{ post.cause.text }}&nbsp; &bull;&nbsp;
+                {% endif %}
+                {{ post.creationDate|date('d/m/Y') }} &nbsp; &bull; &nbsp; Nombre de vues {# todo : gérer nombre de vues #}
+            </p>
+        </div>
+
+        {# social network sharer button #}
+        <div class="row">
+            <div class="container_social_sharer">
+                {# facebook #}
+                <div id="utils-icon-share-fb">
+                    <div id="utils-icon-share-fb">
+
+                        {# todo : vérifier le fonctionnement du lien une fois la mise en prod faite, en local l'url ne peux pas fonctionner #}
+                        {# fonctionne parfaitement avec un lien externe #}
+
+                        <a href="https://www.facebook.com/sharer.php?u={{ app.request.uri }}"
+                           onclick="window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=500,width=700');return false;">
+                            <img src="{{ asset('img/facebook_violet.png') }}" alt="facebook" title="Partager le poste sur facebook" />
+                        </a>
+                    </div>
+                </div>
+                {# twitter #}
+                <div>
+                    <div id="utils-icon-share-twitter">
+                        <a href="https://twitter.com/intent/tweet?text=Petit%20partage%20%3A&url={{ app.request.uri }}"
+                           onclick="window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=500,width=700');return false;"
+                           title="Partager le poste">
+                            <img src="{{ asset('img/twitter_violet.png') }}" alt="twitter" title="Partager le poste sur Twitter" />
+                        </a>
+                    </div>
+                </div>
+                {# linkedin #}
+                <div>
+                    <a href="https://www.linkedin.com/shareArticle?mini=true&amp;url={{ app.request.uri }}"
+                       onclick="window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=500,width=700');return false;"
+                       title="Partager le poste">
+                        <img src="{{ asset('img/linkedin_violet.png') }}" alt="linkedin" title="Partager le poste sur linkedin" />
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        {# post body #}
+        <div class="row">
+            <img class="illustration_detail_post col-md-10 offset-md-1 col-sm-12" src="{{ asset('uploads/illustrations/' ~ post.pictureFilename) }}" alt="illus_post" title="Illustration du poste" />
+        </div>
+        <div class="row">
+            <div class="col-10">
+                <div class="row">
+                    <div class="content_post_detail col-md-10 offset-md-1 col-sm-12">
+                        {{ post.content|raw }}
+                    </div>
+                </div>
+            </div>
+            <div class="col-2">
+                {% if newestPost is not empty %}
+                    {# recently add #}
+                    <div class="row">
+                        <div class="recently_add_post">
+                            <h3 class="right_section_title">DERNIERS ARTICLES</h3>
+                            {% for post in newestPost %}
+                                <div class="latest_post col-12">
+                                    <div class="row">
+                                        <img class="col-12" src="{{ asset('uploads/illustrations/' ~ post.pictureFilename) }}" alt="illus_post" title="{{ post.title }}" />
+                                    </div>
+                                    <div class="row">
+                                        <a class="link_post" href="{{ path('post_details', {"id":post.id}) }}"><h4 class="latest_post_title">{{ post.title }}</h4></a>
+                                    </div>
+                                    <div class="row">
+                                        <p class="latest_post_date">{{ post.creationDate|date('d/m/Y') }}</p>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                            <div class="row background_link">
+                                <a href="{{ path('home_webzine') }}" class="link_read_more col-12">Lire plus +</a>
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+                {# most read #}
+                <div class="row">
+                    <div class="most_read_post">
+                        {# todo : gérer l'affichage une fois le nombre de vues configuré #}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
