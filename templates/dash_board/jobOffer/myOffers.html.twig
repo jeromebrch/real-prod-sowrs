@@ -26,12 +26,6 @@
                         </div>
                     </div>
                 </div>
-
-                {% for message in app.flashes('success') %}
-                    <div class="alert alert-success">
-                        {{ message }}
-                    </div>
-                {% endfor %}
                 <div class="m-3">
                     {% for jobOffer in jobOffers %}
                         {% include '/dash_board/jobOffer/_cardJobOffer.html.twig' %}

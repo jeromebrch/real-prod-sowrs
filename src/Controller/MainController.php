@@ -5,12 +5,15 @@ namespace App\Controller;
 use App\Data\SearchCandidate;
 use App\Data\SearchJobOffers;
 use App\Entity\Contact;
+use App\Entity\Media;
 use App\Entity\Recruiter;
 use App\Form\ContactType;
 use App\Form\SearchCandidateType;
 use App\Form\SearchJobOfferType;
 use App\Repository\CandidateRepository;
+use App\Repository\ContactRepository;
 use App\Repository\JobOfferRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Knp\Component\Pager\PaginatorInterface;
 use ReCaptcha\ReCaptcha;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -114,7 +117,34 @@ class MainController extends AbstractController
     }
 
 
-    /**
+        /**
+         * @Route("/main/contactUs/deleteFile/{id}", name="main_deleteFile", requirements={"id":"\d+"})
+         * @param $id
+         * @param EntityManagerInterface $entityManager
+         * @return Response
+         */
+        public function deleteFile($id, ContactRepository $repositoryContact, EntityManagerInterface $entityManager): Response
+    {
+
+        $contactRepo = $repositoryContact->find($id);
+        $file = $contactRepo->getFichier();
+        if ($file) {
+            $entityManager->remove($file);
+            $entityManager->flush();
+
+            $this->addFlash('success', 'Votre fichier à été supprimé');
+
+            return $this->redirectToRoute('main_contact_us');
+        } else {
+            return $this->render('error/notFound.html.twig');
+
+        }/* <a class="abstractJobOfferButtonTrash col-lg-3 m-2 text-center align-self-center"
+                       href="{{ path('main_deleteFile', {'id':contact.id}) }}" role="button">
+                        <img class="abstractJobOfferImgTrash" src="{{ asset('img/boostrap/trash-fill-white.svg') }}">
+                    </a>*/
+    }
+
+        /**
      * returns the list of current offers linked to a search filter
      * @Route("/jobOffersList", name="main_job_offers_list")
      * @param Request $request
@@ -188,6 +218,26 @@ class MainController extends AbstractController
             'formSearch' => $formSearch->createView(),
             'listCandidates' => $candidates,
         ]);
+    }
+
+    /**
+     * @Route("/main/contactUs/delete", name="delete_file")
+     */
+    public function DeleteMessage(EntityManagerInterface $em):Response
+    {
+       // $fileRepo = $this->getDoctrine()->getRepository(Media::class);
+       // $file = $fileRepo-                                //{id}
+       // if ($file) {
+           // $em->remove($file);
+            $em->flush();
+
+            $this->addFlash('success', 'Votre fichier a été supprimé');
+
+            return $this->redirectToRoute('main_contact_us');
+       // } else {
+         //   return $this->render('error/notFound.html.twig');
+
+       // }
     }
 
     /**

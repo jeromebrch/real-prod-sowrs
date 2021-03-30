@@ -30,6 +30,8 @@
         <link rel="stylesheet" href="{{ asset('css/errorPage.css') }}">
         <link rel="stylesheet" href="{{ asset('css/contactUs.css') }}">
         <link rel="stylesheet" href="{{ asset('css/recruiterProfil.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/messaging_page.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/applyForm.css') }}">
     {% endblock %}
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 </head>
@@ -52,7 +54,9 @@
     {% block flash_messages %}
         {% for type, messages in app.session.flashbag.all() %}
             {% for message in messages %}
-                {{ message }}
+                <div class="alert alert-{{ type }}" role="alert">
+                    {{ message }}
+                </div>
             {% endfor %}
         {% endfor %}
     {% endblock %}

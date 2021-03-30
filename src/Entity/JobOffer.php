@@ -9,6 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity(repositoryClass=JobOfferRepository::class)
+ *
  */
 class JobOffer
 {
@@ -84,10 +85,12 @@ class JobOffer
      */
     private $remuneration;
 
+
     /**
      * @ORM\Column(type="boolean")
      */
     private $published;
+
 
     public function __construct(){
         $this->creationDate = new DateTime();

@@ -108,9 +108,6 @@ class Recruiter extends User
      */
     private $zeroPlasticGoal;
 
-
-
-
    public function __construct()
    {
        parent::__construct();

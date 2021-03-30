@@ -1,0 +1,10 @@
+.btn-response {
+    width: 325px;
+    border-radius: 50px;
+    background: #1DCA91;
+    border: none;
+    padding: 10px;
+    font-size: larger;
+    color: white;
+    margin: auto;
+}

@@ -22,26 +22,30 @@ class Cv
     private $id;
 
     /**
-     * REMARQUE: Ce n'est pas un champ mappé de métadonnées d'entité, juste une simple propriété.
      * @Vich\UploadableField (mapping = "cv", fileNameProperty = "CvName", size = "CvSize")
      * @var File | null
      */
-    public $CvFile;
+    public $cvFile;
 
     /**
      * @ORM\Column(type="string", length=150, nullable=true)
      */
-    public $CvName;
+    public $cvName;
 
     /**
      * @ORM\Column(type="integer", nullable=true)
      */
-    private $CvSize;
+    private $cvSize;
 
     /**
      * @ORM\Column(type="datetime", nullable=true)
      */
     private $updatedAt;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Message::class, inversedBy="cv")
+     */
+    private $message;
 
 
     public function __construct()
@@ -57,21 +61,22 @@ class Cv
     /**
      * @return File|null
      */
-    public function getCvFile(): ?File
+    public function getcvFile(): ?File
     {
-        return $this->CvFile;
+        return $this->cvFile;
     }
 
     /**
      * @param File|UploadedFile|null $Cv
      */
-    public function setCvFile(?File $Cv = null): void
+    public function setCvFile(?File $cv = null): self
     {
-        $this->CvFile = $Cv;
+        $this->cvFile = $cv;
 
-        if (null !== $Cv) {
+        if (null !== $cv) {
             $this->updatedAt = new \DateTimeImmutable();
         }
+        return $this;
     }
 
     /**
@@ -79,15 +84,15 @@ class Cv
      */
     public function getCvName(): ?string
     {
-        return $this->CvName;
+        return $this->cvName;
     }
 
     /**
      * @param mixed $CvName
      */
-    public function setCvName(?string $CvName): self
+    public function setCvName(?string $cvName): self
     {
-        $this->CvName = $CvName;
+        $this->cvName = $cvName;
 
         return $this;
     }
@@ -97,15 +102,15 @@ class Cv
      */
     public function getCvSize(): ?int
     {
-        return $this->CvSize;
+        return $this->cvSize;
     }
 
     /**
-     * @param mixed $CvSize
+     * @param mixed $cvSize
      */
-    public function setCvSize(?int $CvSize): self
+    public function setCvSize(?int $cvSize): self
     {
-        $this->CvSize = $CvSize;
+        $this->cvSize = $cvSize;
 
         return $this;
     }
@@ -133,6 +138,18 @@ class Cv
     }
     public function unserialize($serialized) {
         list ($this->id, $this->CvName) = unserialize($serialized, array('allowed_classes' => false));
+    }
+
+    public function getMessage(): ?Message
+    {
+        return $this->message;
+    }
+
+    public function setMessage(?Message $message): self
+    {
+        $this->message = $message;
+
+        return $this;
     }
 
 }

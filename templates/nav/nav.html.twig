@@ -11,6 +11,7 @@
         <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
             <ul class="navbar-nav ml-auto">
                 {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+                    <li> {{ render(controller('App\\Controller\\ReadController::countMessageReaded')) }}</li>
 
                     <li class="nav-item"><a class="nav-link mx-3 my-1" id="secondary-nav"
                                             href="{{ path('main_dash_board') }}">TABLEAU DE BORD</a></li>

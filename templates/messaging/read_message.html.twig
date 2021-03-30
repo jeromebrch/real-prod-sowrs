@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+<div class="container-fluid gx-0">
+    <div class="row">
+        <div class="col-lg-3 border-end border-3">
+            {{ render(controller('App\\Controller\\DashBoardNavController::navBar')) }}
+        </div>
+        <div class="col-9 col-lg-9 ">
+            <div class="row">
+                <div class="col-12 border-messaging">
+                    <a href="{{ path('messaging')}} "><h4>Messagerie {% if nonlu != 0 %}({{ nonlu }}){% endif %}</h4></a>
+                </div>
+
+                <div class="col-12 border rounded-div border-2 p-3 m-4 gx-0 shadow bg-light">
+                    <a href="{{ path('messaging') }}" style="width: 150px; margin: 20px; text-decoration: none" class="col-2" ><img class="messageImgPencil" src="{{ asset('img/boostrap/arrow-left.svg') }}"/> RETOUR</a>
+                    <a style="text-align: right " href="{{ path('response', {'id':message.id }) }}" class="btn-response" >Répondre</a>
+
+                </div>
+
+                <div class="col-12 border rounded-div border-2 p-3 m-4 gx-0 shadow bg-light" style="background-color: white; margin: 10px" >
+
+                    {% if "ROLE_CANDIDATE" in app.user.roles %}
+                        <p style="text-align: left">À : <strong>{{ message.userSender.entityname }}</strong></p>
+                    {% elseif "ROLE_RECRUITER" in app.user.roles %}
+                        <p style="text-align: left">À : <strong>{{ message.userSender.firstname~message.userSender.lastname }}</strong></p>
+                    {% endif %}
+                    <p style="text-align: left">Réponse au sujet : <strong>{{ message.subject }}</strong></p>
+                    <p style="width: 300Px; height: 500Px">{{ message.body }}  {% if message.cv %}
+                            <a href="{{ asset(message.cv.cvName) }}">
+                                <img src="{{ asset('img/img_pj.png')}}" style="width: 50px"/>
+                            </a>
+                        {% endif %}
+                        {% if message.media %}
+                            <a href="{{ asset( message.media.mediaName) }}"><img src="{{ asset('img/img_pj.png')}}" style="width: 50px"/></a>
+                        {% endif %}
+                    </p>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

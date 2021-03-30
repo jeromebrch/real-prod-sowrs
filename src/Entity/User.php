@@ -4,6 +4,8 @@ namespace App\Entity;
 use App\Repository\UserRepository;
 use DateTime;
 use DateTimeInterface;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -93,19 +95,23 @@ class User implements UserInterface, \Serializable
      */
     protected $scoring;
 
-
     /**
      * @ORM\OneToOne(targetEntity=Picture::class)
      * @ORM\JoinColumn(nullable=true)
      */
     protected $picture;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Message::class, mappedBy="userRecipient")
+     */
+    private $messages;
+
 
     public function __construct()
     {
         $this->registrationDate = new DateTime;
         $this->private = false;
-        $this->updatedAt = new DateTime();
+        $this->messages = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -311,6 +317,41 @@ class User implements UserInterface, \Serializable
     }
     public function unserialize($serialized) {
         list ($this->id, $this->email, $this->password) = unserialize($serialized, array('allowed_classes' => false));
+    }
+
+    /**
+     * @return Collection|Message[]
+     */
+    public function getMessages(): Collection
+    {
+        return $this->messages;
+    }
+
+    public function addMessages(Message $message): self
+    {
+        if (!$this->messages->contains($message)) {
+            $this->messages[] = $message;
+            $message->setUserRecipient($this);
+            $message->setUserSender($this);
+        }
+
+        return $this;
+    }
+
+    public function removeMessage(Message $message): self
+    {
+        if ($this->messages->removeElement($message)) {
+            // set the owning side to null (unless already changed)
+            if ($message->getUserRecipient() === $this) {
+                $message->setUserRecipient(null);
+            }
+            // set the owning side to null (unless already changed)
+            if ($message->getUserSender() === $this) {
+                $message->setUserSender(null);
+            }
+        }
+
+        return $this;
     }
 }
 

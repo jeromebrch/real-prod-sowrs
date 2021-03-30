@@ -1,0 +1,136 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-3 border-end border-3">
+                {{ render(controller('App\\Controller\\DashBoardNavController::navBar')) }}
+            </div>
+            <div class="col-9 col-lg-9 ">
+                <div class="row ">
+                    <div class="col-12 border-messaging">
+                        <h4 style="margin: 15px">MESSAGERIE</h4>
+                    </div>
+                    <div class="col-12 ">
+                            <label for="category">Filtrer: </label>
+                            <select id="category" class="btn required" style="width: 250px; margin: 20px; background-color: white"  name="nameCat">
+                               {% for categor in category %}
+                                    <option value="{{ categor.id }}">{{ categor.name }}</option>
+                                {% endfor %}
+                            </select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 border rounded-div border-2 p-3 m-4 gx-0 shadow bg-light">
+                        <table class="table table-striped">
+                            <thead class="thead" >
+                                <tr class="tableFirst" style="border: #5a6268 solid 1px; border-radius: 50%">
+                                    <th scope="col">Type de messages</th>
+                                    <th scope="col">Expéditeur</th>
+                                    <th scope="col">Sujet</th>
+                                    <th scope="col">Date</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% if "ROLE_CANDIDATE" in app.user.roles %}
+                                    {% for message in messages %}
+                                        <tr>
+                                            {% if app.user != message.userSender %}
+                                                {% if message.state is same as nonlu %}
+                                                        <th><a href="{{ path('read_message', {'id':message.id} ) }}"><strong>{{ message.category.name }}</strong></a></th>
+                                                        <td><a href="{{ path('read_message', {'id':message.id}) }}"><strong>{{ message.userSender.entityName }}</strong></a></td>
+                                                        <td><a href="{{ path('read_message', {'id':message.id}) }}"><strong>{{ message.subject }}</strong></a></td>
+                                                        <td><a href="{{ path('read_message', {'id':message.id}) }}"><strong>{{ message.createdAt|date("d/m/Y H:i:s") }}</strong></a></td>
+                                                        <td> <a class="messageButton btn" href="{{ path('response', {'id':message.id}) }}">
+                                                                <span title="répondre au message"> <img class="messageImgPencil" src="{{ asset('img/boostrap/pencil-fill-white.svg') }}"/></span>
+                                                        </a>
+                                                        <a class="messageButtonTrash col-lg-3 m-2 text-center btn align-self-center"
+                                                           href="{{ path('delete_message', {'id':message.id}) }}" role="button">
+                                                            <span title="effacer le message"><img class="messageImgTrash"  src="{{ asset('img/boostrap/trash-fill-white.svg') }}"></span>
+                                                        </a></td>
+                                                    {% else %}
+                                                        <th><a href="{{ path('read_message', {'id':message.id} ) }}">{{ message.category.name }}</a></th>
+                                                        <td><a href="{{ path('read_message', {'id':message.id}) }}">{{ message.userSender.entityName }}</a></td>
+                                                        <td><a href="{{ path('read_message', {'id':message.id}) }}">{{ message.subject }}</a></td>
+                                                        <td><a href="{{ path('read_message', {'id':message.id}) }}">{{ message.createdAt|date("d/m/Y") }}</a></td>
+                                                        <td> <a class="messageButton btn" href="{{ path('response', {'id':message.id}) }}">
+                                                                <span title="répondre au message"><img class="messageImgPencil" src="{{ asset('img/boostrap/pencil-fill-white.svg') }}"/></span>
+                                                            </a>
+                                                            <a class="messageButtonTrash col-lg-3 m-2 text-center btn align-self-center"
+                                                               href="{{ path('delete_message', {'id':message.id}) }}" role="button">
+                                                                <span title="effacer le message"><img class="messageImgTrash"  src="{{ asset('img/boostrap/trash-fill-white.svg') }}"></span>
+                                                            </a></td>
+                                                    {% endif %}
+                                            {% endif %}
+                                        </tr>
+                                    {% endfor %}
+                                {% elseif "ROLE_RECRUITER" in app.user.roles %}
+                                    {% for message in messages %}
+                                        <tr>
+                                            {% if app.user != message.userSender %}
+                                                {% if message.state is same as nonlu %}
+                                                    <th><a href="{{ path('read_message', {'id':message.id}) }}"><strong>{{ message.category.name }}</strong></a> </th>
+                                                    <td><a href="{{ path('read_message', {'id':message.id}) }}"><strong>{{ message.userSender.firstName~ ' ' ~message.userSender.lastName }}</strong></a></td>
+                                                    <td><a href="{{ path('read_message', {'id':message.id}) }}"><strong>{{ message.subject }}</strong></a></td>
+                                                    <td><a href="{{ path('read_message', {'id':message.id}) }}"><strong>{{ message.createdAt|date("d/m/Y")  }}</strong></a></td>
+                                                    <td ><a class="messageButton btn" href="{{ path('response', {'id':message.id}) }}"
+                                                             role="button">
+                                                            <span title="répondre au message"> <img class="messageImgPencil" src="{{ asset('img/boostrap/pencil-fill-white.svg') }}"/></span>
+                                                        </a>
+                                                        <a class="messageButtonTrash col-lg-3 m-2 text-center btn align-self-center"
+                                                           href="{{ path('delete_message', {'id':message.id}) }}" role="button">
+                                                            <span title="effacer le message"><img class="messageImgTrash" src="{{ asset('img/boostrap/trash-fill-white.svg') }}"></span>
+                                                        </a></td>
+                                                {% else %}
+                                                    <th><a href="{{ path('read_message', {'id':message.id}) }}">{{ message.category.name }}</a> </th>
+                                                    <td><a href="{{ path('read_message', {'id':message.id}) }}">{{ message.userSender.firstName~ ' ' ~message.userSender.lastName }}</a></td>
+                                                    <td><a href="{{ path('read_message', {'id':message.id}) }}">{{ message.subject }}</a></td>
+                                                    <td><a href="{{ path('read_message', {'id':message.id}) }}">{{ message.createdAt|date("d/m/Y")  }}</a></td>
+                                                    <td ><a class="messageButton btn" href="{{ path('response', {'id':message.id}) }}"
+                                                            role="button">
+                                                           <span title="répondre au message"><img class="messageImgPencil" src="{{ asset('img/boostrap/pencil-fill-white.svg') }}"/></span>
+                                                        </a>
+                                                        <a class="messageButtonTrash col-lg-3 m-2 text-center btn align-self-center"
+                                                           href="{{ path('delete_message', {'id':message.id}) }}" role="button">
+                                                            <span title="effacer le message"><img class="messageImgTrash" src="{{ asset('img/boostrap/trash-fill-white.svg') }}"></span>
+                                                        </a></td>
+                                                {% endif %}
+                                            {% endif %}
+                                        </tr>
+                                    {% endfor %}
+                                {% endif %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block javascripts %}
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.5.4/umd/popper.min.js"></script>
+
+    <script>
+
+        var select = document.querySelector('#category');
+
+        select.addEventListener('change', function (e) {
+            var option = e.target[e.target.selectedIndex];
+            var idCategory = option.value;
+            var payload = {id:idCategory, a: 'demo'};
+
+            var r = fetch('{{ path('category_message') }}',
+                {
+                    method: 'POST',
+                    body: JSON.stringify(payload),
+                    headers : {'Content-type': 'application/json'}
+                })
+                .then(response => console.log(response.json()))
+        });
+
+    </script>
+{% endblock %}

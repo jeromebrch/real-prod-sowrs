@@ -22,7 +22,7 @@
             {% endif %}
         </div>
         <div class="col-lg-5 mx-auto">
-            <h5 class="show_candidate_jumbotron_name" style="color: #dfdfdf">{{ entity.entityName | capitalize }}</h5>
+            <h5 class="show_candidate_jumbotron_name" style="color: #dfdfdf">{{ entity.entityName | upper }}</h5>
         </div>
         <div class="col-lg-5 mx-auto">
             <h4 class="show_candidate_jumbotron_name" style="color: #FFFFFF">{{ jobOffer.title | capitalize }}</h4>
@@ -35,6 +35,7 @@
             {% endif %}
             - {{ jobOffer.category.wording | capitalize }}
         </h5>
+
         {# Gerer les tags #}
 
         <div class="col-lg-auto mx-auto" style="text-align: center">
@@ -57,8 +58,13 @@
             </ul>
         </div>
     </div>
+    <div>
+            <a type="btn required" style=" width: 225px;border-radius: 50px;background: #1DCA91; border: none;text-decoration: none;padding: 10px; font-size: larger;color: white; margin: auto;" href="{{ path('apply', {'id': jobOffer.id}) }}">Postuler à cette offre</a>
+    </div>
     <div class="row">
+
         <div class="col-lg-7">
+
             <h3 class="subtitle">À propos de </h3>
             <p>njbkjahlbhdhdzhdzhxdnkkjzhdjkzhjndnjbkjahlbhdhdzhdzhxdnkkjzhdjkzhjnd
                 njbkjahlbhdhdzhdzhxdnkkjzhdjkzhjndnjbkjahlbhdhdzhdzhxdnkkjzhdjkzhjndnjbkjahlbhdhdzhdzhxdnkkjzhdjkz
@@ -72,7 +78,6 @@
             <div class="show_candidate_sens_rate">
                 <div class="row align-items-center">
                     <div class="col-lg-2">
-                        <img src="" alt="taux de sens">
                     </div>
                     <div class="col-lg-8">
                         <h5>Taux de sens</h5>
