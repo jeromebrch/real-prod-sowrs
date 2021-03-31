@@ -28,12 +28,12 @@
                     {% endif %}
                     <p style="text-align: left">Réponse au sujet : <strong>{{ message.subject }}</strong></p>
                     <p style="width: 300Px; height: 500Px">{{ message.body }}  {% if message.cv %}
-                            <a href="{{ asset(message.cv.cvName) }}">
+                            <a href="'file/cv/'{{ asset(message.cv.cvName) }}">
                                 <img src="{{ asset('img/img_pj.png')}}" style="width: 50px"/>
                             </a>
                         {% endif %}
                         {% if message.media %}
-                            <a href="{{ asset( message.media.mediaName) }}"><img src="{{ asset('img/img_pj.png')}}" style="width: 50px"/></a>
+                            <a href="'file/uploads/'{{ asset( message.media.mediaName) }}"><img src="{{ asset('img/img_pj.png')}}" style="width: 50px"/></a>
                         {% endif %}
                     </p>
 
