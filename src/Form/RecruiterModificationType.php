@@ -3,11 +3,13 @@
 namespace App\Form;
 
 use App\Entity\Cause;
+use App\Entity\Commitment;
 use App\Entity\LegalStatus;
 use App\Entity\Recruiter;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
@@ -133,34 +135,16 @@ class RecruiterModificationType extends AbstractType
                 'label' => false,
                 'placeholder' => '---Sélectionner des causes secondaires---'
             ])
-            ->add('selectiveSorting', CheckboxType::class, [
-                'label' => 'Tri sélectif',
-                'required' => false,
-                'attr' => [
-                    'class' => 'checkbox_engagements'],
-            ])
-            ->add('zeroPaperGoal', CheckboxType::class, [
-                'label' => 'Objectif zéro papier',
-                'required' => false,
-                'attr' => [
-                    'class' => 'checkbox_engagements'],
-            ])
-            ->add('zeroWasteGoal', CheckboxType::class, [
-                'label' => 'Objectif zéro déchets',
-                'required' => false,
-                'attr' => [
-                    'class' => 'checkbox_engagements'],
-            ])
-            ->add('zeroPlasticGoal', CheckboxType::class, [
-                'label' => 'Objectif zéro plastique',
-                'required' => false,
-                'attr' => [
-                    'class' => 'checkbox_engagements'],
-            ])
-
             ->add('socialNetwork', SocialNetworkType::class, [
 
-            ]);
+            ])
+            /*
+            ->add('commitments', TextType::class, [
+            'required' => false,
+            'label' => 'Engagements',
+        ])
+            */
+        ;
     }
 
     public function configureOptions(OptionsResolver $resolver)

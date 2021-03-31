@@ -304,20 +304,22 @@
                                     </p>
                                 </div>
                                 <div class="row">
-                                    <div class="col-6">
-                                        <div class="row details_checkbox_input">
-                                            {{ form_row(modifyUserForm.selectiveSorting) }}
+                                    <div class="container_commitments_options">
+                                        <div class="col-5">
+                                            <div class="block_new_commitment">
+                                                <label for="commitment">Engagements</label>
+                                                <input type="text" id="commitment" name="input_commitment">
+                                                <button type="button" class="btn_save_commitment">Ajouter</button>
+                                            </div>
                                         </div>
-                                        <div class="row details_checkbox_input">
-                                            {{ form_row(modifyUserForm.zeroPaperGoal) }}
-                                        </div>
-                                    </div>
-                                    <div class="col-6">
-                                        <div class="row details_checkbox_input">
-                                            {{ form_row(modifyUserForm.zeroWasteGoal) }}
-                                        </div>
-                                        <div class="row details_checkbox_input">
-                                            {{ form_row(modifyUserForm.zeroPlasticGoal) }}
+                                        <div class="col-6">
+                                            <table class="commitment_array col-12">
+                                                {% for commitment in app.user.commitments %}
+                                                <tr>
+                                                    <td>{{ commitment.title }}</td>
+                                                </tr>
+                                                {% endfor %}
+                                            </table>
                                         </div>
                                     </div>
                                 </div>
@@ -398,9 +400,7 @@
                         {{ form_end(recognitionForm) }}
                     </div>
                     </div>
-
                 {% endif %}
-
             </div>
         </div>
     </div>
@@ -411,6 +411,9 @@
         {{ parent() }}
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+
+
+
         <script type="text/javascript">
             //double select pour causes secondaires
             $("select").select2();
@@ -426,4 +429,37 @@
         </script>
 
         <script src="{{ asset('js/myDetails.js') }}"></script>
+
+        <script>
+            // for add a commitment to the actual user (recruiter)
+            // cf to RecruiterController for backend
+            const monBtn = $("button.btn_save_commitment");
+            monBtn.on("click", function (){
+                const maValeur = $("#commitment").val();
+                fetch("{{ path('set_commitment') }}", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        'commitment': maValeur
+                    })
+                })
+                    .then(response => response.json())
+                    .then(response => {
+                        if (response.success) {
+                            alert("L'engagement a été enregistré avec succés !")
+                            $('input[name=input_commitment]').val(''); //empty the input for commitment
+                        } else {
+                            alert("Merci d'indiquer l'engagement dans le champ pour pouvoir l'ajouter")
+                        }
+                    })
+                    .catch(e => {
+                        alert(e);
+                    })
+                ;
+            })
+        </script>
+
+
     {% endblock %}

@@ -89,24 +89,10 @@ class Recruiter extends User
     private $carbonFootPrintProofFilename;
 
     /**
-     * @ORM\Column(type="boolean", nullable=true)
+     * @ORM\ManyToMany(targetEntity=Commitment::class, inversedBy="recruiters")
      */
-    private $selectiveSorting;
+    private $commitments;
 
-    /**
-     * @ORM\Column(type="boolean", nullable=true)
-     */
-    private $zeroPaperGoal;
-
-    /**
-     * @ORM\Column(type="boolean", nullable=true)
-     */
-    private $zeroWasteGoal;
-
-    /**
-     * @ORM\Column(type="boolean", nullable=true)
-     */
-    private $zeroPlasticGoal;
 
 
 
@@ -117,6 +103,7 @@ class Recruiter extends User
        $this->secondaryCauses = new ArrayCollection();
        $this->jobOffers = new ArrayCollection();
        $this->recognitions = new ArrayCollection();
+       $this->commitments = new ArrayCollection();
    }
 
    public function setRoles(array $roles): User
@@ -353,50 +340,26 @@ class Recruiter extends User
         return $this;
     }
 
-    public function getSelectiveSorting(): ?bool
+    /**
+     * @return Collection|Commitment[]
+     */
+    public function getCommitments(): Collection
     {
-        return $this->selectiveSorting;
+        return $this->commitments;
     }
 
-    public function setSelectiveSorting(?bool $selectiveSorting): self
+    public function addCommitment(Commitment $commitment): self
     {
-        $this->selectiveSorting = $selectiveSorting;
+        if (!$this->commitments->contains($commitment)) {
+            $this->commitments[] = $commitment;
+        }
 
         return $this;
     }
 
-    public function getZeroPaperGoal(): ?bool
+    public function removeCommitment(Commitment $commitment): self
     {
-        return $this->zeroPaperGoal;
-    }
-
-    public function setZeroPaperGoal(?bool $zeroPaperGoal): self
-    {
-        $this->zeroPaperGoal = $zeroPaperGoal;
-
-        return $this;
-    }
-
-    public function getZeroWasteGoal(): ?bool
-    {
-        return $this->zeroWasteGoal;
-    }
-
-    public function setZeroWasteGoal(?bool $zeroWasteGoal): self
-    {
-        $this->zeroWasteGoal = $zeroWasteGoal;
-
-        return $this;
-    }
-
-    public function getZeroPlasticGoal(): ?bool
-    {
-        return $this->zeroPlasticGoal;
-    }
-
-    public function setZeroPlasticGoal(?bool $zeroPlasticGoal): self
-    {
-        $this->zeroPlasticGoal = $zeroPlasticGoal;
+        $this->commitments->removeElement($commitment);
 
         return $this;
     }

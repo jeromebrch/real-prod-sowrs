@@ -112,70 +112,21 @@
                     <div class="row">
                         <h3 class="profil_category_title">Engagements de {{ user.entityName }}</h3>
                     </div>
-                    <div class="row">
-                        {# selective sorting #}
-                        <div class="col-6">
-                            {% if user.selectiveSorting %}
-                                <div  class="container_engagements">
-                                    <img src="{{ asset('img/logo_checked_mini.png') }}" alt="tri sélectif" title="Engagement pour le tri sélectif" />
-                                    <p>
-                                        Engagé pour le tri sélectif
-                                    </p>
+
+                    {% if(user.commitments is not empty) %}
+                        <div class="row">
+                            {% for commitment in user.commitments %}
+                                <div class="container_commitment col-6">
+                                    {{ commitment.title }}
                                 </div>
-                            {% else %}
-                                <p class="alert alert-light alert-light-grey" role="alert">
-                                    Pas encore engagée pour le tri sélectif
-                                </p>
-                            {% endif %}
+                            {% endfor %}
                         </div>
-                        {# zero paper goal #}
-                        <div class="col-6">
-                            {% if user.zeroPaperGoal %}
-                                <div class="container_engagements">
-                                    <img src="{{ asset('img/logo_checked_mini.png') }}" alt="zéro papier" title="Objectif zéro papier" />
-                                    <p>
-                                        Engagé dans un objectif zéro papier
-                                    </p>
-                                </div>
-                            {% else %}
-                                <p class="alert alert-light alert-light-grey" role="alert">
-                                    Pas encore engagée dans un objectif zéro papier
-                                </p>
-                            {% endif %}
+                    {% else %}
+                        <div class="alert alert-success" role="alert">
+                            Le recruteur n'a pas encore renseigné ses engagements
                         </div>
-                    </div>
-                    <div class="row">
-                        {# zero waste goal #}
-                        <div class="col-6">
-                            {% if user.zeroWasteGoal %}
-                                <div class="container_engagements">
-                                    <img src="{{ asset('img/logo_checked_mini.png') }}" alt="zéro déchets" title="Objectif zéro déchets" />
-                                    <p>
-                                        Engagé dans un objectif zéro déchets
-                                    </p>
-                                </div>
-                            {% else %}
-                                <p class="alert alert-light alert-light-grey" role="alert">
-                                    Pas encore engagée dans un objectif zéro déchets
-                                </p>
-                            {% endif %}
-                        </div>
-                        {# zero plastic goal #}
-                        <div class="col-6">
-                            {% if user.zeroPlasticGoal %}
-                                <div class="container_engagements">
-                                    <img src="{{ asset('img/logo_checked_mini.png') }}" alt="zéro plastique" title="Objectif zéro plastique" />
-                                    <p>
-                                        Engagé dans un objectif zéro plastique
-                                    </p>
-                                </div>
-                            {% else %}
-                                <p class="alert alert-light alert-light-grey" role="alert">
-                                    Pas encore engagée dans un objectif zéro plastique
-                                </p>
-                            {% endif %}
-                        </div>
-                    </div>
+                    {% endif %}
+
                 </div>
             </div>
 

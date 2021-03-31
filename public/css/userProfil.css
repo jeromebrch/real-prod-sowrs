@@ -61,6 +61,14 @@
 .container_sense_rate{
     margin: 40px;
 }
+.container_commitment{
+    padding: 10px;
+    border: 1px solid #1dca9133;
+    background-color: white;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
 .picture_sense_rate{
     display: flex;
     flex-direction: row;

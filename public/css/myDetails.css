@@ -149,6 +149,8 @@
 }
 #p_engagements{
     font-family: 'KohinoorBangla', Arial, serif;
+    font-size: 1.3em;
+    color: #1dca91;
 }
 .form-check-label{
     font-family: 'KohinoorBangla', Arial, serif;
@@ -163,6 +165,29 @@
     font-family: 'KohinoorBangla', Arial, serif;
     margin-top: 20px;
     text-align: center;
+}
+.container_commitments_options{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+.block_new_commitment{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.block_new_commitment *{
+    margin-bottom: 20px;
+}
+.commitment_array tr{
+    text-align: center;
+    margin-bottom: 30px;
+}
+.commitment_array tr td{
+    padding: 5px;
+    background-color: white;
 }
 
 @media screen and (max-width: 520px){
