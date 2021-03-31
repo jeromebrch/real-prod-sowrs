@@ -32,3 +32,12 @@ blockquote{
 .btn_admin{
     background-color: #B0413E;
 }
+.block_create_tag{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.block_create_tag *{
+    margin: 10px;
+}

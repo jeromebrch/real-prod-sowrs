@@ -48,3 +48,13 @@
 .link_manual{
     color: #B0413E;
 }
+.tags_options{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+.tags_options .form-check{
+    margin: 10px;
+}

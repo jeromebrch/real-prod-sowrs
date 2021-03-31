@@ -14,6 +14,11 @@
                     <h6 class="admin_options_title">Espace admin</h6>
                     <a href="{{ path('create_post') }}" class="btn required btn_admin">Nouveau</a>
                     <a href="{{ path('unpublished_post') }}" class="btn required btn_admin">Articles non publiés</a>
+                    <div class="block_create_tag">
+                        <label for="create_tag">Créer un tag</label>
+                        <input type="text" id="create_tag" name="input_create_tag">
+                        <button type="button" class="btn_add_tag">Créer</button>
+                    </div>
                 </div>
             {% endif %}
         {% endif %}
@@ -50,4 +55,41 @@
             {% endfor %}
         {% endif %}
     </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+
+    <script>
+        // for add a tag in the database
+        // cf to WebzineController for backend
+        let myBtn = $(".btn_add_tag");
+        myBtn.on("click", function (){
+            const tagValue = $("#create_tag").val();
+            fetch("{{ path('add_tag') }}", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    "tag": tagValue
+                })
+            })
+                .then(response => response.json())
+                .then(response => {
+                    if (response.success) {
+                        alert("Le tag a été correctement enregistré, il est désormais utilisable !")
+                        $('input[name=input_create_tag]').val(''); //empty the input for commitment
+                    } else {
+                        alert("Merci d'indiquer une valeur textuelle pour le tag à enregistrer")
+                    }
+                })
+                .catch(e => {
+                    alert(e);
+                })
+            ;
+        });
+    </script>
 {% endblock %}

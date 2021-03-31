@@ -5,6 +5,7 @@ namespace App\Form;
 use App\Entity\Cause;
 use App\Entity\Picture;
 use App\Entity\Post;
+use App\Entity\Tag;
 use FOS\CKEditorBundle\Form\Type\CKEditorType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
@@ -29,9 +30,11 @@ class PostType extends AbstractType
             ->add('content', CKEditorType::class, [
                 'label' => 'Corps de l\'article'
             ])
-            ->add('cause', EntityType::class, [
-                'label' => 'Cause',
-                'class' => Cause::class,
+            ->add('tags', EntityType::class, [
+                'label' => 'Tags à accrocher',
+                'class' => Tag::class,
+                'multiple' => true,
+                'expanded' => true,
                 'choice_label' => 'text'
             ])
             ->add('picture', FileType::class, [

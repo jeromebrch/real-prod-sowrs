@@ -29,12 +29,16 @@
             <h1 class="title_post_detail">{{ post.title }}</h1>
         </div>
         <div class="row">
-            <p class="info_post_detail">
-                {% if post.cause %}
-                    {{ post.cause.text }}&nbsp; &bull;&nbsp;
+            <div class="info_post_detail">
+                {% if post.tags %}
+                    <p>&nbsp; &bull;&nbsp;
+                        {% for tag in post.tags %}
+                            <a href="{{ path('show_tag', {"id":tag.id}) }}">{{ tag.text }}</a>&nbsp; &bull;&nbsp;
+                        {% endfor %}
+                    </p>
                 {% endif %}
                 {{ post.creationDate|date('d/m/Y') }} &nbsp; &bull; &nbsp; Nombre de vues {# todo : gérer nombre de vues #}
-            </p>
+            </div>
         </div>
 
         {# social network sharer button #}

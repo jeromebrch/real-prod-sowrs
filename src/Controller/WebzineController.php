@@ -3,15 +3,19 @@
 namespace App\Controller;
 
 use App\Entity\Post;
+use App\Entity\Tag;
 use App\Form\PostType;
 use App\Repository\PostRepository;
+use App\Repository\TagRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\String\Slugger\SluggerInterface;
+use function Sodium\add;
 
 class WebzineController extends AbstractController
 {
@@ -85,6 +89,20 @@ class WebzineController extends AbstractController
             'post' => $post,
             'newestPost' => $newestPost
         ]);
+    }
+
+    /**
+     * @Route("/tag/{id}", name="show_tag", requirements={"id":"\d+"})
+     */
+    public function showTag($id, TagRepository $tagRepo, PostRepository $postRepo){
+
+        $tag = $tagRepo->find($id);
+        $posts = $postRepo->findPostsFromTag($tag);
+
+        return $this->render('webzine/articlesFromTag.html.twig', [
+            'tag' => $tag,
+            'posts' => $posts
+        ]);
 
     }
 
@@ -146,6 +164,39 @@ class WebzineController extends AbstractController
         return $this->redirectToRoute('home_webzine', [
 
         ]);
+    }
+
+    /**
+     * @Route("/tag", name="add_tag")
+     */
+    public function addTag(Request $req, EntityManagerInterface $em, TagRepository $tagRepo) :JsonResponse {
+
+        $tags[] = json_decode($req->getContent('tag'), true);
+        $tag = $tags[0]['tag'];
+        $newTag = new Tag();
+        $tagsValue[] = [];
+
+        if($tag){
+            // get all of the existing tags in database
+            $tagCollection = $tagRepo->findAll();
+            // get all of the existing tags values, push in an array
+            foreach($tagCollection as $existingTag){
+                array_push($tagsValue, strtolower($existingTag->getText()));
+            }
+            // verify if the tag write by the admin is in database or not, persist if not
+            if(!in_array(strtolower($tag), $tagsValue)){
+                $newTag->setText(ucwords($tag));
+                $em->persist($newTag);
+                $em->flush();
+            }
+            return new JsonResponse([
+                'success' => true
+            ]);
+        }else{
+            return new JsonResponse([
+                'success' => false
+            ]);
+        }
     }
 
 }

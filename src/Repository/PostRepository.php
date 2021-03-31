@@ -55,6 +55,19 @@ class PostRepository extends ServiceEntityRepository
             ;
     }
 
+    /**
+     * return post collection from a tag
+     */
+    public function findPostsFromTag($tag){
+        return $this->createQueryBuilder('p')
+            ->andWhere(':valueTag MEMBER OF p.tags')
+            ->setParameter('valueTag', $tag)
+            ->orderBy('p.id', 'DESC')
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+
     // /**
     //  * @return Post[] Returns an array of Post objects
     //  */

@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\PostRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -48,9 +50,14 @@ class Post
     private $pictureFilename;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Cause::class, inversedBy="posts")
+     * @ORM\ManyToMany(targetEntity=Tag::class, inversedBy="posts")
      */
-    private $cause;
+    private $tags;
+
+    public function __construct()
+    {
+        $this->tags = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -129,14 +136,26 @@ class Post
         return $this;
     }
 
-    public function getCause(): ?Cause
+    /**
+     * @return Collection|Tag[]
+     */
+    public function getTags(): Collection
     {
-        return $this->cause;
+        return $this->tags;
     }
 
-    public function setCause(?Cause $cause): self
+    public function addTag(Tag $tag): self
     {
-        $this->cause = $cause;
+        if (!$this->tags->contains($tag)) {
+            $this->tags[] = $tag;
+        }
+
+        return $this;
+    }
+
+    public function removeTag(Tag $tag): self
+    {
+        $this->tags->removeElement($tag);
 
         return $this;
     }

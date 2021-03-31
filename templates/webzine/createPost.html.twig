@@ -11,17 +11,17 @@
         <h1 class="create_post_title">Création d'un nouvel article</h1>
         {{ form_start(postForm) }}
         <div class="row head_form_post">
-            <div class="col-md-3 col-sm-12">
+            <div class="col-md-4 col-sm-12">
                 {{ form_row(postForm.title) }}
             </div>
-            <div class="col-md-3 col-sm-12">
+            <div class="col-md-4 col-sm-12">
                 {{ form_row(postForm.presentationText) }}
             </div>
-            <div class="col-md-3 illus_post col-sm-12">
+            <div class="col-md-4 illus_post col-sm-12">
                 {{ form_row(postForm.picture) }}
             </div>
-            <div class="col-md-3 col-sm-12">
-                {{ form_row(postForm.cause) }}
+            <div class="col-12">
+                {{ form_row(postForm.tags, {'attr':{'class':'col-12 tags_options'}}) }}
             </div>
         </div>
         <div class="row content_post_create">
