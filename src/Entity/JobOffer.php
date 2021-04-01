@@ -89,6 +89,11 @@ class JobOffer
      */
     private $published;
 
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $NumberOfViews;
+
     public function __construct(){
         $this->creationDate = new DateTime();
         $this->published = true;
@@ -252,6 +257,18 @@ class JobOffer
     public function setPublished(bool $published): self
     {
         $this->published = $published;
+
+        return $this;
+    }
+
+    public function getNumberOfViews(): ?int
+    {
+        return $this->NumberOfViews;
+    }
+
+    public function setNumberOfViews(?int $NumberOfViews): self
+    {
+        $this->NumberOfViews = $NumberOfViews;
 
         return $this;
     }

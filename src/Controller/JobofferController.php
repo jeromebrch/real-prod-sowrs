@@ -174,11 +174,16 @@ class JobofferController extends AbstractController
      * @return Response
      * @Route("/jobOffer/show/{id}", name="jobOffer_show", requirements={"id":"\d+"})
      */
-    public function showJobOffer($id, JobOfferRepository $jobOfferRepo, RecruiterRepository $recruiterRepo): Response
+    public function showJobOffer($id, JobOfferRepository $jobOfferRepo, RecruiterRepository $recruiterRepo, EntityManagerInterface $em): Response
     {
         $jobOffer = $jobOfferRepo->find($id);
 
         if ($jobOffer) {
+            // set 1 more view
+            $nbrViews = $jobOffer->getNumberOfViews();
+            $jobOffer->setNumberOfViews($nbrViews + 1);
+            $em->flush();
+
             $entity = $recruiterRepo->find($jobOffer->getEntity()->getId());
             $applyForm = $this->createForm(ApplyType::class);
 

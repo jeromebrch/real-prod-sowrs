@@ -36,7 +36,7 @@
         <link rel="stylesheet" href="{{ asset('css/postDetail.css') }}">
         <link rel="stylesheet" href="{{ asset('css/unpublishedPost.css') }}">
     {% endblock %}
-    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
 </head>
 
 
@@ -72,6 +72,7 @@
 </footer>
 
 {% block javascripts %}
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.5.4/umd/popper.min.js"></script>
     <script>const baseURL = "{{ app.request.basePath }}";</script>
 {% endblock %}
