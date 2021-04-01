@@ -69,6 +69,20 @@
     flex-direction: row;
     justify-content: center;
 }
+.container_commitment_recruiter{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+.commitment_recruiter{
+    padding: 10px;
+    border: 1px solid #1dca9188;
+    border-radius: 30px;
+    background-color: #1dca9122;
+    margin: 10px;
+}
 .picture_sense_rate{
     display: flex;
     flex-direction: row;

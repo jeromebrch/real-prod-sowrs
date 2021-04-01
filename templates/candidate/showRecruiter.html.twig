@@ -95,66 +95,15 @@
                         <h3 class="profil_category_title">Engagements de {{ recruiter.entityName }}</h3>
                     </div>
                     <div class="row">
-                        {# selective sorting #}
-                        <div class="col-6">
-                            {% if recruiter.selectiveSorting %}
-                                <div  class="container_engagements">
-                                    <img src="{{ asset('img/logo_checked_mini.png') }}" alt="tri sélectif" title="Engagement pour le tri sélectif" />
-                                    <p>
-                                        Engagé pour le tri sélectif
-                                    </p>
-                                </div>
+                        <div class="col-12 container_commitment_recruiter">
+                            {% if recruiter.commitments is not empty %}
+                                {% for commitment in recruiter.commitments %}
+                                    <div class="commitment_recruiter">{{ commitment.title }}</div>
+                                {% endfor %}
                             {% else %}
-                                <p class="alert alert-light alert-light-grey" role="alert">
-                                    Pas encore engagée pour le tri sélectif
-                                </p>
-                            {% endif %}
-                        </div>
-                        {# zero paper goal #}
-                        <div class="col-6">
-                            {% if recruiter.zeroPaperGoal %}
-                                <div class="container_engagements">
-                                    <img src="{{ asset('img/logo_checked_mini.png') }}" alt="zéro papier" title="Objectif zéro papier" />
-                                    <p>
-                                        Engagé dans un objectif zéro papier
-                                    </p>
+                                <div class="alert alert-danger">
+                                    Le recruteur n'a pas encore renseigné ses engagements
                                 </div>
-                            {% else %}
-                                <p class="alert alert-light alert-light-grey" role="alert">
-                                    Pas encore engagée dans un objectif zéro papier
-                                </p>
-                            {% endif %}
-                        </div>
-                    </div>
-                    <div class="row">
-                        {# zero waste goal #}
-                        <div class="col-6">
-                            {% if recruiter.zeroWasteGoal %}
-                                <div class="container_engagements">
-                                    <img src="{{ asset('img/logo_checked_mini.png') }}" alt="zéro déchets" title="Objectif zéro déchets" />
-                                    <p>
-                                        Engagé dans un objectif zéro déchets
-                                    </p>
-                                </div>
-                            {% else %}
-                                <p class="alert alert-light alert-light-grey" role="alert">
-                                    Pas encore engagée dans un objectif zéro déchets
-                                </p>
-                            {% endif %}
-                        </div>
-                        {# zero plastic goal #}
-                        <div class="col-6">
-                            {% if recruiter.zeroPlasticGoal %}
-                                <div class="container_engagements">
-                                    <img src="{{ asset('img/logo_checked_mini.png') }}" alt="zéro plastique" title="Objectif zéro plastique" />
-                                    <p>
-                                        Engagé dans un objectif zéro plastique
-                                    </p>
-                                </div>
-                            {% else %}
-                                <p class="alert alert-light alert-light-grey" role="alert">
-                                    Pas encore engagée dans un objectif zéro plastique
-                                </p>
                             {% endif %}
                         </div>
                     </div>
@@ -164,51 +113,27 @@
             {# RIGHT PART #}
 
             <div class="col-lg-4 col-md-12 right_part">
-                <div class="row sense_rate_line">
-                    <div class="col-lg-10 offset-lg-1 col-md-4 offset-md-4 container_sense_rate">
-                        <div class="row">
-                            {# senseRate illustration #}
-                            <div class="col-4 picture_sense_rate">
-                                {% if recruiter.scoring.dominantSens %}
-                                    <div>
-                                        {% if recruiter.scoring.dominantSens is same as 'social' %}
-                                            <a href="{{ path('dash_board_entitySenseRate') }}">
-                                                <img class="img-fluid" src="{{ asset('img/social500.png') }}"
-                                                     alt="sens-social">
-                                            </a>
-                                        {% elseif recruiter.scoring.dominantSens is same as 'economique' %}
-                                            <a href="{{ path('dash_board_entitySenseRate') }}">
-                                                <img class="img-fluid" src="{{ asset('img/econonomie500.png') }}"
-                                                     alt="sens-social">
-                                            </a>
-                                        {% elseif recruiter.scoring.dominantSens is same as 'societal' %}
-                                            <a href="{{ path('dash_board_entitySenseRate') }}">
-                                                <img class="img-fluid" src="{{ asset('img/societal500.png') }}"
-                                                     alt="sens-social">
-                                            </a>
-                                        {% elseif recruiter.scoring.dominantSens is same as 'environnemental' %}
-                                            <a href="{{ path('dash_board_entitySenseRate') }}">
-                                                <img class="img-fluid" src="{{ asset('img/environnemental500.png') }}"
-                                                     alt="sens-social">
-                                            </a>
-                                        {% endif %}
-                                    </div>
-                                {% else %}
-                                    <a href="#"><img src="{{ asset('img/calcul-taux-sens.jpg') }}" alt="calcul du taux de sens" title="Taux de sens SOWRS" /></a>
-                                    {# todo : image par défaut ou texte si pas de calcul du taux de sens #}
-                                {% endif %}
-                            </div>
-                            {# senseRate info #}
-                            <div class="col-8 content_sense_rate">
-                                <div class="row">
-                                    <p class="info_sense_rate">
-                                        <span id="sense_rate_minititle">Taux de sens</span><br>
-                                        {{ recruiter.scoring.dominantPourcent }}% {{ recruiter.scoring.dominantSens }}
-                                    </p>
-                                </div>
-                            </div>
+
+                <div class="show_candidate_sens_rate">
+                    <div class="row align-items-center">
+                        <div class="col-lg-2">
+                            <img src="" alt="taux de sens">
+                        </div>
+                        <div class="col-lg-8">
+                            <h5>Taux de sens</h5>
+                            <h5>{{ recruiter.scoring.dominantPourcent }}% {{ recruiter.scoring.dominantSens }}</h5>
+                        </div>
+                        <div class="col-lg-1 ">
+                            <img src="{{ asset('img/boostrap/flecheBas.svg') }}" alt="flèche vers le bas" width="100%"
+                                 style="margin: 0" id="btn_doughnut">
                         </div>
                     </div>
+                    <br>
+                    <div class="doughnut col-lg-8 mx-auto pb-1 collapse" id="doughnut">
+                        <canvas id="myChart"></canvas>
+                        <br>
+                    </div>
+
                 </div>
 
                 {# complementary informations #}
@@ -287,7 +212,42 @@
 
             </div>
         </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        const btn_doughnut = document.getElementById('btn_doughnut');
+        const doughnut = document.getElementById('doughnut');
+
+        btn_doughnut.addEventListener('click', function (e) {
+            e.currentTarget.classList.toggle('rotate');
+            doughnut.classList.toggle('collapse');
+        })
 
 
-
+        var ctx = document.getElementById('myChart');
+        var myChart = new Chart(ctx, {
+            type: 'doughnut',
+            data: {
+                labels: ['Social', 'Environnement', 'Economie', 'Societal'],
+                datasets: [{
+                    label: '# of Votes',
+                    data: [
+                        {{ recruiter.scoring.social }},
+                        {{ recruiter.scoring.environment }},
+                        {{ recruiter.scoring.economy }},
+                        {{ recruiter.scoring.societal }}
+                    ],
+                    backgroundColor: [
+                        'rgba(161, 14, 214, 0.53)',
+                        'rgba(44, 168, 19, 0.68)',
+                        'rgba(89, 121, 252, 1)',
+                        'rgba(252, 187, 89, 0.71)',
+                    ],
+                }]
+            },
+            options: {}
+        });
+    </script>
 {% endblock %}
