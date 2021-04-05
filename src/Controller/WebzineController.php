@@ -2,9 +2,13 @@
 
 namespace App\Controller;
 
+use App\Entity\Candidate;
+use App\Entity\Comment;
 use App\Entity\Post;
 use App\Entity\Tag;
+use App\Form\CommentType;
 use App\Form\PostType;
+use App\Repository\CommentRepository;
 use App\Repository\PostRepository;
 use App\Repository\TagRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -22,12 +26,14 @@ class WebzineController extends AbstractController
     /**
      * @Route("/webzine", name="home_webzine")
      */
-    public function homeWebzine(PostRepository $postrepo): Response {
+    public function homeWebzine(PostRepository $postrepo, CommentRepository $commentRepo): Response {
 
         $posts = $postrepo->findPublishedPost();
+        $comments = $commentRepo->findAllUnpublished();
 
         return $this->render('webzine/homeWebzine.html.twig', [
-            'posts' => $posts
+            'posts' => $posts,
+            'nbrUnpublishedComments' => count($comments)
         ]);
     }
 
@@ -80,14 +86,41 @@ class WebzineController extends AbstractController
     /**
      * @Route("/postdetail/{id}", name="post_details", requirements={"id":"\d+"})
      */
-    public function postDetails($id, PostRepository $postRepo){
+    public function postDetails($id, PostRepository $postRepo,CommentRepository $commentRepo, EntityManagerInterface $em, Request $req){
 
+        $user = $this->getUser();
         $post = $postRepo->find($id);
+        $comments = $commentRepo->findPublishedByPost($post);
+        $comment = new Comment();
+
+        $nbrVuesPost = $post->getNumberOfViews();
+        $post->setNumberOfViews($nbrVuesPost + 1);
+        $em->flush();
+
         $newestPost = $postRepo->findLatestPost();
+        $moreViewsPost = $postRepo->findMoreViewsPost();
+
+        $commentForm = $this->createForm(CommentType::class, $comment);
+        $commentForm->handleRequest($req);
+
+        if($commentForm->isSubmitted() && $commentForm->isValid()){
+            $comment->setWriterUser($user);
+            $comment->setCreationDate(new \DateTime);
+            $comment->setIsOnline(false);
+            $comment->setPost($post);
+
+            $em->persist($comment);
+            $em->flush();
+
+            $this->addFlash("success", "Votre commentaire a été pris en compte et va être modéré avant publication");
+        }
 
         return $this->render('webzine/postDetail.html.twig', [
             'post' => $post,
-            'newestPost' => $newestPost
+            'newestPost' => $newestPost,
+            'moreViewsPost' => $moreViewsPost,
+            'commentForm' => $commentForm->createView(),
+            'comments' => $comments
         ]);
     }
 
@@ -197,6 +230,49 @@ class WebzineController extends AbstractController
                 'success' => false
             ]);
         }
+    }
+
+    /**
+     * @Route("/admin/comments", name="waiting_comments")
+     */
+    public function waitingComments(CommentRepository $commentRepo){
+
+        //get all the waiting comments
+        $comments = $commentRepo->findAllUnpublished();
+
+        return $this->render('webzine/unpublishedComments.html.twig', [
+            'unpublishedComments' => $comments
+        ]);
+    }
+
+    /**
+     * @Route("/admin/deletecomment/{id}", name="delete_comment", requirements={"id"="\d+"})
+     */
+    public function deleteComment($id, EntityManagerInterface $em, CommentRepository $commentRepo){
+        $comment = $commentRepo->find($id);
+        $em->remove($comment);
+        $em->flush();
+
+        $this->addFlash("success", "Le commentaire a bien été supprimé");
+
+        return $this->redirectToRoute('waiting_comments', [
+
+        ]);
+    }
+
+    /**
+     * @Route("/admin/validatecomment/{id}", name="validate_comment", requirements={"id"="\d+"})
+     */
+    public function validateComment($id, EntityManagerInterface $em, CommentRepository $commentRepo){
+        $comment = $commentRepo->find($id);
+        $comment->setIsOnline(true);
+        $em->flush();
+
+        $this->addFlash("success", "Le commentaire a bien été validé");
+
+        return $this->redirectToRoute('waiting_comments', [
+
+        ]);
     }
 
 }

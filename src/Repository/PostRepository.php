@@ -56,6 +56,19 @@ class PostRepository extends ServiceEntityRepository
     }
 
     /**
+     * return the three most views post
+     */
+    public function findMoreViewsPost(){
+        return $this->createQueryBuilder('p')
+            ->andWhere('p.isPublished = true')
+            ->orderBy('p.numberOfViews', 'DESC')
+            ->setMaxResults(3)
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+
+    /**
      * return post collection from a tag
      */
     public function findPostsFromTag($tag){

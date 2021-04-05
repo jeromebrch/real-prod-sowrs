@@ -31,6 +31,10 @@ blockquote{
 }
 .btn_admin{
     background-color: #B0413E;
+    padding: 15px;
+    text-decoration: none;
+    color: white;
+    border-radius: 4px;
 }
 .block_create_tag{
     display: flex;

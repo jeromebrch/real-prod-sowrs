@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+{% endblock %}
+
+{% block title %}Sowrs | Commentaires en attente{% endblock %}
+
+{% block body %}
+    {% if unpublishedComments is not empty %}
+        <h1 class="comments_title">Commentaires en attente</h1>
+        <table class="table table-striped unpublished_comments_array">
+            {% for comment in unpublishedComments %}
+                <tr>
+                    <td>{{ comment.creationDate|date('d/m/Y') }}</td>
+                    <td>{{ comment.writerUser.username }}</td>
+                    <td>{{ comment.text }}</td>
+                    <td>
+                        <a href="{{ path('validate_comment', {"id":comment.id}) }}">
+                            <img src="{{ asset('img/logo_checked_mini.png') }}" alt="validate_comment" title="Valider le commentaire" class="comment_option">
+                        </a>
+                    </td>
+                    <td>
+                        <a href="{{ path('delete_comment', {"id":comment.id}) }}">
+                            <img src="{{ asset('img/logo_red_cross_mini.png') }}" alt="delete_comment" title="Supprimer le commentaire" class="comment_option">
+                        </a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+    {% else %}
+        <h1 id="empty_comments_title" class="alert alert-danger">Aucun commentaire en attente</h1>
+    {% endif %}
+
+{% endblock %}

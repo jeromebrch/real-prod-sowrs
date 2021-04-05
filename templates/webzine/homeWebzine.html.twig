@@ -12,8 +12,10 @@
             {% if "ROLE_ADMIN" in app.user.roles %}
                 <div class="admin_options">
                     <h6 class="admin_options_title">Espace admin</h6>
-                    <a href="{{ path('create_post') }}" class="btn required btn_admin">Nouveau</a>
-                    <a href="{{ path('unpublished_post') }}" class="btn required btn_admin">Articles non publiés</a>
+                    <a href="{{ path('create_post') }}" class="btn_admin">Nouvel article</a>
+                    <a href="{{ path('unpublished_post') }}" class="btn_admin">Articles non publiés</a>
+                    <a href="{{ path('waiting_comments') }}" class="btn_admin">Commentaires en attente | {{ nbrUnpublishedComments }}
+                    </a>
                     <div class="block_create_tag">
                         <label for="create_tag">Créer un tag</label>
                         <input type="text" id="create_tag" name="input_create_tag">
@@ -48,7 +50,7 @@
                             </div>
                         </div>
                         <div class="row">
-                            <a href="{{ path('post_details', {'id':post.id}) }}" class="btn required col-12">Lire plus</a>
+                            <a href="{{ path('post_details', {'id':post.id}) }}" class="btn required col-12 read_more">Lire plus</a>
                         </div>
                     </div>
                 </div>

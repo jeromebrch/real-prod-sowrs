@@ -37,7 +37,12 @@
                         {% endfor %}
                     </p>
                 {% endif %}
-                {{ post.creationDate|date('d/m/Y') }} &nbsp; &bull; &nbsp; Nombre de vues {# todo : gérer nombre de vues #}
+                {{ post.creationDate|date('d/m/Y') }} &nbsp; &bull; &nbsp;
+                {% if post.numberOfViews == 1 %}
+                    {{ post.numberOfViews}} vue
+                {% else %}
+                    {{ post.numberOfViews}} vues
+                {% endif %}
             </div>
         </div>
 
@@ -94,7 +99,7 @@
                 {% if newestPost is not empty %}
                     {# recently add #}
                     <div class="row">
-                        <div class="recently_add_post">
+                        <div class="post_section">
                             <h3 class="right_section_title">DERNIERS ARTICLES</h3>
                             {% for post in newestPost %}
                                 <div class="latest_post col-12">
@@ -117,11 +122,69 @@
                 {% endif %}
                 {# most read #}
                 <div class="row">
-                    <div class="most_read_post">
-                        {# todo : gérer l'affichage une fois le nombre de vues configuré #}
+                    <div class="post_section">
+                        <h3 class="right_section_title">LES PLUS LUS</h3>
+                        {% for post in moreViewsPost %}
+                            <div class="latest_post col-12">
+                                <div class="row">
+                                    <img class="col-12" src="{{ asset('uploads/illustrations/' ~ post.pictureFilename) }}" alt="illus_post" title="{{ post.title }}" />
+                                </div>
+                                <div class="row">
+                                    <a class="link_post" href="{{ path('post_details', {"id":post.id}) }}"><h4 class="latest_post_title">{{ post.title }}</h4></a>
+                                </div>
+                                <div class="row">
+                                    <p class="latest_post_date">{{ post.creationDate|date('d/m/Y') }}</p>
+                                </div>
+                            </div>
+                        {% endfor %}
+                        <div class="row background_link">
+                            <a href="{{ path('home_webzine') }}" class="link_read_more col-12">Lire plus +</a>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
+        <div class="row">
+            <div class="col-10 comments_section">
+                <div class="col-8 offset-2">
+                    {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                        <button type="button" id="set_comment" class="btn">Laisser un commentaire</button>
+                        <div id="comment_form">
+                            {{ form_start(commentForm) }}
+                            {{ form_widget(commentForm) }}
+                            <button type="submit" class="btn required">Commenter</button>
+                            {{ form_end(commentForm) }}
+                        </div>
+                        <div class="container_comments">
+                            {% if post.comments is not empty %}
+                                {% for comment in comments %}
+                                    <div class="comment">
+                                        <h4 class="comment_title">{{ comment.title }}</h4>
+                                        <a href="#">{{ comment.writeruser.username }}</a> {# todo : gérer le lien #}
+                                        <h5>{{ comment.creationDate|date('d/m/Y') }}</h5>
+                                        <p>
+                                            {{ comment.text }}
+                                        </p>
+                                    </div>
+                                {% endfor %}
+                            {% endif %}
+                        </div>
+                    {% else %}
+                        <h3>Commentaires</h3>
+                        <p>Vous devez être connecté pour commenter cet article</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
     </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        $("#set_comment").on("click", function(){
+            $("#comment_form").show();
+            $("#set_comment").hide();
+        });
+    </script>
 {% endblock %}

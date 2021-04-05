@@ -34,7 +34,7 @@
     position: relative;
     bottom: 40px;
 }
-.recently_add_post{
+.post_section{
     background-color: #55555529;
     padding: 0;
     margin-top: 150px;
@@ -79,12 +79,40 @@
 .link_post{
     text-decoration: none;
 }
+#comment_form{
+    display: none;
+}
+.comment{
+    padding-top: 50px;
+    padding-right: 50px;
+    padding-left: 50px;
+    border-bottom: 1px solid #55555555;
+}
+.comment h4{
+    font-family: 'KohinoorBangla', Arial, serif;
+    font-size: 1.2em;
+}
+.comment p{
+    text-align: left;
+    font-size: 0.8em;
+}.comment a{
+    color: #937FA4;
+    text-decoration: none;
+    font-weight: bold;
+ }
+.comment h5{
+    font-size: 0.9em;
+}
+
 
 @media screen and (max-width: 767px){
     .content_post_detail{
         padding: 30px;
     }
-    .content_post_detail span img{
-        width: auto;
+}
+@media screen and (max-width: 999px){
+    .content_post_detail p span img{
+        max-width: 100%;
+        height: auto;
     }
 }

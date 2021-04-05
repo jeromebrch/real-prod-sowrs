@@ -1,0 +1,21 @@
+#empty_comments_title{
+    text-align: center;
+    margin-top: 150px;
+    margin-bottom: 150px;
+}
+.unpublished_comments_array *{
+    font-family: 'KohinoorBangla', Arial, serif;
+    font-size: 0.9em;
+}
+.comment_option{
+    width: 30px;
+    height: 30px;
+}
+.comments_title{
+    font-family: 'KohinoorBangla', Arial, serif;
+    text-align: center;
+    font-size: 2.5em;
+    padding: 60px;
+    background-color: #B0413E55;
+    color: #B0413E;
+}
