@@ -50,14 +50,50 @@
         <a type="button" class="btn position-absolute start-50 translate-middle">Télécharger le CV</a>
     </div>
     <div class="row">
-        <div class="col-lg-7">
-            <h3 class="subtitle">À propos de {{ candidate.firstName | capitalize }}</h3>
-            <p>{{ candidate.about }}</p>
 
-            <h3 class="subtitle">{{ candidate.firstName | capitalize }} est engagé dans </h3>
-            <p>njbkjahlbhdhdzhdzhxdnkkjzhdjkzhjnd</p>
+
+
+
+        <div class=" col-lg-8 col-md-12 left_part_profil">
+            {# about the entity #}
+            <div class="container_category_profil">
+                <div class="row">
+                    <h3 class="profil_category_title">&Agrave; propos de {{ candidate.firstname }}</h3>
+                </div>
+                <div class="row">
+                    <p>
+                        {{ candidate.about }}
+                    </p>
+                </div>
+            </div>
+            {# engagements #}
+            <div class="container_category_profil">
+                <div class="row">
+                    <h3 class="profil_category_title">{{ candidate.firstname }} est engagé dans :</h3>
+                </div>
+                {% if(candidate.commitments is not empty) %}
+                    <div class="row">
+                        {% for commitment in candidate.commitments %}
+                            <div class="commitment_candidate col-12">
+                                <h3>{{ commitment.title }}</h3>
+                                <p>
+                                    {{ commitment.text }}
+                                </p>
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    <div class="alert alert-success" role="alert">
+                        Le candidat n'a pas encore renseigné ses engagements
+                    </div>
+                {% endif %}
+            </div>
         </div>
-        <div class="col-lg-5">
+
+
+
+
+        <div class="col-lg-4 col-md-12 right_part">
             <div class="show_candidate_sens_rate">
                 <div class="row">
                     <div class="col-lg-2" style="height: 5em">
@@ -78,49 +114,77 @@
                 </div>
             </div>
             <br>
-            <div>
+            <div class="complementary_infos_container">
                 <div class="row">
-                    <h5 class="col-lg-6 show_candidate_infos_text">Niveau d'expérience :</h5>
-                    <h5 class="col-lg-6">{{ candidate.levelExperience.wording }}</h5>
+                    {% if candidate.levelExperience is not empty %}
+                        <h3 class="profil_category_title_candidate">Niveau d'expérience : <span>{{ candidate.levelExperience.wording }}</span></h3>
+                    {% else %}
+                        <p class="alert alert-light">
+                            Expérience non renseignée
+                        </p>
+                    {% endif %}
                 </div>
+                {# study level #}
                 <div class="row">
-                    <h5 class="col-lg-6 show_candidate_infos_text">Niveau d'étude :</h5>
-                    <h5 class="col-lg-6">{{ candidate.levelStudy.wording }}</h5>
+                    {% if candidate.levelStudy is not empty %}
+                        <h3 class="profil_category_title_candidate">Niveau d'études : <span>{{ candidate.levelStudy.wording }}</span></h3>
+                    {% else %}
+                        <p class="alert alert-light">
+                            Niveau d'études non renseignée
+                        </p>
+                    {% endif %}
                 </div>
+                {# searched job #}
                 <div class="row">
-                    <h5 class="col-lg-6 show_candidate_infos_text">Poste recherché :</h5>
-                    <h5 class="col-lg-6">{{ candidate.jobSearch.jobTitle }}</h5>
+                    {% if candidate.jobSearch is not empty %}
+                        <h3 class="profil_category_title_candidate">Poste recherché : <span>{{ candidate.jobSearch.jobTitle }}</span></h3>
+                    {% else %}
+                        <p class="alert alert-light">
+                            Poste recherché non renseignée
+                        </p>
+                    {% endif %}
                 </div>
+                {# main cause #}
                 <div class="row">
-                    <h5 class="col-lg-6 show_candidate_infos_text">Cause :</h5>
-                    <h5 class="col-lg-6">{{ candidate.jobSearch.cause.text }}</h5>
+                    {% if candidate.mainCause is not empty %}
+                        <h3 class="profil_category_title_candidate">Cause défendue : <span>{{ candidate.mainCause.text }}</span></h3>
+                    {% else %}
+                        <p class="alert alert-light">
+                            Cause défendue non renseignée
+                        </p>
+                    {% endif %}
                 </div>
+                {# can work in (country) #}
                 <div class="row">
-                    <h5 class="col-lg-6 show_candidate_infos_text">Autorisation de travailler :</h5>
-                    <h5 class="col-lg-6">{{ candidate.authorizedCountry .name }}</h5>
+                    {% if candidate.authorizedCountry is not empty %}
+                        <h3 class="profil_category_title_candidate">Autorisé à travailler : <span>{{ candidate.authorizedCountry.name }}</span></h3>
+                    {% else %}
+                        <p class="alert alert-light">
+                            Pays non renseigné non renseignée
+                        </p>
+                    {% endif %}
                 </div>
             </div>
             <br>
-            <div class="row">
-                <div class="col-lg-2 pt-1 pb-1 m-1 rounded-pill show_candidate_socialButton">
-                    <a href="{{ candidate.socialNetwork.github }}" target="_blank" >
-                        <img src="{{ asset('img/boostrap/github.svg') }}" alt="Page Facebook"></a>
-                </div>
-                <div class="col-lg-2 pt-1 pb-1 m-1 rounded-pill show_candidate_socialButton">
-                    <a href="{{ candidate.socialNetwork.stackOverflow }}" target="_blank">
-                        <img src="{{ asset('img/boostrap/stackoverflow-com-logo-svg-vector.svg') }}" alt="Page instagram"
-                             class="socialButton"></a>
-                </div>
-                <div class="col-lg-2 pt-1 pb-1 m-1 rounded-pill show_candidate_socialButton">
-                    <a href="{{ candidate.socialNetwork.linkedin }}" target="_blank">
-                        <img src="{{ asset('img/linkedin_grist-footer.png') }}" alt="Page linkedin"
-                             class="socialButton"></a>
-                </div>
-                <div class="col-lg-2 pt-1 pb-1 m-1 rounded-pill show_candidate_socialButton">
-                    <a href="{{ candidate.socialNetwork.webSite }}" target="_blank">
-                        <img src="{{ asset('img/boostrap/google.svg') }}" alt="Page twitter"
-                             class="socialButton"></a>
-                </div>
+            <div class="row container_social_link">
+                {% if candidate.socialNetwork %}
+                    {% if candidate.socialNetwork.website %}
+                        <a href="{{ candidate.socialNetwork.website }}" target="_blank" class="btn required btn_social"><img src="{{ asset('img/lieux_mini.png') }}" alt="mon facebook" title="Facebook" class="social_link_mini" /></a>
+                    {% endif %}
+                    {% if candidate.socialNetwork.linkedin %}
+                        <a href="{{ candidate.socialNetwork.linkedin }}" target="_blank" class="btn required btn_social"><img src="{{ asset('img/linkedin_grist-10mm.png') }}" alt="mon linkedIn" title="LinkedIn" class="social_link_mini" /></a>
+                    {% endif %}
+                    {% if candidate.socialNetwork.stackOverflow %}
+                        <a href="{{ candidate.socialNetwork.stackOverflow }}" target="_blank" class="btn required btn_social"><img src="{{ asset('img/logo_stackoverflow_mini.png') }}" alt="mon stackoverflow" title="StackOverflow" class="social_link_mini" /></a>
+                    {% endif %}
+                    {% if candidate.socialNetwork.github %}
+                        <a href="{{ candidate.socialNetwork.github }}" target="_blank" class="btn required btn_social"><img src="{{ asset('img/logo_github_mini.png') }}" alt="mon github" title="Github" class="social_link_mini" /></a>
+                    {% endif %}
+                {% else %}
+                    <p class="alert alert-light">
+                        Entreprise pas présente sur les réseaux
+                    </p>
+                {% endif %}
             </div>
         </div>
     </div>

@@ -166,6 +166,31 @@
 .btn_send_message{
     margin-top: 10px;
 }
+.profil_category_title_candidate{
+    font-family: 'KohinoorBangla', Arial, serif;
+    font-size: 1.4em;
+    color: #1dca91;
+}
+.profil_category_title_candidate span{
+    color: #937FA4;
+    font-size: 0.8em;
+}
+.commitment_candidate{
+    padding: 15px;
+    background-color: #AAAAAA55;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+.commitment_candidate h3{
+    font-family: 'KohinoorBangla', Arial, serif;
+    font-size: 1.2em;
+    color: #555555;
+}
+.commitment_candidate p{
+    font-family: 'KohinoorBangla', Arial, serif;
+    font-size: 0.8em;
+    color: #937FA4;
+}
 
 @media screen and (max-width: 992px) {
     .sense_rate_line{

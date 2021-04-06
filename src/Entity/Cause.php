@@ -42,6 +42,11 @@ class Cause
      */
     private $jobSearches;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Candidate::class, mappedBy="mainCause")
+     */
+    private $candidates;
+
 
 
 
