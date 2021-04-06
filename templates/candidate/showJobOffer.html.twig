@@ -85,13 +85,10 @@
             <p>
                 {{ entity.about }}
             </p>
-
             <h3 class="subtitle">Descriptif du poste</h3>
             <p>
                 {{ jobOffer.description }}
             </p>
-        <div>
-            <a type="btn required" style=" width: 225px;border-radius: 50px;background: #1DCA91; border: none;text-decoration: none;padding: 10px; font-size: larger;color: white; margin: auto;" href="{{ path('apply', {'id': jobOffer.id}) }}">Postuler à cette offre</a>
         </div>
 
 
@@ -117,6 +114,9 @@
                     <canvas id="myChart"></canvas>
                     <br>
                 </div>
+            </div>
+            <div>
+                <a class="btn_postuler btn required" href="{{ path('apply', {'id': jobOffer.id}) }}">Postuler à cette offre</a>
             </div>
         </div>
     </div>

@@ -50,7 +50,6 @@ class MessageController extends AbstractController
             'category' => $category,
             'nonlus' => $messageState,
             'nonlu' => $nonlu
-
         ]);
     }
 
