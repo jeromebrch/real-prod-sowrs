@@ -118,22 +118,6 @@
                     <br>
                 </div>
             </div>
-
-            {# apply form #}
-
-            <div class="row container_contact">
-                {{ form_start(applyForm) }}
-                <div class="row">
-                    <div class="col-6">{{ form_row(applyForm.lastname, {'attr': {'value':app.user.lastname}}) }}</div>
-                    <div class="col-6">{{ form_row(applyForm.firstname, {'attr': {'value':app.user.firstname}}) }}</div>
-                </div>
-                {{ form_row(applyForm.email, {'attr': {'value':app.user.email}}) }}
-                {{ form_row(applyForm.message, {'attr': {'placeholder':'Votre message'}}) }}
-                {{ form_row(applyForm.file, {'attr': {'id':'apply_input_file'}}) }}
-                <button type="submit" class="btn required">Postuler</button>
-                {{ form_end(applyForm) }}
-            </div>
-
         </div>
     </div>
 {% endblock %}

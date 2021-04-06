@@ -19,15 +19,6 @@ class ApplyType extends AbstractType
     {
         $builder
 
-            ->add('lastname', TextType::class, [
-                'label' => 'Nom'
-            ])
-            ->add('firstname', TextType::class, [
-                'label' => 'Prénom'
-            ])
-            ->add('email', EmailType::class, [
-                'label' => 'Adresse mail'
-            ])
             ->add('body', TextareaType::class, [
                 'attr' =>['rows' =>16],
                 'label'=> false,
