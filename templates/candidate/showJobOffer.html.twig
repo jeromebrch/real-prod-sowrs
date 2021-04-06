@@ -24,6 +24,7 @@
             </a>
         </div>
         <div class="col-lg-5 mx-auto">
+
             <a href="{{ path('show_recruiter_profil', {"id":entity.id}) }}" class="link_recruiter">
                 <h5 class="show_candidate_jumbotron_name" style="color: #dfdfdf">{{ entity.entityName | capitalize }}</h5>
             </a>
@@ -89,7 +90,10 @@
             <p>
                 {{ jobOffer.description }}
             </p>
+        <div>
+            <a type="btn required" style=" width: 225px;border-radius: 50px;background: #1DCA91; border: none;text-decoration: none;padding: 10px; font-size: larger;color: white; margin: auto;" href="{{ path('apply', {'id': jobOffer.id}) }}">Postuler à cette offre</a>
         </div>
+
 
         {# RIGHT PART #}
 

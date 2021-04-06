@@ -55,9 +55,6 @@ class Candidate extends User
      */
     private $socialNetwork;
 
-
-
-
     public function getRoles(): array
     {
         $roles[] = parent::getRoles();
@@ -182,6 +179,10 @@ class Candidate extends User
         $this->cv = $cv;
 
         return $this;
+    }
+
+    public function __toString(){
+        return $this->firstname.' '.$this->lastname;
     }
 
 }

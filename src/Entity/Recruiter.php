@@ -94,9 +94,6 @@ class Recruiter extends User
     private $commitments;
 
 
-
-
-
    public function __construct()
    {
        parent::__construct();

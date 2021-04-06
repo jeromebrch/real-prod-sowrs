@@ -1,0 +1,71 @@
+.border-messaging{
+    background-color: white;
+    height: 60Px;
+    width: 100%;
+
+}
+
+.border-top-messaging {
+    background-color: white;
+    width: 80%;
+
+}
+.tableFirst{
+    border: 1px solid #dee2e6!important ;
+    border-bottom: 1px solid #dee2e6!important ;
+    border-radius: 50px;
+}
+.messageButtonTrash {
+    width: 2.5em;
+    height: 2em;
+    border-radius: 1em;
+    background: #555555;
+    border: none;
+}
+
+.messageButton {
+    width: 2.5em;
+    height: 2em;
+    border-radius: 1em;
+    background: #1DCA91;
+    border: none;
+}
+
+.messageImgPencil {
+    height: 1em;
+    width: auto;
+}
+.messageImgTrash {
+    height: 1em;
+    width: auto;
+}
+
+a{
+    text-decoration: none;
+    color: #313131;
+}
+
+.thead{
+    width: 225px;
+    border-radius: 50px;
+    background: white;
+    border: none;
+    padding: 10px;
+    font-size: larger;
+}
+
+.rounded-div{
+    border: 2px solid lightgray;
+    border-radius: 20px;
+}
+
+.btn-response {
+    width: 50px;
+    border-radius: 50px;
+    background: #1DCA91;
+    border: none;
+    padding: 10px;
+    font-size: larger;
+    color: white;
+    margin: auto;
+}

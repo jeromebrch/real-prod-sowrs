@@ -2,18 +2,28 @@ vich_uploader:
     db_driver: orm
 
     mappings:
+
         profils:
             uri_prefix: /images/profils
             upload_destination: '%kernel.project_dir%/public/images/profils'
             namer : Vich\UploaderBundle\Naming\UniqidNamer
 
-            inject_on_load: false
+            inject_on_load: true
             delete_on_update: true
             delete_on_remove: true
 
         cv:
-            uri_prefix: /fichiers/cv
-            upload_destination: '%kernel.project_dir%/public/fichiers/cv'
+            uri_prefix: /file/cv
+            upload_destination: '%kernel.project_dir%/public/file/cv'
+            namer: Vich\UploaderBundle\Naming\OrignameNamer
+
+            inject_on_load: false
+            delete_on_update: true
+            delete_on_remove: true
+
+        media:
+            uri_prefix: /file/uploads
+            upload_destination: '%kernel.project_dir%/public/file/uploads'
             namer: Vich\UploaderBundle\Naming\UniqidNamer
 
             inject_on_load: false

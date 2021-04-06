@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Recruiter;
+use App\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -35,6 +36,21 @@ class RecruiterRepository extends ServiceEntityRepository
         ;
     }
     */
+
+    /*
+    * @return User
+    *
+    */
+    public function findByUser(User $user)
+    {
+        return $this->createQueryBuilder('m')
+            ->where('m.user = :val')
+            ->setParameter('val', $user)
+            ->groupBy('m')
+            ->getQuery()
+            ->getResult()
+            ;
+    }
 
     /*
     public function findOneBySomeField($value): ?Recruiter

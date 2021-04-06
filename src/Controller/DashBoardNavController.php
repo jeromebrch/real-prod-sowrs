@@ -1,7 +1,6 @@
 <?php
 namespace App\Controller;
 
-use App\Entity\Candidate;
 use App\Entity\Cv;
 use App\Entity\Picture;
 use App\Form\CreateCvType;
@@ -22,17 +21,27 @@ class DashBoardNavController extends AbstractController
      */
     public function navBar(): Response
     {
+        $user = $this->getUser();
         $picture = new Picture();
         $formPicture = $this->createForm(DashBoardNavType::class, $picture);
 
-        $candidate = new Candidate();
-        $cv = $candidate->getCv();
+        $cv = new Cv();
         $formCv = $this->createForm(CreateCvType::class, $cv);
+
+        $messages = $user->getMessages();
+        $nonLu = 'non lu';
+        $count= 0;
+
+        foreach ($messages as $message) {
+            if ($message->getState() === $nonLu) {
+                $count++;
+            }
+        }
 
         return $this->render('nav/dashBoardNav.html.twig', [
             'formPicture' => $formPicture->createView(),
             'formCv' => $formCv->createView(),
-            'candidate'=>$candidate
+            'nonlu' => $count
         ]);
     }
 
@@ -88,7 +97,7 @@ class DashBoardNavController extends AbstractController
             $cVitae = $user->getCv();
 
             if($cVitae){
-                $user->setcV($cv);
+                $user->setCv($cv);
                 $em->remove($cVitae);
             }else{
                 $user->setCv($cv);

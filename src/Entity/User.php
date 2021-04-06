@@ -95,7 +95,6 @@ class User implements UserInterface, \Serializable
      */
     protected $scoring;
 
-
     /**
      * @ORM\OneToOne(targetEntity=Picture::class)
      * @ORM\JoinColumn(nullable=true)
@@ -107,6 +106,12 @@ class User implements UserInterface, \Serializable
      */
     private $comments;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Message::class, mappedBy="userRecipient")
+     */
+    private $messages;
+
+
 
     public function __construct()
     {
@@ -114,6 +119,8 @@ class User implements UserInterface, \Serializable
         $this->private = false;
         $this->updatedAt = new DateTime();
         $this->comments = new ArrayCollection();
+        $this->messages = new ArrayCollection();
+
     }
 
     public function getId(): ?int
@@ -322,6 +329,7 @@ class User implements UserInterface, \Serializable
     }
 
     /**
+<<<<<<< HEAD
      * @return Collection|Comment[]
      */
     public function getComments(): Collection
@@ -334,6 +342,23 @@ class User implements UserInterface, \Serializable
         if (!$this->comments->contains($comment)) {
             $this->comments[] = $comment;
             $comment->setWriterUser($this);
+        } return $this;
+    }
+
+    /**
+     * @return Collection|Message[]
+     */
+    public function getMessages(): Collection
+    {
+        return $this->messages;
+    }
+
+    public function addMessages(Message $message): self
+    {
+        if (!$this->messages->contains($message)) {
+            $this->messages[] = $message;
+            $message->setUserRecipient($this);
+            $message->setUserSender($this);
         }
 
         return $this;
@@ -345,6 +370,21 @@ class User implements UserInterface, \Serializable
             // set the owning side to null (unless already changed)
             if ($comment->getWriterUser() === $this) {
                 $comment->setWriterUser(null);
+            }
+        }
+        return $this;
+    }
+
+    public function removeMessage(Message $message): self
+    {
+        if ($this->messages->removeElement($message)) {
+            // set the owning side to null (unless already changed)
+            if ($message->getUserRecipient() === $this) {
+                $message->setUserRecipient(null);
+            }
+            // set the owning side to null (unless already changed)
+            if ($message->getUserSender() === $this) {
+                $message->setUserSender(null);
             }
         }
 

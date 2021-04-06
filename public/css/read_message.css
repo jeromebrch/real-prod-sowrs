@@ -1,0 +1,10 @@
+.btn-response {
+    width: 425px;
+    border-radius: 50px;
+    background: #1DCA91;
+    border: none;
+    padding: 10px;
+    font-family: 'KohinoorBangla', Arial, serif;
+    color: white;
+    margin: auto;
+}

@@ -5,12 +5,15 @@ namespace App\Controller;
 use App\Data\SearchCandidate;
 use App\Data\SearchJobOffers;
 use App\Entity\Contact;
+use App\Entity\Media;
 use App\Entity\Recruiter;
 use App\Form\ContactType;
 use App\Form\SearchCandidateType;
 use App\Form\SearchJobOfferType;
 use App\Repository\CandidateRepository;
+use App\Repository\ContactRepository;
 use App\Repository\JobOfferRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Knp\Component\Pager\PaginatorInterface;
 use ReCaptcha\ReCaptcha;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -79,7 +82,10 @@ class MainController extends AbstractController
         $reCaptcha = new ReCaptcha($_ENV['GOOGLE_RECAPTCHA_SECRET']);
         $resp = $reCaptcha->verify($request->request->get('g-recaptcha-response'), $request->getClientIp());
 
-        if ($formContact->isSubmitted() && $formContact->isValid()) {
+        $fichier = $formContact['fichier']->getData();
+        $autreFichier = $formContact['autreFichier']->getData();
+
+        if ($formContact->isSubmitted() && $formContact->isValid() && $resp->isSuccess()) {
 
             $contact->setDestinataire('kennouche.annelise@gmail.com');
             $fichier = $contact->getFichier();
@@ -110,11 +116,38 @@ class MainController extends AbstractController
            }
 
         }
-        return $this->render('main/contactUs.html.twig', ['formContact'=>$formContact->createView()]);
+        return $this->render('main/contactUs.html.twig', ['formContact'=>$formContact->createView(),
+            'autreFichier' => $autreFichier,
+            'fichier' => $fichier
+        ]);
     }
 
 
-    /**
+        /**
+         * @Route("/main/contactUs/deleteFile/{id}", name="main_deleteFile", requirements={"id":"\d+"})
+         * @param $id
+         * @param EntityManagerInterface $entityManager
+         * @return Response
+         */
+        public function clearFile($id, ContactRepository $repositoryContact, EntityManagerInterface $entityManager): Response
+    {
+
+        $contactRepo = $repositoryContact->find($id);
+        $file = $contactRepo->getFichier();
+        if ($file) {
+            $entityManager->clear($file);
+            $entityManager->flush();
+        }
+        $otherFile = $contactRepo->getAutreFichier();
+        if ($otherFile) {
+            $entityManager->clear($otherFile);
+            $entityManager->flush();
+        }
+            $this->addFlash('success', 'Votre fichier à été supprimé');
+            return $this->redirectToRoute('main_dash_board');
+    }
+
+        /**
      * returns the list of current offers linked to a search filter
      * @Route("/jobOffersList", name="main_job_offers_list")
      * @param Request $request
@@ -188,6 +221,26 @@ class MainController extends AbstractController
             'formSearch' => $formSearch->createView(),
             'listCandidates' => $candidates,
         ]);
+    }
+
+    /**
+     * @Route("/main/contactUs/delete", name="delete_file")
+     */
+    public function DeleteMessage(EntityManagerInterface $em):Response
+    {
+       // $fileRepo = $this->getDoctrine()->getRepository(Media::class);
+       // $file = $fileRepo-                                //{id}
+       // if ($file) {
+           // $em->remove($file);
+            $em->flush();
+
+            $this->addFlash('success', 'Votre fichier a été supprimé');
+
+            return $this->redirectToRoute('main_contact_us');
+       // } else {
+         //   return $this->render('error/notFound.html.twig');
+
+       // }
     }
 
     /**
