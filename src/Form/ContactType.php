@@ -6,6 +6,7 @@ use App\Entity\Contact;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Form\Extension\Core\Type\ResetType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -24,13 +25,15 @@ class ContactType extends AbstractType
                 ]])
             ->add('telephone')
             ->add('message', TextareaType::class, [
-                'attr' =>['rows' =>6],
+                'label' => false,
+                'attr' =>['rows' =>8],
                 'constraints' => [
+                    'placeholder'=> 'Saisissez votre message',
                 new NotBlank([
                     'message' => 'Merci d\'entrer votre message.'])
                  ]])
            ->add('fichier', FileType::class, [
-                'label' => 'Ajouter une pièce jointe'
+                'label' => false
             ])
             ->add('autreFichier', FileType::class, [
                 'label' => false

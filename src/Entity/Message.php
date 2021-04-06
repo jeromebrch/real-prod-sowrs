@@ -80,7 +80,7 @@ class Message
     private $state;
 
     /**
-     * @ORM\Column(type="date_immutable")
+     * @ORM\Column(type="datetime_immutable")
      */
     private $createdAt;
 
@@ -277,9 +277,10 @@ class Message
     /**
      * @param mixed $createdAt
      */
-    public function setCreatedAt($createdAt): void
+    public function setCreatedAt($createdAt): self
     {
         $this->createdAt = $createdAt;
+        return $this;
     }
 
     /**

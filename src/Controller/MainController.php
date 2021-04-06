@@ -82,7 +82,10 @@ class MainController extends AbstractController
         $reCaptcha = new ReCaptcha($_ENV['GOOGLE_RECAPTCHA_SECRET']);
         $resp = $reCaptcha->verify($request->request->get('g-recaptcha-response'), $request->getClientIp());
 
-        if ($formContact->isSubmitted() && $formContact->isValid()) {
+        $fichier = $formContact['fichier']->getData();
+        $autreFichier = $formContact['autreFichier']->getData();
+
+        if ($formContact->isSubmitted() && $formContact->isValid() && $resp->isSuccess()) {
 
             $contact->setDestinataire('kennouche.annelise@gmail.com');
             $fichier = $contact->getFichier();
@@ -113,7 +116,10 @@ class MainController extends AbstractController
            }
 
         }
-        return $this->render('main/contactUs.html.twig', ['formContact'=>$formContact->createView()]);
+        return $this->render('main/contactUs.html.twig', ['formContact'=>$formContact->createView(),
+            'autreFichier' => $autreFichier,
+            'fichier' => $fichier
+        ]);
     }
 
 
@@ -123,25 +129,22 @@ class MainController extends AbstractController
          * @param EntityManagerInterface $entityManager
          * @return Response
          */
-        public function deleteFile($id, ContactRepository $repositoryContact, EntityManagerInterface $entityManager): Response
+        public function clearFile($id, ContactRepository $repositoryContact, EntityManagerInterface $entityManager): Response
     {
 
         $contactRepo = $repositoryContact->find($id);
         $file = $contactRepo->getFichier();
         if ($file) {
-            $entityManager->remove($file);
+            $entityManager->clear($file);
             $entityManager->flush();
-
+        }
+        $otherFile = $contactRepo->getAutreFichier();
+        if ($otherFile) {
+            $entityManager->clear($otherFile);
+            $entityManager->flush();
+        }
             $this->addFlash('success', 'Votre fichier à été supprimé');
-
-            return $this->redirectToRoute('main_contact_us');
-        } else {
-            return $this->render('error/notFound.html.twig');
-
-        }/* <a class="abstractJobOfferButtonTrash col-lg-3 m-2 text-center align-self-center"
-                       href="{{ path('main_deleteFile', {'id':contact.id}) }}" role="button">
-                        <img class="abstractJobOfferImgTrash" src="{{ asset('img/boostrap/trash-fill-white.svg') }}">
-                    </a>*/
+            return $this->redirectToRoute('main_dash_board');
     }
 
         /**

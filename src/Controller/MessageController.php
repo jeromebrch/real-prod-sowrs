@@ -29,28 +29,18 @@ class MessageController extends AbstractController
     /**
      * @Route("/messaging/messaging_page", name="messaging")
      */
-    public function seeMessaging(): Response
+    public function seeMessaging(EntityManagerInterface $em): Response
     {
         /**
          * @var User $user
          */
         $user = $this->getUser();
-        //récupère les messages reçus
+        //getting sended messages
         $messageRepo = $this->getDoctrine()->getRepository(Message::class);
         $messages = $messageRepo->findByUserRecipient($user);
-        //trie les catégories de massages
-        $candidature = 'candidature';
-        //compte les messages non lus
-        $nonLu = 'non lu';
-        $count = 0;
-        foreach ($messages as $message) {
-            if ($message->getState() === $nonLu) {
-                $count++;
-            }
-        }
-
-        $mois = array(1 => 'janvier', 2 => 'février', 3 => 'mars', 4 => 'avril', 5 => 'mai', 6 => 'juin', 7 => 'juillet', 8 => 'août', 9 => 'septembre', 10 => 'octobre', 11 => 'novembre', 12 => 'décembre');
-
+        //counting unreded messages
+        $messageState = $em->getRepository(Message::class)->count(['userRecipient' => $user, 'state' => 'non lu']);
+        $nonlu = 'non lu';
         $categoryRepo = $this->getDoctrine()->getRepository(Category::class);
         $category = $categoryRepo->findAll();
 
@@ -58,9 +48,8 @@ class MessageController extends AbstractController
             'controller_name' => 'MessagingController',
             'messages' => $messages,
             'category' => $category,
-            'nonlus' => $count,
-            'nonlu' => $nonLu,
-            'candidature' => $candidature
+            'nonlus' => $messageState,
+            'nonlu' => $nonlu
 
         ]);
     }
@@ -72,20 +61,12 @@ class MessageController extends AbstractController
     public function readMessage($id, EntityManagerInterface $em): Response
     {
         $user = $this->getUser();
-
-        $messages = $user->getMessages();
-        $nonLu = 'non lu';
-        $count = 0;
-
-        foreach ($messages as $message) {
-            if ($message->getState() === $nonLu) {
-                $count++;
-            }
-        }
-
+        //counting unreaded messages
+        $messageState = $em->getRepository(Message::class)->count(['userRecipient' => $user, 'state' => 'non lu']);
+       //getting the message to read
         $messageRepo = $this->getDoctrine()->getRepository(Message::class);
         $message = $messageRepo->find($id);
-
+        //setting the message state in readed
         $message->setState('lu');
         $em->persist($message);
         $em->flush();
@@ -94,7 +75,7 @@ class MessageController extends AbstractController
         return $this->render('messaging/read_message.html.twig', [
             'controller_name' => 'MessagingController',
             'message' => $message,
-            'nonlu' => $count
+            'nonlu' => $messageState
         ]);
     }
 
@@ -122,26 +103,18 @@ class MessageController extends AbstractController
     /**
      * @Route("/messaging/sendMessageApply/{id}", name="apply")
      */
-    public function sendApply($id, EntityManagerInterface $em, Request $request, MailerInterface $mailer): Response
+    public function sendApply(Request $request, $id, MailerInterface $mailer): Response
     {
+        $em = $this->getDoctrine()->getManager();
         /**
-         * @var User $user
+         * @var User $userCurrent
          */
-        $user = $this->getUser();
+        $userCurrent = $this->getUser();
+        //counting the unreaded messages
+        $messageState = $em->getRepository(Message::class)->count(['userRecipient' => $userCurrent, 'state' => 'non lu']);
+        //getting the joboffer
+        $jobOffer = $em->getRepository(JobOffer::class)->find($id);
         $message = new Message();
-        //récupère l'offre d'emploi
-        $jobOfferRepo = $this->getDoctrine()->getRepository(JobOffer::class);
-        $jobOffer = $jobOfferRepo->find($id);
-
-        $messages = $user->getMessages();
-        $nonLu = 'non lu';
-        $count = 0;
-
-        foreach ($messages as $message) {
-            if ($message->getState() === $nonLu) {
-                $count++;
-            }
-        }
         $formMessage = $this->createForm(ApplyType::class, $message);
         $formMessage->handleRequest($request);
 
@@ -149,72 +122,69 @@ class MessageController extends AbstractController
 
             $cvFile = $formMessage->get('cvFile')->getData();
             $mediaFile = $formMessage->get('mediaFile')->getData();
+            //saving cvFile
             if ($cvFile) {
                 $cvFilename = pathinfo($cvFile->getClientOriginalName(), PATHINFO_FILENAME);
                 $cv = new Cv();
                 $cv->setCvName($cvFilename . '-' . uniqid() . '.' . $cvFile->guessExtension());
                 try {
-                    $cvFile->move( 'file/cv/',$cv->getCvName());
+                    $cvFile->move($this->getParameter('cv'),$cv->getCvName());
                     $message->setCv($cv);
                     $em->persist($cv);
-                    $em->flush();
                 } catch (FileException $e) {
                     $e->getMessage();
                 }
-            }
+            }//saving mediaFile
             if ($mediaFile) {
                 $mediaFilename = pathinfo($mediaFile->getClientOriginalName(), PATHINFO_FILENAME);
                 $media = new Media();
                 $media->setMediaName($mediaFilename . '-' . uniqid() . '.' . $mediaFile->guessExtension());
                 try {
-                    $mediaFile->move('file/uploads/', $media->getMediaName());
+                    $mediaFile->move($this->getParameter('media'), $media->getMediaName());
                     $message->setMedia($media);
                     $em->persist($media);
-                    $em->flush();
+
                 } catch (FileException $e) {
                     $e->getMessage();
                 }
             }
-            //récupère le créateur de l'offre
-            $recipient = $jobOffer->getEntity();
-            $idCat = 1;
-            //remplit les champs
-            $message->setSubject('candidature pour l\'annonce' .' '. $jobOffer->getTitle());
+
+            //creating message
+            $message->setSubject('candidature pour l\'annonce' . ' ' . $jobOffer->getTitle());
             $CategoryRepo = $this->getDoctrine()->getRepository(Category::class);
-            $category = $CategoryRepo->find($idCat);
+            $category = $CategoryRepo->find(1);
             $message->setCategory($category);
-            $message->setUserRecipient($recipient);
-            $message->setUserSender($user);
+            $message->setUserRecipient($jobOffer->getEntity());
+            $message->setUserSender($userCurrent);
             $message->setState('non lu');
             $message->setCreatedAt(new \DateTimeImmutable());
-            $user->addMessages($message);
+
 
             $em->persist($message);
             $em->flush();
 
-            //envoi de l'email
+            //sending email
             $email = (new Email())
                 ->from('team@sowrs.com')
                 ->to('kennouche.annelise@gmail.com')//todo :email du destinataire
                 ->subject($message->getSubject())
-                ->text($message->getBody())
-                ->text('Pour consulter votre message, rendez-vous sur www.sowrs.com');
+                ->text($this->renderView(
+                // getting text for email from html page
+                    'textEmail/textEmailApplyReceved.html.twig',
+                    ['joboffer' => $jobOffer,
+                        'message' => $message]
+                ), 'text/html');
 
             $mailer->send($email);
 
-
-            $this->addFlash('succes', 'Votre message a bien été envoyé!');
-            return $this->render('messaging/sendMessageApply.html.twig', [
-                'formMessage' => $formMessage->createView(),
-                'jobOffer' => $jobOffer,
-                'nonlu' => $count
-            ]);
+            $this->addFlash('success', 'Votre message a bien été envoyé!');
         }
+
         return $this->render('messaging/sendMessageApply.html.twig', [
             'controller_name' => 'MessagingController',
             'formMessage' => $formMessage->createView(),
             'jobOffer' => $jobOffer,
-            'nonlu' => $count
+            'messageState' => $messageState
         ]);
     }
 
@@ -226,10 +196,10 @@ class MessageController extends AbstractController
         $user = $this->getUser();
         $message = new Message();
 
-        //récupère le user candidat
+        //getting user/candidate
         $candidateRepo = $this->getDoctrine()->getRepository(Candidate::class);
         $candidate = $candidateRepo->find($id);
-        //récupère le user recruteur
+        //getting user/recruiter
         $recruteurRepo = $this->getDoctrine()->getRepository(Recruiter::class);
         $recruteur = $recruteurRepo->find($id);
 
@@ -237,92 +207,96 @@ class MessageController extends AbstractController
         $category = $CategoryRepo->findAll();
 
         $messages = $user->getMessages();
-        $nonLu = 'non lu';
-        $count = 0;
+        //counting the unreaded messages
+        $messageState = $em->getRepository(Message::class)->count(['userRecipient' => $user, 'state' => 'non lu']);
 
-        foreach ($messages as $message) {
-            if ($message->getState() === $nonLu) {
-                $count++;
-            }
-        }
-        if ($user instanceof Recruiter) {
-            $usernameRecruiter = [];
-            array_push($usernameRecruiter, $user->getEntityName());
-        } elseif ($user instanceof Candidate) {
-            $usernameCandidate = [];
-            array_push($usernameCandidate, $user->getFirstName() . ' ' . $user->getLastName());
-        }
         $formMessage = $this->createForm(MessageType::class, $message, ['data' => $user]);
         $formMessage->handleRequest($request);
-
-        $idCat = 2;
 
         if ($formMessage->isSubmitted() && $formMessage->isValid()) {
 
             $cvFile = $formMessage->get('cvFile')->getData();
             $mediaFile = $formMessage->get('mediaFile')->getData();
+            //saving cvFile
             if ($cvFile) {
                 $cvFilename = pathinfo($cvFile->getClientOriginalName(), PATHINFO_FILENAME);
                 $cv = new Cv();
                 $cv->setCvName($cvFilename . '-' . uniqid() . '.' . $cvFile->guessExtension());
                 try {
-                    $cvFile->move($cv->getCvName());
+                    $cvFile->move($this->getParameter('cv'),$cv->getCvName());
                     $message->setCv($cv);
                     $em->persist($cv);
-                    $em->flush();
                 } catch (FileException $e) {
                     $e->getMessage();
                 }
-            }
+            }//saving mediaFile
             if ($mediaFile) {
                 $mediaFilename = pathinfo($mediaFile->getClientOriginalName(), PATHINFO_FILENAME);
                 $media = new Media();
                 $media->setMediaName($mediaFilename . '-' . uniqid() . '.' . $mediaFile->guessExtension());
                 try {
-                    $mediaFile->move($media->getMediaName());
+                    $mediaFile->move($this->getParameter('media'), $media->getMediaName());
                     $message->setMedia($media);
                     $em->persist($media);
-                    $em->flush();
+
                 } catch (FileException $e) {
                     $e->getMessage();
                 }
             }
-
+                //creating message
             if ($user instanceof Recruiter) {
                 $message->setUserRecipient($candidate);
                 $message->setUserSender($user);
-                $message->setCategory($idCat);
+                $message->setCategory(2);
                 $message->setState('non lu');
                 $message->setCreatedAt(new \DateTimeImmutable());
 
                 $em->persist($message);
                 $em->flush();
+
+                //sending email
+                $email = (new Email())
+                    ->from('team@sowrs.com')
+                    ->to('kennouche.annelise@gmail.com')//todo :email du destinataire
+                    ->subject($message->getSubject())
+                    ->text($this->renderView(
+                    // getting text for email from html page
+                        'textEmail/emailTextCandidate.html.twig',
+                        ['message' => $message]
+                    ), 'text/html');
+
+                $mailer->send($email);
+
             } elseif ($user instanceof Candidate) {
                 $message->setUserRecipient($recruteur);
                 $message->setUserSender($user);
-                $message->setCategory($idCat);
+                $message->setCategory(2);
                 $message->setState('non lu');
                 $message->setCreatedAt(new \DateTimeImmutable());
 
                 $em->persist($message);
                 $em->flush();
+
+                //sending email
+                $email = (new Email())
+                    ->from('team@sowrs.com')
+                    ->to('kennouche.annelise@gmail.com')//todo :email du destinataire
+                    ->subject($message->getSubject())
+                    ->text($this->renderView(
+                    // getting text for email from html page
+                        'textEmail/emailTextRecruiter.html.twig',
+                        ['message' => $message]
+                    ), 'text/html');
+
+                $mailer->send($email);
             }
 
-            //envoi de l'email
-            $email = (new Email())
-                ->from('team@sowrs.com')
-                ->to('kennouche.annelise@gmail.com')//todo :email du destinataire
-                ->subject($message->getSubject())
-                ->text($message->getBody())
-                ->text('Pour consulter votre message, rendez-vous sur www.sowrs.com');
 
-            $mailer->send($email);
-
-            $this->addFlash('succes', 'Votre message a bien été envoyé!');
+            $this->addFlash('success', 'Votre message a bien été envoyé!');
             return $this->render('messaging/sendMessage.html.twig', [
                 'formMessage' => $formMessage->createView(),
                 'message' => $message,
-                'nonlu' => $count
+                'nonlu' => $messageState
             ]);
         }
 
@@ -332,9 +306,7 @@ class MessageController extends AbstractController
             'category' => $category,
             'message' => $message,
             'candidate' => $candidate,
-            'usernameRecruiter' => $usernameRecruiter,
-            'usernameCandidate' => $usernameCandidate,
-            'nonlu' => $count
+            'nonlu' => $messageState
 
         ]);
     }
@@ -344,12 +316,11 @@ class MessageController extends AbstractController
      */
     public function sendMessageResponse($id, EntityManagerInterface $em, Request $request, MailerInterface $mailer): Response
     {
-
         /**
          * @var User $user
          */
         $user = $this->getUser();
-
+        //getting received message for response
         $messageRepo = $this->getDoctrine()->getRepository(Message::class);
         $messageRecu = $messageRepo->find($id);
 
@@ -357,14 +328,9 @@ class MessageController extends AbstractController
         $formMessage->handleRequest($request);
 
         $messages = $user->getMessages();
-        $nonLu = 'non lu';
-        $count = 0;
 
-        foreach ($messages as $message) {
-            if ($message->getState() === $nonLu) {
-                $count++;
-            }
-        }
+        //counting the unreaded messages
+        $messageState = $em->getRepository(Message::class)->count(['userRecipient' => $user, 'state' => 'non lu']);
 
         if ($formMessage->isSubmitted() && $formMessage->isValid()) {
 
@@ -372,33 +338,33 @@ class MessageController extends AbstractController
 
             $cvFile = $formMessage->get('cvFile')->getData();
             $mediaFile = $formMessage->get('mediaFile')->getData();
+            //saving cvFile
             if ($cvFile) {
                 $cvFilename = pathinfo($cvFile->getClientOriginalName(), PATHINFO_FILENAME);
                 $cv = new Cv();
-                $cv->setCvName('file/cv'.$cvFilename . '-' . uniqid() . '.' . $cvFile->guessExtension());
+                $cv->setCvName($cvFilename . '-' . uniqid() . '.' . $cvFile->guessExtension());
                 try {
-                    $cvFile->move($cv->getCvName());
+                    $cvFile->move($this->getParameter('cv'),$cv->getCvName());
                     $message->setCv($cv);
                     $em->persist($cv);
-                    $em->flush();
                 } catch (FileException $e) {
                     $e->getMessage();
                 }
-            }
+            }//saving mediaFile
             if ($mediaFile) {
                 $mediaFilename = pathinfo($mediaFile->getClientOriginalName(), PATHINFO_FILENAME);
                 $media = new Media();
-                $media->setMediaName('file/uploads/'.$mediaFilename . '-' . uniqid() . '.' . $mediaFile->guessExtension());
+                $media->setMediaName($mediaFilename . '-' . uniqid() . '.' . $mediaFile->guessExtension());
                 try {
-                    $mediaFile->move($media->getMediaName());
+                    $mediaFile->move($this->getParameter('media'), $media->getMediaName());
                     $message->setMedia($media);
                     $em->persist($media);
-                    $em->flush();
+
                 } catch (FileException $e) {
                     $e->getMessage();
                 }
             }
-
+            //creating message
             $message->setSubject('Re: ' . $messageRecu->getSubject());
             $message->setCategory($messageRecu->getCategory());
             $message->setUserRecipient($messageRecu->getUserSender());
@@ -410,46 +376,101 @@ class MessageController extends AbstractController
             $em->persist($message);
             $em->flush();
 
+            if ($user instanceof Candidate){
+                //sending email
+                $email = (new Email())
+                    ->from('team@sowrs.com')
+                    ->to('kennouche.annelise@gmail.com')//todo :email du destinataire
+                    ->subject($message->getSubject())
+                    ->text($this->renderView(
+                    // getting text for email from html page
+                        'textEmail/emailTextResponseRecruiter.html.twig',
+                        ['message' => $message,
+                            'messageRecu' => $messageRecu]
+                    ), 'text/html');
 
-            //envoi de l'email
-            $email = (new Email())
-                ->from('team@sowrs.com')
-                ->to('kennouche.annelise@gmail.com')//todo :email du destinataire
-                ->subject($message->getSubject())
-                ->text($message->getBody())
-                ->text('Pour consulter votre message, rendez-vous sur www.sowrs.com');
+                $mailer->send($email);
 
-            $mailer->send($email);
+            }elseif ($user instanceof Recruiter){
+                //sending email
+                $email = (new Email())
+                    ->from('team@sowrs.com')
+                    ->to('kennouche.annelise@gmail.com')//todo :email du destinataire
+                    ->subject($message->getSubject())
+                    ->text($this->renderView(
+                    // getting text for email from html page
+                        'textEmail/emailTextResponseCandidate.html.twig',
+                        ['message' => $message,
+                        'messageRecu' => $messageRecu]
+                    ), 'text/html');
+                $mailer->send($email);
 
-            $this->addFlash('succes', 'Votre message a bien été envoyé!');
+            }
+
+            $this->addFlash('success', 'Votre message a bien été envoyé!');
             return $this->render('messaging/sendMessageResponse.html.twig', [
                 'formMessage' => $formMessage->createView(),
                 'message' => $message,
                 'messageRecu' => $messageRecu,
-                'nonlu' => $count
+                'nonlu' => $messageState
             ]);
         }
 
         return $this->render('messaging/sendMessageResponse.html.twig', [
             'controller_name' => 'MessagingController',
             'formMessage' => $formMessage->createView(),
-            'message' => $message,
+            'message' => $messages,
             'messageRecu' => $messageRecu,
-            'nonlu' => $count
+            'nonlu' => $messageState
         ]);
 
     }
 
 
-   /**
+    /**
      * @Route("/messaging/categoryMessage", name="category_message")
      */
-    public function getCategoryMessage(Request $request): JsonResponse
-    {
+   /* public function getCategoryMessage(Request $request): JsonResponse
+    {  //méthode to sort messages from categories
         dd($request->request);
         return new JsonResponse(['cat' => 's']);
     }
+    {% block javascripts %}
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
+                integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
+                crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.5.4/umd/popper.min.js"></script>
 
+    <script>
+
+        var select = document.querySelector('#category');
+
+        select.addEventListener('change', function (e) {
+            var option = e.target[e.target.selectedIndex];
+            var idCategory = option.value;
+            var payload = {id:idCategory, a: 'demo'};
+
+            var r = fetch('{{ path('category_message') }}',
+                {
+                    method: 'POST',
+                    body: JSON.stringify(payload),
+                    headers : {'Content-type': 'application/json'}
+                })
+                .then(response => console.log(response.json()))
+        });
+
+    </script>
+
+    <div class="col-lg-12 ">
+                            <label for="category">Filtrer: </label>
+                            <select id="category" class="btn required" style="width: 250px; margin: 20px; background-color: white"  name="nameCat">
+                               {% for categor in category %}
+                                    <option value="{{ categor.id }}">{{ categor.name }}</option>
+                                {% endfor %}
+                            </select>
+                    </div>
+{% endblock %}
+*/
 }
 
 

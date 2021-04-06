@@ -6,8 +6,10 @@
     text-align: right;
     display: inline;
 }
-.userButton{
-
+input[type='radio']:before{
+    cursor: pointer;
+    border-radius: 20px;
+    background: #1DCA91 !important;
     padding: 20px;
     font-size: 1em;
     vertical-align: middle;
@@ -15,6 +17,22 @@
     justify-content: center;
     align-items: center;
 }
+
+input[type='radio']:after{
+    cursor: pointer;
+    border-radius: 20px;
+    background-color: #555555 !important;
+    padding: 20px;
+    font-size: 1em;
+    vertical-align: middle;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+input[type='radio']:focus{
+    background-color: #555555 !important;
+}
+
 .form{
     display: flex;
 }

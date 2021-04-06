@@ -27,11 +27,11 @@ class ApplyType extends AbstractType
                     ])
                 ]])
             ->add('cvFile' ,FileType::class,[
-                'label' => 'Importer votre cv',
+                'label' => false,
                 'required' => false,
                 ])
             ->add('mediaFile', FileType::class, [
-                'label' => 'Importer un autre document',
+                'label' => false,
                 'required' => false,
                 ])
         ;

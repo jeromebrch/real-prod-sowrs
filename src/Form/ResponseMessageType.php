@@ -24,13 +24,13 @@ class ResponseMessageType extends AbstractType
                     ])
                 ]])
             ->add('cvFile' ,FileType::class, [
-                'label' => 'Importer votre cv',
+                'label' => false,
                 'data_class'=>null,
                 'required' => false,
             ])
 
             ->add('mediaFile' ,FileType::class, [
-                'label' => 'Importer votre lettre de motivation',
+                'label' => false,
                 'data_class'=>null,
                 'required' => false,
             ]);

@@ -7,13 +7,12 @@
 
     <div class="container p-2 mt-4">
         {{ form_start(formContact, {'attr': {'class': 'row'}}) }}
-            <div class="col-5">
+            <div class="col-lg-5">
                 <div class="row justify-content-center mb-4">
-                    <div class="col-6">
-                        <br>
+                    <div class="col-6">                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   <br>
                         <div style="background: #1dca91; cursor: pointer;border-radius: 20px"
                              class="text-center text-white p-4" name="btnCandidat" id="btnCandidat">
-                            <input style=" visibility: hidden; cursor: pointer" type="radio" id="contactChoice1"
+                            <input style=" visibility: hidden; cursor: pointer; background: #1dca91;border-radius: 20px" type="radio" id="contactChoice1"
                                    name="contact" value="candidat">
                             <label class="d_none" for="contactChoice1"><h3>Je suis</h3>
                                 <h3>Candidat</h3></label>
@@ -34,44 +33,49 @@
                 {{ form_row(formContact.email) }}
                 {{ form_row(formContact.telephone) }}
             </div>
-            <div class="col-7">
+            <div class="col-lg-7">
                 {{ form_row(formContact.message)}}
-                <div class="col-12 input-group-text">{{ form_row(formContact.fichier, {'attr': {'class': 'input-group-text ','id': 'uploadedFile'}})}}
-                    <div class="col-7"></div>
-                    {% if formContact.fichier %}
-                        <a class="messageButtonTrash col-lg-3 m-2 text-center btn align-self-center"
-                           href="{{ path('delete_file')}}" role="button">
-                            <img class="messageImgTrash"  src="{{ asset('img/boostrap/trash-fill-white.svg') }}">
-                        </a>
-                    {% endif %}
+                <div class="col-lg-12 input-group-text">
+                    <label for="uploadedFile" class="btn">+ Ajouter un fichier</label>
+                    {{ form_row(formContact.fichier,{'id': 'uploadedFile'})}}
+                    <div class="col-lg-6">
+                        {% if fichier %}
+                            <img src="{{ asset('img/img_pj.png')}}" style="width: 30px"/>
+                        {% endif %}
+                    </div>
+                    <a class="messageButtonTrash col-lg-3 m-2 text-center btn align-self-center"
+                       href="{{ path('delete_file')}}" role="button">
+                        <img class="messageImgTrash"  src="{{ asset('img/boostrap/trash-fill-white.svg') }}">
+                    </a>
+
                 </div>
-                {{ form_row(formContact.autreFichier, {'attr': {'class': 'd-none', 'id': 'contact_fichier'}}) }}
-                <label for="contact_autreFichier" class="btn required"> + Ajouter un fichier</label>
+                <div class="col-lg-12 input-group-text">
+                {{ form_row(formContact.autreFichier,{'id': 'contact_file'}) }}
+                <label for="contact_file" class="btn required"> + Ajouter un autre fichier</label>
+                    <div class="col-lg-6">
+                        {% if autreFichier %}
+                            <img src="{{ asset('img/img_pj.png')}}" style="width: 30px"/>
+                        {% endif %}
+                    </div>
+                <a class="messageButtonTrash col-lg-3 m-2 text-center btn align-self-center"
+                   href="{{ path('delete_file')}}" role="button">
+                    <img class="messageImgTrash"  src="{{ asset('img/boostrap/trash-fill-white.svg') }}">
+                </a>
+                </div>
             </div>
             <div class="row my-4">
-                <div class="col-6"></div>
-                <div class="g-recaptcha col-4" data-sitekey="6LcqEgIaAAAAAEtDy88bfJXRtrhQDfRxwFD-0_Ca"></div>
-                <div class="col-2">
-                    <button type="submit" class="btn">Envoyer</button>
+                <div class="col-lg-6"></div>
+                <div class="g-recaptcha col-lg-4" data-sitekey="6LcqEgIaAAAAAEtDy88bfJXRtrhQDfRxwFD-0_Ca"></div>
+                <div class="col-lg-2">
+                    <button type="submit" class="btn col-lg-4">Envoyer</button>
                 </div>
             </div>
         {{ form_end(formContact) }}
     </div>
-
 {% endblock %}
 {% block javascripts %}
-<script>
-
-    const elementInputIcon = document.getElementById('iconButton');
-    const elementInputFile = document.getElementById('contact_fichier');
-
-    elementInputIcon.addEventListener("onclick", function () {
-        $(function () {
-            $this = elementInputFile;
-            $this.remove();
-        })
-    });
-
-</script>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="{{ asset('js/register.js') }}"></script>
+    echo '<script type="text/javascript">window.alert("Commencez par nous dire si vous êtes candidat ou recruteur");</script>';
 {% endblock %}
-
