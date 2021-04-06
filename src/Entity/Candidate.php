@@ -2,6 +2,8 @@
 namespace App\Entity;
 
 use App\Repository\CandidateRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -54,6 +56,22 @@ class Candidate extends User
      * @ORM\OneToOne(targetEntity=SocialNetwork::class, inversedBy="candidate", cascade={"persist", "remove"})
      */
     private $socialNetwork;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=Commitment::class, inversedBy="candidates")
+     */
+    private $commitments;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Cause::class, inversedBy="candidates")
+     */
+    private $mainCause;
+
+    public function __construct()
+    {
+        parent::__construct();
+        $this->commitments = new ArrayCollection();
+    }
 
 
 
@@ -180,6 +198,42 @@ class Candidate extends User
     public function setCv(?Cv $cv): self
     {
         $this->cv = $cv;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Commitment[]
+     */
+    public function getCommitments(): Collection
+    {
+        return $this->commitments;
+    }
+
+    public function addCommitment(Commitment $commitment): self
+    {
+        if (!$this->commitments->contains($commitment)) {
+            $this->commitments[] = $commitment;
+        }
+
+        return $this;
+    }
+
+    public function removeCommitment(Commitment $commitment): self
+    {
+        $this->commitments->removeElement($commitment);
+
+        return $this;
+    }
+
+    public function getMainCause(): ?Cause
+    {
+        return $this->mainCause;
+    }
+
+    public function setMainCause(?Cause $mainCause): self
+    {
+        $this->mainCause = $mainCause;
 
         return $this;
     }

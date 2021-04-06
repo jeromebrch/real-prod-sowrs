@@ -42,18 +42,34 @@
                 {# complementary informations #}
                 <div class="row header_presentation">
                     {% if "ROLE_CANDIDATE" in user.roles %}
-                        <p>
-                            {{ user.currentRole }} &bull; {{ user.jobSearch.city }} - {{ user.jobSearch.region }} &bull; {{ user.jobSearch.contractType.wording }} &bull; {{ user.jobSearch.desiredRemuneration.text }}
+                        <p>&bull;
+                            {% if user.currentRole %}
+                                {{ user.currentRole }} &bull;
+                            {% endif %}
+                            {% if user.jobSearch.city and user.jobSearch.region %}
+                                {{ user.jobSearch.city }} - {{ user.jobSearch.region }} &bull;
+                            {% endif %}
+                            {% if user.jobSearch.contractType.wording %}
+                                {{ user.jobSearch.contractType.wording }} &bull;
+                            {% endif %}
+                            {% if user.jobSearch.desiredRemuneration.text %}
+                                {{ user.jobSearch.desiredRemuneration.text }} &bull;
+                            {% endif %}
                         </p>
                     {% else %}
-                        <p>
-                            {{ user.legalStatus.text }} &bull; {{ user.city }} - {{ user.country }} &bull; {{ user.carbonFootPrint }} kg CO² / an
+                        <p>&bull;
+                            {% if user.legalStatus.text %}
+                                {{ user.legalStatus.text }} &bull;
+                            {% endif %}
+                            {% if user.city and user.country %}
+                                {{ user.city }} - {{ user.country }} &bull;
+                            {% endif %}
+                            {% if user.carbonFootPrint %}
+                                {{ user.carbonFootPrint }} kg CO² / an &bull;
+                            {% endif %}
                         </p>
                     {% endif %}
                 </div>
-
-                {# tags #}
-                {# todo : gérer les tags #}
 
                 {# inspiration or main cause #}
                 <div class="row header_presentation">
@@ -74,9 +90,147 @@
     {# CANDIDAT #}
 
     {% if "ROLE_CANDIDATE" in user.roles %}
+        <div class="row">
+            {# LEFT PART #}
+            <div class=" col-lg-8 col-md-12 left_part_profil">
+                {# about the entity #}
+                <div class="container_category_profil">
+                    <div class="row">
+                        <h3 class="profil_category_title">&Agrave; propos de {{ user.firstname }}</h3>
+                    </div>
+                    <div class="row">
+                        <p>
+                            {{ user.about }}
+                        </p>
+                    </div>
+                </div>
+                {# engagements #}
+                <div class="container_category_profil">
+                    <div class="row">
+                        <h3 class="profil_category_title">{{ user.firstname }} est engagé dans :</h3>
+                    </div>
+                    {% if(user.commitments is not empty) %}
+                        <div class="row">
+                            {% for commitment in user.commitments %}
+                                <div class="commitment_candidate col-12">
+                                    <h3>{{ commitment.title }}</h3>
+                                    <p>
+                                        {{ commitment.text }}
+                                    </p>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        <div class="alert alert-success" role="alert">
+                            Le candidat n'a pas encore renseigné ses engagements
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
 
-        {# todo : Anne-Lise #}
-        {# todo : faire la présentation du profil du candidat #}
+            {# RIGHT PART #}
+
+            <div class="col-lg-4 col-md-12 right_part">
+                <div class="row sense_rate_line">
+                    <div class="show_candidate_sens_rate">
+                        <div class="row align-items-center">
+                            <div class="col-lg-2">
+                                <img src="" alt="taux de sens">
+                            </div>
+                            <div class="col-lg-8">
+                                <h5>Taux de sens</h5>
+                                <h5>{{ user.scoring.dominantPourcent }}% {{ user.scoring.dominantSens }}</h5>
+                            </div>
+                            <div class="col-lg-1 ">
+                                <img src="{{ asset('img/boostrap/flecheBas.svg') }}" alt="flèche vers le bas" width="100%"
+                                     style="margin: 0" id="btn_doughnut">
+                            </div>
+                        </div>
+                        <br>
+                        <div class="doughnut col-lg-8 mx-auto pb-1 collapse" id="doughnut">
+                            <canvas id="myChart"></canvas>
+                            <br>
+                        </div>
+                    </div>
+                </div>
+
+                {# complementary informations #}
+
+                {# experience level #}
+                <div class="complementary_infos_container">
+                    <div class="row">
+                        {% if user.levelExperience is not empty %}
+                            <h3 class="profil_category_title_candidate">Niveau d'expérience : <span>{{ user.levelExperience.wording }}</span></h3>
+                        {% else %}
+                            <p class="alert alert-light">
+                                Expérience non renseignée
+                            </p>
+                        {% endif %}
+                    </div>
+                    {# study level #}
+                    <div class="row">
+                        {% if user.levelStudy is not empty %}
+                            <h3 class="profil_category_title_candidate">Niveau d'études : <span>{{ user.levelStudy.wording }}</span></h3>
+                        {% else %}
+                            <p class="alert alert-light">
+                                Niveau d'études non renseignée
+                            </p>
+                        {% endif %}
+                    </div>
+                    {# searched job #}
+                    <div class="row">
+                        {% if user.jobSearch is not empty %}
+                            <h3 class="profil_category_title_candidate">Poste recherché : <span>{{ user.jobSearch.jobTitle }}</span></h3>
+                        {% else %}
+                            <p class="alert alert-light">
+                                Poste recherché non renseignée
+                            </p>
+                        {% endif %}
+                    </div>
+                    {# main cause #}
+                    <div class="row">
+                        {% if user.mainCause is not empty %}
+                            <h3 class="profil_category_title_candidate">Cause défendue : <span>{{ user.mainCause.text }}</span></h3>
+                        {% else %}
+                            <p class="alert alert-light">
+                                Cause défendue non renseignée
+                            </p>
+                        {% endif %}
+                    </div>
+                    {# can work in (country) #}
+                    <div class="row">
+                        {% if user.authorizedCountry is not empty %}
+                            <h3 class="profil_category_title_candidate">Autorisé à travailler : <span>{{ user.authorizedCountry.name }}</span></h3>
+                        {% else %}
+                            <p class="alert alert-light">
+                                Pays non renseigné non renseignée
+                            </p>
+                        {% endif %}
+                    </div>
+                </div>
+                {# social network #}
+                <div class="row container_social_link">
+                    {% if user.socialNetwork %}
+                        {% if user.socialNetwork.website %}
+                            <a href="{{ user.socialNetwork.website }}" target="_blank" class="btn required btn_social"><img src="{{ asset('img/lieux_mini.png') }}" alt="mon facebook" title="Facebook" class="social_link_mini" /></a>
+                        {% endif %}
+                        {% if user.socialNetwork.linkedin %}
+                            <a href="{{ user.socialNetwork.linkedin }}" target="_blank" class="btn required btn_social"><img src="{{ asset('img/linkedin_grist-10mm.png') }}" alt="mon linkedIn" title="LinkedIn" class="social_link_mini" /></a>
+                        {% endif %}
+                        {% if user.socialNetwork.stackOverflow %}
+                            <a href="{{ user.socialNetwork.stackOverflow }}" target="_blank" class="btn required btn_social"><img src="{{ asset('img/logo_stackoverflow_mini.png') }}" alt="mon stackoverflow" title="StackOverflow" class="social_link_mini" /></a>
+                        {% endif %}
+                        {% if user.socialNetwork.github %}
+                            <a href="{{ user.socialNetwork.github }}" target="_blank" class="btn required btn_social"><img src="{{ asset('img/logo_github_mini.png') }}" alt="mon github" title="Github" class="social_link_mini" /></a>
+                        {% endif %}
+                    {% else %}
+                        <p class="alert alert-light">
+                            Entreprise pas présente sur les réseaux
+                        </p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
 
     {% else %}
 

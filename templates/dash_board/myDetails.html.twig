@@ -163,8 +163,43 @@
                                 {{ form_row(modifyUserForm.jobSearch.city) }}
                             </div>
                         </div>
+                        <div class="row">
+                            <div class="col-12 pt-3 cause_choice">
+                                {{ form_row(modifyUserForm.mainCause) }}
+                            </div>
+                        </div>
                         <div class="pt-3">
                             {{ form_row(modifyUserForm.jobSearch.tags) }}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div id="details_engagements_block">
+                            <div class="row">
+                                <p id="p_engagements">
+                                    Engagements quotidiens
+                                </p>
+                            </div>
+                            <div class="row">
+                                <div class="container_commitments_options">
+                                    <div class="col-5">
+                                        <div class="block_new_commitment">
+                                            <label for="commitment">Engagements</label>
+                                            <input type="text" id="commitment" name="input_commitment">
+                                            <textarea id="commitment_text" name="textarea_commitment" rows="5" cols="40">Explication de votre engagement ici</textarea>
+                                            <button type="button" class="btn required btn_save_commitment">Ajouter</button>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <table class="commitment_array col-12">
+                                            {% for commitment in app.user.commitments %}
+                                                <tr>
+                                                    <td>{{ commitment.title }}</td>
+                                                </tr>
+                                            {% endfor %}
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
@@ -315,9 +350,10 @@
                                         <div class="col-6">
                                             <table class="commitment_array col-12">
                                                 {% for commitment in app.user.commitments %}
-                                                <tr>
-                                                    <td>{{ commitment.title }}</td>
-                                                </tr>
+                                                    <tr>
+                                                        <td>{{ commitment.title }}</td>
+                                                        {% set title = commitment.title %}
+                                                    </tr>
                                                 {% endfor %}
                                             </table>
                                         </div>
@@ -436,13 +472,15 @@
             const monBtn = $("button.btn_save_commitment");
             monBtn.on("click", function (){
                 const maValeur = $("#commitment").val();
+                const textareaValue = $("#commitment_text").val();
                 fetch("{{ path('set_commitment') }}", {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json"
                     },
                     body: JSON.stringify({
-                        'commitment': maValeur
+                        'commitment': maValeur,
+                        'textareaValue': textareaValue
                     })
                 })
                     .then(response => response.json())
@@ -450,6 +488,7 @@
                         if (response.success) {
                             alert("L'engagement a été enregistré avec succés !")
                             $('input[name=input_commitment]').val(''); //empty the input for commitment
+                            $('textarea[name=textarea_commitment]').val(''); //empty the input for commitment
                         } else {
                             alert("Merci d'indiquer l'engagement dans le champ pour pouvoir l'ajouter")
                         }

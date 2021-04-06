@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Candidate;
 use App\Entity\Commitment;
 use App\Entity\Recruiter;
 use App\Form\ContactRecruiterType;
@@ -51,6 +52,7 @@ class RecruiterController extends AbstractController
         //récupération de la donnée JSON sous forme de tableau associatif
         $var[] = json_decode($req->getContent(), true);
         $value = $var[0]['commitment'];
+        $textarea = $var[0]['textareaValue'];
 
         //Verify if the commitment already exist
         if ($value){
@@ -58,25 +60,26 @@ class RecruiterController extends AbstractController
             $userCommitment = null;
             foreach($commitments as $commitment){
                 if(strtolower($value) == strtolower($commitment->getTitle())){
+                    if(strtolower($textarea) == strtolower($commitment->getText()))
                     $userCommitment = $commitment;
                 }
             }
             // persist the commitment if he doesn't exist
             if(!$userCommitment){
                 $commitment = new Commitment();
-                $commitment->setTitle(ucwords($value));
+                $commitment->setTitle(ucfirst($value));
+                $commitment->setText(ucfirst($textarea));
                 $em->persist($commitment);
                 $em->flush();
-                $userCommitment = $commitmentRepo->findOneBy(['title' => $value]);
+                $userCommitment = $commitmentRepo->findOneBy(['title' => $value, 'text' => $textarea]);
             }
             // set the commitment to the user
             if($userCommitment){
-                if($user instanceof Recruiter){
+                if($user instanceof Candidate or $user instanceof Recruiter){
                     $user->addCommitment($userCommitment);
                     $em->persist($user);
                     $em->flush();
                 }
-
             }
             $em->flush();
             return new JsonResponse([ //Retourne la réponse JSON en cas de succès

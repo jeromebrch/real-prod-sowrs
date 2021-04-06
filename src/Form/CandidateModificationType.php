@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\BusinessProfile;
 use App\Entity\Candidate;
+use App\Entity\Cause;
 use App\Entity\Country;
 use App\Entity\LevelExperience;
 use App\Entity\LevelStudy;
@@ -90,6 +91,12 @@ class CandidateModificationType extends AbstractType
                 'label' => false,
                 'required' => true,
                 'placeholder' => 'Secteur de formation'
+            ])->add('mainCause', EntityType::class, [
+                'class' => Cause::class,
+                'choice_label' => 'text',
+                'label' => false,
+                'required' => true,
+                'placeholder' => '---Sélectionner une cause principale---'
             ])
             ->add('socialNetwork', SocialNetworkType::class)
 
