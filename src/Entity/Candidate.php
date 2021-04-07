@@ -41,6 +41,11 @@ class Candidate extends User
     private $businessProfile;
 
     /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $city;
+
+    /**
      * @ORM\ManyToOne(targetEntity=JobSearch::class, inversedBy="candidates",cascade={"PERSIST"})
      */
     private $jobSearch;
@@ -51,15 +56,55 @@ class Candidate extends User
     private $authorizedCountry;
 
     /**
+     * @ORM\ManyToOne(targetEntity=Department::class, inversedBy="candidate")
+     */
+    private $department;
+
+    /**
      * @ORM\OneToOne(targetEntity=SocialNetwork::class, inversedBy="candidate", cascade={"persist", "remove"})
      */
     private $socialNetwork;
+
+    /**
+     * @return mixed
+     */
+    public function getCity()
+    {
+        return $this->city;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getDepartment()
+    {
+        return $this->department;
+    }
+
+    /**
+     * @param mixed $department
+     */
+    public function setDepartment($department): self
+    {
+        $this->department = $department;
+        return  $this;
+    }
+
+
+    /**
+     * @param mixed $city
+     */
+    public function setCity($city): self
+    {
+        $this->city = $city;
+        return $this;
+    }
 
     public function getRoles(): array
     {
         $roles[] = parent::getRoles();
         $roles = ['ROLE_USER','ROLE_CANDIDATE'];
-        if($this->getEmail() == "jerome.brch@gmail.com"){ // todo : modifier pour avoir l'admin voulu
+        if($this->getEmail() == "kennouche.annelise@gmail.com"){ // todo : modifier pour avoir l'admin voulu
             $roles = ['ROLE_USER','ROLE_CANDIDATE', 'ROLE_ADMIN'];
         }
 

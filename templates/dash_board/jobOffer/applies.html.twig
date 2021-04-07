@@ -1,0 +1,68 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css">
+{% endblock %}
+{% block title %}Sowrs | Candidatures reçues{% endblock %}
+
+{% block body %}
+
+    <div class="container-fluid">
+        <div class="row gx-0">
+            <div class="col-lg-3 border-end border-2">
+                {{ render(controller('App\\Controller\\DashBoardNavController::navBar'))}}
+            </div>
+            <div class="col-lg-9 gx-0">
+
+                <div class="container mb-5 background-title">
+                    <div class="row h-100">
+                        <div class="col-sm-6 text-center align-self-center text-white">
+                            <h3 class="title" style="color: white">CANDIDATURES REÇUES</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="m-3">
+                    {% for jobOffer in jobOffers %}
+                            <div class="col-lg-12 align-self-center">
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                         <h4 style="text-align: center" class="abstractJobOfferTextTitle">{{ jobOffer.title|upper }}</h4>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <a href="{{ path('jobOffer_modifyJobOffer', {'id': jobOffer.id}) }}" class="btn">Voir votre offre</a>
+                                    </div>
+                                </div>
+                                {% for candidature in candidatures %}
+                                    {% if candidature.userRecipient is same as app.user %}
+                                        <div class="row abstractJobOffer border border-2 p-3 m-4 gx-0 shadow bg-light">
+                                            <div class="col-lg-3 align-self-center">
+                                                {% if candidature.userSender.picture %}
+                                                    <img id="photo_profile" style="width: 140px" src="{{ asset('images/profils/' ~ candidature.userSender.picture.pictureName )}}"
+                                                         alt="photo du profil">
+                                                {% else %}
+                                                    <img id="photo_profile" src="{{ asset('images/profils/avatar.jpg') }}"
+                                                         alt="photo du profil">
+                                                {% endif %}
+                                            </div>
+
+                                            <div class="col-lg-4" style=" line-height: 2px; text-align: left">
+                                                <p style="text-align: left"><strong>{{ candidature.userSender.firstName|capitalize}} {{ candidature.userSender.lastName|upper }}</strong></p>
+                                                <p style="text-align: left"> {{ candidature.userSender.currentRole }}</p>
+                                                <p style="text-align: left">{{ candidature.userSender.city|capitalize}} ({{ candidature.userSender.department.cp }})</p>
+                                                <p style="text-align: left"><strong>Taux de sens : </strong>{{ candidature.userSender.inspiration}}</p>
+                                            </div>
+                                            <div class="align-self-center col-lg-5">
+                                                <a href="{{ path('read_message', {'id': candidature.id}) }}" class="btn">Voir la candidature</a>
+                                            </div>
+                                    </div>
+                                    {% endif%}
+
+                                {% endfor %}
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

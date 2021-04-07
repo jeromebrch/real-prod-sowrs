@@ -37,6 +37,7 @@ class JobOfferRepository extends ServiceEntityRepository
             ->getResult();
     }
 
+
     /**
      * Récupère les offre emploi actives en lien avec une recherche
      * @param SearchJobOffers $search
@@ -92,4 +93,7 @@ class JobOfferRepository extends ServiceEntityRepository
 
             return $query->getQuery()->getResult();
     }
+
+
+
 }

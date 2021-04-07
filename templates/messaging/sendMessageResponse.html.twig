@@ -40,7 +40,7 @@
                                 {% if "ROLE_CANDIDATE" in app.user.roles %}
                                     <p style="text-align: left">À : <strong>{{ messageRecu.userSender.entityName }}</strong></p>
                                 {% elseif "ROLE_RECRUITER" in app.user.roles %}
-                                    <p style="text-align: left">À : <strong>{{ messageRecu.userSender.firstname~message.userSender.lastname }}</strong></p>
+                                    <p style="text-align: left">À : <strong>{{ userSender.firstname}} {{ userSender.lastname }}</strong></p>
                                 {% endif %}
                                     <p class="formText" style="text-align: left">Sujet : <strong>{{ messageRecu.subject }}</strong></p>
                                     <p style="text-align: left">{{ messageRecu.body }}</p>

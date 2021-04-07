@@ -16,7 +16,6 @@ use App\Form\ResponseMessageType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
-use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Mailer\MailerInterface;
@@ -38,7 +37,7 @@ class MessageController extends AbstractController
         //getting sended messages
         $messageRepo = $this->getDoctrine()->getRepository(Message::class);
         $messages = $messageRepo->findByUserRecipient($user);
-        //counting unreded messages
+        //counting unreaded messages
         $messageState = $em->getRepository(Message::class)->count(['userRecipient' => $user, 'state' => 'non lu']);
         $nonlu = 'non lu';
         $categoryRepo = $this->getDoctrine()->getRepository(Category::class);
@@ -150,7 +149,7 @@ class MessageController extends AbstractController
             }
 
             //creating message
-            $message->setSubject('candidature pour l\'annonce' . ' ' . $jobOffer->getTitle());
+            $message->setSubject("candidature pour annonce de " . $jobOffer->getTitle());
             $CategoryRepo = $this->getDoctrine()->getRepository(Category::class);
             $category = $CategoryRepo->find(1);
             $message->setCategory($category);
@@ -324,6 +323,8 @@ class MessageController extends AbstractController
         $messageRepo = $this->getDoctrine()->getRepository(Message::class);
         $messageRecu = $messageRepo->find($id);
 
+        $userSender = $messageRecu->getUserSender();
+
         $formMessage = $this->createForm(ResponseMessageType::class);
         $formMessage->handleRequest($request);
 
@@ -367,7 +368,7 @@ class MessageController extends AbstractController
             //creating message
             $message->setSubject('Re: ' . $messageRecu->getSubject());
             $message->setCategory($messageRecu->getCategory());
-            $message->setUserRecipient($messageRecu->getUserSender());
+            $message->setUserRecipient($userSender);
             $message->setUserSender($user);
             $message->setBody($formMessage['body']->getData());
             $message->setState('non lu');
@@ -384,7 +385,7 @@ class MessageController extends AbstractController
                     ->subject($message->getSubject())
                     ->text($this->renderView(
                     // getting text for email from html page
-                        'textEmail/emailTextResponseRecruiter.html.twig',
+                        'textEmail/emailTextResponseCandidate.html.twig',
                         ['message' => $message,
                             'messageRecu' => $messageRecu]
                     ), 'text/html');
@@ -399,7 +400,7 @@ class MessageController extends AbstractController
                     ->subject($message->getSubject())
                     ->text($this->renderView(
                     // getting text for email from html page
-                        'textEmail/emailTextResponseCandidate.html.twig',
+                        'textEmail/emailTextResponseRecruiter.html.twig',
                         ['message' => $message,
                         'messageRecu' => $messageRecu]
                     ), 'text/html');
@@ -412,7 +413,8 @@ class MessageController extends AbstractController
                 'formMessage' => $formMessage->createView(),
                 'message' => $message,
                 'messageRecu' => $messageRecu,
-                'nonlu' => $messageState
+                'nonlu' => $messageState,
+                'userSender' => $userSender
             ]);
         }
 
@@ -421,7 +423,8 @@ class MessageController extends AbstractController
             'formMessage' => $formMessage->createView(),
             'message' => $messages,
             'messageRecu' => $messageRecu,
-            'nonlu' => $messageState
+            'nonlu' => $messageState,
+            'userSender' => $userSender
         ]);
 
     }

@@ -24,30 +24,30 @@
 
     <div class="row col-lg-3 text-center align-self-center gx-0">
         {% if jobOffer.published == true %}
-            <a class="abstractJobOfferButtonPause col-lg-3 m-2 text-center align-self-center"
+           <span title="Mettre en pause"> <a class="abstractJobOfferButtonPause col-lg-3 m-2 text-center align-self-center"
                href="{{ path('jobOffer_pauseAndPlayOffer', {'id':jobOffer.id}) }}"
                role="button">
                 <img class="abstractJobOfferPause" src="{{ asset('img/boostrap/pause-fill-white.svg') }}"/>
-            </a>
+            </a></span>
         {% else %}
-            <a class="abstractJobOfferButton col-lg-3 m-2 text-center align-self-center"
+            <span title="Mettre sur play"> <a class="abstractJobOfferButton col-lg-3 m-2 text-center align-self-center"
                href="{{ path('jobOffer_pauseAndPlayOffer', {'id':jobOffer.id}) }}"
                role="button">
                 <img class="abstractJobOfferImgPlay" src="{{ asset('img/boostrap/play-fill-white.svg') }}"/>
-            </a>
+            </a></span>
         {% endif %}
 
-        <a class="abstractJobOfferButton col-lg-3 m-2 text-center align-self-center" href="{{ path('jobOffer_refreshOffer', {'id':jobOffer.id}) }}"
+        <span title="raffraîchir"> <a class="abstractJobOfferButton col-lg-3 m-2 text-center align-self-center" href="{{ path('jobOffer_refreshOffer', {'id':jobOffer.id}) }}"
            role="button">
             <img class="abstractJobOfferImgRepeat" src="{{ asset('img/boostrap/arrow-repeat-white.svg') }}"/>
-        </a>
-        <a class="abstractJobOfferButton col-lg-3 m-2 text-center align-self-center" href="{{ path('jobOffer_modifyJobOffer', {'id':jobOffer.id}) }}"
+        </a></span>
+        <span title="modifier"> <a class="abstractJobOfferButton col-lg-3 m-2 text-center align-self-center" href="{{ path('jobOffer_modifyJobOffer', {'id':jobOffer.id}) }}"
            role="button">
             <img class="abstractJobOfferImgPencil" src="{{ asset('img/boostrap/pencil-fill-white.svg') }}"/>
-        </a>
-        <a class="abstractJobOfferButtonTrash col-lg-3 m-2 text-center align-self-center"
+        </a></span>
+        <span title="supprimer"> <a class="abstractJobOfferButtonTrash col-lg-3 m-2 text-center align-self-center"
            href="{{ path('jobOffer_deleteOffer', {'id':jobOffer.id}) }}" role="button">
             <img class="abstractJobOfferImgTrash" src="{{ asset('img/boostrap/trash-fill-white.svg') }}">
-        </a>
+        </a></span>
     </div>
 </div>

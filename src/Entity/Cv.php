@@ -43,7 +43,7 @@ class Cv
     private $updatedAt;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Message::class, inversedBy="cv")
+     * @ORM\OneToOne(targetEntity=Message::class)
      */
     private $message;
 

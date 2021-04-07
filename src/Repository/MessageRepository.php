@@ -2,6 +2,7 @@
 
 namespace App\Repository;
 
+use App\Entity\Category;
 use App\Entity\Message;
 use App\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
@@ -34,6 +35,16 @@ class MessageRepository extends ServiceEntityRepository
             ->getResult()
         ;
     }
+
+    public function findAppliesByJobOffer(Category $category)
+    {
+        return $this->createQueryBuilder('message')
+            ->Where('message.category = candidature')
+            ->setParameter('candidature', $category)
+            ->getQuery()
+            ->getResult();
+    }
+
 
 
 
