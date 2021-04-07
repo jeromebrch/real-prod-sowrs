@@ -18,7 +18,7 @@
                 <div class="container mb-5 background-title">
                     <div class="row h-100">
                         <div class="col-sm-6 text-center align-self-center text-white">
-                            <h3 class="title" style="color: white">CANDIDATURES REÇUES</h3>
+                            <h3 class="title">CANDIDATURES REÇUES</h3>
                         </div>
                     </div>
                 </div>
@@ -27,7 +27,7 @@
                             <div class="col-lg-12 align-self-center">
                                 <div class="row">
                                     <div class="col-lg-6">
-                                         <h4 style="text-align: center" class="abstractJobOfferTextTitle">{{ jobOffer.title|upper }}</h4>
+                                         <h4 class="TextTitle">{{ jobOffer.title|upper }}</h4>
                                     </div>
                                     <div class="col-lg-6">
                                         <a href="{{ path('jobOffer_modifyJobOffer', {'id': jobOffer.id}) }}" class="btn">Voir votre offre</a>
@@ -38,7 +38,7 @@
                                         <div class="row abstractJobOffer border border-2 p-3 m-4 gx-0 shadow bg-light">
                                             <div class="col-lg-3 align-self-center">
                                                 {% if candidature.userSender.picture %}
-                                                    <img id="photo_profile" style="width: 140px" src="{{ asset('images/profils/' ~ candidature.userSender.picture.pictureName )}}"
+                                                    <img id="photo_profile" src="{{ asset('images/profils/' ~ candidature.userSender.picture.pictureName )}}"
                                                          alt="photo du profil">
                                                 {% else %}
                                                     <img id="photo_profile" src="{{ asset('images/profils/avatar.jpg') }}"
@@ -46,11 +46,11 @@
                                                 {% endif %}
                                             </div>
 
-                                            <div class="col-lg-4" style=" line-height: 2px; text-align: left">
-                                                <p style="text-align: left"><strong>{{ candidature.userSender.firstName|capitalize}} {{ candidature.userSender.lastName|upper }}</strong></p>
-                                                <p style="text-align: left"> {{ candidature.userSender.currentRole }}</p>
-                                                <p style="text-align: left">{{ candidature.userSender.city|capitalize}} ({{ candidature.userSender.department.cp }})</p>
-                                                <p style="text-align: left"><strong>Taux de sens : </strong>{{ candidature.userSender.inspiration}}</p>
+                                            <div class="apply_div col-lg-4">
+                                                <p class="apply" ><strong>{{ candidature.userSender.firstName|capitalize}} {{ candidature.userSender.lastName|upper }}</strong></p>
+                                                <p class="apply"> {{ candidature.userSender.currentRole }}</p>
+                                                <p class="apply">{{ candidature.userSender.city|capitalize}} ({{ candidature.userSender.department.cp }})</p>
+                                                <p class="apply"><strong>Taux de sens : </strong>{{ candidature.userSender.inspiration}}</p>
                                             </div>
                                             <div class="align-self-center col-lg-5">
                                                 <a href="{{ path('read_message', {'id': candidature.id}) }}" class="btn">Voir la candidature</a>
