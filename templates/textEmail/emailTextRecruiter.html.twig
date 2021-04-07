@@ -1,4 +1,4 @@
-Hey  {{ message.userSender.firstname}} {{ message.userSender.lastname}},
+    Hey  {{ message.userSender.firstname}} {{ message.userSender.lastname}},
 
 Vous venez de recevoir un message d'un recruteur sur votre messagerie Sowrs
 
@@ -6,7 +6,8 @@ Pour le/la contacter, on vous laisse ses coordonnées :
 Nom :  {{ message.userRecipient.EntityName}}
 Email :  {{ message.userRecipient.username}}
 Téléphone :  {{ message.userRecipient.getPhone}}
-Message :  {{ message.body}}
+Message :
+    {{ message.body}}
 
 Le recruteur trouve toujours son chemin... 🦖 🎢
 

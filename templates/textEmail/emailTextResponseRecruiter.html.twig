@@ -1,12 +1,13 @@
-Hey  {{ message.userSender.firstname}} {{ message.userSender.lastname}},
+    Hey  {{ message.userRecipient.firstname}} {{ message.userRecipient.lastname}},
 
 Vous venez de recevoir une réponse à votre message au sujet de {{ messageRecu.subject }}
 
 Pour le/la contacter, on vous laisse ses coordonnées :
-Nom :  {{ message.userRecipient.EntityName}}
-Email :  {{ message.userRecipient.username}}
-Téléphone :  {{ message.userRecipient.getPhone}}
-Message :  {{ message.body}}
+Nom :  {{ message.userSender.EntityName}}
+Email :  {{ message.userSender.username}}
+Téléphone :  {{ message.userSender.getPhone}}
+Message :
+    {{ message.body}}
 
 Le recruteur trouve toujours son chemin... 🦖 🎢
 

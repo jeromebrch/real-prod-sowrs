@@ -2,12 +2,15 @@
 
 namespace App\Controller;
 
+use App\Entity\Category;
 use App\Entity\JobOffer;
+use App\Entity\Message;
 use App\Form\ApplyType;
 use App\Form\JobOfferType;
 use App\Repository\JobOfferRepository;
 use App\Repository\RecruiterRepository;
 use DateTime;
+use Doctrine\DBAL\Driver\PDOException;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -196,4 +199,24 @@ class JobofferController extends AbstractController
             return $this->render('error/notFound.html.twig');
         }
     }
+
+    /**
+     * @return Response
+     * @Route("/jobOffer/applies", name="apply-list",)
+     */
+    public function showApplies( EntityManagerInterface $em): Response
+    {
+        $user = $this->getUser();
+        $messages = $user->getMessages();
+        $category = $em->getRepository(Category::class)->find(1);
+
+        $candidatures = $category->getMessage();
+        $jobOffer = $user->getJobOffers();
+        return $this->render('dash_board/jobOffer/applies.html.twig',[
+            'messages' => $messages,
+            'candidatures' =>$candidatures,
+            'jobOffers'=> $jobOffer
+        ]);
+    }
+
 }

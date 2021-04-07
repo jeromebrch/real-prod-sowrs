@@ -176,6 +176,7 @@ class Scoring
         }
         return $bigValue;
     }
+
     public function getDominantSens(){
         return $this->greatestValue;
     }
