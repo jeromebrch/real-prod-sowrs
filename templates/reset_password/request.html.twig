@@ -2,17 +2,22 @@
 
 {% block title %}SOWRS - Réinitialisation du mot de passe{% endblock %}
 
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('css/requestPassword.css') }}"/>
+{% endblock %}
+
 {% block body %}
     {% for flashError in app.flashes('reset_password_error') %}
         <div class="alert alert-danger" role="alert">{{ flashError }}</div>
     {% endfor %}
     <h1 class="reset_password_title">Modifiez votre mot de passe</h1>
 
-    <div class="row" class="send_mail_reset">
+    <div class="row send_mail_reset">
         <div class="col-lg-4 offset-lg-4 col-md-8 offset-md-2 col-sm-10 offset-sm-1">
             {{ form_start(requestForm) }}
                 {{ form_row(requestForm.email) }}
-                <div>
+                <div class="block_small">
                     <small>
                         Veuillez indiquer votre adresse mail, et nous vous enverrons un lien pour la réinitialisation du mot de passe.
                     </small>

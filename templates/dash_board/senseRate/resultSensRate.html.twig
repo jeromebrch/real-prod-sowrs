@@ -11,50 +11,199 @@
                {{ render(controller('App\\Controller\\DashBoardNavController::navBar'))}}
             </div>
             <div class="col-lg-9">
-                <div class="">
-                    <div class="matching_back_ground">
-                        <h1 class="matching_title">
-                            Votre entité a un profil à dominante {{ scoringUser.dominantSens }}
-                        </h1>
+                <div class="matching_back_ground">
+                    <h1 class="matching_title">
+                        Votre entité a un profil à dominante {{ scoringUser.dominantSens }}
+                    </h1>
+                    {% if "ROLE_RECRUITER" in app.user.roles %}
                         <div class="matching_text">
-                            <p>Juste avant, nous avons besoins de quelques informations pour créer votre profil
-                                de responsabilité. Sils avaient le choix entre deux emplis, sept jeunes sur dix
-                                privilégieraient celui «&nbsp;qui a du sens&nbsp;», au sein dune entreprise a la
-                                fois humainement et écologiquement responsable.*</p>
-                            <p>Nous vous proposons ici de créer en quelques étapes le profil de responsabilité de
-                                votre entreprise pour attirer les candidats qui soutiennent activement les mèmes
-                                causes et partagent ses valeurs.</p>
-                            <p>*Source&nbsp;: Le Monde</p>
+                            <p>
+                                Ce résultat indique la tendance forte du profil de responsabilité de votre organisme.
+                                Cependant, les différents enjeux de développement durable sont complémentaires et interdépendants.
+                                Le niveau de prédominance respectif de ces différents enjeux indique un taux
+                                de sens propre à chaque entité. Ainsi est-il également nécessaire de prendre en considération
+                                les autres tendances de votre taux de sens.
+                            </p>
+                            <p>
+                                Prenez connaissance de votre profil ci-dessous et découvrez dans la CVtèque
+                                Sowrs les candidats ayant un taux de sens proche de celui de votre entité,
+                                consultez leurs CV et recrutez les !
+                            </p>
                         </div>
-                    </div>
-                    <div class="row">
+                    {% elseif "ROLE_CANDIDATE" in app.user.roles %}
+                        <div class="matching_text">
+                            <p>
+                                Ce résultat indique la tendance forte de votre profil de responsabilité.
+                                Cependant, les différents enjeux de développement durable sont complémentaires
+                                et interdépendants. Le niveau de prédominance respectif de ces différents
+                                enjeux indique un taux de sens propre à chacun. Ainsi est-il également nécessaire
+                                de prendre en considération les autres tendances de votre taux de sens.
+                            </p>
+                            <p>
+                                Prenez connaissance de votre profil ci-dessous et découvrez les entreprises ayant
+                                un taux de sens proche du vôtre, consultez leurs offres d’emploi sur Sowrs et postulez !
+                            </p>
+                        </div>
+                    {% endif %}
+                </div>
+                <div class="row">
                     <div class="col-lg-5">
-                        <p>Le Lorem Ipsum est simplement du faux texte employé dans la composition et la mise en page
-                            avant impression. Le Lorem Ipsum est le faux texte standard de l'imprimerie depuis les
-                            années 1500, quand un imprimeur anonyme assembla ensemble des morceaux de texte pour
-                            réaliser un livre spécimen de polices de texte. Il n'a pas fait que survivre cinq siècles,
-                            mais s'est aussi adapté à la bureautique informatique, sans que son contenu n'en soit
-                            modifié. Il a été popularisé dans les années 1960 grâce à la vente de feuilles Letraset
-                            contenant des passages du Lorem Ipsum, et, plus récemment, par son inclusion dans des
-                            applications de mise en page de texte, comme Aldus PageMaker.</p>
+
+
+                        {# RECRUITER #}
+                        {% if "ROLE_RECRUITER" in app.user.roles and scoringUser.dominantSens == "social" %}
+                            <div class="result_text">
+                                <p>
+                                    Si le taux de sens de votre entité a une dominance sociale,
+                                    c’est que la raison d’être de celle-ci vise à être utile au bien-être de tous.
+                                    Permettre à chacun de pouvoir mener une vie décente, bénéficier des ressources,
+                                    des services de santé et de l’assistance dont il a besoin fait partie
+                                    des missions de votre organisation.
+                                </p>
+                                <p>
+                                    Vous veillez sans doute à offrir à vos collaborateurs une qualité de vie
+                                    au travail satisfaisante et développez différents engagement RSE.
+                                    Votre écosystème est fait d’associations, d’ONG, de sociétés coopératives
+                                    ou encore de startup sociales et solidaires.
+                                </p>
+                            </div>
+                        {% elseif "ROLE_RECRUITER" in app.user.roles and scoringUser.dominantSens == "economique" %}
+                            <div class="result_text">
+                                <p>
+                                    Si le taux de sens de votre entité a une dominance économique,
+                                    c’est que celle-ci a conscience du principe selon lequel la création de
+                                    valeur avec le profit comme seul objectif n’est plus une dynamique viable à long terme.
+                                    Il est ainsi essentiel de disrupter nos manières de produire et
+                                    de consommer pour rendre les activités économiques plus durables.
+                                </p>
+                                <p>
+                                    Commerce équitable, économie circulaire, finance solidaire, low tech,
+                                    agriculture durable, lutte contre le gaspillage sont autant de domaines
+                                    d’engagements familiers de votre entreprise, de ses partenaires ou fournisseurs.
+                                </p>
+                            </div>
+                        {% elseif "ROLE_RECRUITER" in app.user.roles and scoringUser.dominantSens == "environnemental" %}
+                            <div class="result_text">
+                                <p>
+                                    Si le taux de sens de votre entreprise a une dominance environnementale,
+                                    sa raison d’être est d’agir pour la protection de la biodiversité.
+                                    Vous contribuez à un projet qui protège la vie terrestre et aquatique,
+                                    animale et végétale et vous vous entourez de partenaires responsables qui partagent vos convictions.
+                                </p>
+                                <p>
+                                    Que vous participiez au développement des énergies renouvelables,
+                                    à la valorisation des déchets, à la promotion de transports plus respectueux
+                                    de l’environnement ou encore à la sensibilisation aux enjeux environnementaux,
+                                    vous avez décidé d’agir face à l’urgence climatique.
+                                </p>
+                            </div>
+                        {% elseif "ROLE_RECRUITER" in app.user.roles and scoringUser.dominantSens == "societal" %}
+                            <div class="result_text">
+                                <p>
+                                    Si le taux de sens de votre entité a une dominance sociétale,
+                                    sa mission principale vise à créer un monde plus juste et œuvrer ensemble
+                                    à faire valoir les droits humains de manière égalitaire et inclusive.
+                                </p>
+                                <p>
+                                    La paix, la citoyenneté, l’éducation, l’accessibilité et mobilité,
+                                    la lutte contre les discriminations sont autant de domaines qui correspondent aux valeurs
+                                    et engagements de votre entité. Vous faites valoir l’action collective,
+                                    votre écosystème est ainsi proche des institutions, des organismes publics
+                                    ou encore des médias responsables, des ONG, etc.
+                                </p>
+                            </div>
+
+                            {# CANDIDATE #}
+
+                        {% elseif "ROLE_CANDIDATE" in app.user.roles and scoringUser.dominantSens == "economique" %}
+                            <div class="result_text">
+                                <p>
+                                    Si votre profil a une dominance économique,
+                                    vous n’envisagez pas le monde en dehors d’un système basé sur l’économie.
+                                    Cependant vous prenez conscience du principe selon lequel la création de valeur économique
+                                    avec le profit comme seul objectif n’est plus une dynamique viable à long terme.
+                                    Il est ainsi essentiel de disrupter nos manières de produire et de consommer
+                                    pour rendre les activités économiques plus durables.
+                                </p>
+                                <p>
+                                    Vous serez dans votre élément au sein d’une entreprise dont l’activité produit
+                                    des ressources respectueuses telles que le commerce équitable, l’économie circulaire,
+                                    la finance solidaire, l’agriculture durable, la lutte contre le gaspillage, la green tech,
+                                    la bio… Les domaines d’engagements sont nombreux et de nouveaux sont encore à inventer,
+                                    ils n’attendent que vous !
+                                </p>
+                            </div>
+                        {% elseif "ROLE_CANDIDATE" in app.user.roles and scoringUser.dominantSens == "social" %}
+                            <div class="result_text">
+                                <p>
+                                    Si votre profil a une dominance sociale, vous attachez une importance particulière
+                                    au bien-être de tous. Votre empathie vous incite à agir pour que chacun puisse bénéficier
+                                    équitablement des ressources, services et assistances nécessaires à une vie décente.
+                                </p>
+                                <p>
+                                    Le secteur de la santé, du handicap ou encore des services à personnes peuvent répondre
+                                    à nombre de vos préoccupations. Votre épanouissement professionnel passe aussi
+                                    par la qualité de vie au travail et vous serez particulièrement sensible aux différents
+                                    engagements RSE de votre employeur. Ne négligez pas les opportunités d’emploi que
+                                    peuvent offrir les associations ou encore les sociétés coopératives.
+                                </p>
+                            </div>
+                        {% elseif "ROLE_CANDIDATE" in app.user.roles and scoringUser.dominantSens == "environnemental" %}
+                            <div class="result_text">
+                                <p>
+                                    Si votre profil a une dominance environnementale,
+                                    vous considérez qu’il est plus que tant d’agir pour la biodiversité.
+                                    Face à l’urgence climatique dont vous avez pleinement conscience,
+                                    vous souhaitez contribuer à un projet respectueux de l’environnement qui protège
+                                    la vie terrestre et aquatique, animale et végétale et vous entourer de partenaires
+                                    responsables qui partagent vos convictions.
+                                </p>
+                                <p>
+                                    Plusieurs solutions et services peuvent répondre à vos préoccupations
+                                    écologiques telles que le développement des énergies renouvelables,
+                                    la valorisation des déchets, la promotion de transports moins polluants
+                                    ou encore à la sensibilisation aux enjeux environnementaux,
+                                    la gestion d’espaces protégés, etc. L’univers des ONG est une source d’emploi
+                                    à ne pas négliger dans ce secteur.
+                                </p>
+                            </div>
+                        {% elseif "ROLE_CANDIDATE" in app.user.roles and scoringUser.dominantSens == "societal" %}
+                            <div class="result_text">
+                                <p>
+                                    Si votre profil a une dominance sociétale,
+                                    vous donnez la préséance à l’égalité des chances et à l’action collective.
+                                    Faire valoir les droits Humains quels que soit l’âge, le sexe, l’ethnie,
+                                    la condition physique ou l’origine sociale et ce dans un souci d’équité est crucial pour vous.
+                                </p>
+                                <p>
+                                    La paix, la citoyenneté, l’éducation, l’accessibilité et mobilité,
+                                    la lutte contre les discriminations sont autant de domaines qui vous permettront
+                                    d’avoir un impact positif sur la société et de vous investir dans un projet
+                                    professionnel épanouissant. Relais de ces valeurs, les médias responsables
+                                    mais aussi l’engagement juridique et politique peuvent vous correspondre.
+                                    Les institutions et organismes publics sont de potentiels employeurs ou partenaires
+                                    à prendre sérieusement en considération.
+                                </p>
+                            </div>
+                        {% endif %}
+
+
                     </div>
                     <div class="col-lg-7">
                         <h3 class="result_sens_rate_h3">Vous matchez avec </h3><br>
-
-
                         {% for user in matchingArray %}
-
-                                {% include 'dash_board/senseRate/_cardMatch.html.twig' with { user: user } only %}
-
+                            {% include 'dash_board/senseRate/_cardMatch.html.twig' with { user: user } only %}
                         {% endfor %}
-
                         <hr>
                     </div>
-                    </div>
-            <h3 class="result_sens_rate_h3">Vos résultats en détails</h3><br>
-                <div class="doughnut">
-                    <canvas id="myChart"></canvas>
                 </div>
+                <div class="result_block">
+                    <h3 class="result_sens_rate_h3">Vos résultats en détails</h3><br>
+                        <div class="doughnut">
+                            <canvas id="myChart"></canvas>
+                        </div>
+                </div>
+            </div>
         </div>
     </div>
 {% endblock %}

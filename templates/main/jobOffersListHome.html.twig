@@ -6,8 +6,8 @@
     {{ parent() }}
     <link rel="stylesheet" href="{{ asset('css/jobOffersList.css') }}">
 {% endblock %}
-{% block body %}
 
+{% block body %}
     <div class="container">
         <div class="row p-3">
             <div class="col-lg-4 p-3">
@@ -38,15 +38,11 @@
                         {{ form_row(formSearchHome.freshness) }}
                     </div>
                     <div class="position-static">
-                        <button type="submit" class="btn_jobOffer_filter">
-                            Rechercher
-                        </button>
+                        <button type="submit" class="btn_jobOffer_filter">Rechercher</button>
                     </div>
                     {{ form_end(formSearchHome) }}
                 </div>
             </div>
-
-
             <div class="col-lg-8 p-3">
                 {% for jobOffer in jobOffers %}
                     <div class="job_offer_row bg-white p-3 mb-3">

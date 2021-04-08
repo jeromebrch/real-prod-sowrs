@@ -75,9 +75,13 @@
                 <div class="row header_presentation">
                     <p>
                         {% if "ROLE_CANDIDATE" in user.roles %}
-                            "{{ user.inspiration }}"
+                            {% if user.inspiration %}
+                                "{{ user.inspiration }}"
+                            {% endif %}
                         {% else %}
-                            Cause : {{ user.mainCause.text }}
+                            {% if user.mainCause %}
+                                Cause : {{ user.mainCause.text }}
+                            {% endif %}
                         {% endif %}
                     </p>
                 </div>
@@ -99,9 +103,15 @@
                         <h3 class="profil_category_title">&Agrave; propos de {{ user.firstname }}</h3>
                     </div>
                     <div class="row">
+                        {% if user.about %}
                         <p>
                             {{ user.about }}
                         </p>
+                        {% else %}
+                            <p class="alert alert-success">
+                                Vous n'avez pas encore défini l'À propos
+                            </p>
+                        {% endif %}
                     </div>
                 </div>
                 {# engagements #}
@@ -122,7 +132,7 @@
                         </div>
                     {% else %}
                         <div class="alert alert-success" role="alert">
-                            Le candidat n'a pas encore renseigné ses engagements
+                            Vous n'avez pas encore renseigné vos engagements
                         </div>
                     {% endif %}
                 </div>
@@ -133,6 +143,7 @@
             <div class="col-lg-4 col-md-12 right_part">
                 <div class="row sense_rate_line">
                     <div class="show_candidate_sens_rate">
+                        {% if user.scoring %}
                         <div class="row align-items-center">
                             <div class="col-lg-2">
                                 <img src="" alt="taux de sens">
@@ -142,8 +153,8 @@
                                 <h5>{{ user.scoring.dominantPourcent }}% {{ user.scoring.dominantSens }}</h5>
                             </div>
                             <div class="col-lg-1 ">
-                                <img src="{{ asset('img/boostrap/flecheBas.svg') }}" alt="flèche vers le bas" width="100%"
-                                     style="margin: 0" id="btn_doughnut">
+                                <img src="{{ asset('img/boostrap/flecheBas.svg') }}" alt="flèche vers le bas" title="Détails taux de sens"
+                                     id="btn_doughnut">
                             </div>
                         </div>
                         <br>
@@ -151,6 +162,11 @@
                             <canvas id="myChart"></canvas>
                             <br>
                         </div>
+                        {% else %}
+                            <p class="alert alert-success">
+                                Vous n'avez pas encore calculé votre taux de sens !
+                            </p>
+                        {% endif %}
                     </div>
                 </div>
 
@@ -162,9 +178,7 @@
                         {% if user.levelExperience is not empty %}
                             <h3 class="profil_category_title_candidate">Niveau d'expérience : <span>{{ user.levelExperience.wording }}</span></h3>
                         {% else %}
-                            <p class="alert alert-light">
-                                Expérience non renseignée
-                            </p>
+                            <h3 class="profil_category_title_candidate">Niveau d'expérience : <span>Non renseigné</span></h3>
                         {% endif %}
                     </div>
                     {# study level #}
@@ -172,9 +186,7 @@
                         {% if user.levelStudy is not empty %}
                             <h3 class="profil_category_title_candidate">Niveau d'études : <span>{{ user.levelStudy.wording }}</span></h3>
                         {% else %}
-                            <p class="alert alert-light">
-                                Niveau d'études non renseignée
-                            </p>
+                            <h3 class="profil_category_title_candidate">Niveau d'études : <span>Non renseigné</span></h3>
                         {% endif %}
                     </div>
                     {# searched job #}
@@ -182,9 +194,7 @@
                         {% if user.jobSearch is not empty %}
                             <h3 class="profil_category_title_candidate">Poste recherché : <span>{{ user.jobSearch.jobTitle }}</span></h3>
                         {% else %}
-                            <p class="alert alert-light">
-                                Poste recherché non renseignée
-                            </p>
+                            <h3 class="profil_category_title_candidate">Poste recherché : <span>Non renseigné</span></h3>
                         {% endif %}
                     </div>
                     {# main cause #}
@@ -192,9 +202,7 @@
                         {% if user.mainCause is not empty %}
                             <h3 class="profil_category_title_candidate">Cause défendue : <span>{{ user.mainCause.text }}</span></h3>
                         {% else %}
-                            <p class="alert alert-light">
-                                Cause défendue non renseignée
-                            </p>
+                            <h3 class="profil_category_title_candidate">Cause défendue : <span>Non renseigné</span></h3>
                         {% endif %}
                     </div>
                     {# can work in (country) #}
@@ -202,9 +210,7 @@
                         {% if user.authorizedCountry is not empty %}
                             <h3 class="profil_category_title_candidate">Autorisé à travailler : <span>{{ user.authorizedCountry.name }}</span></h3>
                         {% else %}
-                            <p class="alert alert-light">
-                                Pays non renseigné non renseignée
-                            </p>
+                            <h3 class="profil_category_title_candidate">Autorisé à travailler : <span>Non renseigné</span></h3>
                         {% endif %}
                     </div>
                 </div>
@@ -245,9 +251,15 @@
                         <h3 class="profil_category_title">&Agrave; propos de {{ user.entityName }}</h3>
                     </div>
                     <div class="row">
-                        <p>
-                            {{ user.about }}
-                        </p>
+                        {% if user.about %}
+                            <p>
+                                {{ user.about }}
+                            </p>
+                        {% else %}
+                            <p class="alert alert-success">
+                                Vous n'avez pas encore défini l'À propos de votre entreprise
+                            </p>
+                        {% endif %}
                     </div>
                 </div>
                 {# reason to be #}
@@ -256,28 +268,54 @@
                         <h3 class="profil_category_title">Raison d'être de {{ user.entityName }}</h3>
                     </div>
                     <div class="row">
-                        <p>
-                            {{ user.reasonToBe }}
-                        </p>
+                        {% if user.reasonToBe %}
+                            <p>
+                                {{ user.reasonToBe }}
+                            </p>
+                        {% else %}
+                            <p class="alert alert-success">
+                                Vous n'avez pas encore défini la raison d'être de votre entreprise
+                            </p>
+                        {% endif %}
                     </div>
                 </div>
-                {# engagements #}
+                {# jobOffers #}
                 <div class="container_category_profil">
                     <div class="row">
-                        <h3 class="profil_category_title">Engagements de {{ user.entityName }}</h3>
+                        <h3 class="profil_category_title">Vos offres d'emploi en ligne</h3>
                     </div>
-
-                    {% if(user.commitments is not empty) %}
+                    {% if(user.jobOffers is not empty) %}
                         <div class="row">
-                            {% for commitment in user.commitments %}
-                                <div class="container_commitment col-6">
-                                    {{ commitment.title }}
-                                </div>
-                            {% endfor %}
+                            <div class="container_all_job_offer col-12">
+                                {% for jobOffer in user.jobOffers %}
+                                    <div class="row">
+                                        <div class="container_job_offer col-12">
+                                            <div class="row col-12">
+                                                <div class="col-10">
+                                                    <h3 class="job_offer_title">{{ jobOffer.title }}</h3>
+                                                </div>
+                                                <div class="col-2">
+                                                    <div class="contract_type">{{ jobOffer.contractType.wording }}</div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-12">
+                                                    <h4 class="localisation_job_offer">{{ jobOffer.city }} - {{ jobOffer.country.name }}</h4>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-3 pt-3">
+                                                    <a class="btn required link_offer_details" href="{{ path('jobOffer_show', {"id":jobOffer.id}) }}">Voir l'offre</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                            </div>
                         </div>
                     {% else %}
                         <div class="alert alert-success" role="alert">
-                            Le recruteur n'a pas encore renseigné ses engagements
+                            Vous n'avez pas d'offre d'emploi en ligne
                         </div>
                     {% endif %}
 
@@ -289,24 +327,30 @@
             <div class="col-lg-4 col-md-12 right_part">
                 <div class="row sense_rate_line">
                     <div class="show_candidate_sens_rate">
-                        <div class="row align-items-center">
-                            <div class="col-lg-2">
-                                <img src="" alt="taux de sens">
+                        {% if user.scoring %}
+                            <div class="row align-items-center">
+                                <div class="col-lg-2">
+                                    <img src="" alt="taux de sens">
+                                </div>
+                                <div class="col-lg-8">
+                                    <h5>Taux de sens</h5>
+                                    <h5>{{ user.scoring.dominantPourcent }}% {{ user.scoring.dominantSens }}</h5>
+                                </div>
+                                <div class="col-lg-1 ">
+                                    <img src="{{ asset('img/boostrap/flecheBas.svg') }}" alt="flèche vers le bas"
+                                         id="btn_doughnut">
+                                </div>
                             </div>
-                            <div class="col-lg-8">
-                                <h5>Taux de sens</h5>
-                                <h5>{{ user.scoring.dominantPourcent }}% {{ user.scoring.dominantSens }}</h5>
-                            </div>
-                            <div class="col-lg-1 ">
-                                <img src="{{ asset('img/boostrap/flecheBas.svg') }}" alt="flèche vers le bas" width="100%"
-                                     style="margin: 0" id="btn_doughnut">
-                            </div>
-                        </div>
-                        <br>
-                        <div class="doughnut col-lg-8 mx-auto pb-1 collapse" id="doughnut">
-                            <canvas id="myChart"></canvas>
                             <br>
-                        </div>
+                            <div class="doughnut col-lg-8 mx-auto pb-1 collapse" id="doughnut">
+                                <canvas id="myChart"></canvas>
+                                <br>
+                            </div>
+                        {% else %}
+                            <p class="alert alert-success">
+                                Vous n'avez pas encore calculé taux de sens de votre entreprise !
+                            </p>
+                        {% endif %}
                     </div>
                 </div>
 
@@ -315,37 +359,61 @@
                 {# secondary causes #}
                 <div class="complementary_infos_container">
                     <div class="row">
+                        <h3 class="profil_category_title_bottom">Causes secondaires : </h3>
                         {% if user.secondaryCauses is not empty %}
-                            <h3 class="profil_category_title_bottom">Causes secondaires : </h3>
-                            <p class="other_content_title">
-                                <ul class="list-group">
-                                    {% for secondaryCause in user.secondaryCauses %}
-                                        <li class="list-group-item col-8 offset-2 list_causes">{{ secondaryCause.text }}</li>
-                                    {% endfor %}
-                                </ul>
-                            </p>
-                        {% else %}
-                            <p class="alert alert-light">
-                                Pas de cause secondaire défini
-                            </p>
-                        {% endif %}
-                    </div>
-
-                    {# recognitions #}
-                    <div class="row">
-                        {% if user.recognitions is not empty %}
-                            <h3 class="profil_category_title_bottom">Reconnaissances : </h3>
-                            <p class="other_content_title">
-                            <ul class="list-group">
-                                {% for recognition in user.recognitions %}
-                                    <li class="list-group-item col-8 offset-2 list_causes">{{ recognition.description }}</li>
+                            <ul>
+                                {% for secondaryCause in user.secondaryCauses %}
+                                    <li class="list_line">{{ secondaryCause.text }}</li>
                                 {% endfor %}
                             </ul>
-                            </p>
                         {% else %}
-                            <p class="alert alert-light">
-                                Pas de reconnaissance défini
-                            </p>
+                            <ul>
+                                <li class="list_line no_submit">Non renseigné</li>
+                            </ul>
+                        {% endif %}
+                    </div>
+                </div>
+                {# engagements #}
+                <div class="complementary_infos_container">
+                    <div class="row">
+                        <h3 class="profil_category_title_bottom">Engagements : </h3>
+                        {% if user.commitments is not empty %}
+                            <ul>
+                                {% for commitment in user.commitments %}
+                                    <li class="list_line">{{ commitment.title }}</li>
+                                {% endfor %}
+                            </ul>
+                        {% else %}
+                            <ul>
+                                <li class="list_line no_submit">Non renseigné</li>
+                            </ul>
+                        {% endif %}
+                    </div>
+                </div>
+                {# recognitions #}
+                <div class="complementary_infos_container">
+                    <div class="row">
+                        <h3 class="profil_category_title_bottom">Reconnaissances : </h3>
+                        {% if user.recognitions is not empty %}
+                            <ul>
+                                {% for recognition in user.recognitions %}
+                                    <li class="list_line">{{ recognition.description }}</li>
+                                {% endfor %}
+                            </ul>
+                        {% else %}
+                            <ul>
+                                <li class="list_line no_submit">Non renseigné</li>
+                            </ul>
+                        {% endif %}
+                    </div>
+                </div>
+                {# carbon footprint #}
+                <div class="complementary_infos_container">
+                    <div class="row">
+                        {% if user.carbonFootPrint %}
+                            <h3 class="profil_category_title_bottom">Empreinte carbone : <span>{{ user.carbonFootPrint }} kg de CO² / an</span></h3>
+                        {% else %}
+                            <h3 class="profil_category_title_bottom">Empreinte carbone : <span>Non renseigné</span></h3>
                         {% endif %}
                     </div>
                 </div>
@@ -370,48 +438,47 @@
                         </p>
                     {% endif %}
                 </div>
-
             </div>
         </div>
-
-
     {% endif %}
 {% endblock %}
 
 {% block javascripts %}
     {{ parent() }}
-    <script>
-        const btn_doughnut = document.getElementById('btn_doughnut');
-        const doughnut = document.getElementById('doughnut');
+    {% if user.scoring %}
+        <script>
+            const btn_doughnut = document.getElementById('btn_doughnut');
+            const doughnut = document.getElementById('doughnut');
 
-        btn_doughnut.addEventListener('click', function (e) {
-            e.currentTarget.classList.toggle('rotate');
-            doughnut.classList.toggle('collapse');
-        })
+            btn_doughnut.addEventListener('click', function (e) {
+                e.currentTarget.classList.toggle('rotate');
+                doughnut.classList.toggle('collapse');
+            })
 
 
-        var ctx = document.getElementById('myChart');
-        var myChart = new Chart(ctx, {
-            type: 'doughnut',
-            data: {
-                labels: ['Social', 'Environnement', 'Economie', 'Societal'],
-                datasets: [{
-                    label: '# of Votes',
-                    data: [
-                        {{ user.scoring.social }},
-                        {{ user.scoring.environment }},
-                        {{ user.scoring.economy }},
-                        {{ user.scoring.societal }}
-                    ],
-                    backgroundColor: [
-                        'rgba(161, 14, 214, 0.53)',
-                        'rgba(44, 168, 19, 0.68)',
-                        'rgba(89, 121, 252, 1)',
-                        'rgba(252, 187, 89, 0.71)',
-                    ],
-                }]
-            },
-            options: {}
-        });
-    </script>
+            var ctx = document.getElementById('myChart');
+            var myChart = new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Social', 'Environnement', 'Economie', 'Societal'],
+                    datasets: [{
+                        label: '# of Votes',
+                        data: [
+                            {{ user.scoring.social }},
+                            {{ user.scoring.environment }},
+                            {{ user.scoring.economy }},
+                            {{ user.scoring.societal }}
+                        ],
+                        backgroundColor: [
+                            'rgba(161, 14, 214, 0.53)',
+                            'rgba(44, 168, 19, 0.68)',
+                            'rgba(89, 121, 252, 1)',
+                            'rgba(252, 187, 89, 0.71)',
+                        ],
+                    }]
+                },
+                options: {}
+            });
+        </script>
+    {% endif %}
 {% endblock %}

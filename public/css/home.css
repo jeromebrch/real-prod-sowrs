@@ -5,15 +5,18 @@
     height: 100%;
     font-family: 'KohinoorBangla', Arial, serif;
 }
-
 .Background-jobOffer-filter-home {
     background: rgba(255, 255, 255, 0.2);
 }
-
 .field-jobOffer-filter-home {
     opacity: 1;
 }
-
+.home_subtitle{
+    text-align: center;
+}
+.home_link{
+    text-decoration: none;
+}
 .btn-filter-home {
     font-family: 'KohinoorBangla', Arial, serif;
     width: 100%;
@@ -25,26 +28,19 @@
     color: white;
     margin: auto;
 }
-
-
-
 .title-background {
     font-size: 2.5em;
     font-weight: bolder;
 }
-
 .subtitle-background {
     font-size: 2em;
 }
-
 .sub-subtitle-background {
     font-size: 1.2em;
 }
-
 .test {
     opacity: 1;
 }
-
 .text-white {
     font-family: 'KohinoorBangla', Arial, serif;
     font-size: 1.1em;
@@ -54,10 +50,10 @@
     font-size: 1.1em;
     color: #1DCA91;
 }
-
 .home_btn_candidate_recruiter {
     background: none;
     border: 1px solid white;
+    width: 100%;
 }
 .home_btn_candidate_recruiter:hover {
     background: white;

@@ -160,7 +160,7 @@
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    color: #313131;
+    color: #937FA4;
     text-decoration: none;
     font-family: 'KohinoorBangla', Arial, serif;
     margin-top: 20px;
@@ -176,7 +176,10 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
+}
+.block_new_commitment label{
+    color: #555555;
 }
 .block_new_commitment *{
     margin-bottom: 20px;
@@ -188,13 +191,63 @@
 .commitment_array tr td{
     padding: 5px;
     background-color: white;
+    color: #937FA4;
 }
 .cause_choice{
     display: flex;
     flex-direction: row;
     justify-content: center;
 }
-
+.my_commitment_title{
+    color: #937FA4;
+    font-family: 'KohinoorBangla', Arial, serif;
+    font-size: 1.2em;
+    font-weight: normal;
+    text-align: left;
+    padding: 20px;
+}
+.label_commitment{
+    color: #937FA4;
+    font-family: 'KohinoorBangla', Arial, serif;
+    font-size: 1.2em;
+    font-weight: normal;
+    text-align: left;
+    padding: 20px;
+}
+#commitment{
+    margin: 0;
+    width: 311px;
+}
+#commitment_text{
+    margin: 0;
+    color: #55555588;
+}
+.btn_save_commitment{
+    margin-top: 20px;
+}
+.container_section{
+    padding: 30px;
+    margin-top: 20px;
+    background-color: white;
+    border-radius: 30px;
+}
+.about_information{
+    color: #937FA4;
+    font-family: 'KohinoorBangla', Arial, serif;
+    font-size: 0.9em;
+    text-align: left;
+}
+body .select2-container--default .select2-selection--single .select2-selection__rendered{
+    color: #937FA4;
+}
+body .form-control{
+    color: #937FA4;
+}
+.container_input_file_proof{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
 @media screen and (max-width: 520px){
     body .details_checkbox_input{
         padding: 0;

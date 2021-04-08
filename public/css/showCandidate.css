@@ -1,4 +1,4 @@
-.show_candidate_jumbotron {
+body .show_candidate_jumbotron {
     background: #827399;
     margin-bottom: 5em;
 }
@@ -10,10 +10,16 @@
 #show_candidate_photo_profile {
     text-align: center;
     margin: 0em;
+    width: 100%;
+}
+.candidate_picture{
+    width: 100%;
+    height:100%;
 }
 .show_candidate_jumbotron_infos {
     color: #dfdfdf;
     text-align: center;
+    min-height: 55px;
 }
 .show_candidate_jumbotron_inspiration {
     color: #e0e0e0;
@@ -28,6 +34,14 @@
 }
 #btn_doughnut {
     cursor: pointer;
+    margin: 0;
+}
+.block_img_sense_rate{
+    height: 4em;
+}
+.sense_rate_logo{
+    width: 100%;
+    height: 100%;
 }
 .rotate {
     transform: rotate(180deg);

@@ -1,7 +1,10 @@
 .login_title {
     text-align: center;
 }
-
+.login_title h3{
+    font-family: 'KohinoorBangla', Arial, serif;
+    color: #937FA4;
+}
 .btn_login {
     width: 100%;
     margin: 0;
@@ -13,4 +16,24 @@
 }
 .mdp_login{
     font-weight: bold;
+}
+.login_form label{
+    font-family: 'KohinoorBangla', Arial, serif;
+    color: #937FA4;
+    padding-top: 20px;
+    padding-left: 10px;
+    padding-bottom: 5px;
+}
+.container_options_login a{
+    font-family: 'KohinoorBangla', Arial, serif;
+    color: #937FA4;
+    text-align: right;
+    padding-left: 60px;
+}
+.container_options_login label{
+    padding-left: 40px;
+}
+.link_create{
+    text-align: center;
+    color: #555555;
 }

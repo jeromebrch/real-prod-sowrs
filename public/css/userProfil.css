@@ -48,6 +48,11 @@
 .profil_category_title_bottom{
     color: #1DCA91;
     font-family: 'KohinoorBangla', Arial, serif;
+    font-size: 1.2em;
+}
+.profil_category_title_bottom span{
+    color: #937FA4;
+    font-size: 0.8em;
 }
 .container_category_profil{
     padding: 35px;
@@ -61,10 +66,44 @@
 .container_sense_rate{
     margin: 40px;
 }
-.container_commitment{
-    padding: 10px;
+.container_all_job_offer{
+    padding: 30px;
     border: 1px solid #1dca9133;
+    border-radius: 30px;
     background-color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.container_job_offer{
+    border: 1px solid #937FA455;
+    padding: 20px;
+    border-radius: 30px;
+    margin-bottom: 20px;
+}
+.job_offer_title{
+    color: #937FA4;
+    font-size: 1.3em;
+    font-family: 'KohinoorBangla', Arial, serif;
+}
+.contract_type{
+    padding: 10px;
+    border-radius: 30px;
+    background-color: #1dca91;
+    color: white;
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+.localisation_job_offer{
+    font-family: 'KohinoorBangla', Arial, serif;
+    font-size: 1.1em;
+    color: #555555;
+    font-weight: normal;
+}
+.link_offer_details{
+    text-align: center;
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -190,6 +229,18 @@
     font-family: 'KohinoorBangla', Arial, serif;
     font-size: 0.8em;
     color: #937FA4;
+}
+#btn_doughnut{
+    margin: 0;
+}
+.list_line{
+    list-style: none;
+    padding-left: 15px;
+    font-size: 0.9em;
+    color: #555555;
+}
+.no_submit{
+    color: #B0413E;
 }
 
 @media screen and (max-width: 992px) {

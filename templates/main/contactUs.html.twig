@@ -2,12 +2,29 @@
 
 {% block title %}Sowrs | Contactez-nous{% endblock %}
 
-
 {% block body %}
-
     <div class="container p-2 mt-4">
         {{ form_start(formContact, {'attr': {'class': 'row'}}) }}
             <div class="col-lg-5">
+                <div class="row justify-content-center mb-4">
+                    <div class="col-6"><br>
+                        <div class="text-center text-white p-4" name="btnCandidat" id="btnCandidat">
+                            <input type="radio" id="contactChoice1"
+                                   name="contact" value="candidat">
+                            <label class="d_none" for="contactChoice1"><h3>Je suis</h3>
+                                <h3>Candidat</h3></label>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <br>
+                        <div class="text-center text-white p-4" name="btnRecruteur" id="btnRecruteur">
+                            <input type="radio" id="contactChoice2"
+                                   name="contact" value="candidat">
+                            <label class="d_none" for="contactChoice2"> <h3>Je suis</h3>
+                                <h3>Recruteur</h3></label>
+                        </div>
+                    </div>
+                </div>
                 {{ form_row(formContact.nom) }}
                 {{ form_row(formContact.email) }}
                 {{ form_row(formContact.telephone) }}
@@ -16,26 +33,25 @@
                     {{ form_row(formContact.fichier,{'id': 'uploadedFile'})}}
                     <div class="col-lg-4">
                         {% if fichier %}
-                            <img src="{{ asset('img/img_pj.png')}}" style="width: 30px"/>
+                            <img alt="logo_pièce_jointe" title="Pièce jointe" src="{{ asset('img/img_pj.png')}}" class="img_file" />
                         {% endif %}
                     </div>
                     <a class="messageButtonTrash col-lg-3 m-2 text-center btn align-self-center"
                        href="{{ path('delete_file')}}" role="button">
-                        <img class="messageImgTrash"  src="{{ asset('img/boostrap/trash-fill-white.svg') }}">
+                        <img alt="logo_poubelle" title="Poubelle" class="messageImgTrash"  src="{{ asset('img/boostrap/trash-fill-white.svg') }}">
                     </a>
-
                 </div>
                 <div class="col-lg-12 input-group-text">
                     {{ form_row(formContact.autreFichier,{'id': 'contact_file'}) }}
                     <label for="contact_file" class="btn required"> + Ajouter un autre fichier</label>
                     <div class="col-lg-4">
                         {% if autreFichier %}
-                            <img src="{{ asset('img/img_pj.png')}}" style="width: 30px"/>
+                            <img alt="logo_pièce_jointe" title="Pièce jointe" src="{{ asset('img/img_pj.png')}}" class="img_file"/>
                         {% endif %}
                     </div>
                     <a class="messageButtonTrash col-lg-3 m-2 text-center btn align-self-center"
                        href="{{ path('delete_file')}}" role="button">
-                        <img class="messageImgTrash"  src="{{ asset('img/boostrap/trash-fill-white.svg') }}">
+                        <img alt="logo_poubelle" title="Poubelle" class="messageImgTrash"  src="{{ asset('img/boostrap/trash-fill-white.svg') }}">
                     </a>
                 </div>
             </div>
@@ -50,4 +66,11 @@
             </div>
         {{ form_end(formContact) }}
     </div>
+{% endblock %}
+
+{% block javascripts %}
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="{{ asset('js/register.js') }}"></script>
+    <script type="text/javascript">window.alert("Commencez par nous dire si vous êtes candidat ou recruteur");</script>;
 {% endblock %}

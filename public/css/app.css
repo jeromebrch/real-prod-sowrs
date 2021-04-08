@@ -71,3 +71,20 @@ hr {
     font-size: 1.4em;
     color: #B0413E;
 }
+.btn_postuler{
+    width: 225px;
+    border-radius: 50px;
+    background: #1DCA91;
+    border: none;
+    text-decoration: none;
+    padding: 10px;
+    font-size: larger;
+    color: white;
+    margin: auto;
+}
+input[type="text"]{
+    color: #937FA4;
+}
+input[type="email"], input[type="tel"]{
+    color: #937FA4;
+}

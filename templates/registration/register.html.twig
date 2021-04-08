@@ -2,19 +2,18 @@
 
 {% block title %}Sowrs | Inscription{% endblock %}
 
-
+{% block stylesheets %}
+    {{ parent() }}
+{% endblock %}
 
 {% block body %}
-
-
     <div class="col-10 offset-1 pt-4 pb-3 register_title">
         <h1>Bonjour et bienvenue sur SOWRS </h1>
         <h2>On fait connaissance ?</h2>
     </div>
-
     <div class="row">
-        <div class="col-4 offset-2 col-md-2 offset-md-1 p-1 col-lg-2 offset-lg-2" style="text-align: center; cursor: pointer">
-            <div style="background: #1dca91; border-radius: 20px" class="pb-3 pt-3" id="btnCandidat">
+        <div class="col-4 offset-2 col-md-2 offset-md-1 p-1 col-lg-2 offset-lg-2 container_btn">
+            <div class="pb-3 pt-3" id="btnCandidat">
                 <h2>Je suis</h2>
                 <h3>Candidat</h3>
             </div>
@@ -33,8 +32,8 @@
                 </li>
             </ul>
         </div>
-        <div class="col-4 p-1 col-lg-2 " style="text-align: center; cursor: pointer">
-            <div style="background: #1dca91; border-radius: 20px" class="pb-3 pt-3" id="btnRecruteur">
+        <div class="col-4 p-1 col-lg-2 container_btn" style="text-align: center; cursor: pointer">
+            <div class="pb-3 pt-3" id="btnRecruteur">
                 <h2>Je suis</h2>
                 <h3>Recruteur</h3>
             </div>
@@ -59,7 +58,6 @@
         {# Formulaire candidat #}
         <div class="error">{{ form_errors(formCandidate) }}</div>
         {{ form_start(formCandidate, {'attr': {'class':'d-none', 'autocomplete': 'false'}}) }}
-
         <div class="row">
             <div class="col-lg-4 p-2">
                 {{ form_row(formCandidate.email) }}
@@ -71,7 +69,6 @@
                 {{ form_row(formCandidate.plainPassword.first) }}
             </div>
         </div>
-
         <div class="row">
             <div class="col-lg-4 p-2">
                 {{ form_row(formCandidate.firstname) }}
@@ -83,7 +80,6 @@
                 {{ form_row(formCandidate.plainPassword.second) }}
             </div>
         </div>
-
         <div class="row">
             <div class="col-lg-4 p-0">
                 <div class="p-2 m-0">
@@ -113,14 +109,13 @@
                     d'utilisation</a>
                 {{ form_row(formCandidate.agreeTerms) }}
             </div>
-            <div style="text-align: center">
-            <button type="submit" class="btn btn-lg">Créer mon compte</button>
+            <div class="container_btn_create_account">
+                <button type="submit" class="btn btn-lg">Créer mon compte</button>
             </div>
         </div>
         {{ form_end(formCandidate) }}
     </div>
     {# fin recaptcha #}
-
     <div class="container" id="recruiter">
         {# Formulaire recruteur #}
         <div class="error">{{ form_errors(formRecruiter) }}</div>
@@ -181,19 +176,17 @@
                     d'utilisation</a>
                 {{ form_row(formRecruiter.agreeTerms) }}
             </div>
-            <div style="text-align: center">
+            <div class="container_btn_create_account">
                 <button type="submit" class="btn btn-lg">Créer mon compte</button>
             </div>
         </div>
         {{ form_end(formRecruiter) }}
     </div>
-
-
 {% endblock %}
 
 {% block javascripts %}
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="{{ asset('js/register.js') }}"></script>
-    echo '<script type="text/javascript">window.alert("Commencez par nous dire si vous êtes candidat ou recruteur");</script>';
+    <script type="text/javascript">window.alert("Commencez par nous dire si vous êtes candidat ou recruteur");</script>;
 {% endblock %}

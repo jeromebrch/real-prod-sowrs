@@ -52,15 +52,20 @@ class RecruiterController extends AbstractController
         //récupération de la donnée JSON sous forme de tableau associatif
         $var[] = json_decode($req->getContent(), true);
         $value = $var[0]['commitment'];
-        $textarea = $var[0]['textareaValue'];
+        if($user instanceof Candidate){
+            $textarea = $var[0]['textareaValue'];
+        }
 
         //Verify if the commitment already exist
         if ($value){
             $commitments = $commitmentRepo->findAll();
             $userCommitment = null;
             foreach($commitments as $commitment){
-                if(strtolower($value) == strtolower($commitment->getTitle())){
+                if(strtolower($value) == strtolower($commitment->getTitle()) && $user instanceof Candidate){
                     if(strtolower($textarea) == strtolower($commitment->getText()))
+                    $userCommitment = $commitment;
+                }
+                elseif(strtolower($value) == strtolower($commitment->getTitle()) && $user instanceof Recruiter){
                     $userCommitment = $commitment;
                 }
             }
@@ -68,10 +73,18 @@ class RecruiterController extends AbstractController
             if(!$userCommitment){
                 $commitment = new Commitment();
                 $commitment->setTitle(ucfirst($value));
-                $commitment->setText(ucfirst($textarea));
+                if($user instanceof Candidate){
+                    $commitment->setText(ucfirst($textarea));
+                }
                 $em->persist($commitment);
                 $em->flush();
-                $userCommitment = $commitmentRepo->findOneBy(['title' => $value, 'text' => $textarea]);
+                if($user instanceof Candidate){
+                    $userCommitment = $commitmentRepo->findOneBy(['title' => $value, 'text' => $textarea]);
+                }
+                elseif ($user instanceof Recruiter){
+                    $userCommitment = $commitmentRepo->findOneBy(['title' => $value]);
+                }
+
             }
             // set the commitment to the user
             if($userCommitment){

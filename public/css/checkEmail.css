@@ -1,0 +1,14 @@
+.reset_send_mail{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 120px;
+}
+.reset_send_mail p{
+    font-family: 'KohinoorBangla', Arial, serif;
+    color: #55555599;
+}
+.reset_send_mail p a{
+    color: #937FA4;
+}

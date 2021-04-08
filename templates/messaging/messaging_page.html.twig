@@ -8,15 +8,15 @@
             <div class="col-lg-9">
                 <div class="row p-0">
                     <div class="col-lg-12 p-0 border-messaging">
-                        <h4 style="margin: 15px; text-align: center">MESSAGERIE</h4>
+                        <h4 class="title_messagerie">MESSAGERIE</h4>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-lg-12 border rounded-div border-2 shadow bg-light">
-                       <div style="height: 600px;overflow: scroll;">
-                        <table class="table table-striped col-lg-12" >
+                       <div class="header_messaging">
+                        <table class="table table-striped col-lg-12">
                             <thead class="thead" >
-                                <tr class="tableFirst" style="border: #5a6268 solid 1px; border-radius: 50%">
+                                <tr class="tableFirst">
                                     <th scope="col">Type de messages</th>
                                     <th scope="col">Expéditeur</th>
                                     <th scope="col">Sujet</th>
@@ -34,25 +34,27 @@
                                                         <td><a href="{{ path('read_message', {'id':message.id}) }}"><strong>{{ message.userSender.entityName }}</strong></a></td>
                                                         <td><a href="{{ path('read_message', {'id':message.id}) }}"><strong>{{ message.subject }}</strong></a></td>
                                                         <td><a href="{{ path('read_message', {'id':message.id}) }}"><strong>{{ message.createdAt|date("d/m/Y h:m") }}</strong></a></td>
-                                                        <td> <a class="messageButton btn" href="{{ path('response', {'id':message.id}) }}">
+                                                        <td>
+                                                            <a class="messageButton btn" href="{{ path('response', {'id':message.id}) }}">
                                                                 <span title="répondre au message"> <img class="messageImgPencil" src="{{ asset('img/boostrap/pencil-fill-white.svg') }}"/></span>
-                                                        </a>
-                                                        <a class="messageButtonTrash col-lg-3 m-2 text-center btn align-self-center"
-                                                           href="{{ path('delete_message', {'id':message.id}) }}" role="button">
-                                                            <span title="effacer le message"><img class="messageImgTrash"  src="{{ asset('img/boostrap/trash-fill-white.svg') }}"></span>
-                                                        </a></td>
+                                                            </a>
+                                                            <a class="messageButtonTrash col-lg-3 m-2 text-center btn align-self-center" href="{{ path('delete_message', {'id':message.id}) }}" role="button">
+                                                                <span title="effacer le message"><img class="messageImgTrash"  src="{{ asset('img/boostrap/trash-fill-white.svg') }}"></span>
+                                                            </a>
+                                                        </td>
                                                     {% else %}
                                                         <th><a href="{{ path('read_message', {'id':message.id} ) }}">{{ message.category.name }}</a></th>
                                                         <td><a href="{{ path('read_message', {'id':message.id}) }}">{{ message.userSender.entityName }}</a></td>
                                                         <td><a href="{{ path('read_message', {'id':message.id}) }}">{{ message.subject }}</a></td>
                                                         <td><a href="{{ path('read_message', {'id':message.id}) }}">{{ message.createdAt|date("d/m/Y h:m") }}</a></td>
-                                                        <td> <a class="messageButton btn" href="{{ path('response', {'id':message.id}) }}">
+                                                        <td>
+                                                            <a class="messageButton btn" href="{{ path('response', {'id':message.id}) }}">
                                                                 <span title="répondre au message"><img class="messageImgPencil" src="{{ asset('img/boostrap/pencil-fill-white.svg') }}"/></span>
                                                             </a>
-                                                            <a class="messageButtonTrash col-lg-3 m-2 text-center btn align-self-center"
-                                                               href="{{ path('delete_message', {'id':message.id}) }}" role="button">
+                                                            <a class="messageButtonTrash col-lg-3 m-2 text-center btn align-self-center" href="{{ path('delete_message', {'id':message.id}) }}" role="button">
                                                                 <span title="effacer le message"><img class="messageImgTrash"  src="{{ asset('img/boostrap/trash-fill-white.svg') }}"></span>
-                                                            </a></td>
+                                                            </a>
+                                                        </td>
                                                     {% endif %}
                                             {% endif %}
                                         </tr>
@@ -66,27 +68,29 @@
                                                     <td><a href="{{ path('read_message', {'id':message.id}) }}"><strong>{{ message.userSender.firstName~ ' ' ~message.userSender.lastName }}</strong></a></td>
                                                     <td><a href="{{ path('read_message', {'id':message.id}) }}"><strong>{{ message.subject }}</strong></a></td>
                                                     <td><a href="{{ path('read_message', {'id':message.id}) }}"><strong>{{ message.createdAt|date("d/m/Y h:m")  }}</strong></a></td>
-                                                    <td ><a class="messageButton btn" href="{{ path('response', {'id':message.id}) }}"
+                                                    <td>
+                                                        <a class="messageButton btn" href="{{ path('response', {'id':message.id}) }}"
                                                              role="button">
-                                                            <span title="répondre au message"> <img class="messageImgPencil" src="{{ asset('img/boostrap/pencil-fill-white.svg') }}"/></span>
+                                                            <span title="répondre au message"><img class="messageImgPencil" src="{{ asset('img/boostrap/pencil-fill-white.svg') }}"/></span>
                                                         </a>
-                                                        <a class="messageButtonTrash col-lg-3 m-2 text-center btn align-self-center"
-                                                           href="{{ path('delete_message', {'id':message.id}) }}" role="button">
+                                                        <a class="messageButtonTrash col-lg-3 m-2 text-center btn align-self-center" href="{{ path('delete_message', {'id':message.id}) }}" role="button">
                                                             <span title="effacer le message"><img class="messageImgTrash" src="{{ asset('img/boostrap/trash-fill-white.svg') }}"></span>
-                                                        </a></td>
+                                                        </a>
+                                                    </td>
                                                 {% else %}
                                                     <th><a href="{{ path('read_message', {'id':message.id}) }}">{{ message.category.name }}</a> </th>
                                                     <td><a href="{{ path('read_message', {'id':message.id}) }}">{{ message.userSender.firstName~ ' ' ~message.userSender.lastName }}</a></td>
                                                     <td><a href="{{ path('read_message', {'id':message.id}) }}">{{ message.subject }}</a></td>
                                                     <td><a href="{{ path('read_message', {'id':message.id}) }}">{{ message.createdAt|date("d/m/Y h:m")  }}</a></td>
-                                                    <td ><a class="messageButton btn" href="{{ path('response', {'id':message.id}) }}"
+                                                    <td>
+                                                        <a class="messageButton btn" href="{{ path('response', {'id':message.id}) }}"
                                                             role="button">
                                                            <span title="répondre au message"><img class="messageImgPencil" src="{{ asset('img/boostrap/pencil-fill-white.svg') }}"/></span>
                                                         </a>
-                                                        <a class="messageButtonTrash col-lg-3 m-2 text-center btn align-self-center"
-                                                           href="{{ path('delete_message', {'id':message.id}) }}" role="button">
+                                                        <a class="messageButtonTrash col-lg-3 m-2 text-center btn align-self-center" href="{{ path('delete_message', {'id':message.id}) }}" role="button">
                                                             <span title="effacer le message"><img class="messageImgTrash" src="{{ asset('img/boostrap/trash-fill-white.svg') }}"></span>
-                                                        </a></td>
+                                                        </a>
+                                                    </td>
                                                 {% endif %}
                                             {% endif %}
                                         </tr>
