@@ -2,9 +2,19 @@
     background-color: white;
     height: 60Px;
     width: 100%;
-
 }
-
+.title_messagerie{
+    margin: 15px;
+    text-align: center;
+}
+.header_messaging{
+    height: 600px;
+    overflow: scroll;
+}
+.thead .tableFirst{
+    border: #5a6268 solid 1px;
+    border-radius: 50%;
+}
 .border-top-messaging {
     background-color: white;
     width: 80%;

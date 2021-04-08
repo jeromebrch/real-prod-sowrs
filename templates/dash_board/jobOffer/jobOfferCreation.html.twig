@@ -4,7 +4,7 @@
     {{ parent() }}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css">
 {% endblock %}
-{% block title %}Sowrs | Création offre{% endblock %}
+{% block title %}Sowrs | Création d'une offre{% endblock %}
 
 {% block body %}
 
@@ -72,11 +72,11 @@
                     </div>
                     <div class="row mt-4">
                         <div class="col-sm-6 col-lg-6 pt-3" style="text-align: center">
-                    <button type="submit" class="btn btn-lg btn-primary">Publier</button>
+                            <button type="submit" class="btn btn-lg btn-primary">Publier</button>
                         </div>
                         <div class="col-sm-6 col-lg-6 pt-3" style="text-align: center">
-                    <a class="btn btn-lg" href="{{ path('main_dash_board') }}"
-                       role="button" style="background: #999999">Annuler</a>
+                            <a class="btn btn-lg" href="{{ path('main_dash_board') }}"
+                                role="button" style="background: #999999">Annuler</a>
                         </div>
                     </div>
                     {{ form_end(jobOfferForm) }}
@@ -84,5 +84,4 @@
             </div>
         </div>
     </div>
-
 {% endblock %}

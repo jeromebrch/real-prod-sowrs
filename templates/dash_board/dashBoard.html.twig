@@ -14,7 +14,6 @@
                 {{ render(controller('App\\Controller\\DashBoardNavController::navBar')) }}
             </div>
             <div class="col-lg-9">
-
                     {# ROLE CANDIDAT #}
                     {% if "ROLE_CANDIDATE" in app.user.roles %}
                         <div class="container mb-4 background-title">
@@ -35,7 +34,6 @@
                                     <div class="col-lg-6 p-5">
                                         <h4 class="subtitle">Votre taux de sens !</h4>
                                         <div class="content-subtitle-sense position-absolute p-4">
-
                                             {% if app.user.scoring.dominantSens is same as 'social' %}
                                                 <a href="{{ path('dash_board_entitySenseRate') }}">
                                                     <img class="img-fluid pe-5" src="{{ asset('img/social500.png') }}"
@@ -206,12 +204,10 @@
                                 </div>
                             </div>
                         </div>
-
                     {% endif %}
                 </div>
             </div>
         </div>
-
 {% endblock %}
 {% block javascripts %}
     {{ parent() }}

@@ -2,7 +2,7 @@
 
 {% block stylesheets %}
     {{ parent() }}
-
+    <link rel="stylesheet" href="{{ asset('css/modifyJobOffer.css') }}">
 {% endblock %}
 {% block title %}Sowrs | Modification offre{% endblock %}
 
@@ -10,22 +10,64 @@
 
     <div class="container-fluid">
         <div class="row">
-
             <div class="col-lg-2 offset-lg-1 border-end border-2">
                 {{ render(controller('App\\Controller\\DashBoardNavController::navBar'))}}
             </div>
-
             <div class="col-lg-8">
                 <div class="">
-                    <h1>Modifier votre offre</h1>
+                    <h1 class="main_title">Modifier votre offre</h1>
                     <div class="error">{{ form_errors(jobOfferForm) }}</div>
                     {{ form_start(jobOfferForm) }}
 
-                    <h3>Descriptif de l'offre</h3>
-                    {{ form_widget(jobOfferForm) }}
-
-                    <button type="submit" class="btn btn-lg btn-primary">Modifier</button>
-                    <a class="btn btn-lg" href="{{ path('dash_board_my_offers') }}" role="button">Annuler</a>
+                    <h3 class="description_title">Descriptif de l'offre</h3>
+                    <div class="row">
+                        <div class="col-12">
+                            {{ form_row(jobOfferForm.title) }}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            {{ form_row(jobOfferForm.tags, {'attr':{'rows':'1'}}) }}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            {{ form_row(jobOfferForm.description, {'attr':{'rows':'15'}}) }}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            {{ form_row(jobOfferForm.city) }}
+                        </div>
+                        <div class="col-6">
+                            {{ form_row(jobOfferForm.country) }}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            {{ form_row(jobOfferForm.remuneration) }}
+                        </div>
+                        <div class="col-6">
+                            {{ form_row(jobOfferForm.contractType) }}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-4">
+                            {{ form_row(jobOfferForm.levelExperience) }}
+                        </div>
+                        <div class="col-4">
+                            {{ form_row(jobOfferForm.levelStudy) }}
+                        </div>
+                        <div class="col-4">
+                            {{ form_row(jobOfferForm.category) }}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="container_options">
+                            <button type="submit" class="btn btn-lg btn-primary">Modifier</button>
+                            <a class="btn btn-lg" href="{{ path('dash_board_my_offers') }}" role="button">Annuler</a>
+                        </div>
+                    </div>
                     {{ form_end(jobOfferForm) }}
                 </div>
             </div>

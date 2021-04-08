@@ -12,3 +12,18 @@
     font-family: 'KohinoorBangla', Arial, serif;
 
 }
+.container_btn{
+    text-align: center;
+    cursor: pointer;
+}
+#btnCandidat{
+    background: #1dca91;
+    border-radius: 20px;
+}
+#btnRecruteur{
+    background: #1dca91;
+    border-radius: 20px;
+}
+.container_btn_create_account{
+    text-align: center;
+}

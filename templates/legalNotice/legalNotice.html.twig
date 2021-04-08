@@ -2,19 +2,19 @@
 
 {% block title %}Sowrs | Mentions légales{% endblock %}
 
-
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('css/legaleNotice.css') }}" />
+{% endblock %}
 
 {% block body %}
 
-    <h2>MENTIONS LÉGALES ET CONDITIONS GÉNÉRALES D’UTILISATION</h2>
-
+    <h2 class="legale_title">MENTIONS LÉGALES ET CONDITIONS GÉNÉRALES D’UTILISATION</h2>
     <div class="panel panel-default">
-
-        <div class="panel-heading">Mentions légales et conditions générales d&rsquo;utilisation</div>
-
+        <div class="panel-heading">
+            Mentions légales et conditions générales d&rsquo;utilisation
+        </div>
         <div class="panel-body">
-
-
             <p>Mentions légales &#8211; Sowrs.com<br />
                 Version en date du 14 Octobre 2020</p>
             <p>Le présent site, sowrs.com, ainsi que les textes, images et vidéos et autres contenus hébergés (à l’exception des contenus Utilisateurs pour lesquels nous avons une licence d’utilisation non-exclusive et gratuite), sont la propriété de SENS, SAS dont le siège social est établi à CAEN. Toute copie et réutilisation sont interdites.</p>
@@ -176,13 +176,6 @@
             <p>En cas de litige, les Parties décident, dans un premier temps, de tenter de le solutionner à l’amiable. En cas d’échec, tous les litiges susceptibles de naître entre les parties, relatifs à la signature, l’interprétation, l’exécution et la résiliation des présentes, seront soumis à la juridiction exclusive des Tribunaux français auxquels les parties font expressément attribution de compétence, même en cas de pluralité de défendeurs, en référé, appel en garantie ou par requête.</p>
             <h2>ARTICLE 11. INTÉGRALITÉ DU CONTRAT</h2>
             <p>Les Conditions d’utilisation, y compris le préambule, la Politique de confidentialité et les Conditions de vente, constituent l’intégralité de l’accord conclu entre les Parties.</p>
-
         </div>
-
     </div>
-
-
-
 {% endblock %}
-
-{% block javascripts %}{% endblock %}

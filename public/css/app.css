@@ -82,3 +82,9 @@ hr {
     color: white;
     margin: auto;
 }
+input[type="text"]{
+    color: #937FA4;
+}
+input[type="email"], input[type="tel"]{
+    color: #937FA4;
+}

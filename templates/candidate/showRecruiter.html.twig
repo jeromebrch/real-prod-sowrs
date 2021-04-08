@@ -28,7 +28,7 @@
 
                 {# entity name #}
                 <div class="row header_presentation">
-                        <h3>{{ recruiter.entityName }}</h3>
+                    <h3>{{ recruiter.entityName }}</h3>
                 </div>
 
                 {# complementary informations #}
@@ -49,15 +49,14 @@
                         </p>
                 </div>
 
-                {# tags #}
-                {# todo : gérer les tags #}
-
-                {# inspiration or main cause #}
-                <div class="row header_presentation">
-                    <p>
+                {# main cause #}
+                {% if recruiter.mainCause %}
+                    <div class="row header_presentation">
+                        <p>
                             Cause : {{ recruiter.mainCause.text }}
-                    </p>
-                </div>
+                        </p>
+                    </div>
+                {% endif %}
             </div>
         </div>
     </div>
@@ -65,7 +64,9 @@
     {# BODY PAGE #}
 
         <div class="row">
+
             {# LEFT PART #}
+
             <div class=" col-lg-8 col-md-12 left_part_profil">
                 {# about the entity #}
                 <div class="container_category_profil">
@@ -73,9 +74,15 @@
                         <h3 class="profil_category_title">&Agrave; propos de {{ recruiter.entityName }}</h3>
                     </div>
                     <div class="row">
-                        <p>
-                            {{ recruiter.about }}
-                        </p>
+                        {% if recruiter.about %}
+                            <p>
+                                {{ recruiter.about }}
+                            </p>
+                        {% else %}
+                            <p class="alert alert-success">
+                                Le recruteur n'a pas encore renseigné l'À propos
+                            </p>
+                        {% endif %}
                     </div>
                 </div>
                 {# reason to be #}
@@ -84,9 +91,15 @@
                         <h3 class="profil_category_title">Raison d'être de {{ recruiter.entityName }}</h3>
                     </div>
                     <div class="row">
-                        <p>
-                            {{ recruiter.reasonToBe }}
-                        </p>
+                        {% if recruiter.reasonToBe %}
+                            <p>
+                                {{ recruiter.reasonToBe }}
+                            </p>
+                        {% else %}
+                            <p class="alert alert-success">
+                                Le recruteur n'a pas encore renseigné les raisons d'être de l'entreprise
+                            </p>
+                        {% endif %}
                     </div>
                 </div>
                 {# engagements #}
@@ -101,7 +114,7 @@
                                     <div class="commitment_recruiter">{{ commitment.title }}</div>
                                 {% endfor %}
                             {% else %}
-                                <div class="alert alert-danger">
+                                <div class="alert alert-success">
                                     Le recruteur n'a pas encore renseigné ses engagements
                                 </div>
                             {% endif %}
@@ -113,29 +126,28 @@
             {# RIGHT PART #}
 
             <div class="col-lg-4 col-md-12 right_part">
-
-                <div class="show_candidate_sens_rate">
-                    <div class="row align-items-center">
-                        <div class="col-lg-2">
-                            <img src="" alt="taux de sens">
+                {% if recruiter.scoring.dominantPourcent %}
+                    <div class="show_candidate_sens_rate">
+                        <div class="row align-items-center">
+                            <div class="col-lg-2">
+                                <img src="" alt="taux de sens">
+                            </div>
+                            <div class="col-lg-8">
+                                <h5>Taux de sens</h5>
+                                <h5>{{ recruiter.scoring.dominantPourcent }}% {{ recruiter.scoring.dominantSens }}</h5>
+                            </div>
+                            <div class="col-lg-1 ">
+                                <img src="{{ asset('img/boostrap/flecheBas.svg') }}" alt="flèche vers le bas" width="100%"
+                                     style="margin: 0" id="btn_doughnut">
+                            </div>
                         </div>
-                        <div class="col-lg-8">
-                            <h5>Taux de sens</h5>
-                            <h5>{{ recruiter.scoring.dominantPourcent }}% {{ recruiter.scoring.dominantSens }}</h5>
-                        </div>
-                        <div class="col-lg-1 ">
-                            <img src="{{ asset('img/boostrap/flecheBas.svg') }}" alt="flèche vers le bas" width="100%"
-                                 style="margin: 0" id="btn_doughnut">
-                        </div>
-                    </div>
-                    <br>
-                    <div class="doughnut col-lg-8 mx-auto pb-1 collapse" id="doughnut">
-                        <canvas id="myChart"></canvas>
                         <br>
+                        <div class="doughnut col-lg-8 mx-auto pb-1 collapse" id="doughnut">
+                            <canvas id="myChart"></canvas>
+                            <br>
+                        </div>
                     </div>
-
-                </div>
-
+                {% endif %}
                 {# complementary informations #}
 
                 {# secondary causes #}
@@ -208,7 +220,6 @@
                         {{ form_end(contactForm) }}
                     </div>
                 </div>
-
 
             </div>
         </div>

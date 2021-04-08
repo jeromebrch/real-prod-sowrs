@@ -7,4 +7,24 @@
     font-family: 'KohinoorBangla', Arial, serif;
     color: white;
     margin: auto;
+    text-align: right;
+}
+.p_read_message{
+    text-align: left !important;
+}
+.body_message{
+    width: 300Px !important;
+    height: 500Px !important;
+}
+.logo_pj{
+    width: 50px;
+}
+#container_message{
+    background-color: white;
+    margin-top: 10px !important;
+}
+.link_return{
+    width: 150px;
+    margin: 20px;
+    text-decoration: none;
 }

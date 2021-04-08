@@ -7,14 +7,13 @@
     <link rel="stylesheet" href="{{ asset('css/login.css') }}">
 {% endblock %}
 {% block body %}
-
         <div class="row">
             <div class="col-lg-4 offset-lg-4 my-4">
                 <div class="login_title">
                     <h3>CONNEXION</h3>
                 </div>
                 <div class="container">
-                <form method="post">
+                <form method="post" class="login_form">
                     {% if error %}
                         <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
                     {% endif %}
@@ -33,7 +32,7 @@
 
                     <input type="hidden" name="_csrf_token"
                            value="{{ csrf_token('authenticate') }}">
-                    <div class="checkbox mb-3">
+                    <div class="checkbox mb-3 container_options_login">
                         <label class="my-2">
                             <input type="checkbox" name="_remember_me"> Se souvenir de moi
                         </label>
@@ -49,6 +48,6 @@
                 </div>
                 <br>
             </div>
-            <a href="{{ path('app_register') }}" style="text-align: center">Créer mon compte</a>
+            <a class="link_create" href="{{ path('app_register') }}">Créer mon compte</a>
         </div>
 {% endblock %}

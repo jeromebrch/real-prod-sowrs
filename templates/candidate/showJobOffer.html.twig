@@ -81,40 +81,46 @@
 
     <div class="row">
         <div class="col-lg-7 container_info_offer">
-            <h3 class="subtitle">À propos de {{ entity.entityName }}</h3>
-            <p>
-                {{ entity.about }}
-            </p>
-            <h3 class="subtitle">Descriptif du poste</h3>
-            <p>
-                {{ jobOffer.description }}
-            </p>
+            {% if entity.about %}
+                <h3 class="subtitle">À propos de {{ entity.entityName }}</h3>
+                <p>
+                    {{ entity.about }}
+                </p>
+            {% endif %}
+            {% if jobOffer.description %}
+                <h3 class="subtitle">Descriptif du poste</h3>
+                <p>
+                    {{ jobOffer.description }}
+                </p>
+            {% endif %}
         </div>
 
 
         {# RIGHT PART #}
 
         <div class="col-lg-5">
-            <div class="show_candidate_sens_rate">
-                <div class="row align-items-center">
-                    <div class="col-lg-2">
-                        <img src="" alt="taux de sens">
+            {% if entity.scoring.dominantPourcent %}
+                <div class="show_candidate_sens_rate">
+                    <div class="row align-items-center">
+                        <div class="col-lg-2">
+                            <img src="" alt="taux de sens">
+                        </div>
+                        <div class="col-lg-8">
+                            <h5>Taux de sens</h5>
+                            <h5>{{ entity.scoring.dominantPourcent }}% {{ entity.scoring.dominantSens }}</h5>
+                        </div>
+                        <div class="col-lg-1 ">
+                            <img src="{{ asset('img/boostrap/flecheBas.svg') }}" alt="flèche vers le bas" width="100%"
+                                 style="margin: 0" id="btn_doughnut">
+                        </div>
                     </div>
-                    <div class="col-lg-8">
-                        <h5>Taux de sens</h5>
-                        <h5>{{ entity.scoring.dominantPourcent }}% {{ entity.scoring.dominantSens }}</h5>
-                    </div>
-                    <div class="col-lg-1 ">
-                        <img src="{{ asset('img/boostrap/flecheBas.svg') }}" alt="flèche vers le bas" width="100%"
-                             style="margin: 0" id="btn_doughnut">
-                    </div>
-                </div>
-                <br>
-                <div class="doughnut col-lg-8 mx-auto pb-1 collapse" id="doughnut">
-                    <canvas id="myChart"></canvas>
                     <br>
+                    <div class="doughnut col-lg-8 mx-auto pb-1 collapse" id="doughnut">
+                        <canvas id="myChart"></canvas>
+                        <br>
+                    </div>
                 </div>
-            </div>
+            {% endif %}
             <div>
                 <a class="btn_postuler btn required" href="{{ path('apply', {'id': jobOffer.id}) }}">Postuler à cette offre</a>
             </div>

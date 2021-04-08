@@ -175,21 +175,23 @@
                     <div class="row">
                         <div id="details_engagements_block">
                             <div class="row">
-                                <p id="p_engagements">
-                                    Engagements quotidiens
-                                </p>
+                                <div class="col-11 offset-1">
+                                    <h4 class="subtitle-myDetail mb-3 ms-3 me-3 mt-5">Engagements quotidiens</h4>
+                                    <hr class="green-line m-3" size=3>
+                                </div>
                             </div>
                             <div class="row">
                                 <div class="container_commitments_options">
                                     <div class="col-5">
                                         <div class="block_new_commitment">
-                                            <label for="commitment">Engagements</label>
+                                            <label for="commitment" class="label_commitment">Engagements</label>
                                             <input type="text" id="commitment" name="input_commitment">
                                             <textarea id="commitment_text" name="textarea_commitment" rows="5" cols="40">Explication de votre engagement ici</textarea>
                                             <button type="button" class="btn required btn_save_commitment">Ajouter</button>
                                         </div>
                                     </div>
                                     <div class="col-6">
+                                        <h3 class="my_commitment_title">Mes activités engagées</h3>
                                         <table class="commitment_array col-12">
                                             {% for commitment in app.user.commitments %}
                                                 <tr>
@@ -236,99 +238,110 @@
                             {{ form_errors(modifyUserForm) }}
                         </div>
                         {{ form_start(modifyUserForm) }}
-
-                        <div class="row">
-                            <div class="col-sm-6 col-lg-6 pt-3">
-                                {{ form_row(modifyUserForm.lastname) }}
+                        <div class="container_section">
+                            <div class="row">
+                                <div class="col-sm-6 col-lg-6 pt-3">
+                                    {{ form_row(modifyUserForm.lastname) }}
+                                </div>
+                                <div class="col-sm-6 col-lg-6 pt-3">
+                                    {{ form_row(modifyUserForm.firstname) }}
+                                </div>
                             </div>
-                            <div class="col-sm-6 col-lg-6 pt-3">
-                                {{ form_row(modifyUserForm.firstname) }}
+
+                            <div class="row">
+                                <div class="col-sm-6 col-lg-6 pt-3">
+                                    {{ form_row(modifyUserForm.email) }}
+                                </div>
+                                <div class="col-sm-6 col-lg-6 pt-3">
+                                    {{ form_row(modifyUserForm.phone) }}
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-sm-6 col-lg-6 pt-3">
+                                    {{ form_row(modifyUserForm.function) }}
+                                </div>
+                                <div class="col-sm-6 col-lg-6 pt-3">
+                                    {{ form_row(modifyUserForm.activityNumber) }}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6 col-lg-6 pt-3">
+                                    {{ form_row(modifyUserForm.country) }}
+                                </div>
+                                <div class="col-sm-6 col-lg-6 pt-3">
+                                    {{ form_row(modifyUserForm.city) }}
+                                </div>
+                            </div>
+                            {% if app.user.CarbonFootPrintProofFilename %}
+                                <div class="row">
+                                    <a class="btn" id="download_actual_proof" href="{{ asset('uploads/carbonFootPrintProof/' ~ user.CarbonFootPrintProofFilename) }}">Votre justificatif actuel</a>
+                                </div>
+                            {% endif %}
+                            <div class="row">
+                                <div class="col-sm-6 col-lg-6 pt-3">
+                                    {{ form_row(modifyUserForm.entityName) }}
+                                </div>
+                                <div class="col-sm-6 col-lg-6 pt-3">
+                                    {{ form_row(modifyUserForm.legalStatus) }}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6 col-lg-6 pt-3">
+                                    {{ form_row(modifyUserForm.mainCause) }}
+                                </div>
+                                <div class="col-sm-6 col-lg-6 pt-3">
+                                    {{ form_row(modifyUserForm.secondaryCauses) }}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-3 pt-3">
+                                    {{ form_row(modifyUserForm.socialNetwork.webSite) }}
+                                </div>
+                                <div class="col-sm-3 pt-3">
+                                    {{ form_row(modifyUserForm.socialNetwork.linkedin) }}
+                                </div>
+                                <div class="col-sm-3 pt-3">
+                                    {{ form_row(modifyUserForm.socialNetwork.stackOverflow) }}
+                                </div>
+                                <div class="col-sm-3 pt-3">
+                                    {{ form_row(modifyUserForm.socialNetwork.github) }}
+                                </div>
                             </div>
                         </div>
-
                         <div class="row">
-                            <div class="col-sm-6 col-lg-6 pt-3">
-                                {{ form_row(modifyUserForm.email) }}
-                            </div>
-                            <div class="col-sm-6 col-lg-6 pt-3">
-                                {{ form_row(modifyUserForm.phone) }}
+                            <div class="container_section">
+                                <div class="row">
+                                    <h4 class="subtitle-myDetail mb-3 ms-3 me-3 mt-5">Pour en savoir un peu plus sur votre entité ...</h4>
+                                    <hr class="green-line m-3" size=3>
+                                </div>
+                                <div class="row">
+                                    <p class="about_information">
+                                        Au-delà de vos opportunités, les candidats aiment en savoir plus sur votre
+                                        organisation, ses valeurs et votre mission. Prenez votre plus belle plume
+                                        et présentez votre entité en quelques lignes ! Comment est né votre projet ?
+                                        Quelle est votre raison d’être ? Quels engagements prenez-vous ?
+                                    </p>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-6 col-lg-6 pt-3">
+                                        {{ form_row(modifyUserForm.reasonToBe, {'attr':{'rows':'7'}}) }}
+                                    </div>
+                                    <div class="col-sm-6 col-lg-6 pt-3">
+                                        {{ form_row(modifyUserForm.about, {'attr':{'rows':'7'}}) }}
+                                    </div>
+                                </div>
                             </div>
                         </div>
-
                         <div class="row">
-                            <div class="col-sm-6 col-lg-6 pt-3">
-                                {{ form_row(modifyUserForm.function) }}
-                            </div>
-                            <div class="col-sm-6 col-lg-6 pt-3">
-                                {{ form_row(modifyUserForm.activityNumber) }}
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-6 col-lg-6 pt-3">
-                                {{ form_row(modifyUserForm.country) }}
-                            </div>
-                            <div class="col-sm-6 col-lg-6 pt-3">
-                                {{ form_row(modifyUserForm.city) }}
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-sm-6 col-lg-6 pt-3">
+                            <div class="col-sm-6 col-lg-6 pt-5">
                                 {{ form_row(modifyUserForm.carbonFootPrint) }}
                             </div>
-                            <div class="col-sm-6 col-lg-6 pt-3 container_input_file_proof">
+                            <div class="col-sm-6 col-lg-6 pt-5 container_input_file_proof">
                                 {# send the carbon footprint proof in PDF #}
                                 <div class="btn required">
                                     {{ form_row(modifyUserForm.carbonFootPrintProof) }}
                                 </div>
-
-                            </div>
-                        </div>
-                        {% if app.user.CarbonFootPrintProofFilename %}
-                            <div class="row">
-                                <a class="btn" id="download_actual_proof" href="{{ asset('uploads/carbonFootPrintProof/' ~ user.CarbonFootPrintProofFilename) }}">Votre justificatif actuel</a>
-                            </div>
-                        {% endif %}
-
-                        <div class="row">
-                            <div class="col-sm-6 col-lg-6 pt-3">
-                                {{ form_row(modifyUserForm.entityName) }}
-                            </div>
-                            <div class="col-sm-6 col-lg-6 pt-3">
-                                {{ form_row(modifyUserForm.legalStatus) }}
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-sm-6 col-lg-6 pt-3">
-                                {{ form_row(modifyUserForm.mainCause) }}
-                            </div>
-                            <div class="col-sm-6 col-lg-6 pt-3">
-                                {{ form_row(modifyUserForm.secondaryCauses) }}
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-sm-6 pt-3">
-                                {{ form_row(modifyUserForm.socialNetwork.webSite) }}
-                            </div>
-                            <div class="col-sm-6 pt-3">
-                                {{ form_row(modifyUserForm.socialNetwork.linkedin) }}
-                            </div>
-                            <div class="col-sm-6 pt-3">
-                                {{ form_row(modifyUserForm.socialNetwork.stackOverflow) }}
-                            </div>
-                            <div class="col-sm-6 pt-3">
-                                {{ form_row(modifyUserForm.socialNetwork.github) }}
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-sm-6 col-lg-6 pt-3">
-                                {{ form_row(modifyUserForm.reasonToBe) }}
-                            </div>
-                            <div class="col-sm-6 col-lg-6 pt-3">
-                                {{ form_row(modifyUserForm.about) }}
                             </div>
                         </div>
                         <div class="row">
@@ -348,14 +361,19 @@
                                             </div>
                                         </div>
                                         <div class="col-6">
-                                            <table class="commitment_array col-12">
-                                                {% for commitment in app.user.commitments %}
-                                                    <tr>
-                                                        <td>{{ commitment.title }}</td>
-                                                        {% set title = commitment.title %}
-                                                    </tr>
-                                                {% endfor %}
-                                            </table>
+                                            <div class="row">
+                                                <h3 class="my_commitment_title">Mes activités engagées</h3>
+                                            </div>
+                                            <div class="row">
+                                                <table class="commitment_array col-12">
+                                                    {% for commitment in app.user.commitments %}
+                                                        <tr>
+                                                            <td>{{ commitment.title }}</td>
+                                                            {% set title = commitment.title %}
+                                                        </tr>
+                                                    {% endfor %}
+                                                </table>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

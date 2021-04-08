@@ -165,7 +165,7 @@ class MessageController extends AbstractController
             //sending email
             $email = (new Email())
                 ->from('team@sowrs.com')
-                ->to('kennouche.annelise@gmail.com')//todo :email du destinataire
+                ->to('jerome.brch@gmail.com') //todo :email du destinataire
                 ->subject($message->getSubject())
                 ->text($this->renderView(
                 // getting text for email from html page
@@ -256,7 +256,7 @@ class MessageController extends AbstractController
                 //sending email
                 $email = (new Email())
                     ->from('team@sowrs.com')
-                    ->to('kennouche.annelise@gmail.com')//todo :email du destinataire
+                    ->to('jerome.brch@gmail.com') //todo :email du destinataire
                     ->subject($message->getSubject())
                     ->text($this->renderView(
                     // getting text for email from html page
@@ -279,7 +279,7 @@ class MessageController extends AbstractController
                 //sending email
                 $email = (new Email())
                     ->from('team@sowrs.com')
-                    ->to('kennouche.annelise@gmail.com')//todo :email du destinataire
+                    ->to('jerome.brch@gmail.com')//todo :email du destinataire
                     ->subject($message->getSubject())
                     ->text($this->renderView(
                     // getting text for email from html page
@@ -379,7 +379,7 @@ class MessageController extends AbstractController
                 //sending email
                 $email = (new Email())
                     ->from('team@sowrs.com')
-                    ->to('kennouche.annelise@gmail.com')//todo :email du destinataire
+                    ->to('jerome.brch@gmail.com')//todo :email du destinataire
                     ->subject($message->getSubject())
                     ->text($this->renderView(
                     // getting text for email from html page
@@ -394,7 +394,7 @@ class MessageController extends AbstractController
                 //sending email
                 $email = (new Email())
                     ->from('team@sowrs.com')
-                    ->to('kennouche.annelise@gmail.com')//todo :email du destinataire
+                    ->to('jerome.brch@gmail.com')//todo :email du destinataire
                     ->subject($message->getSubject())
                     ->text($this->renderView(
                     // getting text for email from html page

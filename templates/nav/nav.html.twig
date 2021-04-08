@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-lg navbar-light" id="main_navbar">
     <div class="container-fluid">
         <a class="navbar-brand" href="{{ path('main') }}" title="Sowrs | Home">
-            <img class="m-3" id="logo_sowrs" src="{{ asset('img/logo-base-50px-haut.png') }}" alt="Sowrs">
+            <img class="m-3" id="logo_sowrs" src="{{ asset('img/logo-base-50px-haut.png') }}" alt="Sowrs" title="SOWRS">
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarNav"
@@ -12,7 +12,6 @@
             <ul class="navbar-nav ml-auto">
                 {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
                     <li> {{ render(controller('App\\Controller\\ReadController::countMessageReaded')) }}</li>
-
                     <li class="nav-item"><a class="nav-link mx-3 my-1" id="secondary-nav"
                                             href="{{ path('main_dash_board') }}">TABLEAU DE BORD</a></li>
                     <li class="nav-item"><a class="nav-link  mx-3 my-1" id="secondary-nav"
@@ -23,7 +22,6 @@
                     <li class="nav-item"><a class="nav-link mx-3 my-1" id="secondary-nav"
                                             href="{{ path('app_register') }}">CREER UN COMPTE</a></li>
                 {% endif %}
-
                 <li class="nav-item"><a class="nav-link" id="secondary-nav"
                                         href="https://www.facebook.com/sowrscom"
                                         target="_blank"><img class="logo_facebook mx-3 my-1"
@@ -47,7 +45,6 @@
                                                              alt="Page tipeee"></a></li>
             </ul>
         </div>
-
     </div>
 </nav>
 

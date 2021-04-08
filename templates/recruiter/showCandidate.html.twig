@@ -8,23 +8,22 @@
 
 {% endblock %}
 
-
 {% block body %}
     <div class="show_candidate_jumbotron pt-3">
         <div class="col-lg-1 mx-auto">
-             <div style="width: 100%; height:100%">
+             <div class="candidate_picture">
             {% if candidate.picture %}
                 {% if candidate.picture.pictureName is same as '' %}
-                    <img style="width: 100%" id="show_candidate_photo_profile" class="rounded-circle"
+                    <img id="show_candidate_photo_profile" class="rounded-circle"
                          src="{{ asset('images/profils/avatar.jpg') }}"
                          alt="photo du profil">
                 {% else %}
-                    <img style="width: 100%" id="show_candidate_photo_profile" class="rounded-circle"
+                    <img id="show_candidate_photo_profile" class="rounded-circle"
                          src="{{ asset('images/profils/' ~candidate.picture.pictureName ) }}"
                          alt="photo du profil">
                 {% endif %}
             {% else %}
-                <img style="width: 100%" id="show_candidate_photo_profile" class="rounded-circle"
+                <img id="show_candidate_photo_profile" class="rounded-circle"
                      src="{{ asset('images/profils/avatar.jpg') }}"
                      alt="photo du profil">
             {% endif %}
@@ -33,27 +32,31 @@
         <div class="col-lg-5 mx-auto">
             <h4 class="show_candidate_jumbotron_name">{{ candidate.firstName | capitalize }} {{ candidate.lastName | upper }}</h4>
         </div>
-        <h5 class="show_candidate_jumbotron_infos">{{ candidate.currentRole | capitalize }}
-            - {{ candidate.jobSearch.country.name |capitalize }}
-
-            {% if candidate.jobSearch.city %}
-                - {{ candidate.jobSearch.city |capitalize }}
+        <h5 class="show_candidate_jumbotron_infos">
+            {% if candidate.currentRole %}
+            {{ candidate.currentRole | capitalize }}
             {% endif %}
-            - {{ candidate.jobSearch.contractType.wording | capitalize }}
-
-            {% if candidate.jobSearch.desiredRemuneration %}
-                - {{ candidate.jobSearch.desiredRemuneration.text | capitalize }}
+            {% if candidate.jobSearch %}
+                {% if candidate.jobSearch.country.name %}
+                    - {{ candidate.jobSearch.country.name |capitalize }}
+                {% endif %}
+                {% if candidate.jobSearch.city %}
+                    - {{ candidate.jobSearch.city |capitalize }}
+                {% endif %}
+                {% if candidate.jobSearch.contractType.wording %}
+                    - {{ candidate.jobSearch.contractType.wording | capitalize }}
+                {% endif %}
+                {% if candidate.jobSearch.desiredRemuneration %}
+                    - {{ candidate.jobSearch.desiredRemuneration.text | capitalize }}
+                {% endif %}
             {% endif %}
         </h5>
-        {# Gerer les tags #}
-        <p class="show_candidate_jumbotron_inspiration">" {{ candidate.inspiration }} "</p><br>
+        {% if candidate.inspiration %}
+            <p class="show_candidate_jumbotron_inspiration">" {{ candidate.inspiration }} "</p><br>
+        {% endif %}
         <a type="button" class="btn position-absolute start-50 translate-middle">Télécharger le CV</a>
     </div>
     <div class="row">
-
-
-
-
         <div class=" col-lg-8 col-md-12 left_part_profil">
             {# about the entity #}
             <div class="container_category_profil">
@@ -61,9 +64,15 @@
                     <h3 class="profil_category_title">&Agrave; propos de {{ candidate.firstname }}</h3>
                 </div>
                 <div class="row">
-                    <p>
-                        {{ candidate.about }}
-                    </p>
+                    {% if candidate.about %}
+                        <p>
+                            {{ candidate.about }}
+                        </p>
+                    {% else %}
+                        <p class="alert alert-success">
+                            Le candidat n'a pas encore renseigné l'À propos
+                        </p>
+                    {% endif %}
                 </div>
             </div>
             {# engagements #}
@@ -83,35 +92,36 @@
                         {% endfor %}
                     </div>
                 {% else %}
-                    <div class="alert alert-success" role="alert">
+                    <div class="alert alert-success">
                         Le candidat n'a pas encore renseigné ses engagements
                     </div>
                 {% endif %}
             </div>
         </div>
-
-
-
-
         <div class="col-lg-4 col-md-12 right_part">
             <div class="show_candidate_sens_rate">
-                <div class="row">
-                    <div class="col-lg-2" style="height: 5em">
-                            <img src="{{ asset('img/sens/innegalite.png') }}" style="width: 100%; height: 100%" alt="taux de sens">
+                {% if candidate.scoring %}
+                    <div class="row">
+                        <div class="col-lg-2 block_img_sense_rate">
+                            <img class="sense_rate_logo" src="{{ asset('img/sens/innegalite.png') }}" alt="sense rate" title="Taux de sens">
+                        </div>
+                        <div class="col-lg-8">
+                            <h5>Taux de sens</h5>
+                            <h5>{{ candidate.scoring.dominantPourcent }}% {{ candidate.scoring.dominantSens }}</h5>
+                        </div>
+                        <div class="col-lg-1 mt-4">
+                            <img src="{{ asset('img/boostrap/flecheBas.svg') }}" alt="flèche vers le bas" title="Détails du taux de sens" id="btn_doughnut">
+                        </div>
                     </div>
-                    <div class="col-lg-8">
-                        <h5>Taux de sens</h5>
-                        <h5>{{ candidate.scoring.dominantPourcent }}% {{ candidate.scoring.dominantSens }}</h5>
+                    <div class="show_candidate_doughnut col-lg-8 mx-auto pb-1 collapse" id="doughnut">
+                        <canvas id="myChart"></canvas>
+                        <br>
                     </div>
-                    <div class="col-lg-1 mt-4">
-                        <img src="{{ asset('img/boostrap/flecheBas.svg') }}" alt="flèche vers le bas" width="100%"
-                             style="margin: 0" id="btn_doughnut">
-                    </div>
-                </div>
-                <div class="show_candidate_doughnut col-lg-8 mx-auto pb-1 collapse" id="doughnut">
-                    <canvas id="myChart"></canvas>
-                    <br>
-                </div>
+                {% else %}
+                    <p class="alert alert-success">
+                        Le candidat n'a pas encore calculé son taux de sens
+                    </p>
+                {% endif %}
             </div>
             <br>
             <div class="complementary_infos_container">
@@ -129,9 +139,7 @@
                     {% if candidate.levelStudy is not empty %}
                         <h3 class="profil_category_title_candidate">Niveau d'études : <span>{{ candidate.levelStudy.wording }}</span></h3>
                     {% else %}
-                        <p class="alert alert-light">
-                            Niveau d'études non renseignée
-                        </p>
+                        <h3 class="profil_category_title_candidate">Niveau d'études : <span>Non renseigné</span></h3>
                     {% endif %}
                 </div>
                 {# searched job #}
@@ -139,9 +147,7 @@
                     {% if candidate.jobSearch is not empty %}
                         <h3 class="profil_category_title_candidate">Poste recherché : <span>{{ candidate.jobSearch.jobTitle }}</span></h3>
                     {% else %}
-                        <p class="alert alert-light">
-                            Poste recherché non renseignée
-                        </p>
+                        <h3 class="profil_category_title_candidate">Poste recherché : <span>Non renseigné</span></h3>
                     {% endif %}
                 </div>
                 {# main cause #}
@@ -149,9 +155,7 @@
                     {% if candidate.mainCause is not empty %}
                         <h3 class="profil_category_title_candidate">Cause défendue : <span>{{ candidate.mainCause.text }}</span></h3>
                     {% else %}
-                        <p class="alert alert-light">
-                            Cause défendue non renseignée
-                        </p>
+                        <h3 class="profil_category_title_candidate">Cause défendue : <span>non renseigné</span></h3>
                     {% endif %}
                 </div>
                 {# can work in (country) #}
@@ -159,9 +163,7 @@
                     {% if candidate.authorizedCountry is not empty %}
                         <h3 class="profil_category_title_candidate">Autorisé à travailler : <span>{{ candidate.authorizedCountry.name }}</span></h3>
                     {% else %}
-                        <p class="alert alert-light">
-                            Pays non renseigné non renseignée
-                        </p>
+                        <h3 class="profil_category_title_candidate">Autorisé à travailler : <span>Non renseigné</span></h3>
                     {% endif %}
                 </div>
             </div>
@@ -182,51 +184,51 @@
                     {% endif %}
                 {% else %}
                     <p class="alert alert-light">
-                        Entreprise pas présente sur les réseaux
+                        Candidat pas présent sur les réseaux
                     </p>
                 {% endif %}
             </div>
         </div>
     </div>
-
-
 {% endblock %}
 
 {% block javascripts %}
     {{ parent() }}
-    <script>
-        const btn_doughnut = document.getElementById('btn_doughnut');
-        const doughnut = document.getElementById('doughnut');
+    {% if candidate.scoring %}
+        <script>
+            const btn_doughnut = document.getElementById('btn_doughnut');
+            const doughnut = document.getElementById('doughnut');
 
-        btn_doughnut.addEventListener('click', function (e) {
-            e.currentTarget.classList.toggle('rotate');
-            doughnut.classList.toggle('collapse');
+            btn_doughnut.addEventListener('click', function (e) {
+                e.currentTarget.classList.toggle('rotate');
+                doughnut.classList.toggle('collapse');
 
-        })
+            })
 
 
-        var ctx = document.getElementById('myChart');
-        var myChart = new Chart(ctx, {
-            type: 'doughnut',
-            data: {
-                labels: ['Social', 'Environnement', 'Economie', 'Societal'],
-                datasets: [{
-                    label: '# of Votes',
-                    data: [
-                        {{ candidate.scoring.social }},
-                        {{ candidate.scoring.environment }},
-                        {{ candidate.scoring.economy }},
-                        {{ candidate.scoring.societal }}
-                    ],
-                    backgroundColor: [
-                        'rgba(161, 14, 214, 0.53)',
-                        'rgba(44, 168, 19, 0.68)',
-                        'rgba(89, 121, 252, 1)',
-                        'rgba(252, 187, 89, 0.71)',
-                    ],
-                }]
-            },
-            options: {}
-        });
-    </script>
+            var ctx = document.getElementById('myChart');
+            var myChart = new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Social', 'Environnement', 'Economie', 'Societal'],
+                    datasets: [{
+                        label: '# of Votes',
+                        data: [
+                            {{ candidate.scoring.social }},
+                            {{ candidate.scoring.environment }},
+                            {{ candidate.scoring.economy }},
+                            {{ candidate.scoring.societal }}
+                        ],
+                        backgroundColor: [
+                            'rgba(161, 14, 214, 0.53)',
+                            'rgba(44, 168, 19, 0.68)',
+                            'rgba(89, 121, 252, 1)',
+                            'rgba(252, 187, 89, 0.71)',
+                        ],
+                    }]
+                },
+                options: {}
+            });
+        </script>
+    {% endif %}
 {% endblock %}

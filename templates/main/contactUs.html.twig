@@ -2,17 +2,14 @@
 
 {% block title %}Sowrs | Contactez-nous{% endblock %}
 
-
 {% block body %}
-
     <div class="container p-2 mt-4">
         {{ form_start(formContact, {'attr': {'class': 'row'}}) }}
             <div class="col-lg-5">
                 <div class="row justify-content-center mb-4">
-                    <div class="col-6">                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   <br>
-                        <div style="background: #1dca91; cursor: pointer;border-radius: 20px"
-                             class="text-center text-white p-4" name="btnCandidat" id="btnCandidat">
-                            <input style=" visibility: hidden; cursor: pointer; background: #1dca91;border-radius: 20px" type="radio" id="contactChoice1"
+                    <div class="col-6"><br>
+                        <div class="text-center text-white p-4" name="btnCandidat" id="btnCandidat">
+                            <input type="radio" id="contactChoice1"
                                    name="contact" value="candidat">
                             <label class="d_none" for="contactChoice1"><h3>Je suis</h3>
                                 <h3>Candidat</h3></label>
@@ -20,9 +17,8 @@
                     </div>
                     <div class="col-6">
                         <br>
-                        <div style="background: #1dca91; cursor: pointer;border-radius: 20px"
-                             class="text-center text-white p-4" name="btnRecruteur" id="btnRecruteur">
-                            <input type="radio" style=" visibility: hidden; cursor: pointer" id="contactChoice2"
+                        <div class="text-center text-white p-4" name="btnRecruteur" id="btnRecruteur">
+                            <input type="radio" id="contactChoice2"
                                    name="contact" value="candidat">
                             <label class="d_none" for="contactChoice2"> <h3>Je suis</h3>
                                 <h3>Recruteur</h3></label>
@@ -40,7 +36,7 @@
                     {{ form_row(formContact.fichier,{'id': 'uploadedFile'})}}
                     <div class="col-lg-6">
                         {% if fichier %}
-                            <img src="{{ asset('img/img_pj.png')}}" style="width: 30px"/>
+                            <img src="{{ asset('img/img_pj.png')}}" class="img_file" />
                         {% endif %}
                     </div>
                     <a class="messageButtonTrash col-lg-3 m-2 text-center btn align-self-center"
@@ -54,7 +50,7 @@
                 <label for="contact_file" class="btn required"> + Ajouter un autre fichier</label>
                     <div class="col-lg-6">
                         {% if autreFichier %}
-                            <img src="{{ asset('img/img_pj.png')}}" style="width: 30px"/>
+                            <img src="{{ asset('img/img_pj.png')}}" class="img_file"/>
                         {% endif %}
                     </div>
                 <a class="messageButtonTrash col-lg-3 m-2 text-center btn align-self-center"
@@ -73,9 +69,10 @@
         {{ form_end(formContact) }}
     </div>
 {% endblock %}
+
 {% block javascripts %}
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="{{ asset('js/register.js') }}"></script>
-    echo '<script type="text/javascript">window.alert("Commencez par nous dire si vous êtes candidat ou recruteur");</script>';
+    <script type="text/javascript">window.alert("Commencez par nous dire si vous êtes candidat ou recruteur");</script>;
 {% endblock %}

@@ -1,23 +1,23 @@
-.buttonPj{
-    width: 200px;
-    margin: 20px;
+.link_messagerie{
+    text-decoration: none;
 }
 .btnBackTo{
     width: 150px;
     margin: 20px;
     text-decoration: none;
 }
-.btn_send_response{
+.btn_send{
     width: 150px;
+    margin: 20px;
+}
+.buttonPj{
+    width: 200px;
     margin: 20px;
 }
 .block_info_message{
     background-color: white;
     margin: 10px;
 }
-.p_info_message{
+.p_user_message{
     text-align: left;
-}
-.line{
-    text-align: center;
 }

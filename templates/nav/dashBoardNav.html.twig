@@ -2,7 +2,6 @@
 <nav class="nav flex-column">
 
     {% if "ROLE_CANDIDATE" in app.user.roles %}
-
         {% if app.user.picture %}
             <img id="photo_profile" src="{{ asset('images/profils/' ~ app.user.picture.pictureName )}}"
                  alt="photo du profil">
@@ -11,7 +10,6 @@
                  alt="photo du profil">
         {% endif %}
         <h2 class="entityName m-3">{{ app.user.firstname }} {{ app.user.lastname }}</h2>
-
         <div class="error">
             {{ form_errors(formPicture) }}
             {{ form_start(formPicture, {'attr': {'id':'updateavatarform', 'class':'d-none'}}) }}
@@ -24,7 +22,6 @@
             {% endif %}
         </div>
         <br>
-
         <ul class="dashBoardList d-flex flex-column align-items-start">
             <li>
                 <a class="nav-link" href="{{ path('main_dash_board') }}">Tableau de bord</a>
@@ -32,13 +29,12 @@
             <li>
                 <a class="nav-link" href="{{ path('dashboard_details') }}">Qui êtes-vous ?</a>
             </li>
-
             {% if app.user.scoring %}
                 <a class="nav-link" href="{{ path('api_matching') }}">Votre taux de sens</a>
             {% else %}
                 <a class="nav-link" href="{{ path('dash_board_entitySenseRate') }}">Votre taux de sens</a>
             {% endif %}
-
+            {# todo : mettre en place les liens #}
             <li>
                 <a class="nav-link" href="">Vos candidatures</a>
             </li>
@@ -63,7 +59,6 @@
                 <label for="create_cv_cvFile" class="btn required buttonDashBoardNav">Importer votre cv</label>
            {% endif %}
         </div>
-
         <br>
         {% if app.user.private %}
             <a class="btn" type="button" href="{{ path('dash_board_account_status') }}">Enlever la cape d'invisibilité</a>
@@ -112,6 +107,7 @@
             {% else %}
                 <a class="nav-link" href="{{ path('dash_board_entitySenseRate') }}">Votre taux de sens</a>
             {% endif %}
+            {# todo : mettre en place les liens #}
             <li>
                 <a class="nav-link" href="#">Candidat(e)s favori(te)s</a>
             </li>
@@ -143,7 +139,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.5.4/umd/popper.min.js"></script>
 
     <script>
-
         const elementFormPicture = document.getElementById('updateavatarform');
         const elementInputPicture = document.getElementById('dash_board_nav_pictureFile');
         const elementPhotoProfile = document.getElementById('photo_profile');

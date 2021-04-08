@@ -15,72 +15,66 @@
             </div>
 
             <div class="col-lg-9">
-
                 {% if "ROLE_CANDIDATE" in app.user.roles %}
-
-                <div class="container background-title-choices">
-                    <div class="text-center align-self-center text-white p-4">
-                        <h3 class="title-choises">Quel est le taux de sens de votre entreprise ?</h3>
-                        <p class="text-choices m-0">
-                            Juste avant, nous avons besoin de quelques informations pour créer votre profil
-                            de responsabilité. S'ils avaient le choix entre deux emplois, sept jeunes sur dix
-                            privilégieraient celui "qui a du sens", au sein d'une entreprise à la fois
-                            humainement et écologiquement responsable.*
-                        </p>
-                        <br>
-                        <p class="text-choices m-0">
-                            Nous vous proposons ici de créer en quelques étapes le profil de responsabilité de
-                            votre entreprise pour attirer les candidats qui soutiennent activement les mêmes causes
-                            et partagent ses valeurs.
-                        </p>
-                        <br>
-                        <p class="text-choices m-0">
-                            *Source : Le Monde
-                        </p>
-                    </div>
-                </div>
-                <div class="matching_content">
-                    <div class="matching_title text-choices p-5">
-                        Parmi les 17 objectifs de développement durable présentés ci-dessous, merci de renseigner
-                        les cinq éléments qui correspondent le mieux à vos engagements et à vos valeurs !
-                    </div>
-
-                    {% elseif "ROLE_RECRUITER" in app.user.roles %}
-
-                        <div class="container background-title-choices">
-                            <div class="text-center align-self-center text-white p-4">
-                                <h3 class="title-choises">Quel est le taux de sens de votre entreprise ?</h3>
-                                <p class="text-choices m-0">
-                                    Juste avant, nous avons besoin de quelques informations pour créer votre profil
-                                    de responsabilité. S'ils avaient le choix entre deux emplois, sept jeunes sur
-                                    dix
-                                    privilégieraient celui "qui a du sens", au sein d'une entreprise à la fois
-                                    humainement et écologiquement responsable.*
-                                </p>
-                                <br>
-                                <p class="text-choices m-0">
-                                    Nous vous proposons ici de créer en quelques étapes le profil de responsabilité
-                                    de
-                                    votre entreprise pour attirer les candidats qui soutiennent activement les mêmes
-                                    causes
-                                    et partagent ses valeurs.
-                                </p>
-                                <br>
-                                <p class="text-choices m-0">
-                                    *Source : Le Monde
-                                </p>
-                            </div>
+                    <div class="container background-title-choices">
+                        <div class="text-center align-self-center text-white p-4">
+                            <h3 class="title-choises">Quel est le taux de sens de votre entreprise ?</h3>
+                            <p class="text-choices m-0">
+                                Juste avant, nous avons besoin de quelques informations pour créer votre profil
+                                de responsabilité. S'ils avaient le choix entre deux emplois, sept jeunes sur dix
+                                privilégieraient celui "qui a du sens", au sein d'une entreprise à la fois
+                                humainement et écologiquement responsable.*
+                            </p>
+                            <br>
+                            <p class="text-choices m-0">
+                                Nous vous proposons ici de créer en quelques étapes le profil de responsabilité de
+                                votre entreprise pour attirer les candidats qui soutiennent activement les mêmes causes
+                                et partagent ses valeurs.
+                            </p>
+                            <br>
+                            <p class="text-choices m-0">
+                                *Source : Le Monde
+                            </p>
                         </div>
-
+                    </div>
+                    <div class="matching_content">
                         <div class="matching_title text-choices p-5">
                             Parmi les 17 objectifs de développement durable présentés ci-dessous, merci de renseigner
-                            les cinq éléments qui corespondent le mieux aux engagements et aux valeurs de votre
-                            entreprise !
+                            les cinq éléments qui correspondent le mieux à vos engagements et à vos valeurs !
                         </div>
-
-                    {% endif %}
-                </div>
-                <div>
+                    </div>
+                {% elseif "ROLE_RECRUITER" in app.user.roles %}
+                    <div class="container background-title-choices">
+                        <div class="text-center align-self-center text-white p-4">
+                            <h3 class="title-choises">Quel est le taux de sens de votre entreprise ?</h3>
+                            <p class="text-choices m-0">
+                                Juste avant, nous avons besoin de quelques informations pour créer votre profil
+                                de responsabilité. S'ils avaient le choix entre deux emplois, sept jeunes sur
+                                dix
+                                privilégieraient celui "qui a du sens", au sein d'une entreprise à la fois
+                                humainement et écologiquement responsable.*
+                            </p>
+                            <br>
+                            <p class="text-choices m-0">
+                                Nous vous proposons ici de créer en quelques étapes le profil de responsabilité
+                                de
+                                votre entreprise pour attirer les candidats qui soutiennent activement les mêmes
+                                causes
+                                et partagent ses valeurs.
+                            </p>
+                            <br>
+                            <p class="text-choices m-0">
+                                *Source : Le Monde
+                            </p>
+                        </div>
+                    </div>
+                    <div class="matching_title text-choices p-5">
+                        Parmi les 17 objectifs de développement durable présentés ci-dessous, merci de renseigner
+                        les cinq éléments qui corespondent le mieux aux engagements et aux valeurs de votre
+                        entreprise !
+                    </div>
+                {% endif %}
+                <div class="col-12">
                     <ul class="px-5" id="listChoices">
                         {% for choice in choices %}
                             <li class="matching_choice_list_item">
@@ -89,7 +83,6 @@
                             </li>
                         {% endfor %}
                     </ul>
-
                     <div class="text-center">
                         <button id="matching-submit" class="btn config-btn matching__btn">C'est parti !
                         </button>
@@ -101,6 +94,7 @@
                         </div>
                     </div>
                 </div>
+
             </div>
         </div>
     </div>

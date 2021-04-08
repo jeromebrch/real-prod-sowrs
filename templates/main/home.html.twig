@@ -6,7 +6,6 @@
 
 {% block title %}Sowrs | Accueil{% endblock %}
 
-
 {% block body %}
     {# Flash message #}
     {% for label, messages in app.flashes %}
@@ -25,10 +24,10 @@
                 <p class="sub-subtitle-background">Pour profils techs engagés & entreprises à mission</p>
             </div>
             <div class="d-md-none d-lg-none d-xl-none">
-                <h3 style="text-align: center">Trouvez un sens à votre travail et sauvons le monde ensemble !</h3>
+                <h3 class="home_subtitle">Trouvez un sens à votre travail et sauvons le monde ensemble !</h3>
                 <br>
-                <h3 style="text-align: center">Sowrs</h3>
-                <h4 style="text-align: center;">Pour profils techs engagés & entreprises à mission</h4>
+                <h3 class="home_subtitle">Sowrs</h3>
+                <h4 class="home_subtitle">Pour profils techs engagés & entreprises à mission</h4>
             </div>
             <div class="col-lg-5 d-none d-md-block d-lg-block d-xl-block">
                 <div class="Background-jobOffer-filter-home p-3">
@@ -37,7 +36,7 @@
                             <p class="m-0">Recherche rapide</p>
                         </div>
                         <div class="col-lg-6 text-end">
-                            <a class="texte-green" style="text-decoration: none" href="{{ path('main_job_offers_list') }}">Voir toutes les offres</a>
+                            <a class="texte-green home_link" href="{{ path('main_job_offers_list') }}">Voir toutes les offres</a>
                         </div>
                     </div>
                     <div class="test">
@@ -76,10 +75,10 @@
         </div>
         <div class="row d-md-none d-lg-none d-xl-none pb-5">
             <div class="col-5 offset-1 p-1">
-                <a class="btn home_btn_candidate_recruiter" href="{{ path('app_login') }}" role="button" style="width: 100%">Espace candidat</a>
+                <a class="btn home_btn_candidate_recruiter" href="{{ path('app_login') }}" role="button">Espace candidat</a>
             </div>
             <div class="col-5 p-1">
-                <a class="btn home_btn_candidate_recruiter" href="{{ path('app_login') }}" role="button" style="width: 100%">Espace recruteur</a>
+                <a class="btn home_btn_candidate_recruiter" href="{{ path('app_login') }}" role="button">Espace recruteur</a>
             </div>
         </div>
     </div>

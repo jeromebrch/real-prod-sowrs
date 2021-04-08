@@ -130,7 +130,6 @@ class ApiMatchingController extends AbstractController
                     }
                 }
             }
-            dump($matchingArray);
             $scoring = $this->getUser()->getScoring();
 
             return $this->render('dash_board/senseRate/resultSensRate.html.twig', [
