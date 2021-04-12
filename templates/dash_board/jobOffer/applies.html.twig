@@ -50,7 +50,7 @@
                                                 <p class="apply" ><strong>{{ candidature.userSender.firstName|capitalize}} {{ candidature.userSender.lastName|upper }}</strong></p>
                                                 <p class="apply"> {{ candidature.userSender.currentRole }}</p>
                                                 <p class="apply">{{ candidature.userSender.city|capitalize}} ({{ candidature.userSender.department.cp }})</p>
-                                                <p class="apply"><strong>Taux de sens : </strong>{{ candidature.userSender.inspiration}}</p>
+                                                <p class="apply"><strong>Taux de sens : </strong>{{ candidature.userSender.scoring.dominantsens}} {{ candidature.userSender.scoring.societal }}%</p>
                                             </div>
                                             <div class="align-self-center col-lg-5">
                                                 <a href="{{ path('read_message', {'id': candidature.id}) }}" class="btn">Voir la candidature</a>

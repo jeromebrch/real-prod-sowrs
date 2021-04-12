@@ -47,11 +47,36 @@ class Cv
      */
     private $message;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Favorite::class, mappedBy="cv")
+     */
+    private $favorite;
+
+
 
     public function __construct()
     {
         $this->updatedAt = new \DateTime();
     }
+
+    /**
+     * @return mixed
+     */
+    public function getFavorite()
+    {
+        return $this->favorite;
+    }
+
+    /**
+     * @param mixed $favorite
+     */
+    public function setFavorite($favorite): self
+    {
+        $this->favorite = $favorite;
+        return $this;
+    }
+
+
 
     public function getId(): ?int
     {

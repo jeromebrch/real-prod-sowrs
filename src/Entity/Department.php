@@ -28,9 +28,33 @@ class Department
     private $cp;
 
     /**
-     * @ORM\OneToMany (targetEntity=Country::class, mappedBy="department")
+     * @ORM\OneToMany (targetEntity=Candidate::class, mappedBy="department")
      */
     private $candidate;
+
+    /**
+     * @ORM\OneToMany (targetEntity=Recruiter::class, mappedBy="department")
+     */
+    private $recruiter;
+
+    /**
+     * @return mixed
+     */
+    public function getRecruiter()
+    {
+        return $this->recruiter;
+    }
+
+    /**
+     * @param mixed $recruiter
+     */
+    public function setRecruiter($recruiter): self
+    {
+        $this->recruiter = $recruiter;
+        return $this;
+    }
+
+
 
     /**
      * @return mixed

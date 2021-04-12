@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Cause;
 
+use App\Entity\Department;
 use App\Entity\LegalStatus;
 use App\Entity\Recruiter;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
@@ -45,6 +46,11 @@ class RecruiterModificationType extends AbstractType
                 'label' => false,
                 'attr' => [
                     'placeholder' => 'Numéro de téléphone']
+            ])
+            ->add('department', EntityType::class,[
+                'class'=> Department::class,
+                'choice_label'=> 'name',
+                'label'=> 'Veuillez renseigner votre département'
             ])
             ->add('about', TextareaType::class, [
                 'required' => false,

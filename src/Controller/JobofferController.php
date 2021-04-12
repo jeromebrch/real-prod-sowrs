@@ -4,13 +4,11 @@ namespace App\Controller;
 
 use App\Entity\Category;
 use App\Entity\JobOffer;
-use App\Entity\Message;
 use App\Form\ApplyType;
 use App\Form\JobOfferType;
 use App\Repository\JobOfferRepository;
 use App\Repository\RecruiterRepository;
 use DateTime;
-use Doctrine\DBAL\Driver\PDOException;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;

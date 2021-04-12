@@ -3,12 +3,12 @@
 namespace App\Controller;
 
 use App\Entity\Candidate;
-use App\Entity\Category;
 use App\Entity\Cv;
 use App\Entity\Media;
 use App\Entity\Message;
 use App\Entity\Recruiter;
-use App\Form\MessageType;
+use App\Entity\User;
+use App\Form\ResponseMessageType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
@@ -18,35 +18,35 @@ use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Mime\Email;
 use Symfony\Component\Routing\Annotation\Route;
 
-
-class MessageController extends AbstractController
+class ResponseController extends AbstractController
 {
     /**
-     * @Route("/messaging/sendMessage/{id}", name="send_message")
+     * @Route("/messaging/sendMessageResponse/{id}", name="response")
      */
-    public function sendMessageCandidate(EntityManagerInterface $em, Request $request, $id, MailerInterface $mailer): Response
+    public function sendMessageResponse($id, EntityManagerInterface $em, Request $request, MailerInterface $mailer): Response
     {
+        /**
+         * @var User $user
+         */
         $user = $this->getUser();
-        //getting user/candidate
-        $candidateRepo = $this->getDoctrine()->getRepository(Candidate::class);
-        $candidate = $candidateRepo->find($id);
+        //getting received message for response
+        $messageRepo = $this->getDoctrine()->getRepository(Message::class);
+        $messageRecu = $messageRepo->find($id);
 
-        //getting user/recruiter
-        $recruiterRepo = $this->getDoctrine()->getRepository(Recruiter::class);
-        $recruteur = $recruiterRepo->find($id);
+        $userSender = $messageRecu->getUserSender();
 
-        $CategoryRepo = $this->getDoctrine()->getRepository(Category::class);
-        $category = $CategoryRepo->find(2);
+        $formMessage = $this->createForm(ResponseMessageType::class);
+        $formMessage->handleRequest($request);
 
         $messages = $user->getMessages();
+
         //counting the unreaded messages
         $messageState = $em->getRepository(Message::class)->count(['userRecipient' => $user, 'state' => 'non lu']);
 
-        $formMessage = $this->createForm(MessageType::class);
-        $formMessage->handleRequest($request);
-
         if ($formMessage->isSubmitted() && $formMessage->isValid()) {
+
             $message = new Message();
+
             $cvFile = $formMessage->get('cvFile')->getData();
             $mediaFile = $formMessage->get('mediaFile')->getData();
             //saving cvFile
@@ -55,7 +55,7 @@ class MessageController extends AbstractController
                 $cv = new Cv();
                 $cv->setCvName($cvFilename . '-' . uniqid() . '.' . $cvFile->guessExtension());
                 try {
-                    $cvFile->move($this->getParameter('cv'), $cv->getCvName());
+                    $cvFile->move($this->getParameter('cv'),$cv->getCvName());
                     $message->setCv($cv);
                     $em->persist($cv);
                 } catch (FileException $e) {
@@ -76,38 +76,18 @@ class MessageController extends AbstractController
                 }
             }
             //creating message
-            if ($user instanceof Recruiter) {
-                $message->setUserRecipient($candidate);
-                $message->setUserSender($user);
-                $message->setCategory($category);
-                $message->setState('non lu');
-                $message->setCreatedAt(new \DateTimeImmutable());
+            $message->setSubject('Re: ' . $messageRecu->getSubject());
+            $message->setCategory($messageRecu->getCategory());
+            $message->setUserRecipient($userSender);
+            $message->setUserSender($user);
+            $message->setBody($formMessage['body']->getData());
+            $message->setState('non lu');
+            $message->setCreatedAt(new \DateTimeImmutable());
 
-                $em->persist($message);
-                $em->flush();
+            $em->persist($message);
+            $em->flush();
 
-                //sending email
-                $email = (new Email())
-                    ->from('team@sowrs.com')
-                    ->to('kennouche.annelise@gmail.com') //todo :email du destinataire
-                    ->subject($message->getSubject())
-                    ->text($this->renderView(
-                    // getting text for email from html page
-                        'textEmail/emailTextCandidate.html.twig',
-                        ['message' => $message]
-                    ), 'text/html');
-
-                $mailer->send($email);
-            } elseif ($user instanceof Candidate) {
-                $message->setUserRecipient($recruteur);
-                $message->setUserSender($user);
-                $message->setCategory(2);
-                $message->setState('non lu');
-                $message->setCreatedAt(new \DateTimeImmutable());
-
-                $em->persist($message);
-                $em->flush();
-
+            if ($user instanceof Candidate){
                 //sending email
                 $email = (new Email())
                     ->from('team@sowrs.com')
@@ -115,33 +95,47 @@ class MessageController extends AbstractController
                     ->subject($message->getSubject())
                     ->text($this->renderView(
                     // getting text for email from html page
-                        'textEmail/emailTextRecruiter.html.twig',
-                        ['message' => $message]
+                        'textEmail/emailTextResponseCandidate.html.twig',
+                        ['message' => $message,
+                            'messageRecu' => $messageRecu]
                     ), 'text/html');
 
                 $mailer->send($email);
+
+            }elseif ($user instanceof Recruiter){
+                //sending email
+                $email = (new Email())
+                    ->from('team@sowrs.com')
+                    ->to('kennouche.annelise@gmail.com')//todo :email du destinataire
+                    ->subject($message->getSubject())
+                    ->text($this->renderView(
+                    // getting text for email from html page
+                        'textEmail/emailTextResponseRecruiter.html.twig',
+                        ['message' => $message,
+                            'messageRecu' => $messageRecu]
+                    ), 'text/html');
+                $mailer->send($email);
+
             }
 
-                $this->addFlash('success', 'Votre message a bien été envoyé!');
-                return $this->render('candidate/showRecruiter.html.twig', [
-                    'formMessage' => $formMessage->createView(),
-                    'message' => $message,
-                    'nonlu' => $messageState,
+            $this->addFlash('success', 'Votre message a bien été envoyé!');
+            return $this->render('messaging/sendMessageResponse.html.twig', [
+                'formMessage' => $formMessage->createView(),
+                'message' => $message,
+                'messageRecu' => $messageRecu,
+                'nonlu' => $messageState,
+                'userSender' => $userSender
+            ]);
+        }
 
-
-                ]);
-            }
-
-        return $this->render('messaging/sendMessage.html.twig', [
+        return $this->render('messaging/sendMessageResponse.html.twig', [
             'controller_name' => 'MessagingController',
             'formMessage' => $formMessage->createView(),
-            'category' => $category,
-            'candidate' => $candidate,
-            'nonlu' => $messageState
-
+            'message' => $messages,
+            'messageRecu' => $messageRecu,
+            'nonlu' => $messageState,
+            'userSender' => $userSender
         ]);
+
     }
-
 }
-
-
