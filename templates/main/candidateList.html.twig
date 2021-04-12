@@ -36,6 +36,9 @@
                     <div class="p-1">
                         {{ form_row(formSearch.authorizedCountry) }}
                     </div>
+                    <div class="p-1">
+                        {{ form_row(formSearch.department) }}
+                    </div>
                     <div class="text-right">
                         <button type="submit" class="btn btn-lg"
                                 style="width: 7em; font-size: 1em; background: #FFFFFF; color: #1dca91">Rechercher
@@ -44,17 +47,16 @@
                     {{ form_end(formSearch) }}
                 </div>
             </div>
-
-
             <div class="col-lg-8 p-3">
-                {% for candidate in listCandidates %}
+                {% for candidate in candidates %}
+                    {% if candidate.cv %}
                         <div class="candidate_row bg-white p-3 mb-3">
                             {% include '/main/_cardCandidate.html.twig' with {candidate: candidate} only %}
                         </div><br>
-                    {% endfor %}
-                </div>
-                {{ knp_pagination_render(listCandidates) }}
+                    {% endif %}
+                {% endfor %}
             </div>
+            {{ knp_pagination_render(listCandidates) }}
         </div>
     </div>
 {% endblock %}

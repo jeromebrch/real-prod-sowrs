@@ -9,6 +9,7 @@ use App\Entity\Media;
 use App\Entity\Message;
 use App\Entity\Recruiter;
 use App\Form\MessageType;
+use App\Form\ResponseMessageType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
@@ -30,10 +31,6 @@ class MessageController extends AbstractController
         //getting user/candidate
         $candidateRepo = $this->getDoctrine()->getRepository(Candidate::class);
         $candidate = $candidateRepo->find($id);
-
-        //getting user/recruiter
-        $recruiterRepo = $this->getDoctrine()->getRepository(Recruiter::class);
-        $recruteur = $recruiterRepo->find($id);
 
         $CategoryRepo = $this->getDoctrine()->getRepository(Category::class);
         $category = $CategoryRepo->find(2);
@@ -98,29 +95,6 @@ class MessageController extends AbstractController
                     ), 'text/html');
 
                 $mailer->send($email);
-            } elseif ($user instanceof Candidate) {
-                $message->setUserRecipient($recruteur);
-                $message->setUserSender($user);
-                $message->setCategory(2);
-                $message->setState('non lu');
-                $message->setCreatedAt(new \DateTimeImmutable());
-
-                $em->persist($message);
-                $em->flush();
-
-                //sending email
-                $email = (new Email())
-                    ->from('team@sowrs.com')
-                    ->to('kennouche.annelise@gmail.com')//todo :email du destinataire
-                    ->subject($message->getSubject())
-                    ->text($this->renderView(
-                    // getting text for email from html page
-                        'textEmail/emailTextRecruiter.html.twig',
-                        ['message' => $message]
-                    ), 'text/html');
-
-                $mailer->send($email);
-            }
 
                 $this->addFlash('success', 'Votre message a bien été envoyé!');
                 return $this->render('candidate/showRecruiter.html.twig', [
@@ -131,16 +105,21 @@ class MessageController extends AbstractController
 
                 ]);
             }
+        }
+
 
         return $this->render('messaging/sendMessage.html.twig', [
             'controller_name' => 'MessagingController',
             'formMessage' => $formMessage->createView(),
             'category' => $category,
+            'message' => $message,
             'candidate' => $candidate,
             'nonlu' => $messageState
 
         ]);
     }
+
+
 
 }
 

@@ -8,6 +8,7 @@ use App\Data\SearchJobOffers;
 use App\Entity\Cause;
 use App\Entity\ContractType;
 use App\Entity\Country;
+use App\Entity\Department;
 use App\Entity\LevelExperience;
 use App\Entity\LevelStudy;
 use App\Entity\Remuneration;
@@ -38,6 +39,14 @@ class SearchJobOfferType extends AbstractType
                 'choice_label' => 'name',
                 'placeholder' => '---Sélectionner une localisation---'
             ])
+            ->add('department', EntityType::class, [
+                'label' => false,
+                'required' => false,
+                'class' =>Department::class,
+                'choice_label' => 'name',
+                'placeholder' => '---Sélectionner un département autorisé---'
+
+             ])
             ->add('contractType', EntityType::class, [
                 'label' => false,
                 'required' => false,

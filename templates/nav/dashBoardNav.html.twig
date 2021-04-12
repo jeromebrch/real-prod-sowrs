@@ -34,7 +34,6 @@
             {% else %}
                 <a class="nav-link" href="{{ path('dash_board_entitySenseRate') }}">Votre taux de sens</a>
             {% endif %}
-            {# todo : mettre en place les liens #}
             <li>
                 <a class="nav-link" href="">Vos candidatures</a>
             </li>
@@ -107,9 +106,8 @@
             {% else %}
                 <a class="nav-link" href="{{ path('dash_board_entitySenseRate') }}">Votre taux de sens</a>
             {% endif %}
-            {# todo : mettre en place les liens #}
             <li>
-                <a class="nav-link" href="#">Candidat(e)s favori(te)s</a>
+                <a class="nav-link" href="{{ path('favorites') }}">Candidat(e)s favori(te)s</a>
             </li>
             <li>
                 <a class="nav-link" href="{{ path('apply-list') }}">Candidatures reçus</a>
