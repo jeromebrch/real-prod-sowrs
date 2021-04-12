@@ -1,14 +1,15 @@
 {% extends 'base.html.twig' %}
 
 {% block meta %}
-    {# todo : mettre les meta données #}
+    <meta name="description" content="{{ post.metaDescription }}">
+    <meta name="robots" content="index, follow" />
 {% endblock %}
 
 {% block stylesheets %}
     {{ parent() }}
 {% endblock %}
 
-{% block title %}Sowrs | Article {{ post.id }}{% endblock %}
+{% block title %}SOWRS | {{ post.metaTitle }}{% endblock %}
 
 {% block body %}
     {% if app.user %}

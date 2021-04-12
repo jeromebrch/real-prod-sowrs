@@ -1,6 +1,12 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Sowrs | Contactez-nous{% endblock %}
+{% block title %}SOWRS | Contactez-nous{% endblock %}
+
+{% block meta %}
+    <meta name="robots" content="index, follow" />
+    <meta name="description" content="Contactez SOWRS pour de plus amples informations, nos équipes sont disponible pour répondre
+                                à vos questions en tant que candidat, ou recruteur">
+{% endblock %}
 
 {% block body %}
     <div class="container p-2 mt-4">
@@ -28,7 +34,7 @@
                 {{ form_row(formContact.nom) }}
                 {{ form_row(formContact.email) }}
                 {{ form_row(formContact.telephone) }}
-                <div class="col-lg-12 input-group-text" style="margin-top: 10px">
+                <div class="col-lg-12 input-group-text">
                     <label for="uploadedFile" class="btn">+ Ajouter un fichier</label>
                     {{ form_row(formContact.fichier,{'id': 'uploadedFile'})}}
                     <div class="col-lg-4">

@@ -1,11 +1,18 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Log in!{% endblock %}
+{% block title %}SOWRS | Se connecter{% endblock %}
 
 {% block stylesheets %}
     {{ parent() }}
     <link rel="stylesheet" href="{{ asset('css/login.css') }}">
 {% endblock %}
+
+{% block meta %}
+    <meta name="robots" content="index, follow" />
+    <meta name="description" content="Connectez-vous et trouvez un employeur qui partage vos valeurs écologiques et sociales. Employeur ?
+                                Connectez-vous et trouvez le candidat parfait pour votre offre" />
+{% endblock %}
+
 {% block body %}
         <div class="row">
             <div class="col-lg-4 offset-lg-4 my-4">
@@ -20,7 +27,7 @@
 
                     {% if app.user %}
                         <div class="mb-3">
-                            You are logged in as {{ app.user.username }}, <a href="{{ path('app_logout') }}">Logout</a>
+                            Vous êtes connecté en tant que {{ app.user.username }}, <a href="{{ path('app_logout') }}">Logout</a>
                         </div>
                     {% endif %}
                     <label for="inputEmail" class="my-1 email_login">Email</label>

@@ -1,9 +1,16 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Sowrs | Nos cv's{% endblock %}
+{% block title %}SOWRS | CV en ligne{% endblock %}
+
 {% block stylesheets %}
     {{ parent() }}
     <link rel="stylesheet" href="{{ asset('css/list_cv.css') }}">
+{% endblock %}
+
+{% block meta %}
+    <meta name="robots" content="index, follow" />
+    <meta name="description" content="Recruteur ? Trouvez le candidat parfait dans notre banque de CV en ligne. Votre futur collaborateur
+                                vous attend sur sowrs.com">
 {% endblock %}
 
 {% block body %}

@@ -1,10 +1,16 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Sowrs | Nos offres{% endblock %}
+{% block title %}SOWRS | Offres d'emplois dans le secteur de l'IT{% endblock %}
 
 {% block stylesheets %}
     {{ parent() }}
     <link rel="stylesheet" href="{{ asset('css/jobOffersList.css') }}">
+    <meta name="description" content="En recherche de sens dans votre carrière ? Consultez les offres d'emploi sur sowrs.com pour trouver
+                                l'employeur qui partage vos valeurs écologiques et sociales">
+{% endblock %}
+
+{% block meta %}
+    <meta name="robots" content="index, follow" />
 {% endblock %}
 
 {% block body %}

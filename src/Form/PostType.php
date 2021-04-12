@@ -21,6 +21,12 @@ class PostType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
+            ->add('metaTitle', TextType::class, [
+                'label' => 'Méta titre'
+            ])
+            ->add('metaDescription', TextareaType::class, [
+                'label' => 'Méta description'
+            ])
             ->add('title', TextType::class, [
                 'label' => 'Titre'
             ])

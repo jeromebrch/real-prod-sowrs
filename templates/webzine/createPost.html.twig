@@ -12,6 +12,12 @@
         {{ form_start(postForm) }}
         <div class="row head_form_post">
             <div class="col-md-4 col-sm-12">
+                {{ form_row(postForm.metaTitle) }}
+            </div>
+            <div class="col-md-8 col-sm-12">
+                {{ form_row(postForm.metaDescription) }}
+            </div>
+            <div class="col-md-4 col-sm-12">
                 {{ form_row(postForm.title) }}
             </div>
             <div class="col-md-4 col-sm-12">
