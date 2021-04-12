@@ -98,6 +98,30 @@ class JobOffer
     private $NumberOfViews;
 
 
+    /**
+     * @ORM\OneToMany(targetEntity=Favorite::class, mappedBy="jobOffer")
+     */
+    private $favorite;
+
+    /**
+     * @return mixed
+     */
+    public function getFavorite()
+    {
+        return $this->favorite;
+    }
+
+    /**
+     * @param mixed $favorite
+     */
+    public function setFavorite($favorite): self
+    {
+        $this->favorite = $favorite;
+        return $this;
+    }
+
+
+
     public function __construct(){
         $this->creationDate = new DateTime();
         $this->published = true;

@@ -180,6 +180,7 @@ class Scoring
     public function getDominantSens(){
         return $this->greatestValue;
     }
+
     public function getDominantPourcent(){
         $pourcent = 0;
         switch ($this->greatestValue){

@@ -157,6 +157,7 @@ class MainController extends AbstractController
      */
     public function jobOffersList(Request $request, PaginatorInterface $paginator, JobOfferRepository $jobOfferRepo): Response
     {
+        $user = $this->getUser();
         $data = new SearchJobOffers();
         $formSearch = $this->createForm(SearchJobOfferType::class, $data);
         $formSearch->handleRequest($request);
@@ -169,6 +170,7 @@ class MainController extends AbstractController
 
         return $this->render('main/jobOffersList.html.twig', [
             'jobOffers' => $jobOffers,
+            'favorites' => $user->getFavorites(),
             'formSearch' => $formSearch->createView(),
         ]);
     }

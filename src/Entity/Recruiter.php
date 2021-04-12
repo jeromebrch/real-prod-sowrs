@@ -79,6 +79,11 @@ class Recruiter extends User
     private $city;
 
     /**
+     * @ORM\ManyToOne(targetEntity=Department::class, inversedBy="recruiter")
+     */
+    private $department;
+
+    /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $country;
@@ -102,6 +107,25 @@ class Recruiter extends User
        $this->recognitions = new ArrayCollection();
        $this->commitments = new ArrayCollection();
    }
+
+    /**
+     * @return mixed
+     */
+    public function getDepartment()
+    {
+        return $this->department;
+    }
+
+    /**
+     * @param mixed $department
+     */
+    public function setDepartment($department): self
+    {
+        $this->department = $department;
+        return $this;
+    }
+
+
 
    public function setRoles(array $roles): User
    {

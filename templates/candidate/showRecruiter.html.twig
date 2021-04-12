@@ -202,10 +202,13 @@
                 <div class="row container_contact">
                     <div>
                         <h3 class="profil_category_title_bottom">Contact </h3>
-                        {{ form_start(contactForm) }}
-                        {{ form_widget(contactForm) }}
+                        {{ form_start(formMessage) }}
+                        {{ form_row(formMessage.subject) }}
+                        {{ form_row(formMessage.body) }}
+                        {{ form_row(formMessage.cvFile) }}
+                        {{ form_row(formMessage.mediaFile) }}
                         <button type="submit" class="btn required btn_send_message">Envoyer</button>
-                        {{ form_end(contactForm) }}
+                        {{ form_end(formMessage) }}
                     </div>
                 </div>
 

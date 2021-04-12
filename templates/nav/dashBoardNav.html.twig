@@ -43,7 +43,7 @@
                 <a class="nav-link" href="">Vos candidatures</a>
             </li>
             <li>
-                <a class="nav-link" href="">Vos offres favorites</a>
+                <a class="nav-link" href="{{ path('favorites') }}">Vos offres favorites</a>
             </li>
             <li>
                 <a class="nav-link" href="{{ path('messaging') }}">Messagerie {% if nonlu != 0 %}({{ nonlu }}){% endif %}</a>

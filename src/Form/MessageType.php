@@ -3,6 +3,7 @@
 namespace App\Form;
 
 use App\Entity\Message;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
@@ -16,16 +17,19 @@ class MessageType extends AbstractType
     {
 
         $builder
-            ->add('subject')
+            ->add('subject', TextType::class, [
+                'required' => true,
+                'label' => 'sujet',
+            ])
             ->add('body', TextareaType::class, [
                 'label'=> 'Veuillez écrire votre message',
-                'attr' =>['rows' =>16],
+                'attr' =>['rows' =>12],
                 'constraints' => [
                     new NotBlank([
                         'message' => 'Merci d\'entrer votre message.'])
                 ]])
             ->add('cvFile' ,FileType::class,[
-                'label' => 'Importer votre cv',
+                'label' => 'Importer un document',
                 'required' => false,
             ])
             ->add('mediaFile', FileType::class, [

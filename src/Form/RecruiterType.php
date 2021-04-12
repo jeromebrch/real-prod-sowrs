@@ -3,6 +3,7 @@
 namespace App\Form;
 
 use App\Entity\Cause;
+use App\Entity\Department;
 use App\Entity\Recruiter;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
@@ -45,6 +46,11 @@ class RecruiterType extends AbstractType
                 'attr' => [
                     'placeholder' => 'Votre téléphone'
                 ]
+            ])
+            ->add('department', EntityType::class,[
+                'class'=> Department::class,
+                'choice_label'=> 'name',
+                'label'=> 'Veuillez renseigner votre département'
             ])
             ->add('function', TextType::class, [
                 'label' => false,
