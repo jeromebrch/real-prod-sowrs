@@ -107,7 +107,7 @@ class User implements UserInterface, \Serializable
     private $comments;
 
     /**
-     * @ORM\OneToMany(targetEntity=Message::class, mappedBy="userRecipient")
+     * @ORM\OneToMany(targetEntity=Message::class, mappedBy="userRecipient","userRecipient")
      */
     private $messages;
 
@@ -404,7 +404,8 @@ class User implements UserInterface, \Serializable
         return $this->favorites;
     }
 
-    public function addFavoriteCv(Favorite $favorite ): self
+
+    public function addFavoriteCv(Favorite $favorite )
     {
         if (!$this->favorites->contains($favorite)) {
             $this->favorites[] =$favorite;
@@ -414,17 +415,6 @@ class User implements UserInterface, \Serializable
         return $this;
     }
 
-    public function removeFavoriteCv(Favorite $favorite): self
-    {
-        if ($this->favorites->removeElement($favorite)) {
-            // set the owning side to null (unless already changed)
-            if ($favorite->getUser() === $this) {
-                $favorite->setUser(null);
-            }
-        }
-
-        return $this;
-    }
 
     public function addFavoriteOffer( Favorite $favorite)
     {
@@ -437,6 +427,18 @@ class User implements UserInterface, \Serializable
     }
 
     public function removeFavoriteOffer(Favorite $favorite): self
+    {
+        if ($this->favorites->removeElement($favorite)) {
+            // set the owning side to null (unless already changed)
+            if ($favorite->getUser() === $this) {
+                $favorite->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function removeFavoriteCv(Favorite $favorite): self
     {
         if ($this->favorites->removeElement($favorite)) {
             // set the owning side to null (unless already changed)

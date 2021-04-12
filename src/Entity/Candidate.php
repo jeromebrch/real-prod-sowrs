@@ -12,8 +12,7 @@ use Doctrine\ORM\Mapping as ORM;
 class Candidate extends User
 {
     /**
-     * @ORM\OneToOne(targetEntity=Cv::class)
-     * @ORM\JoinColumn(nullable=true)
+     * @ORM\ManyToOne(targetEntity=Cv::class, inversedBy="candidate")
      */
     public $cv;
 

@@ -53,6 +53,30 @@ class Cv
     private $favorite;
 
 
+    /**
+     * @ORM\OneToMany (targetEntity=Candidate::class, mappedBy="cv")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $candidate;
+
+    /**
+     * @return mixed
+     */
+    public function getCandidate()
+    {
+        return $this->candidate;
+    }
+
+    /**
+     * @param mixed $candidate
+     */
+    public function setCandidate($candidate):self
+    {
+        $this->candidate = $candidate;
+        return $this;
+    }
+
+
 
     public function __construct()
     {

@@ -8,6 +8,7 @@ use App\Data\SearchCandidate;
 use App\Entity\Cause;
 use App\Entity\ContractType;
 use App\Entity\Country;
+use App\Entity\Department;
 use App\Entity\LevelExperience;
 use App\Entity\LevelStudy;
 use App\Entity\Remuneration;
@@ -81,6 +82,14 @@ class SearchCandidateType extends AbstractType
                 'class' => Country::class,
                 'choice_label' => 'name',
                 'placeholder' => '---Sélectionner un pays autorisé---'
+
+            ])
+            ->add('department', EntityType::class, [
+                'label' => false,
+                'required' => false,
+                'class' =>Department::class,
+                'choice_label' => 'name',
+                'placeholder' => '---Sélectionner un département autorisé---'
 
             ]);
     }

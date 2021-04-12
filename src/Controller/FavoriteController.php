@@ -2,18 +2,18 @@
 
 namespace App\Controller;
 
+use App\Data\SearchCandidate;
 use App\Data\SearchJobOffers;
-use App\Entity\Category;
 use App\Entity\Favorite;
-use App\Entity\Message;
 use App\Entity\User;
+use App\Form\SearchCandidateType;
 use App\Form\SearchJobOfferType;
+use App\Repository\CandidateRepository;
 use App\Repository\CvRepository;
 use App\Repository\FavoriteRepository;
 use App\Repository\JobOfferRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Knp\Component\Pager\PaginatorInterface;
-use mysql_xdevapi\Exception;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -30,7 +30,9 @@ class FavoriteController extends AbstractController
          * @var User $user
          */
         $user = $this->getUser();
+
         $favorites = $user->getFavorites();
+
 
         return $this->render('favorite/favorite_list.html.twig', [
             'favorites' => $favorites,
@@ -39,12 +41,25 @@ class FavoriteController extends AbstractController
     }
 
     /**
-     * @Route("/favoriteaddFavoriteCv/{id}", name="add_favorite_cv")
+     * @Route("/favorite/addFavoriteCv/{id}", name="add_favorite_cv")
      */
-    public function addFavoriteCv($id, EntityManagerInterface $em, CvRepository $cvRepo): Response
+    public function addFavoriteCv(CandidateRepository $repoCandidate, Request $request, PaginatorInterface $paginator,$id, EntityManagerInterface $em, CvRepository $cvRepo): Response
     {
+        $data = new SearchCandidate();
+        $formSearch = $this->createForm(SearchCandidateType::class, $data);
+        $formSearch->handleRequest($request);
+
+        $donnees = $repoCandidate->searchCandidate($data);
+        $candidates = $paginator->paginate(
+            $donnees,
+            $request->query->getInt('page', 1),
+            5
+        );
+        $candidateList = $repoCandidate->findAll();
+
         $user = $this->getUser();
         $cv = $cvRepo->find($id);
+
         $favorite = new Favorite();
         $favorite->setCv($cv);
 
@@ -53,8 +68,11 @@ class FavoriteController extends AbstractController
         $em->flush();
 
         $this->addFlash('success', 'le cv a été ajouté à vos favoris');
-        return $this->render('messaging/read_message.html.twig', [
-
+        return $this->render('main/candidateList.html.twig', [
+            'cv'=>$cv,
+            'formSearch' => $formSearch->createView(),
+            'listCandidates' => $candidates,
+            'candidates'=> $candidateList
         ]);
     }
 
@@ -133,6 +151,46 @@ class FavoriteController extends AbstractController
         ]);
 
         }
+
+
+    /**
+     * @Route("/favorite/remove_cv/{id}", name="remove_favorite_cv")
+     */
+    public function RemoveFavoritecv(CandidateRepository $repoCandidate, Request $request, PaginatorInterface $paginator,$id,FavoriteRepository $favRepo,EntityManagerInterface $em): Response
+    {
+        $data = new SearchCandidate();
+        $formSearch = $this->createForm(SearchCandidateType::class, $data);
+        $formSearch->handleRequest($request);
+
+        $donnees = $repoCandidate->searchCandidate($data);
+        $candidates = $paginator->paginate(
+            $donnees,
+            $request->query->getInt('page', 1),
+            5
+        );
+        $candidateList = $repoCandidate->findAll();
+
+        $user = $this->getUser();
+        $favorite = $favRepo->find($id);
+
+        try {
+            $user->removeFavoriteCv($favorite);
+            $em->persist($favorite);
+            $em->flush();
+
+            $this->addFlash('success', 'l\'offre a été retirée de vos favoris');
+        }catch (Exception $e){
+            $e->getMessage();
+        }
+
+        return $this->render('main/candidateList.html.twig', [
+            'favorite' => $favorite,
+            'formSearch' => $formSearch->createView(),
+            'listCandidates' => $candidates,
+            'candidates'=> $candidateList
+        ]);
+
+    }
 
     /**
      * @Route("/favorite/remove/{id}", name="remove_favorite")

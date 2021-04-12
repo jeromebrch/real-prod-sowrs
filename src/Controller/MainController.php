@@ -222,10 +222,12 @@ class MainController extends AbstractController
             $request->query->getInt('page', 1),
             5
         );
+        $candidateList = $repoCandidate->findAll();
 
         return $this->render('main/candidateList.html.twig', [
             'formSearch' => $formSearch->createView(),
             'listCandidates' => $candidates,
+            'candidates'=> $candidateList
         ]);
     }
 
