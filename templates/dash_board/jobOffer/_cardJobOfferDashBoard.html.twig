@@ -1,14 +1,20 @@
-<div class="row abstractJobOffer border border-2 p-3 m-3 gx-0 shadow bg-light">
-    <div class="col-lg-7 align-self-center">
-        <h6 class="abstractJobOfferTextTitle">{{ jobOffer.title }}</h6>
-
-        <div class="row p-1">
-            <img class="abstractJobOfferImgStopwatch col-lg-3" src="{{ asset('img/boostrap/stopwatch.svg') }}"/>
-            <p class="abstractJobOfferText col-lg-9 m-0">{{ jobOffer.creationDate|date("y-m-d H:i") }}</p>
+<div class="abstractJobOffer border border-2 p-3 m-3 gx-0 shadow">
+    <div class="row">
+        <h6 class="abstractJobOfferTextTitle col-10">{{ jobOffer.title }}</h6>
+        <div class="abstract_contract_type col-2">{{ jobOffer.contractType.wording }}</div>
+    </div>
+    <div class="row">
+        {#
+        <div class="col-1">
+            <img class="abstractJobOfferImgStopwatch" src="{{ asset('img/boostrap/stopwatch.svg') }}"/>
+        </div>
+        #}
+        <div>
+            <p class="date_abstract_job_offer">{{ jobOffer.creationDate|date("y/m/d H:i") }}</p>
         </div>
     </div>
 
-    <div class="row col-lg-5 text-center align-self-center gx-0">
+    <div class="row container_abstract_button">
         {% if jobOffer.published == true %}
             <a class="abstractJobOfferButtonPause col-lg-3 m-2 text-center align-self-center"
                href="{{ path('jobOffer_pauseAndPlayOffer', {'id':jobOffer.id}) }}"
@@ -22,7 +28,6 @@
                 <img class="abstractJobOfferImgPlay" src="{{ asset('img/boostrap/play-fill-white.svg') }}"/>
             </a>
         {% endif %}
-
         <a class="abstractJobOfferButton col-lg-3 m-2 text-center align-self-center" href="{{ path('jobOffer_refreshOffer', {'id':jobOffer.id}) }}"
            role="button">
             <img class="abstractJobOfferImgRepeat" src="{{ asset('img/boostrap/arrow-repeat-white.svg') }}"/>

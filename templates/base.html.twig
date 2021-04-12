@@ -4,6 +4,11 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=Edge">
     <meta name="viewport" content="width width=device-width, initial-scale=1">
+
+    {% block meta %}
+        {# todo : mettre les meta pour SEO #}
+    {% endblock %}
+
     <title>{% block title %}SOWRS{% endblock %}</title>
 
     {% block stylesheets %}
@@ -15,6 +20,7 @@
         <link rel="stylesheet" href="{{ asset("css/footer.css") }}">
         <link rel="stylesheet" href="{{ asset("css/abstractJobOffert.css") }}">
         <link rel="stylesheet" href="{{ asset('css/dashBoardNav.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/dashBoard.css') }}">
         <link rel="stylesheet" href="{{ asset('css/myDetails.css') }}">
         <link rel="stylesheet" href="{{ asset('css/mainNav.css') }}">
         <link rel="stylesheet" href="{{ asset('css/register.css') }}">

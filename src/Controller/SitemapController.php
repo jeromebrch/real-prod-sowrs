@@ -19,7 +19,7 @@ class SitemapController extends AbstractController
 
         $urls = [];
 
-        //On défini les url statiques
+        //Define the website urls
         $urls[] = ['loc' => $this->generateUrl('main')];
         $urls[] = ['loc' => $this->generateUrl('app_register')];
         $urls[] = ['loc' => $this->generateUrl('app_login')];
@@ -31,7 +31,7 @@ class SitemapController extends AbstractController
         $urls[] = ['loc' => $this->generateUrl('app_login')];
         $urls[] = ['loc' => $this->generateUrl('app_logout')];
 
-        //On génère les url dynamique des articles
+        //Define the dynamic urls
         foreach($postRepo->findAll() as $post){
             $image = [
                 'loc' => '/uploads/illustrations/'.$post->getPictureFilename(), // URL to image
