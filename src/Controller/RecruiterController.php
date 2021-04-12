@@ -143,7 +143,6 @@ class RecruiterController extends AbstractController
         if($user instanceof Candidate){
             $textarea = $var[0]['textareaValue'];
         }
-
         //Verify if the commitment already exist
         if ($value){
             $commitments = $commitmentRepo->findAll();
@@ -172,7 +171,6 @@ class RecruiterController extends AbstractController
                 elseif ($user instanceof Recruiter){
                     $userCommitment = $commitmentRepo->findOneBy(['title' => $value]);
                 }
-
             }
             // set the commitment to the user
             if($userCommitment){

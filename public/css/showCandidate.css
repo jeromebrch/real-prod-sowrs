@@ -59,10 +59,12 @@ body .show_candidate_jumbotron {
 .link_recruiter{
     text-decoration: none;
 }
+/*
 .logo_website, .logo_linkedin, .logo_github, .logo_stackoverflow{
     width: 35px;
     height: 35px;
 }
+ */
 .custom-file-input #apply_file{
     display: block;
 }

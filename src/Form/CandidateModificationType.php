@@ -49,7 +49,6 @@ class CandidateModificationType extends AbstractType
             ->add('department', EntityType::class,[
                 'class'=> Department::class,
                 'choice_label'=> 'name',
-                'label'=> 'Veuillez renseigner votre département'
             ])
             ->add('about', TextareaType::class, [
                 'required' => false,
@@ -96,7 +95,8 @@ class CandidateModificationType extends AbstractType
                 'label' => false,
                 'required' => true,
                 'placeholder' => 'Secteur de formation'
-            ])->add('mainCause', EntityType::class, [
+            ])
+            ->add('mainCause', EntityType::class, [
                 'class' => Cause::class,
                 'choice_label' => 'text',
                 'label' => false,

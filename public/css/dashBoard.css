@@ -1,7 +1,73 @@
+/*
 .alert-success{
     padding: 20px;
     text-align: center;
 }
 #link_recruiter_profil{
     font-weight: lighter;
+}
+.content-subtitle-item {
+    background-color: white;
+    height: 366px;
+    width: 438px;
+}
+.content-subtitle-sense {
+    background-color: white;
+    height: 366px;
+    width: 438px;
+}
+ */
+.block_title{
+    padding-bottom: 20px;
+    padding-left: 20px;
+}
+.block_mini_webzine{
+    background-color: white;
+    border-radius: 30px;
+}
+.block_info_sense_rate{
+    padding: 20px;
+}
+.block_info_sense_rate *{
+    text-align: right;
+    font-family: 'KohinoorBangla', Arial, serif;
+    color: #555555;
+}
+.block_mini_webzine{
+    display: flex;
+    flex-direction: row;
+}
+.mini_webzine_date{
+    color: #937FA4;
+    font-family: 'KohinoorBangla', Arial, serif;
+    font-size: 1em;
+    padding-left: 15px;
+}
+.mini_webzine_title{
+    color: #555555;
+    font-family: 'KohinoorBangla', Arial, serif;
+    font-size: 1.1em;
+    padding-left: 15px;
+}
+.section_dashboard{
+    padding: 5px;
+}
+.in_section{
+    background-color: white;
+    border-radius: 30px;
+    padding: 10px;
+    min-height: 400px;
+}
+.block_info_mini_webzine{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+.block_info_mini_webzine *{
+    font-weight: normal;
+}
+.beside_webzine{
+    height: 100px;
+    width: auto;
 }

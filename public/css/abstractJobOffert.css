@@ -1,7 +1,6 @@
 .abstractJobOffer {
     border-radius: 20px;
 }
-
 .abstractJobOfferButton {
     width: 2.5em;
     height: 2em;
@@ -9,7 +8,21 @@
     background: #1DCA91;
     border: none;
 }
-
+.date_abstract_job_offer{
+    text-align: left;
+    font-family: 'KohinoorBangla', Arial, serif;
+    color: #937FA4;
+}
+.abstract_contract_type{
+    padding: 5px;
+    color: white;
+    background-color: #1dca91;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    border-radius: 4px;
+}
 .abstractJobOfferButtonTrash {
     width: 2.5em;
     height: 2em;
@@ -17,7 +30,12 @@
     background: #555555;
     border: none;
 }
-
+.container_abstract_button a{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
 .abstractJobOfferButtonPause {
     width: 2.5em;
     height: 2em;

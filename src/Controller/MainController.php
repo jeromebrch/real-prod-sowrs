@@ -13,6 +13,7 @@ use App\Form\SearchJobOfferType;
 use App\Repository\CandidateRepository;
 use App\Repository\ContactRepository;
 use App\Repository\JobOfferRepository;
+use App\Repository\PostRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Knp\Component\Pager\PaginatorInterface;
 use ReCaptcha\ReCaptcha;
@@ -184,16 +185,19 @@ class MainController extends AbstractController
      * @param JobOfferRepository $jobOfferRepo
      * @return Response
      */
-    public function dashBoard(JobOfferRepository $jobOfferRepo): Response
-    {
+    public function dashBoard(JobOfferRepository $jobOfferRepo, PostRepository $postRepo): Response {
+        $latestPosts = $postRepo->findLatestPost();
         if ($this->getUser() instanceof Recruiter) {
             $jobOffers = $jobOfferRepo->findJobOffersByRecruiterId($this->getUser()->getId());
 
             return $this->render('dash_board/dashBoard.html.twig', [
                 'jobOffers' => $jobOffers,
+                'latestPosts' => $latestPosts
             ]);
         } else {
-            return $this->render('dash_board/dashBoard.html.twig');
+            return $this->render('dash_board/dashBoard.html.twig', [
+                'latestPosts' => $latestPosts
+            ]);
         }
 
     }

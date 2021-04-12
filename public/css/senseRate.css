@@ -48,3 +48,24 @@
     width: 3rem;
     height: 3rem;
 }
+.match_card{
+    height: 6em;
+}
+.illus_matching_rate{
+    height: 5em;
+}
+.match_card_sensrate p{
+    padding-top: 30%;
+    color:#FFFFFF;
+}
+.match_card_picture{
+    height: 5em;
+}
+.match_card_picture div{
+    width: 100%;
+    height:100%;
+}
+.match_card_picture div img{
+    width: 100%;
+    height:100%;
+}

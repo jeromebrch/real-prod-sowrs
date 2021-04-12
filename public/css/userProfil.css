@@ -242,6 +242,10 @@
 .no_submit{
     color: #B0413E;
 }
+.mini_img_sense_rate{
+    width: 70px;
+    height: auto;
+}
 
 @media screen and (max-width: 992px) {
     .sense_rate_line{
