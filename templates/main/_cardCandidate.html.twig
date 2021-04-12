@@ -3,16 +3,16 @@
         <div class="col-lg-2 m-3">
             {% if candidate.picture %}
                 {% if candidate.picture.pictureName is same as '' %}
-                    <img style="width: 100%" id="show_candidate_photo_profile" class="rounded-circle"
+                    <img id="show_candidate_photo_profile" class="rounded-circle img_user_card"
                          src="{{ asset('images/profils/avatar.jpg') }}"
                          alt="photo du profil">
                 {% else %}
-                    <img style="width: 100%" id="show_candidate_photo_profile" class="rounded-circle"
+                    <imgid="show_candidate_photo_profile" class="rounded-circle img_user_card"
                          src="{{ asset('images/profils/' ~candidate.picture.pictureName ) }}"
                          alt="photo du profil">
                 {% endif %}
             {% else %}
-                <img style="width: 100%" id="show_candidate_photo_profile" class="rounded-circle"
+                <img id="show_candidate_photo_profile" class="rounded-circle img_user_card"
                      src="{{ asset('images/profils/avatar.jpg') }}"
                      alt="photo du profil">
             {% endif %}

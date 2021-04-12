@@ -1,16 +1,15 @@
+{# todo : gérer les données #}
 {% if "ROLE_RECRUITER" in app.user.roles %}
-<div class="row match_card" style="height: 6em">
-    <div class=" col-lg-2" style="height: 5em">
+<div class="row match_card">
+    <div class="col-lg-2 illus_matching_rate">
         <div class="rounded-circle match_card_sensrate">
-       <p style="padding-top: 30%; color:#FFFFFF">{{ user.matching_rate }}%</p>
+            <p>{{ user.matching_rate }}%</p>
         </div>
     </div>
-    <div class="match_card_picture col-lg-2" style="height: 5em">
-    <div style="width: 100%; height:100%">
-       <img class="rounded-circle"  style="width: 100%; height:100%"
-                                src="{{ asset('images/profils/avatar.jpg') }}"
-                                alt="photo du profil">
-                                        </div>
+    <div class="match_card_picture col-lg-2">
+        <div>
+           <img class="rounded-circle" src="{{ asset('images/profils/avatar.jpg') }}" alt="photo du profil">
+        </div>
     </div>
     <div class="match_card_description col-lg-5">
         <div class="align-self-center">
@@ -29,18 +28,16 @@
 </div>
 
 {% else %}
-<div class="row match_card" style="height: 6em">
-    <div class=" col-lg-2" style="height: 5em">
+<div class="row match_card">
+    <div class="col-lg-2 illus_matching_rate">
         <div class="rounded-circle match_card_sensrate">
-       <p style="padding-top: 30%; color:#FFFFFF">{{ user.matching_rate }}%</p>
+            <p>{{ user.matching_rate }}%</p>
         </div>
     </div>
-    <div class="match_card_picture col-lg-2" style="height: 5em">
-    <div style="width: 100%; height:100%">
-       <img class="rounded-circle"  style="width: 100%; height:100%"
-                                src="{{ asset('images/profils/avatar.jpg') }}"
-                                alt="photo du profil">
-                                        </div>
+    <div class="match_card_picture col-lg-2">
+        <div>
+           <img class="rounded-circle" src="{{ asset('images/profils/avatar.jpg') }}" alt="photo du profil">
+        </div>
     </div>
     <div class="match_card_description col-lg-5">
         <div class="align-self-center">
@@ -51,7 +48,7 @@
         </div>
     </div>
     <div class="col-lg-3 match_card_btn">
-        <a href="" type="button" class="btn">Voir le profil</a>
+        <a href="#" type="button" class="btn">Voir le profil</a>
     </div>
 </div>
 {% endif %}
