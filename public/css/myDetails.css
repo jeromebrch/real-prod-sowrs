@@ -122,6 +122,7 @@
 }
 #actions_mydetails{
     padding: 20px;
+    margin-top: 30px;
 }
 [type="checkbox"]:not(:checked),
 [type="checkbox"]:checked{
@@ -161,6 +162,12 @@
     justify-content: center;
     align-items: center;
 }
+.block_commitment{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
 .block_new_commitment{
     display: flex;
     flex-direction: column;
@@ -179,7 +186,6 @@
 }
 .commitment_array tr td{
     padding: 5px;
-    background-color: white;
     color: #937FA4;
 }
 .cause_choice{
@@ -196,12 +202,7 @@
     padding: 20px;
 }
 .label_commitment{
-    color: #937FA4;
-    font-family: 'KohinoorBangla', Arial, serif;
-    font-size: 1.2em;
-    font-weight: normal;
-    text-align: left;
-    padding: 20px;
+    display: none;
 }
 #commitment{
     margin: 0;
@@ -237,6 +238,62 @@ body .form-control{
     flex-direction: row;
     justify-content: center;
 }
+#details_engagements_block{
+    background-color: white;
+    border-radius: 30px;
+    padding: 15px;
+}
+.details_engagements_block_candidate_line{
+    padding: 30px;
+}
+#details_engagements_block_candidate{
+    background-color: white;
+    border-radius: 30px;
+    padding: 15px;
+}
+.commitment_label{
+    display: none;
+}
+#commitment{
+    display: block;
+    width: 100%;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #212529;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border-radius: .25rem;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+#commitment_text{
+    display: block;
+    width: 100%;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #212529;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border-radius: .25rem;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+.recognition_title{
+    color: #555555;
+    font-family: 'KohinoorBangla', Arial, serif;
+    padding: 10px;
+}
+
 @media screen and (max-width: 520px){
     body .details_checkbox_input{
         padding: 0;
@@ -264,5 +321,10 @@ body .form-control{
     }
     body .details_checkbox_input .form-group .form-check label{
         text-align: center;
+    }
+    body .container_commitments_options{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
     }
 }

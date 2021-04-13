@@ -103,6 +103,10 @@
 .comment h5{
     font-size: 0.9em;
 }
+body .comment_writer{
+    font-size: 0.9em;
+    color: #937FA4;
+}
 
 
 @media screen and (max-width: 767px){

@@ -13,11 +13,11 @@
         <div class="col-lg-1 mx-auto container_entity_picture">
             <a href="{{ path('show_recruiter_profil', {"id":entity.id}) }}" class="link_recruiter">
                 {% if entity.picture %}
-                    <img style="width: 100%" class="rounded-circle"
+                    <img class="rounded-circle"
                          src="{{ asset('images/profils/' ~entity.picture.pictureName ) }}"
                          alt="photo du profil">
                 {% else %}
-                    <img style="width: 100%" class="rounded-circle"
+                    <img class="rounded-circle"
                          src="{{ asset('images/profils/avatar.jpg') }}"
                          alt="photo du profil">
                 {% endif %}
@@ -26,11 +26,11 @@
         <div class="col-lg-5 mx-auto">
 
             <a href="{{ path('show_recruiter_profil', {"id":entity.id}) }}" class="link_recruiter">
-                <h5 class="show_candidate_jumbotron_name" style="color: #dfdfdf">{{ entity.entityName | capitalize }}</h5>
+                <h5 class="show_candidate_jumbotron_name">{{ entity.entityName | capitalize }}</h5>
             </a>
         </div>
         <div class="col-lg-5 mx-auto">
-            <h4 class="show_candidate_jumbotron_name" style="color: #FFFFFF">{{ jobOffer.title | capitalize }}</h4>
+            <h4 class="show_candidate_jumbotron_name job_offer_title_jumbotron">{{ jobOffer.title | capitalize }}</h4>
         </div>
         <h5 class="show_candidate_jumbotron_infos">{{ jobOffer.city | capitalize }}
             - {{ jobOffer.contractType.wording |capitalize }}
@@ -42,34 +42,34 @@
         </h5>
 
         {% if entity.socialNetwork %}
-            <div class="col-lg-auto mx-auto" style="text-align: center">
+            <div class="col-lg-auto mx-auto container_social_network">
                 <ul class="list-unstyled list-inline">
                     {% if entity.socialNetwork.website %}
                         <li class="list-inline-item">
                             <a class="nav-link" id="secondary-nav" href="{{ entity.socialNetwork.website }}"
                                target="_blank"><img class="logo_website" src="{{ asset('img/lieux_mini.png') }}"
-                                                    alt="Site internet"></a>
+                                                    alt="Site internet" title="Website"></a>
                         </li>
                     {% endif %}
                     {% if entity.socialNetwork.linkedin %}
                         <li class="list-inline-item">
                             <a class="nav-link"
                                href="{{ entity.socialNetwork.linkedin }}" target="_blank"><img
-                                        class="logo_linkedin" src="{{ asset('img/linkedin_grist-10mm.png') }}" alt="Page linkedin"></a>
+                                        class="logo_linkedin_job_offer" src="{{ asset('img/linkedin_grist-10mm.png') }}" alt="Page linkedin" title="LinkedIn"></a>
                         </li>
                     {% endif %}
                     {% if entity.socialNetwork.github %}
                         <li class="list-inline-item">
                             <a class="nav-link" href="{{ entity.socialNetwork.github }}"
                                target="_blank"><img class="logo_github" src="{{ asset('img/logo_github_mini.png') }}"
-                                                    alt="Page Github"></a>
+                                                    alt="Page Github" title="Github"></a>
                         </li>
                     {% endif %}
                     {% if entity.socialNetwork.stackOverflow %}
                         <li class="list-inline-item">
                             <a class="nav-link" id="secondary-nav" href="{{ entity.socialNetwork.stackOverflow }}"
                                target="_blank"><img class="logo_stackoverflow" src="{{ asset('img/logo_stackoverflow_mini.png') }}"
-                                                    alt="Stack Overflow"></a>
+                                                    alt="Stack Overflow" title="Stack Overflow"></a>
                         </li>
                     {% endif %}
                 </ul>
@@ -110,8 +110,8 @@
                             <h5>{{ entity.scoring.dominantPourcent }}% {{ entity.scoring.dominantSens }}</h5>
                         </div>
                         <div class="col-lg-1 ">
-                            <img src="{{ asset('img/boostrap/flecheBas.svg') }}" alt="flèche vers le bas" width="100%"
-                                 style="margin: 0" id="btn_doughnut">
+                            <img src="{{ asset('img/boostrap/flecheBas.svg') }}" alt="flèche vers le bas"
+                                 id="btn_doughnut">
                         </div>
                     </div>
                     <br>
@@ -121,7 +121,7 @@
                     </div>
                 </div>
             {% endif %}
-            <div>
+            <div class="container_button_postuler">
                 <a class="btn_postuler btn required" href="{{ path('apply', {'id': jobOffer.id}) }}">Postuler à cette offre</a>
             </div>
         </div>

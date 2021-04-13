@@ -49,6 +49,9 @@ class CandidateModificationType extends AbstractType
             ->add('department', EntityType::class,[
                 'class'=> Department::class,
                 'choice_label'=> 'name',
+                'label' => false,
+                'attr' => [
+                    'placeholder' => 'Département']
             ])
             ->add('about', TextareaType::class, [
                 'required' => false,

@@ -1,0 +1,22 @@
+body .rounded-circle{
+    width: 100%;
+}
+body .show_candidate_jumbotron_name{
+    color: #dfdfdf;
+}
+body .job_offer_title_jumbotron{
+    color: #FFFFFF;
+}
+.container_social_network{
+    text-align: center;
+}
+.btn_doughnut{
+    margin: 0;
+}
+.container_button_postuler{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
