@@ -23,7 +23,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class MessageController extends AbstractController
 {
     /**
-     * @Route("/messaging/sendMessage/{id}", name="send_message")
+     * @Route("/messaging/sendMessage/{id}", name="candidate_show")
      */
     public function sendMessageCandidate(EntityManagerInterface $em, Request $request, $id, MailerInterface $mailer): Response
     {
@@ -35,7 +35,7 @@ class MessageController extends AbstractController
         $CategoryRepo = $this->getDoctrine()->getRepository(Category::class);
         $category = $CategoryRepo->find(2);
 
-        $messages = $user->getSendedMessages().$user->getReceivedMessages();
+        $messages = $user->getReceivedMessages();
         //counting the unreaded messages
         $messageState = $em->getRepository(Message::class)->count(['userRecipient' => $user, 'state' => 'non lu']);
         $message = new Message();
@@ -101,6 +101,7 @@ class MessageController extends AbstractController
                     'formMessage' => $formMessage->createView(),
                     'message' => $message,
                     'nonlu' => $messageState,
+                    'candidate' => $candidate,
 
 
                 ]);
