@@ -102,16 +102,35 @@
                         {% endif %}
                     </div>
                 </div>
-                {# engagements #}
+                {# jobOffers #}
                 <div class="container_category_profil">
                     <div class="row">
-                        <h3 class="profil_category_title">Engagements de {{ recruiter.entityName }}</h3>
+                        <h3 class="profil_category_title">Offres d'emploi de {{ recruiter.entityName }}</h3>
                     </div>
                     <div class="row">
                         <div class="col-12 container_commitment_recruiter">
-                            {% if recruiter.commitments is not empty %}
-                                {% for commitment in recruiter.commitments %}
-                                    <div class="commitment_recruiter">{{ commitment.title }}</div>
+                            {% if recruiter.jobOffers is not empty %}
+                                {% for jobOffer in recruiter.jobOffers %}
+                                    <div class="container_job_offer col-12">
+                                        <div class="row col-12">
+                                            <div class="col-10">
+                                                <h3 class="job_offer_title">{{ jobOffer.title }}</h3>
+                                            </div>
+                                            <div class="col-2">
+                                                <div class="contract_type">{{ jobOffer.contractType.wording }}</div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <h4 class="localisation_job_offer">{{ jobOffer.city }} - {{ jobOffer.country.name }}</h4>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-3 pt-3">
+                                                <a class="btn required link_offer_details" href="{{ path('jobOffer_show', {"id":jobOffer.id}) }}">Voir l'offre</a>
+                                            </div>
+                                        </div>
+                                    </div>
                                 {% endfor %}
                             {% else %}
                                 <div class="alert alert-success">
@@ -137,8 +156,8 @@
                                 <h5>{{ recruiter.scoring.dominantPourcent }}% {{ recruiter.scoring.dominantSens }}</h5>
                             </div>
                             <div class="col-lg-1 ">
-                                <img src="{{ asset('img/boostrap/flecheBas.svg') }}" alt="flèche vers le bas" width="100%"
-                                     style="margin: 0" id="btn_doughnut">
+                                <img src="{{ asset('img/boostrap/flecheBas.svg') }}" alt="flèche vers le bas"
+                                     id="btn_doughnut">
                             </div>
                         </div>
                         <br>
@@ -148,42 +167,57 @@
                         </div>
                     </div>
                 {% endif %}
+
                 {# complementary informations #}
 
                 {# secondary causes #}
                 <div class="complementary_infos_container">
                     <div class="row">
+                        <h3 class="profil_category_title_bottom">Causes secondaires : </h3>
                         {% if recruiter.secondaryCauses is not empty %}
-                            <h3 class="profil_category_title_bottom">Causes secondaires : </h3>
-                            <p class="other_content_title">
-                            <ul class="list-group">
+                            <ul>
                                 {% for secondaryCause in recruiter.secondaryCauses %}
-                                    <li class="list-group-item col-8 offset-2 list_causes">{{ secondaryCause.text }}</li>
+                                    <li class="list_line">{{ secondaryCause.text }}</li>
                                 {% endfor %}
                             </ul>
-                            </p>
                         {% else %}
-                            <p class="alert alert-light">
-                                Pas de cause secondaire défini
-                            </p>
+                            <ul>
+                                <li class="list_line no_submit">Non renseigné</li>
+                            </ul>
                         {% endif %}
                     </div>
-
-                    {# recognitions #}
+                </div>
+                {# engagements #}
+                <div class="complementary_infos_container">
                     <div class="row">
-                        {% if recruiter.recognitions is not empty %}
-                            <h3 class="profil_category_title_bottom">Reconnaissances : </h3>
-                            <p class="other_content_title">
-                            <ul class="list-group">
-                                {% for recognition in recruiter.recognitions %}
-                                    <li class="list-group-item col-8 offset-2 list_causes">{{ recognition.description }}</li>
+                        <h3 class="profil_category_title_bottom">Engagements : </h3>
+                        {% if recruiter.commitments is not empty %}
+                            <ul>
+                                {% for commitment in recruiter.commitments %}
+                                    <li class="list_line">{{ commitment.title }}</li>
                                 {% endfor %}
                             </ul>
-                            </p>
                         {% else %}
-                            <p class="alert alert-light">
-                                Pas de reconnaissance défini
-                            </p>
+                            <ul>
+                                <li class="list_line no_submit">Non renseigné</li>
+                            </ul>
+                        {% endif %}
+                    </div>
+                </div>
+                {# recognitions #}
+                <div class="complementary_infos_container">
+                    <div class="row">
+                        <h3 class="profil_category_title_bottom">Reconnaissances : </h3>
+                        {% if recruiter.recognitions is not empty %}
+                            <ul>
+                                {% for recognition in recruiter.recognitions %}
+                                    <li class="list_line">{{ recognition.description }}</li>
+                                {% endfor %}
+                            </ul>
+                        {% else %}
+                            <ul>
+                                <li class="list_line no_submit">Non renseigné</li>
+                            </ul>
                         {% endif %}
                     </div>
                 </div>
@@ -223,7 +257,6 @@
                         {{ form_end(formMessage) }}
                     </div>
                 </div>
-
             </div>
         </div>
 {% endblock %}
