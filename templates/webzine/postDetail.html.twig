@@ -165,7 +165,7 @@
                                 {% for comment in comments %}
                                     <div class="comment">
                                         <h4 class="comment_title">{{ comment.title }}</h4>
-                                        <a href="#">{{ comment.writeruser.username }}</a> {# todo : gérer le lien #}
+                                        <h4 class="comment_writer">{{ comment.writeruser.username }}</h4>
                                         <h5>{{ comment.creationDate|date('d/m/Y') }}</h5>
                                         <p>
                                             {{ comment.text }}

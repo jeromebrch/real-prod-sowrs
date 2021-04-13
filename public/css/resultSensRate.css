@@ -6,8 +6,14 @@
     background: #30c994;
 }
 body .matching_title{
+    text-align: center; !important;
+    color: #937FA4;
+    padding: 20px;
+    font-size: 1.8em;
+}
+body .matching_big_title{
     text-align: center;
-    color: #FFFFFF;
+    color: white; !important;
     padding: 20px;
     font-size: 1.8em;
 }

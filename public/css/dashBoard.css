@@ -38,13 +38,13 @@
     flex-direction: row;
 }
 .mini_webzine_date{
-    color: #937FA4;
+    color: #555555;
     font-family: 'KohinoorBangla', Arial, serif;
     font-size: 1em;
     padding-left: 15px;
 }
 .mini_webzine_title{
-    color: #555555;
+    color: #937FA4;
     font-family: 'KohinoorBangla', Arial, serif;
     font-size: 1.1em;
     padding-left: 15px;

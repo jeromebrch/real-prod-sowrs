@@ -3,7 +3,7 @@ body .show_candidate_jumbotron {
     margin-bottom: 5em;
 }
 .show_candidate_jumbotron_name {
-    color: #FFFFFF;
+    color: #FFFFFF !important;
     font-weight: bold;
     text-align: center;
 }
@@ -59,12 +59,10 @@ body .show_candidate_jumbotron {
 .link_recruiter{
     text-decoration: none;
 }
-/*
-.logo_website, .logo_linkedin, .logo_github, .logo_stackoverflow{
+.logo_website, .logo_linkedin_job_offer, .logo_github, .logo_stackoverflow{
     width: 35px;
     height: 35px;
 }
- */
 .custom-file-input #apply_file{
     display: block;
 }
