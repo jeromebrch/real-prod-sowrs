@@ -70,7 +70,7 @@
     {% block flash_messages %}
         {% for type, messages in app.session.flashbag.all() %}
             {% for message in messages %}
-                <div class="alert alert-{{ type }}" role="alert">
+                <div class=" align-self-center alert alert-{{ type }}" role="alert">
                     {{ message }}
                 </div>
             {% endfor %}

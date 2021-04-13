@@ -15,7 +15,7 @@ class ReadController extends AbstractController
     {
 
         $user = $this->getUser();
-        $messages = $user->getMessages();
+        $messages = $user->getReceivedMessages();
         //compte les messages non lus
         $nonLu = 'non lu';
         $count = 0;

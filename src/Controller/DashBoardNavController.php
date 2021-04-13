@@ -28,7 +28,7 @@ class DashBoardNavController extends AbstractController
         $cv = new Cv();
         $formCv = $this->createForm(CreateCvType::class, $cv);
 
-        $messages = $user->getMessages();
+        $messages = $user->getReceivedMessages();
         $nonLu = 'non lu';
         $count= 0;
 

@@ -12,25 +12,7 @@
     <div class="container p-2 mt-4">
         {{ form_start(formContact, {'attr': {'class': 'row'}}) }}
             <div class="col-lg-5">
-                <div class="row justify-content-center mb-4">
-                    <div class="col-6"><br>
-                        <div class="text-center text-white p-4" name="btnCandidat" id="btnCandidat">
-                            <input type="radio" id="contactChoice1"
-                                   name="contact" value="candidat">
-                            <label class="d_none" for="contactChoice1"><h3>Je suis</h3>
-                                <h3>Candidat</h3></label>
-                        </div>
-                    </div>
-                    <div class="col-6">
-                        <br>
-                        <div class="text-center text-white p-4" name="btnRecruteur" id="btnRecruteur">
-                            <input type="radio" id="contactChoice2"
-                                   name="contact" value="candidat">
-                            <label class="d_none" for="contactChoice2"> <h3>Je suis</h3>
-                                <h3>Recruteur</h3></label>
-                        </div>
-                    </div>
-                </div>
+
                 {{ form_row(formContact.nom) }}
                 {{ form_row(formContact.email) }}
                 {{ form_row(formContact.telephone) }}
@@ -72,11 +54,4 @@
             </div>
         {{ form_end(formContact) }}
     </div>
-{% endblock %}
-
-{% block javascripts %}
-    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="{{ asset('js/register.js') }}"></script>
-    <script type="text/javascript">window.alert("Commencez par nous dire si vous êtes candidat ou recruteur");</script>;
 {% endblock %}

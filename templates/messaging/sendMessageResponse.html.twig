@@ -42,9 +42,9 @@
                     <div class="row">
                         <div class="col-lg-12 rounded-div border border-2 shadow bg-light block_info_message">
                             {% if "ROLE_CANDIDATE" in app.user.roles %}
-                                <p class="p_info_message">À : <strong>{{ messageRecu.userSender.entityName }}</strong></p>
+                                <p class="p_info_message">À : <strong>{{userSender.entityName }}</strong></p>
                             {% elseif "ROLE_RECRUITER" in app.user.roles %}
-                                <p class="p_info_message">À : <strong>{{ messageRecu.userSender.firstname~message.userSender.lastname }}</strong></p>
+                                <p class="p_info_message">À : <strong>{{ userSender.firstname }} {{ userSender.lastname }}</strong></p>
                             {% endif %}
                                 <p class="formText p_info_message" >Sujet : <strong>{{ messageRecu.subject }}</strong></p>
                                 <p class="p_info_message">{{ messageRecu.body }}</p>

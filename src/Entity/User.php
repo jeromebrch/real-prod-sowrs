@@ -107,9 +107,14 @@ class User implements UserInterface, \Serializable
     private $comments;
 
     /**
-     * @ORM\OneToMany(targetEntity=Message::class, mappedBy="userRecipient","userRecipient")
+     * @ORM\OneToMany(targetEntity=Message::class, mappedBy="userRecipient")
      */
-    private $messages;
+    private $receivedMessages;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Message::class, mappedBy="userSender")
+     */
+    private $sendedMessages;
 
     /**
      * @ORM\OneToMany(targetEntity=Favorite::class, mappedBy="user",cascade="remove")
@@ -128,6 +133,42 @@ class User implements UserInterface, \Serializable
         $this->favorites = new ArrayCollection();
 
     }
+
+    /**
+     * @return mixed
+     */
+    public function getReceivedMessages()
+    {
+        return $this->receivedMessages;
+    }
+
+    /**
+     * @param mixed $receivedMessages
+     */
+    public function setReceivedMessages($receivedMessages): self
+    {
+        $this->receivedMessages = $receivedMessages;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getSendedMessages()
+    {
+        return $this->sendedMessages;
+    }
+
+    /**
+     * @param mixed $sendedMessages
+     */
+    public function setSendedMessages($sendedMessages): self
+    {
+        $this->sendedMessages = $sendedMessages;
+        return $this;
+    }
+
+
 
     public function getId(): ?int
     {
@@ -350,18 +391,11 @@ class User implements UserInterface, \Serializable
         } return $this;
     }
 
-    /**
-     * @return Collection|Message[]
-     */
-    public function getMessages(): Collection
-    {
-        return $this->messages;
-    }
 
     public function addMessages(Message $message): self
     {
-        if (!$this->messages->contains($message)) {
-            $this->messages[] = $message;
+        if (!$this->sendedMessages->contains($message)) {
+            $this->sendedMessages[] = $message;
             $message->setUserRecipient($this);
             $message->setUserSender($this);
         }

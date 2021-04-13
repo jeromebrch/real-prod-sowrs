@@ -35,15 +35,15 @@ class MessageController extends AbstractController
         $CategoryRepo = $this->getDoctrine()->getRepository(Category::class);
         $category = $CategoryRepo->find(2);
 
-        $messages = $user->getMessages();
+        $messages = $user->getSendedMessages().$user->getReceivedMessages();
         //counting the unreaded messages
         $messageState = $em->getRepository(Message::class)->count(['userRecipient' => $user, 'state' => 'non lu']);
-
-        $formMessage = $this->createForm(MessageType::class);
+        $message = new Message();
+        $formMessage = $this->createForm(MessageType::class, $message);
         $formMessage->handleRequest($request);
 
         if ($formMessage->isSubmitted() && $formMessage->isValid()) {
-            $message = new Message();
+
             $cvFile = $formMessage->get('cvFile')->getData();
             $mediaFile = $formMessage->get('mediaFile')->getData();
             //saving cvFile
@@ -97,7 +97,7 @@ class MessageController extends AbstractController
                 $mailer->send($email);
 
                 $this->addFlash('success', 'Votre message a bien été envoyé!');
-                return $this->render('candidate/showRecruiter.html.twig', [
+                return $this->render('recruiter/showCandidate.html.twig', [
                     'formMessage' => $formMessage->createView(),
                     'message' => $message,
                     'nonlu' => $messageState,
@@ -108,7 +108,7 @@ class MessageController extends AbstractController
         }
 
 
-        return $this->render('messaging/sendMessage.html.twig', [
+        return $this->render('recruiter/showCandidate.html.twig', [
             'controller_name' => 'MessagingController',
             'formMessage' => $formMessage->createView(),
             'category' => $category,

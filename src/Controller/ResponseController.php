@@ -38,7 +38,7 @@ class ResponseController extends AbstractController
         $formMessage = $this->createForm(ResponseMessageType::class);
         $formMessage->handleRequest($request);
 
-        $messages = $user->getMessages();
+        $messages = $user->getReceivedMessages();
 
         //counting the unreaded messages
         $messageState = $em->getRepository(Message::class)->count(['userRecipient' => $user, 'state' => 'non lu']);
