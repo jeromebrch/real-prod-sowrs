@@ -12,6 +12,7 @@ use App\Repository\CommentRepository;
 use App\Repository\PostRepository;
 use App\Repository\TagRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -25,6 +26,9 @@ class WebzineController extends AbstractController
 {
     /**
      * @Route("/webzine", name="home_webzine")
+     * @param CommentRepository $commentRepo
+     * @param PostRepository $postrepo
+     * @return Response
      */
     public function homeWebzine(PostRepository $postrepo, CommentRepository $commentRepo): Response {
 
@@ -39,6 +43,11 @@ class WebzineController extends AbstractController
 
     /**
      * @Route("/admin/createpost", name="create_post")
+     * @param PostRepository $postRepo
+     * @param Request $req
+     * @param EntityManagerInterface $em
+     * @param SluggerInterface $slugger
+     * @return Response
      */
     public function createPost(Request $req, EntityManagerInterface $em, SluggerInterface $slugger, PostRepository $postRepo){
 
@@ -85,6 +94,11 @@ class WebzineController extends AbstractController
 
     /**
      * @Route("/postdetail/{id}", name="post_details", requirements={"id":"\d+"})
+     * @param EntityManagerInterface $em
+     * @param Request $req
+     * @param PostRepository $postRepo
+     * @param CommentRepository $commentRepo
+     * @param $id
      */
     public function postDetails($id, PostRepository $postRepo,CommentRepository $commentRepo, EntityManagerInterface $em, Request $req){
 
@@ -126,6 +140,9 @@ class WebzineController extends AbstractController
 
     /**
      * @Route("/tag/{id}", name="show_tag", requirements={"id":"\d+"})
+     * @param $id
+     * @param PostRepository $postRepo
+     * @param TagRepository $tagRepo
      */
     public function showTag($id, TagRepository $tagRepo, PostRepository $postRepo){
 
@@ -141,6 +158,7 @@ class WebzineController extends AbstractController
 
     /**
      * @Route("/admin/unpublishedpost", name="unpublished_post")
+     * @param PostRepository $postRepo
      */
     public function unpublishedPost(PostRepository $postRepo){
         $posts = $postRepo->findUnpublishedPost();
@@ -153,6 +171,9 @@ class WebzineController extends AbstractController
 
     /**
      * @Route("/admin/publish/{id}", name="publish_post", requirements={"id":"\d+"})
+     * @param $id
+     * @param EntityManagerInterface $em
+     * @param PostRepository $postrepo
      */
     public function publishPost($id, PostRepository $postrepo, EntityManagerInterface $em){
 
@@ -170,6 +191,9 @@ class WebzineController extends AbstractController
 
     /**
      * @Route("/admin/delete/{id}", name="delete_post", requirements={"id":"\d+"})
+     * @param EntityManagerInterface $em
+     * @param $id
+     * @param PostRepository $postRepo
      */
     public function deletePost($id, EntityManagerInterface $em, PostRepository $postRepo){
 
@@ -186,6 +210,10 @@ class WebzineController extends AbstractController
 
     /**
      * @Route("/admin/hide/{id}", name="hide_post", requirements={"id":"\d+"})
+     * @param PostRepository $postRepo
+     * @param $id
+     * @param EntityManagerInterface $em
+     * @return Response
      */
     public function hidePost($id, PostRepository $postRepo, EntityManagerInterface $em){
         $post = $postRepo->find($id);
@@ -201,6 +229,10 @@ class WebzineController extends AbstractController
 
     /**
      * @Route("/tag", name="add_tag")
+     * @param EntityManagerInterface $em
+     * @param TagRepository $tagRepo
+     * @param Request $req
+     * @return JsonResponse
      */
     public function addTag(Request $req, EntityManagerInterface $em, TagRepository $tagRepo) :JsonResponse {
 
@@ -234,6 +266,7 @@ class WebzineController extends AbstractController
 
     /**
      * @Route("/admin/comments", name="waiting_comments")
+     * @Param CommentRepository $commentRepo
      */
     public function waitingComments(CommentRepository $commentRepo){
 
@@ -247,6 +280,9 @@ class WebzineController extends AbstractController
 
     /**
      * @Route("/admin/deletecomment/{id}", name="delete_comment", requirements={"id"="\d+"})
+     * @param CommentRepository $commentRepo
+     * @param EntityManagerInterface $em
+     * @param $id
      */
     public function deleteComment($id, EntityManagerInterface $em, CommentRepository $commentRepo){
         $comment = $commentRepo->find($id);
@@ -262,6 +298,9 @@ class WebzineController extends AbstractController
 
     /**
      * @Route("/admin/validatecomment/{id}", name="validate_comment", requirements={"id"="\d+"})
+     * @param $id
+     * @param EntityManagerInterface $em
+     * @param CommentRepository $commentRepo
      */
     public function validateComment($id, EntityManagerInterface $em, CommentRepository $commentRepo){
         $comment = $commentRepo->find($id);

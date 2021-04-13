@@ -16,6 +16,7 @@ class CandidateController extends AbstractController
      * @Route("/recruiter/candidate/show/{id}", name="candidate_show", requirements={"id":"\d+"})
      * @param $id
      * @param CandidateRepository $candidateRepo
+     * @param Request $request
      * @return Response
      */
     public function showCandidate($id, Request $request, CandidateRepository $candidateRepo): Response

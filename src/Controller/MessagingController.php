@@ -13,7 +13,11 @@ use Symfony\Component\Routing\Annotation\Route;
 class MessagingController extends AbstractController
 {
     /**
+     * View to the mesaging page
+     *
      * @Route("/messaging/messaging_page", name="messaging")
+     * @param EntityManagerInterface $em
+     * @return Response
      */
     public function seeMessaging(EntityManagerInterface $em): Response
     {
@@ -41,7 +45,12 @@ class MessagingController extends AbstractController
     }
 
     /**
+     * Read a message received
+     *
      * @Route("/messaging/readMessage/{id}", name="read_message")
+     * @param EntityManagerInterface $em
+     * @param $id
+     * @return Response
      */
     public function readMessage($id, EntityManagerInterface $em): Response
     {
@@ -66,7 +75,12 @@ class MessagingController extends AbstractController
 
 
     /**
+     * Erase received message
+     *
      * @Route("/messaging/delete/{id}", name="delete_message")
+     * @param $id
+     * @param EntityManagerInterface $em
+     * @return Response
      */
     public function DeleteMessage($id, EntityManagerInterface $em): Response
     {

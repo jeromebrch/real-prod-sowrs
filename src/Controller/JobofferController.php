@@ -27,16 +27,13 @@ class JobofferController extends AbstractController
      */
     public function creationJobOffer(Request $request, EntityManagerInterface $em): Response
     {
-        //on instancie une nouvelle offre
         $offer = new JobOffer();
-        //on la place dans le formulaire
         $jobOfferForm = $this->createForm(JobOfferType::class, $offer);
         $jobOfferForm->handleRequest($request);
 
-        //quand on aura le retour on vérifie si il est valid et on le pousse en bdd
+
         if ($jobOfferForm->isSubmitted() && $jobOfferForm->isValid()) {
-            //une offre possede un recruteur
-            //on lui met le user en cours
+          //getting the recruiter
             $offer->setEntity($this->getUser());
             $em->persist($offer);
             $em->flush();
@@ -51,7 +48,6 @@ class JobofferController extends AbstractController
         ]);
     }
 
-    //Méthode de modification des offres d'emploi pour un recruteur
 
     /**
      * pauses or play an offer
@@ -199,8 +195,9 @@ class JobofferController extends AbstractController
     }
 
     /**
-     * @return Response
      * @Route("/jobOffer/applies", name="apply-list",)
+     * @param EntityManagerInterface $em
+     * @return Response
      */
     public function showApplies( EntityManagerInterface $em): Response
     {

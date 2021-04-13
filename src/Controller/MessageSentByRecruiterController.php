@@ -9,7 +9,6 @@ use App\Entity\Media;
 use App\Entity\Message;
 use App\Entity\Recruiter;
 use App\Form\MessageType;
-use App\Form\ResponseMessageType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
@@ -20,10 +19,15 @@ use Symfony\Component\Mime\Email;
 use Symfony\Component\Routing\Annotation\Route;
 
 
-class MessageController extends AbstractController
+class MessageSentByRecruiterController extends AbstractController
 {
     /**
      * @Route("/messaging/sendMessage/{id}", name="candidate_show")
+     * @param Request $request
+     * @param EntityManagerInterface $em
+     * @param $id
+     * @param MailerInterface $mailer
+     * @return Response
      */
     public function sendMessageCandidate(EntityManagerInterface $em, Request $request, $id, MailerInterface $mailer): Response
     {
@@ -102,12 +106,9 @@ class MessageController extends AbstractController
                     'message' => $message,
                     'nonlu' => $messageState,
                     'candidate' => $candidate,
-
-
                 ]);
             }
         }
-
 
         return $this->render('recruiter/showCandidate.html.twig', [
             'controller_name' => 'MessagingController',

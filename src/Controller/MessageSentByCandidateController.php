@@ -2,13 +2,14 @@
 
 namespace App\Controller;
 
+use App\Entity\Candidate;
 use App\Entity\Category;
 use App\Entity\Cv;
-use App\Entity\JobOffer;
 use App\Entity\Media;
 use App\Entity\Message;
-use App\Entity\User;
-use App\Form\ApplyType;
+use App\Entity\Recruiter;
+use App\Form\MessageType;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\Request;
@@ -17,28 +18,30 @@ use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Mime\Email;
 use Symfony\Component\Routing\Annotation\Route;
 
-class ApplyController extends AbstractController
+class MessageSentByCandidateController extends AbstractController
 {
     /**
-     * @Route("/messaging/sendMessageApply/{id}", name="apply")
+     * @Route("/candidate/recruiterprofil/{id}", name="show_recruiter_profil", requirements={"id":"\d+"})
+     * @param EntityManagerInterface $em
      * @param $id
      * @param MailerInterface $mailer
      * @param Request $request
      * @return Response
      */
-    public function sendApply(Request $request, $id, MailerInterface $mailer): Response
+    public function sendMessage(EntityManagerInterface $em, Request $request, $id, MailerInterface $mailer): Response
     {
-        $em = $this->getDoctrine()->getManager();
-        /**
-         * @var User $userCurrent
-         */
-        $userCurrent = $this->getUser();
+        $user = $this->getUser();
+        //getting user/recruiter
+        $recruteurRepo = $this->getDoctrine()->getRepository(Recruiter::class);
+        $recruiter = $recruteurRepo->find($id);
+
+        $CategoryRepo = $this->getDoctrine()->getRepository(Category::class);
+        $category = $CategoryRepo->find(2);
+
         //counting the unreaded messages
-        $messageState = $em->getRepository(Message::class)->count(['userRecipient' => $userCurrent, 'state' => 'non lu']);
-        //getting the joboffer
-        $jobOffer = $em->getRepository(JobOffer::class)->find($id);
+        $messageState = $em->getRepository(Message::class)->count(['userRecipient' => $user, 'state' => 'non lu']);
         $message = new Message();
-        $formMessage = $this->createForm(ApplyType::class, $message);
+        $formMessage = $this->createForm(MessageType::class, $message);
         $formMessage->handleRequest($request);
 
         if ($formMessage->isSubmitted() && $formMessage->isValid()) {
@@ -71,43 +74,50 @@ class ApplyController extends AbstractController
                     $e->getMessage();
                 }
             }
-
             //creating message
-            $message->setSubject("candidature pour annonce de " . $jobOffer->getTitle());
-            $CategoryRepo = $this->getDoctrine()->getRepository(Category::class);
-            $category = $CategoryRepo->find(1);
-            $message->setCategory($category);
-            $message->setUserRecipient($jobOffer->getEntity());
-            $message->setUserSender($userCurrent);
-            $message->setState('non lu');
-            $message->setCreatedAt(new \DateTimeImmutable());
+            if ($user instanceof Candidate) {
+                $message->setUserRecipient($recruiter);
+                $message->setUserSender($user);
+                $message->setCategory($category);
+                $message->setState('non lu');
+                $message->setCreatedAt(new \DateTimeImmutable());
 
+                $em->persist($message);
+                $em->flush();
 
-            $em->persist($message);
-            $em->flush();
+                //sending email
+                $email = (new Email())
+                    ->from('team@sowrs.com')
+                    ->to('kennouche.annelise@gmail.com')//todo :email du destinataire
+                    ->subject($message->getSubject())
+                    ->text($this->renderView(
+                    // getting text for email from html page
+                        'textEmail/emailTextRecruiter.html.twig',
+                        ['message' => $message]
+                    ), 'text/html');
 
-            //sending email
-            $email = (new Email())
-                ->from('team@sowrs.com')
-                ->to('kennouche.annelise@gmail.com')//todo :email du destinataire
-                ->subject($message->getSubject())
-                ->text($this->renderView(
-                // getting text for email from html page
-                    'textEmail/textEmailApplyReceved.html.twig',
-                    ['joboffer' => $jobOffer,
-                        'message' => $message]
-                ), 'text/html');
-
-            $mailer->send($email);
+                $mailer->send($email);
+            }
 
             $this->addFlash('success', 'Votre message a bien été envoyé!');
+            return $this->render('candidate/showRecruiter.html.twig', [
+                'formMessage' => $formMessage->createView(),
+                'message' => $message,
+                'nonlu' => $messageState,
+                'recruiter'=> $recruiter
+            ]);
         }
 
-        return $this->render('messaging/sendMessageApply.html.twig', [
+        return $this->render('candidate/showRecruiter.html.twig', [
             'controller_name' => 'MessagingController',
             'formMessage' => $formMessage->createView(),
-            'jobOffer' => $jobOffer,
-            'messageState' => $messageState
+            'category' => $category,
+            'nonlu' => $messageState,
+            'recruiter'=> $recruiter
+
         ]);
     }
+
+
+
 }

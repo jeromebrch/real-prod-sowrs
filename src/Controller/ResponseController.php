@@ -22,6 +22,11 @@ class ResponseController extends AbstractController
 {
     /**
      * @Route("/messaging/sendMessageResponse/{id}", name="response")
+     * @param EntityManagerInterface $em
+     * @param $id
+     * @param Request $request
+     * @param MailerInterface $mailer
+     * @return Response
      */
     public function sendMessageResponse($id, EntityManagerInterface $em, Request $request, MailerInterface $mailer): Response
     {

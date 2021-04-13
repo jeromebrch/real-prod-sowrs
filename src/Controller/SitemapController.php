@@ -12,6 +12,9 @@ class SitemapController extends AbstractController
 {
     /**
      * @Route("/sitemap.xml", name="sitemap", defaults={"_format"="xml"})
+     * @param Request $req
+     * @param PostRepository $postRepo
+     * @return Response
      */
     public function index(Request $req, PostRepository $postRepo): Response {
 

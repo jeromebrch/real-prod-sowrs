@@ -9,6 +9,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class ReadController extends AbstractController
 {
     /**
+     * To count unreaded messa
      * @Route("/read", name="read")
      */
     public function countMessageReaded(): Response
