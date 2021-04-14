@@ -266,7 +266,7 @@ class WebzineController extends AbstractController
 
     /**
      * @Route("/admin/comments", name="waiting_comments")
-     * @Param CommentRepository $commentRepo
+     * @param CommentRepository $commentRepo
      */
     public function waitingComments(CommentRepository $commentRepo){
 

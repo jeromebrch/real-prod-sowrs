@@ -59,7 +59,7 @@ class ResetPasswordController extends AbstractController
     /**
      * Confirmation page after a user has requested a password reset.
      *
-     * @Route("/check-email", name="app_check_email"
+     * @Route("/check-email", name="app_check_email")
      */
     public function checkEmail(): Response
     {

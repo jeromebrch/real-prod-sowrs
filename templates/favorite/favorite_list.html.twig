@@ -48,7 +48,7 @@
                                 </div>
                                 <div class="col-lg-1 align-self-center">
                                  <span title="Effacer l'offre'">
-                                    <a href="{{ path('remove_favorite', {'id': favorite.jobOffer.id}) }}">
+                                    <a href="{{ path('remove_favorite_offer_list', {'id': favorite.id}) }}">
                                         <img class="messageImgTrash" src="{{ asset('img/boostrap/trash-fill.svg') }}">
                                     </a>
                                 </span>
@@ -96,7 +96,7 @@
                             </div>
                             <div class="col-lg-1 align-self-center">
                                 <span title="Effacer le cv">
-                                    <a href="{{ path('remove_favorite_cv', {'id': favorite.id}) }}">
+                                    <a href="{{ path('remove_favorite_cv_list', {'id': favorite.id}) }}">
                                         <img class="messageImgTrash" src="{{ asset('img/boostrap/trash-fill.svg') }}">
                                     </a>
                                 </span>

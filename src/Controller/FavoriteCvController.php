@@ -18,8 +18,9 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class FavoriteCvController extends AbstractController
 {
-    //display favorite list
     /**
+     * display favorite list
+     *
      * @Route("/favorite/favorite_page", name="favorites")
      * @param $em
      * @return Response
@@ -123,6 +124,52 @@ class FavoriteCvController extends AbstractController
             'formSearch' => $formSearch->createView(),
             'listCandidates' => $candidates,
             'candidates'=> $candidateList
+        ]);
+
+    }
+
+    /**
+     * @Route("/favorite/remove_cv/{id}", name="remove_favorite_cv_list")
+     * @param CandidateRepository $repoCandidate
+     * @param PaginatorInterface $paginator
+     * @param $id
+     * @param EntityManagerInterface $em
+     * @param Request $request
+     * @return Response
+     */
+    public function RemoveFavoritecvFromList(CandidateRepository $repoCandidate, Request $request, PaginatorInterface $paginator,$id,FavoriteRepository $favRepo,EntityManagerInterface $em): Response
+    {
+        $data = new SearchCandidate();
+        $formSearch = $this->createForm(SearchCandidateType::class, $data);
+        $formSearch->handleRequest($request);
+
+        $donnees = $repoCandidate->searchCandidate($data);
+        $candidates = $paginator->paginate(
+            $donnees,
+            $request->query->getInt('page', 1),
+            5
+        );
+        $candidateList = $repoCandidate->findAll();
+
+        $user = $this->getUser();
+        $favorite = $favRepo->find($id);
+
+        try {
+            $user->removeFavoriteCv($favorite);
+            $em->persist($favorite);
+            $em->flush();
+
+            $this->addFlash('success', 'l\'offre a été retirée de vos favoris');
+        }catch (Exception $e){
+            $e->getMessage();
+        }
+
+        return $this->render('favorite/favorite_list.html.twig', [
+            'favorite' => $favorite,
+            'formSearch' => $formSearch->createView(),
+            'listCandidates' => $candidates,
+            'candidates'=> $candidateList,
+            'favorites' =>  $favorites = $user->getFavorites()
         ]);
 
     }

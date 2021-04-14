@@ -34,7 +34,7 @@
 
             {% for favorite in  app.user.favorites %}
                     {%if jobOffer == favorite.jobOffer%}
-                        <span title="Retirer des favoris" class=""><a href="{{ path('remove_favorite',  {'id': favorite.id  }) }}" >
+                        <span title="Retirer des favoris" class=""><a href="{{ path('remove_favorite_offer',  {'id': favorite.id  }) }}" >
                             <img class="favorite" src="{{ asset('img/suit-heart-fill.svg') }}"/>
                             </a>
                         </span>

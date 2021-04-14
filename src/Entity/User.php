@@ -416,7 +416,7 @@ class User implements UserInterface, \Serializable
 
     public function removeMessage(Message $message): self
     {
-        if ($this->messages->removeElement($message)) {
+        if ($this->receivedMessages->removeElement($message)) {
             // set the owning side to null (unless already changed)
             if ($message->getUserRecipient() === $this) {
                 $message->setUserRecipient(null);
