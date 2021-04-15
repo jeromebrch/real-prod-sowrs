@@ -55,8 +55,12 @@
     margin: auto;
 }
 .btn_search_job_offer{
-    width: 7em;
     font-size: 1em;
     background: #FFFFFF;
     color: #1dca91;
+    width: 130px;
+}
+.jobOffer_filter form div div .form-check label{
+    font-family: 'KohinoorBangla', Arial, serif;
+    color: #555555;
 }

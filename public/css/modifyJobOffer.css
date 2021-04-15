@@ -23,3 +23,9 @@ select{
     justify-content: space-around;
     align-items: center;
 }
+.option_job_offer{
+    text-align: center;
+}
+.btn_reset_job_offer{
+    background: #999999;
+}

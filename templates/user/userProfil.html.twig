@@ -212,6 +212,13 @@
                         {% else %}
                             <h3 class="profil_category_title_candidate">Autorisé à travailler : <span>Non renseigné</span></h3>
                         {% endif %}
+                    </div>{# open to telecommuting #}
+                    <div class="row">
+                        {% if user.jobSearch.telecommute is not empty %}
+                            <h3 class="profil_category_title_candidate">Ouvert au télétravail : <span>Oui</span></h3>
+                        {% else %}
+                            <h3 class="profil_category_title_candidate">Ouvert au télétravail : <span>Non</span></h3>
+                        {% endif %}
                     </div>
                 </div>
                 {# social network #}

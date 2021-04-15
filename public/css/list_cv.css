@@ -31,3 +31,16 @@
     pointer-events: none;
     box-shadow: none;
 }
+.btn_search_candidate{
+    width: 7em;
+    font-size: 1em;
+    background: #FFFFFF;
+    color: #1dca91;
+    margin-top: 15px;
+}
+.check_telecommute_research label{
+    color: #555555;
+}
+.check_telecommute_research input:checked{
+    background-color: #1dca91;
+}

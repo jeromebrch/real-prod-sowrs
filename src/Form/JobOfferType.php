@@ -13,6 +13,7 @@ use App\Entity\Region;
 use App\Entity\Remuneration;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -98,6 +99,10 @@ class JobOfferType extends AbstractType
                 'choice_label' => 'wording',
                 'label' => false,
                 'placeholder' => 'Niveau d\'étude'
+            ])
+            ->add('telecommuting', CheckboxType::class, [
+                'label' => "Télétravail accepté",
+                'required' => false
             ])
             ->add('country', EntityType::class, [
                 'class' => Country::class,

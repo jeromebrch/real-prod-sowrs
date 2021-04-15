@@ -14,6 +14,7 @@ use App\Entity\LevelStudy;
 use App\Entity\Remuneration;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -35,21 +36,21 @@ class SearchCandidateType extends AbstractType
                 'required' => false,
                 'class' => Country::class,
                 'choice_label' => 'name',
-                'placeholder' => '---Sélectionner un pays---'
+                'placeholder' => '---Pays de résidence---'
             ])
             ->add('remuneration', EntityType::class, [
                 'label' => false,
                 'required' => false,
                 'class' => Remuneration::class,
                 'choice_label' => 'text',
-                'placeholder' => '---Sélectionner une rémuneration---'
+                'placeholder' => '---Rémuneration---'
             ])
             ->add('contractType', EntityType::class, [
                 'label' => false,
                 'required' => false,
                 'class' => ContractType::class,
                 'choice_label' => 'wording',
-                'placeholder' => '---Sélectionner un type de contrat---'
+                'placeholder' => '---Type de contrat---'
 
             ])
             ->add('cause', EntityType::class, [
@@ -57,7 +58,7 @@ class SearchCandidateType extends AbstractType
                 'required' => false,
                 'class' => Cause::class,
                 'choice_label' => 'text',
-                'placeholder' => '---Sélectionner une cause---'
+                'placeholder' => '---Cause défendue---'
 
             ])
             ->add('levelStudy', EntityType::class, [
@@ -65,7 +66,7 @@ class SearchCandidateType extends AbstractType
                 'required' => false,
                 'class' => LevelStudy::class,
                 'choice_label' => 'wording',
-                'placeholder' => '---Sélectionner un niveau d\'étude---'
+                'placeholder' => '---Niveau d\'étude---'
 
             ])
             ->add('levelExp', EntityType::class, [
@@ -73,7 +74,7 @@ class SearchCandidateType extends AbstractType
                 'required' => false,
                 'class' => LevelExperience::class,
                 'choice_label' => 'wording',
-                'placeholder' => '---Sélectionner un niveau d\'expérience---'
+                'placeholder' => '---Niveau d\'expérience---'
 
             ])
             ->add('authorizedCountry', EntityType::class, [
@@ -81,7 +82,12 @@ class SearchCandidateType extends AbstractType
                 'required' => false,
                 'class' => Country::class,
                 'choice_label' => 'name',
-                'placeholder' => '---Sélectionner un pays autorisé---'
+                'placeholder' => '---Autorisé à travailler en---'
+
+            ])
+            ->add('telecommute', CheckboxType::class, [
+                'label' => "Télétravailleur",
+                'required' => false
 
             ])
             ->add('department', EntityType::class, [
@@ -89,7 +95,7 @@ class SearchCandidateType extends AbstractType
                 'required' => false,
                 'class' =>Department::class,
                 'choice_label' => 'name',
-                'placeholder' => '---Sélectionner un département autorisé---'
+                'placeholder' => '---Localisation du poste recherché---'
 
             ]);
     }

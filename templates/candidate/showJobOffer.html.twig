@@ -121,6 +121,17 @@
                     </div>
                 </div>
             {% endif %}
+            {% if jobOffer.telecommuting %}
+            <div class="col-12">
+                <div class="show_candidate_sens_rate">
+                    {% if jobOffer.telecommuting %}
+                        <h3 class="profil_category_title_candidate">Télétravail accepté : <span>Oui</span></h3>
+                    {% else %}
+                        <h3 class="profil_category_title_candidate">Télétravail accepté : <span>Non</span></h3>
+                    {% endif %}
+                </div>
+            </div>
+            {% endif %}
             <div class="container_button_postuler">
                 <a class="btn_postuler btn required" href="{{ path('apply', {'id': jobOffer.id}) }}">Postuler à cette offre</a>
             </div>

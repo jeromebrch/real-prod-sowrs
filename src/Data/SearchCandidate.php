@@ -59,4 +59,9 @@ class SearchCandidate
      */
     public $department;
 
+    /**
+     * @var Telecommute
+     */
+    public $telecommute;
+
 }

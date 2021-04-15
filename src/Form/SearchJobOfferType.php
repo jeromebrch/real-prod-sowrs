@@ -37,14 +37,14 @@ class SearchJobOfferType extends AbstractType
                 'required' => false,
                 'class' => Country::class,
                 'choice_label' => 'name',
-                'placeholder' => '---Sélectionner une localisation---'
+                'placeholder' => '---Pays---'
             ])
             ->add('department', EntityType::class, [
                 'label' => false,
                 'required' => false,
                 'class' =>Department::class,
                 'choice_label' => 'name',
-                'placeholder' => '---Sélectionner un département autorisé---'
+                'placeholder' => '---Département---'
 
              ])
             ->add('contractType', EntityType::class, [
@@ -52,35 +52,40 @@ class SearchJobOfferType extends AbstractType
                 'required' => false,
                 'class' => ContractType::class,
                 'choice_label' => 'wording',
-                'placeholder' => '---Sélectionner un type de contrat---'
+                'placeholder' => '---Type de contrat---'
             ])
             ->add('cause', EntityType::class, [
                 'label' => false,
                 'required' => false,
                 'class' => Cause::class,
                 'choice_label' => 'text',
-                'placeholder' => '---Sélectionner une cause---'
+                'placeholder' => '---Cause défendue---'
             ])
             ->add('remuneration', EntityType::class, [
                 'label' => false,
                 'required' => false,
                 'class' => Remuneration::class,
                 'choice_label' => 'text',
-                'placeholder' => '---Sélectionner une rémunération---'
+                'placeholder' => '---Rémunération---'
             ])
             ->add('levelExperience', EntityType::class, [
                 'label' => false,
                 'required' => false,
                 'class' => LevelExperience::class,
                 'choice_label' => 'wording',
-                'placeholder' => '---Sélectionner un niveau d\'expérience---'
+                'placeholder' => '---Niveau d\'expérience---'
             ])
             ->add('levelStudy', EntityType::class, [
                 'label' => false,
                 'required' => false,
                 'class' => LevelStudy::class,
                 'choice_label' => 'wording',
-                'placeholder' => '---Sélectionner un niveau d\'étude---'
+                'placeholder' => '---Niveau d\'étude---'
+            ])
+            ->add('telecommute', CheckboxType::class, [
+                'label' => "Télétravail accepté",
+                'required' => false
+
             ])
             ->add('freshness', CheckboxType::class, [
                 'label'=>'Fraîcheur',

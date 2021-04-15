@@ -57,4 +57,9 @@ class SearchJobOffers
      * @var Department
      */
     public $department;
+
+    /**
+     * @var Telecommute
+     */
+    public $telecommute;
 }

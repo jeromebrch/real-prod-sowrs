@@ -118,6 +118,11 @@ class JobOffer
     private $region;
 
     /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $telecommuting;
+
+    /**
      * @return mixed
      */
     public function getFavorite()
@@ -353,6 +358,7 @@ class JobOffer
         return $this;
     }
 
+
     /**
      * @return Collection|Region[]
      */
@@ -379,6 +385,16 @@ class JobOffer
                 $candidate->setJobOffer(null);
             }
         }
+    }
+
+    public function getTelecommuting(): ?bool
+    {
+        return $this->telecommuting;
+    }
+
+    public function setTelecommuting(?bool $telecommuting): self
+    {
+        $this->telecommuting = $telecommuting;
 
         return $this;
     }

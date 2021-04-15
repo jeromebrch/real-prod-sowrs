@@ -293,6 +293,18 @@ body .form-control{
     font-family: 'KohinoorBangla', Arial, serif;
     padding: 10px;
 }
+.check_telecommute label{
+    color: #937FA4;
+}
+.check_telecommute input:checked{
+    background-color: #1dca91;
+}
+.container_options_job_offer{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
 
 @media screen and (max-width: 520px){
     body .details_checkbox_input{

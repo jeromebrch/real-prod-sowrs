@@ -52,9 +52,12 @@ class JobOfferRepository extends ServiceEntityRepository
             ->setParameter('p', true);
 
             if (!empty($search->q)){
-                $query = $query
-                    ->andWhere('j.title LIKE :q')
-                    ->setParameter('q', "%$search->q%");
+                $arrayResearch = explode(" ", $search->q);
+                for($i = 0;$i<count($arrayResearch);$i++){
+                    $query = $query
+                        ->andWhere('j.title LIKE :q')
+                        ->setParameter('q', "%$arrayResearch[$i]%");
+                }
             }
             if (!empty($search->country)){
                 $query = $query
@@ -86,6 +89,11 @@ class JobOfferRepository extends ServiceEntityRepository
                     ->andWhere('j.levelStudy = :levStu')
                     ->setParameter('levStu', $search->levelStudy);
             }
+        if ($search->telecommute){
+            $query = $query
+                ->andWhere('j.telecommuting = :val')
+                ->setParameter('val', true);
+        }
             if ($search->freshness){
                 $query = $query
                     ->addOrderBy('j.creationDate', 'DESC');
@@ -93,7 +101,4 @@ class JobOfferRepository extends ServiceEntityRepository
 
             return $query->getQuery()->getResult();
     }
-
-
-
 }

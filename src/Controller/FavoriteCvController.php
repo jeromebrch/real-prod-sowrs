@@ -74,7 +74,7 @@ class FavoriteCvController extends AbstractController
         $em->persist($favorite);
         $em->flush();
 
-        $this->addFlash('success', 'le cv a été ajouté à vos favoris');
+        $this->addFlash('success', 'Le cv a été ajouté à vos favoris');
         return $this->render('main/candidateList.html.twig', [
             'cv'=>$cv,
             'formSearch' => $formSearch->createView(),
@@ -85,12 +85,6 @@ class FavoriteCvController extends AbstractController
 
     /**
      * @Route("/favorite/remove_cv/{id}", name="remove_favorite_cv")
-     * @param CandidateRepository $repoCandidate
-     * @param PaginatorInterface $paginator
-     * @param $id
-     * @param EntityManagerInterface $em
-     * @param Request $request
-     * @return Response
      */
     public function RemoveFavoritecv(CandidateRepository $repoCandidate, Request $request, PaginatorInterface $paginator,$id,FavoriteRepository $favRepo,EntityManagerInterface $em): Response
     {
@@ -109,17 +103,16 @@ class FavoriteCvController extends AbstractController
         $user = $this->getUser();
         $favorite = $favRepo->find($id);
 
-        if ($favorite) {
-            try {
-                $user->removeFavoriteCv($favorite);
-                $em->persist($favorite);
-                $em->flush();
+        try {
+            $user->removeFavoriteCv($favorite);
+            $em->persist($favorite);
+            $em->flush();
 
-                $this->addFlash('success', 'le cv a été retirée de vos favoris');
-            } catch (Exception $e) {
-                $e->getMessage();
-            }
+            $this->addFlash('success', 'L\'offre a été retirée de vos favoris');
+        }catch (Exception $e){
+            $e->getMessage();
         }
+
         return $this->render('main/candidateList.html.twig', [
             'favorite' => $favorite,
             'formSearch' => $formSearch->createView(),
@@ -128,6 +121,9 @@ class FavoriteCvController extends AbstractController
         ]);
 
     }
+
+
+   
 
     /**
      * @Route("/favorite/remove_cv_list/{id}", name="remove_favorite_cv_list")
@@ -161,7 +157,6 @@ class FavoriteCvController extends AbstractController
                 $user->removeFavoriteCv($favorite);
                 $em->persist($favorite);
                 $em->flush();
-
                 $this->addFlash('success', 'le cv a été retirée de vos favoris');
             } catch (Exception $e) {
                 $e->getMessage();

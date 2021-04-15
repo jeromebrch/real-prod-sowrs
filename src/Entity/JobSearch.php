@@ -35,11 +35,6 @@ class JobSearch
     private $jobTitle;
 
     /**
-     * @ORM\Column(type="text", nullable=true)
-     */
-    private $tags;
-
-    /**
      * @ORM\OneToMany(targetEntity=Candidate::class, mappedBy="jobSearch")
      */
     private $candidates;
@@ -55,11 +50,6 @@ class JobSearch
     private $country;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Department::class)
-     */
-    private $department;
-
-    /**
      * @ORM\ManyToOne(targetEntity=Cause::class, inversedBy="jobSearches")
      */
     private $cause;
@@ -73,6 +63,15 @@ class JobSearch
      * @ORM\ManyToOne (targetEntity=Region::class)
      */
     private $region;
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $telecommute;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Department::class, inversedBy="jobSearches")
+     */
+    private $department;
 
 
     public function __construct()
@@ -160,22 +159,6 @@ class JobSearch
     }
 
     /**
-     * @return mixed
-     */
-    public function getTags()
-    {
-        return $this->tags;
-    }
-
-    /**
-     * @param mixed $tags
-     */
-    public function setTags($tags): void
-    {
-        $this->tags = $tags;
-    }
-
-    /**
      * @return Collection|Candidate[]
      */
     public function getCandidates(): Collection
@@ -249,6 +232,18 @@ class JobSearch
     public function setDesiredRemuneration(?Remuneration $desiredRemuneration): self
     {
         $this->desiredRemuneration = $desiredRemuneration;
+
+        return $this;
+    }
+
+    public function getTelecommute(): ?bool
+    {
+        return $this->telecommute;
+    }
+
+    public function setTelecommute(?bool $telecommute): self
+    {
+        $this->telecommute = $telecommute;
 
         return $this;
     }

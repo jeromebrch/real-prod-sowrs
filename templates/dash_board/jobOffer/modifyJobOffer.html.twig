@@ -52,11 +52,16 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-6">
+                        <div class="col-4">
                             {{ form_row(jobOfferForm.remuneration) }}
                         </div>
-                        <div class="col-6">
+                        <div class="col-4">
                             {{ form_row(jobOfferForm.contractType) }}
+                        </div>
+                        <div class="col-4">
+                            <div class="check_telecommuting">
+                                {{ form_row(jobOfferForm.telecommuting) }}
+                            </div>
                         </div>
                     </div>
                     <div class="row">
