@@ -208,23 +208,6 @@
                 <div class="complementary_infos_container">
 
                     <div class="row">
-                        <h3 class="profil_category_title_bottom">Engagements : </h3>
-                        {% if recruiter.commitments is not empty %}
-                            <ul>
-                                {% for commitment in recruiter.commitments %}
-                                    <li class="list_line">{{ commitment.title }}</li>
-                                {% endfor %}
-                            </ul>
-                        {% else %}
-                            <ul>
-                                <li class="list_line no_submit">Non renseigné</li>
-                            </ul>
-                        {% endif %}
-                    </div>
-                </div>
-                {# recognitions #}
-                <div class="complementary_infos_container">
-                    <div class="row">
                         <h3 class="profil_category_title_bottom">Reconnaissances : </h3>
                         {% if recruiter.recognitions is not empty %}
                             <ul>

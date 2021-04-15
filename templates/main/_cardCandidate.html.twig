@@ -37,6 +37,7 @@
             {% endif %}
         </div>
     </div>
+    {% if candidate.cv is not null %}
         {% if candidate.cv.favorite|length >=1 %}
             {% for fav in candidate.cv.favorite %}
                 {% if candidate.cv.id is same as fav.cv.id %}
@@ -54,4 +55,5 @@
                 </a>
             </span>
         {% endif %}
+    {% endif %}
 </div>
