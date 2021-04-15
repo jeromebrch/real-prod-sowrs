@@ -1,10 +1,30 @@
 
 .candidate_text{
     line-height: 5px;
+    text-align: left;
+    position: relative;
+    right: 20px;
+}
+.candidate_text p{
+    text-align: left;
+}
+.candidate_text p a strong{
+    color: #937FA4;
+    font-family: 'KohinoorBangla', Arial, serif;
+}
+.candidate_text p strong{
+    color: #555555;
+    font-family: 'KohinoorBangla', Arial, serif;
 }
 .profil_photo{
     width: 50px;
 }
 body .img_user_card{
     width: 100%;
+}
+.content-box{
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    align-items: center;
 }

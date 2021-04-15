@@ -107,9 +107,12 @@ class CandidateRepository extends ServiceEntityRepository
             ->andWhere("o.jobTitle IS NOT NULL")
             ;
         if (!empty($data->txt)) {
-            $query = $query
-                ->andWhere('c.lastname LIKE :nom')
-                ->setParameter('nom', "%$data->txt%");
+            $arrayResearch = explode(" ", $data->txt);
+            for($i=0;$i<count($arrayResearch);$i++){
+                $query = $query
+                    ->andWhere('c.currentRole LIKE :job OR o.jobTitle LIKE :job')
+                    ->setParameter('job', "%$arrayResearch[$i]%");
+            }
         }
         if (!empty($data->localization)) {
             $query = $query
@@ -146,9 +149,17 @@ class CandidateRepository extends ServiceEntityRepository
                 ->andWhere('c.authorizedCountry = :ac')
                 ->setParameter('ac', $data->authorizedCountry);
         }
-
+        if (!empty($data->department)) {
+            $query = $query
+                ->andWhere('o.department = :dep')
+                ->setParameter('dep', $data->department);
+        }
+        if (!empty($data->telecommute)) {
+            $query = $query
+                ->andWhere('o.telecommute = :tc')
+                ->setParameter('tc', true);
+        }
         return $query->getQuery()->getResult();
-
     }
 }
 

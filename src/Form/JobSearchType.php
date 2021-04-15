@@ -5,10 +5,12 @@ namespace App\Form;
 use App\Entity\Cause;
 use App\Entity\ContractType;
 use App\Entity\Country;
+use App\Entity\Department;
 use App\Entity\JobSearch;
 use App\Entity\Remuneration;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -49,12 +51,6 @@ class JobSearchType extends AbstractType
                 'attr' => [
                     'placeholder' => 'Intitulé du poste recherché']
             ])
-            ->add('tags', TextareaType::class, [
-                'required' => false,
-                'label' => false,
-                'attr' => [
-                    'placeholder' => 'Tags']
-            ])
             ->add('contractType', EntityType::class, [
                 'class' => ContractType::class,
                 'choice_label' => 'wording',
@@ -67,6 +63,16 @@ class JobSearchType extends AbstractType
                 'choice_label' => 'text',
                 'label' => false,
                 'placeholder' => 'Cause'
+            ])
+            ->add('department', EntityType::class, [
+                'class' => Department::class,
+                'choice_label' => 'name',
+                'label' => false,
+                'placeholder' => 'Département souhaité'
+            ])
+            ->add('telecommute', CheckboxType::class, [
+                'label' => "Télétravail accepté",
+                'required' => false
 
             ])
             ->add('desiredRemuneration', EntityType::class, [

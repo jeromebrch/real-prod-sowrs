@@ -40,11 +40,6 @@ class JobSearch
     private $jobTitle;
 
     /**
-     * @ORM\Column(type="text", nullable=true)
-     */
-    private $tags;
-
-    /**
      * @ORM\OneToMany(targetEntity=Candidate::class, mappedBy="jobSearch")
      */
     private $candidates;
@@ -68,6 +63,16 @@ class JobSearch
      * @ORM\ManyToOne(targetEntity=Remuneration::class, inversedBy="jobSearches")
      */
     private $desiredRemuneration;
+
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $telecommute;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Department::class, inversedBy="jobSearches")
+     */
+    private $department;
 
 
     public function __construct()
@@ -126,22 +131,6 @@ class JobSearch
         $this->jobTitle = $jobTitle;
 
         return $this;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getTags()
-    {
-        return $this->tags;
-    }
-
-    /**
-     * @param mixed $tags
-     */
-    public function setTags($tags): void
-    {
-        $this->tags = $tags;
     }
 
     /**
@@ -218,6 +207,30 @@ class JobSearch
     public function setDesiredRemuneration(?Remuneration $desiredRemuneration): self
     {
         $this->desiredRemuneration = $desiredRemuneration;
+
+        return $this;
+    }
+
+    public function getTelecommute(): ?bool
+    {
+        return $this->telecommute;
+    }
+
+    public function setTelecommute(?bool $telecommute): self
+    {
+        $this->telecommute = $telecommute;
+
+        return $this;
+    }
+
+    public function getDepartment(): ?Department
+    {
+        return $this->department;
+    }
+
+    public function setDepartment(?Department $department): self
+    {
+        $this->department = $department;
 
         return $this;
     }

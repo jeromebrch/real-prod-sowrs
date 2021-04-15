@@ -67,7 +67,7 @@ class FavoriteController extends AbstractController
         $em->persist($favorite);
         $em->flush();
 
-        $this->addFlash('success', 'le cv a été ajouté à vos favoris');
+        $this->addFlash('success', 'Le cv a été ajouté à vos favoris');
         return $this->render('main/candidateList.html.twig', [
             'cv'=>$cv,
             'formSearch' => $formSearch->createView(),
@@ -101,7 +101,7 @@ class FavoriteController extends AbstractController
                 $em->persist($favorite);
                 $em->flush();
 
-                $this->addFlash('success', 'l\'offre a été ajoutée à vos favoris');
+                $this->addFlash('success', 'L\'offre a été ajoutée à vos favoris');
             } catch (Exception $e) {
                 $e->getMessage();
             }
@@ -139,7 +139,7 @@ class FavoriteController extends AbstractController
             $em->persist($favorite);
             $em->flush();
 
-            $this->addFlash('success', 'l\'offre a été retirée de vos favoris');
+            $this->addFlash('success', 'L\'offre a été retirée de vos favoris');
         }catch (Exception $e){
             $e->getMessage();
         }
@@ -178,7 +178,7 @@ class FavoriteController extends AbstractController
             $em->persist($favorite);
             $em->flush();
 
-            $this->addFlash('success', 'l\'offre a été retirée de vos favoris');
+            $this->addFlash('success', 'L\'offre a été retirée de vos favoris');
         }catch (Exception $e){
             $e->getMessage();
         }

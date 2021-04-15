@@ -88,3 +88,15 @@ input[type="text"]{
 input[type="email"], input[type="tel"]{
     color: #937FA4;
 }
+.check_telecommuting{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+}
+.check_telecommuting label{
+    color: #937FA4;
+}
+.check_telecommuting input:checked{
+    background-color: #1dca91;
+}

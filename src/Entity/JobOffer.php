@@ -104,6 +104,11 @@ class JobOffer
     private $favorite;
 
     /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $telecommuting;
+
+    /**
      * @return mixed
      */
     public function getFavorite()
@@ -297,6 +302,18 @@ class JobOffer
     public function setNumberOfViews(?int $NumberOfViews): self
     {
         $this->NumberOfViews = $NumberOfViews;
+
+        return $this;
+    }
+
+    public function getTelecommuting(): ?bool
+    {
+        return $this->telecommuting;
+    }
+
+    public function setTelecommuting(?bool $telecommuting): self
+    {
+        $this->telecommuting = $telecommuting;
 
         return $this;
     }

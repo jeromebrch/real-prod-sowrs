@@ -215,19 +215,20 @@ class MainController extends AbstractController
         $data = new SearchCandidate();
         $formSearch = $this->createForm(SearchCandidateType::class, $data);
         $formSearch->handleRequest($request);
-
-        $donnees = $repoCandidate->searchCandidate($data);
+        if($formSearch->isSubmitted() && $formSearch->isValid()){
+            $donnees = $repoCandidate->searchCandidate($data);
+        }else{
+            $donnees = $repoCandidate->findAll();
+        }
         $candidates = $paginator->paginate(
             $donnees,
             $request->query->getInt('page', 1),
             5
         );
-        $candidateList = $repoCandidate->findAll();
 
         return $this->render('main/candidateList.html.twig', [
             'formSearch' => $formSearch->createView(),
-            'listCandidates' => $candidates,
-            'candidates'=> $candidateList
+            'listCandidates' => $candidates
         ]);
     }
 

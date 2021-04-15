@@ -21,6 +21,18 @@
         <img class="abstractJobOfferImgPeople col-lg-3" src="{{ asset('img/boostrap/people-fill.svg') }}"/>
         <p class="abstractJobOfferText col-lg-9 p-0">Candidatures</p>
     </div>
+    {% if jobOffer.telecommuting %}
+        {% if jobOffer.telecommuting %}
+            <div class="row col-lg-3 align-self-center">
+                <p class="abstractJobOfferText col-lg-9 p-0">Télétravail accepté</p>
+            </div>
+        {% else %}
+            <div class="row col-lg-3 align-self-center">
+                <p class="abstractJobOfferText col-lg-9 p-0">Télétravail refusé</p>
+            </div>
+        {% endif %}
+    {% endif %}
+
 
     <div class="row col-lg-3 text-center align-self-center gx-0">
         {% if jobOffer.published == true %}
