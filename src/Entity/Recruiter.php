@@ -79,7 +79,7 @@ class Recruiter extends User
     private $city;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Department::class)
+     * @ORM\ManyToOne(targetEntity=Department::class, inversedBy="recruiter")
      */
     private $department;
 

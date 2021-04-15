@@ -57,7 +57,7 @@ class Candidate extends User
     private $authorizedCountry;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Department::class)
+     * @ORM\ManyToOne(targetEntity=Department::class, inversedBy="candidate")
      */
     private $department;
 
