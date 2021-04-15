@@ -466,6 +466,7 @@ class User implements UserInterface, \Serializable
             // set the owning side to null (unless already changed)
             if ($favorite->getUser() === $this) {
                 $favorite->setUser(null);
+                $favorite->setJobOffer(null);
             }
         }
 
@@ -478,6 +479,7 @@ class User implements UserInterface, \Serializable
             // set the owning side to null (unless already changed)
             if ($favorite->getUser() === $this) {
                 $favorite->setUser(null);
+                $favorite->setCv(null);
             }
         }
 

@@ -2,13 +2,13 @@
 
 namespace App\Entity;
 
-use App\Repository\DepartmentRepository;
+use App\Repository\RegionRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass=DepartmentRepository::class)
+ * @ORM\Entity(repositoryClass=RegionRepository::class)
  */
-class Department
+class Region
 {
     /**
      * @ORM\Id
@@ -21,11 +21,6 @@ class Department
      * @ORM\Column(type="string", length=255)
      */
     private $name;
-
-    /**
-     * @ORM\Column(type="integer")
-     */
-    private $cp;
 
 
     public function getId(): ?int
@@ -45,15 +40,4 @@ class Department
         return $this;
     }
 
-    public function getCp(): ?int
-    {
-        return $this->cp;
-    }
-
-    public function setCp(int $cp): self
-    {
-        $this->cp = $cp;
-
-        return $this;
-    }
 }

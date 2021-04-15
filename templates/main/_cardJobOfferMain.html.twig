@@ -18,35 +18,36 @@
             {% endif %}
 
     </div>
-    <div class="col-lg-5 col-sm-8 col-xs-12 content-box align-self-center">
+    <div class="col-lg-6 col-sm-8 col-xs-12 content-box align-self-center">
         <div class="jobOffer_text">
             <a href="{{ path('jobOffer_show', {'id':jobOffer.id}) }}">{{ jobOffer.title }}</a>
             <p>{{ jobOffer.entity.entityName| capitalize }} - {{ jobOffer.entity.mainCause.text }}</p>
         </div>
     </div>
-    <div class="col-lg-3 offset-lg-1 align-self-center">
+    <div class="col-lg-2 offset-lg-1 align-self-center">
         <div class="jobOffer_contract_type">
             <button class="btn btn-lg btn-block btn-disable-hover btn_contract_type">{{ jobOffer.contractType.wording }}
             </button>
         </div>
     </div>
     <a type="btn required" style=" width: 225px;border-radius: 50px;background-color: #b9bbbe; border: none;text-decoration: none;padding: 10px; font-size: larger;color: white; margin: auto;" href="{{ path('apply', {'id': jobOffer.id}) }}">Postuler à cette offre</a>
-
-            {% for favorite in  app.user.favorites %}
-                    {%if jobOffer == favorite.jobOffer%}
-                        <span title="Retirer des favoris" class=""><a href="{{ path('remove_favorite_offer',  {'id': favorite.id  }) }}" >
-                            <img class="favorite" src="{{ asset('img/suit-heart-fill.svg') }}"/>
-                            </a>
-                        </span>
-                    {% endif %}
-            {% endfor %}
-
-                        <span title="Ajouter aux favoris"><a href="{{ path('add_favorite_offer',{'id': jobOffer.id  }) }}">
-                            <img class="favorite" src="{{ asset('img/suit-heart.svg') }}"/>
-                        </a>
-                    </span>
-
-
+    {% if jobOffer.favorite|length >=1 %}
+       {% for fav in jobOffer.favorite %}
+           {% if jobOffer.id == fav.jobOffer.id %}
+               <span title="Retirer des favoris" class="">
+                <a href="{{ path('remove_favorite_offer',  {'id': fav.id  }) }}" >
+                    <img class="favorite" src="{{ asset('img/suit-heart-fill.svg') }}"/>
+                </a>
+             </span>
+           {% endif %}
+       {% endfor %}
+   {%else%}
+       <span title="Ajouter aux favoris">
+            <a href="{{ path('add_favorite_offer',{'id': jobOffer.id  }) }}">
+                <img class="favorite" src="{{ asset('img/suit-heart.svg') }}"/>
+             </a>
+       </span>
+   {% endif %}
 
 
 

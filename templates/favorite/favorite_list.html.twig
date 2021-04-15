@@ -38,7 +38,7 @@
                                         <div class="jobOffer_div col-lg-5">
                                             <p class="offer" ><strong>{{ favorite.jobOffer.title|capitalize}} </strong></p>
                                             <p class="offer">{{ favorite.jobOffer.entity.entityName }} - {{ favorite.jobOffer.entity.mainCause.text }}</p>
-                                            <p class="offer">{{ favorite.jobOffer.city|capitalize}}({{ favorite.jobOffer.entity.entityName}})</p>
+                                            <p class="offer">{{ favorite.jobOffer.region.name|capitalize}}({{ favorite.jobOffer.department.cp}})</p>
                                             <p class="offer"><strong>Taux de sens : </strong>{{ favorite.jobOffer.entity.scoring.dominantsens}} {{ favorite.jobOffer.entity.scoring.societal }}%</p>
                                         </div>
                                         <div class="align-self-center col-lg-4">
@@ -84,7 +84,7 @@
                                     <div class="jobOffer_div col-lg-5">
                                         <p class="offer" ><strong>{{ candidat.firstName|upper}} {{ candidat.lastName|capitalize}}</strong></p>
                                         <p class="offer"> {{ candidat.currentRole }}</p>
-                                        <p class="offer">{{ candidat.city|capitalize}}({{ candidat.department.cp }})</p>
+                                        <p class="offer">{{ candidat.jobSearch.region.name|capitalize}}({{ candidat.jobSearch.department.cp }})</p>
                                         <p class="offer"><strong>Taux de sens : </strong>{{ candidat.scoring.dominantsens}} {{ candidat.scoring.societal }}%</p>
                                     </div>
 
@@ -97,7 +97,7 @@
                             <div class="col-lg-1 align-self-center">
                                 <span title="Effacer le cv">
                                     <a href="{{ path('remove_favorite_cv_list', {'id': favorite.id}) }}">
-                                        <img class="messageImgTrash" src="{{ asset('img/boostrap/trash-fill.svg') }}">
+                                        <img class="ImgTrash" src="{{ asset('img/boostrap/trash-fill.svg') }}">
                                     </a>
                                 </span>
                             </div>

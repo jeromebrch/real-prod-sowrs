@@ -10,10 +10,10 @@
 
     <div class="container-fluid">
         <div class="row">
-            <div class="col-lg-2 offset-lg-1 border-end border-2">
+            <div class="col-lg-3 offset-lg-1 m-0 border-end border-2">
                 {{ render(controller('App\\Controller\\DashBoardNavController::navBar'))}}
             </div>
-            <div class="col-lg-8">
+            <div class="col-lg-9">
                 <div class="">
                     <h1 class="main_title">Modifier votre offre</h1>
                     <div class="error">{{ form_errors(jobOfferForm) }}</div>
@@ -41,6 +41,14 @@
                         </div>
                         <div class="col-6">
                             {{ form_row(jobOfferForm.country) }}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            {{ form_row(jobOfferForm.department) }}
+                        </div>
+                        <div class="col-6">
+                            {{ form_row(jobOfferForm.region) }}
                         </div>
                     </div>
                     <div class="row">

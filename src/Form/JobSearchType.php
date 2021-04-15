@@ -5,7 +5,9 @@ namespace App\Form;
 use App\Entity\Cause;
 use App\Entity\ContractType;
 use App\Entity\Country;
+use App\Entity\Department;
 use App\Entity\JobSearch;
+use App\Entity\Region;
 use App\Entity\Remuneration;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
@@ -33,11 +35,19 @@ class JobSearchType extends AbstractType
                 'label' => false,
                 'placeholder' => 'Localisation'
             ])
-            ->add('region', TextType::class, [
+            ->add('region', EntityType::class, [
+                'class' => Region::class,
+                'choice_label' => 'name',
                 'required' => false,
                 'label' => false,
-                'attr' => [
-                    'placeholder' => 'Région']
+                'placeholder' => 'région'
+            ])
+            ->add('department', EntityType::class, [
+                'class' => Department::class,
+                'choice_label' => 'name',
+                'required' => false,
+                'label' => false,
+                'placeholder' => 'département'
             ])
             ->add('city', TextType::class, [
                 'required' => false,

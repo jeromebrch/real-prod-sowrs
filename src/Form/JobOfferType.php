@@ -5,9 +5,11 @@ namespace App\Form;
 use App\Entity\BusinessProfile;
 use App\Entity\ContractType;
 use App\Entity\Country;
+use App\Entity\Department;
 use App\Entity\JobOffer;
 use App\Entity\LevelExperience;
 use App\Entity\LevelStudy;
+use App\Entity\Region;
 use App\Entity\Remuneration;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
@@ -52,6 +54,20 @@ class JobOfferType extends AbstractType
                 'attr' => [
                     'placeholder' => 'Ville'
                 ]
+            ])
+            ->add('region', EntityType::class, [
+                'class' => Region::class,
+                'choice_label' => 'name',
+                'required' => false,
+                'label' => false,
+                'placeholder' => 'région'
+            ])
+            ->add('department', EntityType::class, [
+                'class' => Department::class,
+                'choice_label' => 'name',
+                'required' => false,
+                'label' => false,
+                'placeholder' => 'département'
             ])
             ->add('category', EntityType::class, [
                 'class' => BusinessProfile::class,

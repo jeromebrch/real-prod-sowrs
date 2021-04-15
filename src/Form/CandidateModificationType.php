@@ -46,13 +46,6 @@ class CandidateModificationType extends AbstractType
                 'attr' => [
                     'placeholder' => 'Numéro de téléphone']
             ])
-            ->add('department', EntityType::class,[
-                'class'=> Department::class,
-                'choice_label'=> 'name',
-                'label' => false,
-                'attr' => [
-                    'placeholder' => 'Département']
-            ])
             ->add('about', TextareaType::class, [
                 'required' => false,
                 'label' => false,
@@ -109,6 +102,7 @@ class CandidateModificationType extends AbstractType
             ->add('socialNetwork', SocialNetworkType::class)
 
             ->add('jobSearch', JobSearchType::class);
+
 
     }
 

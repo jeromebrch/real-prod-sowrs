@@ -88,17 +88,17 @@ class FavoriteJobofferController extends AbstractController
 
         $user = $this->getUser();
         $favorite = $favRepo->find($id);
+        if ($favorite) {
+            try {
+                $user->removeFavoriteOffer($favorite);
+                $em->persist($favorite);
+                $em->flush();
 
-        try {
-            $user->removeFavoriteOffer($favorite);
-            $em->persist($favorite);
-            $em->flush();
-
-            $this->addFlash('success', 'l\'offre a été retirée de vos favoris');
-        }catch (Exception $e){
-            $e->getMessage();
+                $this->addFlash('success', 'l\'offre a été retirée de vos favoris');
+            } catch (Exception $e) {
+                $e->getMessage();
+            }
         }
-
         return $this->render('main/jobOffersList.html.twig', [
             'favorite' => $favorite,
             'formSearch' => $formSearch->createView(),
@@ -131,17 +131,18 @@ class FavoriteJobofferController extends AbstractController
         $user = $this->getUser();
         $favorite = $favRepo->find($id);
 
+        if ($favorite) {
 
-        try {
-            $user->removeFavoriteOffer($favorite);
-            $em->persist($favorite);
-            $em->flush();
+            try {
+                $user->removeFavoriteOffer($favorite);
+                $em->persist($favorite);
+                $em->flush();
 
-            $this->addFlash('success', 'l\'offre a été retirée de vos favoris');
-        } catch (Exception $e) {
-            $e->getMessage();
+                $this->addFlash('success', 'l\'offre a été retirée de vos favoris');
+            } catch (Exception $e) {
+                $e->getMessage();
+            }
         }
-
         return $this->render('favorite/favorite_list.html.twig', [
             'favorite' => $favorite,
             'formSearch' => $formSearch->createView(),

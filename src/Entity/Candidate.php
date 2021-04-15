@@ -57,9 +57,14 @@ class Candidate extends User
     private $authorizedCountry;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Department::class, inversedBy="candidate")
+     * @ORM\ManyToOne(targetEntity=Department::class)
      */
     private $department;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Region::class)
+     */
+    private $region;
 
     /**
      * @ORM\OneToOne(targetEntity=SocialNetwork::class, inversedBy="candidate", cascade={"persist", "remove"})
@@ -115,6 +120,25 @@ class Candidate extends User
         $this->city = $city;
         return $this;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getRegion()
+    {
+        return $this->region;
+    }
+
+    /**
+     * @param mixed $region
+     */
+    public function setRegion($region): self
+    {
+        $this->region = $region;
+        return $this;
+    }
+
+
 
     public function getRoles(): array
     {

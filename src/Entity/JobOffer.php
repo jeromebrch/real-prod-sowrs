@@ -5,6 +5,8 @@ namespace App\Entity;
 use App\Repository\JobOfferRepository;
 use DateTime;
 use DateTimeInterface;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -103,6 +105,18 @@ class JobOffer
      */
     private $favorite;
 
+
+    /**
+     * @ORM\ManyToOne (targetEntity=Department::class)
+     */
+    private $department;
+
+
+    /**
+     * @ORM\ManyToOne (targetEntity=Region::class)
+     */
+    private $region;
+
     /**
      * @return mixed
      */
@@ -125,7 +139,45 @@ class JobOffer
     public function __construct(){
         $this->creationDate = new DateTime();
         $this->published = true;
+        $this->candidate = new ArrayCollection();
     }
+
+
+    /**
+     * @return mixed
+     */
+    public function getDepartment()
+    {
+        return $this->department;
+    }
+
+    /**
+     * @param mixed $department
+     */
+    public function setDepartment($department):self
+    {
+        $this->department = $department;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getRegion()
+    {
+        return $this->region;
+    }
+
+    /**
+     * @param mixed $region
+     */
+    public function setRegion($region):self
+    {
+        $this->region = $region;
+        return $this;
+    }
+
+
 
     public function getId(): ?int
     {
@@ -297,6 +349,36 @@ class JobOffer
     public function setNumberOfViews(?int $NumberOfViews): self
     {
         $this->NumberOfViews = $NumberOfViews;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Region[]
+     */
+    public function getCandidate(): Collection
+    {
+        return $this->candidate;
+    }
+
+    public function addCandidate(Region $candidate): self
+    {
+        if (!$this->candidate->contains($candidate)) {
+            $this->candidate[] = $candidate;
+            $candidate->setJobOffer($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCandidate(Region $candidate): self
+    {
+        if ($this->candidate->removeElement($candidate)) {
+            // set the owning side to null (unless already changed)
+            if ($candidate->getJobOffer() === $this) {
+                $candidate->setJobOffer(null);
+            }
+        }
 
         return $this;
     }

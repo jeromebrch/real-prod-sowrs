@@ -109,16 +109,17 @@ class FavoriteCvController extends AbstractController
         $user = $this->getUser();
         $favorite = $favRepo->find($id);
 
-        try {
-            $user->removeFavoriteCv($favorite);
-            $em->persist($favorite);
-            $em->flush();
+        if ($favorite) {
+            try {
+                $user->removeFavoriteCv($favorite);
+                $em->persist($favorite);
+                $em->flush();
 
-            $this->addFlash('success', 'l\'offre a été retirée de vos favoris');
-        }catch (Exception $e){
-            $e->getMessage();
+                $this->addFlash('success', 'le cv a été retirée de vos favoris');
+            } catch (Exception $e) {
+                $e->getMessage();
+            }
         }
-
         return $this->render('main/candidateList.html.twig', [
             'favorite' => $favorite,
             'formSearch' => $formSearch->createView(),
@@ -129,7 +130,7 @@ class FavoriteCvController extends AbstractController
     }
 
     /**
-     * @Route("/favorite/remove_cv/{id}", name="remove_favorite_cv_list")
+     * @Route("/favorite/remove_cv_list/{id}", name="remove_favorite_cv_list")
      * @param CandidateRepository $repoCandidate
      * @param PaginatorInterface $paginator
      * @param $id
@@ -154,16 +155,18 @@ class FavoriteCvController extends AbstractController
         $user = $this->getUser();
         $favorite = $favRepo->find($id);
 
-        try {
-            $user->removeFavoriteCv($favorite);
-            $em->persist($favorite);
-            $em->flush();
+        if ($favorite) {
 
-            $this->addFlash('success', 'l\'offre a été retirée de vos favoris');
-        }catch (Exception $e){
-            $e->getMessage();
+            try {
+                $user->removeFavoriteCv($favorite);
+                $em->persist($favorite);
+                $em->flush();
+
+                $this->addFlash('success', 'le cv a été retirée de vos favoris');
+            } catch (Exception $e) {
+                $e->getMessage();
+            }
         }
-
         return $this->render('favorite/favorite_list.html.twig', [
             'favorite' => $favorite,
             'formSearch' => $formSearch->createView(),

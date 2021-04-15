@@ -27,11 +27,6 @@ class JobSearch
     /**
      * @ORM\Column(type="string", length=150, nullable=true)
      */
-    private $region;
-
-    /**
-     * @ORM\Column(type="string", length=150, nullable=true)
-     */
     private $city;
 
     /**
@@ -60,6 +55,11 @@ class JobSearch
     private $country;
 
     /**
+     * @ORM\ManyToOne(targetEntity=Department::class)
+     */
+    private $department;
+
+    /**
      * @ORM\ManyToOne(targetEntity=Cause::class, inversedBy="jobSearches")
      */
     private $cause;
@@ -69,10 +69,16 @@ class JobSearch
      */
     private $desiredRemuneration;
 
+    /**
+     * @ORM\ManyToOne (targetEntity=Region::class)
+     */
+    private $region;
+
 
     public function __construct()
     {
         $this->candidates = new ArrayCollection();
+        $this->regions = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -92,17 +98,6 @@ class JobSearch
         return $this;
     }
 
-    public function getRegion(): ?string
-    {
-        return $this->region;
-    }
-
-    public function setRegion(string $region): self
-    {
-        $this->region = $region;
-
-        return $this;
-    }
 
     public function getCity(): ?string
     {
@@ -115,6 +110,42 @@ class JobSearch
 
         return $this;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getDepartment()
+    {
+        return $this->department;
+    }
+
+    /**
+     * @param mixed $department
+     */
+    public function setDepartment($department): self
+    {
+        $this->department = $department;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getRegion()
+    {
+        return $this->region;
+    }
+
+    /**
+     * @param $region
+     */
+    public function setRegion($region): self
+    {
+        $this->region = $region;
+        return $this;
+    }
+
+
 
     public function getJobTitle(): ?string
     {
@@ -221,6 +252,7 @@ class JobSearch
 
         return $this;
     }
+
 
 
 }

@@ -4,6 +4,8 @@ namespace App\Controller;
 
 use App\Entity\Contact;
 use App\Form\ContactType;
+use App\Repository\ContactRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use ReCaptcha\ReCaptcha;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -70,4 +72,31 @@ class ContactUsController extends AbstractController
             'fichier' => $fichier
         ]);
     }
+
+
+    /**
+     * @Route("/main/deleteFile/{id}", name="main_deleteFile", requirements={"id":"\d+"})
+     * @param $id
+     * @param EntityManagerInterface $entityManager
+     * @return Response
+     */
+    public function clearFile($id, ContactRepository $repositoryContact, EntityManagerInterface $entityManager): Response
+    {
+
+        $contactRepo = $repositoryContact->find($id);
+        $file = $contactRepo->getFichier();
+        if ($file) {
+            $entityManager->clear($file);
+            $entityManager->flush();
+        }
+        $otherFile = $contactRepo->getAutreFichier();
+        if ($otherFile) {
+            $entityManager->clear($otherFile);
+            $entityManager->flush();
+        }
+        $this->addFlash('success', 'Votre fichier à été supprimé');
+        return $this->redirectToRoute('main_dash_board');
+    }
+
+
 }

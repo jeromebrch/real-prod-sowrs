@@ -60,31 +60,6 @@ class MainController extends AbstractController
         }
     }
 
-        /**
-         * @Route("/main/deleteFile/{id}", name="main_deleteFile", requirements={"id":"\d+"})
-         * @param $id
-         * @param EntityManagerInterface $entityManager
-         * @return Response
-         */
-        public function clearFile($id, ContactRepository $repositoryContact, EntityManagerInterface $entityManager): Response
-    {
-
-        $contactRepo = $repositoryContact->find($id);
-        $file = $contactRepo->getFichier();
-        if ($file) {
-            $entityManager->clear($file);
-            $entityManager->flush();
-        }
-        $otherFile = $contactRepo->getAutreFichier();
-        if ($otherFile) {
-            $entityManager->clear($otherFile);
-            $entityManager->flush();
-        }
-            $this->addFlash('success', 'Votre fichier à été supprimé');
-            return $this->redirectToRoute('main_dash_board');
-    }
-
-
     /**
      * return the legal notice page
      * @Route("/legalNotice", name="main_legalNotice")

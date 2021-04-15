@@ -88,3 +88,6 @@ input[type="text"]{
 input[type="email"], input[type="tel"]{
     color: #937FA4;
 }
+.alert{
+    text-align: center;!important;
+}

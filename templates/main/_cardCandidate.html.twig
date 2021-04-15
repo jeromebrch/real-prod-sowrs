@@ -20,11 +20,7 @@
             <p>
                 <strong>{{ candidate.currentRole | capitalize}}</strong>
             </p>
-            <p>{{ candidate.city|capitalize }}
-            {% if candidate.jobSearch%}
-               ({{ candidate.department.cp}})</p>
-            {% else %}
-                ({{ candidate.department.cp }})</p>
+            <p>{{ candidate.region.name|capitalize }} ({{ candidate.department.cp}})</p>
             {% endif %}
             <p><strong>Taux de sens: </strong>{{ candidate.scoring.dominantsens }} {{ candidate.scoring.societal }}%</p>
 
@@ -35,23 +31,24 @@
             {% if candidate.cv %}
                 <a class="btn" href="{{ asset('file/cv/' ~ candidate.cv.cvName) }}">Consulter le cv</a>
             {% endif %}
-
         </div>
-
     </div>
-    {% for favorite in  app.user.favorites %}
-        {%if candidate.cv == favorite.cv %}
-            <span title="Retirer des favoris" class="">
-                <a href="{{ path('remove_favorite_cv',  {'id': favorite.id  }) }}" >
-                    <img class="favorite" src="{{ asset('img/suit-heart-fill.svg') }}"/>
-                </a>
-            </span>
-        {% endif %}
-    {% endfor %}
+
+        {% if candidate.cv.favorite|length >=1 %}
+            {% for fav in candidate.cv.favorite %}
+                {% if candidate.cv.id is same as fav.cv.id %}
+                        <span title="Retirer des favoris" class="">
+                            <a href="{{ path('remove_favorite_cv',  {'id': fav.id  }) }}" >
+                                <img class="favorite" src="{{ asset('img/suit-heart-fill.svg') }}"/>
+                            </a>
+                        </span>
+                {% endif %}
+            {% endfor %}
+        {% else%}
             <span title="Ajouter aux favoris">
                 <a href="{{ path('add_favorite_cv',{'id': candidate.cv.id  }) }}">
                     <img class="favorite" src="{{ asset('img/suit-heart.svg') }}"/>
                 </a>
             </span>
-
+        {% endif %}
 </div>
