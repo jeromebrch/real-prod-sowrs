@@ -31,7 +31,6 @@ class SitemapController extends AbstractController
         $urls[] = ['loc' => $this->generateUrl('main_job_offers_list')];
         $urls[] = ['loc' => $this->generateUrl('main_candidate_list')];
         $urls[] = ['loc' => $this->generateUrl('home_webzine')];
-        $urls[] = ['loc' => $this->generateUrl('app_login')];
         $urls[] = ['loc' => $this->generateUrl('app_logout')];
 
         //Define the dynamic urls
@@ -59,7 +58,6 @@ class SitemapController extends AbstractController
         );
         // Set header
         $response->headers->set('Content-Type', 'text/xml');
-
         return $response;
     }
 }

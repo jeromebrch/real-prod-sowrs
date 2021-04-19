@@ -2,17 +2,16 @@
 
 namespace App\Controller;
 
-use App\Entity\Candidate;
 use App\Entity\Comment;
 use App\Entity\Post;
 use App\Entity\Tag;
 use App\Form\CommentType;
 use App\Form\PostType;
+use App\Repository\CensuredWordRepository;
 use App\Repository\CommentRepository;
 use App\Repository\PostRepository;
 use App\Repository\TagRepository;
 use Doctrine\ORM\EntityManagerInterface;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -20,7 +19,6 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\String\Slugger\SluggerInterface;
-use function Sodium\add;
 
 class WebzineController extends AbstractController
 {
@@ -100,12 +98,13 @@ class WebzineController extends AbstractController
      * @param CommentRepository $commentRepo
      * @param $id
      */
-    public function postDetails($id, PostRepository $postRepo,CommentRepository $commentRepo, EntityManagerInterface $em, Request $req){
+    public function postDetails($id, PostRepository $postRepo,CensuredWordRepository $censuredWordRepo, CommentRepository $commentRepo, EntityManagerInterface $em, Request $req){
 
         $user = $this->getUser();
         $post = $postRepo->find($id);
         $comments = $commentRepo->findPublishedByPost($post);
         $comment = new Comment();
+        $censuredWords = $censuredWordRepo->findAll();
 
         $nbrVuesPost = $post->getNumberOfViews();
         $post->setNumberOfViews($nbrVuesPost + 1);
@@ -118,15 +117,26 @@ class WebzineController extends AbstractController
         $commentForm->handleRequest($req);
 
         if($commentForm->isSubmitted() && $commentForm->isValid()){
-            $comment->setWriterUser($user);
-            $comment->setCreationDate(new \DateTime);
-            $comment->setIsOnline(false);
-            $comment->setPost($post);
-
-            $em->persist($comment);
-            $em->flush();
-
-            $this->addFlash("success", "Votre commentaire a été pris en compte et va être modéré avant publication");
+            foreach($censuredWords as $wordID => $value){
+                if(!in_array($value->getWord(), explode(" ", $comment->getText()))){
+                    $validator = true;
+                }else{
+                    $validator = false;
+                    $forbiddenWord = $value->getWord();
+                    break;
+                }
+            }
+            if($validator){
+                $comment->setWriterUser($user);
+                $comment->setCreationDate(new \DateTime);
+                $comment->setIsOnline(false);
+                $comment->setPost($post);
+                $em->persist($comment);
+                $em->flush();
+                $this->addFlash("success", "Votre commentaire a été pris en compte et va être modéré avant publication");
+            }else{
+                $this->addFlash("success", "Votre commentaire contient un mot interdit (" . $forbiddenWord . "), il n'est pas valide");
+            }
         }
 
         return $this->render('webzine/postDetail.html.twig', [

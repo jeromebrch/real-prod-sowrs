@@ -25,7 +25,13 @@
                 <div class="m-5">
                     <div class="error">{{ form_errors(jobOfferForm) }}</div>
                     {{ form_start(jobOfferForm) }}
-                    <h3 style="color: #1dca91">Descriptif de l'offre</h3>
+                    <h3 class="job_offer_creation_title">Descriptif de l'offre <i class="fas fa-xs fa-question-circle"></i></h3>
+                    <div class="info_message">
+                        <p>
+                            Pensez à préciser la techno principale dans le titre de votre
+                            annonce afin de donner un maximum de visibilité à votre offre
+                        </p>
+                    </div>
                     <hr class="green-line m-3" size=3>
 
                     <div class="row">
@@ -98,4 +104,17 @@
             </div>
         </div>
     </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        // todo : voir pour une infobulle jquery avec tooltip
+        $("i.fa-question-circle").on("mouseover", function (){
+            $("div.info_message").show(300);
+        });
+        $("i.fa-question-circle").on("mouseout", function (){
+            $("div.info_message").hide(300);
+        });
+    </script>
 {% endblock %}

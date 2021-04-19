@@ -305,6 +305,18 @@ body .form-control{
     justify-content: space-around;
     align-items: center;
 }
+.job_offer_creation_title{
+    color: #1dca91;
+}
+.info_message{
+    display: none;
+    background-color: #00000070;
+    border-radius: 30px;
+}
+.info_message p{
+    color: white;
+    font-family: 'KohinoorBangla', Arial, serif;
+}
 
 @media screen and (max-width: 520px){
     body .details_checkbox_input{

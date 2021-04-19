@@ -89,11 +89,11 @@ class JobOfferRepository extends ServiceEntityRepository
                     ->andWhere('j.levelStudy = :levStu')
                     ->setParameter('levStu', $search->levelStudy);
             }
-        if ($search->telecommute){
-            $query = $query
-                ->andWhere('j.telecommuting = :val')
-                ->setParameter('val', true);
-        }
+            if ($search->telecommute){
+                $query = $query
+                    ->andWhere('j.telecommuting = :val')
+                    ->setParameter('val', true);
+            }
             if ($search->freshness){
                 $query = $query
                     ->addOrderBy('j.creationDate', 'DESC');
