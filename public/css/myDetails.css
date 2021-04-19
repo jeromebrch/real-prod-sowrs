@@ -317,6 +317,15 @@ body .form-control{
     color: white;
     font-family: 'KohinoorBangla', Arial, serif;
 }
+.delete_video_url{
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    align-items: center;
+}
+.delete_video_url i:hover{
+    cursor: pointer;
+}
 
 @media screen and (max-width: 520px){
     body .details_checkbox_input{

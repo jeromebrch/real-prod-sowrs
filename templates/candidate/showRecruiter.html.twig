@@ -84,6 +84,16 @@
                             </p>
                         {% endif %}
                     </div>
+                    {% if recruiter.presentationVideoURL is not empty %}
+                        <div class="row">
+                            <iframe width="560" height="450"
+                                    src="{{ recruiter.presentationVideoURL }}"
+                                    title="YouTube video player" frameborder="0"
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                    allowfullscreen>
+                            </iframe>
+                        </div>
+                    {% endif %}
                 </div>
                 {# reason to be #}
                 <div class="container_category_profil">

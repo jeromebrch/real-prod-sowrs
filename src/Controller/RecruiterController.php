@@ -3,29 +3,18 @@
 namespace App\Controller;
 
 use App\Entity\Candidate;
-use App\Entity\Category;
 use App\Entity\Commitment;
-use App\Entity\Cv;
-use App\Entity\Media;
-use App\Entity\Message;
 use App\Entity\Recruiter;
-use App\Form\ContactRecruiterType;
-use App\Form\MessageType;
 use App\Repository\CommitmentRepository;
 use App\Repository\DevelopmentGoalsRepository;
 use App\Repository\JobOfferRepository;
-use App\Repository\RecruiterRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\Session;
-use Symfony\Component\Mailer\MailerInterface;
-use Symfony\Component\Mime\Email;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Serializer\Encoder\JsonDecode;
 
 class RecruiterController extends AbstractController
 {
@@ -161,5 +150,25 @@ class RecruiterController extends AbstractController
                 'success' => false
             ]);
         }
+    }
+
+    /**
+     * @Route("/deletevideo", name="delete_video_URL")
+     */
+    public function deleteVideoURL(EntityManagerInterface $em) :JsonResponse {
+
+        $user = $this->getUser();
+        if($user instanceof Recruiter){
+            $user->setPresentationVideoURL("");
+            $em->flush();
+            return new JsonResponse([
+                'success' => true
+            ]);
+        }else{
+            return new JsonResponse([
+                'success' => false
+            ]);
+        }
+
     }
 }

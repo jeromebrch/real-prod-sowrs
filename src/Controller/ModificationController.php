@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Candidate;
 use App\Entity\Cv;
+use App\Entity\Recruiter;
 use App\Form\CandidateModificationType;
 use App\Form\CreateCvType;
 use App\Form\RecognitionType;
@@ -68,12 +69,10 @@ class ModificationController extends AbstractController
                 //changing carbon foot sprint
                 $footPrintProofFile = $modifyUserForm->get('carbonFootPrintProof')->getData();
                 if($footPrintProofFile){
-
                     $originalFilename = pathinfo($footPrintProofFile->getClientOriginalName(), PATHINFO_FILENAME);
                     // this is needed to safely include the file name as part of the URL
                     $safeFilename = $slugger->slug($originalFilename);
                     $newFilename = $safeFilename.'-'.uniqid().'.'.$footPrintProofFile->guessExtension();
-
                     try {
                         //saving file
                         $footPrintProofFile->move(
@@ -83,7 +82,6 @@ class ModificationController extends AbstractController
                     } catch (FileException $e) {
                         $this->addFlash('error', 'Il y a eu une erreur lors de l\'upload du fichier');
                     }
-
                     // send email to sowrs with the PDF file in attachment
                     $email = (new Email())
                         ->from($this->getUser()->getEmail())
@@ -92,12 +90,16 @@ class ModificationController extends AbstractController
                         ->text('La preuve de l\'empreint carbone')
                         ->attachFromPath('uploads/carbonFootPrintProof/' . $newFilename)
                         ->html('<p>Veuillez trouver ci-joint mon justificatif.</p><p>Cordialement</p>');
-
                     $mailer->send($email);
-
                     $user->setCarbonFootPrintProofFilename($newFilename);
                 }
-
+                if($user instanceof Recruiter){
+                    if($modifyUserForm->get('presentationVideoURL')->getData()){
+                        $videoURLInfo = explode("watch?v=", $modifyUserForm->get('presentationVideoURL')->getData());
+                        $url = $videoURLInfo[0] . "embed/" . $videoURLInfo[1];
+                        $user->setPresentationVideoURL($url);
+                    }
+                }
                 $em->persist($user);
                 $em->flush();
             }

@@ -98,6 +98,11 @@ class Recruiter extends User
      */
     private $commitments;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $presentationVideoURL;
+
 
    public function __construct()
    {
@@ -381,6 +386,18 @@ class Recruiter extends User
     public function removeCommitment(Commitment $commitment): self
     {
         $this->commitments->removeElement($commitment);
+
+        return $this;
+    }
+
+    public function getPresentationVideoURL(): ?string
+    {
+        return $this->presentationVideoURL;
+    }
+
+    public function setPresentationVideoURL(?string $presentationVideoURL): self
+    {
+        $this->presentationVideoURL = $presentationVideoURL;
 
         return $this;
     }

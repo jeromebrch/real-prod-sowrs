@@ -41,6 +41,12 @@ class RecruiterModificationType extends AbstractType
                 'attr' => [
                     'placeholder' => 'Nom']
             ])
+            ->add('presentationVideoURL', TextType::class, [
+                'required' => false,
+                'label' => false,
+                'attr' => [
+                    'placeholder' => 'URL de votre vidéo de présentation (Youtube)']
+            ])
             ->add('phone', TextType::class, [
                 'required' => true,
                 'label' => false,
@@ -58,7 +64,6 @@ class RecruiterModificationType extends AbstractType
                 'attr' => [
                     'placeholder' => 'A propos de votre entité']
             ])
-
             ->add('entityName', TextType::class, [
                 'required' => true,
                 'label' => false,
