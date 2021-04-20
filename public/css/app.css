@@ -103,3 +103,19 @@ input[type="email"], input[type="tel"]{
 .check_telecommuting input:checked{
     background-color: #1dca91;
 }
+::-webkit-scrollbar {
+    width: 10px;
+}
+::-webkit-scrollbar-track {
+    background-color: #937FA499;
+}
+::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.3);
+}
+::-webkit-scrollbar-button {
+    background-color: #937FA4;
+}
+::-webkit-scrollbar-corner {
+    background-color: black;
+}
+

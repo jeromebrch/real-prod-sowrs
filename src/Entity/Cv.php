@@ -53,7 +53,7 @@ class Cv
     private $favorite;
 
     /**
-     * @ORM\OneToMany (targetEntity=Candidate::class, mappedBy="cv")
+     * @ORM\OneToMany(targetEntity=Candidate::class, mappedBy="cv")
      * @ORM\JoinColumn(nullable=false)
      */
     private $candidate;

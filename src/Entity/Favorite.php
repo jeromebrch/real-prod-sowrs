@@ -24,7 +24,7 @@ class Favorite
     private $user;
 
     /**
-     * @ORM\ManyToOne (targetEntity=Cv::class, inversedBy="favorite")
+     * @ORM\ManyToOne(targetEntity=Cv::class, inversedBy="favorite", cascade={"remove"})
      */
     private $cv;
 

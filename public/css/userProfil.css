@@ -246,6 +246,16 @@
     width: 70px;
     height: auto;
 }
+.container_cv_pdf{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 30px;
+}
+.cv_object{
+    border-radius: 5px;
+}
 
 @media screen and (max-width: 992px) {
     .sense_rate_line{

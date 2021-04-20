@@ -97,6 +97,18 @@
                     </div>
                 {% endif %}
             </div>
+            {% if candidate.cv is not empty %}
+                <div class="row">
+                    <div class="container_cv_pdf col-sm-12 col-lg-10 offset-lg-1">
+                        <object type="application/pdf" width="100%" height="100%" class="cv_object">
+                            <param name="src" value="{{ asset("file/cv/" ~candidate.cv.cvName) }}" />
+                            <p>Votre navigateur ne semble pas configuré pour lire des PDF.
+                                Pas de panique, <a href="{{ asset("file/cv/" ~candidate.cv.cvName) }}">Téléchargez-le</a>
+                            </p>
+                        </object>
+                    </div>
+                </div>
+            {% endif %}
         </div>
         <div class="col-lg-4 col-md-12 right_part">
             <div class="show_candidate_sens_rate">
