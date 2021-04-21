@@ -48,7 +48,7 @@ class Cv
     private $message;
 
     /**
-     * @ORM\OneToMany(targetEntity=Favorite::class, mappedBy="cv")
+     * @ORM\OneToMany(targetEntity=Favorite::class, mappedBy="cv", cascade="remove")
      */
     private $favorite;
 

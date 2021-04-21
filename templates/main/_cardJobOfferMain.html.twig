@@ -1,6 +1,5 @@
 <div class="row">
     <div class="col-lg-2 m-1 ">
-
             {% if jobOffer.entity.picture %}
                 {% if jobOffer.entity.picture.pictureName is same as '' %}
                     <img style="width: 100%" class="rounded-circle"
@@ -16,12 +15,15 @@
                      src="{{ asset('images/profils/avatar.jpg') }}"
                      alt="photo du profil">
             {% endif %}
-
     </div>
     <div class="col-lg-6 col-sm-8 col-xs-12 content-box align-self-center">
         <div class="jobOffer_text">
             <a href="{{ path('jobOffer_show', {'id':jobOffer.id}) }}">{{ jobOffer.title }}</a>
-            <p>{{ jobOffer.entity.entityName| capitalize }} - {{ jobOffer.entity.mainCause.text }}</p>
+            <p>{{ jobOffer.entity.entityName| capitalize }}
+                {% if jobOffer.entity.mainCause is not empty %}
+                    - {{ jobOffer.entity.mainCause.text }}
+                {% endif %}
+            </p>
         </div>
     </div>
     <div class="col-lg-2 offset-lg-1 align-self-center">

@@ -102,17 +102,17 @@ class User implements UserInterface, \Serializable
     protected $picture;
 
     /**
-     * @ORM\OneToMany(targetEntity=Comment::class, mappedBy="writerUser", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity=Comment::class, mappedBy="writerUser", cascade={"remove"})
      */
     private $comments;
 
     /**
-     * @ORM\OneToMany(targetEntity=Message::class, mappedBy="userRecipient")
+     * @ORM\OneToMany(targetEntity=Message::class, mappedBy="userRecipient", cascade="remove")
      */
     private $receivedMessages;
 
     /**
-     * @ORM\OneToMany(targetEntity=Message::class, mappedBy="userSender")
+     * @ORM\OneToMany(targetEntity=Message::class, mappedBy="userSender", cascade="remove")
      */
     private $sendedMessages;
 

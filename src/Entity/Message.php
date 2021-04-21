@@ -29,12 +29,12 @@ class Message
     private $category;
 
     /**
-     * @ORM\ManyToOne (targetEntity=User::class, inversedBy="receivedMessages")
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="receivedMessages")
      */
     private $userRecipient;
 
     /**
-     * @ORM\ManyToOne (targetEntity=User::class, inversedBy="sendedMessages")
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="sendedMessages")
      */
     private $userSender;
 

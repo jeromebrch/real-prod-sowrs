@@ -44,25 +44,27 @@
                     {% if "ROLE_CANDIDATE" in user.roles %}
                         <p>&bull;
                             {% if user.currentRole %}
-                                {{ user.currentRole }} &bull;
+                                {{ user.currentRole | capitalize }} &bull;
                             {% endif %}
-                            {% if user.jobSearch.city and user.jobSearch.region %}
-                                {{ user.jobSearch.city }} - {{ user.jobSearch.region }} &bull;
-                            {% endif %}
-                            {% if user.jobSearch.contractType.wording %}
-                                {{ user.jobSearch.contractType.wording }} &bull;
-                            {% endif %}
-                            {% if user.jobSearch.desiredRemuneration.text %}
-                                {{ user.jobSearch.desiredRemuneration.text }} &bull;
+                            {% if user.jobSearch is not empty %}
+                                {% if user.jobSearch.city and user.jobSearch.region %}
+                                    {{ user.jobSearch.city | capitalize }} - {{ user.jobSearch.region.name | capitalize }} &bull;
+                                {% endif %}
+                                {% if user.jobSearch.contractType.wording %}
+                                    {{ user.jobSearch.contractType.wording }} &bull;
+                                {% endif %}
+                                {% if user.jobSearch.desiredRemuneration.text %}
+                                    {{ user.jobSearch.desiredRemuneration.text }} &bull;
+                                {% endif %}
                             {% endif %}
                         </p>
                     {% else %}
                         <p>&bull;
                             {% if user.legalStatus.text %}
-                                {{ user.legalStatus.text }} &bull;
+                                {{ user.legalStatus.text |capitalize }} &bull;
                             {% endif %}
                             {% if user.city and user.country %}
-                                {{ user.city }} - {{ user.country }} &bull;
+                                {{ user.city | capitalize }} - {{ user.country | capitalize }} &bull;
                             {% endif %}
                             {% if user.carbonFootPrint %}
                                 {{ user.carbonFootPrint }} kg CO² / an &bull;
@@ -76,11 +78,11 @@
                     <p>
                         {% if "ROLE_CANDIDATE" in user.roles %}
                             {% if user.inspiration %}
-                                "{{ user.inspiration }}"
+                                "{{ user.inspiration | capitalize }}"
                             {% endif %}
                         {% else %}
                             {% if user.mainCause %}
-                                Cause : {{ user.mainCause.text }}
+                                Cause : {{ user.mainCause.text |capitalize }}
                             {% endif %}
                         {% endif %}
                     </p>
@@ -226,10 +228,12 @@
                         {% endif %}
                     </div>{# open to telecommuting #}
                     <div class="row">
-                        {% if user.jobSearch.telecommute is not empty %}
-                            <h3 class="profil_category_title_candidate">Ouvert au télétravail : <span>Oui</span></h3>
-                        {% else %}
-                            <h3 class="profil_category_title_candidate">Ouvert au télétravail : <span>Non</span></h3>
+                        {% if user.jobSearch is not empty %}
+                            {% if user.jobSearch.telecommute is not empty %}
+                                <h3 class="profil_category_title_candidate">Ouvert au télétravail : <span>Oui</span></h3>
+                            {% else %}
+                                <h3 class="profil_category_title_candidate">Ouvert au télétravail : <span>Non</span></h3>
+                            {% endif %}
                         {% endif %}
                     </div>
                 </div>

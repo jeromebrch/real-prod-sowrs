@@ -40,12 +40,16 @@
         </div>
     </div>
     <div class="match_card_description col-lg-5">
-        <div class="align-self-center">
-            <p>{{ user.entity_name | upper }} </p>
-        </div>
-        <div>
-            <p>{{user.cause}}</p>
-        </div>
+        {% if user.entity_name is not empty %}
+            <div class="align-self-center">
+                <p>{{ user.entity_name | upper }} </p>
+            </div>
+        {% endif %}
+        {% if user.cause is not empty %}
+            <div>
+                <p>{{user.cause}}</p>
+            </div>
+        {% endif %}
     </div>
     <div class="col-lg-3 match_card_btn">
         <a href="#" type="button" class="btn">Voir le profil</a>

@@ -160,7 +160,6 @@ class JobofferController extends AbstractController
             return $this->redirectToRoute('dash_board_my_offers');
         } else {
             return $this->render('error/notFound.html.twig');
-
         }
     }
 

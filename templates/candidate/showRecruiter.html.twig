@@ -155,29 +155,30 @@
             {# RIGHT PART #}
 
             <div class="col-lg-4 col-md-12 right_part">
-                {% if recruiter.scoring.dominantPourcent %}
-                    <div class="show_candidate_sens_rate">
-                        <div class="row align-items-center">
-                            <div class="col-lg-2">
-                                <img src="" alt="taux de sens">
+                {% if recruiter.scoring is not empty %}
+                    {% if recruiter.scoring.dominantPourcent %}
+                        <div class="show_candidate_sens_rate">
+                            <div class="row align-items-center">
+                                <div class="col-lg-2">
+                                    <img src="" alt="taux de sens">
+                                </div>
+                                <div class="col-lg-8">
+                                    <h5>Taux de sens</h5>
+                                    <h5>{{ recruiter.scoring.dominantPourcent }}% {{ recruiter.scoring.dominantSens }}</h5>
+                                </div>
+                                <div class="col-lg-1 ">
+                                    <img src="{{ asset('img/boostrap/flecheBas.svg') }}" alt="flèche vers le bas"
+                                         id="btn_doughnut">
+                                </div>
                             </div>
-                            <div class="col-lg-8">
-                                <h5>Taux de sens</h5>
-                                <h5>{{ recruiter.scoring.dominantPourcent }}% {{ recruiter.scoring.dominantSens }}</h5>
-                            </div>
-                            <div class="col-lg-1 ">
-                                <img src="{{ asset('img/boostrap/flecheBas.svg') }}" alt="flèche vers le bas"
-                                     id="btn_doughnut">
-                            </div>
-                        </div>
-                        <br>
-                        <div class="doughnut col-lg-8 mx-auto pb-1 collapse" id="doughnut">
-                            <canvas id="myChart"></canvas>
                             <br>
+                            <div class="doughnut col-lg-8 mx-auto pb-1 collapse" id="doughnut">
+                                <canvas id="myChart"></canvas>
+                                <br>
+                            </div>
                         </div>
-                    </div>
+                    {% endif %}
                 {% endif %}
-
                 {# complementary informations #}
 
                 {# secondary causes #}
@@ -274,38 +275,40 @@
 
 {% block javascripts %}
     {{ parent() }}
-    <script>
-        const btn_doughnut = document.getElementById('btn_doughnut');
-        const doughnut = document.getElementById('doughnut');
+    {% if recruiter.scoring is not empty %}
+        <script>
+            const btn_doughnut = document.getElementById('btn_doughnut');
+            const doughnut = document.getElementById('doughnut');
 
-        btn_doughnut.addEventListener('click', function (e) {
-            e.currentTarget.classList.toggle('rotate');
-            doughnut.classList.toggle('collapse');
-        })
+            btn_doughnut.addEventListener('click', function (e) {
+                e.currentTarget.classList.toggle('rotate');
+                doughnut.classList.toggle('collapse');
+            })
 
 
-        var ctx = document.getElementById('myChart');
-        var myChart = new Chart(ctx, {
-            type: 'doughnut',
-            data: {
-                labels: ['Social', 'Environnement', 'Economie', 'Societal'],
-                datasets: [{
-                    label: '# of Votes',
-                    data: [
-                        {{ recruiter.scoring.social }},
-                        {{ recruiter.scoring.environment }},
-                        {{ recruiter.scoring.economy }},
-                        {{ recruiter.scoring.societal }}
-                    ],
-                    backgroundColor: [
-                        'rgba(161, 14, 214, 0.53)',
-                        'rgba(44, 168, 19, 0.68)',
-                        'rgba(89, 121, 252, 1)',
-                        'rgba(252, 187, 89, 0.71)',
-                    ],
-                }]
-            },
-            options: {}
-        });
-    </script>
+            var ctx = document.getElementById('myChart');
+            var myChart = new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Social', 'Environnement', 'Economie', 'Societal'],
+                    datasets: [{
+                        label: '# of Votes',
+                        data: [
+                            {{ recruiter.scoring.social }},
+                            {{ recruiter.scoring.environment }},
+                            {{ recruiter.scoring.economy }},
+                            {{ recruiter.scoring.societal }}
+                        ],
+                        backgroundColor: [
+                            'rgba(161, 14, 214, 0.53)',
+                            'rgba(44, 168, 19, 0.68)',
+                            'rgba(89, 121, 252, 1)',
+                            'rgba(252, 187, 89, 0.71)',
+                        ],
+                    }]
+                },
+                options: {}
+            });
+        </script>
+    {% endif %}
 {% endblock %}

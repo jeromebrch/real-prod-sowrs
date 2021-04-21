@@ -99,18 +99,15 @@ class JobOffer
      */
     private $NumberOfViews;
 
-
     /**
-     * @ORM\OneToMany(targetEntity=Favorite::class, mappedBy="jobOffer")
+     * @ORM\OneToMany(targetEntity=Favorite::class, mappedBy="jobOffer", cascade="remove")
      */
     private $favorite;
-
 
     /**
      * @ORM\ManyToOne (targetEntity=Department::class)
      */
     private $department;
-
 
     /**
      * @ORM\ManyToOne (targetEntity=Region::class)
@@ -139,14 +136,11 @@ class JobOffer
         return $this;
     }
 
-
-
     public function __construct(){
         $this->creationDate = new DateTime();
         $this->published = true;
         $this->candidate = new ArrayCollection();
     }
-
 
     /**
      * @return mixed

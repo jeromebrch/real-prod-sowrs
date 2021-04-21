@@ -24,15 +24,14 @@ class Favorite
     private $user;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Cv::class, inversedBy="favorite", cascade={"remove"})
+     * @ORM\ManyToOne(targetEntity=Cv::class, inversedBy="favorite")
      */
     private $cv;
 
     /**
-     * @ORM\ManyToOne (targetEntity=JobOffer::class, inversedBy="favorite")
+     * @ORM\ManyToOne(targetEntity=JobOffer::class, inversedBy="favorite")
      */
     private $jobOffer;
-
 
     public function getId(): ?int
     {

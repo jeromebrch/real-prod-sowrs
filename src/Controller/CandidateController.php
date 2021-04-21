@@ -42,6 +42,7 @@ class CandidateController extends AbstractController
      */
     public function candidatprofil(){
         $user = $this->getUser();
+        //dd($user);
         return $this->render('user/userProfil.html.twig', [
             'user' => $user,
         ]);

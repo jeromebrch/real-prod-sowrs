@@ -1,11 +1,14 @@
 {% extends 'base.html.twig' %}
 
-{% block title %} Sowrs | {{ candidate.firstname }}-{{ candidate.lastname }}{% endblock %}
+{% block title %} Sowrs
+    {% if candidate.firstname and candidate.lastname %}
+    | {{ candidate.firstname }} {{ candidate.lastname }}
+    {% endif %}
+{% endblock %}
 
 {% block stylesheets %}
     {{ parent() }}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"></script>
-
 {% endblock %}
 
 {% block body %}

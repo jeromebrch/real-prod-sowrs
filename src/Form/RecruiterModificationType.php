@@ -56,7 +56,7 @@ class RecruiterModificationType extends AbstractType
             ->add('department', EntityType::class,[
                 'class'=> Department::class,
                 'choice_label'=> 'name',
-                'label'=> 'Veuillez renseigner votre département'
+                'label'=> false
             ])
             ->add('about', TextareaType::class, [
                 'required' => false,
