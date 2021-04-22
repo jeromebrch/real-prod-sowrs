@@ -36,15 +36,13 @@ class MessageSentByRecruiterController extends AbstractController
         $candidateRepo = $this->getDoctrine()->getRepository(Candidate::class);
         $candidate = $candidateRepo->find($id);
 
-        $CategoryRepo = $this->getDoctrine()->getRepository(Category::class);
-        $category = $CategoryRepo->find(2);
+        $category = $this->getDoctrine()->getRepository(Category::class)->findOneByName('message');
 
         $messages = $user->getReceivedMessages();
         //counting the unreaded messages
         $messageState = $em->getRepository(Message::class)->count(['userRecipient' => $user, 'state' => 'non lu']);
         $message = new Message();
-        $formMessage = $this->createForm(MessageType::class, $message);
-        $formMessage->handleRequest($request);
+        $formMessage = $this->createForm(MessageType::class, $message)->handleRequest($request);
 
         if ($formMessage->isSubmitted() && $formMessage->isValid()) {
 

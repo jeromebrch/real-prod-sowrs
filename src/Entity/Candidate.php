@@ -12,7 +12,7 @@ use Doctrine\ORM\Mapping as ORM;
 class Candidate extends User
 {
     /**
-     * @ORM\ManyToOne(targetEntity=Cv::class, inversedBy="candidate")
+     * @ORM\ManyToOne (targetEntity=Cv::class, inversedBy="candidate")
      */
     public $cv;
 
@@ -52,17 +52,17 @@ class Candidate extends User
     private $jobSearch;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Country::class, inversedBy="candidates")
+     * @ORM\ManyToOne(targetEntity=Country::class, inversedBy="candidates", cascade="persist")
      */
     private $authorizedCountry;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Department::class)
+     * @ORM\ManyToOne(targetEntity=Department::class, cascade="persist")
      */
     private $department;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Region::class)
+     * @ORM\ManyToOne(targetEntity=Region::class, cascade="persist")
      */
     private $region;
 

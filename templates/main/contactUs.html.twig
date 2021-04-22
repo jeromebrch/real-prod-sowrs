@@ -12,18 +12,12 @@
     <div class="container p-2 mt-4">
         {{ form_start(formContact, {'attr': {'class': 'row'}}) }}
             <div class="col-lg-5">
-
                 {{ form_row(formContact.nom) }}
                 {{ form_row(formContact.email) }}
                 {{ form_row(formContact.telephone) }}
                 <div class="col-lg-12 input-group-text">
                     <label for="uploadedFile" class="btn">+ Ajouter un fichier</label>
                     {{ form_row(formContact.fichier,{'id': 'uploadedFile'})}}
-                    <div class="col-lg-4">
-                        {% if fichier %}
-                            <img alt="logo_pièce_jointe" title="Pièce jointe" src="{{ asset('img/img_pj.png')}}" class="img_file" />
-                        {% endif %}
-                    </div>
                     <a class="ButtonTrash col-lg-3 m-2 text-center btn align-self-center"
                        href="#" role="button">
                         <img alt="logo_poubelle" title="Poubelle" class="bi-trash"  src="{{ asset('img/boostrap/trash-fill-white.svg') }}">
@@ -32,11 +26,6 @@
                 <div class="col-lg-12 input-group-text">
                     {{ form_row(formContact.autreFichier,{'id': 'contact_file'}) }}
                     <label for="contact_file" class="btn required"> + Ajouter un autre fichier</label>
-                    <div class="col-lg-3">
-                        {% if autreFichier %}
-                            <img alt="logo_pièce_jointe" title="Pièce jointe" src="{{ asset('img/img_pj.png')}}" class="img_file"/>
-                        {% endif %}
-                    </div>
                     <a class="ButtonTrash col-lg-3 m-2 text-center btn align-self-center"
                        href="#" role="button">
                         <img alt="logo_poubelle" title="Poubelle" class="bi-trash"  src="{{ asset('img/boostrap/trash-fill-white.svg') }}">

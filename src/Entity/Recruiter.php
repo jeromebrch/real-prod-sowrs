@@ -43,7 +43,7 @@ class Recruiter extends User
     private $function;
 
     /**
-     * @ORM\ManyToOne(targetEntity=LegalStatus::class, inversedBy="recruiters")
+     * @ORM\ManyToOne(targetEntity=LegalStatus::class, inversedBy="recruiters", cascade="persist")
      */
     private $legalStatus;
 
@@ -82,6 +82,13 @@ class Recruiter extends User
      * @ORM\ManyToOne(targetEntity=Department::class)
      */
     private $department;
+
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Region::class, cascade="persist")
+     */
+    private $region;
+
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
@@ -126,6 +133,22 @@ class Recruiter extends User
     }
 
 
+    /**
+     * @return mixed
+     */
+    public function getRegion()
+    {
+        return $this->region;
+    }
+
+    /**
+     * @param mixed $region
+     */
+    public function setRegion($region): self
+    {
+        $this->region = $region;
+        return $this;
+    }
 
    public function setRoles(array $roles): User
    {

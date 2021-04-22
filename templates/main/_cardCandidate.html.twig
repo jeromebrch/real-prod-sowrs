@@ -2,12 +2,10 @@
 
         <div class="col-lg-2 m-3">
             {% if candidate.picture %}
-                <img id="show_candidate_photo_profile" class="rounded-circle img_user_card"
-                     src="{{ asset('images/profils/avatar.jpg') }}"
+                <img id="photo_profile" src="{{ asset('images/profils/' ~ candidate.picture.pictureName )}}"
                      alt="photo du profil">
             {% else %}
-                <img id="show_candidate_photo_profile" class="rounded-circle img_user_card"
-                     src="{{ asset('images/profils/' ~candidate.picture.pictureName ) }}"
+                <img id="photo_profile" src="{{ asset('images/profils/avatar.jpg') }}"
                      alt="photo du profil">
             {% endif %}
         </div>
@@ -20,8 +18,10 @@
             <p>
                 <strong>{{ candidate.currentRole | capitalize}}</strong>
             </p>
-            <p>{{ candidate.region.name|capitalize }} ({{ candidate.department.cp}})</p>
-            {% endif %}
+            <p>
+                {{ candidate.region.name|capitalize }} ({{ candidate.department.cp}})
+            </p>
+
             <p><strong>Taux de sens: </strong>{{ candidate.scoring.dominantsens }} {{ candidate.scoring.societal }}%</p>
 
         </div>

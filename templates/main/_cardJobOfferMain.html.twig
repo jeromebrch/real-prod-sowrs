@@ -21,7 +21,7 @@
     <div class="col-lg-6 col-sm-8 col-xs-12 content-box align-self-center">
         <div class="jobOffer_text">
             <a href="{{ path('jobOffer_show', {'id':jobOffer.id}) }}">{{ jobOffer.title }}</a>
-            <p>{{ jobOffer.entity.entityName| capitalize }} - {{ jobOffer.entity.mainCause.text }}</p>
+            <p>{{ jobOffer.entity.entityName| capitalize }} {% if jobOffer.entity.mainCause %}- {{ jobOffer.entity.mainCause.text }}{% endif %}</p>
         </div>
     </div>
     <div class="col-lg-2 offset-lg-1 align-self-center">

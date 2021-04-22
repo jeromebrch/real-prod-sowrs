@@ -37,7 +37,7 @@
                                         </div>
                                         <div class="jobOffer_div col-lg-5">
                                             <p class="offer" ><strong>{{ favorite.jobOffer.title|capitalize}} </strong></p>
-                                            <p class="offer">{{ favorite.jobOffer.entity.entityName }} - {{ favorite.jobOffer.entity.mainCause.text }}</p>
+                                            <p class="offer">{{ favorite.jobOffer.entity.entityName }}{% if favorite.jobOffer.entity.mainCause %} - {{ favorite.jobOffer.entity.mainCause.text }}{% endif %}</p>
                                             <p class="offer">{{ favorite.jobOffer.region.name|capitalize}}({{ favorite.jobOffer.department.cp}})</p>
                                             <p class="offer"><strong>Taux de sens : </strong>{{ favorite.jobOffer.entity.scoring.dominantsens}} {{ favorite.jobOffer.entity.scoring.societal }}%</p>
                                         </div>

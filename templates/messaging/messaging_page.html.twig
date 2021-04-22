@@ -43,7 +43,7 @@
                                                             </a>
                                                         </td>
                                                     {% else %}
-                                                        <th><a href="{{ path('read_message', {'id':message.id} ) }}">{{ message.category.name }}</a></th>
+                                                        <th><a href="{{ path('read_message', {'id':message.id} ) }}">{{ message.category.name}}</a></th>
                                                         <td><a href="{{ path('read_message', {'id':message.id}) }}">{{ message.userSender.entityName }}</a></td>
                                                         <td><a href="{{ path('read_message', {'id':message.id}) }}">{{ message.subject }}</a></td>
                                                         <td><a href="{{ path('read_message', {'id':message.id}) }}">{{ message.createdAt|date("d/m/Y h:m") }}</a></td>
@@ -64,7 +64,7 @@
                                         <tr>
                                             {% if app.user != message.userSender %}
                                                 {% if message.state is same as nonlu %}
-                                                    <th><a href="{{ path('read_message', {'id':message.id}) }}"><strong>{{ message.category.name }}</strong></a> </th>
+                                                    <th><a href="{{ path('read_message', {'id':message.id}) }}"><strong>{{message.category.name}}</strong></a> </th>
                                                     <td><a href="{{ path('read_message', {'id':message.id}) }}"><strong>{{ message.userSender.firstName~ ' ' ~message.userSender.lastName }}</strong></a></td>
                                                     <td><a href="{{ path('read_message', {'id':message.id}) }}"><strong>{{ message.subject }}</strong></a></td>
                                                     <td><a href="{{ path('read_message', {'id':message.id}) }}"><strong>{{ message.createdAt|date("d/m/Y h:m")  }}</strong></a></td>
