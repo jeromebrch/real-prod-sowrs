@@ -21,7 +21,7 @@
             <div>
                 {# profil picture #}
                 <div class="row">
-                    {% if user.picture %}
+                    {% if user.picture is not empty %}
                         <img id="photo_profile" src="{{ asset('images/profils/' ~ user.picture.pictureName )}}"
                              alt="photo du profil" title="Photo de profil">
                     {% else %}
@@ -33,9 +33,13 @@
                 {# entity name or user identity #}
                 <div class="row header_presentation">
                     {% if "ROLE_CANDIDATE" in user.roles %}
-                        <h3>{{ user.firstname }} {{ user.lastname }}</h3>
+                        {% if user.firstname is not empty and user.lastname is not empty %}
+                            <h3>{{ user.firstname }} {{ user.lastname }}</h3>
+                        {% endif %}
                     {% else %}
-                        <h3>{{ user.entityName }}</h3>
+                        {% if user.entityName is not empty %}
+                            <h3>{{ user.entityName }}</h3>
+                        {% endif %}
                     {% endif %}
                 </div>
 
@@ -81,7 +85,7 @@
                                 "{{ user.inspiration | capitalize }}"
                             {% endif %}
                         {% else %}
-                            {% if user.mainCause %}
+                            {% if user.mainCause is not empty %}
                                 Cause : {{ user.mainCause.text |capitalize }}
                             {% endif %}
                         {% endif %}
@@ -102,7 +106,11 @@
                 {# about the entity #}
                 <div class="container_category_profil">
                     <div class="row">
-                        <h3 class="profil_category_title">&Agrave; propos de {{ user.firstname }}</h3>
+                        {% if user.firstname %}
+                            <h3 class="profil_category_title">&Agrave; propos de {{ user.firstname }}</h3>
+                        {% else %}
+                            <h3 class="profil_category_title">&Agrave; propos ...</h3>
+                        {% endif %}
                     </div>
                     <div class="row">
                         {% if user.about %}
@@ -119,7 +127,11 @@
                 {# engagements #}
                 <div class="container_category_profil">
                     <div class="row">
-                        <h3 class="profil_category_title">{{ user.firstname }} est engagé dans :</h3>
+                        {% if user.firstname %}
+                            <h3 class="profil_category_title">{{ user.firstname }} est engagé dans :</h3>
+                        {% else %}
+                            <h3 class="profil_category_title">Engagements :</h3>
+                        {% endif %}
                     </div>
                     {% if(user.commitments is not empty) %}
                         <div class="row">
@@ -157,25 +169,32 @@
             <div class="col-lg-4 col-md-12 right_part">
                 <div class="row sense_rate_line">
                     <div class="show_candidate_sens_rate">
-                        {% if user.scoring %}
-                        <div class="row align-items-center">
-                            <div class="col-lg-2">
-                                <img class="mini_img_sense_rate" src="{{ asset('img/econonomie500.png') }}" alt="taux de sens">
+                        {% if user.scoring is not empty %}
+                            <div class="row align-items-center">
+                                <div class="col-lg-2">
+                                    {% if app.user.scoring.dominantSens is same as 'social' %}
+                                        <img class="mini_img_sense_rate" src="{{ asset('img/social500.png') }}" alt="taux de sens">
+                                    {% elseif app.user.scoring.dominantSens is same as 'economique' %}
+                                        <img class="mini_img_sense_rate" src="{{ asset('img/econonomie500.png') }}" alt="taux de sens">
+                                    {% elseif app.user.scoring.dominantSens is same as 'societal' %}
+                                        <img class="mini_img_sense_rate" src="{{ asset('img/societal500.png') }}" alt="taux de sens">
+                                    {% elseif app.user.scoring.dominantSens is same as 'environnemental' %}
+                                        <img class="mini_img_sense_rate" src="{{ asset('img/environnemental500.png') }}" alt="taux de sens">
+                                    {% endif %}
+                                </div>
+                                <div class="col-lg-8">
+                                    <h5>Taux de sens</h5>
+                                    <h5>{{ user.scoring.dominantPourcent }}% {{ user.scoring.dominantSens }}</h5>
+                                </div>
+                                <div class="col-lg-1 ">
+                                    <img src="{{ asset('img/boostrap/flecheBas.svg') }}" alt="flèche vers le bas" title="Détails taux de sens"
+                                         id="btn_doughnut">
+                                </div>
                             </div>
-                            <div class="col-lg-8">
-                                <h5>Taux de sens</h5>
-                                <h5>{{ user.scoring.dominantPourcent }}% {{ user.scoring.dominantSens }}</h5>
-                            </div>
-                            <div class="col-lg-1 ">
-                                <img src="{{ asset('img/boostrap/flecheBas.svg') }}" alt="flèche vers le bas" title="Détails taux de sens"
-                                     id="btn_doughnut">
-                            </div>
-                        </div>
-                        <br>
-                        <div class="doughnut col-lg-8 mx-auto pb-1 collapse" id="doughnut">
-                            <canvas id="myChart"></canvas>
                             <br>
-                        </div>
+                            <div class="doughnut col-lg-8 mx-auto pb-1 collapse" id="doughnut">
+                                <canvas id="myChart"></canvas>
+                            </div>
                         {% else %}
                             <p class="alert alert-success">
                                 Vous n'avez pas encore calculé votre taux de sens !
@@ -271,7 +290,11 @@
                 {# about the entity #}
                 <div class="container_category_profil">
                     <div class="row">
-                        <h3 class="profil_category_title">&Agrave; propos de {{ user.entityName }}</h3>
+                        {% if user.entityName %}
+                            <h3 class="profil_category_title">&Agrave; propos de {{ user.entityName }}</h3>
+                        {% else %}
+                            <h3 class="profil_category_title">&Agrave; propos ...</h3>
+                        {% endif %}
                     </div>
                     <div class="row">
                         {% if user.about %}
@@ -298,7 +321,11 @@
                 {# reason to be #}
                 <div class="container_category_profil">
                     <div class="row">
-                        <h3 class="profil_category_title">Raison d'être de {{ user.entityName }}</h3>
+                        {% if user.entityName %}
+                            <h3 class="profil_category_title">Raison d'être de {{ user.entityName }}</h3>
+                        {% else %}
+                            <h3 class="profil_category_title">Raison d'être</h3>
+                        {% endif %}
                     </div>
                     <div class="row">
                         {% if user.reasonToBe %}
@@ -360,10 +387,18 @@
             <div class="col-lg-4 col-md-12 right_part">
                 <div class="row sense_rate_line">
                     <div class="show_candidate_sens_rate">
-                        {% if user.scoring %}
+                        {% if user.scoring is not empty %}
                             <div class="row align-items-center">
                                 <div class="col-lg-2">
-                                    <img src="" alt="taux de sens">
+                                    {% if user.scoring.dominantSens is same as 'social' %}
+                                        <img class="mini_img_sense_rate" src="{{ asset('img/social500.png') }}" alt="taux de sens">
+                                    {% elseif user.scoring.dominantSens is same as 'economique' %}
+                                        <img class="mini_img_sense_rate" src="{{ asset('img/econonomie500.png') }}" alt="taux de sens">
+                                    {% elseif user.scoring.dominantSens is same as 'societal' %}
+                                        <img class="mini_img_sense_rate" src="{{ asset('img/societal500.png') }}" alt="taux de sens">
+                                    {% elseif user.scoring.dominantSens is same as 'environnemental' %}
+                                        <img class="mini_img_sense_rate" src="{{ asset('img/environnemental500.png') }}" alt="taux de sens">
+                                    {% endif %}
                                 </div>
                                 <div class="col-lg-8">
                                     <h5>Taux de sens</h5>
@@ -377,7 +412,6 @@
                             <br>
                             <div class="doughnut col-lg-8 mx-auto pb-1 collapse" id="doughnut">
                                 <canvas id="myChart"></canvas>
-                                <br>
                             </div>
                         {% else %}
                             <p class="alert alert-success">

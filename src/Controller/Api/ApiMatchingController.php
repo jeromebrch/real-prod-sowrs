@@ -71,7 +71,6 @@ class ApiMatchingController extends AbstractController
 
             //récuperer les utilisateurs correspondants dans un tableau
             $users = $userRepo->findBy(['id' => $ids]);
-
             if ($this->getUser() instanceof Recruiter) {
                 //boucler sur le tableau de user
                 //et vérifier à chaque passage de la boucle quel est le taux de match associé

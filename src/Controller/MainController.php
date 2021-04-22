@@ -35,11 +35,14 @@ class MainController extends AbstractController
      * @param JobOfferRepository $jobOfferRepo
      * @return Response
      */
-    public function index(Request $request, PaginatorInterface $paginator, JobOfferRepository $jobOfferRepo): Response
+    public function index(Request $request, PaginatorInterface $paginator, JobOfferRepository $jobOfferRepo, CandidateRepository $candidateRepo): Response
     {
+        $user = $this->getUser();
         $data = new SearchJobOffers();
         $formSearchHome = $this->createForm(SearchJobOfferType::class, $data);
         $formSearchHome->handleRequest($request);
+        $formSearchCandidate = $this->createForm(SearchCandidateType::class);
+        $formSearchCandidate->handleRequest($request);
         $donnees = $jobOfferRepo->SearchJobOffers($data);
         $jobOffers = $paginator->paginate(
             $donnees,
@@ -51,11 +54,25 @@ class MainController extends AbstractController
             return $this->render('main/jobOffersListHome.html.twig', [
                 'jobOffers' => $jobOffers,
                 'formSearchHome' => $formSearchHome->createView(),
+                'user' => $user
             ]);
-        } else {
-
+        }elseif($formSearchCandidate->isSubmitted() && $formSearchCandidate->isValid()){
+            $candidates = $candidateRepo->searchCandidate($formSearchCandidate->getData());
+            $listCandidates = $paginator->paginate(
+                $candidates,
+                $request->query->getInt('page', 1),
+                5
+            );
+            return $this->render('main/candidateList.html.twig', [
+                'formSearch' => $formSearchCandidate->createView(),
+                'user' => $user,
+                'listCandidates' => $listCandidates
+            ]);
+        }else{
             return $this->render('main/home.html.twig', [
                 'formSearchHome' => $formSearchHome->createView(),
+                'formSearch' => $formSearchCandidate->createView(),
+                'user' => $user
             ]);
         }
     }

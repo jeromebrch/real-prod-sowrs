@@ -142,7 +142,7 @@ class RecruiterController extends AbstractController
                 }
             }
             $em->flush();
-            return new JsonResponse([ //Returns JSON succes response
+            return new JsonResponse([ //Returns JSON success response
                 'success' => true
             ]);
         }else{

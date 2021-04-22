@@ -32,25 +32,26 @@
             </button>
         </div>
     </div>
-    <a type="btn required" style=" width: 225px;border-radius: 50px;background-color: #b9bbbe; border: none;text-decoration: none;padding: 10px; font-size: larger;color: white; margin: auto;" href="{{ path('apply', {'id': jobOffer.id}) }}">Postuler à cette offre</a>
-    {% if jobOffer.favorite|length >=1 %}
-       {% for fav in jobOffer.favorite %}
-           {% if jobOffer.id == fav.jobOffer.id %}
-               <span title="Retirer des favoris" class="">
-                <a href="{{ path('remove_favorite_offer',  {'id': fav.id  }) }}" >
-                    <img class="favorite" src="{{ asset('img/suit-heart-fill.svg') }}"/>
-                </a>
-             </span>
-           {% endif %}
-       {% endfor %}
-   {%else%}
-       <span title="Ajouter aux favoris">
-            <a href="{{ path('add_favorite_offer',{'id': jobOffer.id  }) }}">
-                <img class="favorite" src="{{ asset('img/suit-heart.svg') }}"/>
-             </a>
-       </span>
-   {% endif %}
-
+    {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+        <a type="btn required" style=" width: 225px;border-radius: 50px;background-color: #b9bbbe; border: none;text-decoration: none;padding: 10px; font-size: larger;color: white; margin: auto;" href="{{ path('apply', {'id': jobOffer.id}) }}">Postuler à cette offre</a>
+        {% if jobOffer.favorite|length >=1 %}
+           {% for fav in jobOffer.favorite %}
+               {% if jobOffer.id == fav.jobOffer.id %}
+                   <span title="Retirer des favoris" class="">
+                    <a href="{{ path('remove_favorite_offer',  {'id': fav.id  }) }}" >
+                        <img class="favorite" src="{{ asset('img/suit-heart-fill.svg') }}"/>
+                    </a>
+                 </span>
+               {% endif %}
+           {% endfor %}
+       {%else%}
+           <span title="Ajouter aux favoris">
+                <a href="{{ path('add_favorite_offer',{'id': jobOffer.id  }) }}">
+                    <img class="favorite" src="{{ asset('img/suit-heart.svg') }}"/>
+                 </a>
+           </span>
+       {% endif %}
+    {% endif %}
 
 
 </div>

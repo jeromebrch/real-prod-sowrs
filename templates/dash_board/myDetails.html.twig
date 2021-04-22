@@ -123,9 +123,14 @@
                         {{ form_row(modifyUserForm.socialNetwork.twitter.setRendered()) }}
                         {{ form_row(modifyUserForm.socialNetwork.skype.setRendered()) }}
 
-                        <h4 class="subtitle-myDetail mb-3 ms-3 me-3 mt-5">Que recherchez-vous</h4>
+                        <h4 class="subtitle-myDetail mb-3 ms-3 me-3 mt-5">Que recherchez-vous <i class="fas fa-xs fa-question-circle"></i></h4>
+                        <div class="info_message">
+                            <p>
+                                Pour apparaître dans un maximum de recherche, pensez à renseigner votre recherche
+                                d'offre d'emploi de façon pertinente
+                            </p>
+                        </div>
                         <hr class="green-line m-3" size=3>
-
                         <div class="row">
                             <div class="col-sm-6 col-lg-6 pt-3">
                                 {{ form_row(modifyUserForm.jobSearch.desiredRemuneration) }}
@@ -550,6 +555,15 @@
                         alert(e);
                     })
                 ;
+            });
+        </script>
+
+        <script>
+            $("i.fa-question-circle").on("mouseover", function (){
+                $("div.info_message").show(300);
+            });
+            $("i.fa-question-circle").on("mouseout", function (){
+                $("div.info_message").hide(300);
             });
         </script>
     {% endblock %}

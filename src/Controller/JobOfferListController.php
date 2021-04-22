@@ -34,12 +34,19 @@ class JobOfferListController extends AbstractController
             $request->query->getInt('page', 1),
             5
         );
+        if($this->getUser()){
+            return $this->render('main/jobOffersList.html.twig', [
+                'jobOffers' => $jobOffers,
+                'favorites' => $user->getFavorites(),
+                'formSearch' => $formSearch->createView(),
+            ]);
+        }else{
+            return $this->render('main/jobOffersList.html.twig', [
+                'jobOffers' => $jobOffers,
+                'formSearch' => $formSearch->createView()
+            ]);
+        }
 
-        return $this->render('main/jobOffersList.html.twig', [
-            'jobOffers' => $jobOffers,
-            'favorites' => $user->getFavorites(),
-            'formSearch' => $formSearch->createView(),
-        ]);
     }
 
 

@@ -29,6 +29,9 @@
                         {{ form_row(formSearchHome.country) }}
                     </div>
                     <div class="p-1">
+                        {{ form_row(formSearchHome.department) }}
+                    </div>
+                    <div class="p-1">
                         {{ form_row(formSearchHome.cause) }}
                     </div>
                     <div class="p-1">
@@ -40,8 +43,17 @@
                     <div class="p-1">
                         {{ form_row(formSearchHome.remuneration) }}
                     </div>
-                    <div class="p-1">
-                        {{ form_row(formSearchHome.freshness) }}
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="p-1">
+                                {{ form_row(formSearchHome.freshness) }}
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="p-1">
+                                {{ form_row(formSearchHome.telecommute) }}
+                            </div>
+                        </div>
                     </div>
                     <div class="position-static">
                         <button type="submit" class="btn_jobOffer_filter">Rechercher</button>

@@ -1,6 +1,6 @@
 
 .candidate_text{
-    line-height: 5px;
+    line-height: 15px;
     text-align: left;
     position: relative;
     right: 20px;
@@ -24,7 +24,7 @@ body .img_user_card{
 }
 .content-box{
     display: flex;
-    flex-direction: row;
-    justify-content: left;
-    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
 }

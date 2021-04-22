@@ -115,10 +115,18 @@
         </div>
         <div class="col-lg-4 col-md-12 right_part">
             <div class="show_candidate_sens_rate">
-                {% if candidate.scoring %}
+                {% if candidate.scoring is not empty %}
                     <div class="row">
                         <div class="col-lg-2 block_img_sense_rate">
-                            <img class="sense_rate_logo" src="{{ asset('img/sens/innegalite.png') }}" alt="sense rate" title="Taux de sens">
+                            {% if candidate.scoring.dominantSens is same as 'social' %}
+                                <img class="mini_img_sense_rate" src="{{ asset('img/social500.png') }}" alt="taux de sens">
+                            {% elseif candidate.scoring.dominantSens is same as 'economique' %}
+                                <img class="mini_img_sense_rate" src="{{ asset('img/econonomie500.png') }}" alt="taux de sens">
+                            {% elseif candidate.scoring.dominantSens is same as 'societal' %}
+                                <img class="mini_img_sense_rate" src="{{ asset('img/societal500.png') }}" alt="taux de sens">
+                            {% elseif candidate.scoring.dominantSens is same as 'environnemental' %}
+                                <img class="mini_img_sense_rate" src="{{ asset('img/environnemental500.png') }}" alt="taux de sens">
+                            {% endif %}
                         </div>
                         <div class="col-lg-8">
                             <h5>Taux de sens</h5>

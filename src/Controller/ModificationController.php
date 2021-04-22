@@ -95,9 +95,11 @@ class ModificationController extends AbstractController
                 }
                 if($user instanceof Recruiter){
                     if($modifyUserForm->get('presentationVideoURL')->getData()){
-                        $videoURLInfo = explode("watch?v=", $modifyUserForm->get('presentationVideoURL')->getData());
-                        $url = $videoURLInfo[0] . "embed/" . $videoURLInfo[1];
-                        $user->setPresentationVideoURL($url);
+                        if(!strpos($modifyUserForm->get('presentationVideoURL')->getData(), "embed")){
+                            $videoURLInfo = explode("watch?v=", $modifyUserForm->get('presentationVideoURL')->getData());
+                            $url = $videoURLInfo[0] . "embed/" . $videoURLInfo[1];
+                            $user->setPresentationVideoURL($url);
+                        }
                     }
                 }
                 $em->persist($user);

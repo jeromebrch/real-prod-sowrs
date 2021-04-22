@@ -116,8 +116,9 @@ class WebzineController extends AbstractController
         $commentForm = $this->createForm(CommentType::class, $comment);
         $commentForm->handleRequest($req);
         if($commentForm->isSubmitted() && $commentForm->isValid()){
+            //verify is the comment contains forbidden words, cf list in database
             foreach($censuredWords as $wordID => $value){
-                if(!in_array($value->getWord(), explode(" ", $comment->getText()))){
+                if(!in_array($value->getWord(), explode(" ", $comment->getText())) and !in_array($value->getWord(), explode(" ", $comment->getTitle()))){
                     $validator = true;
                 }else{
                     $validator = false;

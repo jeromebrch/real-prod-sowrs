@@ -42,51 +42,145 @@
                             <p class="m-0">Recherche rapide</p>
                         </div>
                         <div class="col-lg-6 text-end">
-                            <a class="texte-green home_link" href="{{ path('main_job_offers_list') }}">Voir toutes les offres</a>
+                            {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+                                {% if "ROLE_CANDIDATE" in user.roles %}
+                                    <a class="texte-green home_link" href="{{ path('main_job_offers_list') }}">Voir toutes les offres</a>
+                                {% else %}
+                                    <a class="texte-green home_link" href="{{ path('main_candidate_list') }}">Voir tous les candidats</a>
+                                {% endif %}
+                            {% else %}
+                                <a class="texte-green home_link" href="{{ path('main_job_offers_list') }}">Voir toutes les offres</a>
+                            {% endif %}
                         </div>
                     </div>
                     <div class="test">
-                        {{ form_start(formSearchHome) }}
-                        <div class="p-1">
-                            {{ form_row(formSearchHome.q) }}
-                        </div>
-                        <div class="p-1">
-                            {{ form_row(formSearchHome.contractType) }}
-                        </div>
-                        <div class="p-1">
-                            {{ form_row(formSearchHome.country) }}
-                        </div>
-                        <div class="p-1">
-                            {{ form_row(formSearchHome.department) }}
-                        </div>
-                        <div class="p-1">
-                            {{ form_row(formSearchHome.cause) }}
-                        </div>
-                        <div class="p-1">
-                            {{ form_row(formSearchHome.levelStudy) }}
-                        </div>
-                        <div class="p-1">
-                            {{ form_row(formSearchHome.levelExperience) }}
-                        </div>
-                        <div class="p-1">
-                            {{ form_row(formSearchHome.remuneration) }}
-                        </div>
-                        <div class="row">
-                            <div class="col-6">
+                        {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+                            {% if "ROLE_CANDIDATE" in user.roles %}
+                                {{ form_start(formSearchHome) }}
                                 <div class="p-1">
-                                    {{ form_row(formSearchHome.freshness) }}
+                                    {{ form_row(formSearchHome.q) }}
+                                </div>
+                                <div class="p-1">
+                                    {{ form_row(formSearchHome.contractType) }}
+                                </div>
+                                <div class="p-1">
+                                    {{ form_row(formSearchHome.country) }}
+                                </div>
+                                <div class="p-1">
+                                    {{ form_row(formSearchHome.department) }}
+                                </div>
+                                <div class="p-1">
+                                    {{ form_row(formSearchHome.cause) }}
+                                </div>
+                                <div class="p-1">
+                                    {{ form_row(formSearchHome.levelStudy) }}
+                                </div>
+                                <div class="p-1">
+                                    {{ form_row(formSearchHome.levelExperience) }}
+                                </div>
+                                <div class="p-1">
+                                    {{ form_row(formSearchHome.remuneration) }}
+                                </div>
+                                <div class="row">
+                                    <div class="col-6">
+                                        <div class="p-1">
+                                            {{ form_row(formSearchHome.freshness) }}
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="p-1">
+                                            {{ form_row(formSearchHome.telecommute) }}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="position-static p-1">
+                                    <button type="submit" class="btn-filter-home">Rechercher</button>
+                                </div>
+                                {{ form_end(formSearchHome) }}
+                            {% elseif "ROLE_RECRUITER" in user.roles %}
+                                {{ form_start(formSearch) }}
+                                <div class="p-1">
+                                    {{ form_row(formSearch.txt) }}
+                                </div>
+                                <div class="p-1">
+                                    {{ form_row(formSearch.localization) }}
+                                </div>
+                                <div class="p-1">
+                                    {{ form_row(formSearch.department) }}
+                                </div>
+                                <div class="p-1">
+                                    {{ form_row(formSearch.contractType) }}
+                                </div>
+                                <div class="p-1">
+                                    {{ form_row(formSearch.cause) }}
+                                </div>
+                                <div class="p-1">
+                                    {{ form_row(formSearch.remuneration) }}
+                                </div>
+                                <div class="p-1">
+                                    {{ form_row(formSearch.levelStudy) }}
+                                </div>
+                                <div class="p-1">
+                                    {{ form_row(formSearch.levelExp) }}
+                                </div>
+                                <div class="p-1">
+                                    {{ form_row(formSearch.authorizedCountry) }}
+                                </div>
+                                <div class="row">
+                                    <div class="col-6">
+                                        <div class="p-1">
+                                            {{ form_row(formSearch.telecommute) }}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="position-static p-1">
+                                    <button type="submit" class="btn-filter-home">Rechercher</button>
+                                </div>
+                                {{ form_end(formSearch) }}
+                            {% endif %}
+                        {% else %}
+                            {{ form_start(formSearchHome) }}
+                            <div class="p-1">
+                                {{ form_row(formSearchHome.q) }}
+                            </div>
+                            <div class="p-1">
+                                {{ form_row(formSearchHome.contractType) }}
+                            </div>
+                            <div class="p-1">
+                                {{ form_row(formSearchHome.country) }}
+                            </div>
+                            <div class="p-1">
+                                {{ form_row(formSearchHome.department) }}
+                            </div>
+                            <div class="p-1">
+                                {{ form_row(formSearchHome.cause) }}
+                            </div>
+                            <div class="p-1">
+                                {{ form_row(formSearchHome.levelStudy) }}
+                            </div>
+                            <div class="p-1">
+                                {{ form_row(formSearchHome.levelExperience) }}
+                            </div>
+                            <div class="p-1">
+                                {{ form_row(formSearchHome.remuneration) }}
+                            </div>
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="p-1">
+                                        {{ form_row(formSearchHome.freshness) }}
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="p-1">
+                                        {{ form_row(formSearchHome.telecommute) }}
+                                    </div>
                                 </div>
                             </div>
-                            <div class="col-6">
-                                <div class="p-1">
-                                    {{ form_row(formSearchHome.telecommute) }}
-                                </div>
+                            <div class="position-static p-1">
+                                <button type="submit" class="btn-filter-home">Rechercher</button>
                             </div>
-                        </div>
-                        <div class="position-static p-1">
-                            <button type="submit" class="btn-filter-home">Rechercher</button>
-                        </div>
-                        {{ form_end(formSearchHome) }}
+                            {{ form_end(formSearchHome) }}
+                        {% endif %}
                     </div>
                 </div>
             </div>

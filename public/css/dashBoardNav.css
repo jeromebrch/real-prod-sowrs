@@ -75,4 +75,19 @@
     font-weight: bolder;
     color: #937FA4;
 }
-
+.section_dashboard{
+    height: 450px;
+}
+.contenu-scroll{
+    overflow: auto;
+}
+.container_sense_rate_img{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+.sense_rate_img{
+    height: 250px; !important;
+    width: auto;
+}

@@ -160,7 +160,15 @@
                         <div class="show_candidate_sens_rate">
                             <div class="row align-items-center">
                                 <div class="col-lg-2">
-                                    <img src="" alt="taux de sens">
+                                    {% if recruiter.scoring.dominantSens is same as 'social' %}
+                                        <img class="mini_img_sense_rate" src="{{ asset('img/social500.png') }}" alt="taux de sens">
+                                    {% elseif recruiter.scoring.dominantSens is same as 'economique' %}
+                                        <img class="mini_img_sense_rate" src="{{ asset('img/econonomie500.png') }}" alt="taux de sens">
+                                    {% elseif recruiter.scoring.dominantSens is same as 'societal' %}
+                                        <img class="mini_img_sense_rate" src="{{ asset('img/societal500.png') }}" alt="taux de sens">
+                                    {% elseif recruiter.scoring.dominantSens is same as 'environnemental' %}
+                                        <img class="mini_img_sense_rate" src="{{ asset('img/environnemental500.png') }}" alt="taux de sens">
+                                    {% endif %}
                                 </div>
                                 <div class="col-lg-8">
                                     <h5>Taux de sens</h5>

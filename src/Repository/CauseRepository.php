@@ -21,7 +21,7 @@ class CauseRepository extends ServiceEntityRepository
     }
 
 
-    public function exclusionCauses(Recruiter $user)
+    public function exclusionCauses(Recruiter $user) // todo : à revoir !!!
     {
         //DQL
        $qb = $this->getEntityManager()->createQuery('SELECT a FROM App\Entity\Cause a'
