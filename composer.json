@@ -11,8 +11,8 @@
         "doctrine/doctrine-bundle": "^2.2",
         "doctrine/doctrine-migrations-bundle": "^3.0",
         "doctrine/orm": "^2.7",
+        "fakerphp/faker": "^1.14",
         "friendsofsymfony/ckeditor-bundle": "^2.3",
-        "friendsofsymfony/message-bundle": "^2.0",
         "google/recaptcha": "~1.1",
         "helios-ag/fm-elfinder-bundle": "^10.1",
         "knplabs/knp-paginator-bundle": "^5.4",
@@ -100,5 +100,8 @@
             "allow-contrib": false,
             "require": "4.4.*"
         }
+    },
+    "require-dev": {
+        "doctrine/doctrine-fixtures-bundle": "^3.4"
     }
 }

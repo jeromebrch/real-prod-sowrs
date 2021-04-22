@@ -35,13 +35,11 @@ class ResponseController extends AbstractController
          */
         $user = $this->getUser();
         //getting received message for response
-        $messageRepo = $this->getDoctrine()->getRepository(Message::class);
-        $messageRecu = $messageRepo->find($id);
+        $messageRecu = $this->getDoctrine()->getRepository(Message::class)->find($id);
 
         $userSender = $messageRecu->getUserSender();
 
-        $formMessage = $this->createForm(ResponseMessageType::class);
-        $formMessage->handleRequest($request);
+        $formMessage = $this->createForm(ResponseMessageType::class)->handleRequest($request);
 
         $messages = $user->getReceivedMessages();
 

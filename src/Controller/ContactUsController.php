@@ -22,9 +22,10 @@ class ContactUsController extends AbstractController
      * @Route("/contactUs", name="main_contact_us")
      * @param Request $request
      * @param MailerInterface $mailer
+     * @param EntityManagerInterface $em
      * @return Response
      */
-    public function contactUs(Request $request,MailerInterface $mailer): Response
+    public function contactUs(Request $request,MailerInterface $mailer, EntityManagerInterface $em): Response
     {
         $contact = new Contact();
         $formContact = $this->createForm(ContactType::class, $contact);
@@ -36,18 +37,20 @@ class ContactUsController extends AbstractController
         $fichier = $formContact['fichier']->getData();
         $autreFichier = $formContact['autreFichier']->getData();
 
+
         if ($formContact->isSubmitted() && $formContact->isValid() && $resp->isSuccess()) {
 
             $contact->setDestinataire('kennouche.annelise@gmail.com');
-            $fichier = $contact->getFichier();
-            $autreFichier = $contact->getAutreFichier();
+            if ($fichier){
+                $contact->setFichier($fichier);
+            }
+            if ($autreFichier){
+                $contact->setAutreFichier($autreFichier);
+            }
+            $em->persist($contact);
+            $em->flush();
 
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($contact);
-            $entityManager->flush();
-
-
-            //envoi de l'email
+            //sending email
             $email = (new Email())
                 ->from($contact->getEmail())
                 ->to($contact->getDestinataire())
@@ -59,13 +62,12 @@ class ContactUsController extends AbstractController
             try {
                 $mailer->send($email);
 
-                $this->addFlash('succes', 'Votre email a bien été envoyé!');
+                $this->addFlash('success', 'Votre message a bien été envoyé!');
                 $this->redirectToRoute('main_dash_board');
 
             } catch (TransportExceptionInterface $e) {
                 $e->getMessage();
             }
-
         }
         return $this->render('main/contactUs.html.twig', ['formContact'=>$formContact->createView(),
             'autreFichier' => $autreFichier,

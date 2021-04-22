@@ -68,9 +68,11 @@
                                         <tr>
                                             {% if app.user != message.userSender %}
                                                 {% if message.state is same as nonlu %}
+
                                                     {% if message.category is not empty %}
                                                         <th><a href="{{ path('read_message', {'id':message.id}) }}"><strong>{{ message.category.name }}</strong></a> </th>
                                                     {% endif %}
+
                                                     <td><a href="{{ path('read_message', {'id':message.id}) }}"><strong>{{ message.userSender.firstName~ ' ' ~message.userSender.lastName }}</strong></a></td>
                                                     <td><a href="{{ path('read_message', {'id':message.id}) }}"><strong>{{ message.subject }}</strong></a></td>
                                                     <td><a href="{{ path('read_message', {'id':message.id}) }}"><strong>{{ message.createdAt|date("d/m/Y h:m")  }}</strong></a></td>

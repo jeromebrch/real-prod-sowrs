@@ -19,6 +19,7 @@
     <div class="col-lg-6 col-sm-8 col-xs-12 content-box align-self-center">
         <div class="jobOffer_text">
             <a href="{{ path('jobOffer_show', {'id':jobOffer.id}) }}">{{ jobOffer.title }}</a>
+
             <p>{{ jobOffer.entity.entityName| capitalize }}
                 {% if jobOffer.entity.mainCause is not empty %}
                     - {{ jobOffer.entity.mainCause.text }}
