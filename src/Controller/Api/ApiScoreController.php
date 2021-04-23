@@ -34,13 +34,13 @@ class ApiScoreController extends AbstractController
     {
         $user = $this->getUser();
 
-// on récupère les valeurs de la requête au format Json
+        // on récupère les valeurs de la requête au format Json
         $params = json_decode($request->getContent());
-// on crée une instance HttpClient
+        // on crée une instance HttpClient
         $client = HttpClient::create();
-// initialisation de l'URL de l'api tiers
+        // initialisation de l'URL de l'api tiers
         $url = 'https://sowrs.green/api/score/';
-// appel de l'api avec les 2 entêtes nécessaires et les paramètres reçus
+        // appel de l'api avec les 2 entêtes nécessaires et les paramètres reçus
         $response = $client->request('POST', $url, [
             'headers' => [
                 'Authorization' => 'zaCELgL.0imfnc8mVLWwsAawjYr4Rx-Af50DDqtlx',
@@ -52,13 +52,13 @@ class ApiScoreController extends AbstractController
                 'type' => $params->type
             ],
         ]);
-// récupération du code statut
+        // récupération du code statut
         $statusCode = $response->getStatusCode();
         if ($statusCode != 200) {
-// l'API n'a pas fonctionné, on retourne une erreur
+            // l'API n'a pas fonctionné, on retourne une erreur
             return new JsonResponse("ko", 400);
         } else {
-// récupération du résultat (tableau "score")
+            // récupération du résultat (tableau "score")
             $resultat = $response->toArray();
             //on instancie un objet scoring
             $scoring = new Scoring();
@@ -77,7 +77,7 @@ class ApiScoreController extends AbstractController
             $em->persist($user);
             $em->flush();
 
-// et retourner la réponse ok au format JSON
+            // et retourner la réponse ok au format JSON
             return new JsonResponse($resultat, 200);
         }
     }

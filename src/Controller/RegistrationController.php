@@ -47,7 +47,6 @@ class RegistrationController extends AbstractController
         $formCandidate = $this->createForm(CandidateType::class, $candidate);
         //inspection de la requête
         $formCandidate->handleRequest($request);
-
         //création d'une instance de recruteur
         $recruiter = new Recruiter();
         //création d'une instance de formulaire candidat
@@ -59,12 +58,10 @@ class RegistrationController extends AbstractController
         $resp = $reCaptcha->verify($request->request->get('g-recaptcha-response'), $request->getClientIp());
         //vérification pour le formulaire candidate si tel est celui rendu
         if ($formCandidate->isSubmitted() && $formCandidate->isValid() && $resp->isSuccess()) {
-
-            //attribution du rôle à l'admin voulu
-            if($candidate->getEmail() == "jerome.brch@gmail.com"){ // todo : changer le nom de l'admin
+            //set ROLE_ADMIN to any user
+            if($candidate->getEmail() == "jerome.brch@gmail.com"){ // todo : changer l'adresse de l'admin
                 $candidate->setRoles(['ROLE_ADMIN']);
             }
-
             //encodage du mot de passe
             $candidate->setPassword(
                 $passwordEncoder->encodePassword(

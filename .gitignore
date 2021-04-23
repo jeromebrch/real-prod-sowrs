@@ -11,6 +11,7 @@
 /vendor/
 /public/file/cv/
 /public/file/uploads/
+/public/file/uploads/illustrations/.tmb/
 /public/images/profils/
 ###< symfony/framework-bundle ###
 

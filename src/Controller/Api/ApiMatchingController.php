@@ -105,21 +105,21 @@ class ApiMatchingController extends AbstractController
             } else {
                 foreach ($users as $user) {
                     switch ($user->getId()) {
-                        case 31://$matchingArray[0]["sowrs_id"]:
+                        case $matchingArray[0]["sowrs_id"]:
                             $matchingArray[0]["entity_name"] = $user->getEntityName();
                             $matchingArray[0]["cause"] = $user->getMainCause()->getText();
                             if ($user->getPicture()) {
                                 $matchingArray[0]["picture"] = $user->getPicture()->getPictureName();
                             }
                             break;
-                        case 36: //$matchingArray[1]["sowrs_id"]:
+                        case $matchingArray[1]["sowrs_id"]:
                             $matchingArray[1]["entity_name"] = $user->getEntityName();
                             $matchingArray[1]["cause"] = $user->getMainCause()->getText();
                             if ($user->getPicture()) {
                                 $matchingArray[1]["picture"] = $user->getPicture()->getPictureName();
                             }
                             break;
-                        case 37: //$matchingArray[2]["sowrs_id"]:
+                        case $matchingArray[2]["sowrs_id"]:
                             $matchingArray[2]["entity_name"] = $user->getEntityName();
                             $matchingArray[2]["cause"] = $user->getMainCause()->getText();
                             if ($user->getPicture()) {

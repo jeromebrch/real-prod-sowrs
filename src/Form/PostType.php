@@ -55,7 +55,7 @@ class PostType extends AbstractType
                             'image/png',
                             'image/jpg'
                         ],
-                        'mimeTypesMessage' => 'Veuillez uploader une image conforme (JPEG, JPG ou PNG de taille max 2Mo',
+                        'mimeTypesMessage' => 'Veuillez uploader une image conforme (JPEG, JPG ou PNG de taille max 2Mo)',
                     ])
                 ]
             ])

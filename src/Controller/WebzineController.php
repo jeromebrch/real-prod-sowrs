@@ -48,7 +48,6 @@ class WebzineController extends AbstractController
      * @return Response
      */
     public function createPost(Request $req, EntityManagerInterface $em, SluggerInterface $slugger, PostRepository $postRepo){
-
         $post = new Post();
         $postForm = $this->createForm(PostType::class, $post);
         $postForm->handleRequest($req);
@@ -71,15 +70,11 @@ class WebzineController extends AbstractController
                 }
                 $post->setPictureFilename($newFilename);
             }
-
             $post->setCreationDate(new \DateTime());
             $post->setIsPublished(false);
-
             $em->persist($post);
             $em->flush();
-
             $posts = $postRepo->findUnpublishedPost();
-
             return $this->render('webzine/unpublishedPost.html.twig', [
                 'unpublishedPosts' => $posts
             ]);
@@ -92,11 +87,6 @@ class WebzineController extends AbstractController
 
     /**
      * @Route("/postdetail/{id}", name="post_details", requirements={"id":"\d+"})
-     * @param EntityManagerInterface $em
-     * @param Request $req
-     * @param PostRepository $postRepo
-     * @param CommentRepository $commentRepo
-     * @param $id
      */
     public function postDetails($id, PostRepository $postRepo,CensuredWordRepository $censuredWordRepo, CommentRepository $commentRepo, EntityManagerInterface $em, Request $req){
 
@@ -138,7 +128,6 @@ class WebzineController extends AbstractController
                 $this->addFlash("success", "Votre commentaire contient un mot interdit (" . $forbiddenWord . "), il n'est pas valide");
             }
         }
-
         return $this->render('webzine/postDetail.html.twig', [
             'post' => $post,
             'newestPost' => $newestPost,
@@ -150,9 +139,6 @@ class WebzineController extends AbstractController
 
     /**
      * @Route("/tag/{id}", name="show_tag", requirements={"id":"\d+"})
-     * @param $id
-     * @param PostRepository $postRepo
-     * @param TagRepository $tagRepo
      */
     public function showTag($id, TagRepository $tagRepo, PostRepository $postRepo){
 
@@ -168,7 +154,6 @@ class WebzineController extends AbstractController
 
     /**
      * @Route("/admin/unpublishedpost", name="unpublished_post")
-     * @param PostRepository $postRepo
      */
     public function unpublishedPost(PostRepository $postRepo){
         $posts = $postRepo->findUnpublishedPost();
@@ -181,49 +166,30 @@ class WebzineController extends AbstractController
 
     /**
      * @Route("/admin/publish/{id}", name="publish_post", requirements={"id":"\d+"})
-     * @param $id
-     * @param EntityManagerInterface $em
-     * @param PostRepository $postrepo
      */
     public function publishPost($id, PostRepository $postrepo, EntityManagerInterface $em){
-
         $post = $postrepo->find($id);
         $post->setIsPublished(true);
         $em->flush();
-
         $this->addFlash('success', 'L\'article a bien été publié');
-
         return $this->redirectToRoute('home_webzine', [
-
         ]);
-
     }
 
     /**
      * @Route("/admin/delete/{id}", name="delete_post", requirements={"id":"\d+"})
-     * @param EntityManagerInterface $em
-     * @param $id
-     * @param PostRepository $postRepo
      */
     public function deletePost($id, EntityManagerInterface $em, PostRepository $postRepo){
-
         $post = $postRepo->find($id);
         $em->remove($post);
         $em->flush();
-
         $this->addFlash('success', 'L\'article a bien été supprimé');
-
         return $this->redirectToRoute('home_webzine', [
-
         ]);
     }
 
     /**
      * @Route("/admin/hide/{id}", name="hide_post", requirements={"id":"\d+"})
-     * @param PostRepository $postRepo
-     * @param $id
-     * @param EntityManagerInterface $em
-     * @return Response
      */
     public function hidePost($id, PostRepository $postRepo, EntityManagerInterface $em){
         $post = $postRepo->find($id);
@@ -239,18 +205,12 @@ class WebzineController extends AbstractController
 
     /**
      * @Route("/tag", name="add_tag")
-     * @param EntityManagerInterface $em
-     * @param TagRepository $tagRepo
-     * @param Request $req
-     * @return JsonResponse
      */
     public function addTag(Request $req, EntityManagerInterface $em, TagRepository $tagRepo) :JsonResponse {
-
         $tags[] = json_decode($req->getContent('tag'), true);
         $tag = $tags[0]['tag'];
         $newTag = new Tag();
         $tagsValue[] = [];
-
         if($tag){
             // get all of the existing tags in database
             $tagCollection = $tagRepo->findAll();
@@ -276,7 +236,6 @@ class WebzineController extends AbstractController
 
     /**
      * @Route("/admin/comments", name="waiting_comments")
-     * @param CommentRepository $commentRepo
      */
     public function waitingComments(CommentRepository $commentRepo){
 
@@ -290,17 +249,12 @@ class WebzineController extends AbstractController
 
     /**
      * @Route("/admin/deletecomment/{id}", name="delete_comment", requirements={"id"="\d+"})
-     * @param CommentRepository $commentRepo
-     * @param EntityManagerInterface $em
-     * @param $id
      */
     public function deleteComment($id, EntityManagerInterface $em, CommentRepository $commentRepo){
         $comment = $commentRepo->find($id);
         $em->remove($comment);
         $em->flush();
-
         $this->addFlash("success", "Le commentaire a bien été supprimé");
-
         return $this->redirectToRoute('waiting_comments', [
 
         ]);
@@ -308,17 +262,12 @@ class WebzineController extends AbstractController
 
     /**
      * @Route("/admin/validatecomment/{id}", name="validate_comment", requirements={"id"="\d+"})
-     * @param $id
-     * @param EntityManagerInterface $em
-     * @param CommentRepository $commentRepo
      */
     public function validateComment($id, EntityManagerInterface $em, CommentRepository $commentRepo){
         $comment = $commentRepo->find($id);
         $comment->setIsOnline(true);
         $em->flush();
-
         $this->addFlash("success", "Le commentaire a bien été validé");
-
         return $this->redirectToRoute('waiting_comments', [
 
         ]);
