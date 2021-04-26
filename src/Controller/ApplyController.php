@@ -38,8 +38,7 @@ class ApplyController extends AbstractController
         //getting the joboffer
         $jobOffer = $em->getRepository(JobOffer::class)->find($id);
         $message = new Message();
-        $formMessage = $this->createForm(ApplyType::class, $message);
-        $formMessage->handleRequest($request);
+        $formMessage = $this->createForm(ApplyType::class, $message)->handleRequest($request);
 
         if ($formMessage->isSubmitted() && $formMessage->isValid()) {
 
@@ -71,11 +70,9 @@ class ApplyController extends AbstractController
                     $e->getMessage();
                 }
             }
-
             //creating message
             $message->setSubject("candidature pour annonce de " . $jobOffer->getTitle());
-            $CategoryRepo = $this->getDoctrine()->getRepository(Category::class);
-            $category = $CategoryRepo->find(1);
+            $category = $this->getDoctrine()->getRepository(Category::class)->findOneByName('candidature');
             $message->setCategory($category);
             $message->setUserRecipient($jobOffer->getEntity());
             $message->setUserSender($userCurrent);

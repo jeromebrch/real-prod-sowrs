@@ -26,13 +26,12 @@ class MessagingController extends AbstractController
          */
         $user = $this->getUser();
         //getting sended messages
-        $messageRepo = $this->getDoctrine()->getRepository(Message::class);
-        $messages = $messageRepo->findByUserRecipient($user);
+        $messages = $this->getDoctrine()->getRepository(Message::class)->findByUserRecipient($user);
         //counting unreaded messages
         $messageState = $em->getRepository(Message::class)->count(['userRecipient' => $user, 'state' => 'non lu']);
         $nonlu = 'non lu';
-        $categoryRepo = $this->getDoctrine()->getRepository(Category::class);
-        $category = $categoryRepo->findAll();
+        $category = $this->getDoctrine()->getRepository(Category::class)->findAll();
+
 
         return $this->render('messaging/messaging_page.html.twig', [
             'controller_name' => 'MessagingController',
@@ -58,8 +57,7 @@ class MessagingController extends AbstractController
         //counting unreaded messages
         $messageState = $em->getRepository(Message::class)->count(['userRecipient' => $user, 'state' => 'non lu']);
         //getting the message to read
-        $messageRepo = $this->getDoctrine()->getRepository(Message::class);
-        $message = $messageRepo->find($id);
+        $message = $this->getDoctrine()->getRepository(Message::class)->find($id);
         //setting the message state in readed
         $message->setState('lu');
         $em->persist($message);
@@ -84,8 +82,7 @@ class MessagingController extends AbstractController
      */
     public function DeleteMessage($id, EntityManagerInterface $em): Response
     {
-        $messageRepo = $this->getDoctrine()->getRepository(Message::class);
-        $message = $messageRepo->find($id);
+        $message = $this->getDoctrine()->getRepository(Message::class)->find($id);
         if ($message) {
             $em->remove($message);
             $em->flush();
