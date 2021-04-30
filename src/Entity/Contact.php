@@ -26,7 +26,8 @@ class Contact
     private $nom;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(name="email", type="string", length=255)
+     * @Assert\Email
      */
     private $email;
 
@@ -38,36 +39,34 @@ class Contact
 
     /**
      * @ORM\Column(type="text")
+     *  @Assert\NotBlank
      */
     private $message;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\Email
      */
     private $destinataire;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
-     * @Assert\File()
      */
     private $file;
 
     /**
-     * REMARQUE: Ce n'est pas un champ mappé de métadonnées d'entité, juste une simple propriété.
-     * @Vich\UploadableField (mapping = "file")
+     * @Vich\UploadableField (mapping = "media", fileNameProperty="file")
      * @var File | null
      */
     private $fichier;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
-     * @Assert\File()
      */
     private $otherFile;
 
     /**
-     * REMARQUE: Ce n'est pas un champ mappé de métadonnées d'entité, juste une simple propriété.
-     * @Vich\UploadableField (mapping = "otherFile")
+     * @Vich\UploadableField (mapping = "media", fileNameProperty="otherFile")
      * @var File | null
      */
     private $autreFichier;
@@ -161,4 +160,41 @@ class Contact
 
         return $this;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getFile()
+    {
+        return $this->file;
+    }
+
+    /**
+     * @param mixed $file
+     */
+    public function setFile($file): self
+    {
+        $this->file = $file;
+        return $this;
+    }
+
+
+    /**
+     * @return mixed
+     */
+    public function getOtherFile()
+    {
+        return $this->otherFile;
+    }
+
+    /**
+     * @param mixed $otherFile
+     */
+    public function setOtherFile($otherFile): self
+    {
+        $this->otherFile = $otherFile;
+        return $this;
+    }
+
+
 }

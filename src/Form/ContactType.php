@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Form;
 
 use App\Entity\Contact;
@@ -20,39 +19,19 @@ class ContactType extends AbstractType
             ->add('nom')
             ->add('email', EmailType::class,
                 ['constraints' => [
-                 new NotBlank([
-                    'message' => 'Merci d\'entrer votre adresse mail.'])
+                    new NotBlank([
+                        'message' => 'Merci d\'entrer votre adresse mail.'])
                 ]])
             ->add('telephone')
             ->add('message', TextareaType::class, [
-                'label' => false,
-                'attr' =>['rows' =>8],
+                'attr' =>['rows' =>6],
                 'constraints' => [
-                    'placeholder'=> 'Saisissez votre message',
-                new NotBlank([
-                    'message' => 'Merci d\'entrer votre message.'])
-                 ]])
-           ->add('fichier', FileType::class, [
+                    new NotBlank([
+                        'message' => 'Merci d\'entrer votre message.'])
+                ]])
+            ->add('fichier', FileType::class, [
                 'label' => false,
-                'required' =>false,
-                'mapped'=>false,
-                'constraints' => [
-                   new File([
-                       'maxSize' => '2M',
-                       'mimeTypes' => [
-                           'image/jpeg',
-                           'image/jpg',
-                           'image/gif',
-                           'image/png',
-                       ],
-                       'mimeTypesMessage' => 'Veuillez sélectionner un fichier correct',
-                   ])
-               ]
-           ])
-            ->add('autreFichier', FileType::class, [
-                'label' => false,
-                'required' =>false,
-                'mapped'=>false,
+                'required' => false,
                 'constraints' => [
                     new File([
                         'maxSize' => '2M',
@@ -61,11 +40,23 @@ class ContactType extends AbstractType
                             'image/jpg',
                             'image/gif',
                             'image/png',
-                        ],
-                        'mimeTypesMessage' => 'Veuillez sélectionner un fichier correct',
-                    ])
-                ]
-            ]);
+                           'application/pdf'
+                        ]])
+                ]])
+            ->add('autreFichier', FileType::class, [
+                'label' => false,
+                'required' => false,
+                'constraints' => [
+                    new File([
+                        'maxSize' => '2M',
+                        'mimeTypes' => [
+                            'image/jpeg',
+                            'image/jpg',
+                            'image/gif',
+                            'image/png',
+                            'application/pdf'
+                        ]])
+                ]]);
     }
 
 
@@ -73,6 +64,6 @@ class ContactType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => Contact::class,
-            ]);
+        ]);
     }
 }

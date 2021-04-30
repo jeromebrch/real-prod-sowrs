@@ -9,6 +9,8 @@ parameters:
     post_illus_directory: '%kernel.project_dir%/public/uploads/illustrations'
     cv: '%kernel.project_dir%/public/file/cv'
     media: '%kernel.project_dir%/public/file/uploads'
+    file: '%kernel.project_dir%/public/file/uploads'
+    otherFile: '%kernel.project_dir%/public/file/uploads'
 
 services:
     # default configuration for services in *this* file
