@@ -61,7 +61,6 @@ class ContactUsController extends AbstractController
                 ->attach($contact->getAutreFichier());
             try {
                 $mailer->send($email);
-
                 $this->addFlash('success', 'Votre message a bien été envoyé!');
                 $this->redirectToRoute('main_dash_board');
 

@@ -105,7 +105,7 @@ class JobOffer
     private $favorite;
 
     /**
-     * @ORM\ManyToOne (targetEntity=Department::class)
+     * @ORM\ManyToOne(targetEntity=Department::class)
      */
     private $department;
 
