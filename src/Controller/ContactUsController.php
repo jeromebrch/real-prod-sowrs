@@ -28,37 +28,45 @@ class ContactUsController extends AbstractController
     public function contactUs(Request $request,MailerInterface $mailer, EntityManagerInterface $em): Response
     {
         $contact = new Contact();
-        $formContact = $this->createForm(ContactType::class, $contact);
-        $formContact->handleRequest($request);
+        $formContact = $this->createForm(ContactType::class, $contact)->handleRequest($request);
 
         $reCaptcha = new ReCaptcha($_ENV['GOOGLE_RECAPTCHA_SECRET']);
         $resp = $reCaptcha->verify($request->request->get('g-recaptcha-response'), $request->getClientIp());
 
-        $fichier = $formContact['fichier']->getData();
-        $autreFichier = $formContact['autreFichier']->getData();
-
 
         if ($formContact->isSubmitted() && $formContact->isValid() && $resp->isSuccess()) {
 
-            $contact->setDestinataire('kennouche.annelise@gmail.com');
-            if ($fichier){
-                $contact->setFichier($fichier);
-            }
-            if ($autreFichier){
-                $contact->setAutreFichier($autreFichier);
-            }
+            $contact->setDestinataire('kennouche.annelise@gmail.com');//todo: adresse mail de Sowrs
             $em->persist($contact);
             $em->flush();
 
+            $file = $formContact->get('fichier')->getData();
+            $otherFile = $formContact->get('autreFichier')->getData();
             //sending email
             $email = (new Email())
                 ->from($contact->getEmail())
                 ->to($contact->getDestinataire())
                 ->subject($contact->getNom())
                 ->text($contact->getTelephone())
-                ->text($contact->getMessage())
-                ->attach($contact->getFichier())
-                ->attach($contact->getAutreFichier());
+                ->text($contact->getMessage());
+            if ($file){
+                $email = (new Email())
+                    ->from($contact->getEmail())
+                    ->to($contact->getDestinataire())
+                    ->subject($contact->getNom())
+                    ->text($contact->getTelephone())
+                    ->text($contact->getMessage())
+                    ->attach($contact->getFichier());
+            }elseif ($otherFile){
+                $email = (new Email())
+                    ->from($contact->getEmail())
+                    ->to($contact->getDestinataire())
+                    ->subject($contact->getNom())
+                    ->text($contact->getTelephone())
+                    ->text($contact->getMessage())
+                    ->attach($contact->getFichier())
+                    ->attach($contact->getAutreFichier());
+            }
             try {
                 $mailer->send($email);
                 $this->addFlash('success', 'Votre message a bien été envoyé!');
@@ -68,11 +76,12 @@ class ContactUsController extends AbstractController
                 $e->getMessage();
             }
         }
-        return $this->render('main/contactUs.html.twig', ['formContact'=>$formContact->createView(),
-            'autreFichier' => $autreFichier,
-            'fichier' => $fichier
+        return $this->render('main/contactUs.html.twig', ['formContact' => $formContact->createView(),
+
         ]);
     }
+
+
 
 
     /**

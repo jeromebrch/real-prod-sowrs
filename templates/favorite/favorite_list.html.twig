@@ -65,6 +65,7 @@
                             </div>
                             </div>
                         {% endfor %}
+                        {{ knp_pagination_render(favorite) }}
                     </div>
             </div>
         {% elseif 'ROLE_RECRUITER' in app.user.roles %}
@@ -113,8 +114,10 @@
                             </div>
                         </div>
                     {% endfor %}
+                    {{ knp_pagination_render(favorite) }}
                 </div>
             </div>
         {% endif %}
+
     </div>
 {% endblock %}

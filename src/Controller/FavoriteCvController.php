@@ -3,12 +3,14 @@
 namespace App\Controller;
 
 use App\Data\SearchCandidate;
+use App\Entity\Candidate;
 use App\Entity\Favorite;
 use App\Entity\User;
 use App\Form\SearchCandidateType;
 use App\Repository\CandidateRepository;
 use App\Repository\CvRepository;
 use App\Repository\FavoriteRepository;
+use App\Repository\JobOfferRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -23,9 +25,11 @@ class FavoriteCvController extends AbstractController
      *
      * @Route("/favorite/favorite_page", name="favorites")
      * @param $em
+     * @param Request $request
+     * @param PaginatorInterface $paginator
      * @return Response
      */
-    public function seeFavorites(EntityManagerInterface $em): Response
+    public function seeFavorites(EntityManagerInterface $em, PaginatorInterface $paginator, FavoriteRepository $favoriteRepo, Request $request): Response
     {
         /**
          * @var User $user
@@ -33,10 +37,16 @@ class FavoriteCvController extends AbstractController
         $user = $this->getUser();
 
         $favorites = $user->getFavorites();
-
+        //pagination
+            $favorite = $paginator->paginate(
+                $favorites,
+                $request->query->getInt('page', 1),
+                5
+            );
 
         return $this->render('favorite/favorite_list.html.twig', [
             'favorites' => $favorites,
+            'favorite' => $favorite
 
         ]);
     }

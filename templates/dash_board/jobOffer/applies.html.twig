@@ -46,13 +46,13 @@
                                                 {% endif %}
                                             </div>
 
-                                            <div class="apply_div col-lg-4">
+                                            <div class="apply_div col-lg-5">
                                                 <p class="apply" ><strong>{{ candidature.userSender.firstName|capitalize}} {{ candidature.userSender.lastName|upper }}</strong></p>
                                                 <p class="apply"> {{ candidature.userSender.currentRole }}</p>
                                                 <p class="apply">{{ candidature.userSender.city|capitalize}} ({{ candidature.userSender.department.cp }})</p>
                                                 <p class="apply"><strong>Taux de sens : </strong>{{ candidature.userSender.scoring.dominantsens}} {{ candidature.userSender.scoring.societal }}%</p>
                                             </div>
-                                            <div class="align-self-center col-lg-5">
+                                            <div class="align-self-center col-lg-4">
                                                 <a href="{{ path('read_message', {'id': candidature.id}) }}" class="btn">Voir la candidature</a>
                                             </div>
                                     </div>
@@ -61,8 +61,10 @@
                                 {% endfor %}
                     {% endfor %}
                 </div>
+                    {{ knp_pagination_render(candidatureList) }}
             </div>
         </div>
+
     </div>
 
 {% endblock %}

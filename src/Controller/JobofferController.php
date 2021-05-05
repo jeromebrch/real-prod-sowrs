@@ -2,14 +2,18 @@
 
 namespace App\Controller;
 
+use App\Data\SearchCandidate;
 use App\Entity\Category;
 use App\Entity\JobOffer;
+use App\Entity\Message;
 use App\Form\ApplyType;
 use App\Form\JobOfferType;
 use App\Repository\JobOfferRepository;
+use App\Repository\MessageRepository;
 use App\Repository\RecruiterRepository;
 use DateTime;
 use Doctrine\ORM\EntityManagerInterface;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -196,20 +200,32 @@ class JobofferController extends AbstractController
     /**
      * @Route("/jobOffer/applies", name="apply-list",)
      * @param EntityManagerInterface $em
+     * @param PaginatorInterface $paginator
+     * @param MessageRepository $messageRepo
+     * @param Request $request
      * @return Response
      */
-    public function showApplies( EntityManagerInterface $em): Response
+    public function showApplies( EntityManagerInterface $em, PaginatorInterface $paginator, MessageRepository $messageRepo, Request $request): Response
     {
         $user = $this->getUser();
-        $messages = $user->getMessages();
-        $category = $em->getRepository(Category::class)->find(1);
+        $messages = $user->getReceivedMessages();
+        $category = $this->getDoctrine()->getRepository(Category::class)->findOneByName('candidature');
 
-        $candidatures = $category->getMessage();
+        $candidatures = $this->getDoctrine()->getRepository(Category::class)->findOneByName('candidature')->getMessage();
         $jobOffer = $user->getJobOffers();
+
+        $candidatureList = $paginator->paginate(
+            $candidatures,
+            $request->query->getInt('page', 1),
+            5
+        );
+
         return $this->render('dash_board/jobOffer/applies.html.twig',[
             'messages' => $messages,
             'candidatures' =>$candidatures,
-            'jobOffers'=> $jobOffer
+            'jobOffers'=> $jobOffer,
+            'candidatureList' => $candidatureList,
+            'category' => $category
         ]);
     }
 

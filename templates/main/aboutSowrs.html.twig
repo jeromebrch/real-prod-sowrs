@@ -70,7 +70,11 @@
                     Vous pouvez consulter les offres d’entreprises sélectionnées et postuler
                     à celles qui vous correspondent, tant d’un point de vue métier que valeurs !
                 </p>
-                <a href="{{ path('app_register') }}" class="btn about_nav_btn">Créez votre compte candidat</a>
+                {% if is_granted('ROLE_CANDIDATE') %}
+                    <a href="{{ path('main_dash_board') }}" class="btn about_nav_btn">Accèder votre compte candidat</a>
+                {% else %}
+                     <a href="{{ path('app_register') }}" class="btn about_nav_btn">Créez votre compte candidat</a>
+                {% endif %}
             </div>
             <div class="col-lg-6 col-md-12 about_nav">
                 <img class="about_logo" src="{{ asset('img/recruter-developpeur-entreprise-ecoresponsablex120.png') }}" alt="Job Greentech" title="Job Greentech SOWRS"/>
