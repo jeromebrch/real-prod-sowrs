@@ -6,6 +6,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\File;
@@ -16,15 +17,33 @@ class ContactType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('nom')
-            ->add('email', EmailType::class,
-                ['constraints' => [
+            ->add('nom', TextType::class, [
+                'label' => false,
+                'attr' => [
+                    'placeholder' => 'Nom'
+                ]
+            ])
+            ->add('email', EmailType::class, [
+                'label' => false,
+                'attr' => [
+                    'placeholder' => 'Adresse mail'
+                ],
+                'constraints' => [
                     new NotBlank([
                         'message' => 'Merci d\'entrer votre adresse mail.'])
                 ]])
-            ->add('telephone')
+            ->add('telephone', TextType::class, [
+                'label' => false,
+                'attr' => [
+                    'placeholder' => 'Téléphone'
+                ]
+            ])
             ->add('message', TextareaType::class, [
-                'attr' =>['rows' =>6],
+                'label' => false,
+                'attr' =>[
+                    'rows' =>6,
+                    'placeholder' => 'Votre message'
+                ],
                 'constraints' => [
                     new NotBlank([
                         'message' => 'Merci d\'entrer votre message.'])

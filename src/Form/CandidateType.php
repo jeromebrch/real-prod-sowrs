@@ -45,6 +45,7 @@ class CandidateType extends AbstractType
                 'placeholder' => '---Sélectionner un niveau d\'étude---'
             ])
             ->add('agreeTerms', CheckboxType::class, [
+                'label' => 'J\'accepte les conditions générales d\'utilisation',
                 'mapped' => false,
                 'constraints' => [
                     new IsTrue([
@@ -83,7 +84,11 @@ class CandidateType extends AbstractType
             ->add('department', EntityType::class,[
                 'class'=> Department::class,
                 'choice_label'=> 'name',
-                'label'=> 'Veuillez renseigner votre département'
+                'label'=> false,
+                'required' => false,
+                'attr' => [
+                    'placeholder' => 'Département'
+                ]
             ])
             ->add('currentRole', TextType::class, [
                 'label' => false,

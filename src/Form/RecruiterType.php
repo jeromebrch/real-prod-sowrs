@@ -50,6 +50,7 @@ class RecruiterType extends AbstractType
             ->add('department', EntityType::class,[
                 'class'=> Department::class,
                 'choice_label'=> 'name',
+                'required' => false,
                 'label'=> 'Veuillez renseigner votre département'
             ])
             ->add('function', TextType::class, [
@@ -105,6 +106,7 @@ class RecruiterType extends AbstractType
             ])
             ->add('agreeTerms', CheckboxType::class, [
                 'mapped' => false,
+                'label' => 'J\'accepte les conditions générales d\'utilisation',
                 'constraints' => [
                     new IsTrue([
                         'message' => 'Merci d\'accepter les conditions',

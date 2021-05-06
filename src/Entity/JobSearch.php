@@ -22,11 +22,6 @@ class JobSearch
     /**
      * @ORM\Column(type="string", length=150, nullable=true)
      */
-    private $indemnity;
-
-    /**
-     * @ORM\Column(type="string", length=150, nullable=true)
-     */
     private $city;
 
     /**
@@ -84,19 +79,6 @@ class JobSearch
     {
         return $this->id;
     }
-
-    public function getIndemnity(): ?string
-    {
-        return $this->indemnity;
-    }
-
-    public function setIndemnity(?string $indemnity): self
-    {
-        $this->indemnity = $indemnity;
-
-        return $this;
-    }
-
 
     public function getCity(): ?string
     {

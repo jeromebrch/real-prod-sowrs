@@ -22,13 +22,6 @@ class JobSearchType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('indemnity', TextType::class, [
-                'required' => false,
-                'label' => false,
-                'attr' => [
-                    'placeholder' => 'Indémnités']
-
-            ])
             ->add('country', EntityType::class, [
                 'class' => Country::class,
                 'choice_label' => 'name',
@@ -52,7 +45,10 @@ class JobSearchType extends AbstractType
             ])
             ->add('city', TextType::class, [
                 'required' => false,
-                'label' => false
+                'label' => false,
+                'attr' => [
+                    'placeholder' => 'Ville'
+                ]
             ])
             ->add('jobTitle', TextType::class, [
                 'required' => false,

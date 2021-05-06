@@ -102,15 +102,18 @@
                 <div class="p-2 m-0">
                     {{ form_row(formCandidate.businessProfile) }}
                 </div>
+                {# champ caché #}
+                <div class="p-2 m-0" id="department_choice">
+                    {{ form_row(formCandidate.department) }}
+                </div>
             </div>
             <div class="position-relative col-lg-4 p-2">
                 {# recaptcha #}
                 <div class="g-recaptcha position-absolute top-50 start-50 translate-middle" data-sitekey="6LcqEgIaAAAAAEtDy88bfJXRtrhQDfRxwFD-0_Ca"></div>
             </div>
         </div>
-        <br>
         <div class="row">
-            <div>
+            <div class="container_agree_terms">
                 <a class="legalNotice" href="{{ path('main_legalNotice') }}">Mentions légales & conditions générales
                     d'utilisation</a>
                 {{ form_row(formCandidate.agreeTerms) }}
@@ -156,6 +159,10 @@
                 <div class="p-2 m-0">
                     {{ form_row(formRecruiter.phone) }}
                 </div>
+                {# champ caché #}
+                <div class="p-2 m-0" id="department_choice">
+                    {{ form_row(formRecruiter.department) }}
+                </div>
             </div>
             <div class="col-lg-4 p-0">
                 <div class="p-2 m-0">
@@ -174,14 +181,14 @@
             <div class="col-lg-4 p-2">
                 {{ form_row(formRecruiter.function) }}
             </div>
-        </div>
-        <br>
-        <div class="row">
-            <div>
+            <div class="col-4 offset-4">
                 <a class="legalNotice" href="{{ path('main_legalNotice') }}">Mentions légales & conditions générales
                     d'utilisation</a>
                 {{ form_row(formRecruiter.agreeTerms) }}
             </div>
+        </div>
+        <br>
+        <div class="row">
             <div class="container_btn_create_account">
                 <button type="submit" class="btn btn-lg">Créer mon compte</button>
             </div>
@@ -192,7 +199,5 @@
 
 {% block javascripts %}
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="{{ asset('js/register.js') }}"></script>
-    <script type="text/javascript">window.alert("Commencez par nous dire si vous êtes candidat ou recruteur");</script>;
 {% endblock %}

@@ -35,9 +35,7 @@
     </div>
     <div class="col-md-3 align-self-center">
         <div class="candidate_contract_type ">
-            {% if candidate.cv %}
-                <a class="btn" href="{{ asset('file/cv/' ~ candidate.cv.cvName) }}">Consulter le cv</a>
-            {% endif %}
+            <a class="btn" href="{{ path('candidate_show', {"id":candidate.id}) }}">Consulter le profil</a>
         </div>
     </div>
     {% if candidate.cv is not null %}

@@ -46,10 +46,19 @@ class ModificationController extends AbstractController
             $cv = new Cv();
             $formCv = $this->createForm(CreateCvType::class, $cv);
 
-
             if ($modifyUserForm->isSubmitted() && $modifyUserForm->isValid()) {
                 $em->persist($user);
                 $em->flush();
+                $this->addFlash("success", "Vos modifications ont bien été enregistrées");
+                if($user->getScoring()){
+                    return $this->redirectToRoute('main_dash_board', [
+
+                    ]);
+                }else{
+                    return $this->redirectToRoute('dash_board_entitySenseRate', [
+
+                    ]);
+                }
             }
             return $this->render('dash_board/myDetails.html.twig', [
                 'modifyUserForm' => $modifyUserForm->createView(),
@@ -104,6 +113,16 @@ class ModificationController extends AbstractController
                 }
                 $em->persist($user);
                 $em->flush();
+                $this->addFlash("success", "Vos modifications ont bien été enregistrées");
+                if($user->getScoring()){
+                    return $this->redirectToRoute('main_dash_board', [
+
+                    ]);
+                }else{
+                    return $this->redirectToRoute('dash_board_entitySenseRate', [
+
+                    ]);
+                }
             }
 
             return $this->render('dash_board/myDetails.html.twig', [

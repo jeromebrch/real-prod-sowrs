@@ -33,3 +33,23 @@
     background: #1DCA91;
     border: none;
 }
+.container_no_favorites{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    margin: 20px;
+    background-color: #ffffff;
+    border-radius: 30px;
+    border: #E6E9E9;
+}
+.container_no_favorites h4{
+    color: #555555;
+}
+
+@media screen and (max-width: 500px){
+    .container_no_favorites h4{
+        text-align: center;
+    }
+}

@@ -83,3 +83,6 @@ body .show_candidate_jumbotron {
     justify-content: center;
     align-items: center;
 }
+.container_cv_pdf{
+    height: 400px;
+}

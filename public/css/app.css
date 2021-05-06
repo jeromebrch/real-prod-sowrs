@@ -2,7 +2,11 @@
 global styles
  */
 
-
+@font-face{
+    font-family: 'KohinoorBangla', Arial, serif;
+    src: url('polices/KohinoorBangla.ttc'),
+    url('polices/KohinoorBangla.ttf');
+}
 body {
     position: relative;
     min-height: 100%;
@@ -15,11 +19,6 @@ h1, h2, h3, h4, h5, h6 {
 }
 .navbar-nav {
     white-space : nowrap;
-}
-@font-face {
-    font-family: 'KohinoorBangla', Arial, serif;
-    src: url('polices/KohinoorBangla.ttc'),
-    url('polices/KohinoorBangla.ttf');
 }
 hr {
     display: block;
@@ -90,6 +89,10 @@ input[type="email"], input[type="tel"]{
 }
 .alert {
     text-align: center; !important;
+}
+.alert-error{
+    color: white;
+    background-color: #B0413E;
 }
 .check_telecommuting{
     display: flex;

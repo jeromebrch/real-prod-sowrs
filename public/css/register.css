@@ -10,7 +10,6 @@
 }
 .text-register {
     font-family: 'KohinoorBangla', Arial, serif;
-
 }
 .container_btn{
     text-align: center;
@@ -24,6 +23,18 @@
     background: #1dca91;
     border-radius: 20px;
 }
+.container_agree_terms{
+    display: flex;
+    flex-direction: column;
+    justify-content: right;
+    align-items: flex-end;
+}
+.container_agree_terms label{
+    padding-right: 22px;
+}
 .container_btn_create_account{
     text-align: center;
+}
+#department_choice{
+    display: none;
 }

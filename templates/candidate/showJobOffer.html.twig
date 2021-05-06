@@ -24,7 +24,6 @@
             </a>
         </div>
         <div class="col-lg-5 mx-auto">
-
             <a href="{{ path('show_recruiter_profil', {"id":entity.id}) }}" class="link_recruiter">
                 <h5 class="show_candidate_jumbotron_name">{{ entity.entityName | capitalize }}</h5>
             </a>
@@ -75,6 +74,9 @@
                 </ul>
             </div>
         {% endif %}
+        <div class="row">
+            <a class="btn position-absolute start-50 translate-middle" href="{{ path('show_recruiter_profil', {"id":entity.id}) }}">Consulter le profil</a>
+        </div>
     </div>
 
     {# LEFT PART #}

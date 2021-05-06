@@ -189,6 +189,15 @@
                 {% endif %}
                 {# complementary informations #}
 
+                {# main cause #}
+                <div class="complementary_infos_container">
+                    <div class="row">
+                        {% if recruiter.mainCause is not empty %}
+                            <h3 class="profil_category_title_candidate">Cause principale : <span>{{ recruiter.mainCause.text }}</span></h3>
+                        {% endif %}
+                    </div>
+                </div>
+
                 {# secondary causes #}
                 <div class="complementary_infos_container">
                     <div class="row">

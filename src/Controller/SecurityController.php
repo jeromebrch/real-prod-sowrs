@@ -19,6 +19,10 @@ class SecurityController extends AbstractController
     {
         if ($this->getUser()) {
 
+            if($this->getUser()->getPrivate()){
+                $this->addFlash("error", "Attention, vous naviguez en mode privé");
+            }
+
             return $this->redirectToRoute('main_dash_board');
         }
 

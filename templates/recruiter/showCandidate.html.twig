@@ -57,7 +57,9 @@
         {% if candidate.inspiration %}
             <p class="show_candidate_jumbotron_inspiration">" {{ candidate.inspiration }} "</p><br>
         {% endif %}
-        <a class="btn position-absolute start-50 translate-middle" href="{{ asset('file/cv/' ~ candidate.cv.cvName) }}">Télécharger le CV</a>
+        {% if candidate.cv is not empty %}
+            <a class="btn position-absolute start-50 translate-middle" href="{{ asset('file/cv/' ~ candidate.cv.cvName) }}" target="_blank">Télécharger le CV</a>
+        {% endif %}
     </div>
     <div class="row">
         <div class=" col-lg-8 col-md-12 left_part_profil">

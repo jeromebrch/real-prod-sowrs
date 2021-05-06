@@ -87,3 +87,10 @@ input[type='radio']:focus{
     width: 30px;
     height: 20px;
 }
+.container_info_contact input{
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.container_message_contact div textarea{
+    margin-top: 20px;
+}

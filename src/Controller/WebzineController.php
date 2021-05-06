@@ -89,20 +89,18 @@ class WebzineController extends AbstractController
      * @Route("/postdetail/{id}", name="post_details", requirements={"id":"\d+"})
      */
     public function postDetails($id, PostRepository $postRepo,CensuredWordRepository $censuredWordRepo, CommentRepository $commentRepo, EntityManagerInterface $em, Request $req){
-
         $user = $this->getUser();
         $post = $postRepo->find($id);
         $comments = $commentRepo->findPublishedByPost($post);
         $comment = new Comment();
         $censuredWords = $censuredWordRepo->findAll();
-
+        //One more view for this post
         $nbrVuesPost = $post->getNumberOfViews();
         $post->setNumberOfViews($nbrVuesPost + 1);
         $em->flush();
 
         $newestPost = $postRepo->findLatestPost();
         $moreViewsPost = $postRepo->findMoreViewsPost();
-
         $commentForm = $this->createForm(CommentType::class, $comment);
         $commentForm->handleRequest($req);
         if($commentForm->isSubmitted() && $commentForm->isValid()){
@@ -238,10 +236,8 @@ class WebzineController extends AbstractController
      * @Route("/admin/comments", name="waiting_comments")
      */
     public function waitingComments(CommentRepository $commentRepo){
-
         //get all the waiting comments
         $comments = $commentRepo->findAllUnpublished();
-
         return $this->render('webzine/unpublishedComments.html.twig', [
             'unpublishedComments' => $comments
         ]);

@@ -89,7 +89,7 @@ class RegistrationController extends AbstractController
                 $candidate,
                 $request,
                 $authenticator,
-                'main' // firewall name in security.yaml
+                'dashboard_details' // firewall name in security.yaml
             );
         }
         //vérification pour le formulaire recruiter si tel est celui rendu
@@ -123,7 +123,7 @@ class RegistrationController extends AbstractController
                 $recruiter,
                 $request,
                 $authenticator,
-                'main' // firewall name in security.yaml
+                'dashboard_details' // firewall name in security.yaml
             );
         }
         //mise en place d'un message si le recaptcha n'est pas ou plus valide

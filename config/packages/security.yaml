@@ -22,7 +22,7 @@ security:
                     - App\Security\UserAuthenticator
             logout:
                 path: app_logout
-                target: app_login
+                target: main
 
             remember_me:
                 secret: '%env(APP_SECRET)%'

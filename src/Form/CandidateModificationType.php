@@ -96,7 +96,7 @@ class CandidateModificationType extends AbstractType
                 'class' => Cause::class,
                 'choice_label' => 'text',
                 'label' => false,
-                'required' => true,
+                'required' => false,
                 'placeholder' => '---Sélectionner une cause principale---'
             ])
             ->add('socialNetwork', SocialNetworkType::class)

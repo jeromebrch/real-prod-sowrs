@@ -41,23 +41,19 @@
     color: #1dca91;
     font-weight: bolder;
 }
-
 .green-line {
     width: 10%;
     border-top: 3px solid #1dca91;
 }
-
 .paragraph {
-    color: #555555;
+    color: #555555;!important;
     font-family: 'KohinoorBangla', Arial, serif;
     font-weight: bolder;
     text-align: justify;
 }
-
 .text-area {
     height: 8em;
 }
-
 .btn-recognition {
     width: 25px;
     height: 25px;
@@ -192,6 +188,7 @@
     display: flex;
     flex-direction: row;
     justify-content: center;
+    align-items: center;
 }
 .my_commitment_title{
     color: #937FA4;
