@@ -23,7 +23,7 @@
     {% endfor %}
     <div class="background-picture">
         <div class="row text-white p-5">
-            <div class="col-lg-6 offset-lg-1 p-3 d-none d-md-block d-lg-block d-xl-block">
+            <div class="col-lg-6 p-3 d-none d-md-block d-lg-block d-xl-block">
                 <p class="title-background">Trouvez un sens à votre travail et sauvons le monde ensemble !</p>
                 <br>
                 <p class="subtitle-background">Sowrs</p>
@@ -35,7 +35,7 @@
                 <h3 class="home_subtitle">Sowrs</h3>
                 <h4 class="home_subtitle">Pour profils techs engagés & entreprises à mission</h4>
             </div>
-            <div class="col-lg-5 d-none d-md-block d-lg-block d-xl-block">
+            <div class="col-lg-5 offset-lg-1 d-none d-md-block d-lg-block d-xl-block">
                 <div class="Background-jobOffer-filter-home p-3">
                     <div class="row">
                         <div class="col-lg-6 text-white">
@@ -44,12 +44,18 @@
                         <div class="col-lg-6 text-end">
                             {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
                                 {% if "ROLE_CANDIDATE" in user.roles %}
-                                    <a class="texte-green home_link" href="{{ path('main_job_offers_list') }}">Voir toutes les offres</a>
+                                    <p>
+                                        <a class="texte-green home_link" href="{{ path('main_job_offers_list') }}">Voir toutes les offres</a>
+                                    </p>
                                 {% else %}
-                                    <a class="texte-green home_link" href="{{ path('main_candidate_list') }}">Voir tous les candidats</a>
+                                    <p>
+                                        <a class="texte-green home_link" href="{{ path('main_candidate_list') }}">Voir tous les candidats</a>
+                                    </p>
                                 {% endif %}
                             {% else %}
-                                <a class="texte-green home_link" href="{{ path('main_job_offers_list') }}">Voir toutes les offres</a>
+                                <p>
+                                    <a class="texte-green home_link" href="{{ path('main_job_offers_list') }}">Voir toutes les offres</a>
+                                </p>
                             {% endif %}
                         </div>
                     </div>
@@ -192,6 +198,30 @@
             <div class="col-5 p-1">
                 <a class="btn home_btn_candidate_recruiter" href="{{ path('app_login') }}" role="button">Espace recruteur</a>
             </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="container_latest_posts">
+            {% if posts is not empty %}
+                {% for post in posts %}
+                    <div class="post_mini_home col-lg-4 col-md-6 col-sm-12">
+                        {% if post.pictureFilename %}
+                            <img class="col-12" src="{{ asset('uploads/illustrations/' ~ post.pictureFilename) }}" alt="illustration_article" title="{{ post.metaTitle }}" />
+                        {% endif %}
+                        {% if post.title %}
+                            <a href="{{ path('post_details', {"id":post.id}) }}">{{ post.title }}</a>
+                        {% endif %}
+                        {% if post.creationDate %}
+                            <h3 class="col-12">{{ post.creationDate|date('d/m/Y') }}</h3>
+                        {% endif %}
+                        {% if post.presentationText %}
+                            <p class="col-12">
+                                {{ post.presentationText }}
+                            </p>
+                        {% endif %}
+                    </div>
+                {% endfor %}
+            {% endif %}
         </div>
     </div>
 {% endblock %}

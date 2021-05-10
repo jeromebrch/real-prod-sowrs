@@ -2,6 +2,9 @@
     font-family: 'KohinoorBangla', Arial, serif;
     text-align: center;
 }
+.register_title *{
+    color: #555555;
+}
 .btnRegisterSelected{
     color: #FFFFFF;
 }
@@ -10,18 +13,59 @@
 }
 .text-register {
     font-family: 'KohinoorBangla', Arial, serif;
+    color: #555555;
 }
 .container_btn{
-    text-align: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
     cursor: pointer;
 }
 #btnCandidat{
     background: #1dca91;
     border-radius: 20px;
+    width: 200px;
+    height: 150px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 #btnRecruteur{
     background: #1dca91;
     border-radius: 20px;
+    width: 200px;
+    height: 150px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+#btnCandidatMini{
+    background: #1dca91;
+    border-radius: 20px;
+    width: 200px;
+    height: 150px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+#btnRecruteurMini{
+    background: #1dca91;
+    border-radius: 20px;
+    width: 200px;
+    height: 150px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+#btnRecruteurMini:hover, #btnCandidatMini:hover {
+    background-color: #555555;
+    text-decoration:none;
+    background-position: inherit;
 }
 .container_agree_terms{
     display: flex;
@@ -37,4 +81,18 @@
 }
 #department_choice{
     display: none;
+}
+.mini_container_btn{
+    display: none;
+}
+@media screen and (max-width: 770px){
+    .big_btn{
+        display: none;
+    }
+    .mini_container_btn{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: center;
+    }
 }

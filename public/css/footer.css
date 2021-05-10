@@ -2,22 +2,33 @@
     background-color: #222222;
     width: 100%;
 }
-
 .text{
     color: #FFFFFF;
     text-align: left;
+    font-size: 0.9em;
 }
-
 .footer_footer{
     background-color: #000000;
     width: 100%;
 }
-
 .copyright{
     color: lightgrey;
 }
-
 .legalMentions{
     text-decoration: none;
     color: lightgrey;
+}
+p[class="text"]{
+    font-size: 0.8em;
+}
+.container_legal_mentions{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+.container_legal_mentions a:hover{
+    color: white;
+}
+.copyright{
+    color: gray;
 }

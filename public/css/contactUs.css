@@ -44,19 +44,6 @@ input[type='radio']:focus{
     font-size: 30px;
     color: #555555;
 }
-#btnCandidat{
-    background: #1dca91;
-    cursor: pointer;
-    border-radius: 20px;
-}
-#btnRecruteur{
-    background: #1dca91;
-    cursor: pointer;
-    border-radius: 20px;
-}
-#btnRecruteur, #btnCandidat{
-    padding: 10px;
-}
 #btnRecruteur:hover, #btnCandidat:hover {
     background-color: #555555;
     text-decoration:none;

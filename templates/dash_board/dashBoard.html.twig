@@ -19,15 +19,15 @@
                         <div class="container mb-4 background-title">
                             <div class="row h-100">
                                 <div class="col-sm-6 text-center align-self-center text-white">
-                                    <h3 class="title-dashBord">Heureux de vous
+                                    <h3 class="title-dashBoard">Heureux de vous
                                         revoir<br>{{ app.user.firstname }} {{ app.user.lastname }}</h3>
                                 </div>
-                                <div class="col-sm-6 text-center align-self-center">
-                                    <a id="link_recruiter_profil" href="{{ path('candidat_profil') }}" type="button" class="btn-title align-middle">Voir votre profil</a>
+                                <div class="col-sm-6 container_link_profil">
+                                    <a id="link_recruiter_profil" href="{{ path('candidat_profil') }}" type="button" class="btn-title">Voir votre profil</a>
                                 </div>
                             </div>
                         </div>
-                        {% if app.user.scoring%}
+                        {% if app.user.scoring is not empty %}
                             <div class="m-5">
                                 <div class="row">
                                     <div class="col-lg-6 section_dashboard">
@@ -156,14 +156,14 @@
                         <div class="container mb-4 background-title">
                             <div class="row h-100">
                                 <div class="col-sm-6 text-center align-self-center text-white">
-                                    <h3 class="title-dashBord">Heureux de vous revoir {{ app.user.entityName }}</h3>
+                                    <h3 class="title-dashBoard">Heureux de vous revoir {{ app.user.entityName }}</h3>
                                 </div>
                                 <div class="col-sm-6 text-center align-self-center">
                                     <a id="link_recruiter_profil" href="{{ path('recruiter_profil') }}" type="button" class="btn-title align-middle">Voir votre profil</a>
                                 </div>
                             </div>
                         </div>
-                        {% if app.user.scoring%}
+                        {% if app.user.scoring is not empty %}
                             <div class="m-5">
                                 <div class="row">
                                     <div class="col-lg-6 section_dashboard">

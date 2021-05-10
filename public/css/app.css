@@ -3,9 +3,12 @@ global styles
  */
 
 @font-face{
-    font-family: 'KohinoorBangla', Arial, serif;
-    src: url('polices/KohinoorBangla.ttc'),
-    url('polices/KohinoorBangla.ttf');
+    font-family: 'KohinoorBangla';
+    src: url('polices/KohinoorBangla.ttc') format("truetype"),
+    url('polices/kit_font/KohinoorBangla-webfont.woff') format("woff");
+    url('polices/KohinoorBangla.ttf') format("truetype");
+    font-weight: normal;
+    font-style: normal;
 }
 body {
     position: relative;

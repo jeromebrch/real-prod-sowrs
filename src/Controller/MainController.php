@@ -35,7 +35,11 @@ class MainController extends AbstractController
      * @param JobOfferRepository $jobOfferRepo
      * @return Response
      */
-    public function index(Request $request, PaginatorInterface $paginator, JobOfferRepository $jobOfferRepo, CandidateRepository $candidateRepo): Response
+    public function index(Request $request,
+                          PaginatorInterface $paginator,
+                          JobOfferRepository $jobOfferRepo,
+                          CandidateRepository $candidateRepo,
+                          PostRepository $postRepo): Response
     {
         $user = $this->getUser();
         $data = new SearchJobOffers();
@@ -44,6 +48,7 @@ class MainController extends AbstractController
         $formSearchCandidate = $this->createForm(SearchCandidateType::class);
         $formSearchCandidate->handleRequest($request);
         $donnees = $jobOfferRepo->SearchJobOffers($data);
+        $latestPosts = $postRepo->findLatestPost();
         $jobOffers = $paginator->paginate(
             $donnees,
             $request->query->getInt('page', 1),
@@ -72,7 +77,8 @@ class MainController extends AbstractController
             return $this->render('main/home.html.twig', [
                 'formSearchHome' => $formSearchHome->createView(),
                 'formSearch' => $formSearchCandidate->createView(),
-                'user' => $user
+                'user' => $user,
+                'posts' => $latestPosts
             ]);
         }
     }

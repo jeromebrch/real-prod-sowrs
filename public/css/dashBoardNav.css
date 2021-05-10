@@ -19,8 +19,9 @@
 }
 .dashBoardList {
     display: block;
-    text-align: left;
+    text-align: center;
     margin: auto;
+    padding: 0;!important;
 }
 
 .dashBoardList li {
@@ -73,7 +74,7 @@
     text-align: center;
     font-family: 'KohinoorBangla', Arial, serif;
     font-weight: bolder;
-    color: #937FA4;
+    color: #555555;
 }
 .section_dashboard{
     height: 450px;
