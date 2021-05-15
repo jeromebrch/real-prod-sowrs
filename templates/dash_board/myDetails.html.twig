@@ -20,7 +20,7 @@
                             <div class="col-sm-6 text-center align-self-center text-white">
                                 <h3 class="title">QUI ETES VOUS ?</h3>
                             </div>
-                            <div class="col-sm-6 text-center align-self-center">
+                            <div class="col-sm-6 text-center align-self-center container_upload">
                                 <div class="error">
                                     {{ form_errors(formCv) }}
                                     {{ form_start(formCv, {'attr': {'id':'updatecvform', 'class':'d-none'}}) }}
@@ -221,9 +221,9 @@
                     <div class="container mb-4 background-title">
                         <div class="row h-100">
                             <div class="col-sm-6 text-center align-self-center text-white">
-                                <h3 class="title ">Mes informations</h3>
+                                <h3 class="title">Mes informations</h3>
                             </div>
-                            <div class="col-sm-6 text-center align-self-center">
+                            <div class="col-sm-6 text-center align-self-center container_upload">
                                 <button class="float-right btn btn-title btn-lg">Importer le logo de votre entité
                                 </button>
                             </div>
@@ -424,15 +424,18 @@
                         </div>
                         <div id="actions_mydetails">
                             <div class="row">
+                                {# reset password with Reset Password Feature #}
+                                <a href="{{ path('app_forgot_password_request') }}" class="col-4 link_action_mydetails big_link_action">Réinitialiser le mot de passe</a>
                                 {# Save change #}
                                 <button type="submit" class="btn btn-lg long_btn col-4 col-sm-12">Enregistrer</button>
-                            </div>
-                            <div class="row">
-                                {# reset password with Reset Password Feature #}
-                                <a href="{{ path('app_forgot_password_request') }}" class="col-6 link_action_mydetails">Réinitialiser le mot de passe</a>
-                                {# Save change #}
                                 {# delete the user account #}
-                                <a href="{{ path('unsubscribe') }}" class="col-6 link_action_mydetails">Supprimer mon compte</a>
+                                <a href="{{ path('unsubscribe') }}" class="col-4 link_action_mydetails big_link_action">Supprimer mon compte</a>
+                            </div>
+                            <div class="mini_actions_mydetails">
+                                {# reset password with Reset Password Feature #}
+                                <a href="{{ path('app_forgot_password_request') }}" class="col-4 link_action_mydetails">Réinitialiser le mot de passe</a>
+                                {# delete the user account #}
+                                <a href="{{ path('unsubscribe') }}" class="col-4 link_action_mydetails">Supprimer mon compte</a>
                             </div>
                         </div>
 
@@ -445,8 +448,7 @@
                         {{ form_end(modifyUserForm) }}
 
 
-                    <div id="formOne" class="position-relative m-4"
-                         style="background: #FFFFFF; border: 1px solid darkgrey">
+                    <div id="formOne" class="position-relative m-4 recognition_form">
                         {{ form_start(recognitionForm) }}
                         {{ form_errors(recognitionForm) }}
                         <img src="{{ asset('img/boostrap/close.svg') }}" alt="fermer"

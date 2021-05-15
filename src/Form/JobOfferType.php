@@ -61,14 +61,14 @@ class JobOfferType extends AbstractType
                 'choice_label' => 'name',
                 'required' => false,
                 'label' => false,
-                'placeholder' => 'région'
+                'placeholder' => 'Région'
             ])
             ->add('department', EntityType::class, [
                 'class' => Department::class,
                 'choice_label' => 'name',
                 'required' => false,
                 'label' => false,
-                'placeholder' => 'département'
+                'placeholder' => 'Département'
             ])
             ->add('category', EntityType::class, [
                 'class' => BusinessProfile::class,

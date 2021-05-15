@@ -2,7 +2,6 @@
 
 }
 .about_us_banner{
-    padding-top:70px;
     width: 100%;
     height: 300px;
     display: flex;
@@ -20,8 +19,9 @@
 #about_banner_bottom h2{
     color: #827399;
 }
-#title_about_banner{
+body #title_about_banner{
     font-size: 1.8em;
+    margin: 0;
 }
 .about_illustration {
     padding: 20px;
@@ -29,7 +29,7 @@
 .interest_point_about{
     color: #1DCA91;
     font-weight: normal;
-    text-align: center;
+    text-align: left;
 }
 h2.interest_point_about{
     margin-top: 50px;
@@ -49,6 +49,7 @@ h3.interest_point_about{
 }
 .block_info_about p{
     color: #555555;
+    text-align: left;
 }
 .about_logo{
     height: 120px;

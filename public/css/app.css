@@ -104,7 +104,7 @@ input[type="email"], input[type="tel"]{
     align-items: center;
 }
 .check_telecommuting label{
-    color: #937FA4;
+    color: #555555;
 }
 .check_telecommuting input:checked{
     background-color: #1dca91;

@@ -3,7 +3,7 @@
     src: url('polices/KohinoorBangla.ttc'),
     url('polices/KohinoorBangla.ttf');
 }
-.background-title {
+.background-title{
     background: #827399;
     text-align: center;
     font-family: 'KohinoorBangla', Arial, serif;
@@ -11,11 +11,24 @@
     height: 10em;
     max-width: 100%;
 }
+.background-title div{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 20px;
+}
+body .container_upload{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    padding-right: 40px;
+}
+.background-title div div button{
+    margin: 0;
+}
 .title {
     text-transform: uppercase;
-}
-.title-dashBord {
-
 }
 .btn-title {
     justify-self: end;
@@ -182,7 +195,7 @@
 }
 .commitment_array tr td{
     padding: 5px;
-    color: #937FA4;
+    color: #555555;
 }
 .cause_choice{
     display: flex;
@@ -225,10 +238,10 @@
     text-align: left;
 }
 body .select2-container--default .select2-selection--single .select2-selection__rendered{
-    color: #937FA4;
+    color: #555555;
 }
 body .form-control{
-    color: #937FA4;
+    color: #555555;
 }
 .container_input_file_proof{
     display: flex;
@@ -323,6 +336,13 @@ body .form-control{
 .delete_video_url i:hover{
     cursor: pointer;
 }
+.recognition_form{
+    background: #FFFFFF;
+    border: 1px solid darkgrey;
+}
+.mini_actions_mydetails{
+    display: none;
+}
 
 @media screen and (max-width: 520px){
     body .details_checkbox_input{
@@ -356,5 +376,15 @@ body .form-control{
         display: flex;
         flex-direction: column;
         justify-content: center;
+    }
+}
+@media screen and (max-width: 1082px){
+    .mini_actions_mydetails{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+    }
+    .big_link_action{
+        display: none;
     }
 }
