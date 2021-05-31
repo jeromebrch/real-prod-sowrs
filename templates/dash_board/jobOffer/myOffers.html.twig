@@ -35,3 +35,18 @@
     </div>
 
 {% endblock %}
+
+{% block javascripts %}
+    <script>
+        window.addEventListener('load', function (){
+            let btnDelete = document.querySelector(".btn_delete_offer");
+            btnDelete.addEventListener('click', function (event){
+                if(confirm("Voulez-vous vraiment supprimer l'offre ?")){
+
+                }else{
+                    event.preventDefault();
+                }
+            })
+        })
+    </script>
+{% endblock %}

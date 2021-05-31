@@ -162,7 +162,15 @@
                                 {% for comment in comments %}
                                     <div class="comment">
                                         <h4 class="comment_title">{{ comment.title }}</h4>
-                                        <h4 class="comment_writer">{{ comment.writeruser.username }}</h4>
+                                        {% if 'ROLE_CANDIDATE' in comment.writeruser.roles %}
+                                            <a href="{{ path('candidate_show', {'id':comment.writerUser.id}) }}">
+                                                <h4 class="comment_writer">{{ comment.writeruser.lastname }} {{ comment.writeruser.firstname }}</h4>
+                                            </a>
+                                        {% elseif 'ROLE_RECRUITER' in comment.writeruser.roles %}
+                                            <a href="{{ path('show_recruiter_profil', {'id':comment.writerUser.id}) }}">
+                                                <h4 class="comment_writer">{{ comment.writeruser.entityName }}</h4>
+                                            </a>
+                                        {% endif %}
                                         <h5>{{ comment.creationDate|date('d/m/Y') }}</h5>
                                         <p>
                                             {{ comment.text }}

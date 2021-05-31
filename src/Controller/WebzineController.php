@@ -10,6 +10,7 @@ use App\Form\PostType;
 use App\Repository\CensuredWordRepository;
 use App\Repository\CommentRepository;
 use App\Repository\PostRepository;
+use App\Repository\SpamTermRepository;
 use App\Repository\TagRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -88,12 +89,19 @@ class WebzineController extends AbstractController
     /**
      * @Route("/postdetail/{id}", name="post_details", requirements={"id":"\d+"})
      */
-    public function postDetails($id, PostRepository $postRepo,CensuredWordRepository $censuredWordRepo, CommentRepository $commentRepo, EntityManagerInterface $em, Request $req){
+    public function postDetails($id,
+                                PostRepository $postRepo,
+                                CensuredWordRepository $censuredWordRepo,
+                                CommentRepository $commentRepo,
+                                EntityManagerInterface $em,
+                                Request $req,
+                                SpamTermRepository $spamTermRepo){
         $user = $this->getUser();
         $post = $postRepo->find($id);
         $comments = $commentRepo->findPublishedByPost($post);
         $comment = new Comment();
         $censuredWords = $censuredWordRepo->findAll();
+        $spamTerms = $spamTermRepo->findAll();
         //One more view for this post
         $nbrVuesPost = $post->getNumberOfViews();
         $post->setNumberOfViews($nbrVuesPost + 1);
@@ -112,6 +120,13 @@ class WebzineController extends AbstractController
                     $validator = false;
                     $forbiddenWord = $value->getWord();
                     break;
+                }
+            }
+            //spam filter
+            foreach($spamTerms as $spamID => $value){
+                if(strpos($comment->getText(), $value->getWording()) || strpos($comment->getTitle(), $value->getWording())){
+                    $validator = false;
+                    $forbiddenWord = $value->getWording();
                 }
             }
             if($validator){

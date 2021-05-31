@@ -47,4 +47,22 @@ class CandidateController extends AbstractController
         ]);
     }
 
+    /**
+     * @Route("/candidate/applies", name="candidate_applies")
+     */
+    public function candidateApplies(){
+        $user = $this->getUser();
+        $userMessages = $user->getSendedMessages();
+        $userApplies = [];
+        foreach($userMessages as $messageID => $message){
+            if($message->getCategory()->getName() == "Candidature"){
+                array_push($userApplies, $message);
+            }
+        }
+
+        return $this->render('candidate/applies.html.twig', [
+            'applies' => $userApplies
+        ]);
+    }
+
 }

@@ -414,7 +414,7 @@
                                             data-id="{{ recognition.id }}"
                                             data-id-cause="{{ recognition.cause.id }}"
                                             data-name-cause="{{ recognition.cause.text }}">
-                                            <button class="btn-recognition btn-sm">-</button>
+                                            <button class="btn-recognition btn_delete_recognition btn-sm">-</button>
                                             <span>{{ recognition.cause.text }}</span><br>
                                             <br>{{ recognition.description }}
                                         </li>
@@ -553,10 +553,19 @@
         </script>
 
         <script>
-            $("i.fa-question-circle").on("mouseover", function (){
+            //delete recognition
+            let btnDeleteReco = document.querySelector(".btn_delete_recognition");
+            btnDeleteReco.addEventListener('click', function (event){
+                alert("La reconnaissance a bien été supprimée !");
+            })
+        </script>
+
+        <script>
+            let infos = $("i.fa-question-circle");
+            infos.on("mouseover", function (){
                 $("div.info_message").show(300);
             });
-            $("i.fa-question-circle").on("mouseout", function (){
+            infos.on("mouseout", function (){
                 $("div.info_message").hide(300);
             });
         </script>

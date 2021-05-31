@@ -38,10 +38,16 @@
                                                     <td><a href="{{ path('read_message', {'id':message.id}) }}"><strong>{{ message.createdAt|date("d/m/Y h:m") }}</strong></a></td>
                                                     <td>
                                                         <a class="messageButton btn" href="{{ path('response', {'id':message.id}) }}">
-                                                            <span title="répondre au message"> <img class="messageImgPencil" src="{{ asset('img/boostrap/pencil-fill-white.svg') }}"/></span>
+                                                            <span title="Répondre au message">
+                                                                <img class="messageImgPencil" src="{{ asset('img/boostrap/pencil-fill-white.svg') }}"
+                                                                    alt="response" title="Répondre au message"/>
+                                                            </span>
                                                         </a>
                                                         <a class="messageButtonTrash col-lg-3 m-2 text-center btn align-self-center" href="{{ path('delete_message', {'id':message.id}) }}" role="button">
-                                                            <span title="effacer le message"><img class="messageImgTrash"  src="{{ asset('img/boostrap/trash-fill-white.svg') }}"></span>
+                                                            <span title="Effacer le message">
+                                                                <img class="messageImgTrash"  src="{{ asset('img/boostrap/trash-fill-white.svg') }}"
+                                                                    alt="delete message" title="Supprimer le message">
+                                                            </span>
                                                         </a>
                                                     </td>
                                                 {% else %}
@@ -53,10 +59,16 @@
                                                     <td><a href="{{ path('read_message', {'id':message.id}) }}">{{ message.createdAt|date("d/m/Y h:m") }}</a></td>
                                                     <td>
                                                         <a class="messageButton btn" href="{{ path('response', {'id':message.id}) }}">
-                                                            <span title="répondre au message"><img class="messageImgPencil" src="{{ asset('img/boostrap/pencil-fill-white.svg') }}"/></span>
+                                                            <span title="Répondre au message">
+                                                                <img class="messageImgPencil" src="{{ asset('img/boostrap/pencil-fill-white.svg') }}"
+                                                                    alt="response" title="Répondre au message"/>
+                                                            </span>
                                                         </a>
                                                         <a class="messageButtonTrash col-lg-3 m-2 text-center btn align-self-center" href="{{ path('delete_message', {'id':message.id}) }}" role="button">
-                                                            <span title="effacer le message"><img class="messageImgTrash"  src="{{ asset('img/boostrap/trash-fill-white.svg') }}"></span>
+                                                            <span title="Effacer le message">
+                                                                <img class="messageImgTrash"  src="{{ asset('img/boostrap/trash-fill-white.svg') }}"
+                                                                    alt="delete message" title="Supprimer le message">
+                                                            </span>
                                                         </a>
                                                     </td>
                                                 {% endif %}
@@ -113,4 +125,19 @@
                 </div>
             </div>
         </div>
+{% endblock %}
+
+{% block javascripts %}
+
+    <script>
+        let btnDeleteMessage = document.querySelector(".messageButtonTrash");
+        btnDeleteMessage.addEventListener('click', function (event){
+            if(confirm("Souhaitez-vous vraiment supprimer ce message ?")){
+                alert("Message supprimé !")
+            }else{
+                event.preventDefault();
+            }
+        })
+    </script>
+
 {% endblock %}
