@@ -199,22 +199,18 @@
                 </div>
 
                 {# secondary causes #}
-                <div class="complementary_infos_container">
-                    <div class="row">
-                        <h3 class="profil_category_title_bottom">Causes secondaires : </h3>
-                        {% if recruiter.secondaryCauses is not empty %}
+                {% if recruiter.secondaryCauses is not empty %}
+                    <div class="complementary_infos_container">
+                        <div class="row">
+                            <h3 class="profil_category_title_bottom">Causes secondaires : </h3>
                             <ul>
                                 {% for secondaryCause in recruiter.secondaryCauses %}
                                     <li class="list_line">{{ secondaryCause.text }}</li>
                                 {% endfor %}
                             </ul>
-                        {% else %}
-                            <ul>
-                                <li class="list_line no_submit">Non renseigné</li>
-                            </ul>
-                        {% endif %}
+                        </div>
                     </div>
-                </div>
+                {% endif %}
                 {# engagements #}
                 <div class="complementary_infos_container">
                     <div class="row">
@@ -265,10 +261,6 @@
                         {% if recruiter.socialNetwork.github %}
                             <a href="{{ recruiter.socialNetwork.github }}" target="_blank" class="btn required btn_social"><img src="{{ asset('img/logo_github_mini.png') }}" alt="mon github" title="Github" class="social_link_mini" /></a>
                         {% endif %}
-                    {% else %}
-                        <p class="alert alert-light">
-                            Entreprise pas présente sur les réseaux
-                        </p>
                     {% endif %}
                 </div>
 
@@ -277,7 +269,7 @@
                 <div class="row container_contact">
                     <div>
                         <h3 class="profil_category_title_bottom">Contact </h3>
-                        {{ form_start(formMessage) }}
+                        {{ form_start(formMessage, {'attr': {'class': 'form_contact_recruiter'}}) }}
                         {{ form_row(formMessage.subject) }}
                         {{ form_row(formMessage.body) }}
                         {{ form_row(formMessage.cvFile) }}

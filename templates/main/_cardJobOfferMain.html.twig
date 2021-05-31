@@ -34,7 +34,6 @@
         </div>
     </div>
     {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
-        <a type="btn required" style=" width: 225px;border-radius: 50px;background-color: #b9bbbe; border: none;text-decoration: none;padding: 10px; font-size: larger;color: white; margin: auto;" href="{{ path('apply', {'id': jobOffer.id}) }}">Postuler à cette offre</a>
         {% if jobOffer.favorite|length >=1 %}
            {% for fav in jobOffer.favorite %}
                {% if jobOffer.id == fav.jobOffer.id %}
@@ -53,6 +52,4 @@
            </span>
        {% endif %}
     {% endif %}
-
-
 </div>

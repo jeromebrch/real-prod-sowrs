@@ -19,7 +19,7 @@ class MessageType extends AbstractType
         $builder
             ->add('subject', TextType::class, [
                 'required' => true,
-                'label' => 'sujet',
+                'label' => 'Sujet',
             ])
             ->add('body', TextareaType::class, [
                 'label'=> 'Veuillez écrire votre message',
