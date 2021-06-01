@@ -24,6 +24,7 @@ class CandidateListController extends AbstractController
      */
     public function candidateList(CandidateRepository $repoCandidate, Request $request, PaginatorInterface $paginator): Response
     {
+        $user = $this->getUser();
         $data = new SearchCandidate();
         $formSearch = $this->createForm(SearchCandidateType::class, $data);
         $formSearch->handleRequest($request);
@@ -35,11 +36,13 @@ class CandidateListController extends AbstractController
             5
         );
         $candidateList = $repoCandidate->findAll();
+        $userFavorites = $user->getFavorites();
 
         return $this->render('main/candidateList.html.twig', [
             'formSearch' => $formSearch->createView(),
             'listCandidates' => $candidates,
-            'candidates' => $candidateList
+            'candidates' => $candidateList,
+            'favorites' => $userFavorites
         ]);
     }
 }

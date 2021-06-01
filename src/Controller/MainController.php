@@ -56,8 +56,14 @@ class MainController extends AbstractController
         );
 
         if ($formSearchHome->isSubmitted() && $formSearchHome->isValid()) {
+            $userFavoritesOffers = [];
+            $userFavorites = $user->getFavorites();
+            foreach($userFavorites as $favorite){
+                array_unshift($userFavoritesOffers, [$favorite->getJobOffer(), $favorite->getId()]);
+            }
             return $this->render('main/jobOffersListHome.html.twig', [
                 'jobOffers' => $jobOffers,
+                'favorites' => $userFavoritesOffers,
                 'formSearchHome' => $formSearchHome->createView(),
                 'user' => $user
             ]);

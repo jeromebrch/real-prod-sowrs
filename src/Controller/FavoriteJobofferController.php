@@ -8,6 +8,7 @@ use App\Entity\Favorite;
 use App\Form\SearchJobOfferType;
 use App\Repository\FavoriteRepository;
 use App\Repository\JobOfferRepository;
+use Doctrine\DBAL\Driver\Exception;
 use Doctrine\ORM\EntityManagerInterface;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -26,7 +27,10 @@ class FavoriteJobofferController extends AbstractController
      * @param Request $request
      * @return Response
      */
-    public function addFavoriteOffer($id, Request $request, PaginatorInterface $paginator,EntityManagerInterface $em, JobOfferRepository $offerRepo): Response
+    public function addFavoriteOffer($id, Request $request,
+                                     PaginatorInterface $paginator,
+                                     EntityManagerInterface $em,
+                                     JobOfferRepository $offerRepo): Response
     {
         $data = new SearchJobOffers();
         $formSearch = $this->createForm(SearchJobOfferType::class, $data);
@@ -37,10 +41,19 @@ class FavoriteJobofferController extends AbstractController
             $request->query->getInt('page', 1),
             5
         );
-
         $user = $this->getUser();
         $offer = $offerRepo->find($id);
-        if ( !$user->getFavorites()->contains($offer )) {
+        $userFavorites = $user->getFavorites();
+        $favoriteArray = [];
+        $userFavoritesOffers = [];
+        foreach($userFavorites as $favorite){
+            array_unshift($userFavoritesOffers, [$favorite->getJobOffer(), $favorite->getId()]);
+        }
+        //get only jobOffers
+        foreach($userFavoritesOffers as $favoriteOffer){
+            array_push($favoriteArray, $favoriteOffer[0]);
+        }
+        if(!in_array($offer, $favoriteArray)){
             $favorite = new Favorite();
             $favorite->setJobOffer($offer);
             try {
@@ -48,17 +61,21 @@ class FavoriteJobofferController extends AbstractController
                 $em->persist($favorite);
                 $em->flush();
 
-                $this->addFlash('success', 'l\'offre a été ajoutée à vos favoris');
+                $this->addFlash('success', 'L\'offre a été ajoutée à vos favoris');
             } catch (Exception $e) {
                 $e->getMessage();
             }
         }
+        $userFavorites = $user->getFavorites();
+        $userFavoritesOffers = [];
+        foreach($userFavorites as $favorite){
+            array_unshift($userFavoritesOffers, [$favorite->getJobOffer(), $favorite->getId()]);
+        }
         return $this->render('main/jobOffersList.html.twig', [
-            'favorite' => $user->getFavorites(),
+            'favorites' => $userFavoritesOffers,
             'formSearch' => $formSearch->createView(),
             'jobOffers' => $jobOffers,
             'offer' =>$offer
-
         ]);
     }
 
@@ -88,21 +105,27 @@ class FavoriteJobofferController extends AbstractController
 
         $user = $this->getUser();
         $favorite = $favRepo->find($id);
-        if ($favorite) {
+        if($favorite) {
             try {
                 $user->removeFavoriteOffer($favorite);
                 $em->persist($favorite);
                 $em->flush();
 
-                $this->addFlash('success', 'l\'offre a été retirée de vos favoris');
+                $this->addFlash('success', 'L\'offre a été retirée de vos favoris');
             } catch (Exception $e) {
                 $e->getMessage();
             }
         }
+        $userFavorites = $user->getFavorites();
+        $userFavoritesOffers = [];
+        foreach($userFavorites as $favorite){
+            array_unshift($userFavoritesOffers, [$favorite->getJobOffer(), $favorite->getId()]);
+        }
         return $this->render('main/jobOffersList.html.twig', [
             'favorite' => $favorite,
             'formSearch' => $formSearch->createView(),
-            'jobOffers' => $jobOffers
+            'jobOffers' => $jobOffers,
+            'favorites' => $userFavoritesOffers
         ]);
 
     }
@@ -132,7 +155,6 @@ class FavoriteJobofferController extends AbstractController
         $favorite = $favRepo->find($id);
 
         if ($favorite) {
-
             try {
                 $user->removeFavoriteOffer($favorite);
                 $em->persist($favorite);
@@ -143,11 +165,16 @@ class FavoriteJobofferController extends AbstractController
                 $e->getMessage();
             }
         }
+        $userFavorites = $user->getFavorites();
+        $userFavoritesOffers = [];
+        foreach($userFavorites as $favorite){
+            array_unshift($userFavoritesOffers, [$favorite->getJobOffer(), $favorite->getId()]);
+        }
         return $this->render('favorite/favorite_list.html.twig', [
             'favorite' => $favorite,
             'formSearch' => $formSearch->createView(),
             'jobOffers' => $jobOffers,
-            'favorites' =>  $favorites = $user->getFavorites()
+            'favorites' => $userFavoritesOffers
         ]);
     }
 

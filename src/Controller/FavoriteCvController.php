@@ -11,6 +11,7 @@ use App\Repository\CandidateRepository;
 use App\Repository\CvRepository;
 use App\Repository\FavoriteRepository;
 use App\Repository\JobOfferRepository;
+use Doctrine\DBAL\Driver\Exception;
 use Doctrine\ORM\EntityManagerInterface;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -38,11 +39,11 @@ class FavoriteCvController extends AbstractController
 
         $favorites = $user->getFavorites();
         //pagination
-            $favorite = $paginator->paginate(
-                $favorites,
-                $request->query->getInt('page', 1),
-                5
-            );
+        $favorite = $paginator->paginate(
+            $favorites,
+            $request->query->getInt('page', 1),
+            5
+        );
 
         return $this->render('favorite/favorite_list.html.twig', [
             'favorites' => $favorites,
@@ -167,7 +168,7 @@ class FavoriteCvController extends AbstractController
                 $user->removeFavoriteCv($favorite);
                 $em->persist($favorite);
                 $em->flush();
-                $this->addFlash('success', 'le cv a été retirée de vos favoris');
+                $this->addFlash('success', 'Le CV a été retirée de vos favoris');
             } catch (Exception $e) {
                 $e->getMessage();
             }
