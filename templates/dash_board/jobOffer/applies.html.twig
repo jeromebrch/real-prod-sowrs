@@ -22,52 +22,49 @@
                     </div>
                 </div>
                 <div class="m-3">
-                    {% for jobOffer in jobOffers %}
-                            <div class="col-lg-12 align-self-center">
-                                <div class="row">
-                                    <div class="col-lg-6">
-                                        {% if jobOffer.title %}
-                                            <h4 class="TextTitle">{{ jobOffer.title|upper }}</h4>
+                    {% if candidatures is not empty %}
+                        {% for candidature in candidatures %}
+                            {% if candidature.userRecipient is same as app.user %}
+                                <div class="row abstractJobOffer border border-2 p-3 m-4 gx-0 shadow bg-light">
+                                    <div class="col-lg-3 align-self-center">
+                                        {% if candidature.userSender.picture is not empty %}
+                                            <img id="photo_profile" src="{{ asset('images/profils/' ~ candidature.userSender.picture.pictureName )}}"
+                                                 alt="photo du profil">
+                                        {% else %}
+                                            <img id="photo_profile" src="{{ asset('images/profils/avatar.jpg') }}"
+                                                 alt="photo du profil">
                                         {% endif %}
                                     </div>
-                                    <div class="col-lg-6">
-                                        <a href="{{ path('jobOffer_modifyJobOffer', {'id': jobOffer.id}) }}" class="btn">Voir votre offre</a>
+
+                                    <div class="apply_div col-lg-5">
+                                        {% if candidature.userSender.firstname and candidature.userSender.lastname %}
+                                            <p class="apply" ><strong>{{ candidature.userSender.firstName|capitalize}} {{ candidature.userSender.lastName|upper }}</strong></p>
+                                        {% endif %}
+                                        {% if candidature.userSender.currentRole is not empty %}
+                                            <p class="apply"> {{ candidature.userSender.currentRole }}</p>
+                                        {% endif %}
+                                        {% if candidature.userSender.city and candidature.userSender.department is not empty %}
+                                            <p class="apply">{{ candidature.userSender.city|capitalize}} ({{ candidature.userSender.department.cp }})</p>
+                                        {% endif %}
+                                        {% if candidature.userSender.scoring is not empty %}
+                                            <p class="apply"><strong>Taux de sens : </strong>{{ candidature.userSender.scoring.dominantsens}} {{ candidature.userSender.scoring.societal }}%</p>
+                                        {% endif %}
+                                    </div>
+                                    <div class="align-self-center col-lg-4">
+                                        <a href="{{ path('read_message', {'id': candidature.id}) }}" class="btn">Voir la candidature</a>
                                     </div>
                                 </div>
-                                {% for candidature in candidatures %}
-                                    {% if candidature.userRecipient is same as app.user %}
-                                        <div class="row abstractJobOffer border border-2 p-3 m-4 gx-0 shadow bg-light">
-                                            <div class="col-lg-3 align-self-center">
-                                                {% if candidature.userSender.picture is not empty %}
-                                                    <img id="photo_profile" src="{{ asset('images/profils/' ~ candidature.userSender.picture.pictureName )}}"
-                                                         alt="photo du profil">
-                                                {% else %}
-                                                    <img id="photo_profile" src="{{ asset('images/profils/avatar.jpg') }}"
-                                                         alt="photo du profil">
-                                                {% endif %}
-                                            </div>
-
-                                            <div class="apply_div col-lg-5">
-                                                {% if candidature.userSender.firstname and candidature.userSender.lastname %}
-                                                    <p class="apply" ><strong>{{ candidature.userSender.firstName|capitalize}} {{ candidature.userSender.lastName|upper }}</strong></p>
-                                                {% endif %}
-                                                {% if candidature.userSender.currentRole is not empty %}
-                                                    <p class="apply"> {{ candidature.userSender.currentRole }}</p>
-                                                {% endif %}
-                                                {% if candidature.userSender.city and candidature.userSender.department is not empty %}
-                                                    <p class="apply">{{ candidature.userSender.city|capitalize}} ({{ candidature.userSender.department.cp }})</p>
-                                                {% endif %}
-                                                {% if candidature.userSender.scoring is not empty %}
-                                                    <p class="apply"><strong>Taux de sens : </strong>{{ candidature.userSender.scoring.dominantsens}} {{ candidature.userSender.scoring.societal }}%</p>
-                                                {% endif %}
-                                            </div>
-                                            <div class="align-self-center col-lg-4">
-                                                <a href="{{ path('read_message', {'id': candidature.id}) }}" class="btn">Voir la candidature</a>
-                                            </div>
-                                    </div>
-                                    {% endif%}
-                                {% endfor %}
-                    {% endfor %}
+                            {% endif%}
+                        {% endfor %}
+                    {% else %}
+                        <div class="empty_applies_container">
+                            <h4 class="empty_applies_text">Vous n'avez aucune candidature en cours ! </h4>
+                            <p class="empty_applies_text">
+                                Avez-vous <a href="{{ path('dash_board_job_offer_create') }}" class="link_options_applies">Créé une annonce</a> ?
+                                Vous pouvez également <a href="{{ path('main_candidate_list') }}" class="link_options_applies">Rechercher des candidats</a>.
+                            </p>
+                        </div>
+                    {% endif %}
                 </div>
                     {{ knp_pagination_render(candidatureList) }}
             </div>

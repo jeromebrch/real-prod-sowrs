@@ -1,11 +1,9 @@
 .apply {
     text-align: left;
 }
-
 .apply_div{
     line-height: 3px;
 }
-
 #photo_profile{
     width: 140px
 }
@@ -14,4 +12,23 @@
 }
 .title{
     color: white
+}
+.empty_applies_container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.link_options_applies{
+    color: #937FA4;
+    font-weight: bold;
+}
+.link_options_applies:hover{
+    color: #937FA4;
+}
+.empty_applies_text{
+    color: #555555;
+}
+h4.empty_applies_text{
+    font-size: 1.3em;
 }

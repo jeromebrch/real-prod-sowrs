@@ -72,8 +72,8 @@ class ApplyController extends AbstractController
             }
             //creating message
             $message->setSubject("candidature pour annonce de " . $jobOffer->getTitle());
-            $category = $this->getDoctrine()->getRepository(Category::class)->findOneByName('candidature');
-            $message->setCategory($category);
+            $category = $this->getDoctrine()->getRepository(Category::class)->findOneByName('Candidature');
+            $message->setCategory($category[0]);
             $message->setUserRecipient($jobOffer->getEntity());
             $message->setUserSender($userCurrent);
             $message->setState('non lu');
