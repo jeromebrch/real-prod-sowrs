@@ -33,45 +33,61 @@
             </button>
         </div>
     </div>
+    {% if jobOffer in app.user.favoriteOffers %}
+        <span title="Retirer des favoris">
+            <a href="{{ path('remove_favorite_offer',  {'id': jobOffer.id }) }}" >
+                <img class="favorite" src="{{ asset('img/suit-heart-fill.svg') }}" alt="remove favorites" title="Retirer des favoris"/>
+            </a>
+        </span>
+    {% else %}
+        <span title="Ajouter aux favoris">
+            <a href="{{ path('add_favorite_offer',{'id': jobOffer.id  }) }}">
+                <img class="favorite" src="{{ asset('img/suit-heart.svg') }}" alt="add favorites" title="Ajouter aux favoris"/>
+             </a>
+        </span>
+    {% endif %}
+    {#
     {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
 
-        {% set break = false %}
-        {% set favoriteID = "" %}
-        {% set validator = false %}
+    {% set break = false %}
+    {% set favoriteID = "" %}
+    {% set validator = false %}
 
-        {% if favorites is not empty %}
-            {% for favorite in favorites %}
-                {% if break == false %}
-                    {% if jobOffer in favorite %}
-                        {% for favorite in favorites %}
-                            {% if jobOffer == favorite[0] %}
-                                {% set favoriteID = favorite[1] %}
-                            {% endif %}
-                        {% endfor %}
-                        <span title="Retirer des favoris">
-                            <a href="{{ path('remove_favorite_offer',  {'id': favoriteID }) }}" >
-                                <img class="favorite" src="{{ asset('img/suit-heart-fill.svg') }}" alt="remove favorites" title="Retirer des favoris"/>
-                            </a>
-                        </span>
-                        {% set break = true %}
-                        {% set validator = true %}
-                    {% endif %}
-                {% endif %}
-            {% endfor %}
-            {% if not validator %}
-                <span title="Ajouter aux favoris">
-                        <a href="{{ path('add_favorite_offer',{'id': jobOffer.id  }) }}">
-                            <img class="favorite" src="{{ asset('img/suit-heart.svg') }}" alt="add favorites" title="Ajouter aux favoris"/>
-                         </a>
+    {% if favorites is not empty %}
+        {% for favorite in favorites %}
+            {% if break == false %}
+                {% if jobOffer in favorite %}
+                    {% for favorite in favorites %}
+                        {% if jobOffer == favorite[0] %}
+                            {% set favoriteID = favorite[1] %}
+                        {% endif %}
+                    {% endfor %}
+                    <span title="Retirer des favoris">
+                        <a href="{{ path('remove_favorite_offer',  {'id': favoriteID }) }}" >
+                            <img class="favorite" src="{{ asset('img/suit-heart-fill.svg') }}" alt="remove favorites" title="Retirer des favoris"/>
+                        </a>
                     </span>
+                    {% set break = true %}
+                    {% set validator = true %}
+                {% endif %}
             {% endif %}
-        {% else %}
+        {% endfor %}
+        {% if not validator %}
             <span title="Ajouter aux favoris">
                 <a href="{{ path('add_favorite_offer',{'id': jobOffer.id  }) }}">
                     <img class="favorite" src="{{ asset('img/suit-heart.svg') }}" alt="add favorites" title="Ajouter aux favoris"/>
                  </a>
             </span>
         {% endif %}
-
+    {% else %}
+        <span title="Ajouter aux favoris">
+            <a href="{{ path('add_favorite_offer',{'id': jobOffer.id  }) }}">
+                <img class="favorite" src="{{ asset('img/suit-heart.svg') }}" alt="add favorites" title="Ajouter aux favoris"/>
+             </a>
+        </span>
     {% endif %}
+
+{% endif %}
+    #}
+
 </div>

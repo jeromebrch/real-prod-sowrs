@@ -116,11 +116,6 @@ class User implements UserInterface, \Serializable
      */
     private $sendedMessages;
 
-    /**
-     * @ORM\OneToMany(targetEntity=Favorite::class, mappedBy="user",cascade="remove")
-     */
-    private $favorites;
-
 
 
     public function __construct()
@@ -130,7 +125,6 @@ class User implements UserInterface, \Serializable
         $this->updatedAt = new DateTime();
         $this->comments = new ArrayCollection();
         $this->messages = new ArrayCollection();
-        $this->favorites = new ArrayCollection();
 
     }
 
@@ -429,64 +423,6 @@ class User implements UserInterface, \Serializable
 
         return $this;
     }
-
-    /**
-     * @return Collection|Favorite[]
-     */
-    public function getFavorites(): Collection
-    {
-        return $this->favorites;
-    }
-
-
-    public function addFavoriteCv(Favorite $favorite )
-    {
-        if (!$this->favorites->contains($favorite)) {
-            $this->favorites[] =$favorite;
-            $favorite->setUser($this);
-        }
-
-        return $this;
-    }
-
-
-    public function addFavoriteOffer( Favorite $favorite)
-    {
-        if (!$this->favorites->contains($favorite)) {
-            $this->favorites[] = $favorite;
-            $favorite->setUser($this);
-        }
-
-        return $this;
-    }
-
-    public function removeFavoriteOffer(Favorite $favorite): self
-    {
-        if ($this->favorites->removeElement($favorite)) {
-            // set the owning side to null (unless already changed)
-            if ($favorite->getUser() === $this) {
-                $favorite->setUser(null);
-                $favorite->setJobOffer(null);
-            }
-        }
-
-        return $this;
-    }
-
-    public function removeFavoriteCv(Favorite $favorite): self
-    {
-        if ($this->favorites->removeElement($favorite)) {
-            // set the owning side to null (unless already changed)
-            if ($favorite->getUser() === $this) {
-                $favorite->setUser(null);
-                $favorite->setCv(null);
-            }
-        }
-
-        return $this;
-    }
-
-
 
 }
 

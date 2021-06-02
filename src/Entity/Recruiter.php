@@ -52,7 +52,6 @@ class Recruiter extends User
      */
     private $mainCause;
     
-
     /**
      * @ORM\ManyToMany(targetEntity=Cause::class, inversedBy="secondaryRecruiters")
      */
@@ -110,6 +109,11 @@ class Recruiter extends User
      */
     private $presentationVideoURL;
 
+    /**
+     * @ORM\ManyToMany(targetEntity=Candidate::class, inversedBy="interestedRecruiters")
+     */
+    private $favoriteCandidates;
+
 
    public function __construct()
    {
@@ -118,6 +122,7 @@ class Recruiter extends User
        $this->jobOffers = new ArrayCollection();
        $this->recognitions = new ArrayCollection();
        $this->commitments = new ArrayCollection();
+       $this->favoriteCandidates = new ArrayCollection();
    }
 
     /**
@@ -421,6 +426,30 @@ class Recruiter extends User
     public function setPresentationVideoURL(?string $presentationVideoURL): self
     {
         $this->presentationVideoURL = $presentationVideoURL;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Candidate[]
+     */
+    public function getFavoriteCandidates(): Collection
+    {
+        return $this->favoriteCandidates;
+    }
+
+    public function addFavoriteCandidate(Candidate $favoriteCandidate): self
+    {
+        if (!$this->favoriteCandidates->contains($favoriteCandidate)) {
+            $this->favoriteCandidates[] = $favoriteCandidate;
+        }
+
+        return $this;
+    }
+
+    public function removeFavoriteCandidate(Candidate $favoriteCandidate): self
+    {
+        $this->favoriteCandidates->removeElement($favoriteCandidate);
 
         return $this;
     }

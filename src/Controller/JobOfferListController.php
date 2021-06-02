@@ -35,14 +35,8 @@ class JobOfferListController extends AbstractController
             5
         );
         if($this->getUser()){
-            $userFavoritesOffers = [];
-            $userFavorites = $user->getFavorites();
-            foreach($userFavorites as $favorite){
-                array_unshift($userFavoritesOffers, [$favorite->getJobOffer(), $favorite->getId()]);
-            }
             return $this->render('main/jobOffersList.html.twig', [
                 'jobOffers' => $jobOffers,
-                'favorites' => $userFavoritesOffers,
                 'formSearch' => $formSearch->createView(),
             ]);
         }else{
@@ -51,7 +45,6 @@ class JobOfferListController extends AbstractController
                 'formSearch' => $formSearch->createView()
             ]);
         }
-
     }
 
 
