@@ -76,6 +76,7 @@
                     </div>
             </div>
         {% elseif 'ROLE_RECRUITER' in app.user.roles %}
+            {#
             <div class="col-lg-9 gx-0">
                 <div class="container mb-5 background-title">
                     <div class="row h-100">
@@ -90,34 +91,36 @@
                             <div class="row">
                                 <div class="col-lg-10 abstractJobOffer border border-2 p-3 gx-0 m-1 shadow bg-light">
                                     <div class="row m-0">
-                                        <div class="col-lg-3 align-self-center">
+                                        {% if favorite.cv is not empty %}
                                             {% for candidat in favorite.cv.candidate %}
-                                                {% if candidat.picture %}
-                                                    <img id="photo_profile" src="{{ asset('images/profils/' ~ candidat.picture.pictureName )}}"
-                                                         alt="photo du profil">
-                                                {% else %}
-                                                    <img id="photo_profile" src="{{ asset('images/profils/avatar.jpg') }}"
-                                                         alt="photo du profil">
-                                                {% endif %}
-                                        </div>
-                                        <div class="jobOffer_div col-lg-5">
-                                            {% if candidat.firstname and candidat.lastname %}
-                                                <p class="offer" ><strong>{{ candidat.firstName|upper}} {{ candidat.lastName|capitalize}}</strong></p>
-                                            {% endif %}
-                                            {% if candidat.currentRole %}
-                                                <p class="offer"> {{ candidat.currentRole }}</p>
-                                            {% endif %}
-                                            {% if candidat.jobSearch is not empty %}
-                                                <p class="offer">{{ candidat.jobSearch.region.name|capitalize}}({{ candidat.jobSearch.department.cp }})</p>
-                                            {% endif %}
-                                            {% if candidat.scoring is not empty %}
-                                                <p class="offer"><strong>Taux de sens : </strong>{{ candidat.scoring.dominantsens}} {{ candidat.scoring.societal }}%</p>
-                                            {% endif %}
-                                        </div>
-                                        <div class="align-self-center col-lg-4">
-                                            <a class="btn" href="{{ path('candidate_show', {"id":candidat.id}) }}">Consulter le profil</a>
-                                        </div>
-                                        {% endfor %}
+                                                <div class="col-lg-3 align-self-center">
+                                                    {% if candidat.picture %}
+                                                        <img id="photo_profile" src="{{ asset('images/profils/' ~ candidat.picture.pictureName )}}"
+                                                             alt="photo du profil">
+                                                    {% else %}
+                                                        <img id="photo_profile" src="{{ asset('images/profils/avatar.jpg') }}"
+                                                             alt="photo du profil">
+                                                    {% endif %}
+                                                </div>
+                                                <div class="jobOffer_div col-lg-5">
+                                                    {% if candidat.firstname and candidat.lastname %}
+                                                        <p class="offer" ><strong>{{ candidat.firstName|upper}} {{ candidat.lastName|capitalize}}</strong></p>
+                                                    {% endif %}
+                                                    {% if candidat.currentRole %}
+                                                        <p class="offer"> {{ candidat.currentRole }}</p>
+                                                    {% endif %}
+                                                    {% if candidat.jobSearch is not empty %}
+                                                        <p class="offer">{{ candidat.jobSearch.region.name|capitalize}}({{ candidat.jobSearch.department.cp }})</p>
+                                                    {% endif %}
+                                                    {% if candidat.scoring is not empty %}
+                                                        <p class="offer"><strong>Taux de sens : </strong>{{ candidat.scoring.dominantsens}} {{ candidat.scoring.societal }}%</p>
+                                                    {% endif %}
+                                                </div>
+                                                <div class="align-self-center col-lg-4">
+                                                    <a class="btn" href="{{ path('candidate_show', {"id":candidat.id}) }}">Consulter le profil</a>
+                                                </div>
+                                            {% endfor %}
+                                        {% endif %}
                                     </div>
                                 </div>
                                 <div class="col-lg-1 align-self-center">
@@ -138,6 +141,7 @@
                     {{ knp_pagination_render(favorite) }}
                 </div>
             </div>
+            #}
         {% endif %}
 
     </div>

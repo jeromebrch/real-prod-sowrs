@@ -90,7 +90,8 @@ class FavoriteCvController extends AbstractController
             'cv'=>$cv,
             'formSearch' => $formSearch->createView(),
             'listCandidates' => $candidates,
-            'candidates'=> $candidateList
+            'candidates'=> $candidateList,
+            'favorites' => $user->getFavorites()
         ]);
     }
 
@@ -128,7 +129,8 @@ class FavoriteCvController extends AbstractController
             'favorite' => $favorite,
             'formSearch' => $formSearch->createView(),
             'listCandidates' => $candidates,
-            'candidates'=> $candidateList
+            'candidates'=> $candidateList,
+            'favorites' => $user->getFavorites()
         ]);
 
     }
@@ -178,7 +180,7 @@ class FavoriteCvController extends AbstractController
             'formSearch' => $formSearch->createView(),
             'listCandidates' => $candidates,
             'candidates'=> $candidateList,
-            'favorites' =>  $favorites = $user->getFavorites()
+            'favorites' =>  $user->getFavorites()
         ]);
 
     }
