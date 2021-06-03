@@ -98,3 +98,14 @@ body .container_link_profil{
 .button-creerUne:hover{
     color: white;
 }
+.container_applie_body{
+    display: none;
+}
+.link_applie_profil{
+    color: #937FA4;
+    font-family: 'KohinoorBangla', Arial, serif;
+    font-weight: bold;
+}
+.link_applie_profil:hover{
+    color: #937FA4;
+}

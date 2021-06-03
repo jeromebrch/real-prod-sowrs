@@ -57,4 +57,16 @@ class MessageRepository extends ServiceEntityRepository
             ->getResult()
         ;
     }
+
+    public function findByUserRecipientAndCategory(User $userRecipient, $category)
+    {
+        return $this->createQueryBuilder('message')
+            ->andWhere('message.category = :cat')
+            ->setParameter('cat', $category)
+            ->andWhere('message.userRecipient = :user')
+            ->setParameter('user', $userRecipient)
+            ->getQuery()
+            ->getResult()
+            ;
+    }
 }

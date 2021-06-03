@@ -288,7 +288,7 @@
                         <div class="m-5">
                             <div class="row">
                                 <div class="col-lg-6 section_dashboard">
-                                    <div class="in_section h-100">
+                                    <div class="in_section">
                                         <div class="row mb-2">
                                             <div class="col-lg-6">
                                                 <h4 class="subtitle m-0">Vos offres</h4>
@@ -307,21 +307,35 @@
                                     </div>
                                 </div>
                                 <div class="col-lg-6 section_dashboard">
-                                    <div class="in_section h-100">
+                                    <div class="in_section">
                                         <div class="row mb-2">
                                             <div class="col-lg-12">
                                                 <h4 class="subtitle m-0">Candidatures reçues</h4>
                                             </div>
-                                            {#
-                                            <div class="col-lg-4 text-end">
-                                                <button class="button-creerUne m-0">Voir tout</button>
-                                            </div>
-                                            #}
                                         </div>
-                                        <div class="content-subtitle-item">
-                                            {% for jobOffer in jobOffers %}
-                                                {# todo : ??? #}
-                                            {% endfor %}
+                                        <div class="content-subtitle-item contenu-scroll h-100">
+                                            {% if applies is not empty %}
+                                                {% for applie in applies %}
+                                                    <div class="abstractJobOffer border border-2 p-3 m-3 gx-0 shadow">
+                                                        <div class="row">
+                                                            <h6 class="abstractJobOfferTextTitle col-12">{{ applie.subject|capitalize }}</h6>
+                                                        </div>
+                                                        <div class="row">
+                                                            <a href="{{ path('candidate_show', {'id':applie.userSender.id}) }}" class="link_applie_profil">{{ applie.userSender.lastname }} {{ applie.userSender.firstname }}</a>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div>
+                                                                <p class="date_abstract_job_offer">{{ applie.createdAt|date("y/m/d H:i") }}</p>
+                                                            </div>
+                                                            <div>
+                                                                <a href="{{ path('read_message', {'id': applie.id}) }}" class="btn">Voir la candidature</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                {% endfor %}
+                                            {% else %}
+
+                                            {% endif %}
                                         </div>
                                     </div>
                                 </div>
