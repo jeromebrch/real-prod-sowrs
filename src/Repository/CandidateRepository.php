@@ -121,7 +121,7 @@ class CandidateRepository extends ServiceEntityRepository
         }
         if (!empty($data->remuneration)) {
             $query = $query
-                ->andWhere('o.desuredRemuneration = :r')
+                ->andWhere('o.desiredRemuneration = :r')
                 ->setParameter('r', $data->remuneration);
         }
         if (!empty($data->contractType)) {

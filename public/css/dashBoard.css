@@ -60,6 +60,9 @@
     font-size: 1.1em;
     padding-left: 15px;
 }
+.mini_webzine_title:hover{
+    color: #937FA4;
+}
 .section_dashboard{
     padding: 5px;
 }

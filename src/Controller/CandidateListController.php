@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Data\SearchCandidate;
+use App\Entity\Recruiter;
 use App\Form\SearchCandidateType;
 use App\Repository\CandidateRepository;
 use Knp\Component\Pager\PaginatorInterface;
@@ -36,7 +37,9 @@ class CandidateListController extends AbstractController
             5
         );
         $candidateList = $repoCandidate->findAll();
-        $userFavorites = $user->getFavorites();
+        if($user instanceof Recruiter){
+            $userFavorites = $user->getFavoriteCandidates();
+        }
 
         return $this->render('main/candidateList.html.twig', [
             'formSearch' => $formSearch->createView(),

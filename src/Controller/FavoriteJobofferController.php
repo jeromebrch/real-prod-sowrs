@@ -4,6 +4,7 @@ namespace App\Controller;
 
 
 use App\Data\SearchJobOffers;
+use App\Entity\Candidate;
 use App\Entity\Favorite;
 use App\Form\SearchJobOfferType;
 use App\Repository\FavoriteRepository;
@@ -56,51 +57,19 @@ class FavoriteJobofferController extends AbstractController
 
     /**
      * @Route("/favorite/removeOfferList/{id}", name="remove_favorite_offer_list")
-     * @param PaginatorInterface $paginator
-     * @param FavoriteRepository $favRepo
-     * @param JobOfferRepository $offerRepo
-     * @param $id
-     * @param EntityManagerInterface $em
-     * @param Request $request
-     * @return Response
      */
-    public function RemoveFavoriteOfferFromList($id, Request $request,FavoriteRepository $favRepo,PaginatorInterface $paginator,EntityManagerInterface $em, JobOfferRepository $offerRepo): Response
+    public function RemoveFavoriteOfferFromList($id, Request $request, PaginatorInterface $paginator,EntityManagerInterface $em, JobOfferRepository $offerRepo): Response
     {
-        $data = new SearchJobOffers();
-        $formSearch = $this->createForm(SearchJobOfferType::class, $data);
-        $formSearch->handleRequest($request);
-        $donnees = $offerRepo->SearchJobOffers($data);
-        $jobOffers = $paginator->paginate(
-            $donnees,
-            $request->query->getInt('page', 1),
-            5
-        );
-
         $user = $this->getUser();
-        $favorite = $favRepo->find($id);
-
-        if ($favorite) {
-            try {
-                $user->removeFavoriteOffer($favorite);
-                $em->persist($favorite);
+        $offer = $offerRepo->find($id);
+        if($user instanceof Candidate){
+            if(in_array($offer, $user->getFavoriteOffers()->getValues())){
+                $user->removeFavoriteOffer($offer);
+                $em->persist($user);
                 $em->flush();
-
-                $this->addFlash('success', 'l\'offre a été retirée de vos favoris');
-            } catch (Exception $e) {
-                $e->getMessage();
+                $this->addFlash('success', 'L\'offre a bien été retirée de vos favoris !');
             }
         }
-        $userFavorites = $user->getFavorites();
-        $userFavoritesOffers = [];
-        foreach($userFavorites as $favorite){
-            array_unshift($userFavoritesOffers, [$favorite->getJobOffer(), $favorite->getId()]);
-        }
-        return $this->render('favorite/favorite_list.html.twig', [
-            'favorite' => $favorite,
-            'formSearch' => $formSearch->createView(),
-            'jobOffers' => $jobOffers,
-            'favorites' => $userFavoritesOffers
-        ]);
+        return $this->redirectToRoute('favorites');
     }
-
 }
