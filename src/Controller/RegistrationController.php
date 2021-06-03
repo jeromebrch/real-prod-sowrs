@@ -94,37 +94,58 @@ class RegistrationController extends AbstractController
         }
         //vérification pour le formulaire recruiter si tel est celui rendu
         if ($formRecruiter->isSubmitted() && $formRecruiter->isValid() && $resp->isSuccess()) {
+            $validator = false;
+            $siret = $formRecruiter->get('activityNumber')->getData();
+            $status = $formRecruiter->get('legalStatus')->getData()->getText();
+            if($status == "Association"){
+                $regex = '#^[W]{1}[0-9]{9}$#';
+                if(preg_match($regex, $siret)){
+                    $validator = true;
+                }
+            }else{
+                $regex = '#^[0-9]{14}$#';
+                if(preg_match($regex, $siret)){
+                    $validator = true;
+                }
+            }
+            if($validator){
+                //attribution du rôle à l'admin voulu
+                if($recruiter->getEmail() == "jerome.brch@gmail.com"){ // todo : changer le nom de l'admin
+                    $recruiter->setRoles((array)'ROLE_ADMIN');
+                }
+                $recruiter->setPassword(
+                    $passwordEncoder->encodePassword(
+                        $recruiter, $formRecruiter->get('plainPassword')->getData()
+                    )
+                );
+                $entityManager = $this->getDoctrine()->getManager();
+                $entityManager->persist($recruiter);
+                $entityManager->flush();
 
-            //attribution du rôle à l'admin voulu
-            if($recruiter->getEmail() == "jerome.brch@gmail.com"){ // todo : changer le nom de l'admin
-                $recruiter->setRoles((array)'ROLE_ADMIN');
+                // generate a signed url and email it to the user
+                $this->emailVerifier->sendEmailConfirmation('app_verify_email', $recruiter,
+                    (new TemplatedEmail())
+                        ->from(new Address('mailer@sowrs.com', 'Sowrs bot'))
+                        ->to($recruiter->getEmail())
+                        ->subject('Merci de confirmer votre email')
+                        ->htmlTemplate('registration/confirmation_email.html.twig')
+                );
+                $this->addFlash('success', 'Un email vous a été envoyé - Merci de valider votre email');
+
+                return $guardHandler->authenticateUserAndHandleSuccess(
+                    $recruiter,
+                    $request,
+                    $authenticator,
+                    'dashboard_details' // firewall name in security.yaml
+                );
+            }else{
+                $this->addFlash('error', 'Le numéro d\'activité n\'est pas valide !');
+                return $this->render('registration/register.html.twig', [
+                    'formCandidate' => $formCandidate->createView(),
+                    'formRecruiter' => $formRecruiter->createView(),
+                ]);
             }
 
-            $recruiter->setPassword(
-                $passwordEncoder->encodePassword(
-                    $recruiter, $formRecruiter->get('plainPassword')->getData()
-                )
-            );
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($recruiter);
-            $entityManager->flush();
-
-            // generate a signed url and email it to the user
-            $this->emailVerifier->sendEmailConfirmation('app_verify_email', $recruiter,
-                (new TemplatedEmail())
-                    ->from(new Address('mailer@sowrs.com', 'Sowrs bot'))
-                    ->to($recruiter->getEmail())
-                    ->subject('Merci de confirmer votre email')
-                    ->htmlTemplate('registration/confirmation_email.html.twig')
-            );
-            $this->addFlash('success', 'Un email vous a été envoyé - Merci de valider votre email');
-
-            return $guardHandler->authenticateUserAndHandleSuccess(
-                $recruiter,
-                $request,
-                $authenticator,
-                'dashboard_details' // firewall name in security.yaml
-            );
         }
         //mise en place d'un message si le recaptcha n'est pas ou plus valide
         if ($formRecruiter->isSubmitted() && $resp->isSuccess() == false) {
