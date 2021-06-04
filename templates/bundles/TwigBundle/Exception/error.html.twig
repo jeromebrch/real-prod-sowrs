@@ -1,16 +1,64 @@
 <!doctype html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width width=device-width, initial-scale=1">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>{% block title %}Erreur{% endblock %}</title>
-    <link rel="stylesheet" href="{{ asset('css/app.css') }}" />
-    <link rel="stylesheet" href="{{ asset('css/errorPage.css') }}" />
-</head>
-<body>
-{% block body %}
-    <h1>une erreur est survenue</h1>
-{% endblock %}
-</body>
+    <html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width width=device-width, initial-scale=1">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>{% block title %}Erreur{% endblock %}</title>
+        <script src="https://kit.fontawesome.com/c12cfb347a.js" crossorigin="anonymous"></script>
+        <link rel="shortcut icon" type="image/jpg" href="{{ asset('img/favicon.jpg') }}"/>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+              integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1"
+              crossorigin="anonymous">
+        <link rel="stylesheet" href="{{ asset("css/app.css") }}">
+        <link rel="stylesheet" href="{{ asset("css/footer.css") }}">
+        <link rel="stylesheet" href="{{ asset("css/abstractJobOffert.css") }}">
+        <link rel="stylesheet" href="{{ asset('css/dashBoardNav.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/dashBoard.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/myDetails.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/mainNav.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/register.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/resultSensRate.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/showCandidate.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/nav.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/principalNav.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/home.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/senseRate.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/aboutSowrs.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/dashBoard.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/resetPassword.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/errorPage.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/contactUs.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/applies.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/userProfil.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/createPost.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/homeWebzine.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/postDetail.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/unpublishedPost.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/unpublishedComments.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/messaging_page.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/applyForm.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/favorite_list.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/_cardCandidate.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/read_message.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/cardCandidate.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/showJobOffer.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/showRecruiter.css') }}">
+    </head>
+    <body>
+        <header>
+            <div>
+                {% include ('nav/nav.html.twig') %}
+            </div>
+            <div>
+                {% include ('nav/principalNav.html.twig') %}
+            </div>
+        </header>
+        {% block body %}
+            <h1>une erreur est survenue</h1>
+        {% endblock %}
+    <footer>
+        {% include'footer/footerMain.html.twig' %}
+    </footer>
+    </body>
 </html>

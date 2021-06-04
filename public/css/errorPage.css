@@ -8,25 +8,36 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding-top: 200px;
-    padding-bottom: 200px;
+    padding-top: 100px;
+    padding-bottom: 100px;
+    background-color: #F7FAFA;
 }
-.error_container a{
-    text-align: center;
-    text-decoration: none;
-    font-family: 'KohinoorBangla', Arial, serif;
-    margin-top: 30px;
+.error{
+    background-color: white;
+    padding: 30px;
+    border-radius: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
-.error_title{
-    color: #1dca91;
-    font-family: 'KohinoorBangla', Arial, serif;
-    font-size: 3em;
+.error_img{
+    max-height: 300px;
+    width: auto;
+    position: relative;
+    bottom: 90px
 }
-.error_title_forbidden{
-    color: #B0413E;
+.error_info{
+    position: relative;
+    bottom: 60px;
+    color: #555555;
     font-family: 'KohinoorBangla', Arial, serif;
+    font-weight: bold;
+    font-size: 1.2em;
 }
-.explain_error{
-    font-family: 'KohinoorBangla', Arial, serif;
-    color: #937FA4;
+.link_return_home{
+    color: white;
+}
+.link_return_home:hover{
+    color: white;
 }

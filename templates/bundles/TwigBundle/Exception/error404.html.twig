@@ -11,10 +11,12 @@
 
 {% block body %}
     <div class="error_container">
-        <h1 class="error_title">Page non trouvée</h1>
-        <h3 class="explain_error">
-            La page demandée n'existe pas !
-        </h3>
-        <a href="{{ path('main') }}" class="btn required">Accueil</a>
+        <div class="error">
+            <img src="{{ asset('img/error404.png') }}" class="error_img" alt="error 404" title="La page n'est pas trouvée" />
+            <p class="error_info">
+                On a beau remuer ciel et terre,<br /> aucun trace de la page que vous cherchez &#128269
+            </p>
+            <a href="{{ path('main') }}" class="link_return_home btn">On repart en arrière ?</a>
+        </div>
     </div>
 {% endblock %}
