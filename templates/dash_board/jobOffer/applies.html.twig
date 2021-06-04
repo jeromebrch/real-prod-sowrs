@@ -57,12 +57,12 @@
                             {% endif%}
                         {% endfor %}
                     {% else %}
-                        <div class="empty_applies_container">
-                            <h4 class="empty_applies_text">Vous n'avez aucune candidature en cours ! </h4>
-                            <p class="empty_applies_text">
-                                Avez-vous <a href="{{ path('dash_board_job_offer_create') }}" class="link_options_applies">Créé une annonce</a> ?
-                                Vous pouvez également <a href="{{ path('main_candidate_list') }}" class="link_options_applies">Rechercher des candidats</a>.
-                            </p>
+                        <div class="row empty_applies_info">
+                            <h4 class="empty_applies_text">Vous n'avez pas encore reçu de candidature ... Mais ce n'est qu'une question de temps &#128521</h4>
+                            <div>
+                                <button type="button" class="btn btn_applies_options"><a href="{{ path('dash_board_job_offer_create') }}" class="link_applie_option">Créé une annonce</a></button>
+                                <button type="button" class="btn btn_applies_options"><a href="{{ path('main_candidate_list') }}" class="link_applie_option">Rechercher des candidats</a></button>
+                            </div>
                         </div>
                     {% endif %}
                 </div>

@@ -130,64 +130,6 @@
                     {% endif %}
                 </div>
             </div>
-            {#
-            <div class="m-3">
-                {% if favorites is not empty %}
-                    {% for favorite in favorites %}
-                        <div class="row">
-                            <div class="col-lg-10 abstractJobOffer border border-2 p-3 gx-0 m-1 shadow bg-light">
-                                <div class="row m-0">
-                                    {% if favorite.cv is not empty %}
-                                        {% for candidat in favorite.cv.candidate %}
-                                            <div class="col-lg-3 align-self-center">
-                                                {% if candidat.picture %}
-                                                    <img id="photo_profile" src="{{ asset('images/profils/' ~ candidat.picture.pictureName )}}"
-                                                         alt="photo du profil">
-                                                {% else %}
-                                                    <img id="photo_profile" src="{{ asset('images/profils/avatar.jpg') }}"
-                                                         alt="photo du profil">
-                                                {% endif %}
-                                            </div>
-                                            <div class="jobOffer_div col-lg-5">
-                                                {% if candidat.firstname and candidat.lastname %}
-                                                    <p class="offer" ><strong>{{ candidat.firstName|upper}} {{ candidat.lastName|capitalize}}</strong></p>
-                                                {% endif %}
-                                                {% if candidat.currentRole %}
-                                                    <p class="offer"> {{ candidat.currentRole }}</p>
-                                                {% endif %}
-                                                {% if candidat.jobSearch is not empty %}
-                                                    <p class="offer">{{ candidat.jobSearch.region.name|capitalize}}({{ candidat.jobSearch.department.cp }})</p>
-                                                {% endif %}
-                                                {% if candidat.scoring is not empty %}
-                                                    <p class="offer"><strong>Taux de sens : </strong>{{ candidat.scoring.dominantsens}} {{ candidat.scoring.societal }}%</p>
-                                                {% endif %}
-                                            </div>
-                                            <div class="align-self-center col-lg-4">
-                                                <a class="btn" href="{{ path('candidate_show', {"id":candidat.id}) }}">Consulter le profil</a>
-                                            </div>
-                                        {% endfor %}
-                                    {% endif %}
-                                </div>
-                            </div>
-                            <div class="col-lg-1 align-self-center">
-                                <span title="Effacer le cv">
-                                    <a href="{{ path('remove_favorite_cv_list', {'id': favorite.id}) }}">
-                                        <img class="ImgTrash" src="{{ asset('img/boostrap/trash-fill.svg') }}" alt="delete_favorite" title="Supprimer des favoris">
-                                    </a>
-                                </span>
-                            </div>
-                        </div>
-                    {% endfor %}
-                {% else %}
-                    <div class="row container_no_favorites">
-                        <h4 class="col-md-6 col-sm-12">Vous n'avez pas de profils favoris</h4>
-                        <a href="{{ path('main_candidate_list') }}" class="btn col-md-6 col-sm-12">Consulter la CVthèque</a>
-                    </div>
-                {% endif %}
-                {{ knp_pagination_render(favorite) }}
-            </div>
-            #}
-
         {% endif %}
 
     </div>

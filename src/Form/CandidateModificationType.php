@@ -9,6 +9,7 @@ use App\Entity\Country;
 use App\Entity\Department;
 use App\Entity\LevelExperience;
 use App\Entity\LevelStudy;
+use App\Entity\Region;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
@@ -91,6 +92,26 @@ class CandidateModificationType extends AbstractType
                 'label' => false,
                 'required' => true,
                 'placeholder' => 'Secteur de formation'
+            ])
+            ->add('department', EntityType::class, [
+                'class' => Department::class,
+                'choice_label' => 'name',
+                'label' => false,
+                'required' => true,
+                'placeholder' => 'Département'
+            ])
+            ->add('region', EntityType::class, [
+                'class' => Region::class,
+                'choice_label' => 'name',
+                'label' => false,
+                'required' => true,
+                'placeholder' => 'Région'
+            ])
+            ->add('city', TextType::class, [
+                'required' => false,
+                'label' => false,
+                'attr' => [
+                    'placeholder' => 'Ville']
             ])
             ->add('mainCause', EntityType::class, [
                 'class' => Cause::class,

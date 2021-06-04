@@ -19,6 +19,17 @@
     justify-content: center;
     align-items: center;
 }
+.empty_applies_info{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 40px;
+    margin: 20px;
+    background-color: #ffffff;
+    border-radius: 30px;
+    border: #E6E9E9;
+}
 .link_options_applies{
     color: #937FA4;
     font-weight: bold;
@@ -28,7 +39,19 @@
 }
 .empty_applies_text{
     color: #555555;
-}
-h4.empty_applies_text{
+    padding-bottom: 15px;
     font-size: 1.3em;
+    font-weight: bold;
+}
+body .btn_applies_options{
+    color: white;
+    padding: 15px;
+    width: auto;
+    margin-left: 15px;
+}
+.link_applie_option{
+    color: white;
+}
+.link_applie_option:hover{
+    color: white;
 }

@@ -15,13 +15,12 @@
             <p>
                 <a href="{{ path('candidate_show', {'id':candidate.id}) }}"><strong>{{ candidate.firstname|capitalize }} {{ candidate.lastname|upper }}</strong></a>
             </p>
-
             {% if candidate.currentRole %}
                 <p>
                     <strong>{{ candidate.currentRole | capitalize}}</strong>
                 </p>
             {% endif %}
-            {% if candidate.city and candidate.department %}
+            {% if candidate.city and candidate.department is not empty %}
                 <p>
                     {{ candidate.city }} &bull; {{ candidate.department.name }} ({{ candidate.department.cp }})
                 </p>
@@ -29,7 +28,6 @@
             {% if candidate.scoring is not empty %}
                 <p><strong>Taux de sens: </strong>{{ candidate.scoring.dominantsens }} {{ candidate.scoring.societal }}%</p>
             {% endif %}
-
         </div>
     </div>
     <div class="col-md-3 align-self-center">
