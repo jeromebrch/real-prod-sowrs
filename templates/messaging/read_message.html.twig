@@ -24,7 +24,8 @@
                             <p class="p_read_message">À : <strong>{{ message.userSender.firstname~message.userSender.lastname }}</strong></p>
                         {% endif %}
                         <p class="p_read_message">Réponse au sujet : <strong>{{ message.subject }}</strong></p>
-                        <p class="body_message">{{ message.body }}  {% if message.cv %}
+                        <p class="body_message">{{ message.body }}
+                            {% if message.cv %}
                                 <a href="{{ asset('file/cv/' ~ message.cv.cvName) }}">
                                     <img class="logo_pj" src="{{ asset('img/img_pj.png')}}" alt="attachment_file" title="Pièce jointe"/>
                                 </a>

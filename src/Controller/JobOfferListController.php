@@ -37,7 +37,6 @@ class JobOfferListController extends AbstractController
         if($this->getUser()){
             return $this->render('main/jobOffersList.html.twig', [
                 'jobOffers' => $jobOffers,
-                'favorites' => $user->getFavorites(),
                 'formSearch' => $formSearch->createView(),
             ]);
         }else{
@@ -46,7 +45,6 @@ class JobOfferListController extends AbstractController
                 'formSearch' => $formSearch->createView()
             ]);
         }
-
     }
 
 

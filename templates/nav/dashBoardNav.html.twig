@@ -4,10 +4,12 @@
     {% if "ROLE_CANDIDATE" in app.user.roles %}
         {% if app.user.picture %}
             <img id="photo_profile" src="{{ asset('images/profils/' ~ app.user.picture.pictureName )}}"
-                 alt="photo du profil">
+                 alt="photo du profil"
+                 title="{{ app.user.firstname }} {{ app.user.lastname }}">
         {% else %}
             <img id="photo_profile" src="{{ asset('images/profils/avatar.jpg') }}"
-                 alt="photo du profil">
+                 alt="photo du profil"
+                title="Pensez à importer une photo de profil !">
         {% endif %}
         <h2 class="entityName m-3">{{ app.user.firstname }} {{ app.user.lastname | upper }}</h2>
         <div class="error">
@@ -46,7 +48,7 @@
                 <a class="nav-link" href="{{ path('dash_board_entitySenseRate') }}">Votre taux de sens</a>
             {% endif %}
             <li>
-                <a class="nav-link" href="">Vos candidatures</a>
+                <a class="nav-link" href="{{ path('candidate_applies') }}">Vos candidatures</a>
             </li>
             <li>
                 <a class="nav-link" href="{{ path('favorites') }}">Vos offres favorites</a>
@@ -72,10 +74,12 @@
 
         {% if app.user.picture %}
             <img id="photo_profile" src="{{ asset('images/profils/' ~ app.user.picture.pictureName )}}"
-                 alt="photo du profil">
+                 alt="photo du profil"
+                title="{{ app.user.entityName }}">
         {% else %}
             <img id="photo_profile" src="{{ asset('images/profils/avatar.jpg') }}"
-                 alt="photo du profil">
+                 alt="photo du profil"
+                title="Pensez à importer une photo de profil !">
         {% endif %}
         <h2 class="entityName m-3">{{ app.user.entityName }}</h2>
 
@@ -99,6 +103,9 @@
             </li>
             <li>
                 <a class="nav-link" href="{{ path('dash_board_my_offers') }}">Vos offres</a>
+            </li>
+            <li>
+                <a class="nav-link" href="{{ path('dash_board_job_offer_create') }}">Créer une offre</a>
             </li>
 
             {% if app.user.scoring %}

@@ -205,14 +205,16 @@ class JobofferController extends AbstractController
      * @param Request $request
      * @return Response
      */
-    public function showApplies( EntityManagerInterface $em, PaginatorInterface $paginator, MessageRepository $messageRepo, Request $request): Response
+    public function showApplies( EntityManagerInterface $em,
+                                 PaginatorInterface $paginator,
+                                 MessageRepository $messageRepo,
+                                 Request $request): Response
     {
         $user = $this->getUser();
         $messages = $user->getReceivedMessages();
-        $category = $this->getDoctrine()->getRepository(Category::class)->findOneByName('candidature');
+        $category = $this->getDoctrine()->getRepository(Category::class)->findOneByName('Candidature');
 
-        $candidatures = $this->getDoctrine()->getRepository(Category::class)->findOneByName('candidature')->getMessage();
-        $jobOffer = $user->getJobOffers();
+        $candidatures = $messageRepo->findByUserRecipient($user);
 
         $candidatureList = $paginator->paginate(
             $candidatures,
@@ -223,7 +225,6 @@ class JobofferController extends AbstractController
         return $this->render('dash_board/jobOffer/applies.html.twig',[
             'messages' => $messages,
             'candidatures' =>$candidatures,
-            'jobOffers'=> $jobOffer,
             'candidatureList' => $candidatureList,
             'category' => $category
         ]);

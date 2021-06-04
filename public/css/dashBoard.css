@@ -60,6 +60,9 @@
     font-size: 1.1em;
     padding-left: 15px;
 }
+.mini_webzine_title:hover{
+    color: #937FA4;
+}
 .section_dashboard{
     padding: 5px;
 }
@@ -99,4 +102,15 @@ body .container_link_profil{
 
 .heightScroll {
     height: 360px;
+}
+.container_applie_body{
+    display: none;
+}
+.link_applie_profil{
+    color: #937FA4;
+    font-family: 'KohinoorBangla', Arial, serif;
+    font-weight: bold;
+}
+.link_applie_profil:hover{
+    color: #937FA4;
 }

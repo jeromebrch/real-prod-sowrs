@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Data\SearchCandidate;
 use App\Data\SearchJobOffers;
+use App\Entity\Candidate;
 use App\Entity\Contact;
 use App\Entity\Media;
 use App\Entity\Recruiter;
@@ -54,15 +55,23 @@ class MainController extends AbstractController
             $request->query->getInt('page', 1),
             5
         );
-
         if ($formSearchHome->isSubmitted() && $formSearchHome->isValid()) {
+            $userFavoritesOffers = [];
+            if($user instanceof Candidate){
+                $userFavoritesOffers = $user->getFavoriteOffers()->getValues();
+            }
             return $this->render('main/jobOffersListHome.html.twig', [
                 'jobOffers' => $jobOffers,
+                'favorites' => $userFavoritesOffers,
                 'formSearchHome' => $formSearchHome->createView(),
                 'user' => $user
             ]);
         }elseif($formSearchCandidate->isSubmitted() && $formSearchCandidate->isValid()){
             $candidates = $candidateRepo->searchCandidate($formSearchCandidate->getData());
+            $userFavoritesOffers = [];
+            if($user instanceof Recruiter){
+                $userFavoritesOffers = $user->getFavoriteCandidates()->getValues();
+            }
             $listCandidates = $paginator->paginate(
                 $candidates,
                 $request->query->getInt('page', 1),
@@ -71,7 +80,8 @@ class MainController extends AbstractController
             return $this->render('main/candidateList.html.twig', [
                 'formSearch' => $formSearchCandidate->createView(),
                 'user' => $user,
-                'listCandidates' => $listCandidates
+                'listCandidates' => $listCandidates,
+                'favorites' => $userFavoritesOffers
             ]);
         }else{
             return $this->render('main/home.html.twig', [

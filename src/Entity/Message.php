@@ -11,7 +11,6 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
 /**
  * Class Message
  * @package App\Entity
- *
  * @ORM\Entity(repositoryClass=MessageRepository::class)
  */
 class Message

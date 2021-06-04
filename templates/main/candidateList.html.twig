@@ -59,7 +59,7 @@
             <div class="col-lg-8 p-3">
                 {% for candidate in listCandidates %}
                     <div class="candidate_row bg-white p-3 mb-3">
-                        {% include '/main/_cardCandidate.html.twig' with {candidate: candidate} only %}
+                        {% include '/main/_cardCandidate.html.twig' with {candidate: candidate, favorites: favorites} only %}
                     </div>
                 {% endfor %}
                 {{ knp_pagination_render(listCandidates) }}

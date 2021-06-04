@@ -9,9 +9,11 @@ use App\Form\CandidateModificationType;
 use App\Form\CreateCvType;
 use App\Form\RecognitionType;
 use App\Form\RecruiterModificationType;
+use App\Repository\CategoryRepository;
 use App\Repository\CauseRepository;
 use App\Repository\DevelopmentGoalsRepository;
 use App\Repository\JobOfferRepository;
+use App\Repository\MessageRepository;
 use App\Repository\PostRepository;
 use App\Repository\RecognitionRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -35,14 +37,17 @@ class DashBoardController extends AbstractController
      * @param PostRepository $postRepo
      * @return Response
      */
-    public function dashBoard(JobOfferRepository $jobOfferRepo, PostRepository $postRepo): Response {
+    public function dashBoard(JobOfferRepository $jobOfferRepo, PostRepository $postRepo, MessageRepository $messageRepo, CategoryRepository $categoryRepo): Response {
         $latestPosts = $postRepo->findLatestPost();
-        if ($this->getUser() instanceof Recruiter) {
-            $jobOffers = $jobOfferRepo->findJobOffersByRecruiterId($this->getUser()->getId());
-
+        $user = $this->getUser();
+        if ($user instanceof Recruiter) {
+            $jobOffers = $jobOfferRepo->findJobOffersByRecruiterId($user->getId());
+            $category = $categoryRepo->findOneByName('Candidature');
+            $userApplies = $messageRepo->findByUserRecipientAndCategory($user, $category);
             return $this->render('dash_board/dashBoard.html.twig', [
                 'jobOffers' => $jobOffers,
-                'latestPosts' => $latestPosts
+                'latestPosts' => $latestPosts,
+                'applies' => $userApplies
             ]);
         } else {
             return $this->render('dash_board/dashBoard.html.twig', [

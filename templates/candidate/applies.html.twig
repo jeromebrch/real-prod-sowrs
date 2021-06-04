@@ -1,0 +1,142 @@
+{% extends 'base.html.twig' %}
+
+{% block meta %}
+    <meta name="description" content="Les candidatures de" + {{ app.user.lastname }} {{ app.user.firstname }}>
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('css/appliesList.css') }}" />
+{% endblock %}
+
+{% block title %}
+    Mes candidatures
+{% endblock %}
+
+{% block body %}
+    <div class="container-fluid">
+        <div class="row gx-0">
+            <div class="col-lg-3 border-end border-2">
+                {{ render(controller('App\\Controller\\DashBoardNavController::navBar'))}}
+            </div>
+            <div class="col-lg-9 gx-0">
+                <div class="container mb-5 background-title">
+                    <div class="row h-100">
+                        <div class="col-sm-6 text-center align-self-center text-white">
+                            <h3 class="title">MES CANDIDATURES</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="m-3">
+                    {% if applies is not empty %}
+                        <div class="all_applies_container">
+                            {% for applie in applies %}
+                                <div class="applie_container col-lg-4 col-md-6 col-sm-12">
+                                    <div class="applie_section">
+                                        {% if applie.subject %}
+                                            <h3>{{ applie.subject|capitalize }}</h3>
+                                        {% endif %}
+                                        {% if applie.createdAt is not empty %}
+                                            <h4>Date : <span>{{ applie.createdAt|date('d/m/Y') }}</span></h4>
+                                        {% endif %}
+                                        {% if applie.userRecipient is not empty %}
+                                            <h4>Entreprise : <a href="{{ path('show_recruiter_profil', {"id":applie.userRecipient.id}) }}">{{ applie.userRecipient.entityName|capitalize }}</a></h4>
+                                        {% endif %}
+                                        {% if applie.body is not empty %}
+                                            <h4>Votre message :</h4>
+                                            <p>
+                                                {{ applie.body }}
+                                            </p>
+                                        {% endif %}
+                                        {% if applie.cv is not empty or applie.media is not empty %}
+                                            <h4>Vos fichiers joints :</h4>
+                                            <div class="joined_files_container">
+                                                {% if applie.cv %}
+                                                    <a href="{{ asset('file/cv/' ~ applie.cv.cvName) }}" target="_blank">
+                                                        <img class="logo_pj" src="{{ asset('img/img_pj.png')}}" alt="fichier joint" title="Le CV joint"/>
+                                                    </a>
+                                                {% endif %}
+                                                {% if applie.media %}
+                                                    <a href="{{ asset('file/uploads/' ~ applie.media.mediaName )}}" target="_blank">
+                                                        <img class="logo_pj" src="{{ asset('img/img_pj.png')}}" alt="fichier joint" title="Le media joint"/>
+                                                    </a>
+                                                {% endif %}
+                                            </div>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        <div class="row empty_applies_info">
+                            <h4 class="empty_applies_text">
+                                Vous n’avez encore postulé à aucune offre… mais l’opportunité de vos rêves n’est peut-être
+                                pas si loin &#128521
+                            </h4>
+                            <div>
+                                <button type="button" class="btn btn_applies_options"><a href="{{ path('main_job_offers_list') }}" class="link_applie_option">Consulter les offres</a></button>
+                            </div>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+
+
+
+    {#
+    <h1>Mes candidatures</h1>
+    {% if applies is not empty %}
+        <div class="all_applies_container">
+            {% for applie in applies %}
+                <div class="applie_container col-lg-4 col-md-6 col-sm-12">
+                    <div class="applie_section">
+                        {% if applie.subject %}
+                            <h3>{{ applie.subject|capitalize }}</h3>
+                        {% endif %}
+                        {% if applie.createdAt is not empty %}
+                            <h4>Date : <span>{{ applie.createdAt|date('d/m/Y') }}</span></h4>
+                        {% endif %}
+                        {% if applie.userRecipient is not empty %}
+                            <h4>Entreprise : <a href="{{ path('show_recruiter_profil', {"id":applie.userRecipient.id}) }}">{{ applie.userRecipient.entityName|capitalize }}</a></h4>
+                        {% endif %}
+                        {% if applie.body is not empty %}
+                            <h4>Votre message :</h4>
+                            <p>
+                                {{ applie.body }}
+                            </p>
+                        {% endif %}
+                        {% if applie.cv is not empty or applie.media is not empty %}
+                            <h4>Vos fichiers joints :</h4>
+                            <div class="joined_files_container">
+                                {% if applie.cv %}
+                                    <a href="{{ asset('file/cv/' ~ applie.cv.cvName) }}" target="_blank">
+                                        <img class="logo_pj" src="{{ asset('img/img_pj.png')}}" alt="fichier joint" title="Le CV joint"/>
+                                    </a>
+                                {% endif %}
+                                {% if applie.media %}
+                                    <a href="{{ asset('file/uploads/' ~ applie.media.mediaName )}}" target="_blank">
+                                        <img class="logo_pj" src="{{ asset('img/img_pj.png')}}" alt="fichier joint" title="Le media joint"/>
+                                    </a>
+                                {% endif %}
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <div class="empty_applies">
+            <p>
+                Vous n'avez pas de candidature en cours !
+                Pourquoi ne pas aller <a href="{{ path('main_job_offers_list') }}">Rechercher une offre</a> ?
+            </p>
+        </div>
+    {% endif %}
+    #}
+
+{% endblock %}

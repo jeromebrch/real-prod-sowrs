@@ -98,7 +98,10 @@ class JobOfferRepository extends ServiceEntityRepository
                 $query = $query
                     ->addOrderBy('j.creationDate', 'DESC');
             }
-
+            if (!$search->freshness){
+                $query = $query
+                    ->addOrderBy('j.creationDate', 'DESC');
+            }
             return $query->getQuery()->getResult();
     }
 }

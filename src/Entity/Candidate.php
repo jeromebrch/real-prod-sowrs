@@ -81,10 +81,22 @@ class Candidate extends User
      */
     private $mainCause;
 
+    /**
+     * @ORM\ManyToMany(targetEntity=Recruiter::class, mappedBy="favoriteCandidates")
+     */
+    private $interestedRecruiters;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=JobOffer::class, inversedBy="interestedCandidates")
+     */
+    private $favoriteOffers;
+
     public function __construct()
     {
         parent::__construct();
         $this->commitments = new ArrayCollection();
+        $this->interestedRecruiters = new ArrayCollection();
+        $this->favoriteOffers = new ArrayCollection();
     }
 
     /**
@@ -302,6 +314,57 @@ class Candidate extends User
     public function setMainCause(?Cause $mainCause): self
     {
         $this->mainCause = $mainCause;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Recruiter[]
+     */
+    public function getInterestedRecruiters(): Collection
+    {
+        return $this->interestedRecruiters;
+    }
+
+    public function addInterestedRecruiter(Recruiter $interestedRecruiter): self
+    {
+        if (!$this->interestedRecruiters->contains($interestedRecruiter)) {
+            $this->interestedRecruiters[] = $interestedRecruiter;
+            $interestedRecruiter->addFavoriteCandidate($this);
+        }
+
+        return $this;
+    }
+
+    public function removeInterestedRecruiter(Recruiter $interestedRecruiter): self
+    {
+        if ($this->interestedRecruiters->removeElement($interestedRecruiter)) {
+            $interestedRecruiter->removeFavoriteCandidate($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|JobOffer[]
+     */
+    public function getFavoriteOffers(): Collection
+    {
+        return $this->favoriteOffers;
+    }
+
+    public function addFavoriteOffer(JobOffer $favoriteOffer): self
+    {
+        if (!$this->favoriteOffers->contains($favoriteOffer)) {
+            $this->favoriteOffers[] = $favoriteOffer;
+        }
+
+        return $this;
+    }
+
+    public function removeFavoriteOffer(JobOffer $favoriteOffer): self
+    {
+        $this->favoriteOffers->removeElement($favoriteOffer);
 
         return $this;
     }

@@ -81,3 +81,9 @@ input[type='radio']:focus{
 .container_message_contact div textarea{
     margin-top: 20px;
 }
+.container_send_button{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}

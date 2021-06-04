@@ -100,11 +100,6 @@ class JobOffer
     private $NumberOfViews;
 
     /**
-     * @ORM\OneToMany(targetEntity=Favorite::class, mappedBy="jobOffer", cascade="remove")
-     */
-    private $favorite;
-
-    /**
      * @ORM\ManyToOne(targetEntity=Department::class)
      */
     private $department;
@@ -120,26 +115,14 @@ class JobOffer
     private $telecommuting;
 
     /**
-     * @return mixed
+     * @ORM\ManyToMany(targetEntity=Candidate::class, mappedBy="favoriteOffers")
      */
-    public function getFavorite()
-    {
-        return $this->favorite;
-    }
-
-    /**
-     * @param mixed $favorite
-     */
-    public function setFavorite($favorite): self
-    {
-        $this->favorite = $favorite;
-        return $this;
-    }
+    private $interestedCandidates;
 
     public function __construct(){
         $this->creationDate = new DateTime();
         $this->published = true;
-        $this->candidate = new ArrayCollection();
+        $this->interestedCandidates = new ArrayCollection();
     }
 
     /**
@@ -352,35 +335,6 @@ class JobOffer
         return $this;
     }
 
-
-    /**
-     * @return Collection|Region[]
-     */
-    public function getCandidate(): Collection
-    {
-        return $this->candidate;
-    }
-
-    public function addCandidate(Region $candidate): self
-    {
-        if (!$this->candidate->contains($candidate)) {
-            $this->candidate[] = $candidate;
-            $candidate->setJobOffer($this);
-        }
-
-        return $this;
-    }
-
-    public function removeCandidate(Region $candidate): self
-    {
-        if ($this->candidate->removeElement($candidate)) {
-            // set the owning side to null (unless already changed)
-            if ($candidate->getJobOffer() === $this) {
-                $candidate->setJobOffer(null);
-            }
-        }
-    }
-
     public function getTelecommuting(): ?bool
     {
         return $this->telecommuting;
@@ -389,6 +343,45 @@ class JobOffer
     public function setTelecommuting(?bool $telecommuting): self
     {
         $this->telecommuting = $telecommuting;
+
+        return $this;
+    }
+
+    public function getInterestedCandidate(): ?Candidate
+    {
+        return $this->interestedCandidate;
+    }
+
+    public function setInterestedCandidate(?Candidate $interestedCandidate): self
+    {
+        $this->interestedCandidate = $interestedCandidate;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Candidate[]
+     */
+    public function getInterestedCandidates(): Collection
+    {
+        return $this->interestedCandidates;
+    }
+
+    public function addInterestedCandidate(Candidate $interestedCandidate): self
+    {
+        if (!$this->interestedCandidates->contains($interestedCandidate)) {
+            $this->interestedCandidates[] = $interestedCandidate;
+            $interestedCandidate->addFavoriteOffer($this);
+        }
+
+        return $this;
+    }
+
+    public function removeInterestedCandidate(Candidate $interestedCandidate): self
+    {
+        if ($this->interestedCandidates->removeElement($interestedCandidate)) {
+            $interestedCandidate->removeFavoriteOffer($this);
+        }
 
         return $this;
     }

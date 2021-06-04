@@ -48,11 +48,6 @@ class Cv
     private $message;
 
     /**
-     * @ORM\OneToMany(targetEntity=Favorite::class, mappedBy="cv", cascade="remove")
-     */
-    private $favorite;
-
-    /**
      * @ORM\OneToMany(targetEntity=Candidate::class, mappedBy="cv")
      * @ORM\JoinColumn(nullable=false)
      */
@@ -81,25 +76,6 @@ class Cv
     {
         $this->updatedAt = new \DateTime();
     }
-
-    /**
-     * @return mixed
-     */
-    public function getFavorite()
-    {
-        return $this->favorite;
-    }
-
-    /**
-     * @param mixed $favorite
-     */
-    public function setFavorite($favorite): self
-    {
-        $this->favorite = $favorite;
-        return $this;
-    }
-
-
 
     public function getId(): ?int
     {

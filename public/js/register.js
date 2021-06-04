@@ -6,6 +6,10 @@ const formCandidat = document.querySelector("form[name=candidate]");
 const formRecruteur = document.querySelector("form[name=recruiter]");
 const btnContactCandidate = document.querySelector("#btnContactCandidat");
 const btnContactRecruiter = document.querySelector("#btnContactRecruiter");
+const validateCandidatePassword = document.querySelector("#candidate_plainPassword_second");
+const validateRecruiterPassword = document.querySelector("#recruiter_plainPassword_second");
+const passwordCandidate = document.querySelector("#candidate_plainPassword_first");
+const passwordRecruiter = document.querySelector("#recruiter_plainPassword_first");
 
 
 btnCandidat.addEventListener('click', function (e) {
@@ -13,6 +17,12 @@ btnCandidat.addEventListener('click', function (e) {
     btnRecruteur.classList.remove("btnRegisterSelected");
     formCandidat.classList.remove("d-none");
     formRecruteur.classList.add("d-none");
+    validateCandidatePassword.addEventListener('blur', function (){
+        let passwordValue = passwordCandidate.value;
+        if(passwordValue !== validateCandidatePassword.value){
+            alert("Attention, la vérification du mot de passe n'est pas correcte !");
+        }
+    })
 });
 btnRecruteur.addEventListener('click', function (e) {
     e.currentTarget.classList.add("btnRegisterSelected");

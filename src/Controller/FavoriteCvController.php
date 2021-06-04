@@ -2,15 +2,9 @@
 
 namespace App\Controller;
 
-use App\Data\SearchCandidate;
 use App\Entity\Candidate;
-use App\Entity\Favorite;
-use App\Entity\User;
-use App\Form\SearchCandidateType;
+use App\Entity\Recruiter;
 use App\Repository\CandidateRepository;
-use App\Repository\CvRepository;
-use App\Repository\FavoriteRepository;
-use App\Repository\JobOfferRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -22,163 +16,106 @@ class FavoriteCvController extends AbstractController
 {
     /**
      * display favorite list
-     *
      * @Route("/favorite/favorite_page", name="favorites")
-     * @param $em
-     * @param Request $request
-     * @param PaginatorInterface $paginator
-     * @return Response
      */
-    public function seeFavorites(EntityManagerInterface $em, PaginatorInterface $paginator, FavoriteRepository $favoriteRepo, Request $request): Response
+    public function seeFavorites(EntityManagerInterface $em, PaginatorInterface $paginator, Request $request): Response
     {
-        /**
-         * @var User $user
-         */
         $user = $this->getUser();
+        $userFavorites = [];
 
-        $favorites = $user->getFavorites();
+        if($user instanceof Candidate){
+            $userFavorites = $user->getFavoriteOffers()->getValues();
+        }elseif($user instanceof Recruiter){
+            $userFavorites = $user->getFavoriteCandidates()->getValues();
+        }
+
         //pagination
-            $favorite = $paginator->paginate(
-                $favorites,
-                $request->query->getInt('page', 1),
-                5
-            );
+        $favorite = $paginator->paginate(
+            $userFavorites,
+            $request->query->getInt('page', 1),
+            5
+        );
 
         return $this->render('favorite/favorite_list.html.twig', [
-            'favorites' => $favorites,
+            'favorites' => $userFavorites,
             'favorite' => $favorite
-
         ]);
     }
 
     /**
      * @Route("/favorite/addFavoriteCv/{id}", name="add_favorite_cv")
-     * @param CandidateRepository $repoCandidate
-     * @param PaginatorInterface $paginator
-     * @param CvRepository $cvRepo
-     * @param $id
-     * @param EntityManagerInterface $em
-     * @param Request $request
      */
-    public function addFavoriteCv(CandidateRepository $repoCandidate, Request $request, PaginatorInterface $paginator,$id, EntityManagerInterface $em, CvRepository $cvRepo): Response
+    public function addFavoriteCv($id, CandidateRepository $repoCandidate, EntityManagerInterface $em): Response
     {
-        $data = new SearchCandidate();
-        $formSearch = $this->createForm(SearchCandidateType::class, $data);
-        $formSearch->handleRequest($request);
-
-        $donnees = $repoCandidate->searchCandidate($data);
-        $candidates = $paginator->paginate(
-            $donnees,
-            $request->query->getInt('page', 1),
-            5
-        );
-        $candidateList = $repoCandidate->findAll();
-
         $user = $this->getUser();
-        $cv = $cvRepo->find($id);
-
-        $favorite = new Favorite();
-        $favorite->setCv($cv);
-
-        $user->addFavoriteCv($favorite);
-        $em->persist($favorite);
-        $em->flush();
-
-        $this->addFlash('success', 'Le cv a été ajouté à vos favoris');
-        return $this->render('main/candidateList.html.twig', [
-            'cv'=>$cv,
-            'formSearch' => $formSearch->createView(),
-            'listCandidates' => $candidates,
-            'candidates'=> $candidateList
-        ]);
+        $candidate = $repoCandidate->find($id);
+        if($user instanceof Recruiter){
+            $userFavorites = $user->getFavoriteCandidates()->getValues();
+            if(!in_array($candidate, $userFavorites)){
+                $user->addFavoriteCandidate($candidate);
+                $em->persist($user);
+                $em->flush();
+                $this->addFlash('success', 'Le candidat à bien été rajouté à vos favoris !');
+            }
+        }
+        return $this->redirectToRoute('main_candidate_list');
     }
 
     /**
      * @Route("/favorite/remove_cv/{id}", name="remove_favorite_cv")
      */
-    public function RemoveFavoritecv(CandidateRepository $repoCandidate, Request $request, PaginatorInterface $paginator,$id,FavoriteRepository $favRepo,EntityManagerInterface $em): Response
+    public function RemoveFavoritecv($id, CandidateRepository $repoCandidate, EntityManagerInterface $em): Response
     {
-        $data = new SearchCandidate();
-        $formSearch = $this->createForm(SearchCandidateType::class, $data);
-        $formSearch->handleRequest($request);
-
-        $donnees = $repoCandidate->searchCandidate($data);
-        $candidates = $paginator->paginate(
-            $donnees,
-            $request->query->getInt('page', 1),
-            5
-        );
-        $candidateList = $repoCandidate->findAll();
-
         $user = $this->getUser();
-        $favorite = $favRepo->find($id);
-
-        try {
-            $user->removeFavoriteCv($favorite);
-            $em->persist($favorite);
-            $em->flush();
-
-            $this->addFlash('success', 'Le cv a été retiré de vos favoris');
-        }catch (Exception $e){
-            $e->getMessage();
+//<<<<<<< HEAD
+//        $favorite = $favRepo->find($id);
+//
+//        try {
+//            $user->removeFavoriteCv($favorite);
+//            $em->persist($favorite);
+//            $em->flush();
+//
+//            $this->addFlash('success', 'Le cv a été retiré de vos favoris');
+//        }catch (Exception $e){
+//            $e->getMessage();
+//=======
+        $candidate = $repoCandidate->find($id);
+        if($user instanceof Recruiter){
+            $userFavorites = $user->getFavoriteCandidates()->getValues();
+            if(in_array($candidate, $userFavorites)){
+                $user->removeFavoriteCandidate($candidate);
+                $em->persist($user);
+                $em->flush();
+                $this->addFlash('success', 'Le candidat à bien été retiré de vos favoris !');
+            }
+//>>>>>>> b9ed6813639f8d61b34de841d2f13d2020bfc8d6
         }
-
-        return $this->render('main/candidateList.html.twig', [
-            'favorite' => $favorite,
-            'formSearch' => $formSearch->createView(),
-            'listCandidates' => $candidates,
-            'candidates'=> $candidateList
-        ]);
-
+        return $this->redirectToRoute('main_candidate_list');
     }
-
-
-   
 
     /**
      * @Route("/favorite/remove_cv_list/{id}", name="remove_favorite_cv_list")
-     * @param CandidateRepository $repoCandidate
-     * @param PaginatorInterface $paginator
-     * @param $id
-     * @param EntityManagerInterface $em
-     * @param Request $request
-     * @return Response
      */
-    public function RemoveFavoritecvFromList(CandidateRepository $repoCandidate, Request $request, PaginatorInterface $paginator,$id,FavoriteRepository $favRepo,EntityManagerInterface $em): Response
+    public function RemoveFavoritecvFromList($id, CandidateRepository $repoCandidate, EntityManagerInterface $em): Response
     {
-        $data = new SearchCandidate();
-        $formSearch = $this->createForm(SearchCandidateType::class, $data);
-        $formSearch->handleRequest($request);
-
-        $donnees = $repoCandidate->searchCandidate($data);
-        $candidates = $paginator->paginate(
-            $donnees,
-            $request->query->getInt('page', 1),
-            5
-        );
-        $candidateList = $repoCandidate->findAll();
-
         $user = $this->getUser();
-        $favorite = $favRepo->find($id);
-
-        if ($favorite) {
-
-            try {
-                $user->removeFavoriteCv($favorite);
-                $em->persist($favorite);
+        $candidate = $repoCandidate->find($id);
+        if($user instanceof Recruiter){
+            $userFavorites = $user->getFavoriteCandidates()->getValues();
+            if(in_array($candidate, $userFavorites)){
+                $user->removeFavoriteCandidate($candidate);
+                $em->persist($user);
                 $em->flush();
-                $this->addFlash('success', 'Le cv a été retirée de vos favoris');
-            } catch (Exception $e) {
-                $e->getMessage();
+//<<<<<<< HEAD
+//                $this->addFlash('success', 'Le cv a été retirée de vos favoris');
+//            } catch (Exception $e) {
+//                $e->getMessage();
+//=======
+                $this->addFlash('success', 'Le candidat à bien été retiré de vos favoris !');
+//>>>>>>> b9ed6813639f8d61b34de841d2f13d2020bfc8d6
             }
         }
-        return $this->render('favorite/favorite_list.html.twig', [
-            'favorite' => $favorite,
-            'formSearch' => $formSearch->createView(),
-            'listCandidates' => $candidates,
-            'candidates'=> $candidateList,
-            'favorites' =>  $favorites = $user->getFavorites()
-        ]);
+        return $this->redirectToRoute('favorites');
 
     }
 }
