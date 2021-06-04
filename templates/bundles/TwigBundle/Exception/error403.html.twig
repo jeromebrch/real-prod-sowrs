@@ -11,10 +11,13 @@
 
 {% block body %}
     <div class="error_container">
-        <h1 class="error_title_forbidden">Vous n'avez pas accès à cette page</h1>
-        <h3 class="explain_error">
-            Il faut avoir les droits adéquats pour accéder à cette page !
-        </h3>
-        <a href="{{ path('main') }}" class="btn required">Accueil</a>
+        <div class="error_cl">
+            <img src="{{ asset('img/error403.png') }}" class="error_img" alt="error 404" title="La page n'est pas trouvée" />
+            <p class="error_info">
+                Désolé,<br />
+                vous n'avez pas accès à cette fonctionnalité &#x1F512
+            </p>
+            <a href="{{ path('main') }}" class="link_return_home btn">On repart en arrière ?</a>
+        </div>
     </div>
 {% endblock %}
