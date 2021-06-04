@@ -112,7 +112,7 @@ body .container_link_profil{
     font-weight: bold;
 }
 .link_applie_profil:hover{
-    color: #937FA4;
+    color: #555555;
 }
 .empty_offer_list{
     display: flex;
@@ -136,5 +136,5 @@ body .container_link_profil{
     font-weight: bold;
 }
 .link_create_offer_intext:hover{
-    color: #937FA4;
+    color: #555555;
 }
