@@ -114,3 +114,27 @@ body .container_link_profil{
 .link_applie_profil:hover{
     color: #937FA4;
 }
+.empty_offer_list{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 30px;
+}
+.contenu-scroll{
+    max-height: 350px;
+    background-color: white;
+}
+.create_offer_option_text{
+    color: #555555;
+    font-weight: bold;
+    font-family: 'KohinoorBangla', Arial, serif;
+    padding-top: 50px;
+}
+.link_create_offer_intext{
+    color: #937FA4;
+    font-weight: bold;
+}
+.link_create_offer_intext:hover{
+    color: #937FA4;
+}

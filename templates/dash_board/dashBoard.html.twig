@@ -288,27 +288,30 @@
                         <div class="m-5">
                             <div class="row">
                                 <div class="col-lg-6 section_dashboard">
-{#<<<<<<< HEAD#}
-{#                                    <div class="in_section h-100">#}
-{#                                        <div class="row mb-3">#}
-{#=======#}
                                     <div class="in_section">
                                         <div class="row mb-2">
-{#>>>>>>> b9ed6813639f8d61b34de841d2f13d2020bfc8d6#}
                                             <div class="col-lg-6">
                                                 <h4 class="subtitle m-0">Vos offres</h4>
                                             </div>
                                             <div class="col-lg-6 text-end">
-                                                <a href="{{ path('dash_board_job_offer_create') }}" class="button-creerUne m-0">Créer une offre</a> {# todo : régler le bouton #}
+                                                <a href="{{ path('dash_board_job_offer_create') }}" class="button-creerUne m-0">Créer une offre</a>
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="contenu-scroll overflow-auto h-100">
-                                            {% for jobOffer in jobOffers %}
-
-                                                    {% include '/dash_board/jobOffer/_cardJobOfferDashBoard.html.twig' %}
-
-                                            {% endfor %}
+                                                {% if jobOffers is not empty %}
+                                                    {% for jobOffer in jobOffers %}
+                                                            {% include '/dash_board/jobOffer/_cardJobOfferDashBoard.html.twig' %}
+                                                    {% endfor %}
+                                                {% else %}
+                                                    <div class="empty_offer_list">
+                                                        <p class="create_offer_option_text">
+                                                            Vous n'avez pour le moment aucune offre en ligne,
+                                                            trouvez rapidement notre nouveau collaborateur en
+                                                            <a href="{{ path('dash_board_job_offer_create') }}" class="link_create_offer_intext">créant une offre</a> &#128521
+                                                        </p>
+                                                    </div>
+                                                {% endif %}
                                             </div>
                                         </div>
                                     </div>
@@ -341,7 +344,13 @@
                                                     </div>
                                                 {% endfor %}
                                             {% else %}
-
+                                                <div class="empty_offer_list">
+                                                    <p class="create_offer_option_text">
+                                                        Vous n'avez pour le moment aucune candidature en cours,
+                                                        pourquoi ne pas contacter directement les candidats potentiels ? &#128521
+                                                    </p>
+                                                    <a href="{{ path('main_candidate_list') }}" class="btn m-0">Consulter les profils</a>
+                                                </div>
                                             {% endif %}
                                         </div>
                                     </div>

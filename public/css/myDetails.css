@@ -79,12 +79,6 @@ body .container_upload{
     color: white;
     margin: auto;
 }
-
-.contenu-scroll{
-    max-height: 350px;
-    background-color: white;
-    border: 1px solid #D3D3D3;
-}
 #btnAnnulerAjoutCauseRecruiter {
     width: 2%;
     cursor: pointer;
