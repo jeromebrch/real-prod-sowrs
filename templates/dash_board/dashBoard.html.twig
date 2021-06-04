@@ -289,20 +289,22 @@
                             <div class="row">
                                 <div class="col-lg-6 section_dashboard">
                                     <div class="in_section h-100">
-                                        <div class="row mb-2">
+                                        <div class="row mb-3">
                                             <div class="col-lg-6">
                                                 <h4 class="subtitle m-0">Vos offres</h4>
                                             </div>
                                             <div class="col-lg-6 text-end">
-                                                <a href="{{ path('dash_board_job_offer_create') }}" class="button-creerUne m-0">Créer une</a> {# todo : régler le bouton #}
+                                                <a href="{{ path('dash_board_job_offer_create') }}" class="button-creerUne m-0">Créer une offre</a> {# todo : régler le bouton #}
                                             </div>
                                         </div>
-                                        <div class="contenu-scroll content-subtitle-item h-100">
+                                        <div class="row">
+                                            <div class="contenu-scroll overflow-auto h-100">
                                             {% for jobOffer in jobOffers %}
-                                                <div>
+
                                                     {% include '/dash_board/jobOffer/_cardJobOfferDashBoard.html.twig' %}
-                                                </div>
+
                                             {% endfor %}
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

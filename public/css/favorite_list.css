@@ -1,5 +1,7 @@
 .offer {
     text-align: left;
+    font-family: 'KohinoorBangla', Arial, serif;
+    color: #555555;
 }
 
 .jobOffer_div{
@@ -7,25 +9,47 @@
 }
 
 #photo_profile{
-    width: 140px
+    width: 140px;
+    /*height: 120px;*/
 }
 .TextTitle{
     text-align: center
 }
 .title{
-    color: white
+    color: white;
 }
 
-.ImgTrash {
-    width: 1.5em;
-    height: 2em;
-    border-radius: 1em;
+.messageImgTrash {
+    width: 52px;
+    height: 42px;
+    border-radius: 50px;
+    background: #555555;
     border: none;
-    color: black;
+    padding: 8px;
+    font-size: larger;
+    fill: white;
+    margin-left: 50px;
 }
-.trash{
-    text-align: right;
+.messageImgTrash:hover {
+    background-color: #1DCA91;
+    text-decoration:none;
+    background-position: inherit;
 }
+
+.align{
+    padding-left: 2em;
+}
+
+/*.ImgTrash {*/
+/*    width: 1.5em;*/
+/*    height: auto;*/
+/*    border-radius: 1em;*/
+/*    border: none;*/
+/*    background: #555555;*/
+/*}*/
+/*.trash{*/
+/*    text-align: right;*/
+/*}*/
 .btn_cv {
     width: 20px;
     height: 5em;
@@ -46,6 +70,11 @@
 }
 .container_no_favorites h4{
     color: #555555;
+}
+
+.normal {
+    font-weight: normal;
+    font-family: 'KohinoorBangla', Arial, serif;
 }
 
 @media screen and (max-width: 500px){

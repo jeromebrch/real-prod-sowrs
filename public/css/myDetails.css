@@ -47,6 +47,7 @@ body .container_upload{
     background-color: #555555;
     text-decoration:none;
     background-position: inherit;
+    color: white;
 }
 
 .subtitle-myDetail  {
@@ -80,8 +81,7 @@ body .container_upload{
 }
 
 .contenu-scroll{
-    height: 170px;
-    overflow: auto;
+    max-height: 350px;
     background-color: white;
     border: 1px solid #D3D3D3;
 }

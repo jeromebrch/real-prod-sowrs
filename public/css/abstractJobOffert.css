@@ -8,11 +8,21 @@
     background: #1DCA91;
     border: none;
 }
+
+.abstractJobOfferButton:hover {
+    background-position: inherit;
+    background: #555555;
+    text-decoration:none;
+}
+
 .date_abstract_job_offer{
     text-align: left;
     font-family: 'KohinoorBangla', Arial, serif;
     color: #937FA4;
 }
+
+
+
 .abstract_contract_type{
     padding: 5px;
     color: white;
@@ -21,15 +31,26 @@
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    border-radius: 4px;
+    border-radius: 50pt;
+
 }
+
 .abstractJobOfferButtonTrash {
     width: 2.5em;
     height: 2em;
     border-radius: 1em;
     background: #555555;
     border: none;
+    margin-left: 0.5rem;
+    margin-right: 1rem;
 }
+
+.abstractJobOfferButtonTrash:hover {
+    background-position: inherit;
+    background: #1dca91;
+    text-decoration:none;
+}
+
 .container_abstract_button a{
     display: flex;
     flex-direction: row;
@@ -43,12 +64,20 @@
     background: #555555;
     border: none;
 }
+
+.abstractJobOfferButtonPause:hover {
+    background-position: inherit;
+    background: #1DCA91;
+    text-decoration:none;
+}
+
 .abstractJobOfferTextTitle {
     font-family: 'KohinoorBangla', Arial, serif;
-    color: #1DCA91;
+    color: #555555;
 }
 .abstractJobOfferText {
     font-family: 'KohinoorBangla', Arial, serif;
+    color: #555555;
 }
 .abstractJobOfferImgGlobe2 {
     height: 1.3em;
@@ -83,10 +112,98 @@
     width: auto;
 }
 .abstractJobOfferImgPencil {
-    height: 1em;
+    height: 1.5em;
     width: auto;
 }
 .abstractJobOfferImgTrash {
-    height: 1em;
+    height: 1.5em;
     width: auto;
+}
+
+.abstractTextRegion{
+    text-align: left;
+}
+
+.abstract_contract_type_CDD{
+    padding: 5px;
+    color: white;
+    background-color: #6ce1ba;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50pt;
+}
+
+.abstract_contract_type_FREELANCE{
+    padding: 5px;
+    color: white;
+    background-color: #aff9f0;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50pt;
+}
+
+.abstract_contract_type_ASSOCIE{
+    padding: 5px;
+    color: white;
+    background-color: #56d9cb;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50pt;
+}
+
+.abstract_contract_type_STAGE{
+
+    padding: 5px;
+    color: white;
+    background-color: #80eee2;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50pt;
+}
+
+.abstract_contract_type_INTERIM{
+    padding: 5px;
+    color: white;
+    background-color: #a59bb5 ;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50pt;
+}
+
+.abstract_contract_type_SERVICE{
+    /*width: fit-content;*/
+    padding: 5px;
+    color: white;
+    background-color: #827399;
+    display: flex;
+    flex-direction: inherit;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50pt;
+    text-align: center;
+}
+
+.abstract_contract_type_AUTRE{
+    padding: 5px;
+    color: white;
+    background-color: #14ae9e;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50pt;
+}
+
+.margright {
+    margin-right: 1rem;
 }

@@ -41,7 +41,7 @@ class CandidateType extends AbstractType
                 'class' => LevelStudy::class,
                 'choice_label' => 'wording',
                 'label' => false,
-                'required' => true,
+                'required' => false,
                 'placeholder' => '---Sélectionner un niveau d\'étude---'
             ])
             ->add('agreeTerms', CheckboxType::class, [
@@ -100,7 +100,7 @@ class CandidateType extends AbstractType
                 'class' => LevelExperience::class,
                 'choice_label' => 'wording',
                 'label' => false,
-                'required' => true,
+                'required' => false,
                 'placeholder' => '---Sélectionner un niveau d\'expérience---'
             ])
 
@@ -108,7 +108,7 @@ class CandidateType extends AbstractType
                 'class' => BusinessProfile::class,
                 'choice_label' => 'wording',
                 'label' => false,
-                'required' => true,
+                'required' => false,
                 'placeholder' => '---Sélectionner un profil métier---'
             ])
             ->add('plainPassword', RepeatedType::class, [

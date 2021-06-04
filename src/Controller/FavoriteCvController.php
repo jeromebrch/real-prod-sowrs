@@ -118,7 +118,7 @@ class FavoriteCvController extends AbstractController
             $em->persist($favorite);
             $em->flush();
 
-            $this->addFlash('success', 'L\'offre a été retirée de vos favoris');
+            $this->addFlash('success', 'Le cv a été retiré de vos favoris');
         }catch (Exception $e){
             $e->getMessage();
         }
@@ -167,7 +167,7 @@ class FavoriteCvController extends AbstractController
                 $user->removeFavoriteCv($favorite);
                 $em->persist($favorite);
                 $em->flush();
-                $this->addFlash('success', 'le cv a été retirée de vos favoris');
+                $this->addFlash('success', 'Le cv a été retirée de vos favoris');
             } catch (Exception $e) {
                 $e->getMessage();
             }

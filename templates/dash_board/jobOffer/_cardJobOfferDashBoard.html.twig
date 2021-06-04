@@ -1,44 +1,73 @@
 <div class="abstractJobOffer border border-2 p-3 m-3 gx-0 shadow">
     <div class="row">
-        <h6 class="abstractJobOfferTextTitle col-10">{{ jobOffer.title }}</h6>
-        <div class="abstract_contract_type col-2">{{ jobOffer.contractType.wording }}</div>
+        <div class="col-6"><h6 class="abstractJobOfferTextTitle">{{ jobOffer.title }}<br></h6>
+            {% if jobOffer.numberOfViews == 0 %}
+            <span class="date_abstract_job_offer">0 vue</span><br>
+            {% elseif jobOffer.numberOfViews == 1 %}
+            <span class="date_abstract_job_offer">{{ jobOffer.numberOfViews }} vue</span><br>
+            {% else %}
+            <span class="date_abstract_job_offer">{{ jobOffer.numberOfViews }} vues</span><br>
+            {% endif %}
+            <span class="date_abstract_job_offer">{{ jobOffer.city }}</span><br>
+            <span class="date_abstract_job_offer">{{ jobOffer.creationDate|date("d/m/Y H:i") }}</span><br>
+        </div>
+        <div class="col-6 ">
+            <div class="">
+                <div class="row justify-content-md-end mb-4" >
+                {% if jobOffer.contractType.wording == 'CDI' %}
+                    <div class="abstract_contract_type margright col-4 ">{{ jobOffer.contractType.wording }}</div><br>
+                {% elseif jobOffer.contractType.wording == 'CDD' %}
+                    <div class="abstract_contract_type_CDD margright col-4">   {{ jobOffer.contractType.wording }}   </div><br>
+                {% elseif jobOffer.contractType.wording == 'Freelance - Indépendant' %}
+                    <div class="abstract_contract_type_FREELANCE margright col-4">Freelance</div><br>
+                {% elseif jobOffer.contractType.wording == 'Associé(e)' %}
+                    <div class="abstract_contract_type_ASSOCIE margright col-4">{{ jobOffer.contractType.wording }}</div><br>
+                {% elseif jobOffer.contractType.wording == 'Stage' %}
+                    <div class="abstract_contract_type_STAGE margright col-4 ">{{ jobOffer.contractType.wording }}</div><br>
+                {% elseif jobOffer.contractType.wording == 'Intérim' %}
+                    <div class="abstract_contract_type_INTERIM margright col-4">{{ jobOffer.contractType.wording }}</div><br>
+                {% elseif jobOffer.contractType.wording == 'Service bénévole' %}
+                    <div class="abstract_contract_type_SERVICE margright col-8">{{ jobOffer.contractType.wording }}</div><br>
+                {% elseif jobOffer.contractType.wording == 'Autre' %}
+                    <div class="abstract_contract_type_AUTRE margright col-4">{{ jobOffer.contractType.wording }}</div><br>
+                {% endif %}
+                </div>
+            </div>
+            <div class="">
+            <div class="row container_abstract_button justify-content-md-end ">
+
+                <a class="abstractJobOfferButton col-lg-3 m-2 text-center align-self-end" href="{{ path('jobOffer_modifyJobOffer', {'id':jobOffer.id}) }}"
+                   role="button">
+                    <img class="abstractJobOfferImgPencil" src="{{ asset('img/boostrap/pencil-fill-white.svg') }}"/>
+                </a>
+                <a class="abstractJobOfferButton col-lg-3 m-2 text-center align-self-end" href="{{ path('jobOffer_refreshOffer', {'id':jobOffer.id}) }}"
+                   role="button">
+                    <img class="abstractJobOfferImgRepeat" src="{{ asset('img/boostrap/arrow-repeat-white.svg') }}"/>
+                </a>
+                {% if jobOffer.published == true %}
+                    <a class="abstractJobOfferButtonPause col-lg-3 m-2 text-center align-self-end"
+                       href="{{ path('jobOffer_pauseAndPlayOffer', {'id':jobOffer.id}) }}"
+                       role="button">
+                        <img class="abstractJobOfferPause" src="{{ asset('img/boostrap/pause-fill-white.svg') }}"/>
+                    </a>
+                {% else %}
+                    <a class="abstractJobOfferButton col-lg-3 m-2  text-center align-self-end"
+                       href="{{ path('jobOffer_pauseAndPlayOffer', {'id':jobOffer.id}) }}"
+                       role="button">
+                        <img class="abstractJobOfferImgPlay" src="{{ asset('img/boostrap/play-fill-white.svg') }}"/>
+                    </a>
+                {% endif %}
+                <a class="abstractJobOfferButtonTrash col-lg-3 my-2 text-center align-self-end"
+                   href="{{ path('jobOffer_deleteOffer', {'id':jobOffer.id}) }}" role="button">
+                    <img class="abstractJobOfferImgTrash" src="{{ asset('img/boostrap/trash-fill-white.svg') }}">
+                </a>
+                </div>
+            </div>
     </div>
-    <div class="row">
         {#
         <div class="col-1">
             <img class="abstractJobOfferImgStopwatch" src="{{ asset('img/boostrap/stopwatch.svg') }}"/>
         </div>
         #}
-        <div>
-            <p class="date_abstract_job_offer">{{ jobOffer.creationDate|date("y/m/d H:i") }}</p>
-        </div>
-    </div>
-
-    <div class="row container_abstract_button">
-        {% if jobOffer.published == true %}
-            <a class="abstractJobOfferButtonPause col-lg-3 m-2 text-center align-self-center"
-               href="{{ path('jobOffer_pauseAndPlayOffer', {'id':jobOffer.id}) }}"
-               role="button">
-                <img class="abstractJobOfferPause" src="{{ asset('img/boostrap/pause-fill-white.svg') }}"/>
-            </a>
-        {% else %}
-            <a class="abstractJobOfferButton col-lg-3 m-2 text-center align-self-center"
-               href="{{ path('jobOffer_pauseAndPlayOffer', {'id':jobOffer.id}) }}"
-               role="button">
-                <img class="abstractJobOfferImgPlay" src="{{ asset('img/boostrap/play-fill-white.svg') }}"/>
-            </a>
-        {% endif %}
-        <a class="abstractJobOfferButton col-lg-3 m-2 text-center align-self-center" href="{{ path('jobOffer_refreshOffer', {'id':jobOffer.id}) }}"
-           role="button">
-            <img class="abstractJobOfferImgRepeat" src="{{ asset('img/boostrap/arrow-repeat-white.svg') }}"/>
-        </a>
-        <a class="abstractJobOfferButton col-lg-3 m-2 text-center align-self-center" href="{{ path('jobOffer_modifyJobOffer', {'id':jobOffer.id}) }}"
-           role="button">
-            <img class="abstractJobOfferImgPencil" src="{{ asset('img/boostrap/pencil-fill-white.svg') }}"/>
-        </a>
-        <a class="abstractJobOfferButtonTrash col-lg-3 m-2 text-center align-self-center"
-           href="{{ path('jobOffer_deleteOffer', {'id':jobOffer.id}) }}" role="button">
-            <img class="abstractJobOfferImgTrash" src="{{ asset('img/boostrap/trash-fill-white.svg') }}">
-        </a>
     </div>
 </div>

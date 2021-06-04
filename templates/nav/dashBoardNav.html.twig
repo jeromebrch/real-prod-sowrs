@@ -9,7 +9,7 @@
             <img id="photo_profile" src="{{ asset('images/profils/avatar.jpg') }}"
                  alt="photo du profil">
         {% endif %}
-        <h2 class="entityName m-3">{{ app.user.firstname }} {{ app.user.lastname }}</h2>
+        <h2 class="entityName m-3">{{ app.user.firstname }} {{ app.user.lastname | upper }}</h2>
         <div class="error">
             {{ form_errors(formPicture) }}
             {{ form_start(formPicture, {'attr': {'id':'updateavatarform', 'class':'d-none'}}) }}
@@ -19,6 +19,17 @@
                 <label for="dash_board_nav_pictureFile" class="btn required buttonDashBoardNav">Changez votre photo</label>
             {% else %}
                  <label for="dash_board_nav_pictureFile" class="btn required buttonDashBoardNav">Importez votre photo</label>
+            {% endif %}
+        </div>
+        <div class="mt-2 error">
+            {{ form_errors(formCv) }}
+            {{ form_start(formCv, {'attr': {'id':'updatecvform', 'class':'d-none'}}) }}
+            {{ form_widget(formCv) }}
+            {{ form_end(formCv) }}
+            {% if app.user.cv %}
+                <label for="create_cv_cvFile" class="btn required buttonDashBoardNav">Changez votre cv</label>
+            {% else %}
+                <label for="create_cv_cvFile" class="btn required buttonDashBoardNav">Importer votre cv</label>
             {% endif %}
         </div>
         <br>
@@ -47,17 +58,6 @@
                 <a class="nav-link" href="{{ path('app_logout') }}">Déconnexion</a>
             </li>
         </ul>
-        <div class="error">
-            {{ form_errors(formCv) }}
-            {{ form_start(formCv, {'attr': {'id':'updatecvform', 'class':'d-none'}}) }}
-            {{ form_widget(formCv) }}
-            {{ form_end(formCv) }}
-            {% if app.user.cv %}
-                <label for="create_cv_cvFile" class="btn required buttonDashBoardNav">Changez votre cv</label>
-            {% else %}
-                <label for="create_cv_cvFile" class="btn required buttonDashBoardNav">Importer votre cv</label>
-           {% endif %}
-        </div>
         <br>
         {% if app.user.private %}
             <a class="btn" type="button" href="{{ path('dash_board_account_status') }}">Enlever la cape d'invisibilité</a>

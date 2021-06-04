@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Candidate;
 use App\Entity\Commitment;
 use App\Entity\Recruiter;
+use App\Entity\User;
 use App\Repository\CommitmentRepository;
 use App\Repository\DevelopmentGoalsRepository;
 use App\Repository\JobOfferRepository;
