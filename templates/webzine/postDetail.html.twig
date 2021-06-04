@@ -161,10 +161,9 @@
                             {% if post.comments is not empty %}
                                 {% for comment in comments %}
                                     <div class="comment">
-                                        <h4 class="comment_title">{{ comment.title }}</h4>
                                         {% if 'ROLE_CANDIDATE' in comment.writeruser.roles %}
                                             <a href="{{ path('candidate_show', {'id':comment.writerUser.id}) }}">
-                                                <h4 class="comment_writer">{{ comment.writeruser.lastname }} {{ comment.writeruser.firstname }}</h4>
+                                                <h4 class="comment_writer">{{ comment.writeruser.lastname|upper }} {{ comment.writeruser.firstname|capitalize }}</h4>
                                             </a>
                                         {% elseif 'ROLE_RECRUITER' in comment.writeruser.roles %}
                                             <a href="{{ path('show_recruiter_profil', {'id':comment.writerUser.id}) }}">

@@ -27,11 +27,13 @@
 
  }
 .content_post_detail:first-child::first-letter{
-    color: #1dca91;
-    font-size: 4em;
     float: left;
-    position: relative;
-    bottom: 40px;
+    font-size: 4em;
+    line-height: 80%;
+    margin:-.1em 0px;
+    padding-right: .1em;
+    color: #1dca91;
+    font-weight: normal;
 }
 .post_section{
     background-color: #55555529;

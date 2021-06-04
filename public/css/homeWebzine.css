@@ -35,13 +35,37 @@ blockquote{
     text-decoration: none;
     color: white;
     border-radius: 4px;
+    font-family: 'KohinoorBangla', Arial, serif;
+}
+.btn_admin:hover{
+    color: white;
+    animation-duration: 0.5s;
+    animation-name: btnAdminGrowUp;
 }
 .block_create_tag{
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    border: 4px solid #B0413E88;
+    border-radius: 30px;
 }
 .block_create_tag *{
     margin: 10px;
+}
+.block_create_tag label{
+    font-family: 'KohinoorBangla', Arial, serif;
+    color: #555555;
+    font-weight: bold;
+}
+@keyframes btnAdminGrowUp {
+    from{
+        padding: 15px;
+    }
+    50%{
+        padding: 21px;
+    }
+    to{
+        padding: 15px;
+    }
 }

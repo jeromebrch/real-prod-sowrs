@@ -54,11 +54,12 @@
     font-size: 1em;
     padding-left: 15px;
 }
-.mini_webzine_title{
+body .mini_webzine_title {
     color: #937FA4;
     font-family: 'KohinoorBangla', Arial, serif;
     font-size: 1.1em;
     padding-left: 15px;
+    font-weight: bold;
 }
 .mini_webzine_title:hover{
     color: #937FA4;

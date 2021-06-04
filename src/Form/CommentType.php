@@ -14,11 +14,11 @@ class CommentType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('title', TextType::class, [
-                'label' => "Titre"
-            ])
             ->add('text', TextareaType::class, [
-                'label' => "Commentaire"
+                'label' => false,
+                'attr' => [
+                    'placeholder' => 'Votre commentaire...'
+                ]
             ])
         ;
     }

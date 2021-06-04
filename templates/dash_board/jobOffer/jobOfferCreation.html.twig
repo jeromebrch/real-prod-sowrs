@@ -14,7 +14,6 @@
                 {{ render(controller('App\\Controller\\DashBoardNavController::navBar'))}}
             </div>
             <div class="col-lg-9 gx-0">
-
                 <div class="container mb-5 background-title">
                     <div class="row h-100">
                         <div class="col-sm-6 text-center align-self-center text-white">
@@ -23,7 +22,7 @@
                     </div>
                 </div>
                 <div class="m-5">
-                    <div class="error">{{ form_errors(jobOfferForm) }}</div>
+                    <div class="error_form">{{ form_errors(jobOfferForm) }}</div>
                     {{ form_start(jobOfferForm) }}
                     <h3 class="job_offer_creation_title">Descriptif de l'offre <i class="fas fa-xs fa-question-circle"></i></h3>
                     <div class="info_message">

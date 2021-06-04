@@ -114,7 +114,7 @@ class WebzineController extends AbstractController
         if($commentForm->isSubmitted() && $commentForm->isValid()){
             //verify is the comment contains forbidden words, cf list in database
             foreach($censuredWords as $wordID => $value){
-                if(!in_array($value->getWord(), explode(" ", $comment->getText())) and !in_array($value->getWord(), explode(" ", $comment->getTitle()))){
+                if(!in_array($value->getWord(), explode(" ", $comment->getText()))){
                     $validator = true;
                 }else{
                     $validator = false;
@@ -124,7 +124,7 @@ class WebzineController extends AbstractController
             }
             //spam filter
             foreach($spamTerms as $spamID => $value){
-                if(strpos($comment->getText(), $value->getWording()) || strpos($comment->getTitle(), $value->getWording())){
+                if(strpos($comment->getText(), $value->getWording())){
                     $validator = false;
                     $forbiddenWord = $value->getWording();
                 }
