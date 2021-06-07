@@ -36,6 +36,7 @@ class MessageSentByCandidateController extends AbstractController
         $recruiter = $recruteurRepo->find($id);
 
         $category = $this->getDoctrine()->getRepository(Category::class)->findOneByName('message');
+        $category = $category[0];
 
         //counting the unreaded messages
         $messageState = $em->getRepository(Message::class)->count(['userRecipient' => $user, 'state' => 'non lu']);

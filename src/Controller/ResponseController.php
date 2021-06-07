@@ -94,7 +94,7 @@ class ResponseController extends AbstractController
                 //sending email
                 $email = (new Email())
                     ->from('team@sowrs.com')
-                    ->to('kennouche.annelise@gmail.com')//todo :email du destinataire
+                    ->to('jerome.brch@gmail.com')//todo :email du destinataire
                     ->subject($message->getSubject())
                     ->text($this->renderView(
                     // getting text for email from html page
@@ -109,7 +109,7 @@ class ResponseController extends AbstractController
                 //sending email
                 $email = (new Email())
                     ->from('team@sowrs.com')
-                    ->to('kennouche.annelise@gmail.com')//todo :email du destinataire
+                    ->to('jerome.brch@gmail.com')//todo :email du destinataire
                     ->subject($message->getSubject())
                     ->text($this->renderView(
                     // getting text for email from html page
@@ -122,13 +122,7 @@ class ResponseController extends AbstractController
             }
 
             $this->addFlash('success', 'Votre message a bien été envoyé!');
-            return $this->render('messaging/sendMessageResponse.html.twig', [
-                'formMessage' => $formMessage->createView(),
-                'message' => $message,
-                'messageRecu' => $messageRecu,
-                'nonlu' => $messageState,
-                'userSender' => $userSender
-            ]);
+            return $this->redirectToRoute('messaging');
         }
 
         return $this->render('messaging/sendMessageResponse.html.twig', [

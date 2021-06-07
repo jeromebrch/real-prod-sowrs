@@ -5,35 +5,48 @@
         <div class="col-lg-3 border-end border-3">
             {{ render(controller('App\\Controller\\DashBoardNavController::navBar')) }}
         </div>
-        <div class=" col-lg-9 ">
+        <div class="col-lg-9">
             <div class="row">
-                <div class="col-lg-12 border-messaging">
-                    <a href="{{ path('messaging')}}"><h4> Messagerie {% if nonlu != 0 %}({{ nonlu }}){% endif %}</h4></a>
+                <div class="col-lg-12 border-messaging container_link_messagerie">
+                    <a href="{{ path('messaging')}}"><h4 class="title_messagerie_read_message"> Messagerie {% if nonlu != 0 %}({{ nonlu }}){% endif %}</h4></a>
                 </div>
                 <div class="row">
-                    <div class="col-lg-12 border rounded-div border-2 p-3 mt-3 gx-0 shadow bg-light">
-                        <a href="{{ path('messaging') }}" class="col-2 link_return" ><img class="messageImgPencil" src="{{ asset('img/boostrap/arrow-left.svg') }}" alt="return" title="Retour"/> RETOUR</a>
+                    <div class="col-lg-12 border rounded-div border-2 p-3 mt-3 gx-0 bg-light container_info_read_message">
+                        <a href="{{ path('messaging') }}" class="col-2 link_return" ><i class="fas fa-arrow-left"></i> RETOUR</a>
                         <a href="{{ path('response', {'id':message.id }) }}" class="btn-response" >Répondre</a>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-lg-12 border rounded-div border-2 shadow bg-light" id="container_message">
-                        {% if "ROLE_CANDIDATE" in app.user.roles %}
-                            <p class="p_read_message">À : <strong>{{ message.userSender.entityname }}</strong></p>
-                        {% elseif "ROLE_RECRUITER" in app.user.roles %}
-                            <p class="p_read_message">À : <strong>{{ message.userSender.firstname~message.userSender.lastname }}</strong></p>
-                        {% endif %}
-                        <p class="p_read_message">Réponse au sujet : <strong>{{ message.subject }}</strong></p>
-                        <p class="body_message">{{ message.body }}
-                            {% if message.cv %}
-                                <a href="{{ asset('file/cv/' ~ message.cv.cvName) }}">
-                                    <img class="logo_pj" src="{{ asset('img/img_pj.png')}}" alt="attachment_file" title="Pièce jointe"/>
-                                </a>
+                    <div class="col-lg-12 border rounded-div border-2 bg-light container_info_read_message" id="container_message">
+                        <div class="row">
+                            {% if "ROLE_CANDIDATE" in app.user.roles %}
+                                <p class="p_read_message">De : <a href="{{ path('recruiter_profil', {'id':message.userSender.id}) }}" class="link_profil_read_message"><strong>{{ message.userSender.entityname }}</strong></a></p>
+                            {% elseif "ROLE_RECRUITER" in app.user.roles %}
+                                <p class="p_read_message">De : <a href="{{ path('candidate_show', {'id':message.userSender.id}) }}" class="link_profil_read_message"><strong>{{ message.userSender.firstname }} {{ message.userSender.lastname }}</strong></a></p>
                             {% endif %}
-                            {% if message.media %}
-                                <a href="{{ asset('file/uploads/' ~ message.media.mediaName )}}"><img class="logo_pj" src="{{ asset('img/img_pj.png')}}"/></a>
+                        </div>
+                        <div class="row">
+                            <div class="p_read_message col-12 read_message_subject">Réponse au sujet : <strong>{{ message.subject|capitalize }}</strong></div>
+                        </div>
+                        <div class="row">
+                            <div class="body_message p_read_message">{{ message.body }}</div>
+                            {% if message.cv or message.media %}
+                                <div class="container_uploaded_files">
+                                    {% if message.cv %}
+                                        <a href="{{ asset('file/cv/' ~ message.cv.cvName) }}" target="_blank">
+                                            <i class="fas fa-file-download fa-3x"></i>
+                                            Mon CV
+                                        </a>
+                                    {% endif %}
+                                    {% if message.media %}
+                                        <a href="{{ asset('file/uploads/' ~ message.media.mediaName )}}" target="_blank">
+                                            <i class="fas fa-file-download fa-3x"></i>
+                                            Ma lettre de motivation
+                                        </a>
+                                    {% endif %}
+                                </div>
                             {% endif %}
-                        </p>
+                        </div>
                     </div>
                 </div>
             </div>

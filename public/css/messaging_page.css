@@ -2,28 +2,34 @@
     background-color: white;
     height: 60Px;
     width: 100%;
+    border-bottom: 1px solid #937FA455;
 }
 .title_messagerie{
     margin: 15px;
-    text-align: center;
+    text-align: left;
+    color: #555555;
 }
 .header_messaging{
     height: 600px;
-    overflow: scroll;
+    padding: 5px 0 5px 0;
+}
+.thead{
+    padding: 10px;
+}
+.thead *{
+    font-family: 'KohinoorBangla', Arial, serif;
+    color: #555555;
 }
 .thead .tableFirst{
-    border: #5a6268 solid 1px;
     border-radius: 50%;
 }
 .border-top-messaging {
     background-color: white;
     width: 80%;
-
 }
 .tableFirst{
-    border: 1px solid #dee2e6!important ;
-    border-bottom: 1px solid #dee2e6!important ;
-    border-radius: 50px;
+    border-bottom: 1px solid #55555544!important ;
+    background-color: #F8F9FA;
 }
 .messageButtonTrash {
     width: 2.5em;
@@ -40,35 +46,29 @@
     background: #1DCA91;
     border: none;
 }
-
 .messageImgPencil {
     height: 1em;
     width: auto;
 }
-.messageImgTrash {
+.messageImgageTrash {
     height: 25px;
     width: 25px;
 }
-
 a{
     text-decoration: none;
     color: #313131;
 }
-
 .thead{
     width: 225px;
     border-radius: 50px;
     background: white;
-    border: none;
     padding: 10px;
     font-size: larger;
 }
-
 .rounded-div{
     border: 2px solid lightgray;
     border-radius: 20px;
 }
-
 .btn-response {
     width: 50px;
     border-radius: 50px;
@@ -78,4 +78,46 @@ a{
     font-size: larger;
     color: white;
     margin: auto;
+}
+.link_messaging_page{
+    color: #937FA4;
+    font-family: 'KohinoorBangla', Arial, serif;
+}
+.link_messaging_page:hover{
+    color: #555555;
+}
+.message_category{
+    color: #555555;
+    font-family: 'KohinoorBangla', Arial, serif;
+}
+.message_date{
+    color: #555555;
+    font-family: 'KohinoorBangla', Arial, serif;
+}
+.note_learn{
+    font-weight: bold;!important;
+}
+.message_array_section{
+    vertical-align: middle;
+}
+.container_empty_messages{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 60px;
+}
+.empty_messages{
+    background-color: white;
+    padding: 60px;
+    border-radius: 30px;
+}
+.empty_messages p{
+    font-family: 'KohinoorBangla', Arial, serif;
+    font-size: 1.2em;
+    color: #555555;
+    font-weight: bold;
+}
+.mini_letter{
+    color: #937FA4;
 }

@@ -95,49 +95,4 @@ class MessagingController extends AbstractController
 
         }
     }
-
-    /**
-     * @Route("/messaging/categoryMessage", name="category_message")
-     */
-    /* public function getCategoryMessage(Request $request): JsonResponse
-     {  //méthode to sort messages from categories
-         dd($request->request);
-         return new JsonResponse(['cat' => 's']);
-     }
-     {% block javascripts %}
-     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
-                 integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
-                 crossorigin="anonymous"></script>
-         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.5.4/umd/popper.min.js"></script>
-
-     <script>
-
-         var select = document.querySelector('#category');
-
-         select.addEventListener('change', function (e) {
-             var option = e.target[e.target.selectedIndex];
-             var idCategory = option.value;
-             var payload = {id:idCategory, a: 'demo'};
-
-             var r = fetch('{{ path('category_message') }}',
-                 {
-                     method: 'POST',
-                     body: JSON.stringify(payload),
-                     headers : {'Content-type': 'application/json'}
-                 })
-                 .then(response => console.log(response.json()))
-         });
-
-     </script>
-
-     <div class="col-lg-12 ">
-                             <label for="category">Filtrer: </label>
-                             <select id="category" class="btn required" style="width: 250px; margin: 20px; background-color: white"  name="nameCat">
-                                {% for categor in category %}
-                                     <option value="{{ categor.id }}">{{ categor.name }}</option>
-                                 {% endfor %}
-                             </select>
-                     </div>
- {% endblock %}
- */
 }

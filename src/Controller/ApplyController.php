@@ -98,6 +98,7 @@ class ApplyController extends AbstractController
             $mailer->send($email);
 
             $this->addFlash('success', 'Votre message a bien été envoyé!');
+            return $this->redirectToRoute('messaging');
         }
 
         return $this->render('messaging/sendMessageApply.html.twig', [

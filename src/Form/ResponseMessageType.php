@@ -16,7 +16,7 @@ class ResponseMessageType extends AbstractType
     {
         $builder
             ->add('body', TextareaType::class, [
-                'attr' =>['rows' =>16],
+                'attr' =>['placeholder' => 'Votre réponse...'],
                 'label'=> false,
                 'constraints' => [
                     new NotBlank([

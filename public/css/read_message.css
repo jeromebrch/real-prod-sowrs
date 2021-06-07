@@ -1,4 +1,4 @@
-.btn-response {
+.btn-response{
     width: 425px;
     border-radius: 50px;
     background: #1DCA91;
@@ -9,22 +9,85 @@
     margin: auto;
     text-align: right;
 }
+.btn-response:hover{
+    color: white;
+    background: #555555;
+}
 .p_read_message{
     text-align: left !important;
+    color: #555555;
+    font-family: 'KohinoorBangla', Arial, serif;
 }
 .body_message{
-    width: 300Px !important;
-    height: 500Px !important;
+    padding-left: 25px;
 }
 .logo_pj{
     width: 30px;
 }
 #container_message{
     background-color: white;
-    margin-top: 10px !important;
+    margin-top: 10px;!important;
 }
 .link_return{
     width: 150px;
     margin: 20px;
     text-decoration: none;
+    color: #937FA4;
+    font-family: 'KohinoorBangla', Arial, serif;
+    font-weight: bold;
+}
+.link_return:hover{
+    color: #555555;
+}
+.title_messagerie_read_message{
+    color: #937FA4;
+}
+.title_messagerie_read_message:hover{
+    color: #555555;
+}
+.container_link_messagerie{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.container_info_read_message{
+    margin: 10px;
+    padding: 20px 40px 20px 30px;
+}
+.link_profil_read_message{
+    color: #937FA4;
+    text-decoration: none;
+}
+.link_profil_read_message:hover{
+    color: #555555;
+}
+.read_message_subject{
+    margin-bottom: 20px;
+}
+.container_uploaded_files{
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    align-items: center;
+    padding-bottom: 15px;
+    padding-left: 25px;
+}
+.container_uploaded_files a{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 25px;
+    background-color: white;
+    border-radius: 30px;
+    margin: 20px 30px 0px 0px;
+    font-family: 'KohinoorBangla', Arial, serif;
+    color: #937FA4;
+}
+.container_uploaded_files a:hover{
+    color: #555555;
+}
+.container_uploaded_files a i{
+    color: #937FA4;
+    margin-bottom: 10px;
 }

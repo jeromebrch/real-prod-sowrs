@@ -10,45 +10,51 @@
             <div class="col-lg-3 border-end border-3">
                 {{ render(controller('App\\Controller\\DashBoardNavController::navBar')) }}
              </div>
-            <div class="col-lg-9 ">
+            <div class="col-lg-9">
                 <div class="row">
-                    <div class="col-lg-12 border-messaging ">
-                        <a class="link_messagerie_send" href="{{ path('messaging')}} "><h4>Messagerie {% if messageState != 0 %}({{ messageState }}){% endif %}</h4></a>
+                    <div class="col-12 border-messaging header_title_send_message">
+                        <h4>
+                            <a href="{{ path('messaging') }}" class="link_main_messagerie">Messagerie</a>
+                        </h4>
                     </div>
+                </div>
+                <div class="row">
                     {{ form_start(formMessage) }}
-                        <div class="row">
-                            <div class="col-lg-12 border rounded-div border-2 p-3 m-4 gx-0 shadow bg-light">
-                                <div class="row">
-                                    <div class="col-lg-3">
-                                        <a href="{{ path('messaging') }}" class="col-lg-2 btnBackTo">
-                                            <img alt="return_logo" title="Retour" class="messageImgPencil" src="{{ asset('img/boostrap/arrow-left.svg') }}"/>RETOUR</a>
-                                    </div>
-                                    <div class="col-lg-3"></div>
-                                    <div class="col-lg-3">
-                                        <button type="submit" class="btn required btn_send_apply">Envoyer</button>
-                                    </div>
-                                </div>
+                    <div class="row">
+                        <div class="send_message_options">
+                            <div>
+                                <a href="{{ path('messaging') }}" class="link_return_home_messagerie">
+                                    <i class="fas fa-arrow-left"></i> RETOUR
+                                </a>
                             </div>
-                            <div class="col-lg-3">
-                                <label class="btn buttonPj" for="formCv">Pièce jointe</label>
+                            <div>
+                                <label class="btn btn_send_applie" for="formCv">Mon CV</label>
                                 {{ form_row(formMessage.cvFile, { 'id': 'formCv'}) }}
                             </div>
-                            <div class="col-lg-3">
-                                <label class="btn buttonPj " for="formMedia">Autre pièce jointe</label>
+                            <div>
+                                <label class="btn btn_send_applie" for="formMedia">Lettre de motivation</label>
                                 {{ form_row(formMessage.mediaFile, { 'id': 'formMedia'}) }}
                             </div>
-                        </div>
-                        <div class="row">
-                                <div class="col-lg-12 border rounded-div border-2 p-3 m-4 gx-0 shadow bg-light block_info_apply">
-                                    <p class="apply_info">À : <strong>{{ jobOffer.entity.entityName }}</strong></p>
-                                    <p class="apply_info">Sujet : <strong>Candidature au poste de {{ jobOffer.title }}</strong></p>
-                                </div>
+                            <div>
+                                <button type="submit" class="btn btn_send_applie">Envoyer</button>
                             </div>
-                        <div class="row">
-                            <div class="col-lg-12 border rounded-div border-2 p-3 m-4 gx-0 shadow bg-light block_info_apply">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div>
+                            <div class="container_infos_applie">
+                                <p>À : <strong>{{ jobOffer.entity.entityName }}</strong></p>
+                                <p>Sujet : <strong>Candidature au poste de {{ jobOffer.title|capitalize }}</strong></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div>
+                            <div>
                                 {{ form_row(formMessage.body) }}
                             </div>
-                         </div>
+                        </div>
+                    </div>
                     {{ form_end(formMessage) }}
                 </div>
             </div>

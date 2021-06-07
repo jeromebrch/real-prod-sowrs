@@ -1,11 +1,9 @@
     Hey  {{ message.userRecipient.EntityName}},
 
-Vous venez de recevoir une Vous venez de recevoir une réponse à votre message au sujet de {{ messageRecu.subject }}
+Vous venez de recevoir une réponse à votre message au sujet de {{ messageRecu.subject }}
 
 Pour le/la contacter, on vous laisse ses coordonnées :
 Nom :  {{ message.userSender.firstname}} {{ message.userSender.lastname}}
-Email :  {{ message.userRecipient.username}}
-Téléphone :  {{ message.userRecipient.getPhone}}
 Message :
     {{ message.body}}
 

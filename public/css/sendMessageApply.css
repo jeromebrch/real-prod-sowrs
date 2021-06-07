@@ -1,23 +1,57 @@
-.link_messagerie_send{
-    text-decoration: none;
+.link_main_messagerie{
+    color: #937FA4;
 }
-.btnBackTo{
-    width: 150px;
-    margin: 20px;
-    text-decoration: none;
+.link_main_messagerie:hover{
+    color: #555555;
 }
-.btn_send_apply{
-    width: 150px;
-    margin: 20px;
+.header_title_send_message{
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    align-items: center;
 }
-.buttonPj{
-    width: 200px;
-    margin: 20px;
+.send_message_options{
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    align-items: center;
+    padding-top: 20px;
+    padding-bottom: 20px;
 }
-.block_info_apply{
+.send_message_options>div{
+    margin-left: 20px;
+    margin-right: 20px;
+}
+.send_message_options div a{
+    font-family: 'KohinoorBangla', Arial, serif;
+    font-weight: bold;
+}
+.btn_send_applie{
+    width: auto;
+    padding-left: 20px;
+    padding-right: 20px;
+    font-family: 'KohinoorBangla', Arial, serif;
+}
+.link_return_home_messagerie{
+    color: #937FA4;
+}
+.link_return_home_messagerie:hover{
+    color: #555555;
+}
+.container_infos_applie{
     background-color: white;
-    margin: 10px;
+    border-radius: 30px;
+    padding: 20px;
+    border: 1px solid #55555544;
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    align-items: flex-start;
+    color: #555555;
+    font-family: 'KohinoorBangla', Arial, serif;
+    margin-bottom: 15px;
 }
-.apply_info{
-    text-align: left;
+#apply_body{
+    padding: 20px;
+    border-radius: 30px;
 }
