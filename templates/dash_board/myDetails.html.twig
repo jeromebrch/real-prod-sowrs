@@ -212,22 +212,23 @@
                             </div>
                         </div>
                     </div>
-
-                    <button type="submit"
-                            class="btn btn-lg position-relative bottom-0 start-50 translate-middle-x mb-4">
-                        Enregistrer
-                    </button>
-                    {{ form_end(modifyUserForm) }}
                     <div id="actions_mydetails">
                         <div class="row">
                             {# reset password with Reset Password Feature #}
-                            <a href="{{ path('app_forgot_password_request') }}" class="col-6 link_action_mydetails">Réinitialiser le mot de passe</a>
+                            <a href="{{ path('app_forgot_password_request') }}" class="col-4 link_action_mydetails big_link_action">Réinitialiser le mot de passe</a>
                             {# Save change #}
+                            <button type="submit" class="btn btn-lg long_btn col-4 col-sm-12">Enregistrer</button>
                             {# delete the user account #}
-                            <a href="{{ path('unsubscribe') }}" class="col-6 link_action_mydetails">Supprimer mon compte</a>
+                            <a href="{{ path('unsubscribe') }}" class="col-4 link_action_mydetails big_link_action">Supprimer mon compte</a>
+                        </div>
+                        <div class="mini_actions_mydetails">
+                            {# reset password with Reset Password Feature #}
+                            <a href="{{ path('app_forgot_password_request') }}" class="col-4 link_action_mydetails">Réinitialiser le mot de passe</a>
+                            {# delete the user account #}
+                            <a href="{{ path('unsubscribe') }}" class="col-4 link_action_mydetails">Supprimer mon compte</a>
                         </div>
                     </div>
-
+                    {{ form_end(modifyUserForm) }}
                 {% elseif "ROLE_RECRUITER" in app.user.roles %}
 
                     <div class="container mb-4 background-title">

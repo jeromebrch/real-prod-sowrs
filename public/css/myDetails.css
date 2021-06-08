@@ -158,6 +158,10 @@ body .container_upload{
     font-family: 'KohinoorBangla', Arial, serif;
     margin-top: 20px;
     text-align: center;
+    font-weight: bold;
+}
+.link_action_mydetails:hover{
+    color: #555555;
 }
 .container_commitments_options{
     display: flex;
