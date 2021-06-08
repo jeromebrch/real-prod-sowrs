@@ -263,8 +263,10 @@
                         {{ form_start(formMessage, {'attr': {'class': 'form_contact_recruiter'}}) }}
                         {{ form_row(formMessage.subject) }}
                         {{ form_row(formMessage.body) }}
-                        {{ form_row(formMessage.cvFile) }}
-                        {{ form_row(formMessage.mediaFile) }}
+                        <div class="container_upload_files">
+                            {{ form_row(formMessage.cvFile) }}
+                            {{ form_row(formMessage.mediaFile) }}
+                        </div>
                         <button type="submit" class="btn required btn_send_message">Envoyer</button>
                         {{ form_end(formMessage) }}
                     </div>
@@ -309,6 +311,17 @@
                 },
                 options: {}
             });
+        </script>
+
+        <script>
+            let labelCV = document.querySelector('label[for="message_cvFile"]');
+            let labelMedia = document.querySelector('label[for="message_mediaFile"]');
+            labelCV.innerHTML = '<i class="fas fa-3x fa-file-upload"></i>';
+            labelMedia.innerHTML = '<i class="fas fa-3x fa-file-upload"></i>';
+            labelCV.setAttribute('title', 'Importer un premier document');
+            labelMedia.setAttribute('title', 'Importer un second document');
+            labelCV.setAttribute('style', 'cursor:pointer;');
+            labelMedia.setAttribute('style', 'cursor:pointer;');
         </script>
     {% endif %}
 {% endblock %}

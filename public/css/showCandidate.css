@@ -91,3 +91,19 @@ body .show_candidate_jumbotron {
 .sense_rate_line{
     margin: 0px 40px 0 0;
 }
+label[for="message_cvFile"]{
+    font-family: bold, serif;
+    color: #937FA4;
+    padding-bottom: 20px;
+}
+label[for="message_mediaFile"]{
+    font-family: bold, serif;
+    color: #937FA4;
+    padding-bottom: 20px;
+}
+.container_upload_files{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}

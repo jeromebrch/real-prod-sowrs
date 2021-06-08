@@ -19,21 +19,27 @@ class MessageType extends AbstractType
         $builder
             ->add('subject', TextType::class, [
                 'required' => true,
-                'label' => 'Sujet',
+                'label' => false,
+                'attr' => [
+                    'placeholder' => 'Sujet...'
+                ]
             ])
             ->add('body', TextareaType::class, [
-                'label'=> 'Veuillez écrire votre message',
-                'attr' =>['rows' =>12],
+                'label'=> false,
+                'attr' =>[
+                    'rows' =>12,
+                    'placeholder' => 'Votre message...'
+                    ],
                 'constraints' => [
                     new NotBlank([
                         'message' => 'Merci d\'entrer votre message.'])
                 ]])
             ->add('cvFile' ,FileType::class,[
-                'label' => 'Importer un document',
+                'label' => 'Votre CV',
                 'required' => false,
             ])
             ->add('mediaFile', FileType::class, [
-                'label' => 'Importer un autre document',
+                'label' => 'Votre document',
                 'required' => false,
             ])
         ;
