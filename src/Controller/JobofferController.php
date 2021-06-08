@@ -18,6 +18,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Mailer\MailerInterface;
+use Symfony\Component\Mime\Email;
 use Symfony\Component\Routing\Annotation\Route;
 
 class JobofferController extends AbstractController
@@ -29,7 +31,7 @@ class JobofferController extends AbstractController
      * @param EntityManagerInterface $em
      * @return Response
      */
-    public function creationJobOffer(Request $request, EntityManagerInterface $em): Response
+    public function creationJobOffer(Request $request, EntityManagerInterface $em, MailerInterface $mailer): Response
     {
         $offer = new JobOffer();
         $jobOfferForm = $this->createForm(JobOfferType::class, $offer);
@@ -43,6 +45,20 @@ class JobofferController extends AbstractController
             $em->flush();
 
             $this->addFlash('success', 'Votre offre a bien été publiée');
+
+            //sending email
+            $email = (new Email())
+                ->from('team@sowrs.com')
+                ->to($this->getUser()->getEmail())
+                ->subject('Création de votre offre' . $offer->getTitle())
+                ->text($this->renderView(
+                // getting text for email from html page
+                    'textEmail/emailJobOfferCreation.html.twig',
+                    ['jobOffer' => $offer,
+                        'user' => $this->getUser()]
+                ), 'text/html');
+
+            $mailer->send($email);
 
             return $this->redirectToRoute('dash_board_my_offers');
         }

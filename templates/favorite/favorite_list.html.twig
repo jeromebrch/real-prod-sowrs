@@ -136,3 +136,30 @@
         </div>
     </div>
 {% endblock %}
+
+{% block javascripts %}
+
+    <script>
+        let btnDeleteFavoriteOffer = document.querySelectorAll(".messageImgTrash");
+        let btnDeleteFavoriteCandidate = document.querySelectorAll(".ImgTrash");
+        btnDeleteFavoriteOffer.forEach(element =>
+            element.addEventListener('click', function (event){
+                if(confirm("Souhaitez-vous vraiment supprimer cette offre de vos favoris ?")){
+
+                }else{
+                    event.preventDefault();
+                }
+            })
+        );
+        btnDeleteFavoriteCandidate.forEach(element =>
+            element.addEventListener('click', function (event){
+                if(confirm("Souhaitez-vous vraiment supprimer cette offre de vos favoris ?")){
+
+                }else{
+                    event.preventDefault();
+                }
+            })
+        );
+    </script>
+
+{% endblock %}

@@ -153,18 +153,11 @@
         btnDeleteMessage.forEach(element =>
             element.addEventListener('click', function (event){
                 if(confirm("Souhaitez-vous vraiment supprimer ce message ?")){
-                    alert("Message supprimé !")
+
                 }else{
                     event.preventDefault();
                 }
             })
         );
-        btnDeleteMessage.addEventListener('click', function (event){
-            if(confirm("Souhaitez-vous vraiment supprimer ce message ?")){
-                alert("Message supprimé !")
-            }else{
-                event.preventDefault();
-            }
-        })
     </script>
 {% endblock %}
