@@ -1,25 +1,83 @@
-#primary-nav {
+.container_principal_nav{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+}
+.container_principal_nav>div{
+    padding: 10px 30px 10px 30px;
+}
+.container_principal_nav>div>a{
     color: #1dca91;
+    font-size: 1.5em;
+    font-weight: bold;
     font-family: 'KohinoorBangla', Arial, serif;
-    font-weight: bolder;
-    font-size: 1.4em;
-    text-transform: uppercase;
-    margin-right: 15px;
 }
-#primary-nav:active{
-    color: #827399;
+.container_principal_nav>div>a:hover{
+    color: #937FA4;
 }
-#primary-nav:hover{
-    color: #827399;
+.btn_principal_nav_mini{
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
-#navbarNavDropdown{
-position: relative;
+.btn_principal_nav_mini>i{
+    color: #1dca91;
+    cursor: pointer;
+    padding: 15px;
 }
-div#navbarNavDropdown:after {
-    position: absolute;
-    width: 80px;
-    height: 3Px;
-    content: '';
-    background: #555555;
-    left: -15px;
+.btn_principal_nav_mini>i:hover{
+    color: #555555;
+}
+.container_principal_nav_mini{
+    display: none;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    background-color: #F7FAF7;
+}
+.principal_nav_mini{
+    border-radius: 30px;
+    background-color: white;
+    padding: 30px;
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.principal_nav_mini>div>a{
+    color: #1dca91;
+    font-size: 1.3em;
+    font-family: 'KohinoorBangla', Arial, serif;
+    font-weight: bold;
+    padding: 20px;
+}
+.principal_nav_mini>div>a:hover{
+    color: #937FA4;
+}
+@media screen and (max-width: 1225px){
+    .container_principal_nav{
+        justify-content: space-around;
+    }
+    .container_principal_nav>div>a{
+        font-size: 1.3em;
+    }
+    .container_principal_nav>div{
+        padding: 10px 10px 10px 10px;
+    }
+}
+@media screen and (max-width: 905px){
+    .container_principal_nav{
+        display: none;
+    }
+    .btn_principal_nav_mini{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+    }
 }

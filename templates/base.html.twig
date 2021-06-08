@@ -98,4 +98,18 @@
             integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
             crossorigin="anonymous"></script>
     <script>const baseURL = "{{ app.request.basePath }}";</script>
+
+    <script>
+        window.addEventListener("load", function(event) {
+            let btnShowNavMini = document.querySelector('.fa-chevron-circle-down');
+            let bigPrincipalNav = document.querySelector('.container_principal_nav');
+            let miniPrincipalNav = document.querySelector('.container_principal_nav_mini');
+            btnShowNavMini.addEventListener('click', function () {
+                bigPrincipalNav.setAttribute('style', 'display:none;');
+                miniPrincipalNav.setAttribute('style', 'display:flex;');
+                btnShowNavMini.setAttribute('style', 'display:none;')
+            });
+        });
+    </script>
+
 {% endblock %}

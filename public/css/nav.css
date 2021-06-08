@@ -1,10 +1,101 @@
-
-#secondary-nav {
-    color: #827399;
-    font-family: 'KohinoorBangla', Arial, serif;
+.nav_top{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    height: auto;
+}
+#logo_sowrs{
+    padding: 20px;
+}
+.container_logo_home{
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    align-items: center;
+}
+.container_nav_top{
+    display: flex;
+    flex-direction: row;
+    justify-content: right;
+    align-items: center;
+}
+.container_nav_top>div{
+    padding: 30px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+.container_nav_top>div>a{
+    color: #937FA4;
     font-size: 1.4em;
+    font-family: 'KohinoorBangla', Arial, serif;
+    font-weight: bold;
+}
+.container_nav_top>div>a:hover{
+    color: #555555;
+}
+.container_nav_top_mini{
+    display: none;
+}
+.nav_top_mini{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+.nav_top_mini>div{
+    padding: 20px;
+}
+.nav_top_mini>div>a{
+    color: #937FA4;
+    font-size: 1.1em;
+    font-family: 'KohinoorBangla', Arial, serif;
+    font-weight: bold;
+}
+.nav_top_mini>div>a:hover{
+    color: #555555;
+}
+.container_social_network_mini{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+.container_social_network_mini>div{
+    margin: 20px;
 }
 
-.navbar-brand {
-    margin-right: 0;
+@media screen and (max-width: 1065px){
+    .nav_top{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: auto;
+        padding-top: 25px;
+    }
+}
+@media screen and (max-width: 905px){
+    .container_nav_top_mini{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .container_nav_top{
+        display: none;
+    }
+}
+@media screen and (max-width: 470px){
+    #link_job_board{
+        text-align: justify;
+    }
+    .nav_top_mini>div{
+        padding: 10px;
+    }
+    .nav_top_mini>div>a{
+        font-size: 1em;
+    }
 }
