@@ -82,7 +82,6 @@ class Recruiter extends User
      */
     private $department;
 
-
     /**
      * @ORM\ManyToOne(targetEntity=Region::class, cascade="persist")
      */

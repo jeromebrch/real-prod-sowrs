@@ -18,11 +18,17 @@
     </div>
     <div class="col-lg-6 col-sm-8 col-xs-12 content-box align-self-center">
         <div class="jobOffer_text">
-            <a href="{{ path('jobOffer_show', {'id':jobOffer.id}) }}">{{ jobOffer.title }}</a>
-
-            <p>{{ jobOffer.entity.entityName| capitalize }}
+            <p>
+                <a href="{{ path('jobOffer_show', {'id':jobOffer.id}) }}" class="link_job_offer_infos">{{ jobOffer.title|capitalize }}</a><br />
+                {{ jobOffer.entity.entityName| capitalize }}
                 {% if jobOffer.entity.mainCause is not empty %}
                     - {{ jobOffer.entity.mainCause.text }}
+                {% endif %}<br />
+                {% if jobOffer.entity.city and jobOffer.entity.department is not empty %}
+                    {{ jobOffer.entity.city|capitalize }} - {{ jobOffer.entity.department.name }} {{ jobOffer.entity.department.cp }}
+                {% endif %}<br />
+                {% if jobOffer.entity.scoring is not empty %}
+                    <strong>Taux de sens</strong> : {{ jobOffer.entity.scoring.dominantSens }} {{ jobOffer.entity.scoring.dominantPourcent }} %
                 {% endif %}
             </p>
         </div>

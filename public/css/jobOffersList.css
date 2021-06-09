@@ -28,13 +28,20 @@
     -webkit-border-radius: 100px;
     display: block;
 }
+.jobOffer_text{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
 .jobOffer_text a {
     text-decoration: none;
     color: black;
     font-weight: bold;
 }
 .jobOffer_text p {
-    margin-bottom: 1px;
+    text-align: left;
+    padding: 0;
 }
 .btn_contract_type{
     font-size: 1em;
@@ -62,5 +69,13 @@
 }
 .jobOffer_filter form div div .form-check label{
     font-family: 'KohinoorBangla', Arial, serif;
+    color: #555555;
+}
+.link_job_offer_infos{
+    color: #937FA4!important;
+    font-weight: bold;
+    padding-bottom: 10px;
+}
+.link_job_offer_infos:hover{
     color: #555555;
 }
