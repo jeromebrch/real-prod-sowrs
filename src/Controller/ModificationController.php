@@ -94,7 +94,7 @@ class ModificationController extends AbstractController
                     // send email to sowrs with the PDF file in attachment
                     $email = (new Email())
                         ->from($this->getUser()->getEmail())
-                        ->to('jerome.brch@gmail.com') // todo : mettre l'adresse de sowrs !!!
+                        ->to('team@sowrs.com')
                         ->subject('Footprint proof from ' . $this->getUser()->getEmail())
                         ->text('La preuve de l\'empreint carbone')
                         ->attachFromPath('uploads/carbonFootPrintProof/' . $newFilename)

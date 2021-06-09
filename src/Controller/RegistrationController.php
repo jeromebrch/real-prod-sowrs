@@ -59,7 +59,7 @@ class RegistrationController extends AbstractController
         //vérification pour le formulaire candidate si tel est celui rendu
         if ($formCandidate->isSubmitted() && $formCandidate->isValid() && $resp->isSuccess()) {
             //set ROLE_ADMIN to any user
-            if($candidate->getEmail() == "jerome.brch@gmail.com"){ // todo : changer l'adresse de l'admin
+            if($candidate->getEmail() == "team@sowrs.com"){
                 $candidate->setRoles(['ROLE_ADMIN']);
             }
             //encodage du mot de passe
@@ -110,7 +110,7 @@ class RegistrationController extends AbstractController
             }
             if($validator){
                 //attribution du rôle à l'admin voulu
-                if($recruiter->getEmail() == "jerome.brch@gmail.com"){ // todo : changer le nom de l'admin
+                if($recruiter->getEmail() == "team@sowrs.com"){
                     $recruiter->setRoles((array)'ROLE_ADMIN');
                 }
                 $recruiter->setPassword(

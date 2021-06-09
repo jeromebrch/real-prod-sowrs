@@ -1,9 +1,9 @@
     Hey  {{ message.userSender.firstname}} {{ message.userSender.lastname}},
 
-Vous venez de recevoir un message d'un recruteur sur votre messagerie Sowrs
+Vous venez de recevoir un message sur votre messagerie Sowrs.
 
 Pour le/la contacter, on vous laisse ses coordonnées :
-Nom :  {{ message.userRecipient.EntityName}}
+Nom :  {{ message.userSender.lastname}} {{ message.userSender.firstname}}
 Message :
     {{ message.body}}
 

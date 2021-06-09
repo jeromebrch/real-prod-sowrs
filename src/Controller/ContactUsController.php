@@ -36,7 +36,7 @@ class ContactUsController extends AbstractController
 
         if ($formContact->isSubmitted() && $formContact->isValid() && $resp->isSuccess()) {
 
-            $contact->setDestinataire('kennouche.annelise@gmail.com');//todo: adresse mail de Sowrs
+            $contact->setDestinataire('team@sowrs.com');
             $em->persist($contact);
             $em->flush();
 

@@ -89,7 +89,7 @@ class MessageSentByRecruiterController extends AbstractController
                 //sending email
                 $email = (new Email())
                     ->from('team@sowrs.com')
-                    ->to('jerome.brch@gmail.com') //todo :email du destinataire
+                    ->to($candidate->getEmail())
                     ->subject($message->getSubject())
                     ->text($this->renderView(
                     // getting text for email from html page
