@@ -90,14 +90,14 @@
             <img class="illustration_detail_post col-md-10 offset-md-1 col-sm-12" src="{{ asset('uploads/illustrations/' ~ post.pictureFilename) }}" alt="illus_post" title="Illustration du poste" />
         </div>
         <div class="row">
-            <div class="col-10">
+            <div class="col-md-10 col-sm-12">
                 <div class="row">
                     <div class="content_post_detail col-md-10 offset-md-1 col-sm-12">
                         {{ post.content|raw }}
                     </div>
                 </div>
             </div>
-            <div class="col-2">
+            <div class="col-2 big_section_view_more">
                 {% if newestPost is not empty %}
                     {# recently add #}
                     <div class="row">
@@ -146,9 +146,58 @@
                 </div>
             </div>
         </div>
+        <div class="row container_mini_section_view_more">
+            <div class="mini_section_view_more">
+                {% if newestPost is not empty %}
+                    {# recently add #}
+                    <h3 class="mini_right_section_title">DERNIERS ARTICLES</h3>
+                    <div class="mini_post_section">
+                        {% for post in newestPost %}
+                            <div class="mini_latest_post">
+                                <div class="row">
+                                    <img src="{{ asset('uploads/illustrations/' ~ post.pictureFilename) }}" alt="illus_post" title="{{ post.title }}" />
+                                </div>
+                                <div class="row">
+                                    <a class="link_post" href="{{ path('post_details', {"id":post.id}) }}"><h4 class="latest_post_title">{{ post.title }}</h4></a>
+                                </div>
+                                <div class="row">
+                                    <p class="latest_post_date">{{ post.creationDate|date('d/m/Y') }}</p>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                    <div class="row">
+                        <a href="{{ path('home_webzine') }}" class="mini_link_read_more btn">Lire plus +</a>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+        <div class="row container_mini_section_view_more">
+            <div class="mini_section_view_more">
+                {% if moreViewsPost is not empty %}
+                    {# most read #}
+                    <h3 class="mini_right_section_title">LES PLUS LUS</h3>
+                    <div class="mini_post_section">
+                        {% for post in moreViewsPost %}
+                            <div class="latest_post">
+                                <div class="row">
+                                    <img class="col-12" src="{{ asset('uploads/illustrations/' ~ post.pictureFilename) }}" alt="illus_post" title="{{ post.title }}" />
+                                </div>
+                                <div class="row">
+                                    <a class="link_post" href="{{ path('post_details', {"id":post.id}) }}"><h4 class="latest_post_title">{{ post.title }}</h4></a>
+                                </div>
+                                <div class="row">
+                                    <p class="latest_post_date">{{ post.creationDate|date('d/m/Y') }}</p>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+        </div>
         <div class="row">
-            <div class="col-10 comments_section">
-                <div class="col-8 offset-2">
+            <div class="col-md-10 col-sm-12 comments_section">
+                <div class="col-lg-8 offset-lg-2 col-sm-12">
                     {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
                         <button type="button" id="set_comment" class="btn">Laisser un commentaire</button>
                         <div id="comment_form">

@@ -23,9 +23,6 @@
     color: #827399;
     text-decoration: none;
 }
-.content_post_detail:first-child{
-
- }
 .content_post_detail:first-child::first-letter{
     float: left;
     font-size: 4em;
@@ -74,8 +71,8 @@
     justify-content: center;
     align-items: center;
 }
-.container_social_sharer *{
-    padding: 10px 20px 10px 20px;
+.container_social_sharer>div{
+    padding: 20px 60px 20px 60px;
 }
 .link_post{
     text-decoration: none;
@@ -108,6 +105,44 @@ body .comment_writer{
     font-size: 0.9em;
     color: #937FA4;
 }
+.content_post_detail p img{
+    height: auto!important;
+    max-width: 100%;
+}
+.container_mini_section_view_more{
+    display: none;
+}
+.mini_post_section{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+}
+.mini_latest_post{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+.mini_section_view_more{
+    width: 100%;
+    height: auto;
+    padding: 30px;
+    background-color: white;
+    border-radius: 30px;
+}
+.mini_right_section_title{
+    color: #1dca91;
+    text-align: center;
+}
+.mini_link_read_more{
+    background-color: #937FA4;
+}
+.mini_link_read_more:hover{
+    color: #555555;
+}
 
 @media screen and (max-width: 767px){
     .content_post_detail{
@@ -117,6 +152,30 @@ body .comment_writer{
 @media screen and (max-width: 999px){
     .content_post_detail p span img{
         max-width: 100%;
+        height: auto!important;
+    }
+    .big_section_view_more{
+        display: none;
+    }
+    .container_mini_section_view_more{
+        display: block;
+        width: 100%;
         height: auto;
+        margin-bottom: 20px;
+        margin-top: 20px;
+        text-align: center;
+        margin-left: 1px;
+    }
+    .container_social_sharer>div{
+        padding: 10px 40px 20px 40px;
+    }
+    .content_post_detail *{
+        font-size: 0.9em;
+    }
+    .content_post_detail p{
+        text-align: justify;
+    }
+    .btn_admin{
+        margin-bottom: 20px;
     }
 }
