@@ -3,9 +3,9 @@
 }
 .login_title h3{
     font-family: 'KohinoorBangla', Arial, serif;
-    color: #937FA4;
+    color: #555555;
 }
-.btn_login {
+.btn_login{
     width: 100%;
     margin: 0;
     text-align: center;
@@ -13,9 +13,11 @@
 }
 .email_login{
     font-weight: bold;
+    color: #555555!important;
 }
 .mdp_login{
     font-weight: bold;
+    color: #555555!important;
 }
 .login_form label{
     font-family: 'KohinoorBangla', Arial, serif;
@@ -28,12 +30,27 @@
     font-family: 'KohinoorBangla', Arial, serif;
     color: #937FA4;
     text-align: right;
-    padding-left: 60px;
+    font-weight: bold;
+    padding: 10px;
 }
 .container_options_login label{
-    padding-left: 40px;
+    font-weight: bold;
+    padding: 10px;
 }
 .link_create{
     text-align: center;
+    color: #937FA4;
+    font-weight: bold;
+    font-family: 'KohinoorBangla', Arial, serif;
+    font-size: 1.1em;
+}
+.link_create:hover{
     color: #555555;
+}
+.container_options_login{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
 }

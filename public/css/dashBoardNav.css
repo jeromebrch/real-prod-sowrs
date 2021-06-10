@@ -93,3 +93,21 @@
     height: 250px; !important;
     width: auto;
 }
+@media screen and (max-width: 306px){
+    body .container_upload{
+        position: relative!important;
+        bottom: 10px!important;
+    }
+}
+@media screen and (max-width: 498px){
+    body .container_upload{
+        position: relative!important;
+        top: 10px!important;
+    }
+}
+@media screen and (max-width: 572px) and (min-width: 499px){
+    body .container_upload{
+        position: relative!important;
+        bottom: 10px!important;
+    }
+}

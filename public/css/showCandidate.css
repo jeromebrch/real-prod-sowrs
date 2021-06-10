@@ -107,3 +107,78 @@ label[for="message_mediaFile"]{
     justify-content: space-around;
     align-items: center;
 }
+.block_cv_pdf{
+    display: none;
+}
+.show_candidate_doughnut{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+.doughnut{
+    height: auto!important;
+}
+
+@media screen and (max-width: 769px){
+    .container_show_candidate_sense_rate{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .show_candidate_sens_rate {
+        width: 60%;
+    }
+    .block_img_sense_rate{
+        width: auto;
+    }
+    .text_sense_rate_show_candidate{
+        width: auto;
+    }
+    .btn_sense_rate_show_candidate{
+        width: auto;
+    }
+    body #myChart{
+        width: 100%!important;
+    }
+    .show_candidate_doughnut{
+        height: auto;
+    }
+}
+@media screen and (max-width: 994px){
+    body .right_part_show_candidate{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+    }
+    .container_contact{
+        width: 80%;
+    }
+    #show_candidate_photo_profile{
+        width: 70%;
+    }
+    .candidate_picture{
+        text-align: center;
+        padding-bottom: 20px;
+        padding-top: 10px;
+    }
+    body #myChart{
+        width: 100%!important;
+    }
+}
+@media screen and (max-width: 1024px){
+    .show_candidate_about{
+        text-align: justify!important;
+    }
+    body #myChart{
+        width: 100%!important;
+    }
+}
+@media only screen and (min-width: 1024px){
+    .block_cv_pdf{
+        display: block;
+    }
+}

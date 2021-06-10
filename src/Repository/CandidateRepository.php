@@ -159,6 +159,8 @@ class CandidateRepository extends ServiceEntityRepository
                 ->andWhere('o.telecommute = :tc')
                 ->setParameter('tc', true);
         }
+        $query = $query
+            ->orderBy('c.id', 'DESC');
         return $query->getQuery()->getResult();
     }
 }

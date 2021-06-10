@@ -166,6 +166,7 @@
     background-color: #ffffff;
     border-radius: 30px;
     border: #E6E9E9;
+    width: 100%;
 }
 .container_social_link{
     display: flex;
@@ -258,8 +259,29 @@
 .cv_object{
     border-radius: 5px;
 }
+.block_cv_pdf{
+    display: none;
+}
+.container_sense_rate_infos{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+.mini_container_social_link{
+    display: none;
+}
+.show_candidate_sens_rate .doughnut{
+    height: auto!important;
+}
+.about_user{
+    text-align: justify!important;
+}
+.recruiter_reason_to_be{
+    text-align: justify;
+}
 
-@media screen and (max-width: 992px) {
+@media screen and (max-width: 991px) and (min-width: 571px) {
     .sense_rate_line{
         display: flex;
         flex-direction: row;
@@ -268,5 +290,89 @@
     }
     .profil_category_title_bottom{
         padding-left: 30px;
+    }
+    .right_part{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: flex-start;
+        flex-wrap: wrap;
+    }
+    .mini_container_social_link{
+        display: block;
+    }
+    .container_social_link{
+        display: none;
+    }
+    .mini_social_link{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: center;
+    }
+    #myChart{
+        width: 350px!important;
+        height: auto!important;
+    }
+}
+@media only screen and (min-width: 1025px){
+    .block_cv_pdf{
+        display: block;
+    }
+    #myChart{
+        width: 250px!important;
+        height: auto!important;
+    }
+    .about_user{
+        text-align: left!important;
+    }
+    .recruiter_reason_to_be{
+        text-align: left;
+    }
+}
+@media only screen and (max-width: 1024px){
+    .complementary_infos_container{
+        width: 85%;
+    }
+}
+@media only screen and (max-width: 1024px) and (min-width: 992px){
+    #myChart{
+        width: 230px!important;
+        height: auto!important;
+    }
+}
+@media only screen and (max-width: 570px) and (min-width: 376px){
+    .right_part{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+    }
+    .sense_rate_line{
+        width: 70%;
+    }
+    #myChart{
+        width: 220px!important;
+        height: auto!important;
+    }
+}
+@media only screen and (max-width: 376px) and (min-width: 281px){
+    #myChart{
+        width: 250px!important;
+        height: auto!important;
+    }
+    .container_sense_rate_infos{
+        display: flex;
+        flex-direction: column;
+    }
+}
+@media only screen and (max-width: 280px){
+    #myChart{
+        width: 170px!important;
+        height: auto!important;
+    }
+    .container_sense_rate_infos{
+        display: flex;
+        flex-direction: column;
     }
 }

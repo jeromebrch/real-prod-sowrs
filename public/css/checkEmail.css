@@ -12,3 +12,8 @@
 .reset_send_mail p a{
     color: #937FA4;
 }
+@media screen and (max-width: 900px){
+    .reset_send_mail{
+        padding: 20px;
+    }
+}

@@ -24,7 +24,7 @@
                 <h3>Candidat</h3>
             </div>
         </div>
-        <div class="col-6 d-none d-md-block d-lg-block d-xl-block">
+        <div class="col-6 d-none d-md-block d-lg-block d-xl-block explanation_block">
             <ul>
                 <li>
                     <p class="text-register">Vous êtes candidat ? Vous pouvez créer votre CV,postuler et matcher avec
@@ -42,7 +42,7 @@
                 <h3>Recruteur</h3>
             </div>
         </div>
-        <div class="col-10 offset-1 d-md-none d-lg-none d-xl-none mt-4">
+        <div class="col-10 offset-1 d-md-none d-lg-none d-xl-none mt-4 mini_explanation_block">
             <ul>
                 <li>
                     <p class="text-register">Vous êtes candidat ? Vous pouvez créer votre CV,postuler et matcher avec
@@ -75,63 +75,70 @@
     </div>
     <br>
     <div class="container" id="candidate">
+
         {# Formulaire candidat #}
         <div class="error">{{ form_errors(formCandidate) }}</div>
         {{ form_start(formCandidate, {'attr': {'class':'d-none', 'autocomplete': 'false'}}) }}
-        <div class="row">
-            <div class="col-lg-4 p-2">
-                {{ form_row(formCandidate.email) }}
-            </div>
-            <div class="col-lg-4 p-2">
-                {{ form_row(formCandidate.currentRole) }}
-            </div>
-            <div class="col-lg-4 p-2">
-                {{ form_row(formCandidate.plainPassword.first) }}
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-lg-4 p-2">
-                {{ form_row(formCandidate.firstname) }}
-            </div>
-            <div class="col-lg-4 p-2">
-                {{ form_row(formCandidate.levelExperience) }}
-            </div>
-            <div class="col-lg-4 p-2">
-                {{ form_row(formCandidate.plainPassword.second) }}
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-lg-4 p-0">
-                <div class="p-2 m-0">
+        <div class="row p-0">
+            <div class="row">
+                <div class="col-lg-4 col-md-6 col-sm-12 p-2">
+                    {{ form_row(formCandidate.email) }}
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-12 p-2">
                     {{ form_row(formCandidate.lastname) }}
                 </div>
-                <div class="p-2 m-0">
+                <div class="col-lg-4 col-md-6 col-sm-12 p-2">
+                    {{ form_row(formCandidate.firstname) }}
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-12 p-2">
                     {{ form_row(formCandidate.phone) }}
                 </div>
-            </div>
-            <div class="col-lg-4 p-0">
-                <div class="p-2 m-0">
-                    {{ form_row(formCandidate.levelStudy) }}
+                <div class="col-lg-4 col-md-6 col-sm-12 p-2">
+                    {{ form_row(formCandidate.plainPassword.first) }}
                 </div>
-                <div class="p-2 m-0">
-                    {{ form_row(formCandidate.businessProfile) }}
+                <div class="col-lg-4 col-md-6 col-sm-12  p-2">
+                    {{ form_row(formCandidate.plainPassword.second) }}
+                </div>
+                <div class="col-lg-4 col-md-6 p-0">
+                    <div class="p-2 m-0">
+                        {{ form_row(formCandidate.levelStudy) }}
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 p-0">
+                    <div class="p-2 m-0">
+                        {{ form_row(formCandidate.levelExperience) }}
+                    </div>
                 </div>
                 {# champ caché #}
                 <div class="p-2 m-0" id="department_choice">
                     {{ form_row(formCandidate.department) }}
                 </div>
+                <div class="col-lg-4 col-md-6 p-0">
+                    <div class="p-2 m-0">
+                        {{ form_row(formCandidate.currentRole) }}
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 p-0">
+                    <div class="p-2 m-0">
+                        {{ form_row(formCandidate.businessProfile) }}
+                    </div>
+                </div>
             </div>
-            <div class="position-relative col-lg-4 p-2">
-                {# recaptcha #}
-                <div class="g-recaptcha position-absolute top-50 start-50 translate-middle" data-sitekey="6LcqEgIaAAAAAEtDy88bfJXRtrhQDfRxwFD-0_Ca"></div>
+            <div class="row">
+                <div class="container_captcha_legal_notice">
+                    {# recaptcha #}
+                    <div class="g-recaptcha" data-sitekey="6LcqEgIaAAAAAEtDy88bfJXRtrhQDfRxwFD-0_Ca"></div>
+                    <div>
+                        <a class="legalNotice" href="{{ path('main_legalNotice') }}">Mentions légales & conditions générales
+                            d'utilisation</a>
+                        {{ form_row(formCandidate.agreeTerms) }}
+                    </div>
+                </div>
+
             </div>
         </div>
+        <br>
         <div class="row">
-            <div class="container_agree_terms">
-                <a class="legalNotice" href="{{ path('main_legalNotice') }}">Mentions légales & conditions générales
-                    d'utilisation</a>
-                {{ form_row(formCandidate.agreeTerms) }}
-            </div>
             <div class="container_btn_create_account">
                 <button type="submit" class="btn btn-lg">Créer mon compte</button>
             </div>
@@ -144,61 +151,66 @@
         <div class="error">{{ form_errors(formRecruiter) }}</div>
         {{ form_start(formRecruiter, {'attr': {'class':'d-none', 'autocomplete': 'false'}}) }}
         <div class="row p-0">
-            <div class="col-lg-4 p-2">
-                {{ form_row(formRecruiter.email) }}
-            </div>
-            <div class="col-lg-4 p-2">
-                {{ form_row(formRecruiter.entityName) }}
-            </div>
-            <div class="col-lg-4 p-2">
-                {{ form_row(formRecruiter.plainPassword.first) }}
-            </div>
-        </div>
-        <div class="row p-0">
-            <div class="col-lg-4 p-2">
-                {{ form_row(formRecruiter.lastname) }}
-            </div>
-            <div class="col-lg-4 p-2">
-                {{ form_row(formRecruiter.activityNumber) }}
-            </div>
-            <div class="col-lg-4 p-2">
-                {{ form_row(formRecruiter.plainPassword.second) }}
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-lg-4 p-0">
-                <div class="p-2 m-0">
-                    {{ form_row(formRecruiter.firstname) }}
+            <div class="row">
+                <div class="col-lg-4 col-md-6 col-sm-12 p-2">
+                    {{ form_row(formRecruiter.email) }}
                 </div>
-                <div class="p-2 m-0">
-                    {{ form_row(formRecruiter.phone) }}
+                <div class="col-lg-4 col-md-6 col-sm-12 p-2">
+                    {{ form_row(formRecruiter.entityName) }}
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-12 p-2">
+                    {{ form_row(formRecruiter.activityNumber) }}
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-12 p-2">
+                    {{ form_row(formRecruiter.plainPassword.first) }}
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-12  p-2">
+                    {{ form_row(formRecruiter.plainPassword.second) }}
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-12 p-2">
+                    {{ form_row(formRecruiter.lastname) }}
+                </div>
+                <div class="col-lg-4 col-md-6 p-0">
+                    <div class="p-2 m-0">
+                        {{ form_row(formRecruiter.firstname) }}
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 p-0">
+                    <div class="p-2 m-0">
+                        {{ form_row(formRecruiter.phone) }}
+                    </div>
                 </div>
                 {# champ caché #}
                 <div class="p-2 m-0" id="department_choice">
                     {{ form_row(formRecruiter.department) }}
                 </div>
-            </div>
-            <div class="col-lg-4 p-0">
-                <div class="p-2 m-0">
-                    {{ form_row(formRecruiter.legalStatus) }}
+                <div class="col-lg-4 col-md-6 p-0">
+                    <div class="p-2 m-0">
+                        {{ form_row(formRecruiter.legalStatus) }}
+                    </div>
                 </div>
-                <div class="p-2 m-0">
-                    {{ form_row(formRecruiter.mainCause) }}
+                <div class="col-lg-4 col-md-6 p-0">
+                    <div class="p-2 m-0">
+                        {{ form_row(formRecruiter.mainCause) }}
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 p-0">
+                    <div class="p-2 m-0">
+                        {{ form_row(formRecruiter.function) }}
+                    </div>
                 </div>
             </div>
-            <div class="position-relative col-lg-4 p-2">
-                {# recaptcha #}
-                <div class="g-recaptcha position-absolute top-50 start-50 translate-middle" data-sitekey="6LcqEgIaAAAAAEtDy88bfJXRtrhQDfRxwFD-0_Ca"></div>
-            </div>
-        </div>
-        <div class="row p-0">
-            <div class="col-lg-4 p-2">
-                {{ form_row(formRecruiter.function) }}
-            </div>
-            <div class="col-4 offset-4">
-                <a class="legalNotice" href="{{ path('main_legalNotice') }}">Mentions légales & conditions générales
-                    d'utilisation</a>
-                {{ form_row(formRecruiter.agreeTerms) }}
+            <div class="row">
+                <div class="container_captcha_legal_notice">
+                    {# recaptcha #}
+                    <div class="g-recaptcha" data-sitekey="6LcqEgIaAAAAAEtDy88bfJXRtrhQDfRxwFD-0_Ca"></div>
+                    <div>
+                        <a class="legalNotice" href="{{ path('main_legalNotice') }}">Mentions légales & conditions générales
+                            d'utilisation</a>
+                        {{ form_row(formRecruiter.agreeTerms) }}
+                    </div>
+                </div>
+
             </div>
         </div>
         <br>

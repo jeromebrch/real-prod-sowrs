@@ -70,7 +70,7 @@
                 </div>
                 <div class="row">
                     {% if candidate.about %}
-                        <p>
+                        <p class="show_candidate_about">
                             {{ candidate.about }}
                         </p>
                     {% else %}
@@ -103,7 +103,7 @@
                 {% endif %}
             </div>
             {% if candidate.cv is not empty %}
-                <div class="row">
+                <div class="row block_cv_pdf">
                     <div class="container_cv_pdf col-sm-12 col-lg-10 offset-lg-1">
                         <object type="application/pdf" width="100%" height="100%" class="cv_object">
                             <param name="src" value="{{ asset("file/cv/" ~candidate.cv.cvName) }}" />
@@ -115,11 +115,11 @@
                 </div>
             {% endif %}
         </div>
-        <div class="col-lg-4 col-md-12 right_part">
+        <div class="col-lg-4 col-md-12 right_part right_part_show_candidate">
             <div class="show_candidate_sens_rate">
-                {% if candidate.scoring is not empty %}
-                    <div class="row">
-                        <div class="col-2 block_img_sense_rate">
+                {% if candidate.scoring is not empty %}            {# todo : revoir le responsive du sense rate #}
+                    <div class="row container_show_candidate_sense_rate">
+                        <div class="col-lg-3 block_img_sense_rate">
                             {% if candidate.scoring.dominantSens is same as 'social' %}
                                 <img class="mini_img_sense_rate" src="{{ asset('img/social500.png') }}" alt="taux de sens">
                             {% elseif candidate.scoring.dominantSens is same as 'economique' %}
@@ -130,11 +130,11 @@
                                 <img class="mini_img_sense_rate" src="{{ asset('img/environnemental500.png') }}" alt="taux de sens">
                             {% endif %}
                         </div>
-                        <div class="col-8">
+                        <div class="col-lg-8 text_sense_rate_show_candidate">
                             <h5>Taux de sens</h5>
                             <h5>{{ candidate.scoring.dominantPourcent }}% {{ candidate.scoring.dominantSens }}</h5>
                         </div>
-                        <div class="col-1">
+                        <div class="col-lg-1 btn_sense_rate_show_candidate">
                             <img src="{{ asset('img/boostrap/flecheBas.svg') }}" alt="flèche vers le bas" title="Détails du taux de sens" id="btn_doughnut">
                         </div>
                     </div>

@@ -121,3 +121,56 @@ a{
 .mini_letter{
     color: #937FA4;
 }
+.mini_options_message{
+    display: none!important;
+}
+@media screen and (max-width: 418px){
+    .user_sender_message_section{
+        display: none;
+    }
+    .user_sender_message{
+        display: none;
+    }
+}
+@media screen and (max-width: 440px){
+    .empty_messages{
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+    .date_message_section{
+        display: none!important;
+    }
+    .date_message{
+        display: none;
+    }
+}
+@media screen and (max-width: 546px){
+    .category_message_section{
+        display: none;
+    }
+    .message_type{
+        display: none;
+    }
+}
+@media screen and (max-width: 800px){
+    .container_message_info th{
+        font-size: 0.9em;
+    }
+    .thead *{
+        font-size: 0.9em;
+    }
+    .date_message_section{
+        display: none!important;
+    }
+    .date_message{
+        display: none;
+    }
+}
+@media screen and (max-width: 1388px){
+    .options_message_section{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+    }
+}

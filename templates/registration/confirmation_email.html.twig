@@ -1,11 +1,26 @@
-<h1>Hello ! Merci à toi de valider ton e-mail !</h1>
+<h1 style="color: #555555">Hey cher nouvel utilisateur !</h1>
 
-<p>
-    Tu sera gentil de cliquer sur ce magnifique lien ci dessous :<br><br>
-    <a href="{{ signedUrl|raw }}">Confirmer mon e-mail</a>.
+<p style="color: #555555;">
+    Prêt à changer le monde ? <br />
+    Pour cela il vous suffit de cliquer sur ce lien et confirmer votre e-mail : <br><br>
+    C'est parti ! <a href="{{ signedUrl|raw }}"
+                     style="width: 225px;
+                            border-radius: 50px;
+                            background: #1DCA91;
+                            border: none;
+                            font: normal 15px 'KohinoorBangla';
+                            padding: 10px;
+                            font-size: larger;
+                            color: white;
+                            text-decoration: none;
+                            margin: auto;
+                            margin-left: 20px;
+                            margin-right: 20px;">
+                    Confirmer mon e-mail</a>.<br /><br />
     Ce lien expire dans {{ expiresAt|date('g') }} heure(s).
 </p>
 
-<p>
-    Passe un bon moment sur Sowrs !
+<p style="color: #555555;">
+    Hasta la vista ! &#128521 <br />
+    <strong>La team SOWRS</strong>
 </p>

@@ -85,6 +85,43 @@
 .mini_container_btn{
     display: none;
 }
+.container_captcha_legal_notice{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+.container_captcha_legal_notice *{
+    font-family: 'KohinoorBangla', Arial, serif;
+}
+.legalNotice{
+    color: #937FA4;
+    font-weight: bold;
+}
+.legalNotice:hover{
+    color: #555555;
+}
+#btnCandidat *{
+    color: white;
+}
+#btnRecruteur *{
+    color: white;
+}
+#btnCandidatMini *{
+    color: white;
+}
+#btnRecruteurMini *{
+    color: white;
+}
+@media screen and (max-width: 769px) and (min-width: 766px){
+    body .explanation_block{
+        display: none!important;
+    }
+    .mini_explanation_block{
+        display: block!important;
+    }
+}
 @media screen and (max-width: 770px){
     .big_btn{
         display: none;
@@ -94,5 +131,16 @@
         flex-direction: row;
         justify-content: space-around;
         align-items: center;
+    }
+}
+@media screen and (max-width: 460px){
+    .mini_container_btn{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+    }
+    .mini_container_btn>.container_btn{
+        margin: 10px;
     }
 }

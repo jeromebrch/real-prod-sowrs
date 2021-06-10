@@ -46,6 +46,7 @@
     flex-direction: row;
     justify-content: left;
     align-items: center;
+    flex-wrap: wrap;
     padding-top: 20px;
     padding-bottom: 20px;
 }
@@ -89,4 +90,25 @@
     width: 100%;
     color: #555555;
     font-family: 'KohinoorBangla', Arial, serif;
+}
+
+@media screen and (max-width: 464px){
+    .send_message_options{
+        justify-content: center;
+    }
+    .send_message_options>div>*{
+        margin-bottom: 5px;
+    }
+    .container_infos_applie>p{
+        font-size: 0.9em;
+    }
+}
+@media screen and (max-width: 690px){
+    .send_message_options>div{
+        margin-left: 5px;
+        margin-right: 5px;
+    }
+    .send_message_options>div>*{
+        font-size: 0.9em;
+    }
 }
