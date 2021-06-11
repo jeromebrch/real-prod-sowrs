@@ -323,5 +323,27 @@
             labelCV.setAttribute('style', 'cursor:pointer;');
             labelMedia.setAttribute('style', 'cursor:pointer;');
         </script>
+
+        {# Change the upload appaerance when file is uploaded #}
+        <script>
+
+            window.addEventListener('load', function (){
+                let firstDocument = document.querySelector('#message_cvFile');
+                let secondDocument = document.querySelector('#message_mediaFile');
+                let btn_upload_first = document.querySelector('.file_upload_first');
+                let btn_upload_second = document.querySelector('.file_upload_second');
+                firstDocument.addEventListener('change', function (){
+                    btn_upload_first.setAttribute('style', 'color:#1DCA91!important;');
+                    btn_upload_first.setAttribute('title', 'title:' + firstDocument.value);
+                    alert('Votre fichier est bien importé !');
+                });
+                secondDocument.addEventListener('change', function (){
+                    btn_upload_second.setAttribute('style', 'color:#1DCA91!important;');
+                    btn_upload_second.setAttribute('title', 'title:' + secondDocument.value);
+                    alert('Votre fichier est bien importé !');
+                });
+            });
+
+        </script>
     {% endif %}
 {% endblock %}

@@ -276,12 +276,34 @@
         <script>
             let labelCV = document.querySelector('label[for="message_cvFile"]');
             let labelMedia = document.querySelector('label[for="message_mediaFile"]');
-            labelCV.innerHTML = '<i class="fas fa-3x fa-file-upload"></i>';
-            labelMedia.innerHTML = '<i class="fas fa-3x fa-file-upload"></i>';
+            labelCV.innerHTML = '<i class="fas fa-3x fa-file-upload file_upload_first"></i>';
+            labelMedia.innerHTML = '<i class="fas fa-3x fa-file-upload file_upload_second"></i>';
             labelCV.setAttribute('title', 'Importer un premier document');
             labelMedia.setAttribute('title', 'Importer un second document');
             labelCV.setAttribute('style', 'cursor:pointer;');
             labelMedia.setAttribute('style', 'cursor:pointer;');
+        </script>
+
+        {# Change the upload appaerance when file is uploaded #}
+        <script>
+
+            window.addEventListener('load', function (){
+                let firstDocument = document.querySelector('#message_cvFile');
+                let secondDocument = document.querySelector('#message_mediaFile');
+                let btn_upload_first = document.querySelector('.file_upload_first');
+                let btn_upload_second = document.querySelector('.file_upload_second');
+                firstDocument.addEventListener('change', function (){
+                    btn_upload_first.setAttribute('style', 'color:#1DCA91!important;');
+                    btn_upload_first.setAttribute('title', firstDocument.value);
+                    alert('Votre fichier est bien importé !');
+                });
+                secondDocument.addEventListener('change', function (){
+                    btn_upload_second.setAttribute('style', 'color:#1DCA91!important;');
+                    btn_upload_second.setAttribute('title', secondDocument.value);
+                    alert('Votre fichier est bien importé !');
+                });
+            });
+
         </script>
     {% endif %}
 {% endblock %}

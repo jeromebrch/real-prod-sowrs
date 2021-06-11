@@ -59,6 +59,34 @@
     padding: 20px;
     border-radius: 30px;
 }
+.container_uploaded_document{
+    display: none;
+    background-color: white;
+    padding: 20px;
+    border-radius: 30px;
+    width: auto;
+    height: auto;
+    border: 1px solid #55555544;
+    margin: 20px 0 20px 0;
+}
+.first_uploaded_document{
+    display: none;
+}
+.second_uploaded_document{
+    display: none;
+}
+.title_uploaded_documents{
+    color: #555555;
+    font-size: 1.2em;
+    font-weight: bold;
+}
+.first_uploaded_document, .second_uploaded_document{
+    color: #555555;
+    font-family: 'KohinoorBangla', Arial, serif;
+    font-size: 1em;
+    margin-left: 10px;
+}
+
 @media screen and (max-width: 386px){
     .send_message_options{
         justify-content: center;
