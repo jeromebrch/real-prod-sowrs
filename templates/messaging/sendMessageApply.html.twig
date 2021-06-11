@@ -40,6 +40,11 @@
                             </div>
                         </div>
                     </div>
+                    <div class="row container_uploaded_document">
+                        <h3 class="title_uploaded_documents">Pièces jointes</h3>
+                        <div class="first_uploaded_document"></div>
+                        <div class="second_uploaded_document"></div>
+                    </div>
                     <div class="row">
                         <div>
                             <div class="container_infos_applie">
@@ -59,4 +64,29 @@
                 </div>
             </div>
         </div>
+{% endblock %}
+
+{% block javascripts %}
+    <script>
+        window.addEventListener('load', function (){
+            let myCV = document.querySelector('#formCv');
+            let myMotivation = document.querySelector('#formMedia');
+            let containerUploadedDocuments = document.querySelector('.container_uploaded_document');
+            let firstUploadedDocument = document.querySelector('.first_uploaded_document');
+            let secondUploadedDocument = document.querySelector('.second_uploaded_document');
+            myCV.addEventListener('change', function (){
+                containerUploadedDocuments.setAttribute('style', 'display:block;');
+                firstUploadedDocument.setAttribute('style', 'display:block;');
+                firstUploadedDocument.innerHTML = myCV.value;
+
+            });
+            myMotivation.addEventListener('change', function (){
+                containerUploadedDocuments.setAttribute('style', 'display:block;');
+                secondUploadedDocument.setAttribute('style', 'display:block;');
+                secondUploadedDocument.innerHTML = myMotivation.value;
+
+            });
+        });
+
+    </script>
 {% endblock %}
