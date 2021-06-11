@@ -10,6 +10,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\File;
 use Symfony\Component\Validator\Constraints\NotBlank;
 
 
@@ -30,10 +31,28 @@ class ApplyType extends AbstractType
             ->add('cvFile' ,FileType::class,[
                 'label' => false,
                 'required' => false,
+                'constraints' => [
+                    new File([
+                        'maxSize' => '1M',
+                        'mimeTypes' => [
+                            'application/pdf'
+                        ],
+                        'mimeTypesMessage' => 'Veuillez sélectionner un PDF de max 1Mo',
+                    ])
+                ]
                 ])
             ->add('mediaFile', FileType::class, [
                 'label' => false,
                 'required' => false,
+                'constraints' => [
+                    new File([
+                        'maxSize' => '1M',
+                        'mimeTypes' => [
+                            'application/pdf'
+                        ],
+                        'mimeTypesMessage' => 'Veuillez sélectionner un PDF de max 1Mo',
+                    ])
+                ]
                 ])
         ;
 

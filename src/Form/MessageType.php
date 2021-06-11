@@ -22,6 +22,10 @@ class MessageType extends AbstractType
                 'label' => false,
                 'attr' => [
                     'placeholder' => 'Sujet...'
+                ],
+                'constraints' => [
+                    new NotBlank([
+                        'message' => 'Merci d\'entrer un sujet.'])
                 ]
             ])
             ->add('body', TextareaType::class, [
@@ -33,7 +37,8 @@ class MessageType extends AbstractType
                 'constraints' => [
                     new NotBlank([
                         'message' => 'Merci d\'entrer votre message.'])
-                ]])
+                ]
+            ])
             ->add('cvFile' ,FileType::class,[
                 'label' => 'Votre CV',
                 'required' => false,
