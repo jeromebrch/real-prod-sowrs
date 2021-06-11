@@ -29,6 +29,59 @@ p[class="text"]{
 .container_legal_mentions a:hover{
     color: white;
 }
+.container_title_footer{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+}
 .copyright{
     color: gray;
+}
+.footer_logo{
+    width: 80px;
+    height: 15px;
+    padding-right: 10px;
+}
+.container_text_mini_footer{
+    display: none;
+}
+.btn_footer{
+    color: #F7FAF7;
+    cursor: pointer;
+}
+.sowrs_text, .offer_text, .candidate_text_footer{
+    display: none;
+}
+.btn_sowrs_up, .btn_offer_up, .btn_candidate_up{
+    display: none;
+}
+
+@media screen and (max-width: 575px){
+    .footer_title_offer i, .footer_title_candidate i{
+        margin-left: 10px;
+    }
+}
+@media screen and (max-width: 767px){
+    .footer_title_offer h5, .footer_title_candidate h5{
+        position: relative;
+        right: 10px;
+    }
+}
+@media screen and (max-width: 994px){
+    .footer_title{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .container_title_footer{
+        justify-content: center;
+        align-items: center;
+    }
+    .footer_title_offer i, .footer_title_candidate i{
+        position: relative;
+        bottom: 4px;
+        left: 10px;
+    }
 }

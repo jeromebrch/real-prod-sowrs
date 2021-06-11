@@ -1,5 +1,6 @@
 .legale_title{
     font-family: 'KohinoorBangla', Arial, serif;
+    color: #555555;
 }
 .panel-default{
     padding: 30px;
@@ -7,6 +8,7 @@
 .panel-default *{
     font-family: 'KohinoorBangla', Arial, serif;
     text-align: left;
+    color: #555555;
 }
 .panel-default h2, h3, strong{
     padding: 20px;
