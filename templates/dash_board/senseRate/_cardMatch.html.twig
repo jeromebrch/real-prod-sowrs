@@ -1,58 +1,97 @@
 {# todo : gérer les données #}
 {% if "ROLE_RECRUITER" in app.user.roles %}
-<div class="row match_card">
-    <div class="col-lg-2 illus_matching_rate">
-        <div class="rounded-circle match_card_sensrate">
-            <p>{{ user.matching_rate }}%</p>
+    <div class="row container_matching_cards">
+        <div class="match_card">
+            <div class="first_section_card_matching">
+                <div class="illus_matching_rate">
+                    <div class="rounded-circle match_card_sensrate">
+                        <p>{{ user.matching_rate }}%</p>
+                    </div>
+                </div>
+                <div class="match_card_picture">
+                    <img class="rounded-circle matching_profil_picture" src="{{ asset('images/profils/avatar.jpg') }}" alt="photo du profil">
+                </div>
+                <div class="match_card_description">
+            {#        <div class="align-self-center">#}
+            {#            <p>{{ user.last_name | upper }} {{ user.first_name | capitalize }} </p>#}{# todo : faire un lien vers le profil avec le nom #}
+            {#        </div>#}
+                <div>
+        {#            <p>{{user.business_profile}}</p>#}
+                </div>
+                <div class="match_card_description">
+                    <p>Ville non renseignée</p>
+                </div>
+                </div>
+            </div>
+            <div class="second_section_card_matching">
+                <div class="match_card_btn">
+                    <a href="" type="button" class="btn">Voir le profil</a> {# TODO : mettre le lien vers le profil #}
+                </div>
+            </div>
         </div>
     </div>
-    <div class="match_card_picture col-lg-2">
-        <div>
-           <img class="rounded-circle" src="{{ asset('images/profils/avatar.jpg') }}" alt="photo du profil">
-        </div>
-    </div>
-    <div class="match_card_description col-lg-5">
-{#        <div class="align-self-center">#}
-{#            <p>{{ user.last_name | upper }} {{ user.first_name | capitalize }} </p>#}
-{#        </div>#}
-        <div>
-{#            <p>{{user.business_profile}}</p>#}
-        </div>
-        <div>
-            <p>Ville non renseignée</p>
-        </div>
-    </div>
-    <div class="col-lg-3 match_card_btn">
-        <a href="" type="button" class="btn">Voir le profil</a>
-    </div>
-</div>
 
 {% else %}
-<div class="row match_card">
-    <div class="col-lg-2 illus_matching_rate">
-        <div class="rounded-circle match_card_sensrate">
-            <p>{{ user.matching_rate }}%</p>
+
+    <div class="row container_matching_cards">
+        <div class="match_card">
+            <div class="first_section_card_matching">
+                <div class="illus_matching_rate">
+                    <div class="rounded-circle match_card_sensrate">
+                        <p>{{ user.matching_rate }}%</p>
+                    </div>
+                </div>
+                <div class="match_card_picture">
+                    <img class="rounded-circle matching_profil_picture" src="{{ asset('images/profils/avatar.jpg') }}" alt="photo du profil">
+                </div>
+                <div class="match_card_description">
+                    {#        {% if user.entityName is not empty %}#}
+                    {#            <div class="align-self-center">#}
+                    {#                <p>{{ user.entityName | upper }} </p>#}
+                    {#            </div>#}
+                    {#        {% endif %}#}
+                    {#        {% if user.cause is not empty %}#}
+                    {#            <div>#}
+                    {#                <p>{{user.cause}}</p>#}
+                    {#            </div>#}
+                    {#        {% endif %}#}
+                    <div class="match_card_description">
+                        <p>Ville non renseignée</p>
+                    </div>
+                </div>
+            </div>
+            <div class="second_section_card_matching">
+                <div class="match_card_btn">
+                    <a href="" type="button" class="btn">Voir le profil</a> {# TODO : mettre le lien vers le profil #}
+                </div>
+            </div>
         </div>
     </div>
-    <div class="match_card_picture col-lg-2">
-        <div>
-           <img class="rounded-circle" src="{{ asset('images/profils/avatar.jpg') }}" alt="photo du profil">
+
+
+
+
+
+
+
+
+
+    <div class="row match_card">
+        <div class="illus_matching_rate">
+            <div class="rounded-circle match_card_sensrate">
+                <p>{{ user.matching_rate }}%</p>
+            </div>
+        </div>
+        <div class="match_card_picture">
+            <div>
+               <img class="rounded-circle" src="{{ asset('images/profils/avatar.jpg') }}" alt="photo du profil">
+            </div>
+        </div>
+        <div class="match_card_description">
+
+        </div>
+        <div class="match_card_btn">
+            <a href="#" type="button" class="btn">Voir le profil</a>
         </div>
     </div>
-    <div class="match_card_description col-lg-5">
-{#        {% if user.entityName is not empty %}#}
-{#            <div class="align-self-center">#}
-{#                <p>{{ user.entityName | upper }} </p>#}
-{#            </div>#}
-{#        {% endif %}#}
-{#        {% if user.cause is not empty %}#}
-{#            <div>#}
-{#                <p>{{user.cause}}</p>#}
-{#            </div>#}
-{#        {% endif %}#}
-    </div>
-    <div class="col-lg-3 match_card_btn">
-        <a href="#" type="button" class="btn">Voir le profil</a>
-    </div>
-</div>
 {% endif %}

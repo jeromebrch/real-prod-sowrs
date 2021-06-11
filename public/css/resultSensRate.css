@@ -24,26 +24,43 @@ body .matching_big_title{
 .matching_text p {
     color: #FFFFFF;
 }
-.match_card {
-    margin-bottom: 1em;
+.container_matching_cards{
+    margin-bottom: 10px;
 }
-.match_card_sensrate {
+.match_card{
+    padding: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    background-color: white;
+    border-radius: 30px;
+}
+.first_section_card_matching{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+.second_section_card_matching{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+}
+.match_card_sensrate{
     text-align: center;
-}
-.match_card_sensrate {
     background-color: #827399;
-    width: 100%;
-    height: 100%;
+    width: 60px!important;
+    height: 60px!important;
 }
-.match_card_picture img {
-    margin: 0;
-    width: 100%;
+.match_card_description *{
+    font-family: 'KohinoorBangla', Arial, serif;
+    color: #555555;
+    font-weight: bold;
 }
-.match_card_description div p{
-    margin-bottom: 0;
-}
-.match_card_btn a {
-    width: 100%;
+.match_card_btn{
+    margin-right: 15px;
 }
 .doughnut{
     width: 23em;
@@ -67,4 +84,54 @@ body .matching_big_title{
 .result_text p{
     color: #555555;
     text-align: left;
+}
+.matching_profil_picture{
+    width: 60px!important;
+    height: 60px!important;
+}
+.illus_matching_rate, .match_card_picture{
+    padding-left: 10px;
+    padding-right: 10px;
+}
+.match_card_btn a{
+    width: auto!important;
+    font-weight: bold;
+}
+.matching_back_ground *, .result_text{
+    font-family: 'KohinoorBangla', Arial, serif;
+}
+
+@media screen and (max-width: 400px){
+    .second_section_card_matching{
+        display: none;
+    }
+    .match_card_description *{
+        font-size: 0.9em;
+    }
+}
+@media screen and (max-width: 620px){
+    .match_card{
+        width: 100% !important;
+    }
+}
+@media screen and (max-width: 992px){
+    .match_card{
+        width: 80%;
+    }
+}
+@media screen and (max-width: 1025px){
+    .result_text{
+        text-align: justify;
+    }
+}
+@media screen and (max-width: 1150px){
+    .match_card_btn a{
+        font-size: 1em;
+    }
+    .container_matching_cards{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+    }
 }
