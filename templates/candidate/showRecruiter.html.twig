@@ -11,54 +11,42 @@
 {% block body %}
 
     {# HEADER PAGE #}
-
-    <div class="row">
-        <div class="col-12 entity_title">
+    <div class="show_candidate_jumbotron pt-3">
+        <div class="col-lg-2 mx-auto container_entity_picture">
+            {# entity profil picture #}
             <div>
-                {# entity profil picture #}
-                <div class="row">
-                    {% if recruiter.picture %}
-                        <img id="photo_profile" src="{{ asset('images/profils/' ~ recruiter.picture.pictureName )}}"
-                             alt="photo du profil" title="Photo de profil">
-                    {% else %}
-                        <img id="photo_profile" src="{{ asset('images/profils/avatar.jpg' )}}"
-                             alt="photo par défaut" title="Avatar SOWRS">
-                    {% endif %}
-                </div>
-
-                {# entity name #}
-                <div class="row header_presentation">
-                    <h3>{{ recruiter.entityName }}</h3>
-                </div>
-
-                {# complementary informations #}
-                <div class="row header_presentation">
-                        <p>
-                            {% if recruiter.legalStatus %}
-                                {{ recruiter.legalStatus.text }}
-                            {% endif %}
-                            {% if recruiter.city and recruiter.country %}
-                                &bull; {{ recruiter.city }} - {{ recruiter.country }}
-                            {% endif %}
-                            {% if recruiter.country and not recruiter.city %}
-                                &bull; {{ recruiter.country }}
-                            {% endif %}
-                            {% if recruiter.carbonFootprint %}
-                                &bull; {{ recruiter.carbonFootPrint }} kg CO² / an
-                            {% endif %}
-                        </p>
-                </div>
-
-                {# main cause #}
-                {% if recruiter.mainCause %}
-                    <div class="row header_presentation">
-                        <p>
-                            Cause : {{ recruiter.mainCause.text }}
-                        </p>
-                    </div>
+                {% if recruiter.picture %}
+                    <img id="show_joboffer_photo_profile" class="img-fluid" src="{{ asset('images/profils/' ~ recruiter.picture.pictureName )}}"
+                         alt="photo du profil" title="Photo de profil">
+                {% else %}
+                    <img id="show_joboffer_photo_profile" class="img-fluid" src="{{ asset('images/profils/avatar.jpg' )}}"
+                         alt="photo par défaut" title="Avatar SOWRS">
                 {% endif %}
             </div>
         </div>
+        <div class="col-lg-5 mx-auto mt-3">
+            <h4 class="show_candidate_jumbotron_name job_offer_title_jumbotron">
+                {{ recruiter.entityName }}
+            </h4>
+        </div>
+        <h5 class="show_candidate_jumbotron_infos">
+            {# main cause #}
+            {% if recruiter.legalStatus %}
+                {{ recruiter.legalStatus.text }}
+            {% endif %}
+            {% if recruiter.city and recruiter.country %}
+                &bull; {{ recruiter.city }} - {{ recruiter.country }}
+            {% endif %}
+            {% if recruiter.country and not recruiter.city %}
+                &bull; {{ recruiter.country }}
+            {% endif %}
+            {% if recruiter.carbonFootprint %}
+                &bull; {{ recruiter.carbonFootPrint }} kg CO² / an
+            {% endif %}
+            {% if recruiter.mainCause %}
+                &bull; Cause : {{ recruiter.mainCause.text }}
+            {% endif %}
+        </h5>
     </div>
 
     {# BODY PAGE #}

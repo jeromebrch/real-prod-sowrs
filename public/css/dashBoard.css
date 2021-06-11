@@ -139,3 +139,23 @@ body .container_link_profil{
 .link_create_offer_intext:hover{
     color: #555555;
 }
+.background-title2{
+    background: #827399;
+    text-align: start;
+    font-family: 'KohinoorBangla', Arial, serif;
+    font-weight: bolder;
+    height: 10em;
+    max-width: 100%;
+}
+.background-title2 div{
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    align-items: center;
+
+}
+.title2{
+    margin: 30px;
+    font-size: 30px;
+    color: white;
+}

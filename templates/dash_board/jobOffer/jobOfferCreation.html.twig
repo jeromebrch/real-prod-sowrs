@@ -14,39 +14,39 @@
                 {{ render(controller('App\\Controller\\DashBoardNavController::navBar'))}}
             </div>
             <div class="col-lg-9 gx-0">
-                <div class="container mb-5 background-title">
-                    <div class="row h-100">
-                        <div class="col-sm-6 text-center align-self-center text-white">
-                            <h3 class="title">Nouvelle offre !</h3>
+                {{ form_start(jobOfferForm) }}
+                <div class="mb-5 background-title2 align-items-start">
+                    <div class="row col-lg-8 h-100 m-0">
+                        <div class="row title2 m-0"><span class="align-self-start">Créer une offre  <i class="fas fa-xs fa-question-circle"></i></span>
+                            <div class="info_message">
+                                <p>
+                                    Pensez à préciser la techno principale dans le titre de votre
+                                    annonce afin de donner un maximum de visibilité à votre offre.
+                                </p>
+                            </div>
+                            {{ form_row(jobOfferForm.title) }}
                         </div>
                     </div>
                 </div>
                 <div class="m-5">
-                    <div class="error_form">{{ form_errors(jobOfferForm) }}</div>
-                    {{ form_start(jobOfferForm) }}
-                    <h3 class="job_offer_creation_title">Descriptif de l'offre <i class="fas fa-xs fa-question-circle"></i></h3>
-                    <div class="info_message">
-                        <p>
-                            Pensez à préciser la techno principale dans le titre de votre
-                            annonce afin de donner un maximum de visibilité à votre offre
-                        </p>
+                    {% if form_errors(jobOfferForm) %}
+                        <div class="error_form mb-3">{{ form_errors(jobOfferForm) }}</div>
+                    {% endif %}
+                    <h3 class="job_offer_creation_title text-uppercase">Descriptif de l'offre</h3>
+                    <span class="col-lg-8 offer">Dans cette rubrique, décrivez les missions confiées au / à la futur.e colaborateur.rice ainsi que le profil recherché. N'indiquez pas d'adresse e-mail ou de numéro de téléphone, les candidats postuleront directement à partir de Sowrs</span>
+                    <div class="col-lg-8 col-lg-12">
+                        {{ form_row(jobOfferForm.description,{'attr': {'class': 'specific-textarea'}}) }}
                     </div>
-                    <hr class="green-line m-3" size=3>
-
-                    <div class="row">
-                        <div class="col-sm-6 col-lg-6 pt-3">
-                            {{ form_row(jobOfferForm.title) }}
-                        </div>
-                        <div class="col-sm-6 col-lg-6 pt-3">
-                            {{ form_row(jobOfferForm.contractType) }}
-                        </div>
+                    <h3 class="job_offer_creation_title mt-5 text-uppercase">Critères de recherche</h3>
+                    <div class="col-sm-12 col-lg-12">
+                        {{ form_row(jobOfferForm.category) }}
                     </div>
                     <div class="row">
-                        <div class="col-sm-4 col-lg-4 pt-3">
-                            {{ form_row(jobOfferForm.category) }}
-                        </div>
                         <div class="col-sm-4 col-lg-4 pt-3">
                             {{ form_row(jobOfferForm.remuneration) }}
+                        </div>
+                        <div class="col-sm-4 col-lg-4 pt-3">
+                            {{ form_row(jobOfferForm.contractType) }}
                         </div>
                         <div class="col-sm-4 col-lg-4 pt-3">
                             <div class="check_telecommuting">
@@ -78,23 +78,15 @@
                             {{ form_row(jobOfferForm.region) }}
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-sm-6 col-lg-6 pt-3">
-                            {{ form_row(jobOfferForm.description) }}
 
-                        </div>
-                        <div class="col-sm-6 col-lg-6 pt-3">
-                            {{ form_row(jobOfferForm.tags) }}
-                        </div>
-                    </div>
                     <div class="row mt-4">
                         <div class="container_options_job_offer">
                             <div class="pt-3 option_job_offer">
-                                <button type="submit" class="btn btn-lg btn-primary">Publier</button>
+                                <button type="submit" class="btn btn-lg btn-primary">Publier !</button>
                             </div>
                             <div class="pt-3 option_job_offer">
                                 <a class="btn btn-lg btn_reset_job_offer" href="{{ path('main_dash_board') }}"
-                                    role="button">Annuler</a>
+                                   role="button">Annuler</a>
                             </div>
                         </div>
                     </div>
@@ -111,7 +103,7 @@
         $("i.fa-question-circle").on("mouseover", function (){
             $("div.info_message").show(300);
         });
-        $("i.fa-question-circle").on("mouseout", function (){
+        $("i.fa-question-circle").on("click", function (){
             $("div.info_message").hide(300);
         });
     </script>

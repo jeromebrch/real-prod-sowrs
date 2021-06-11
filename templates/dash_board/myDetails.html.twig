@@ -21,197 +21,202 @@
                                 <h3 class="title">QUI &Ecirc;TES VOUS ?</h3>
                             </div>
                             <div class="col-sm-6 text-center align-self-center container_upload">
-                                <div class="error">
-                                    {{ form_errors(formCv) }}
-                                    {{ form_start(formCv, {'attr': {'id':'updatecvform', 'class':'d-none'}}) }}
-                                    {{ form_widget(formCv) }}
-                                    {{ form_end(formCv) }}
+                                {% if form_errors(formCv) %}
+                                    <div class="error">
+                                        {{ form_errors(formCv) }}
+                                        {{ form_start(formCv, {'attr': {'id':'updatecvform', 'class':'d-none'}}) }}
+                                        {{ form_widget(formCv) }}
+                                        {{ form_end(formCv) }}
+                                    </div>
+                                {% endif %}
+                                <div class="">
                                     <label for="create_cv_cvFile" class="btn required buttonDashBoardNav">Importer votre cv</label>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="m-5">
-                        <div class="error">
-                            {{ form_errors(modifyUserForm) }}
-                        </div>
+                        {% if form_errors(modifyUserForm) %}
+                            <div class="error">
+                                {{ form_errors(modifyUserForm) }}
+                            </div>
+                        {% endif %}
                         {{ form_start(modifyUserForm) }}
-
-                        <div class="row">
-                            <div class="col-sm-6 col-lg-6 pt-3">
-                                {{ form_row(modifyUserForm.lastname) }}
-                            </div>
-                            <div class="col-sm-6 col-lg-6 pt-3">
-                                {{ form_row(modifyUserForm.firstname) }}
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-sm-4 col-lg-4 pt-3">
-                                {{ form_row(modifyUserForm.department) }}
-                            </div>
-                            <div class="col-sm-4 col-lg-4 pt-3">
-                                {{ form_row(modifyUserForm.region) }}
-                            </div>
-                            <div class="col-sm-4 col-lg-4 pt-3">
-                                {{ form_row(modifyUserForm.city) }}
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-sm-6 col-lg-6 pt-3">
-                                {{ form_row(modifyUserForm.email) }}
-                            </div>
-                            <div class="col-sm-6 col-lg-6 pt-3">
-                                {{ form_row(modifyUserForm.currentRole) }}
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-6 col-lg-6 pt-3">
-                                {{ form_row(modifyUserForm.phone) }}
-                            </div>
-                            <div class="col-6 pt-3">
-                                {{ form_row(modifyUserForm.mainCause) }}
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-6 col-lg-3 pt-3">
-                                {{ form_row(modifyUserForm.socialNetwork.webSite) }}
-                            </div>
-                            <div class="col-sm-6 col-lg-3 pt-3">
-                                {{ form_row(modifyUserForm.socialNetwork.linkedin) }}
-                            </div>
-                            <div class="col-sm-6 col-lg-3 pt-3">
-                                {{ form_row(modifyUserForm.socialNetwork.stackOverflow) }}
-                            </div>
-                            <div class="col-sm-6 col-lg-3 pt-3">
-                                {{ form_row(modifyUserForm.socialNetwork.github) }}
-                            </div>
-                        </div>
-
-
-                        <h4 class="subtitle-myDetail mb-3 ms-3 me-3 mt-5">Vos études et expériences</h4>
-                        <hr class="green-line m-3" size=3>
-
-                        <div class="row">
-                            <div class="col-sm-6 col-lg-6 pt-3">
-                                {{ form_row(modifyUserForm.levelStudy) }}
-                            </div>
-                            <div class="col-sm-6 col-lg-6 pt-3">
-                                {{ form_row(modifyUserForm.businessProfile) }}
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-sm-6 col-lg-6 pt-3">
-                                {{ form_row(modifyUserForm.levelExperience) }}
-                            </div>
-                            <div class="col-sm-6 col-lg-6 pt-3">
-                                {{ form_row(modifyUserForm.authorizedCountry) }}
-                            </div>
-                        </div>
-
-                        <h4 class="subtitle-myDetail mb-3 ms-3 me-3 mt-5">Pour en savoir un peu plus sur vous...</h4>
-                        <hr class="green-line m-3" size=3>
-
-                        <div>
-                            <p class="paragraph">Au delà de votre CV, les recruteurs aiment en savoir
-                                plus sur les candidats. Prenez votre plus belle plume et présentez-vous en quelques
-                                lignes !
-                                Quel est votre parcours ? Quel sens voulez-vous donner à votre carrière ? Quelles
-                                valeurs
-                                sont essentielles à vos yeux ?</p>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-sm-6 col-lg-6 pt-3">
-                                {{ form_row(modifyUserForm.about, {'attr': {'class':'text-area'}}) }}
-                            </div>
-                            <div class="col-sm-6 col-lg-6 pt-3">
-                                {{ form_row(modifyUserForm.inspiration, {'attr': {'class':'text-area'}}) }}
-                            </div>
-                        </div>
-
-
-                        {{ form_row(modifyUserForm.socialNetwork.facebook.setRendered()) }}
-                        {{ form_row(modifyUserForm.socialNetwork.twitter.setRendered()) }}
-                        {{ form_row(modifyUserForm.socialNetwork.skype.setRendered()) }}
-
-                        <h4 class="subtitle-myDetail mb-3 ms-3 me-3 mt-5">Que recherchez-vous <i class="fas fa-xs fa-question-circle"></i></h4>
-                        <div class="info_message">
-                            <p>
-                                Pour apparaître dans un maximum de recherche, pensez à renseigner votre recherche
-                                d'offre d'emploi de façon pertinente
-                            </p>
-                        </div>
-                        <hr class="green-line m-3" size=3>
-                        <div class="row">
-                            <div class="col-sm-12 col-lg-12 pt-3">
-                                {{ form_row(modifyUserForm.jobSearch.jobTitle) }}
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-4 col-lg-4 pt-3">
-                                {{ form_row(modifyUserForm.jobSearch.desiredRemuneration) }}
-                            </div>
-                            <div class="col-sm-4 col-lg-4 pt-3">
-                                {{ form_row(modifyUserForm.jobSearch.contractType) }}
-                            </div>
-                            <div class="col-4 col-lg-4 pt-3 cause_choice check_telecommute">
-                                {{ form_row(modifyUserForm.jobSearch.telecommute) }}
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-6 col-lg-6 pt-3">
-                                {{ form_row(modifyUserForm.jobSearch.country) }}
-                            </div>
-                            <div class="col-sm-6 col-lg-6 pt-3">
-                                {{ form_row(modifyUserForm.jobSearch.cause) }}
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-4 pt-3">
-                                {{ form_row(modifyUserForm.jobSearch.region) }}
-                            </div>
-                            <div class="col-sm-4 pt-3">
-                                {{ form_row(modifyUserForm.jobSearch.department) }}
-                            </div>
-                            <div class="col-sm-4 pt-3">
-                                {{ form_row(modifyUserForm.jobSearch.city) }}
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row details_engagements_block_candidate_line">
-                        <div id="details_engagements_block_candidate">
+                        <div class="container_section">
                             <div class="row">
-                                <h4 class="subtitle-myDetail">Engagements quotidiens</h4>
-                                <hr class="green-line m-3" size=3>
+                                <div class="col-sm-6 col-lg-6">
+                                    {{ form_row(modifyUserForm.lastname) }}
+                                </div>
+                                <div class="col-sm-6 col-lg-6">
+                                    {{ form_row(modifyUserForm.firstname) }}
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-sm-4 col-lg-4 pt-3">
+                                    {{ form_row(modifyUserForm.department) }}
+                                </div>
+                                <div class="col-sm-4 col-lg-4 pt-3">
+                                    {{ form_row(modifyUserForm.region) }}
+                                </div>
+                                <div class="col-sm-4 col-lg-4 pt-3">
+                                    {{ form_row(modifyUserForm.city) }}
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-sm-6 col-lg-6 pt-3">
+                                    {{ form_row(modifyUserForm.email) }}
+                                </div>
+                                <div class="col-sm-6 col-lg-6 pt-3">
+                                    {{ form_row(modifyUserForm.currentRole) }}
+                                </div>
                             </div>
                             <div class="row">
-                                <div class="container_commitments_options">
-                                    <div class="col-lg-5 col-md-5 col-sm-12 block_commitment">
-                                        <div class="block_new_commitment">
-                                            <label for="commitment" class="commitment_label">Engagements</label>
-                                            <input type="text" id="commitment" name="input_commitment" placeholder="Votre engagement">
-                                            <label for="commitment_text" class="label_commitment">Détail</label>
-                                            <textarea id="commitment_text" name="textarea_commitment" rows="5" cols="40" placeholder="Explication de votre engagement ici"></textarea>
-                                            <button type="button" class="btn required btn_save_commitment">Ajouter</button>
-                                        </div>
+                                <div class="col-sm-6 col-lg-6 pt-3">
+                                    {{ form_row(modifyUserForm.phone) }}
+                                </div>
+                                <div class="col-6 pt-3">
+                                    {{ form_row(modifyUserForm.mainCause) }}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6 col-lg-3 pt-3">
+                                    {{ form_row(modifyUserForm.socialNetwork.webSite) }}
+                                </div>
+                                <div class="col-sm-6 col-lg-3 pt-3">
+                                    {{ form_row(modifyUserForm.socialNetwork.linkedin) }}
+                                </div>
+                                <div class="col-sm-6 col-lg-3 pt-3">
+                                    {{ form_row(modifyUserForm.socialNetwork.stackOverflow) }}
+                                </div>
+                                <div class="col-sm-6 col-lg-3 pt-3">
+                                    {{ form_row(modifyUserForm.socialNetwork.github) }}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="container_section">
+                            <h4 class="subtitle-myDetail mb-3 ms-3 me-3">Vos études et expériences</h4>
+                            <hr class="green-line m-3" size=3>
+
+                            <div class="row">
+                                <div class="col-sm-6 col-lg-6 pt-3">
+                                    {{ form_row(modifyUserForm.levelStudy) }}
+                                </div>
+                                <div class="col-sm-6 col-lg-6 pt-3">
+                                    {{ form_row(modifyUserForm.businessProfile) }}
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-sm-6 col-lg-6 pt-3">
+                                    {{ form_row(modifyUserForm.levelExperience) }}
+                                </div>
+                                <div class="col-sm-6 col-lg-6 pt-3">
+                                    {{ form_row(modifyUserForm.authorizedCountry) }}
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="container_section">
+                            <h4 class="subtitle-myDetail mb-3 ms-3 me-3">Pour en savoir un peu plus sur vous...</h4>
+                            <hr class="green-line m-3" size=3>
+
+                            <div>
+                                <p class="paragraph">Au delà de votre CV, les recruteurs aiment en savoir
+                                    plus sur les candidats. Prenez votre plus belle plume et présentez-vous en quelques
+                                    lignes !
+                                    Quel est votre parcours ? Quel sens voulez-vous donner à votre carrière ? Quelles
+                                    valeurs
+                                    sont essentielles à vos yeux ?</p>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-sm-6 col-lg-6 pt-3">
+                                    {{ form_row(modifyUserForm.about, {'attr': {'class':'text-area'}}) }}
+                                </div>
+                                <div class="col-sm-6 col-lg-6 pt-3">
+                                    {{ form_row(modifyUserForm.inspiration, {'attr': {'class':'text-area'}}) }}
+                                </div>
+                            </div>
+
+                            <div class="row details_engagements_block_candidate_line">
+                                <div id="details_engagements_block_candidate">
+                                    <div class="row">
+                                        <h4 class="subtitle-myDetail">Engagements quotidiens</h4>
+                                        <hr class="green-line m-3" size=3>
                                     </div>
-                                    <div class="col-lg-6 col-md-6 col-sm-12 block_commitment">
-                                        <table class="commitment_array">
-                                            {% for commitment in app.user.commitments %}
-                                                <tr>
-                                                    <td>{{ commitment.title }}</td>
-                                                    {% set title = commitment.title %}
-                                                </tr>
-                                            {% endfor %}
-                                        </table>
+                                    <div class="row">
+                                        <div class="container_commitments_options">
+                                            <div class="col-lg-5 col-md-5 col-sm-12 block_commitment">
+                                                <div class="block_new_commitment">
+                                                    <label for="commitment" class="commitment_label">Engagements</label>
+                                                    <input type="text" id="commitment" name="input_commitment" placeholder="Votre engagement">
+                                                    <label for="commitment_text" class="label_commitment">Détail</label>
+                                                    <textarea id="commitment_text" name="textarea_commitment" rows="5" cols="40" placeholder="Explication de votre engagement ici"></textarea>
+                                                    <button type="button" class="btn required btn_save_commitment">Ajouter</button>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6 col-md-6 col-sm-12 block_commitment">
+                                                <table class="commitment_array">
+                                                    {% for commitment in app.user.commitments %}
+                                                        <tr>
+                                                            <td>{{ commitment.title }}</td>
+                                                            {% set title = commitment.title %}
+                                                        </tr>
+                                                    {% endfor %}
+                                                </table>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                        <div class="container_section">
+                            <h4 class="subtitle-myDetail mb-3 ms-3 me-3">Que recherchez-vous <i class="fas fa-xs fa-question-circle"></i></h4>
+                            <div class="info_message">
+                                <p>
+                                    Pour apparaître dans un maximum de recherche, pensez à renseigner votre recherche
+                                    d'offre d'emploi de façon pertinente
+                                </p>
+                            </div>
+                            <hr class="green-line m-3" size=3>
+                            <div class="row">
+                                <div class="col-sm-12 col-lg-12 pt-3">
+                                    {{ form_row(modifyUserForm.jobSearch.jobTitle) }}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-4 col-lg-4 pt-3">
+                                    {{ form_row(modifyUserForm.jobSearch.desiredRemuneration) }}
+                                </div>
+                                <div class="col-sm-4 col-lg-4 pt-3">
+                                    {{ form_row(modifyUserForm.jobSearch.contractType) }}
+                                </div>
+                                <div class="col-4 col-lg-4 pt-3 cause_choice check_telecommute">
+                                    {{ form_row(modifyUserForm.jobSearch.telecommute) }}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6 col-lg-6 pt-3">
+                                    {{ form_row(modifyUserForm.jobSearch.country) }}
+                                </div>
+                                <div class="col-sm-6 col-lg-6 pt-3">
+                                    {{ form_row(modifyUserForm.jobSearch.cause) }}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-4 pt-3">
+                                    {{ form_row(modifyUserForm.jobSearch.region) }}
+                                </div>
+                                <div class="col-sm-4 pt-3">
+                                    {{ form_row(modifyUserForm.jobSearch.department) }}
+                                </div>
+                                <div class="col-sm-4 pt-3">
+                                    {{ form_row(modifyUserForm.jobSearch.city) }}
+                                </div>
+                            </div>
+                        </div>
                     <div id="actions_mydetails">
                         <div class="row">
                             {# reset password with Reset Password Feature #}
@@ -228,7 +233,11 @@
                             <a href="{{ path('unsubscribe') }}" class="col-4 link_action_mydetails">Supprimer mon compte</a>
                         </div>
                     </div>
+                    {{ form_row(modifyUserForm.socialNetwork.facebook.setRendered()) }}
+                    {{ form_row(modifyUserForm.socialNetwork.twitter.setRendered()) }}
+                    {{ form_row(modifyUserForm.socialNetwork.skype.setRendered()) }}
                     {{ form_end(modifyUserForm) }}
+
                 {% elseif "ROLE_RECRUITER" in app.user.roles %}
 
                     <div class="container mb-4 background-title">

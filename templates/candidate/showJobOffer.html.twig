@@ -10,20 +10,20 @@
 
 {% block body %}
     <div class="show_candidate_jumbotron pt-3">
-        <div class="col-lg-1 mx-auto container_entity_picture">
+        <div class="col-lg-2 mx-auto container_entity_picture">
             <a href="{{ path('show_recruiter_profil', {"id":entity.id}) }}" class="link_recruiter">
                 {% if entity.picture %}
-                    <img class="rounded-circle"
+                    <img id="show_joboffer_photo_profile" class="img-fluid mb-3"
                          src="{{ asset('images/profils/' ~entity.picture.pictureName ) }}"
                          alt="photo du profil">
                 {% else %}
-                    <img class="rounded-circle"
+                    <img id="show_joboffer_photo_profile" class="img-fluid mb-3"
                          src="{{ asset('images/profils/avatar.jpg') }}"
                          alt="photo du profil">
                 {% endif %}
             </a>
         </div>
-        <div class="col-lg-5 mx-auto">
+        <div class="col-lg-5 mx-auto pt-3">
             <a href="{{ path('show_recruiter_profil', {"id":entity.id}) }}" class="link_recruiter">
                 <h5 class="show_candidate_jumbotron_name">{{ entity.entityName | capitalize }}</h5>
             </a>

@@ -43,13 +43,13 @@ class JobOfferType extends AbstractType
                     ])
                 ]
             ])
-            ->add('tags', TextareaType::class, [
-                'label' => false,
-                'required' => false,
-                'attr' => [
-                    'placeholder' => 'Tags (séparés par une virgule)'
-                ]
-            ])
+//            ->add('tags', TextareaType::class, [
+//                'label' => false,
+//                'required' => false,
+//                'attr' => [
+//                    'placeholder' => 'Tags (séparés par une virgule)'
+//                ]
+//            ])
             ->add('city', TextType::class, [
                 'label' => false,
                 'attr' => [
