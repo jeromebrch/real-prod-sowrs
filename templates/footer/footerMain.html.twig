@@ -1,30 +1,40 @@
 <div class="container-fluid footer px-0">
 
     <div class="container">
-        <div class="row">
-            <div class="col-lg-4 p-3">
-                <h5 class="text">SOWRS</h5>
-                <p class="text">Sowrs met en relation les sociétés porteuses de projets à impact avec les profils
-                    tech en quête de sens dans leur travail !</p>
+        <div class="row footer_title">
+            <div class="col-lg-4 p-3 container_title_footer footer_title_sowrs">
+                <img src="{{ asset('img/logo_sowrs.png') }}" alt="Sowrs" title="SOWRS" class="footer_logo" />
+                <i class="fas fa-chevron-circle-down btn_footer btn_sowrs"></i>
+                <i class="fas fa-chevron-circle-up btn_footer btn_sowrs_up"></i>
             </div>
-
-            <div class="col-lg-4 p-3">
-                <h5 class="text">Vous cherchez un emploi dans la tech et vous voulez donner du sens à votre carrière
-                    ? </h5>
-                <p class="text">Nous proposons aux professionnels de la tech la possibilité de travailler pour des
-                    sociétés à mission, qui ont à cœur d’avoir un impact positif sur le monde.</p>
+            <div class="col-lg-4 p-3 container_title_footer footer_title_offer">
+                <h5 class="text">Vous cherchez un emploi dans la tech et vous voulez donner du sens à votre carrière ?</h5>
+                <i class="fas fa-chevron-circle-down btn_footer btn_offer"></i>
+                <i class="fas fa-chevron-circle-up btn_footer btn_offer_up"></i>
             </div>
-
-            <div class="col-lg-4 p-3">
-                <div>
-                    <h5 class="text">La responsabilité est importante pour votre entreprise et vous cherchez des
-                        collaborateurs ? </h5>
-                    <p class="text">Côté entreprise, nous sommes aux côtés des acteurs de la Green Tech et des
-                        entreprises ayant
-                        à cœur de travailler de manière éthique et en limitant leur impact environnemental.</p>
-                </div>
+            <div class="col-lg-4 p-3 container_title_footer footer_title_candidate">
+                <h5 class="text">La responsabilité est importante pour votre entreprise et vous cherchez des collaborateurs ?</h5>
+                <i class="fas fa-chevron-circle-down btn_footer btn_candidate"></i>
+                <i class="fas fa-chevron-circle-up btn_footer btn_candidate_up"></i>
             </div>
         </div>
+        <div class="row">
+            <div class="col-12 container_text_mini_footer">
+                <p class="text sowrs_text">
+                    Sowrs met en relation les sociétés porteuses de projets à impact avec les profils
+                    tech en quête de sens dans leur travail !
+                </p>
+                <p class="text offer_text">
+                    Nous proposons aux professionnels de la tech la possibilité de travailler pour des
+                    sociétés à mission, qui ont à cœur d’avoir un impact positif sur le monde.
+                </p>
+                <p class="text candidate_text_footer">
+                    Côté entreprise, nous sommes aux côtés des acteurs de la Green Tech et des
+                    entreprises ayant à cœur de travailler de manière éthique et en limitant leur impact environnemental.
+                </p>
+            </div>
+        </div>
+
         <div class="row">
             <div class="text container_legal_mentions">
                 <a class="legalMentions" href="{{ path('main_legalNotice') }}">Mentions légales & conditions
@@ -87,5 +97,4 @@
             </div>
         </div>
     </div>
-
 </div>

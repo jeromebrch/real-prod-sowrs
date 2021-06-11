@@ -1,0 +1,41 @@
+.container_offer_not_found{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding-top: 150px;
+    padding-bottom: 150px;
+}
+.offer_not_found{
+    padding: 30px;
+    background-color: white;
+    border-radius: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.offer_not_found p{
+    color: #555555;
+    font-weight: bold;
+    font-family: 'KohinoorBangla', Arial, serif;
+    font-size: 1.2em;
+}
+
+@media screen and (max-width: 285px){
+    .offer_not_found{
+        border-radius: 0;
+    }
+    body .offer_not_found p{
+        font-size: 0.9em;
+    }
+}
+@media screen and (max-width: 610px){
+    .container_offer_not_found{
+        padding-top: 100px;
+        padding-bottom: 100px;
+    }
+    .offer_not_found p{
+        font-size: 1em;
+    }
+}

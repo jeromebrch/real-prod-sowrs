@@ -3,13 +3,18 @@
 {% block title %}Sowrs | Oups !{% endblock %}
 
 {% block stylesheets %}
-{{ parent() }}
+    {{ parent() }}
 {% endblock%}
 
 {% block body %}
 
-    <div class="alert alert-danger">
-        <h1 style="text-align: center; color: red">Oups !!</h1>
-        <h2 style="text-align: center">Cette offre d'emploi est introuvable </h2>
+    <div class="container_offer_not_found">
+        <div class="offer_not_found">
+            <p>
+                Il semblerait que cette offre d'emploi n'existe pas &#128561 <br />
+                Mais d'autres postes n'attendent que vous &#128540
+            </p>
+            <a href="{{ path('main_job_offers_list') }}" class="btn">Recherche des offres</a>
+        </div>
     </div>
 {% endblock %}

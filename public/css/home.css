@@ -81,11 +81,13 @@
 .post_mini_home *{
     color: #555555;
     text-align: left;
+    font-family: 'KohinoorBangla', Arial, serif;
 }
 .post_mini_home a{
     color: #937FA4;
     font-size: 1.1em;
     padding-top: 10px;
+    font-weight: bold;
 }
 .post_mini_home h3{
     font-size: 0.9em;

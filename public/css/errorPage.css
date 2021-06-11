@@ -25,7 +25,7 @@
     max-height: 300px;
     width: auto;
     position: relative;
-    bottom: 90px
+    bottom: 90px;
 }
 .error_info{
     position: relative;
@@ -40,4 +40,44 @@
 }
 .link_return_home:hover{
     color: white;
+}
+
+@media screen and (max-width: 345px){
+    body .error_cl{
+        border-radius: 0;
+    }
+}
+@media screen and (max-width: 410px){
+    body .error_img{
+        height: 100px;
+        width: auto;
+        position: relative;
+        bottom: 20px;
+    }
+    body .error_info{
+        position: relative;
+        bottom: 15px;
+        font-size: 0.9em;
+    }
+    .link_return_home{
+        font-size: 1em;
+        padding-left: 0;
+        padding-right: 0;
+    }
+}
+@media screen and (max-width: 620px){
+    .error_img{
+        height: 150px;
+        width: auto;
+        position: relative;
+        bottom: 40px;
+    }
+    .error_info{
+        position: relative;
+        bottom: 25px;
+        font-size: 1em;
+    }
+    .error_cl{
+        padding: 10px;
+    }
 }
