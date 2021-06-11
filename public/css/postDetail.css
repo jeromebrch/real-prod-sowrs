@@ -44,6 +44,11 @@
     font-size: 1.1em;
     padding: 15px;
 }
+.latest_post_date{
+    color: #555555;
+    font-family: 'KohinoorBangla', Arial, serif;
+    font-weight: bold;
+}
 .latest_post_title{
     color: #988CAA;
     font-size: 0.9em;
