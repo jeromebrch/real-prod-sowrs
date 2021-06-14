@@ -44,10 +44,21 @@ class RecognitionType extends AbstractType
         $builder
             ->add('cause', HiddenType::class)
             ->add('recruiter', HiddenType::class)
-            ->add('description', TextareaType::class, [
+            ->add('description', TextType::class, [
                 'required' => false,
-                'label' => 'Nom de la reconnaissance :',
-            ]);
+                'label' => false,
+                'attr' => [
+                    'placeholder' => 'Nom de la reconnaissance...'
+                ]
+            ])
+            ->add('text', TextareaType::class, [
+                'required' => false,
+                'label' => false,
+                'attr' => [
+                    'placeholder' => 'Description de la reconnaissance... (280 caractères max)'
+                ]
+            ])
+        ;
 
         // il faut convertir "recruiter" en objet
         $builder->get('recruiter')->addModelTransformer($this->recruiterTransformer);

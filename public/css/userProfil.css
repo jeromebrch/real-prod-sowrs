@@ -64,6 +64,18 @@
     color: #555555;
 }
  */
+.list_recognition_title{
+    font-weight: bold;
+    padding-bottom: 5px;
+    padding-top: 8px;
+}
+.list_recognition_text{
+    padding-left: 20px!important;
+    padding-bottom: 5px;
+}
+.list_recognition_title, .list_recognition_text{
+    font-family: 'KohinoorBangla', Arial, serif;
+}
 .container_sense_rate{
     margin: 40px;
 }

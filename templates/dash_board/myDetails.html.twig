@@ -420,8 +420,8 @@
                                                 data-id-cause="{{ recognition.cause.id }}"
                                                 data-name-cause="{{ recognition.cause.text }}">
                                                 <button class="btn-recognition btn_delete_recognition btn-sm">-</button>
-                                                <span>{{ recognition.cause.text }}</span><br>
-                                                <br>{{ recognition.description }}
+                                                <span>{{ recognition.cause.text }}</span><br />
+                                                {{ recognition.description }}
                                             </li>
                                         {% endfor %}
                                     </ul>
@@ -471,6 +471,7 @@
                 {% endif %}
             </div>
         </div>
+    </div>
     </div>
 {% endblock %}
 
@@ -574,6 +575,18 @@
             });
             infos.on("mouseout", function (){
                 $("div.info_message").hide(300);
+            });
+        </script>
+
+        <script>
+            window.addEventListener('load', function (){
+                let recognitionText = document.querySelector('#recognition_text');
+                recognitionText.addEventListener('change', function (){
+                   let nbrChar = recognitionText.value.length;
+                   if(nbrChar > 280){
+                       alert("Merci d'indiquer une description de 280 caractères maximum, vous en avez renseigné : " + nbrChar);
+                   }
+                });
             });
         </script>
     {% endblock %}

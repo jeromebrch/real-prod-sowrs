@@ -96,7 +96,7 @@ class ModificationController extends AbstractController
                         ->from($this->getUser()->getEmail())
                         ->to('team@sowrs.com')
                         ->subject('Footprint proof from ' . $this->getUser()->getEmail())
-                        ->text('La preuve de l\'empreint carbone')
+                        ->text('La preuve de l\'empreinte carbone')
                         ->attachFromPath('uploads/carbonFootPrintProof/' . $newFilename)
                         ->html('<p>Veuillez trouver ci-joint mon justificatif.</p><p>Cordialement</p>');
                     $mailer->send($email);

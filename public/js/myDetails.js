@@ -6,6 +6,7 @@ const formCauseRecruiter = document.querySelector("#recognition");
 const btnValideFormCauseRecruiter = document.querySelector("#btnAjoutCauseRecruiter");
 const btnAnnulerFormCauseRecruiter = document.querySelector("#btnAnnulerAjoutCauseRecruiter");
 const elemDescriptionFormulaire = formCauseRecruiter.querySelector('#recognition_description');
+const elemTextFormulaire = formCauseRecruiter.querySelector('#recognition_text');
 const formOne = document.querySelector("#formOne");
 const elemNameFormulaire = document.querySelector("#nameForm");
 
@@ -91,8 +92,8 @@ function clickCauseRecruiter(e) {
 // traitement du submit du formulaire
 btnValideFormCauseRecruiter.addEventListener('click', function (e) {
     e.preventDefault();
-    if (elemDescriptionFormulaire.value === ''){
-        alert('Ce champ ne peut être vide ')
+    if (elemDescriptionFormulaire.value === '' || elemTextFormulaire.value === ''){
+        alert('Ce champ ne peut être vide ') // todo :: appelé ici !!!
     }
     else {
         submitCauseRecruiter();
@@ -147,7 +148,7 @@ function ajoutLiCause(id, name) {
 function submitCauseRecruiter() {
 
     // appel AJAX pour l'ajout de l'action pour le recruteur
-    fetch(baseURL + "/recruiter/api/recruiter/recognition/add", {
+    fetch(baseURL + "/recruiter/api/recruiter/recognition/add", { // todo : voir le controller
         method: "POST",
         headers: {
             "X-Requested-With": "XMLHttpRequest",
@@ -156,7 +157,8 @@ function submitCauseRecruiter() {
         body: JSON.stringify({
             'recruiter': recruiter,
             'cause': parseInt(idCause),
-            'description': elemDescriptionFormulaire.value,
+            'description': elemDescriptionFormulaire.value, // todo : ici !!!
+            'text': elemTextFormulaire.value
         })
     })
         .then(response => response.json())

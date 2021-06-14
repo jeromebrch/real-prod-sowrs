@@ -86,9 +86,6 @@ body .container_upload{
 #btnAjoutCauseRecruiter {
     margin: 1em;
 }
-#formOne {
-    margin-bottom: 1em;
-}
 .subtitle {
     font-family: 'KohinoorBangla', Arial, serif;
     font-weight: bolder;
@@ -336,16 +333,32 @@ body .form-control{
 }
 .recognition_form{
     background: #FFFFFF;
-    border: 1px solid darkgrey;
+    padding: 15px;
+    border-radius: 30px;
+}
+#nameForm{
+    padding-top: 5px;
+    padding-bottom: 5px;
+    color: #555555;
 }
 .mini_actions_mydetails{
     display: none;
+}
+#formOne{
+    position: relative;
+    bottom: 500px;
+    border: 1px solid #55555588;
+    box-shadow: 0 0 2em #55555588;
 }
 .engagement {
     color: #555555;!important;
     font-family: 'KohinoorBangla', Arial, serif;
     font-weight: bolder;
     text-align: start;
+}
+.list-group-item{
+    font-family: 'KohinoorBangla', Arial, serif;
+    color: #555555;
 }
 
 @media screen and (max-width: 520px){
@@ -380,6 +393,12 @@ body .form-control{
         display: flex;
         flex-direction: column;
         justify-content: center;
+    }
+}
+@media screen and (max-width: 576px){
+    #formOne {
+        position: relative;
+        bottom: 600px;
     }
 }
 @media screen and (max-width: 1082px){

@@ -490,7 +490,10 @@
                         {% if user.recognitions is not empty %}
                             <ul>
                                 {% for recognition in user.recognitions %}
-                                    <li class="list_line">{{ recognition.description }}</li>
+                                    <li class="list_line list_recognition_title">{{ recognition.description }}</li>
+                                    {% if recognition.text is not empty %}
+                                        <li class="list_line list_recognition_text">{{ recognition.text }}</li>
+                                    {% endif %}
                                 {% endfor %}
                             </ul>
                         {% else %}

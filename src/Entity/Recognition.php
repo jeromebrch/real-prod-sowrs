@@ -48,6 +48,15 @@ class Recognition
      */
     private $recruiter;
 
+    /**
+     * @ORM\Column(type="text", nullable=true)
+     * @Assert\Length(
+     *      max = 280,
+     *      maxMessage = "Merci d'indiquer une description d'une longueur de 280 caractères maximum"
+     * )
+     */
+    private $text;
+
 
 
     public function getId(): ?int
@@ -107,6 +116,18 @@ class Recognition
     public function setRecruiter(?Recruiter $recruiter): self
     {
         $this->recruiter = $recruiter;
+
+        return $this;
+    }
+
+    public function getText(): ?string
+    {
+        return $this->text;
+    }
+
+    public function setText(?string $text): self
+    {
+        $this->text = $text;
 
         return $this;
     }
