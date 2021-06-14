@@ -427,19 +427,6 @@
                                     </ul>
                                 </div>
                             </div>
-                            <div id="formOne" class="position-relative m-4 recognition_form">
-                                {{ form_start(recognitionForm) }}
-                                {{ form_errors(recognitionForm) }}
-                                <img src="{{ asset('img/boostrap/close.svg') }}" alt="fermer"
-                                     class="position-absolute top-0 end-0 m-1"
-                                     id="btnAnnulerAjoutCauseRecruiter">
-                                <h6 id="nameForm">Cause : </h6>
-                                <span id="leForm" class="">{{ form_widget(recognitionForm) }}</span>
-                                <div class="text-center">
-                                    <button class="btn" id="btnAjoutCauseRecruiter">Valider</button>
-                                </div>
-                                {{ form_end(recognitionForm) }}
-                            </div>
                         </div>
                         <div id="actions_mydetails">
                             <div class="row">
@@ -467,18 +454,19 @@
                         {{ form_end(modifyUserForm) }}
 
 
-{#                        <div id="formOne" class="position-relative m-4 recognition_form">#}
-{#                            {{ form_start(recognitionForm) }}#}
-{#                            {{ form_errors(recognitionForm) }}#}
-{#                            <img src="{{ asset('img/boostrap/close.svg') }}" alt="fermer"#}
-{#                                 class="position-absolute top-0 end-0"#}
-{#                                 id="btnAnnulerAjoutCauseRecruiter">#}
-{#                            <h6 id="nameForm">Cause : </h6>#}
-{#                            {{ form_widget(recognitionForm) }}#}
-{#                            <button class="btn" id="btnAjoutCauseRecruiter">Valider</button>#}
-{#    #}
-{#                            {{ form_end(recognitionForm) }}#}
-{#                        </div>#}
+                        <div id="formOne" class="position-relative m-4 recognition_form">
+                            {{ form_start(recognitionForm) }}
+                            {{ form_errors(recognitionForm) }}
+                            <img src="{{ asset('img/boostrap/close.svg') }}" alt="fermer"
+                                 class="position-absolute top-0 end-0 m-1"
+                                 id="btnAnnulerAjoutCauseRecruiter">
+                            <h6 id="nameForm">Cause : </h6>
+                            <span id="leForm">{{ form_widget(recognitionForm) }}</span>
+                            <div class="text-center">
+                                <button class="btn" id="btnAjoutCauseRecruiter">Valider</button>
+                            </div>
+                            {{ form_end(recognitionForm) }}
+                        </div>
                     </div>
                 {% endif %}
             </div>
