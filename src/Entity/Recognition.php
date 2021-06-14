@@ -43,7 +43,7 @@ class Recognition
 
     /**
      * @ORM\ManyToOne(targetEntity=Recruiter::class, inversedBy="recognitions")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(nullable=false, onDelete="CASCADE")
      * @Groups({"get_add_action_recruiter"})
      */
     private $recruiter;

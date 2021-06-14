@@ -72,7 +72,7 @@ class JobOffer
 
     /**
      * @ORM\ManyToOne(targetEntity=Recruiter::class, inversedBy="jobOffers")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(nullable=false, onDelete="CASCADE")
      */
     private $entity;
 

@@ -63,12 +63,12 @@ class Recruiter extends User
     private $jobOffers;
 
     /**
-     * @ORM\OneToOne(targetEntity=SocialNetwork::class, inversedBy="recruiter", cascade={"persist", "remove"})
+     * @ORM\OneToOne(targetEntity=SocialNetwork::class, inversedBy="recruiter", cascade={"remove"})
      */
     private $socialNetwork;
 
     /**
-     * @ORM\OneToMany(targetEntity=Recognition::class, mappedBy="recruiter", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity=Recognition::class, mappedBy="recruiter", cascade={"remove"})
      */
     private $recognitions;
 
@@ -99,7 +99,7 @@ class Recruiter extends User
     private $carbonFootPrintProofFilename;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Commitment::class, inversedBy="recruiters")
+     * @ORM\ManyToMany(targetEntity=Commitment::class, inversedBy="recruiters", cascade={"remove"})
      */
     private $commitments;
 

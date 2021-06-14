@@ -12,7 +12,7 @@ use Doctrine\ORM\Mapping as ORM;
 class Candidate extends User
 {
     /**
-     * @ORM\ManyToOne(targetEntity=Cv::class, inversedBy="candidate")
+     * @ORM\ManyToOne(targetEntity=Cv::class, inversedBy="candidate", cascade={"remove"})
      */
     public $cv;
 
@@ -47,7 +47,7 @@ class Candidate extends User
     private $city;
 
     /**
-     * @ORM\ManyToOne(targetEntity=JobSearch::class, inversedBy="candidates",cascade={"PERSIST"})
+     * @ORM\ManyToOne(targetEntity=JobSearch::class, inversedBy="candidates", cascade={"remove"})
      */
     private $jobSearch;
 
@@ -67,12 +67,12 @@ class Candidate extends User
     private $region;
 
     /**
-     * @ORM\OneToOne(targetEntity=SocialNetwork::class, inversedBy="candidate", cascade={"persist", "remove"})
+     * @ORM\OneToOne(targetEntity=SocialNetwork::class, inversedBy="candidate", cascade={"remove"})
      */
     private $socialNetwork;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Commitment::class, inversedBy="candidates")
+     * @ORM\ManyToMany(targetEntity=Commitment::class, inversedBy="candidates", cascade={"remove"})
      */
     private $commitments;
 
@@ -87,7 +87,7 @@ class Candidate extends User
     private $interestedRecruiters;
 
     /**
-     * @ORM\ManyToMany(targetEntity=JobOffer::class, inversedBy="interestedCandidates")
+     * @ORM\ManyToMany(targetEntity=JobOffer::class, inversedBy="interestedCandidates", cascade={"remove"})
      */
     private $favoriteOffers;
 

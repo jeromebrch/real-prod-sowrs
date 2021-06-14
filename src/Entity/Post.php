@@ -60,7 +60,7 @@ class Post
     private $numberOfViews;
 
     /**
-     * @ORM\OneToMany(targetEntity=Comment::class, mappedBy="post", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity=Comment::class, mappedBy="post", cascade={"remove"})
      */
     private $comments;
 

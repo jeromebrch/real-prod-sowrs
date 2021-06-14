@@ -31,6 +31,7 @@ class JobSearch
 
     /**
      * @ORM\OneToMany(targetEntity=Candidate::class, mappedBy="jobSearch")
+     * @ORM\JoinColumn(onDelete="CASCADE")
      */
     private $candidates;
 

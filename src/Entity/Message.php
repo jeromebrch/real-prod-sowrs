@@ -29,11 +29,13 @@ class Message
 
     /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="receivedMessages")
+     * @ORM\JoinColumn(onDelete="CASCADE")
      */
     private $userRecipient;
 
     /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="sendedMessages")
+     * * @ORM\JoinColumn(onDelete="CASCADE")
      */
     private $userSender;
 
@@ -49,7 +51,7 @@ class Message
 
     /**
      * @ORM\OneToOne(targetEntity=Cv::class)
-     * @ORM\JoinColumn(nullable=true)
+     * @ORM\JoinColumn(nullable=true, onDelete="CASCADE")
      */
     public $cv;
 
@@ -62,7 +64,7 @@ class Message
 
     /**
      * @ORM\OneToOne(targetEntity=Media::class)
-     * @ORM\JoinColumn(nullable=true)
+     * @ORM\JoinColumn(nullable=true, onDelete="CASCADE")
      */
     public $media;
 

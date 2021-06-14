@@ -56,11 +56,13 @@ class SocialNetwork
 
     /**
      * @ORM\OneToOne(targetEntity=Candidate::class, mappedBy="socialNetwork")
+     * @ORM\JoinColumn(onDelete="CASCADE")
      */
     private $candidate;
 
     /**
      * @ORM\OneToOne(targetEntity=Recruiter::class, mappedBy="socialNetwork")
+     * @ORM\JoinColumn(onDelete="CASCADE")
      */
     private $recruiter;
 

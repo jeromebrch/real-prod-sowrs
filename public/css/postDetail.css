@@ -148,6 +148,13 @@ body .comment_writer{
 .mini_link_read_more:hover{
     color: #555555;
 }
+.title_empty_comments{
+    color: #555555;
+}
+.empty_comments{
+    font-family: 'KohinoorBangla', Arial, serif;
+    color: #555555;
+}
 
 @media screen and (max-width: 767px){
     .content_post_detail{

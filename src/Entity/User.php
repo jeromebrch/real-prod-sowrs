@@ -91,12 +91,12 @@ class User implements UserInterface, \Serializable
 
 
     /**
-     * @ORM\OneToOne(targetEntity=Scoring::class, inversedBy="user", cascade={"persist", "remove"})
+     * @ORM\OneToOne(targetEntity=Scoring::class, inversedBy="user", cascade={"remove"})
      */
     protected $scoring;
 
     /**
-     * @ORM\OneToOne(targetEntity=Picture::class)
+     * @ORM\OneToOne(targetEntity=Picture::class, cascade={"remove"})
      * @ORM\JoinColumn(nullable=true)
      */
     protected $picture;
@@ -107,12 +107,12 @@ class User implements UserInterface, \Serializable
     private $comments;
 
     /**
-     * @ORM\OneToMany(targetEntity=Message::class, mappedBy="userRecipient", cascade="remove")
+     * @ORM\OneToMany(targetEntity=Message::class, mappedBy="userRecipient", cascade={"remove"})
      */
     private $receivedMessages;
 
     /**
-     * @ORM\OneToMany(targetEntity=Message::class, mappedBy="userSender", cascade="remove")
+     * @ORM\OneToMany(targetEntity=Message::class, mappedBy="userSender", cascade={"remove"})
      */
     private $sendedMessages;
 

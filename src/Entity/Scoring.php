@@ -48,7 +48,8 @@ class Scoring
     private $greatestValue;
 
     /**
-     * @ORM\OneToOne(targetEntity=User::class, mappedBy="scoring", cascade={"persist", "remove"})
+     * @ORM\OneToOne(targetEntity=User::class, mappedBy="scoring")
+     * @ORM\JoinColumn(onDelete="CASCADE")
      */
     private $user;
 
