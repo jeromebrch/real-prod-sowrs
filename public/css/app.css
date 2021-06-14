@@ -127,6 +127,9 @@ input[type="email"], input[type="tel"]{
 ::-webkit-scrollbar-corner {
     background-color: black;
 }
+#myChart{
+    width: 100% !important;
+}
 .options_offer{
     display: flex;
     flex-direction: row;
@@ -143,4 +146,7 @@ input[type="email"], input[type="tel"]{
 .page-item.active .page-link{
     background-color: #827399;
     border: 1px solid #937FA4;
+}
+body .doughnut{
+    width: 100% !important;
 }

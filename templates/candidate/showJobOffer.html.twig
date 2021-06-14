@@ -102,10 +102,10 @@
 
         <div class="col-lg-5">
             {% if entity.scoring is not empty %}
-                {% if entity.scoring.dominantPourcent %}
-                    <div class="show_candidate_sens_rate">
-                        <div class="row align-items-center">
-                            <div class="col-lg-2">
+                <div class="show_candidate_sens_rate offer_right_part_section">
+                    {% if entity.scoring is not empty %}
+                        <div class="container_show_candidate_sense_rate">
+                            <div class="block_img_sense_rate">
                                 {% if entity.scoring.dominantSens is same as 'social' %}
                                     <img class="mini_img_sense_rate" src="{{ asset('img/social500.png') }}" alt="taux de sens">
                                 {% elseif entity.scoring.dominantSens is same as 'economique' %}
@@ -116,29 +116,32 @@
                                     <img class="mini_img_sense_rate" src="{{ asset('img/environnemental500.png') }}" alt="taux de sens">
                                 {% endif %}
                             </div>
-                            <div class="col-lg-8">
+                            <div class="text_sense_rate_show_candidate">
                                 <h5>Taux de sens</h5>
                                 <h5>{{ entity.scoring.dominantPourcent }}% {{ entity.scoring.dominantSens }}</h5>
                             </div>
-                            <div class="col-lg-1 ">
-                                <img src="{{ asset('img/boostrap/flecheBas.svg') }}" alt="flèche vers le bas"
-                                     id="btn_doughnut">
+                            <div class="btn_sense_rate_show_candidate">
+                                <img src="{{ asset('img/boostrap/flecheBas.svg') }}" alt="flèche vers le bas" title="Détails du taux de sens" id="btn_doughnut">
                             </div>
                         </div>
-                        <div class="doughnut col-lg-8 mx-auto pb-1 collapse" id="doughnut">
+                        <div class="show_candidate_doughnutmx-auto pb-1 collapse" id="doughnut">
                             <canvas id="myChart"></canvas>
                             <br>
                         </div>
-                    </div>
-                {% endif %}
+                    {% else %}
+                        <p class="alert alert-success">
+                            Le recruteur n'a pas encore calculé son taux de sens
+                        </p>
+                    {% endif %}
+                </div>
             {% endif %}
             {% if jobOffer.telecommuting %}
             <div class="col-12">
-                <div class="show_candidate_sens_rate">
+                <div class="show_candidate_sens_rate offer_right_part_section">
                     {% if jobOffer.telecommuting %}
-                        <h3 class="profil_category_title_candidate">Télétravail accepté : <span>Oui</span></h3>
+                        <h3 class="profil_category_title_candidate title_telecommuting">Télétravail accepté : <span>Oui</span></h3>
                     {% else %}
-                        <h3 class="profil_category_title_candidate">Télétravail accepté : <span>Non</span></h3>
+                        <h3 class="profil_category_title_candidate title_telecommuting">Télétravail accepté : <span>Non</span></h3>
                     {% endif %}
                 </div>
             </div>
