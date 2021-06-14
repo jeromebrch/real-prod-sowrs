@@ -132,43 +132,35 @@
                             </div>
 
                             <div class="row">
-                                <div class="col-sm-6 col-lg-6 pt-3">
+                                <div class="col-sm-6 col-lg-6">
                                     {{ form_row(modifyUserForm.about, {'attr': {'class':'text-area'}}) }}
                                 </div>
-                                <div class="col-sm-6 col-lg-6 pt-3">
+                                <div class="col-sm-6 col-lg-6">
                                     {{ form_row(modifyUserForm.inspiration, {'attr': {'class':'text-area'}}) }}
                                 </div>
                             </div>
 
-                            <div class="row details_engagements_block_candidate_line">
-                                <div id="details_engagements_block_candidate">
-                                    <div class="row">
-                                        <h4 class="subtitle-myDetail">Engagements quotidiens</h4>
-                                        <hr class="green-line m-3" size=3>
+                            <div class="row mt-4">
+                                <p class="col-6 engagement">Engagements quotidiens</p>
+                                <p class="col-6 engagement">Vos activités engagées</p>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-6 col-md-5 col-sm-12  block_commitment">
+                                    <div class="col-sm-12">
+                                        <label for="commitment" class="commitment_label">Engagements</label>
+                                        <input type="text" id="commitment" name="input_commitment" placeholder="Votre engagement">
+                                        <label for="commitment_text" class="label_commitment ">Détail</label>
+                                        <textarea class="mt-2" id="commitment_text" name="textarea_commitment" rows="5" cols="40" placeholder="Explication de votre engagement ici"></textarea>
                                     </div>
-                                    <div class="row">
-                                        <div class="container_commitments_options">
-                                            <div class="col-lg-5 col-md-5 col-sm-12 block_commitment">
-                                                <div class="block_new_commitment">
-                                                    <label for="commitment" class="commitment_label">Engagements</label>
-                                                    <input type="text" id="commitment" name="input_commitment" placeholder="Votre engagement">
-                                                    <label for="commitment_text" class="label_commitment">Détail</label>
-                                                    <textarea id="commitment_text" name="textarea_commitment" rows="5" cols="40" placeholder="Explication de votre engagement ici"></textarea>
-                                                    <button type="button" class="btn required btn_save_commitment">Ajouter</button>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-6 col-md-6 col-sm-12 block_commitment">
-                                                <table class="commitment_array">
-                                                    {% for commitment in app.user.commitments %}
-                                                        <tr>
-                                                            <td>{{ commitment.title }}</td>
-                                                            {% set title = commitment.title %}
-                                                        </tr>
-                                                    {% endfor %}
-                                                </table>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    <button type="button" class="btn required btn_save_commitment">Ajouter</button>
+                                </div>
+                                <div class="contenu-scroll col-lg-6 col-md-6 col-sm-12 ">
+                                    <ul class="list-group" id="listCommitment">
+                                        {% for commitment in app.user.commitments %}
+                                            <li class="list-group-item"><span class="">{{ commitment.title }}</span></li>
+                                            {% set title = commitment.title %}
+                                        {% endfor %}
+                                    </ul>
                                 </div>
                             </div>
                         </div>
@@ -353,7 +345,6 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="row">
                             <div class="container_section">
                                 <div class="row">
                                     <h4 class="subtitle-myDetail">Pour en savoir un peu plus sur votre entité ...</h4>
@@ -368,80 +359,86 @@
                                     </p>
                                 </div>
                                 <div class="row">
-                                    <div class="col-sm-6 col-lg-6 pt-3">
+                                    <div class="col-sm-6 col-lg-6">
                                         {{ form_row(modifyUserForm.reasonToBe, {'attr':{'rows':'7'}}) }}
                                     </div>
-                                    <div class="col-sm-6 col-lg-6 pt-3">
+                                    <div class="col-sm-6 col-lg-6">
                                         {{ form_row(modifyUserForm.about, {'attr':{'rows':'7'}}) }}
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div id="details_engagements_block">
                                 <div class="row">
-                                    <h4 class="subtitle-myDetail">Engagements quotidiens</h4>
-                                    <hr class="green-line m-3" size=3>
+                                    <p class="col-6 engagement">Engagements quotidiens</p>
+                                    <p class="col-6 engagement">Vos activités engagées</p>
                                 </div>
                                 <div class="row">
-                                    <div class="container_commitments_options">
-                                        <div class="col-lg-5 col-md-5 col-sm-12 block_commitment">
-                                            <div class="block_new_commitment">
-                                                <label for="commitment" class="commitment_label">Engagements</label>
-                                                <input type="text" id="commitment" name="input_commitment" placeholder="Votre engagement">
-                                                <button type="button" class="btn required btn_save_commitment">Ajouter</button>
-                                            </div>
+                                    <div class="col-lg-6 col-md-5 col-sm-12 block_commitment">
+                                        <div class="col-sm-12">
+                                            <label for="commitment" class="commitment_label">Engagements</label>
+                                            <input type="text" id="commitment" name="input_commitment" placeholder="Votre engagement">
                                         </div>
-                                        <div class="col-lg-6 col-md-6 col-sm-12 block_commitment">
-                                            <table class="commitment_array">
-                                                {% for commitment in app.user.commitments %}
-                                                    <tr>
-                                                        <td>{{ commitment.title }}</td>
-                                                        {% set title = commitment.title %}
-                                                    </tr>
-                                                {% endfor %}
-                                            </table>
-                                        </div>
+                                        <button type="button" class="btn required btn_save_commitment">Ajouter</button>
+                                    </div>
+                                    <div class="contenu-scroll col-lg-6 col-md-6 col-sm-12 ">
+                                        <ul class="list-group" id="listCommitment">
+                                            {% for commitment in app.user.commitments %}
+                                                <li class="list-group-item"><span class="">{{ commitment.title }}</span></li>
+                                                {% set title = commitment.title %}
+                                            {% endfor %}
+                                        </ul>
                                     </div>
                                 </div>
                             </div>
-                        </div>
 
                         <br>
                         {# AFFICHAGE DU MULTI SELECT RECONNAISSANCE #}
-                        <div class="row">
-                            <div class="col-lg-6">
-                                <h5 class="recognition_title">Reconnaissances et labels</h5>
+                        <div class="container_section">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <h5 class="recognition_title">Reconnaissances et labels</h5>
+                                </div>
+                                <div class="col-lg-6">
+                                    <h5 class="recognition_title">Mes reconnaissances</h5>
+                                </div>
                             </div>
-                            <div class="col-lg-6">
-                                <h5 class="recognition_title">Mes reconnaissances</h5>
+                            <div class="row">
+                                <div id="contenu" class="contenu-scroll col-sm-6 col-lg-6 p-0">
+                                    <ul class="list-group" id="listCauses">
+                                        {% for cause in listcauses %}
+                                            <li class="list-group-item" data-id="{{ cause.id }}"
+                                                data-name="{{ cause.text }}">
+                                                <button class="btn-recognition text-center">+</button>
+                                                <span>{{ cause.text }}</span>
+                                            </li>
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                                <div class="contenu-scroll col-sm-6 col-lg-6 p-0">
+                                    <ul class="list-group" id="listCausesRecruiter">
+                                        {% for recognition in recognitions %}
+                                            <li class="list-group-item"
+                                                data-id="{{ recognition.id }}"
+                                                data-id-cause="{{ recognition.cause.id }}"
+                                                data-name-cause="{{ recognition.cause.text }}">
+                                                <button class="btn-recognition btn_delete_recognition btn-sm">-</button>
+                                                <span>{{ recognition.cause.text }}</span><br>
+                                                <br>{{ recognition.description }}
+                                            </li>
+                                        {% endfor %}
+                                    </ul>
+                                </div>
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="contenu-scroll col-sm-6 col-lg-6 p-0">
-                                <ul class="list-group" id="listCauses">
-                                    {% for cause in listcauses %}
-                                        <li class="list-group-item" data-id="{{ cause.id }}"
-                                            data-name="{{ cause.text }}">
-                                            <button class="btn-recognition text-center">+</button>
-                                            <span>{{ cause.text }}</span>
-                                        </li>
-                                    {% endfor %}
-                                </ul>
-                            </div>
-                            <div class="contenu-scroll col-sm-6 col-lg-6 p-0">
-                                <ul class="list-group" id="listCausesRecruiter">
-                                    {% for recognition in recognitions %}
-                                        <li class="list-group-item"
-                                            data-id="{{ recognition.id }}"
-                                            data-id-cause="{{ recognition.cause.id }}"
-                                            data-name-cause="{{ recognition.cause.text }}">
-                                            <button class="btn-recognition btn_delete_recognition btn-sm">-</button>
-                                            <span>{{ recognition.cause.text }}</span><br>
-                                            <br>{{ recognition.description }}
-                                        </li>
-                                    {% endfor %}
-                                </ul>
+                            <div id="formOne" class="position-relative m-4 recognition_form">
+                                {{ form_start(recognitionForm) }}
+                                {{ form_errors(recognitionForm) }}
+                                <img src="{{ asset('img/boostrap/close.svg') }}" alt="fermer"
+                                     class="position-absolute top-0 end-0 m-1"
+                                     id="btnAnnulerAjoutCauseRecruiter">
+                                <h6 id="nameForm">Cause : </h6>
+                                <span id="leForm" class="">{{ form_widget(recognitionForm) }}</span>
+                                <div class="text-center">
+                                    <button class="btn" id="btnAjoutCauseRecruiter">Valider</button>
+                                </div>
+                                {{ form_end(recognitionForm) }}
                             </div>
                         </div>
                         <div id="actions_mydetails">
@@ -470,18 +467,18 @@
                         {{ form_end(modifyUserForm) }}
 
 
-                    <div id="formOne" class="position-relative m-4 recognition_form">
-                        {{ form_start(recognitionForm) }}
-                        {{ form_errors(recognitionForm) }}
-                        <img src="{{ asset('img/boostrap/close.svg') }}" alt="fermer"
-                             class="position-absolute top-0 end-0"
-                             id="btnAnnulerAjoutCauseRecruiter">
-                        <h6 id="nameForm">Cause : </h6>
-                        {{ form_widget(recognitionForm) }}
-                        <button class="btn" id="btnAjoutCauseRecruiter">Valider</button>
-
-                        {{ form_end(recognitionForm) }}
-                    </div>
+{#                        <div id="formOne" class="position-relative m-4 recognition_form">#}
+{#                            {{ form_start(recognitionForm) }}#}
+{#                            {{ form_errors(recognitionForm) }}#}
+{#                            <img src="{{ asset('img/boostrap/close.svg') }}" alt="fermer"#}
+{#                                 class="position-absolute top-0 end-0"#}
+{#                                 id="btnAnnulerAjoutCauseRecruiter">#}
+{#                            <h6 id="nameForm">Cause : </h6>#}
+{#                            {{ form_widget(recognitionForm) }}#}
+{#                            <button class="btn" id="btnAjoutCauseRecruiter">Valider</button>#}
+{#    #}
+{#                            {{ form_end(recognitionForm) }}#}
+{#                        </div>#}
                     </div>
                 {% endif %}
             </div>

@@ -341,6 +341,12 @@ body .form-control{
 .mini_actions_mydetails{
     display: none;
 }
+.engagement {
+    color: #555555;!important;
+    font-family: 'KohinoorBangla', Arial, serif;
+    font-weight: bolder;
+    text-align: start;
+}
 
 @media screen and (max-width: 520px){
     body .details_checkbox_input{

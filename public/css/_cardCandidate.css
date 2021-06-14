@@ -28,3 +28,16 @@ body .img_user_card{
     justify-content: center;
     align-items: flex-start;
 }
+.candidate_text_title {
+    font-size: 1.3em;
+    margin-bottom: 1em;
+    text-align: left;
+    color: #937FA4;
+    font-family: 'KohinoorBangla', Arial, serif;
+}
+
+.candidate_text_title:hover {
+    text-align: left;
+    color: #1DCA91;
+    font-family: 'KohinoorBangla', Arial, serif;
+}

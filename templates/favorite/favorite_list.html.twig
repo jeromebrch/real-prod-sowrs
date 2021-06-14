@@ -24,45 +24,43 @@
                     <div class="m-3">
                         {% if favorites is not empty %}
                         {% for favorite in favorites %}
-                            <div class="row">
-                                <div class="col-lg-10 abstractJobOffer border border-2 p-3 gx-0 m-1 shadow bg-light">
-                                    <div class="row m-0">
-                                        <div class="col-lg-3 align-self-center">
-                                            {% if favorite.entity.picture %}
-                                                <img id="photo_profile" src="{{ asset('images/profils/' ~ favorite.entity.picture.pictureName )}}"
-                                                     alt="photo du profil">
-                                            {% else %}
-                                                <img id="photo_profile" src="{{ asset('images/profils/avatar.jpg') }}"
-                                                     alt="photo du profil">
-                                            {% endif %}
-                                        </div>
-                                        <div class="jobOffer_div col-lg-5">
-                                            <p class="offer" ><strong>{{ favorite.title|capitalize}} </strong></p>
-
-                                            <p class="offer">{{ favorite.entity.entityName }}
-                                                {% if favorite.entity.mainCause is not empty %}
-                                                    - {{ favorite.entity.mainCause.text }}
-                                                {% endif %}
-                                            </p>
-                                            {% if favorite.region is not empty and favorite.department is not empty %}
-                                                <p class="offer">{{ favorite.region.name|capitalize}}({{ favorite.department.cp}})</p>
-                                            {% endif %}
-                                            {% if favorite.entity.scoring is not empty %}
-                                                <p class="offer"><strong>Taux de sens : </strong>{{ favorite.entity.scoring.dominantsens}} {{ favorite.entity.scoring.societal }}%</p>
-                                            {% endif %}
-
-                                        </div>
-                                        <div class="align-self-center col-lg-4">
-                                            <a href="{{ path('jobOffer_show', {'id': favorite.id}) }}" class="btn">Voir l'offre</a>
-                                        </div>
+                            <div class="row abstractJobOffer border border-2 p-3 m-4 gx-0 shadow bg-light">
+                                <div class="row">
+                                    <div class="col-md-2 align-self-center">
+                                        {% if favorite.entity.picture %}
+                                            <img id="show_joboffer_photo_profile" class="img-fluid" src="{{ asset('images/profils/' ~ favorite.entity.picture.pictureName )}}"
+                                                 alt="photo du profil">
+                                        {% else %}
+                                            <img id="show_joboffer_photo_profile" class="img-fluid" src="{{ asset('images/profils/avatar.jpg') }}"
+                                                 alt="photo du profil">
+                                        {% endif %}
                                     </div>
-                                </div>
-                                <div class="col-lg-1 align-self-center">
-                                     <span title="Effacer l'offre'">
-                                        <a href="{{ path('remove_favorite_offer_list', {'id': favorite.id}) }}">
-                                            <img class="messageImgTrash" src="{{ asset('img/boostrap/trash-fill.svg') }}" alt="delete_favorite" title="Supprimer des favoris">
-                                        </a>
-                                    </span>
+                                    <div class="col-md-4 align-self-center">
+                                        <p class="offer">
+                                        <h4 class="offer">{{ favorite.title|capitalize}}</h4>
+                                        <span class="offer">{{ favorite.entity.entityName }}
+                                            {% if favorite.entity.mainCause is not empty %}
+                                                - {{ favorite.entity.mainCause.text }}
+                                            {% endif %}
+                                                    </span>
+                                        {% if favorite.region is not empty and favorite.department is not empty %}
+                                            <br><span class="offer">{{ favorite.region.name|capitalize}} ({{ favorite.department.cp}})</span>
+                                        {% endif %}
+                                        {% if favorite.entity.scoring is not empty %}
+                                            <br><h6 class="offer mt-1">Taux de sens : <span class="normal">{{ favorite.entity.scoring.dominantsens}}</span></h6>
+                                        {% endif %}
+                                        </p>
+                                    </div>
+                                    <div class="col-md-4 align-self-center text-center options_offer">
+                                        <a href="{{ path('jobOffer_show', {'id': favorite.id}) }}" class="btn">Voir l'offre</a>
+                                    </div>
+                                    <div class="col-md-2 align-self-center text-center options_offer">
+                                        <span title="Effacer l'offre'">
+                                            <a class="abstractJobOfferButtonTrash" href="{{ path('remove_favorite_offer_list', {'id': favorite.id}) }}">
+                                                <img class="abstractJobOfferImgTrash" src="{{ asset('img/boostrap/trash-fill-white.svg') }}" alt="delete_favorite" title="Supprimer des favoris">
+                                            </a>
+                                        </span>
+                                    </div>
                                 </div>
                             </div>
                         {% endfor %}
@@ -87,48 +85,46 @@
                 <div class="m-3">
                     {% if favorites is not empty %}
                         {% for candidat in favorites %}
-                            <div class="row">
-                                <div class="col-lg-10 abstractJobOffer border border-2 p-3 gx-0 m-1 shadow bg-light">
-                                    <div class="row m-0">
-                                        <div class="col-lg-3 align-self-center">
-                                            {% if candidat.picture %}
-                                                <img id="photo_profile" src="{{ asset('images/profils/' ~ candidat.picture.pictureName )}}"
-                                                     alt="photo du profil">
-                                            {% else %}
-                                                <img id="photo_profile" src="{{ asset('images/profils/avatar.jpg') }}"
-                                                     alt="photo du profil">
-                                            {% endif %}
-                                        </div>
-                                        <div class="col-md-4 align-self-center">
-                                            <p class="offer">
+                            <div class="row abstractJobOffer border border-2 p-3 gx-0 m-4 shadow bg-light">
+                                <div class="row">
+                                    <div class="col-md-2 align-self-center">
+                                        {% if candidat.picture %}
+                                            <img id="show_joboffer_photo_profile" class="img-fluid" src="{{ asset('images/profils/' ~ candidat.picture.pictureName )}}"
+                                                 alt="photo du profil">
+                                        {% else %}
+                                            <img id="show_joboffer_photo_profile" class="img-fluid" src="{{ asset('images/profils/avatar.jpg') }}"
+                                                 alt="photo du profil">
+                                        {% endif %}
+                                    </div>
+                                    <div class="col-md-4 align-self-center">
+                                        <p class="offer">
                                             {% if candidat.firstname and candidat.lastname %}
-                                                <h4 class="offer">{{ candidat.firstName|capitalize}} {{ candidat.lastName|upper}}</h4>
-                                            {% endif %}
-                                            {% if candidat.currentRole %}
-                                                <br><span class="offer">{{ candidat.currentRole }}</span>
-                                            {% endif %}
-                                            {% if candidat.jobSearch is not empty %}
-                                                <br><span class="offer">{{ candidat.jobSearch.region.name|capitalize}} ({{ candidat.jobSearch.department.cp }})</span>
-                                            {% endif %}
-                                            {% if candidat.scoring is not empty %}
-                                                <br><h6 class="offer mt-1">Taux de sens : <span class="normal">{{ candidat.scoring.dominantsens}}</span></h6>
-                                            {% endif %}
-                                            </p>
-                                        </div>
-                                        <div class="col-md-4 align-self-center text-center options_offer">
-                                            <a class="btn" href="{{ path('candidate_show', {"id":candidat.id}) }}">Consulter le profil</a>
-                                        </div>
+                                        <h4 class="offer">{{ candidat.firstName|capitalize}} {{ candidat.lastName|upper}}</h4>
+                                        {% endif %}
+                                        {% if candidat.currentRole %}
+                                            <span class="offer">{{ candidat.currentRole }}</span>
+                                        {% endif %}
+                                        {% if candidat.jobSearch is not empty %}
+                                            <br><span class="offer">{{ candidat.jobSearch.region.name|capitalize}} ({{ candidat.jobSearch.department.cp }})</span>
+                                        {% endif %}
+                                        {% if candidat.scoring is not empty %}
+                                            <br><h6 class="offer mt-1">Taux de sens : <span class="normal">{{ candidat.scoring.dominantsens}}</span></h6>
+                                        {% endif %}
+                                        </p>
+                                    </div>
+                                    <div class="col-md-4 align-self-center text-center options_offer">
+                                        <a class="btn" href="{{ path('candidate_show', {"id":candidat.id}) }}">Consulter le profil</a>
+                                    </div>
+                                    <div class="col-md-2 align-self-center options_offer">
+                                        <span title=" Effacer le cv">
+                                            <a class="abstractJobOfferButtonTrash" href="{{ path('remove_favorite_cv_list', {'id': candidat.id}) }}">
+                                                <img class="abstractJobOfferImgTrash" src="{{ asset('img/boostrap/trash-fill-white.svg') }}" alt="delete_favorite" title="Supprimer des favoris">
+                                            </a>
+                                        </span>
                                     </div>
                                 </div>
-                                <div class="col-lg-1 align-self-center">
-                                    <span title="Effacer le cv">
-                                        <a href="{{ path('remove_favorite_cv_list', {'id': candidat.id}) }}">
-                                            <img class="ImgTrash" src="{{ asset('img/boostrap/trash-fill.svg') }}" alt="delete_favorite" title="Supprimer des favoris">
-                                        </a>
-                                    </span>
-                                </div>
-                                {% endfor %}
                             </div>
+                        {% endfor %}
                     {% endif %}
                 </div>
             </div>
