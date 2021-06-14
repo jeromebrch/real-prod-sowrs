@@ -25,7 +25,7 @@ class Department
     private $name;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="string", length=25)
      */
     private $cp;
 
