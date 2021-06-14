@@ -1,58 +1,54 @@
 <div class="row">
-    <div class="col-lg-2 m-1 ">
+    <div class="col-md-2 m-1 p-1 text-center">
             {% if jobOffer.entity.picture %}
                 {% if jobOffer.entity.picture.pictureName is same as '' %}
-                    <img style="width: 100%" class="rounded-circle"
+                    <img id="show_candidate_photo_profile" class="img-fluid img_user_card"
                          src="{{ asset('images/profils/avatar.jpg') }}"
                          alt="photo du profil">
                 {% else %}
-                    <img style="width: 100%" class="rounded-circle"
+                    <img id="show_candidate_photo_profile" class="img-fluid img_user_card"
                          src="{{ asset('images/profils/' ~jobOffer.entity.picture.pictureName ) }}"
                          alt="photo du profil">
                 {% endif %}
             {% else %}
-                <img style="width: 100%" id="show_candidate_photo_profile" class="rounded-circle"
+                <img id="show_candidate_photo_profile" class="img-fluid img_user_card"
                      src="{{ asset('images/profils/avatar.jpg') }}"
                      alt="photo du profil">
             {% endif %}
     </div>
-    <div class="col-lg-6 col-sm-8 col-xs-12 content-box align-self-center">
-        <div class="jobOffer_text">
-            <p>
-                <a href="{{ path('jobOffer_show', {'id':jobOffer.id}) }}" class="link_job_offer_infos">{{ jobOffer.title|capitalize }}</a><br />
-                {{ jobOffer.entity.entityName| capitalize }}
+    <div class="col-md-6 col-sm-8 col-xs-12 content-box align-self-center">
+        <div class="">
+            <span class="job_text_title"><a class="link_job_offer_infos" href="{{ path('jobOffer_show', {'id':jobOffer.id}) }}"><strong>{{ jobOffer.title }}</strong></a></span><br>
+            <span class="job_text"><strong class="">{{ jobOffer.entity.entityName| capitalize }}</strong><br>
+            {% if jobOffer.city and jobOffer.department is not empty %}
+                {{ jobOffer.city }} &bull; {{ jobOffer.department.name }} ({{ jobOffer.department.cp }})
+                <br>
+            {% endif %}
                 {% if jobOffer.entity.mainCause is not empty %}
-                    - {{ jobOffer.entity.mainCause.text }}
-                {% endif %}<br />
-                {% if jobOffer.entity.city and jobOffer.entity.department is not empty %}
-                    {{ jobOffer.entity.city|capitalize }} - {{ jobOffer.entity.department.name }} {{ jobOffer.entity.department.cp }}
-                {% endif %}<br />
-                {% if jobOffer.entity.scoring is not empty %}
-                    <strong>Taux de sens</strong> : {{ jobOffer.entity.scoring.dominantSens }} {{ jobOffer.entity.scoring.dominantPourcent }} %
-                {% endif %}
-            </p>
+                <strong>Cause soutenue : </strong>{{ jobOffer.entity.mainCause.text }}</span>
+            {% endif %}
         </div>
     </div>
-    <div class="col-lg-2 offset-lg-1 align-self-center">
-        <div class="jobOffer_contract_type">
+    <div class="col-md-3 align-self-center">
+        <div class="row justify-content-md-end">
 {#            <button class="btn btn-lg btn-block btn-disable-hover btn_contract_type">{{ jobOffer.contractType.wording }}#}
 {#            </button>#}
             {% if jobOffer.contractType.wording == 'CDI' %}
-                <div class="abstract_contract_type col-2">{{ jobOffer.contractType.wording }}</div>
+                <div class="abstract_contract_type col-4">{{ jobOffer.contractType.wording }}</div>
             {% elseif jobOffer.contractType.wording == 'CDD' %}
-                <div class="abstract_contract_type_CDD col-2">{{ jobOffer.contractType.wording }}</div>
+                <div class="abstract_contract_type_CDD col-4">{{ jobOffer.contractType.wording }}</div>
             {% elseif jobOffer.contractType.wording == 'Freelance - Indépendant' %}
-                <div class="abstract_contract_type_FREELANCE col-2">{{ jobOffer.contractType.wording }}</div>
+                <div class="abstract_contract_type_FREELANCE col-8">{{ jobOffer.contractType.wording }}</div>
             {% elseif jobOffer.contractType.wording == 'Associé(e)' %}
-                <div class="abstract_contract_type_ASSOCIE col-2">{{ jobOffer.contractType.wording }}</div>
+                <div class="abstract_contract_type_ASSOCIE col-4">{{ jobOffer.contractType.wording }}</div>
             {% elseif jobOffer.contractType.wording == 'Stage' %}
-                <div class="abstract_contract_type_STAGE col-2">{{ jobOffer.contractType.wording }}</div>
+                <div class="abstract_contract_type_STAGE col-4">{{ jobOffer.contractType.wording }}</div>
             {% elseif jobOffer.contractType.wording == 'Intérim' %}
-                <div class="abstract_contract_type_INTERIM col-2">{{ jobOffer.contractType.wording }}</div>
+                <div class="abstract_contract_type_INTERIM col-4">{{ jobOffer.contractType.wording }}</div>
             {% elseif jobOffer.contractType.wording == 'Service bénévole' %}
-                <div class="abstract_contract_type_SERVICE col-2">{{ jobOffer.contractType.wording }}</div>
+                <div class="abstract_contract_type_SERVICE col-8">{{ jobOffer.contractType.wording }}</div>
             {% elseif jobOffer.contractType.wording == 'Autre' %}
-                <div class="abstract_contract_type_AUTRE col-2">{{ jobOffer.contractType.wording }}</div>
+                <div class="abstract_contract_type_AUTRE col-4">{{ jobOffer.contractType.wording }}</div>
             {% endif %}
         </div>
     </div>

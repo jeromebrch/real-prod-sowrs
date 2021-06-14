@@ -16,83 +16,91 @@
 
     {# HEADER PAGE #}
 
-    <div class="row">
-        <div class="col-12 entity_title">
+    <div class="show_candidate_jumbotron pt-3">
+        {# profil picture #}
+        <div class="col-lg-2 mx-auto container_entity_picture">
             <div>
-                {# profil picture #}
-                <div class="row">
-                    {% if user.picture is not empty %}
-                        <img id="photo_profile" src="{{ asset('images/profils/' ~ user.picture.pictureName )}}"
-                             alt="photo du profil" title="Photo de profil">
-                    {% else %}
-                        <img id="photo_profile" src="{{ asset('images/profils/avatar.jpg' )}}"
-                             alt="photo par défaut" title="Avatar SOWRS">
-                    {% endif %}
-                </div>
-
-                {# entity name or user identity #}
-                <div class="row header_presentation">
-                    {% if "ROLE_CANDIDATE" in user.roles %}
-                        {% if user.firstname is not empty and user.lastname is not empty %}
-                            <h3>{{ user.firstname }} {{ user.lastname }}</h3>
-                        {% endif %}
-                    {% else %}
-                        {% if user.entityName is not empty %}
-                            <h3>{{ user.entityName }}</h3>
-                        {% endif %}
-                    {% endif %}
-                </div>
-
-                {# complementary informations #}
-                <div class="row header_presentation">
-                    {% if "ROLE_CANDIDATE" in user.roles %}
-                        <p>&bull;
-                            {% if user.currentRole %}
-                                {{ user.currentRole | capitalize }} &bull;
-                            {% endif %}
-                            {% if user.jobSearch is not empty %}
-                                {% if user.jobSearch.city and user.jobSearch.region %}
-                                    {{ user.jobSearch.city | capitalize }} - {{ user.jobSearch.region.name | capitalize }} &bull;
-                                {% endif %}
-                                {% if user.jobSearch.contractType.wording %}
-                                    {{ user.jobSearch.contractType.wording }} &bull;
-                                {% endif %}
-                                {% if user.jobSearch.desiredRemuneration.text %}
-                                    {{ user.jobSearch.desiredRemuneration.text }} &bull;
-                                {% endif %}
-                            {% endif %}
-                        </p>
-                    {% else %}
-                        <p>&bull;
-                            {% if user.legalStatus.text %}
-                                {{ user.legalStatus.text |capitalize }} &bull;
-                            {% endif %}
-                            {% if user.city and user.country %}
-                                {{ user.city | capitalize }} - {{ user.country | capitalize }} &bull;
-                            {% endif %}
-                            {% if user.carbonFootPrint %}
-                                {{ user.carbonFootPrint }} kg CO² / an &bull;
-                            {% endif %}
-                        </p>
-                    {% endif %}
-                </div>
-
-                {# inspiration or main cause #}
-                <div class="row header_presentation">
-                    <p>
-                        {% if "ROLE_CANDIDATE" in user.roles %}
-                            {% if user.inspiration %}
-                                "{{ user.inspiration | capitalize }}"
-                            {% endif %}
-                        {% else %}
-                            {% if user.mainCause is not empty %}
-                                Cause : {{ user.mainCause.text |capitalize }}
-                            {% endif %}
-                        {% endif %}
-                    </p>
-                </div>
+                {% if user.picture is not empty %}
+                    <img id="show_joboffer_photo_profile" class="img-fluid" src="{{ asset('images/profils/' ~ user.picture.pictureName )}}"
+                         alt="photo du profil" title="Photo de profil">
+                {% else %}
+                    <img id="show_joboffer_photo_profile" class="img-fluid" src="{{ asset('images/profils/avatar.jpg' )}}"
+                         alt="photo par défaut" title="Avatar SOWRS">
+                {% endif %}
             </div>
         </div>
+        {# entity name or user identity #}
+        <div class="col-lg-5 mx-auto pt-4">
+            {% if "ROLE_CANDIDATE" in user.roles %}
+                <div>
+                {% if user.firstname is not empty and user.lastname is not empty %}
+                    <h4 class="show_candidate_jumbotron_name job_offer_title_jumbotron">{{ user.firstname }} {{ user.lastname }}</h4>
+                {% endif %}
+                </div>
+            {% else %}
+                <div>
+                {% if user.entityName is not empty %}
+                    <h4 class="show_candidate_jumbotron_name job_offer_title_jumbotron">{{ user.entityName }}</h4>
+                {% endif %}
+                </div>
+            {% endif %}
+        </div>
+
+        {# complementary informations #}
+            {% if "ROLE_CANDIDATE" in user.roles %}
+                <h5 class="show_candidate_jumbotron_infos">
+                    {% if user.currentRole %}
+                        {{ user.currentRole | capitalize }} &bull;
+                    {% endif %}
+                    {% if user.jobSearch is not empty %}
+                        {% if user.jobSearch.city and user.jobSearch.region %}
+                            {{ user.jobSearch.city | capitalize }} - {{ user.jobSearch.region.name | capitalize }} &bull;
+                        {% endif %}
+                        {% if user.jobSearch.contractType.wording %}
+                            {{ user.jobSearch.contractType.wording }} &bull;
+                        {% endif %}
+                        {% if user.jobSearch.desiredRemuneration.text %}
+                            {{ user.jobSearch.desiredRemuneration.text }}
+                        {% endif %}
+                    {% endif %}
+                </h5>
+                {% if user.inspiration %}
+                    <h4 class="show_candidate_jumbotron_inspiration pb-5">
+                        "{{ user.inspiration | capitalize }}"
+                    </h4>
+                {% endif %}
+            {% else %}
+                <h5 class="show_candidate_jumbotron_infos">
+                    {% if user.legalStatus.text %}
+                        {{ user.legalStatus.text |capitalize }} &bull;
+                    {% endif %}
+                    {% if user.city and user.country %}
+                        {{ user.city | capitalize }} - {{ user.country | capitalize }} &bull;
+                    {% endif %}
+                    {% if user.carbonFootPrint %}
+                        {{ user.carbonFootPrint }} kg CO² / an
+                    {% endif %}
+                </h5>
+                {% if user.mainCause is not empty %}
+                    <h4 class="show_candidate_jumbotron_inspiration pb-5">
+                        Cause : {{ user.mainCause.text |capitalize }}
+                    </h4>
+                {% endif %}
+            {% endif %}
+
+
+{#        #}{# inspiration or main cause #}
+
+{#            {% if "ROLE_CANDIDATE" in user.roles %}#}
+{#                {% if user.inspiration %}#}
+{#                    "{{ user.inspiration | capitalize }}"#}
+{#                {% endif %}#}
+{#            {% else %}#}
+{#                {% if user.mainCause is not empty %}#}
+{#                    Cause : {{ user.mainCause.text |capitalize }}#}
+{#                {% endif %}#}
+{#            {% endif %}#}
+
     </div>
 
     {# BODY PAGE #}

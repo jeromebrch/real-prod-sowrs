@@ -7,14 +7,16 @@
 }
 
 #photo_profile {
-    width: 12rem;
-    height: auto;
     border: none;
-    clip-path: circle();
-    -moz-border-radius: 50%;
-    -webkit-border-radius: 50%;
-    display: block;
+    /*clip-path: circle();*/
+    /*-moz-border-radius: 50%;*/
+    /*-webkit-border-radius: 50%;*/
+    /*display: block;*/
     margin: 1rem auto;
+    vertical-align : middle;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
 
 }
 .dashBoardList {

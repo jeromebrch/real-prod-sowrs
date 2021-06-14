@@ -21,3 +21,13 @@ body .job_offer_title_jumbotron{
     align-items: center;
     padding: 20px;
 }
+#show_joboffer_photo_profile {
+    border: none;
+    /*clip-path: circle();*/
+    /*-moz-border-radius: 50%;*/
+    /*-webkit-border-radius: 50%;*/
+    vertical-align : middle;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+}
