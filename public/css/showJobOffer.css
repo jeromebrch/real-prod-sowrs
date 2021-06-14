@@ -21,3 +21,13 @@ body .job_offer_title_jumbotron{
     align-items: center;
     padding: 20px;
 }
+@media screen and (max-width: 310px){
+    .title_telecommuting{
+        font-size: 1em;
+    }
+}
+@media screen and (max-width: 377px){
+    .offer_right_part_section{
+        width: 88% !important;
+    }
+}

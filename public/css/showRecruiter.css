@@ -1,3 +1,103 @@
 .form_contact_recruiter>div{
     padding-bottom: 20px;
 }
+.sense_rate_infos{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+#btn_doughnut{
+    padding: 10px;
+}
+.mini_contract{
+    padding: 10px;
+    border-radius: 30px;
+    background-color: #1dca91;
+    color: white;
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: auto;
+    min-width: 100px;
+}
+.container_job_offer_recruiter_profil{
+    width: 90%;
+}
+.container_job_offer{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+.offer_title_contract{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+.job_offer_title{
+    width: 80%;
+    height: auto;
+}
+.contract_type{
+    min-width: 100px;
+    display: flex!important;
+    flex-direction: row!important;
+    justify-content: center!important;
+    align-items: center!important;
+}
+.show_offer{
+    width: 100%;
+}
+.link_offer_details{
+    width: 100%;
+    max-width: 300px;
+}
+.mini_contract_type{
+    display: none;
+}
+
+@media screen and (max-width: 296px){
+    .recruiter_right_title{
+        font-size: 1em;
+    }
+}
+@media screen and (max-width: 376px){
+    .show_candidate_sens_rate{
+        width: 85%;
+    }
+    .job_offer_title, .contract_type, .localisation_job_offer, .mini_contract, .link_offer_details{
+        font-size: 0.9em!important;
+    }
+}
+@media screen and (max-width: 475px){
+    .sense_rate_infos{
+        flex-wrap: wrap;
+    }
+    .sense_rate_infos h5{
+        text-align: center!important;
+    }
+}
+@media screen and (max-width: 992px){
+    .job_offer_title{
+        width: 100%;
+        height: auto;
+    }
+    body .contract_type{
+        display: none!important;
+    }
+    .mini_contract_type{
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: center;
+        margin-bottom: 10px;
+        width: 100%;
+    }
+    .container_job_offer_recruiter_profil{
+        width: 100%;
+    }
+}

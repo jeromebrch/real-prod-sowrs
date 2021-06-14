@@ -372,26 +372,19 @@
                         <div class="row">
                             <div class="container_all_job_offer col-12">
                                 {% for jobOffer in user.jobOffers %}
-                                    <div class="row">
-                                        <div class="container_job_offer col-12">
-                                            <div class="row col-12">
-                                                <div class="col-10">
-                                                    <h3 class="job_offer_title">{{ jobOffer.title }}</h3>
-                                                </div>
-                                                <div class="col-2">
-                                                    <div class="contract_type">{{ jobOffer.contractType.wording }}</div>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-12">
-                                                    <h4 class="localisation_job_offer">{{ jobOffer.city }} - {{ jobOffer.country.name }}</h4>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-3 pt-3">
-                                                    <a class="btn required link_offer_details" href="{{ path('jobOffer_show', {"id":jobOffer.id}) }}">Voir l'offre</a>
-                                                </div>
-                                            </div>
+                                    <div class="container_job_offer container_job_offer_recruiter_profil offer_recruiter_profil">
+                                        <div class="offer_title_contract">
+                                            <h3 class="job_offer_title">{{ jobOffer.title }}</h3>
+                                            <div class="contract_type"><div>{{ jobOffer.contractType.wording }}</div></div>
+                                        </div>
+                                        <div class="offer_localization">
+                                            <h4 class="localisation_job_offer">{{ jobOffer.city }} - {{ jobOffer.country.name }}</h4>
+                                        </div>
+                                        <div class="mini_contract_type">
+                                            <div class="mini_contract">{{ jobOffer.contractType.wording }}</div>
+                                        </div>
+                                        <div class="show_offer">
+                                            <a class="btn required link_offer_details" href="{{ path('jobOffer_show', {"id":jobOffer.id}) }}">Voir l'offre</a>
                                         </div>
                                     </div>
                                 {% endfor %}

@@ -121,24 +121,19 @@
                         <div class="col-12 container_commitment_recruiter">
                             {% if recruiter.jobOffers is not empty %}
                                 {% for jobOffer in recruiter.jobOffers %}
-                                    <div class="container_job_offer col-12">
-                                        <div class="row col-12">
-                                            <div class="col-10">
-                                                <h3 class="job_offer_title">{{ jobOffer.title }}</h3>
-                                            </div>
-                                            <div class="col-2">
-                                                <div class="contract_type">{{ jobOffer.contractType.wording }}</div>
-                                            </div>
+                                    <div class="container_job_offer container_job_offer_recruiter_profil">
+                                        <div class="offer_title_contract">
+                                            <h3 class="job_offer_title">{{ jobOffer.title }}</h3>
+                                            <div class="contract_type"><div>{{ jobOffer.contractType.wording }}</div></div>
                                         </div>
-                                        <div class="row">
-                                            <div class="col-12">
-                                                <h4 class="localisation_job_offer">{{ jobOffer.city }} - {{ jobOffer.country.name }}</h4>
-                                            </div>
+                                        <div class="offer_localization">
+                                            <h4 class="localisation_job_offer">{{ jobOffer.city }} - {{ jobOffer.country.name }}</h4>
                                         </div>
-                                        <div class="row">
-                                            <div class="col-3 pt-3">
-                                                <a class="btn required link_offer_details" href="{{ path('jobOffer_show', {"id":jobOffer.id}) }}">Voir l'offre</a>
-                                            </div>
+                                        <div class="mini_contract_type">
+                                            <div class="mini_contract">{{ jobOffer.contractType.wording }}</div>
+                                        </div>
+                                        <div class="show_offer">
+                                            <a class="btn required link_offer_details" href="{{ path('jobOffer_show', {"id":jobOffer.id}) }}">Voir l'offre</a>
                                         </div>
                                     </div>
                                 {% endfor %}
@@ -155,45 +150,45 @@
             {# RIGHT PART #}
 
             <div class="col-lg-4 col-md-12 right_part">
-                {% if recruiter.scoring is not empty %}
-                    {% if recruiter.scoring.dominantPourcent %}
-                        <div class="show_candidate_sens_rate">
-                            <div class="row align-items-center">
-                                <div class="col-lg-2">
-                                    {% if recruiter.scoring.dominantSens is same as 'social' %}
-                                        <img class="mini_img_sense_rate" src="{{ asset('img/social500.png') }}" alt="taux de sens">
-                                    {% elseif recruiter.scoring.dominantSens is same as 'economique' %}
-                                        <img class="mini_img_sense_rate" src="{{ asset('img/econonomie500.png') }}" alt="taux de sens">
-                                    {% elseif recruiter.scoring.dominantSens is same as 'societal' %}
-                                        <img class="mini_img_sense_rate" src="{{ asset('img/societal500.png') }}" alt="taux de sens">
-                                    {% elseif recruiter.scoring.dominantSens is same as 'environnemental' %}
-                                        <img class="mini_img_sense_rate" src="{{ asset('img/environnemental500.png') }}" alt="taux de sens">
-                                    {% endif %}
-                                </div>
-                                <div class="col-lg-8">
-                                    <h5>Taux de sens</h5>
-                                    <h5>{{ recruiter.scoring.dominantPourcent }}% {{ recruiter.scoring.dominantSens }}</h5>
-                                </div>
-                                <div class="col-lg-1 ">
-                                    <img src="{{ asset('img/boostrap/flecheBas.svg') }}" alt="flèche vers le bas"
-                                         id="btn_doughnut">
-                                </div>
+                <div class="show_candidate_sens_rate offer_right_part_section">
+                    {% if recruiter.scoring is not empty %}
+                        <div class="container_show_candidate_sense_rate">
+                            <div class="block_img_sense_rate">
+                                {% if recruiter.scoring.dominantSens is same as 'social' %}
+                                    <img class="mini_img_sense_rate" src="{{ asset('img/social500.png') }}" alt="taux de sens">
+                                {% elseif recruiter.scoring.dominantSens is same as 'economique' %}
+                                    <img class="mini_img_sense_rate" src="{{ asset('img/econonomie500.png') }}" alt="taux de sens">
+                                {% elseif recruiter.scoring.dominantSens is same as 'societal' %}
+                                    <img class="mini_img_sense_rate" src="{{ asset('img/societal500.png') }}" alt="taux de sens">
+                                {% elseif recruiter.scoring.dominantSens is same as 'environnemental' %}
+                                    <img class="mini_img_sense_rate" src="{{ asset('img/environnemental500.png') }}" alt="taux de sens">
+                                {% endif %}
                             </div>
-                            <br>
-                            <div class="doughnut col-lg-8 mx-auto pb-1 collapse" id="doughnut">
-                                <canvas id="myChart"></canvas>
-                                <br>
+                            <div class="text_sense_rate_show_candidate">
+                                <h5>Taux de sens</h5>
+                                <h5>{{ recruiter.scoring.dominantPourcent }}% {{ recruiter.scoring.dominantSens }}</h5>
+                            </div>
+                            <div class="btn_sense_rate_show_candidate">
+                                <img src="{{ asset('img/boostrap/flecheBas.svg') }}" alt="flèche vers le bas" title="Détails du taux de sens" id="btn_doughnut">
                             </div>
                         </div>
+                        <div class="show_candidate_doughnutmx-auto pb-1 collapse" id="doughnut">
+                            <canvas id="myChart"></canvas>
+                            <br>
+                        </div>
+                    {% else %}
+                        <p class="alert alert-success">
+                            Le recruteur n'a pas encore calculé son taux de sens
+                        </p>
                     {% endif %}
-                {% endif %}
+                </div>
                 {# complementary informations #}
 
                 {# main cause #}
                 <div class="complementary_infos_container">
                     <div class="row">
                         {% if recruiter.mainCause is not empty %}
-                            <h3 class="profil_category_title_candidate">Cause principale : <span>{{ recruiter.mainCause.text }}</span></h3>
+                            <h3 class="profil_category_title_candidate recruiter_right_title">Cause principale : <span>{{ recruiter.mainCause.text }}</span></h3>
                         {% endif %}
                     </div>
                 </div>
@@ -202,7 +197,7 @@
                 {% if recruiter.secondaryCauses is not empty %}
                     <div class="complementary_infos_container">
                         <div class="row">
-                            <h3 class="profil_category_title_bottom">Causes secondaires : </h3>
+                            <h3 class="profil_category_title_bottom recruiter_right_title">Causes secondaires : </h3>
                             <ul>
                                 {% for secondaryCause in recruiter.secondaryCauses %}
                                     <li class="list_line">{{ secondaryCause.text }}</li>
@@ -215,7 +210,7 @@
                 {% if recruiter.commitments is not empty %}
                     <div class="complementary_infos_container">
                         <div class="row">
-                            <h3 class="profil_category_title_bottom">Engagements : </h3>
+                            <h3 class="profil_category_title_bottom recruiter_right_title">Engagements : </h3>
                             <ul>
                                 {% for commitment in recruiter.commitments %}
                                     <li class="list_line">{{ commitment.title }}</li>
@@ -228,7 +223,7 @@
                 {% if recruiter.recognitions is not empty %}
                     <div class="complementary_infos_container">
                         <div class="row">
-                            <h3 class="profil_category_title_bottom">Reconnaissances : </h3>
+                            <h3 class="profil_category_title_bottom recruiter_right_title">Reconnaissances : </h3>
                             <ul>
                                 {% for recognition in recruiter.recognitions %}
                                     <li class="list_line">{{ recognition.description }}</li>

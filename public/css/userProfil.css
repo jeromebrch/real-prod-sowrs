@@ -59,12 +59,11 @@
 .container_category_profil{
     padding: 35px;
 }
-.container_category_profil div *{
-    text-align: left;
-}
+/**
 .container_category_profil div p{
     color: #555555;
 }
+ */
 .container_sense_rate{
     margin: 40px;
 }
@@ -166,7 +165,6 @@
     background-color: #ffffff;
     border-radius: 30px;
     border: #E6E9E9;
-    width: 100%;
 }
 .container_social_link{
     display: flex;
@@ -280,6 +278,10 @@
 .recruiter_reason_to_be{
     text-align: justify;
 }
+.list_line{
+    font-family: 'KohinoorBangla', Arial, serif;
+    color: #555555;
+}
 
 @media screen and (max-width: 991px) and (min-width: 571px) {
     .sense_rate_line{
@@ -310,35 +312,18 @@
         justify-content: space-around;
         align-items: center;
     }
-    #myChart{
-        width: 350px!important;
-        height: auto!important;
+}
+
+@media only screen and (max-width: 280px){
+    .container_sense_rate_infos{
+        display: flex;
+        flex-direction: column;
     }
 }
-@media only screen and (min-width: 1025px){
-    .block_cv_pdf{
-        display: block;
-    }
-    #myChart{
-        width: 250px!important;
-        height: auto!important;
-    }
-    .about_user{
-        text-align: left!important;
-    }
-    .recruiter_reason_to_be{
-        text-align: left;
-    }
-}
-@media only screen and (max-width: 1024px){
-    .complementary_infos_container{
-        width: 85%;
-    }
-}
-@media only screen and (max-width: 1024px) and (min-width: 992px){
-    #myChart{
-        width: 230px!important;
-        height: auto!important;
+@media only screen and (max-width: 376px) and (min-width: 281px){
+    .container_sense_rate_infos{
+        display: flex;
+        flex-direction: column;
     }
 }
 @media only screen and (max-width: 570px) and (min-width: 376px){
@@ -351,28 +336,25 @@
     .sense_rate_line{
         width: 70%;
     }
-    #myChart{
-        width: 220px!important;
-        height: auto!important;
+}
+@media screen and (min-width: 991px){
+    .offer_recruiter_profil{
+        width: 100% !important;
     }
 }
-@media only screen and (max-width: 376px) and (min-width: 281px){
-    #myChart{
-        width: 250px!important;
-        height: auto!important;
-    }
-    .container_sense_rate_infos{
-        display: flex;
-        flex-direction: column;
+@media only screen and (max-width: 1024px){
+    .complementary_infos_container{
+        width: 85%;
     }
 }
-@media only screen and (max-width: 280px){
-    #myChart{
-        width: 170px!important;
-        height: auto!important;
+@media only screen and (min-width: 1025px){
+    .block_cv_pdf{
+        display: block;
     }
-    .container_sense_rate_infos{
-        display: flex;
-        flex-direction: column;
+    .about_user{
+        text-align: left!important;
+    }
+    .recruiter_reason_to_be{
+        text-align: left;
     }
 }
