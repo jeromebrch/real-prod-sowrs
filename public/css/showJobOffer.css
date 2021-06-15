@@ -21,6 +21,16 @@ body .job_offer_title_jumbotron{
     align-items: center;
     padding: 20px;
 }
+#show_joboffer_photo_profile {
+    border: none;
+    /*clip-path: circle();*/
+    /*-moz-border-radius: 50%;*/
+    /*-webkit-border-radius: 50%;*/
+    vertical-align: middle;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+}
 
 @media screen and (max-width: 310px){
     .title_telecommuting{
@@ -32,13 +42,53 @@ body .job_offer_title_jumbotron{
         width: 88% !important;
     }
 }
-#show_joboffer_photo_profile {
-    border: none;
-    /*clip-path: circle();*/
-    /*-moz-border-radius: 50%;*/
-    /*-webkit-border-radius: 50%;*/
-    vertical-align : middle;
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
+@media screen and (max-width: 1082px) and (min-width: 571px) {
+    #show_joboffer_photo_profile {
+        /*border: none;*/
+        /*clip-path: circle();*/
+        /*-moz-border-radius: 50%;*/
+        /*-webkit-border-radius: 50%;*/
+        vertical-align : middle;
+        width: 70px;
+        height: 70px;
+        border-radius: 50%;
+    }
+}
+@media only screen and (max-width: 570px) and (min-width: 376px){
+    #show_joboffer_photo_profile {
+        /*border: none;*/
+        /*clip-path: circle();*/
+        /*-moz-border-radius: 50%;*/
+        /*-webkit-border-radius: 50%;*/
+        vertical-align : middle;
+        width: 90px;
+        height: 90px;
+        border-radius: 50%;
+
+    }
+    .options_offer{
+        font-size: small;
+        margin-bottom: 2em;
+        position: relative;
+        left: 11px;
+    }
+}
+@media only screen and (max-width: 376px) and (min-width: 281px){
+    #show_joboffer_photo_profile {
+        /*border: none;*/
+        /*clip-path: circle();*/
+        /*-moz-border-radius: 50%;*/
+        /*-webkit-border-radius: 50%;*/
+        vertical-align : middle;
+        width: 90px;
+        height: 90px;
+        border-radius: 50%;
+        align-items: center;
+    }
+    .options_offer{
+        font-size: small;
+        margin-bottom: 2em;
+        position: relative;
+        left: 9px;
+    }
 }
