@@ -11,9 +11,9 @@
             <span class="date_abstract_job_offer">{{ jobOffer.city }}</span><br>
             <span class="date_abstract_job_offer">{{ jobOffer.creationDate|date("d/m/Y H:i") }}</span><br>
         </div>
-        <div class="col-6 ">
+        <div class="col-6">
             <div class="">
-                <div class="row justify-content-md-end mb-4" >
+                <div class="row justify-content-md-end mb-4 cardJobContract" >
                 {% if jobOffer.contractType.wording == 'CDI' %}
                     <div class="abstract_contract_type margright col-4 ">{{ jobOffer.contractType.wording }}</div><br>
                 {% elseif jobOffer.contractType.wording == 'CDD' %}
@@ -34,7 +34,7 @@
                 </div>
             </div>
             <div class="">
-            <div class="row container_abstract_button justify-content-md-end ">
+            <div class="row container_abstract_button justify-content-md-end cardJobButton">
 
                 <a class="abstractJobOfferButton col-lg-3 m-2 text-center align-self-end" href="{{ path('jobOffer_modifyJobOffer', {'id':jobOffer.id}) }}"
                    role="button">

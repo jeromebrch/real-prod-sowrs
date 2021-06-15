@@ -87,12 +87,12 @@
                         {% for candidat in favorites %}
                             <div class="row abstractJobOffer border border-2 p-3 gx-0 m-4 shadow bg-light">
                                 <div class="row">
-                                    <div class="col-md-2 align-self-center">
+                                    <div class="col-md-2 align-self-center text-center">
                                         {% if candidat.picture %}
-                                            <img id="show_joboffer_photo_profile" class="img-fluid" src="{{ asset('images/profils/' ~ candidat.picture.pictureName )}}"
+                                            <img id="show_joboffer_photo_profile" class="" src="{{ asset('images/profils/' ~ candidat.picture.pictureName )}}"
                                                  alt="photo du profil">
                                         {% else %}
-                                            <img id="show_joboffer_photo_profile" class="img-fluid" src="{{ asset('images/profils/avatar.jpg') }}"
+                                            <img id="show_joboffer_photo_profile" class="" src="{{ asset('images/profils/avatar.jpg') }}"
                                                  alt="photo du profil">
                                         {% endif %}
                                     </div>
@@ -115,7 +115,7 @@
                                     <div class="col-md-4 align-self-center text-center options_offer">
                                         <a class="btn" href="{{ path('candidate_show', {"id":candidat.id}) }}">Consulter le profil</a>
                                     </div>
-                                    <div class="col-md-2 align-self-center options_offer">
+                                    <div class="col-md-2 align-self-center text-center options_offer">
                                         <span title=" Effacer le cv">
                                             <a class="abstractJobOfferButtonTrash" href="{{ path('remove_favorite_cv_list', {'id': candidat.id}) }}">
                                                 <img class="abstractJobOfferImgTrash" src="{{ asset('img/boostrap/trash-fill-white.svg') }}" alt="delete_favorite" title="Supprimer des favoris">

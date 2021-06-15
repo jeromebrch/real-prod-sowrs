@@ -444,6 +444,7 @@
                                 <a href="{{ path('unsubscribe') }}" class="col-4 link_action_mydetails">Supprimer mon compte</a>
                             </div>
                         </div>
+<<<<<<< HEAD
 
 
                         {{ form_row(modifyUserForm.socialNetwork.facebook.setRendered()) }}
@@ -467,7 +468,13 @@
                             </div>
                             {{ form_end(recognitionForm) }}
                         </div>
+=======
+>>>>>>> 8b9106dbb66a1a9e63f22a39c11d77c5e6d39a45
                     </div>
+                    {{ form_row(modifyUserForm.socialNetwork.facebook.setRendered()) }}
+                    {{ form_row(modifyUserForm.socialNetwork.twitter.setRendered()) }}
+                    {{ form_row(modifyUserForm.socialNetwork.skype.setRendered()) }}
+                    {{ form_end(modifyUserForm) }}
                 {% endif %}
             </div>
         </div>

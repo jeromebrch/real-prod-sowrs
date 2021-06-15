@@ -109,6 +109,76 @@
     flex-direction: row;
     justify-content: center;
 }
+.contract_type_CDD{
+    padding: 10px;
+    border-radius: 30px;
+    background-color: #6ce1ba;
+    color: white;
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+.contract_type_Freelance{
+    padding: 10px;
+    border-radius: 30px;
+    background-color: #aff9f0;
+    color: white;
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+.contract_type_Associe{
+    padding: 10px;
+    border-radius: 30px;
+    background-color: #56d9cb;
+    color: white;
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+.contract_type_Stage{
+    padding: 10px;
+    border-radius: 30px;
+    background-color: #80eee2;
+    color: white;
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+.contract_type_Autre{
+    padding: 10px;
+    border-radius: 30px;
+    background-color: #14ae9e;
+    color: white;
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+.contract_type_Interim{
+    padding: 10px;
+    border-radius: 30px;
+    background-color: #a59bb5;
+    color: white;
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+.contract_type_Service{
+    padding: 10px;
+    border-radius: 30px;
+    background-color: #827399;
+    color: white;
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
 .localisation_job_offer{
     font-family: 'KohinoorBangla', Arial, serif;
     font-size: 1.1em;
@@ -331,11 +401,23 @@
         display: flex;
         flex-direction: column;
     }
+    .container_options_job_offer{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
 }
 @media only screen and (max-width: 376px) and (min-width: 281px){
     .container_sense_rate_infos{
         display: flex;
         flex-direction: column;
+    }
+    .container_options_job_offer{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
     }
 }
 @media only screen and (max-width: 570px) and (min-width: 376px){
@@ -347,6 +429,12 @@
     }
     .sense_rate_line{
         width: 70%;
+    }
+    .container_options_job_offer{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
     }
 }
 @media screen and (min-width: 991px){

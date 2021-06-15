@@ -207,3 +207,39 @@
 .margright {
     margin-right: 1rem;
 }
+@media screen and (max-width: 1082px) and (min-width: 571px){
+
+    .abstractJobOfferButton{
+        width: 1.5em;
+        height: 1em;
+        margin: 0em;
+    }
+    .abstractJobOfferImgPencil{
+        width: auto;
+        height: 0.9em;
+    }
+    .abstractJobOfferImgRepeat{
+        width: auto;
+        height: 0.9em;
+    }
+    .abstractJobOfferButtonPause{
+        width: 1.5em;
+        height: 1em;
+    }
+    .abstractJobOfferPause{
+        width: auto;
+        height: 0.9em;
+    }
+    .abstractJobOfferImgPlay{
+        width: auto;
+        height: 0.9em;
+    }
+    .abstractJobOfferButtonTrash{
+        width: 1.5em;
+        height: 1em;
+    }
+    .abstractJobOfferImgTrash{
+        width: auto;
+        height: 0.9em;
+    }
+}
