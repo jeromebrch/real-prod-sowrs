@@ -320,6 +320,8 @@ body .form-control{
     display: none;
     background-color: #00000070;
     border-radius: 30px;
+    font-size: 18px;
+    margin-bottom: 0.5em;
 }
 .info_message p{
     color: white;
@@ -346,6 +348,9 @@ body .form-control{
     font-family: 'KohinoorBangla', Arial, serif;
     font-weight: bolder;
     text-align: start;
+}
+.specific-textarea{
+    height: 200px;
 }
 
 @media screen and (max-width: 520px){
@@ -391,4 +396,245 @@ body .form-control{
     .big_link_action{
         display: none;
     }
+
+}
+@media screen and (max-width: 1082px) and (min-width: 571px){
+    .button-creerUne{
+        display: inline-flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        font-size: small;
+    }
+    .abstract_contract_type_SERVICE{
+        font-size: small;
+        display: inline-flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+    }
+    .abstract_contract_type{
+        font-size: small
+    }
+    .abstract_contract_type_ASSOCIE{
+        font-size: small
+    }
+    .abstract_contract_type_AUTRE{
+        font-size: small
+    }
+    .abstract_contract_type_CDD{
+        font-size: small
+    }
+    .abstract_contract_type_FREELANCE{
+        font-size: small
+    }
+    .abstract_contract_type_INTERIM{
+        font-size: small
+    }
+    .abstract_contract_type_STAGE{
+        font-size: small;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+    }
+    .cardJobContract{
+        align-content: center;
+        align-items: center;
+        justify-content: center;
+    }
+    .cardJobButton{
+        /*position: relative;*/
+        /*left: 10px;*/
+        /*height: 130px;*/
+        width: 120px;
+    }
+}
+@media only screen and (max-width: 570px) and (min-width: 376px){
+    .button-creerUne{
+        display: inline-flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        font-size: small;
+    }
+    .cardJobButton{
+
+
+    }
+    .cardJobContract{
+        align-content: center;
+        align-items: center;
+        justify-content: center;
+    }
+    .margright{
+         margin-right: 0rem;
+     }
+    .cardJobContract{
+        align-content: center;
+        align-items: center;
+        justify-content: center;
+    }
+    .btn-title2 {
+        font-size: small;
+        position: relative;
+        bottom: 25px;
+    }
+    .abstract_contract_type_SERVICE{
+        font-size: small;
+    }
+    .abstract_contract_type{
+        font-size: small
+    }
+    .abstract_contract_type_ASSOCIE{
+        font-size: small
+    }
+    .abstract_contract_type_AUTRE{
+        font-size: small
+    }
+    .abstract_contract_type_CDD{
+        font-size: small
+    }
+    .abstract_contract_type_FREELANCE{
+        font-size: small
+    }
+    .abstract_contract_type_INTERIM{
+        font-size: small
+    }
+    .abstract_contract_type_STAGE{
+        font-size: x-small;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+    }
+    .cardJobButton{
+        align-content: center;
+        align-items: center;
+        justify-content: center;
+    }
+    .abstractJobOfferButton{
+        width: 1.7em;
+        height: 1.2em;
+    }
+    .abstractJobOfferImgPencil{
+        width: auto;
+        height: 0.7em;
+    }
+    .abstractJobOfferImgRepeat{
+        width: auto;
+        height: 0.8em;
+    }
+    .abstractJobOfferButtonPause {
+        width: 1.7em;
+        height: 1.2em;
+        margin-left: 5px;
+    }
+    .abstractJobOfferPause {
+        height: 0.8em;
+        width: auto;
+
+    }
+    .abstractJobOfferButtonTrash {
+        width: 1.7em;
+        height: 1.2em;
+
+    }
+    .abstractJobOfferImgTrash {
+        height: 0.8em;
+        width: auto;
+    }
+}
+@media only screen and (max-width: 376px) and (min-width: 281px){
+    .button-creerUne{
+        display: inline-flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        font-size: x-small;
+        width: 100px;
+        height: 25px;
+    }
+    .abstract_contract_type_SERVICE{
+        font-size: x-small;
+        display: inline-flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+    }
+    .abstract_contract_type{
+        font-size: x-small
+    }
+    .abstract_contract_type_ASSOCIE{
+        font-size: x-small
+    }
+    .abstract_contract_type_AUTRE{
+        font-size: x-small
+    }
+    .abstract_contract_type_CDD{
+        font-size: x-small
+    }
+    .abstract_contract_type_FREELANCE{
+        font-size: x-small
+    }
+    .abstract_contract_type_INTERIM{
+        font-size: x-small
+    }
+    .abstract_contract_type_STAGE{
+        font-size: x-small;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+    }
+    .margright{
+        margin-right: 0rem;
+    }
+    .cardJobContract{
+        align-content: center;
+        align-items: center;
+        justify-content: center;
+    }
+    .cardJobButton{
+        align-content: center;
+        align-items: center;
+        justify-content: center;
+    }
+    .abstractJobOfferButton{
+        width: 2em;
+        height: 1.5em;
+    }
+    .abstractJobOfferImgPencil{
+        width: auto;
+        height: 0.9em;
+    }
+    .abstractJobOfferImgRepeat{
+        width: auto;
+        height: 1em;
+    }
+    .abstractJobOfferButtonPause {
+        width: 2em;
+        height: 1.5em;
+    }
+    .abstractJobOfferPause {
+        height: 1em;
+        width: auto;
+    }
+    .abstractJobOfferButtonTrash {
+        width: 2em;
+        height: 1.5em;
+        margin-left: 0.9rem;
+    }
+    .abstractJobOfferImgTrash {
+        height: 0.9em;
+        width: auto;
+    }
+    .btn-title2 {
+        font-size: small;
+        position: relative;
+        bottom: 25px;
+    }
+}
+@media only screen and (max-width: 280px){
+
 }

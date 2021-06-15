@@ -2,23 +2,18 @@
     <div class="row">
         <div class="col-md-2 align-self-center">
             {% if app.user.picture is not empty %}
-                <img id="photo_profile" src="{{ asset('images/profils/' ~ app.user.picture.pictureName )}}"
+                <img class="img-fluid" id="show_candidate_photo_profile" src="{{ asset('images/profils/' ~ app.user.picture.pictureName )}}"
                      alt="photo du profil" title="Photo de profil">
             {% else %}
-                <img id="photo_profile" src="{{ asset('images/profils/avatar.jpg' )}}"
+                <img class="img-fluid" id="show_candidate_photo_profile" src="{{ asset('images/profils/avatar.jpg' )}}"
                      alt="photo par défaut" title="Avatar SOWRS">
             {% endif %}
         </div>
-        <div class="col-md-4 align-self-center">
+        <div class="col-md-6 align-self-center">
             <h4 class="abstractJobOfferTextTitle pb-1">{{ jobOffer.title }}</h4>
             <span class="abstractTextRegion abstractJobOfferText">{{ jobOffer.city }} ({{ jobOffer.department.cp}})<br>{{ jobOffer.country.name }}</span>
         </div>
-        <div class="col-md-2 abstractJobOfferText align-self-center">
-            {# <img class="abstractJobOfferImgStopwatch col-lg-3" src="{{ asset('img/boostrap/stopwatch.svg') }}" alt="creation date" title="Date de création de l'offre"/> #}
-{#            TODO: intégrer le nombre de candidature#}
-            <p>X<br>
-            candidatures</p>
-        </div>
+
         <div class="col-md-2 abstractJobOfferText align-self-center">
             {# <img class="abstractJobOfferImgEye col-lg-3" src="{{ asset('img/boostrap/eye.svg') }}" alt="number of views" title="Nombre de vues de l'offre"/> #}
             <p>

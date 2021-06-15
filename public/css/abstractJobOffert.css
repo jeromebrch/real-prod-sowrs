@@ -207,3 +207,6 @@
 .margright {
     margin-right: 1rem;
 }
+@media screen and (max-width: 1082px) and (min-width: 571px){
+
+}

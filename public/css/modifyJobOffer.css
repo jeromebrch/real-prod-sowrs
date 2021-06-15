@@ -29,3 +29,10 @@ select{
 .btn_reset_job_offer{
     background: #999999;
 }
+
+@media screen and (max-width: 360px) {
+    .responsBtn{
+        text-align: center;
+        width: 10px;
+    }
+}
