@@ -29,7 +29,7 @@
     </div>
     <div class="col-md-3 align-self-center">
         <div class="candidate_contract_type ">
-            <a class="btn" href="{{ path('candidate_show', {"id":candidate.id}) }}">Consulter le profil</a>
+            <a class="btn profil" href="{{ path('candidate_show', {"id":candidate.id}) }}">Consulter le profil</a>
         </div>
     </div>
     {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
