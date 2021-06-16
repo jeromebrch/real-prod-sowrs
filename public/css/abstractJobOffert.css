@@ -1,5 +1,8 @@
 .abstractJobOffer {
     border-radius: 20px;
+}
+.abstract_my_offers{
+    border-radius: 20px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
