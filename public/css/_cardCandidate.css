@@ -41,3 +41,81 @@ body .img_user_card{
     color: #1DCA91;
     font-family: 'KohinoorBangla', Arial, serif;
 }
+@media screen and (max-width: 1082px) and (min-width: 571px){
+    .candidate_contract_type{
+        font-size: small;
+        /*position: relative;*/
+        /*right: 50px;*/
+    }
+    #show_candidate_photo_profile{
+        border: none;
+        clip-path: circle();
+        -moz-border-radius: 50%;
+        -webkit-border-radius: 50%;
+        vertical-align : middle;
+        /*width: 40px;*/
+        /*height: 40px;*/
+        border-radius: 50%;
+     }
+    .profil{
+        width: 170px;
+    }
+}
+@media only screen and (max-width: 570px) and (min-width: 376px){
+    .candidate_contract_type{
+        font-size: small;
+        position: relative;
+        /*left: 45px;*/
+        margin-top: 1em;
+        text-align: center;
+    }
+    #show_candidate_photo_profile{
+        border: none;
+        clip-path: circle();
+        -moz-border-radius: 50%;
+        -webkit-border-radius: 50%;
+        vertical-align : middle;
+        /*width: 40px;*/
+        /*height: 40px;*/
+        border-radius: 50%;
+    }
+}
+@media only screen and (max-width: 376px) and (min-width: 281px){
+    .candidate_contract_type{
+        font-size: small;
+        position: relative;
+        /*left: 45px;*/
+        margin-top: 1em;
+        text-align: center;
+    }
+    .profil{
+        font-size: small;
+        width: 120px;
+    }
+    #show_candidate_photo_profile{
+        border: none;
+        clip-path: circle();
+        -moz-border-radius: 50%;
+        -webkit-border-radius: 50%;
+        vertical-align : middle;
+        /*width: 40px;*/
+        /*height: 40px;*/
+        border-radius: 50%;
+    }
+}
+@media only screen and (max-width: 280px){
+    .profil{
+        font-size: small;
+        width: 170px;
+    }
+    #show_candidate_photo_profile{
+        border: none;
+        clip-path: circle();
+        -moz-border-radius: 50%;
+        -webkit-border-radius: 50%;
+        vertical-align : middle;
+        /*width: 40px;*/
+        /*height: 40px;*/
+        border-radius: 50%;
+    }
+}

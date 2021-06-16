@@ -1,8 +1,8 @@
 <div class="row">
-    <div class="col-md-2 m-1 p-1 text-center">
+    <div class="col-md-1 m-3">
             {% if jobOffer.entity.picture %}
                 {% if jobOffer.entity.picture.pictureName is same as '' %}
-                    <img id="show_candidate_photo_profile" class="img-fluid img_user_card"
+                    <img id="show_candidate_photo_profile" class="img-fluid img_user_card "
                          src="{{ asset('images/profils/avatar.jpg') }}"
                          alt="photo du profil">
                 {% else %}
@@ -16,7 +16,7 @@
                      alt="photo du profil">
             {% endif %}
     </div>
-    <div class="col-md-6 col-sm-8 col-xs-12 content-box align-self-center">
+    <div class="col-md-7 col-sm-8 col-xs-12 content-box align-self-center">
         <div class="">
             <span class="job_text_title"><a class="link_job_offer_infos" href="{{ path('jobOffer_show', {'id':jobOffer.id}) }}"><strong>{{ jobOffer.title }}</strong></a></span><br>
             <span class="job_text"><strong class="">{{ jobOffer.entity.entityName| capitalize }}</strong><br>
