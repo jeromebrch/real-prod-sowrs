@@ -1,6 +1,6 @@
-<div class="row abstractJobOffer border border-2 p-3 m-4 gx-0 shadow bg-light">
-    <div class="row">
-        <div class="col-md-2 align-self-center">
+<div class="abstractJobOffer border border-2 p-3 m-4 gx-0 shadow bg-light">
+    <div class="card_candidate_left_part">
+        <div class="align-self-center">
             {% if app.user.picture is not empty %}
                 <img class="img-fluid" id="show_candidate_photo_profile" src="{{ asset('images/profils/' ~ app.user.picture.pictureName )}}"
                      alt="photo du profil" title="Photo de profil">
@@ -9,14 +9,15 @@
                      alt="photo par défaut" title="Avatar SOWRS">
             {% endif %}
         </div>
-        <div class="col-md-6 align-self-center">
+        <div class="align-self-center">
             <h4 class="abstractJobOfferTextTitle pb-1">{{ jobOffer.title }}</h4>
             <span class="abstractTextRegion abstractJobOfferText">{{ jobOffer.city }} ({{ jobOffer.department.cp}})<br>{{ jobOffer.country.name }}</span>
         </div>
-
-        <div class="col-md-2 abstractJobOfferText align-self-center">
+    </div>
+    <div class="card_candidate_right_part">
+        <div class="abstractJobOfferText align-self-center">
             {# <img class="abstractJobOfferImgEye col-lg-3" src="{{ asset('img/boostrap/eye.svg') }}" alt="number of views" title="Nombre de vues de l'offre"/> #}
-            <p>
+            <p class="offer_views">
                 {% if jobOffer.NumberOfViews > 0 %}
                     {{ jobOffer.NumberOfViews }}
                 {% else %}
@@ -24,7 +25,7 @@
                 {% endif %}
                 <br>vues</p>
         </div>
-        <div class="containerBtn col-md-2 align-self-center">
+        <div class="containerBtn align-self-center btn_card_candidate">
             <div class="options_offer">
                 <span title="Modifier l'offre"> <a class="abstractJobOfferButton col-lg-3 m-2 text-center align-self-center" href="{{ path('jobOffer_modifyJobOffer', {'id':jobOffer.id}) }}"
                                                    role="button">
@@ -47,7 +48,6 @@
                 <img class="abstractJobOfferImgPlay" src="{{ asset('img/boostrap/play-fill-white.svg') }}" alt="set offer" title="Mettre l'offre en ligne"/>
             </a></span>
                 {% endif %}
-{#<<<<<<< HEAD#}
                 <span title="Supprimer l'offre"> <a class="abstractJobOfferButtonTrash col-lg-3 m-2 text-center align-self-center" href="{{ path('jobOffer_deleteOffer', {'id':jobOffer.id}) }}" role="button">
                     <img class="abstractJobOfferImgTrash" src="{{ asset('img/boostrap/trash-fill-white.svg') }}" alt="delete offer" title="Supprimer l'offre">
                     </a>

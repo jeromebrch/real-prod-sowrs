@@ -1,5 +1,24 @@
 .abstractJobOffer {
     border-radius: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+.card_candidate_left_part{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+}
+.card_candidate_right_part{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+}
+.card_candidate_left_part div{
+    padding-left: 20px;
 }
 .abstractJobOfferButton {
     width: 2.5em;
@@ -203,12 +222,71 @@
     align-items: center;
     border-radius: 50pt;
 }
-
 .margright {
     margin-right: 1rem;
 }
-@media screen and (max-width: 1082px) and (min-width: 571px){
+.offer_views{
+    font-family: 'KohinoorBangla', Arial, serif;
+    color: #555555;
+}
 
+@media screen and (max-width: 310px){
+    .my_offers_title{
+        margin: 0!important;
+        font-size: 1.2em!important;
+    }
+    .abstractJobOffer{
+        margin: 0 0 10px 0!important;
+    }
+}
+@media screen and (max-width: 407px){
+    body .options_offer{
+        display: flex!important;
+        flex-direction: row!important;
+        justify-content: space-around!important;
+        align-items: center!important;
+        flex-wrap: wrap!important;
+    }
+    body .options_offer span{
+        padding: 10px;
+    }
+    .card_candidate_left_part{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+}
+@media screen and (max-width: 510px){
+    .abstractJobOfferTextTitle{
+        font-size: 1em;
+    }
+    .abstractJobOfferText{
+        font-size: 0.9em;
+    }
+    .card_candidate_right_part{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+}
+@media screen and (max-width: 575px) and (min-width: 301px){
+    .mini_btn_title_my_offers{
+        position: relative;
+        top: 25px;
+    }
+}
+@media screen and (max-width: 991px){
+    .abstractJobOffer {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: auto;
+    }
+}
+@media screen and (max-width: 1082px) and (min-width: 571px){
     .abstractJobOfferButton{
         width: 1.5em;
         height: 1em;
