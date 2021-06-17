@@ -40,23 +40,23 @@
                                                     <div class="container_sense_rate_img">
                                                         {% if app.user.scoring.dominantSens is same as 'social' %}
                                                             <a href="{{ path('dash_board_entitySenseRate') }}">
-                                                                <img class="img-fluid pe-5 sense_rate_img" src="{{ asset('img/social500.png') }}"
+                                                                <img class="img-fluid sense_rate_img" src="{{ asset('img/social500.png') }}"
                                                                      alt="sens-social">
                                                             </a>
                                                         {% elseif app.user.scoring.dominantSens is same as 'economique' %}
                                                             <a href="{{ path('dash_board_entitySenseRate') }}">
-                                                                <img class="img-fluid pe-5 sense_rate_img"
+                                                                <img class="img-fluid sense_rate_img"
                                                                      src="{{ asset('img/econonomie500.png') }}"
                                                                      alt="sens-social">
                                                             </a>
                                                         {% elseif app.user.scoring.dominantSens is same as 'societal' %}
                                                             <a href="{{ path('dash_board_entitySenseRate') }}">
-                                                                <img class="img-fluid pe-5 sense_rate_img" src="{{ asset('img/societal500.png') }}"
+                                                                <img class="img-fluid sense_rate_img" src="{{ asset('img/societal500.png') }}"
                                                                      alt="sens-social">
                                                             </a>
                                                         {% elseif app.user.scoring.dominantSens is same as 'environnemental' %}
                                                             <a href="{{ path('dash_board_entitySenseRate') }}">
-                                                                <img class="img-fluid pe-5 sense_rate_img"
+                                                                <img class="img-fluid sense_rate_img"
                                                                      src="{{ asset('img/environnemental500.png') }}"
                                                                      alt="sens-social">
                                                             </a>
@@ -108,14 +108,22 @@
                         {% else %}
                             <div class="m-5">
                                 <div class="row">
-                                    <div class="col-lg-6 p-5 section_dashboard">
+                                    <div class="col-lg-6 section_dashboard">
                                         <div class="in_section h-100">
-                                            <h4 class="subtitle">Calcul du taux de sens !</h4>
-                                            <a href="{{ path('dash_board_entitySenseRate') }}" class="#">
-                                                <img class="img-fluid" id="img_calcul_taux_sens"
-                                                     src="{{ asset('img/calcul-taux-sens.jpg') }}"
-                                                     alt="calcul-taux-sens">
-                                            </a>
+                                            <div class="row">
+                                                <h4 class="subtitle">Calcul du taux de sens !</h4>
+                                            </div>
+                                            <div class="col-12">
+                                                <div class="row">
+                                                    <div class="container_sense_rate_img ">
+                                                        <a href="{{ path('dash_board_entitySenseRate') }}" class="">
+                                                            <img class="img-fluid sense_rate_img_calcul " id="img_calcul_taux_sens"
+                                                                 src="{{ asset('img/calcul-taux-sens.jpg') }}"
+                                                                 alt="calcul-taux-sens">
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="col-lg-6 p-5 section_dashboard">
@@ -176,23 +184,23 @@
                                                     <div class="container_sense_rate_img">
                                                         {% if app.user.scoring.dominantSens is same as 'social' %}
                                                             <a href="{{ path('dash_board_entitySenseRate') }}">
-                                                                <img class="img-fluid pe-5 sense_rate_img" src="{{ asset('img/social500.png') }}"
+                                                                <img class="img-fluid sense_rate_img" src="{{ asset('img/social500.png') }}"
                                                                      alt="sens-social">
                                                             </a>
                                                         {% elseif app.user.scoring.dominantSens is same as 'economique' %}
                                                             <a href="{{ path('dash_board_entitySenseRate') }}">
-                                                                <img class="img-fluid pe-5 sense_rate_img"
+                                                                <img class="img-fluid sense_rate_img"
                                                                      src="{{ asset('img/econonomie500.png') }}"
                                                                      alt="sens-social">
                                                             </a>
                                                         {% elseif app.user.scoring.dominantSens is same as 'societal' %}
                                                             <a href="{{ path('dash_board_entitySenseRate') }}">
-                                                                <img class="img-fluid pe-5 sense_rate_img" src="{{ asset('img/societal500.png') }}"
+                                                                <img class="img-fluid sense_rate_img" src="{{ asset('img/societal500.png') }}"
                                                                      alt="sens-social">
                                                             </a>
                                                         {% elseif app.user.scoring.dominantSens is same as 'environnemental' %}
                                                             <a href="{{ path('dash_board_entitySenseRate') }}">
-                                                                <img class="img-fluid pe-5 sense_rate_img"
+                                                                <img class="img-fluid sense_rate_img"
                                                                      src="{{ asset('img/environnemental500.png') }}"
                                                                      alt="sens-social">
                                                             </a>
@@ -244,17 +252,25 @@
                         {% else %}
                             <div class="m-5">
                                 <div class="row">
-                                    <div class="col-lg-6 p-5 section_dashboard">
+                                    <div class="col-lg-6 section_dashboard">
                                         <div class="in_section h-100">
-                                            <h4 class="subtitle">Calcul du taux de sens !</h4>
-                                            <a href="{{ path('dash_board_entitySenseRate') }}" class="#">
-                                                <img class="img-fluid" id="img_calcul_taux_sens"
-                                                     src="{{ asset('img/calcul-taux-sens.jpg') }}"
-                                                     alt="calcul-taux-sens">
-                                            </a>
+                                            <div class="row">
+                                                <h4 class="subtitle">Calcul du taux de sens !</h4>
+                                            </div>
+                                            <div class="col-12">
+                                                <div class="row">
+                                                    <div class="container_sense_rate_img ">
+                                                        <a href="{{ path('dash_board_entitySenseRate') }}" class="">
+                                                            <img class="img-fluid sense_rate_img_calcul " id="img_calcul_taux_sens"
+                                                                 src="{{ asset('img/calcul-taux-sens.jpg') }}"
+                                                                 alt="calcul-taux-sens">
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="col-lg-6 p-5 section_dashboard">
+                                    <div class="col-lg-6 section_dashboard">
                                         <div class="in_section h-100">
                                             <h4 class="subtitle">Vous avez manqué quoi ?</h4>
                                             <div class="col-10 offset-1">

@@ -92,7 +92,11 @@
     align-items: center;
 }
 .sense_rate_img{
-    height: 250px; !important;
+    height: 225px; !important;
+    width: auto;
+}
+.sense_rate_img_calcul{
+    height: 350px; !important;
     width: auto;
 }
 @media screen and (max-width: 306px){
