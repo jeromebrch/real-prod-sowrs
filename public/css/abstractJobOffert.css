@@ -283,8 +283,8 @@
 }
 @media screen and (max-width: 575px) and (min-width: 301px){
     .mini_btn_title_my_offers{
-        position: relative;
-        top: 25px;
+        /*position: relative;*/
+        /*top: 25px;*/
     }
 }
 @media screen and (max-width: 991px){
