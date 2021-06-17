@@ -66,6 +66,18 @@ body .img_user_card{
     padding: 10px 15px 0 15px;
 }
 
+@media screen and (max-width: 315px){
+    .btn_show_profil{
+        font-size: 0.9em;
+        width: 150px!important;
+    }
+    .block_btn_card_candidate{
+
+    }
+    .second_section_card_candidate{
+        width: 80%;
+    }
+}
 @media screen and (max-width: 420px){
     .name_card_candidate{
         font-size: 1em;
