@@ -2,7 +2,7 @@
     text-align: left;
 }
 .apply_div{
-    line-height: 3px;
+    /*line-height: 3px;*/
 }
 #photo_profile{
     width: 140px
@@ -55,6 +55,26 @@ body .btn_applies_options{
 .link_applie_option:hover{
     color: white;
 }
+.textCandid{
+    font-family: 'KohinoorBangla', Arial, serif;
+    color: #555555;
+}
+.titreCandid{
+    font-size: 1.3em;
+    margin-bottom: 1em;
+    text-align: left;
+    color: #937FA4;
+    font-family: 'KohinoorBangla', Arial, serif;
+}
+.btnCandid{
+    width: 200px;
+}
+@media only screen and (max-width: 1025px) and (min-width: 571px) {
+    .btnCandid{
+        width: 170px;
+    }
+}
+
 @media only screen and (max-width: 570px) and (min-width: 376px){
     .btn_applies_options{
         font-size: small;
@@ -64,9 +84,17 @@ body .btn_applies_options{
         text-align: center;
         width: 160px;
     }
+    .btnCandid{
+        width: 170px;
+    }
+    .btn-title{
+        position: relative;
+        bottom: 20px;
+        font-size: small;
+    }
 }
 
-@media only screen and (max-width: 376px) and (min-width: 281px){
+@media only screen and (max-width: 376px) and (min-width: 279px){
     .btn_applies_options{
         font-size: small;
         margin-bottom: 1em;
@@ -74,5 +102,31 @@ body .btn_applies_options{
     .responsiveBtn{
         text-align: center;
         min-width: 150px;
+    }
+    .btnCandid{
+        width: 170px;
+    }
+    .btn-title{
+        position: relative;
+        bottom: 20px;
+        font-size: small;
+    }
+
+}
+@media only screen and (orientation: landscape) and (max-width: 570px) and (min-width: 376px){
+    .btn_applies_options{
+        font-size: small;
+        margin-bottom: 1em;
+    }
+    .responsiveBtn{
+        text-align: center;
+        width: 160px;
+    }
+    .btnCandid{
+        width: 170px;
+    }
+    .btn-title{
+        position: relative;
+        bottom: 70px;
     }
 }

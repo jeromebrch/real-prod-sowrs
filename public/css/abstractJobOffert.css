@@ -259,6 +259,13 @@
         justify-content: center;
         align-items: center;
     }
+    .abstract_my_offers{
+        border-radius: 20px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: start;
+    }
 }
 @media screen and (max-width: 510px){
     .abstractJobOfferTextTitle{
@@ -284,8 +291,8 @@
     .abstractJobOffer {
         display: flex;
         flex-direction: column;
-        justify-content: center;
-        align-items: center;
+        /*justify-content: center;*/
+        /*align-items: center;*/
         width: auto;
     }
 }
@@ -322,5 +329,12 @@
     .abstractJobOfferImgTrash{
         width: auto;
         height: 0.9em;
+    }
+}
+@media only screen and (orientation: landscape) and (min-width: 639px) and (max-width: 780px){
+    .abstractJobOfferButtonTrash{
+        position: relative;
+        bottom: 31px;
+        left: 200px;
     }
 }

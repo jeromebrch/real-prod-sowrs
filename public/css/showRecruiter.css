@@ -86,9 +86,9 @@
         width: 100%;
         height: auto;
     }
-    body .contract_type{
-        display: none!important;
-    }
+    /*body .contract_type{*/
+    /*    display: none!important;*/
+    /*}*/
     .mini_contract_type{
         display: flex;
         flex-direction: row;

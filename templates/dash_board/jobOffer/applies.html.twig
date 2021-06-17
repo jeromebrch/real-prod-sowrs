@@ -36,22 +36,28 @@
                                         {% endif %}
                                     </div>
 
-                                    <div class="apply_div col-lg-5">
+                                    <div class="apply_div content-box col-lg-5">
+                                        <div>
                                         {% if candidature.userSender.firstname and candidature.userSender.lastname %}
-                                            <p class="apply" ><strong>{{ candidature.userSender.firstName|capitalize}} {{ candidature.userSender.lastName|upper }}</strong></p>
+                                            <span class="apply titreCandid" ><strong>{{ candidature.userSender.firstName|capitalize}} {{ candidature.userSender.lastName|upper }}</strong></span>
                                         {% endif %}
+                                            <br>
                                         {% if candidature.userSender.currentRole is not empty %}
-                                            <p class="apply"> {{ candidature.userSender.currentRole }}</p>
+                                            <span class=" textCandid"> {{ candidature.userSender.currentRole }}<br>
                                         {% endif %}
                                         {% if candidature.userSender.city and candidature.userSender.department is not empty %}
-                                            <p class="apply">{{ candidature.userSender.city|capitalize}} ({{ candidature.userSender.department.cp }})</p>
+                                            {{ candidature.userSender.city|capitalize}} ({{ candidature.userSender.department.cp }})
+                                            <br>
                                         {% endif %}
                                         {% if candidature.userSender.scoring is not empty %}
-                                            <p class="apply"><strong>Taux de sens : </strong>{{ candidature.userSender.scoring.dominantsens}} {{ candidature.userSender.scoring.societal }}%</p>
+                                            <strong>Taux de sens : </strong>{{ candidature.userSender.scoring.dominantsens}} {{ candidature.userSender.scoring.societal }}%</span>
                                         {% endif %}
+                                        </div>
                                     </div>
                                     <div class="align-self-center col-lg-4">
-                                        <a href="{{ path('read_message', {'id': candidature.id}) }}" class="btn">Voir la candidature</a>
+                                        <div class="btnCandid">
+                                            <a href="{{ path('read_message', {'id': candidature.id}) }}" class="btn btnCandid">Voir la candidature</a>
+                                        </div>
                                     </div>
                                 </div>
                             {% endif%}

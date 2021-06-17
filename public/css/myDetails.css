@@ -358,11 +358,12 @@ body .form-control{
     font-weight: bolder;
     text-align: start;
 }
-<<<<<<< HEAD
-.list-group-item{
+
+.list-group-item {
     font-family: 'KohinoorBangla', Arial, serif;
     color: #555555;
-=======
+}
+
 .specific-textarea{
     height: 200px;
 >>>>>>> 8b9106dbb66a1a9e63f22a39c11d77c5e6d39a45

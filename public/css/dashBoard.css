@@ -159,3 +159,17 @@ body .container_link_profil{
     font-size: 30px;
     color: white;
 }
+@media only screen and (max-width: 570px) and (min-width: 376px){
+    .btn_responsive{
+        font-size: small;
+        width: 120px;
+        text-align: center;
+    }
+}
+@media only screen and (max-width: 376px) and (min-width: 281px){
+    .btn_responsive{
+        font-size: small;
+        width: 120px;
+        text-align: center;
+    }
+}
