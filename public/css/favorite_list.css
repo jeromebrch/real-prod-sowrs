@@ -82,3 +82,10 @@
         text-align: center;
     }
 }
+@media only screen and (orientation: landscape) and (min-width: 639px) and (max-width: 780px) {
+    .abstractJobOfferButtonTrash {
+        position: relative;
+        bottom: 31px;
+        left: 200px;
+    }
+}

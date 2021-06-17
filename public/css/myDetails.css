@@ -473,6 +473,17 @@ body .form-control{
     }
 }
 @media only screen and (max-width: 570px) and (min-width: 376px){
+    .btn_save_commitment{
+        margin-bottom: 20px;
+        font-size: medium;
+        width: 170px;
+    }
+    .btnImportResponsive{
+        position: relative;
+        bottom: 20px;
+        font-size: medium;
+        width: 160px;
+    }
     .button-creerUne{
         display: inline-flex;
         flex-direction: row;
@@ -566,8 +577,16 @@ body .form-control{
         height: 0.8em;
         width: auto;
     }
+    .check_telecommute{
+
+    }
 }
 @media only screen and (max-width: 376px) and (min-width: 281px){
+    .btn_save_commitment{
+        margin-bottom: 20px;
+        font-size: medium;
+        width: 170px;
+    }
     .button-creerUne{
         display: inline-flex;
         flex-direction: row;
@@ -656,7 +675,20 @@ body .form-control{
         position: relative;
         bottom: 25px;
     }
+    .btnImportResponsive{
+        position: relative;
+        bottom: 20px;
+        font-size: medium;
+        width: 160px;
+    }
 }
 @media only screen and (max-width: 280px){
 
+}
+@media screen and (orientation: landscape) and (max-width: 736px) and (min-width: 640px){
+    .btn_save_commitment{
+        margin-bottom: 20px;
+        font-size: medium;
+        width: 170px;
+    }
 }
