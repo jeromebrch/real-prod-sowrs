@@ -79,3 +79,46 @@
 .link_job_offer_infos:hover{
     color: #555555;
 }
+.card_job_offer{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+.contract_type_card_job_offer>div{
+    min-width: 50px;
+}
+.first_section_card_job_offer{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    width: 70%;
+}
+.second_section_card_job_offer{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 30%;
+}
+.info_card_job_offer{
+    padding: 10px 0 0 15px;
+}
+@media screen and (max-width: 530px){
+    .card_job_offer{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .first_section_card_job_offer{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .contract_type_card_job_offer>div{
+        margin-top: 15px;
+    }
+}

@@ -89,10 +89,10 @@
                                 <div class="row">
                                     <div class="col-md-2 align-self-center text-center">
                                         {% if candidat.picture %}
-                                            <img id="show_joboffer_photo_profile" class="" src="{{ asset('images/profils/' ~ candidat.picture.pictureName )}}"
+                                            <img id="show_joboffer_photo_profile" src="{{ asset('images/profils/' ~ candidat.picture.pictureName )}}"
                                                  alt="photo du profil">
                                         {% else %}
-                                            <img id="show_joboffer_photo_profile" class="" src="{{ asset('images/profils/avatar.jpg') }}"
+                                            <img id="show_joboffer_photo_profile" src="{{ asset('images/profils/avatar.jpg') }}"
                                                  alt="photo du profil">
                                         {% endif %}
                                     </div>

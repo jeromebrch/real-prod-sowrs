@@ -1,23 +1,20 @@
-<div class="row">
-    <div class="col-md-1 m-3">
+<div class="card_job_offer">
+    <div class="first_section_card_job_offer">
+        <div class="picture_entity_job_offer">
             {% if jobOffer.entity.picture %}
                 {% if jobOffer.entity.picture.pictureName is same as '' %}
-                    <img id="show_candidate_photo_profile" class="img-fluid img_user_card "
-                         src="{{ asset('images/profils/avatar.jpg') }}"
-                         alt="photo du profil">
+                    <img id="show_joboffer_photo_profile" src="{{ asset('images/profils/avatar.jpg') }}"
+                         alt="photo du profil" title="Photo de profil">
                 {% else %}
-                    <img id="show_candidate_photo_profile" class="img-fluid img_user_card"
-                         src="{{ asset('images/profils/' ~jobOffer.entity.picture.pictureName ) }}"
-                         alt="photo du profil">
+                    <img id="show_joboffer_photo_profile" src="{{ asset('images/profils/' ~ jobOffer.entity.picture.pictureName )}}"
+                         alt="photo du profil" title="{{ jobOffer.entity.entityName }}">
                 {% endif %}
             {% else %}
-                <img id="show_candidate_photo_profile" class="img-fluid img_user_card"
-                     src="{{ asset('images/profils/avatar.jpg') }}"
-                     alt="photo du profil">
+                <img id="show_joboffer_photo_profile" src="{{ asset('images/profils/avatar.jpg') }}"
+                     alt="photo du profil" title="Photo de profil">
             {% endif %}
-    </div>
-    <div class="col-md-7 col-sm-8 col-xs-12 content-box align-self-center">
-        <div class="">
+        </div>
+        <div class="content-box align-self-center info_card_job_offer">
             <span class="job_text_title"><a class="link_job_offer_infos" href="{{ path('jobOffer_show', {'id':jobOffer.id}) }}"><strong>{{ jobOffer.title }}</strong></a></span><br>
             <span class="job_text"><strong class="">{{ jobOffer.entity.entityName| capitalize }}</strong><br>
             {% if jobOffer.city and jobOffer.department is not empty %}
@@ -29,40 +26,38 @@
             {% endif %}
         </div>
     </div>
-    <div class="col-md-3 align-self-center">
-        <div class="row justify-content-md-end">
-{#            <button class="btn btn-lg btn-block btn-disable-hover btn_contract_type">{{ jobOffer.contractType.wording }}#}
-{#            </button>#}
+    <div class="second_section_card_job_offer">
+        <div class="justify-content-md-end contract_type_card_job_offer">
             {% if jobOffer.contractType.wording == 'CDI' %}
-                <div class="abstract_contract_type col-4">{{ jobOffer.contractType.wording }}</div>
+                <div class="abstract_contract_type">{{ jobOffer.contractType.wording }}</div>
             {% elseif jobOffer.contractType.wording == 'CDD' %}
-                <div class="abstract_contract_type_CDD col-4">{{ jobOffer.contractType.wording }}</div>
+                <div class="abstract_contract_type_CDD">{{ jobOffer.contractType.wording }}</div>
             {% elseif jobOffer.contractType.wording == 'Freelance - Indépendant' %}
-                <div class="abstract_contract_type_FREELANCE col-8">{{ jobOffer.contractType.wording }}</div>
+                <div class="abstract_contract_type_FREELANCE">{{ jobOffer.contractType.wording }}</div>
             {% elseif jobOffer.contractType.wording == 'Associé(e)' %}
-                <div class="abstract_contract_type_ASSOCIE col-4">{{ jobOffer.contractType.wording }}</div>
+                <div class="abstract_contract_type_ASSOCIE">{{ jobOffer.contractType.wording }}</div>
             {% elseif jobOffer.contractType.wording == 'Stage' %}
-                <div class="abstract_contract_type_STAGE col-4">{{ jobOffer.contractType.wording }}</div>
+                <div class="abstract_contract_type_STAGE">{{ jobOffer.contractType.wording }}</div>
             {% elseif jobOffer.contractType.wording == 'Intérim' %}
-                <div class="abstract_contract_type_INTERIM col-4">{{ jobOffer.contractType.wording }}</div>
+                <div class="abstract_contract_type_INTERIM">{{ jobOffer.contractType.wording }}</div>
             {% elseif jobOffer.contractType.wording == 'Service bénévole' %}
-                <div class="abstract_contract_type_SERVICE col-8">{{ jobOffer.contractType.wording }}</div>
+                <div class="abstract_contract_type_SERVICE">{{ jobOffer.contractType.wording }}</div>
             {% elseif jobOffer.contractType.wording == 'Autre' %}
-                <div class="abstract_contract_type_AUTRE col-4">{{ jobOffer.contractType.wording }}</div>
+                <div class="abstract_contract_type_AUTRE">{{ jobOffer.contractType.wording }}</div>
             {% endif %}
         </div>
     </div>
-    {% if jobOffer in app.user.favoriteOffers %}
-        <span title="Retirer des favoris">
-            <a href="{{ path('remove_favorite_offer',  {'id': jobOffer.id }) }}" >
-                <img class="favorite" src="{{ asset('img/suit-heart-fill.svg') }}" alt="remove favorites" title="Retirer des favoris"/>
-            </a>
-        </span>
-    {% else %}
-        <span title="Ajouter aux favoris">
-            <a href="{{ path('add_favorite_offer',{'id': jobOffer.id  }) }}">
-                <img class="favorite" src="{{ asset('img/suit-heart.svg') }}" alt="add favorites" title="Ajouter aux favoris"/>
-             </a>
-        </span>
-    {% endif %}
 </div>
+{% if jobOffer in app.user.favoriteOffers %}
+    <span title="Retirer des favoris">
+        <a href="{{ path('remove_favorite_offer',  {'id': jobOffer.id }) }}" >
+            <img class="favorite" src="{{ asset('img/suit-heart-fill.svg') }}" alt="remove favorites" title="Retirer des favoris"/>
+        </a>
+    </span>
+{% else %}
+    <span title="Ajouter aux favoris">
+        <a href="{{ path('add_favorite_offer',{'id': jobOffer.id  }) }}">
+            <img class="favorite" src="{{ asset('img/suit-heart.svg') }}" alt="add favorites" title="Ajouter aux favoris"/>
+         </a>
+    </span>
+{% endif %}

@@ -17,13 +17,11 @@
              <div class="candidate_picture">
             {% if candidate.picture %}
                 {% if candidate.picture.pictureName is same as '' %}
-                    <img id="show_candidate_photo_profile" class="rounded-circle"
-                         src="{{ asset('images/profils/avatar.jpg') }}"
-                         alt="photo du profil">
+                    <img id="show_joboffer_photo_profile" src="{{ asset('images/profils/avatar.jpg') }}"
+                         alt="photo du profil" title="Photo de profil">
                 {% else %}
-                    <img id="show_candidate_photo_profile" class="rounded-circle"
-                         src="{{ asset('images/profils/' ~candidate.picture.pictureName ) }}"
-                         alt="photo du profil">
+                    <img id="show_joboffer_photo_profile" src="{{ asset('images/profils/' ~ candidate.picture.pictureName )}}"
+                         alt="photo du profil" title="{{ candidate.lastname }} {{ candidate.firstname }}">
                 {% endif %}
             {% else %}
                 <img id="show_candidate_photo_profile" class="rounded-circle"

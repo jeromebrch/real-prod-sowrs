@@ -1,35 +1,35 @@
-<div class="row">
-        <div class="col-lg-1 m-3">
-            {% if candidate.picture %}
-                <img id="show_candidate_photo_profile" class="img-fluid img_user_card"
-                     src="{{ asset('images/profils/' ~candidate.picture.pictureName ) }}"
-                     alt="photo du profil" title="Photo de profil">
-            {% else %}
-                <img id="show_candidate_photo_profile" class="img-fluid img_user_card"
-                     src="{{ asset('images/profils/avatar.jpg') }}"
-                     alt="photo du profil" title="Photo de profil par défaut">
-            {% endif %}
-        </div>
-    <div class="col-md-7 col-sm-8 col-xs-12 content-box">
-        <div class="">
-            <span>
-                <a class="candidate_text_title" href="{{ path('candidate_show', {'id':candidate.id}) }}"><strong>{{ candidate.firstname|capitalize }} {{ candidate.lastname|upper }}</strong></a>
-            </span><br>
-            {% if candidate.currentRole %}
+<div>
+    <div class="container_card_candidate">
+        <div class="first_section_card_candidate">
+            <div class="picture_card_candidate">
+                {% if candidate.picture %}
+                    <img id="show_joboffer_photo_profile" src="{{ asset('images/profils/' ~ candidate.picture.pictureName )}}"
+                         alt="photo du profil" title="{{ candidate.lastname }} {{ candidate.firstname }}">
+                {% else %}
+                    <img id="show_joboffer_photo_profile" src="{{ asset('images/profils/avatar.jpg') }}"
+                         alt="photo du profil">
+                {% endif %}
+            </div>
+            <div class="content-box info_card_candidate">
                 <span>
-                    <strong>{{ candidate.currentRole | capitalize}}</strong><br>
-            {% endif %}
-            {% if candidate.city and candidate.department is not empty %}
-                    {{ candidate.city }} &bull; {{ candidate.department.name }} ({{ candidate.department.cp }})<br>
-            {% endif %}
-            {% if candidate.scoring is not empty %}
-                <strong>Taux de sens: </strong>{{ candidate.scoring.dominantsens }} {{ candidate.scoring.societal }}%</span>
-            {% endif %}
+                    <a class="candidate_text_title name_card_candidate" href="{{ path('candidate_show', {'id':candidate.id}) }}"><strong>{{ candidate.firstname|capitalize }} {{ candidate.lastname|upper }}</strong></a>
+                </span><br>
+                {% if candidate.currentRole %}
+                    <span>
+                        <strong>{{ candidate.currentRole | capitalize}}</strong><br>
+                {% endif %}
+                {% if candidate.city and candidate.department is not empty %}
+                        {{ candidate.city }} &bull; {{ candidate.department.name }} ({{ candidate.department.cp }})<br>
+                {% endif %}
+                {% if candidate.scoring is not empty %}
+                    <strong>Taux de sens: </strong>{{ candidate.scoring.dominantsens }} {{ candidate.scoring.societal }}%</span>
+                {% endif %}
+            </div>
         </div>
-    </div>
-    <div class="col-md-3 align-self-center">
-        <div class="candidate_contract_type ">
-            <a class="btn profil" href="{{ path('candidate_show', {"id":candidate.id}) }}">Consulter le profil</a>
+        <div class="align-self-center second_section_card_candidate">
+            <div class="candidate_contract_type ">
+                <a class="btn profil" href="{{ path('candidate_show', {"id":candidate.id}) }}">Consulter le profil</a>
+            </div>
         </div>
     </div>
     {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
@@ -47,72 +47,4 @@
             </span>
         {% endif %}
     {% endif %}
-    {#
-    {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
-
-    {% set break = false %}
-    {% set favoriteID = "" %}
-    {% set validator = false %}
-
-    {% if favorites is not empty %}
-        {% for favorite in favorites %}
-            {% if break == false %}
-                {% if candidate in favorite %}
-                    {% for favorite in favorites %}
-                        {% if jobOffer == favorite[0] %}
-                            {% set favoriteID = favorite[1] %}
-                        {% endif %}
-                    {% endfor %}
-                    <span title="Retirer des favoris">
-                        <a href="{{ path('remove_favorite_cv',  {'id': favoriteID }) }}" >
-                            <img class="favorite" src="{{ asset('img/suit-heart-fill.svg') }}" alt="remove favorites" title="Retirer des favoris"/>
-                        </a>
-                    </span>
-                    {% set break = true %}
-                    {% set validator = true %}
-                {% endif %}
-            {% endif %}
-        {% endfor %}
-        {% if not validator %}
-            <span title="Ajouter aux favoris">
-                    <a href="{{ path('add_favorite_cv',{'id': candidate.id  }) }}">
-                        <img class="favorite" src="{{ asset('img/suit-heart.svg') }}" alt="add favorites" title="Ajouter aux favoris"/>
-                     </a>
-                </span>
-        {% endif %}
-    {% else %}
-        <span title="Ajouter aux favoris">
-            <a href="{{ path('add_favorite_cv',{'id': candidate.id  }) }}">
-                <img class="favorite" src="{{ asset('img/suit-heart.svg') }}" alt="add favorites" title="Ajouter aux favoris"/>
-             </a>
-        </span>
-    {% endif %}
-
-{% endif %}
-    #}
-
-
-    {#
-    {% if candidate.cv is not null %}
-    {% if candidate.cv.favorite|length >=1 %}
-        {% for fav in candidate.cv.favorite %}
-            {% if candidate.cv.id is same as fav.cv.id %}
-                    <span title="Retirer des favoris" class="">
-                        <a href="{{ path('remove_favorite_cv',  {'id': fav.id  }) }}" >
-                            <img class="favorite" src="{{ asset('img/suit-heart-fill.svg') }}" alt="favoris" title="Ajouter aux favoris"/>
-                        </a>
-                    </span>
-            {% endif %}
-        {% endfor %}
-    {% else%}
-        <span title="Ajouter aux favoris">
-            <a href="{{ path('add_favorite_cv',{'id': candidate.cv.id  }) }}">
-                <img class="favorite" src="{{ asset('img/suit-heart.svg') }}" alt="favoris" title="Dans les favoris"/>
-            </a>
-        </span>
-    {% endif %}
-{% endif %}
-    #}
-
-
 </div>
