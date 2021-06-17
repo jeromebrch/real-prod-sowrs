@@ -283,8 +283,8 @@
 }
 @media screen and (max-width: 575px) and (min-width: 301px){
     .mini_btn_title_my_offers{
-        position: relative;
-        top: 25px;
+        /*position: relative;*/
+        /*top: 25px;*/
     }
 }
 @media screen and (max-width: 991px){
@@ -333,8 +333,8 @@
 }
 @media only screen and (orientation: landscape) and (min-width: 639px) and (max-width: 780px){
     .abstractJobOfferButtonTrash{
-        position: relative;
-        bottom: 31px;
-        left: 200px;
+        /*position: relative;*/
+        /*bottom: 31px;*/
+        /*left: 200px;*/
     }
 }
