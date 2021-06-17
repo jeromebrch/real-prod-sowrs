@@ -60,3 +60,27 @@
     width: 100%;
     height:100%;
 }
+
+
+@media screen and (max-width: 348px){
+    #listChoices{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    body .matching_choice_list_item{
+        margin-bottom: 10px!important;
+    }
+}
+@media screen and (max-width: 573px){
+    .matching_choice_list_item{
+        margin: 3px!important;
+    }
+}
+@media screen and (max-width: 435px){
+    .text_presentation_choices{
+        font-size: 1.2em!important;
+        padding: 15px!important;
+    }
+}

@@ -63,7 +63,7 @@ class Recruiter extends User
     private $jobOffers;
 
     /**
-     * @ORM\OneToOne(targetEntity=SocialNetwork::class, inversedBy="recruiter", cascade={"remove"})
+     * @ORM\OneToOne(targetEntity=SocialNetwork::class, inversedBy="recruiter", cascade={"persist", "remove"})
      */
     private $socialNetwork;
 

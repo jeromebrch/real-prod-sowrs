@@ -47,7 +47,7 @@ class Candidate extends User
     private $city;
 
     /**
-     * @ORM\ManyToOne(targetEntity=JobSearch::class, inversedBy="candidates", cascade={"remove"})
+     * @ORM\ManyToOne(targetEntity=JobSearch::class, inversedBy="candidates", cascade={"persist", "remove"})
      */
     private $jobSearch;
 
@@ -67,7 +67,7 @@ class Candidate extends User
     private $region;
 
     /**
-     * @ORM\OneToOne(targetEntity=SocialNetwork::class, inversedBy="candidate", cascade={"remove"})
+     * @ORM\OneToOne(targetEntity=SocialNetwork::class, inversedBy="candidate", cascade={"persist", "remove"})
      */
     private $socialNetwork;
 

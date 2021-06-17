@@ -38,7 +38,7 @@
                         </div>
                     </div>
                     <div class="matching_content">
-                        <div class="matching_title text-choices p-5">
+                        <div class="matching_title text-choices p-5 text_presentation_choices">
                             Parmi les 17 objectifs de développement durable présentés ci-dessous, merci de renseigner
                             les cinq éléments qui correspondent le mieux à vos engagements et à vos valeurs !
                         </div>
@@ -68,14 +68,14 @@
                             </p>
                         </div>
                     </div>
-                    <div class="matching_title text-choices p-5">
+                    <div class="matching_title text-choices p-5 text_presentation_choices">
                         Parmi les 17 objectifs de développement durable présentés ci-dessous, merci de renseigner
                         les cinq éléments qui corespondent le mieux aux engagements et aux valeurs de votre
                         entreprise !
                     </div>
                 {% endif %}
                 <div class="col-12">
-                    <ul class="px-5" id="listChoices">
+                    <ul id="listChoices">
                         {% for choice in choices %}
                             <li class="matching_choice_list_item">
                                 <img class="matching_img" data-val="{{ choice.id }}"
@@ -181,7 +181,6 @@
                         alert("Oups !");
                     });
             } else {
-
                 alert("Merci de sélectionner 5 causes");
             }
         })
