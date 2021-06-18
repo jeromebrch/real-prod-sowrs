@@ -149,15 +149,14 @@
         const elementPhotoProfile = document.getElementById('photo_profile');
 
         elementInputPicture.addEventListener("change", function () {
-            console.log("onchange");
             let formData = new FormData(elementFormPicture);
-            console.log(formData);
             fetch('{{ path('register_picture') }}', {method: 'POST', body: formData})
                 .then(response => response.json())
                 .then(response => {
                     elementPhotoProfile.src = baseURL + '/images/profils/' + response.pictureName;
                 }).catch(e => {
                 alert('erreur de fichier');
+                console.log(e);
             });
         });
         elementFormPicture.addEventListener("submit", function (e) {
