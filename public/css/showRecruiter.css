@@ -69,9 +69,13 @@
     .show_candidate_sens_rate{
         width: 85%;
     }
-    .job_offer_title, .contract_type, .localisation_job_offer, .mini_contract, .link_offer_details{
+    .job_offer_title, .localisation_job_offer, .mini_contract, .link_offer_details{
         font-size: 0.9em!important;
     }
+    .contract_type, .contract_type_Associe, .contract_type_Autre, .contract_type_CDD, .contract_type_Freelance, .contract_type_Interim, .contract_type_Service, .contract_type_Stage{
+        font-size: small;
+    }
+
 }
 @media screen and (max-width: 475px){
     .sense_rate_infos{
@@ -79,6 +83,9 @@
     }
     .sense_rate_infos h5{
         text-align: center!important;
+    }
+    .contract_type, .contract_type_Associe, .contract_type_Autre, .contract_type_CDD, .contract_type_Freelance, .contract_type_Interim, .contract_type_Service, .contract_type_Stage{
+        font-size: small;
     }
 }
 @media screen and (max-width: 992px){
