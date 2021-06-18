@@ -3,6 +3,10 @@
     src: url('polices/KohinoorBangla.ttc'),
     url('polices/KohinoorBangla.ttf');
 }
+.job_offer_row{
+    border: 2px solid lightgray;
+    border-radius: 20px;
+}
 .background-title{
     background: #827399;
     text-align: center;

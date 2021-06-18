@@ -27,7 +27,9 @@
                 </div>
                 <div class="m-3">
                     {% for jobOffer in jobOffers %}
+                        <div class="job_offer_row bg-white p-3 mb-3">
                         {% include '/dash_board/jobOffer/_cardJobOffer.html.twig' %}
+                        </div>
                     {% endfor %}
                 </div>
             </div>
