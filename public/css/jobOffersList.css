@@ -79,6 +79,7 @@
 .link_job_offer_infos:hover{
     color: #555555;
 }
+
 .card_job_offer{
     display: flex;
     flex-direction: row;

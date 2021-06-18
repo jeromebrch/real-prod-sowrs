@@ -232,7 +232,41 @@
     font-family: 'KohinoorBangla', Arial, serif;
     color: #555555;
 }
-
+.job_text_title{
+    color: #937FA4!important;
+    font-weight: bold;
+    padding-bottom: 10px;
+    font-family: 'KohinoorBangla', Arial, serif;
+}
+.card_job{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+.first_section_card_job{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    width: 70%;
+}
+.content-box{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+.info_card_job{
+    padding: 10px 0 0 15px;
+}
+.second_section_card_job{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 30%;
+}
 @media screen and (max-width: 310px){
     .my_offers_title{
         margin: 0!important;
@@ -286,6 +320,30 @@
         /*position: relative;*/
         /*top: 25px;*/
     }
+    .content-box{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: flex-start;
+    }
+    .card_job{
+        display: block;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+    }
+    .second_section_card_job{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+    }
+    .positionBtn{
+        position: relative;
+        top: 20px;
+    }
+
 }
 @media screen and (max-width: 991px){
     .abstractJobOffer {

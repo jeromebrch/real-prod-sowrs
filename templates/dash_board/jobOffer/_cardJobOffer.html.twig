@@ -1,21 +1,19 @@
-<div class="abstractJobOffer abstract_my_offers border border-2 p-3 m-4 gx-0 shadow bg-light">
-    <div class="card_candidate_left_part">
-        <div class="align-self-center">
+<div class="card_job">
+    <div class="first_section_card_job">
+        <div class="picture_entity_job_offer">
             {% if app.user.picture is not empty %}
-                <img class="img-fluid" id="show_candidate_photo_profile" src="{{ asset('images/profils/' ~ app.user.picture.pictureName )}}"
+                <img class="" id="show_joboffer_photo_profile" src="{{ asset('images/profils/' ~ app.user.picture.pictureName )}}"
                      alt="photo du profil" title="Photo de profil">
             {% else %}
-                <img class="img-fluid" id="show_candidate_photo_profile" src="{{ asset('images/profils/avatar.jpg' )}}"
+                <img class="" id="show_joboffer_photo_profile" src="{{ asset('images/profils/avatar.jpg' )}}"
                      alt="photo par défaut" title="Avatar SOWRS">
             {% endif %}
         </div>
-        <div class="align-self-center">
-            <h4 class="abstractJobOfferTextTitle pb-1">{{ jobOffer.title }}</h4>
+        <div class="content-box align-self-center info_card_job">
+            <span class="job_text_title">{{ jobOffer.title }}</span>
             <span class="abstractTextRegion abstractJobOfferText">{{ jobOffer.city }} ({{ jobOffer.department.cp}})<br>{{ jobOffer.country.name }}</span>
         </div>
-    </div>
-    <div class="card_candidate_right_part">
-        <div class="abstractJobOfferText align-self-center">
+        <div class="content-box align-self-center info_card_job">
             {# <img class="abstractJobOfferImgEye col-lg-3" src="{{ asset('img/boostrap/eye.svg') }}" alt="number of views" title="Nombre de vues de l'offre"/> #}
             <p class="offer_views">
                 {% if jobOffer.NumberOfViews > 0 %}
@@ -25,24 +23,26 @@
                 {% endif %}
                 <br>vues</p>
         </div>
-        <div class="containerBtn align-self-center btn_card_candidate">
-            <div class="options_offer">
-                <span title="Modifier l'offre"> <a class="abstractJobOfferButton col-lg-3 m-2 text-center align-self-center" href="{{ path('jobOffer_modifyJobOffer', {'id':jobOffer.id}) }}"
+    </div>
+    <div class="second_section_card_job ">
+        <div class="content-box align-self-center ">
+            <div class="options_offer positionBtn">
+                <span title="Modifier l'offre"> <a class="abstractJobOfferButton col-lg-3 m-1 text-center align-self-center" href="{{ path('jobOffer_modifyJobOffer', {'id':jobOffer.id}) }}"
                                                    role="button">
             <img class="abstractJobOfferImgPencil" src="{{ asset('img/boostrap/pencil-fill-white.svg') }}" alt="modify offer" title="Modifier l'offre"/>
             </a></span>
-                <span title="Actualiser l'offre"> <a class="abstractJobOfferButton col-lg-3 m-2 text-center align-self-center" href="{{ path('jobOffer_refreshOffer', {'id':jobOffer.id}) }}"
+                <span title="Actualiser l'offre"> <a class="abstractJobOfferButton col-lg-3 m-1 text-center align-self-center" href="{{ path('jobOffer_refreshOffer', {'id':jobOffer.id}) }}"
                                                      role="button">
             <img class="abstractJobOfferImgRepeat" src="{{ asset('img/boostrap/arrow-repeat-white.svg') }}" alt="repeat offer" title="Actualiser l'offre"/>
             </a></span>
                 {% if jobOffer.published == true %}
-                    <span title="Mettre en pause"> <a class="abstractJobOfferButtonPause col-lg-3 m-2 text-center align-self-center"
+                    <span title="Mettre en pause"> <a class="abstractJobOfferButtonPause col-lg-3 m-1 text-center align-self-center"
                                                       href="{{ path('jobOffer_pauseAndPlayOffer', {'id':jobOffer.id}) }}"
                                                       role="button">
                 <img class="abstractJobOfferPause" src="{{ asset('img/boostrap/pause-fill-white.svg') }}" alt="pause offer" title="Mettre l'offre hors ligne"/>
             </a></span>
                 {% else %}
-                    <span title="Mettre sur play"> <a class="abstractJobOfferButton col-lg-3 m-2 text-center align-self-center"
+                    <span title="Mettre sur play"> <a class="abstractJobOfferButton col-lg-3 m-1 text-center align-self-center"
                                                       href="{{ path('jobOffer_pauseAndPlayOffer', {'id':jobOffer.id}) }}"
                                                       role="button">
                 <img class="abstractJobOfferImgPlay" src="{{ asset('img/boostrap/play-fill-white.svg') }}" alt="set offer" title="Mettre l'offre en ligne"/>
