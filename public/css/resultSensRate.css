@@ -57,7 +57,6 @@ body .matching_big_title{
 .match_card_description *{
     font-family: 'KohinoorBangla', Arial, serif;
     color: #555555;
-    font-weight: bold;
 }
 .match_card_btn{
     margin-right: 15px;
@@ -100,6 +99,18 @@ body .matching_big_title{
 .matching_back_ground *, .result_text{
     font-family: 'KohinoorBangla', Arial, serif;
 }
+.match_card_entity_name{
+    font-size: 1.2em;
+}
+.match_card_description{
+    font-family: 'KohinoorBangla', Arial, serif;
+}
+.doughnut_matching{
+    max-width: 500px;
+}
+.link_candidate_name{
+    display: none;
+}
 
 @media screen and (max-width: 400px){
     .second_section_card_matching{
@@ -107,6 +118,19 @@ body .matching_big_title{
     }
     .match_card_description *{
         font-size: 0.9em;
+    }
+    .link_candidate_name{
+        display: block;
+        color: #937FA4;
+        font-size: 1.2em;
+        font-family: 'KohinoorBangla', Arial, serif;
+        font-weight: bold;
+    }
+    .link_candidate_name:hover{
+        color: #555555;
+    }
+    .match_card_entity_name{
+        display: none;
     }
 }
 @media screen and (max-width: 620px){

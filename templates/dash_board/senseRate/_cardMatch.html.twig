@@ -1,97 +1,72 @@
-{# todo : gérer les données #}
 {% if "ROLE_RECRUITER" in app.user.roles %}
     <div class="row container_matching_cards">
         <div class="match_card">
             <div class="first_section_card_matching">
-                <div class="illus_matching_rate">
-                    <div class="rounded-circle match_card_sensrate">
-                        <p>{{ user.matching_rate }}%</p>
-                    </div>
-                </div>
                 <div class="match_card_picture">
-                    <img class="rounded-circle matching_profil_picture" src="{{ asset('images/profils/avatar.jpg') }}" alt="photo du profil">
+                    {% if user.picture is not empty %}
+                        <img class="rounded-circle matching_profil_picture" src="{{ asset('images/profils/'~user.picture.pictureName) }}" alt="photo du profil">
+                    {% else %}
+                        <img class="rounded-circle matching_profil_picture" src="{{ asset('images/profils/avatar.jpg') }}" alt="photo du profil">
+                    {% endif %}
                 </div>
                 <div class="match_card_description">
-            {#        <div class="align-self-center">#}
-            {#            <p>{{ user.last_name | upper }} {{ user.first_name | capitalize }} </p>#}{# todo : faire un lien vers le profil avec le nom #}
-            {#        </div>#}
-                <div>
-        {#            <p>{{user.business_profile}}</p>#}
-                </div>
-                <div class="match_card_description">
-                    <p>Ville non renseignée</p>
-                </div>
+                    {% if user.lastname is not empty and user.firstname is not empty %}
+                        <h4 class="match_card_entity_name">{{ user.lastname | upper }} {{ user.firstname|capitalize }}</h4>
+                        <a class="link_candidate_name" href="{{ path('candidate_show', {'id':user.id}) }}">{{ user.lastname | upper }} {{ user.firstname|capitalize }}</a>
+                    {% endif %}
+                    {% if user.mainCause is not empty %}
+                        <strong>Cause : </strong>{{user.mainCause.text}}
+                    {% endif %}
+                    <div class="match_card_description">
+                        {% if user.department is not empty and user.region is not empty %}
+                            {{ user.department.name }} {{ user.department.cp }} - {{ user.region.name }}
+                        {% else %}
+                            Ville non renseignée
+                        {% endif %}
+                    </div>
                 </div>
             </div>
             <div class="second_section_card_matching">
                 <div class="match_card_btn">
-                    <a href="" type="button" class="btn">Voir le profil</a> {# TODO : mettre le lien vers le profil #}
+                    <a href="{{ path('candidate_show', {'id':user.id}) }}" type="button" class="btn">Voir le profil</a> {# TODO : mettre le lien vers le profil #}
                 </div>
             </div>
         </div>
     </div>
 
 {% else %}
-
     <div class="row container_matching_cards">
         <div class="match_card">
             <div class="first_section_card_matching">
-                <div class="illus_matching_rate">
-                    <div class="rounded-circle match_card_sensrate">
-                        <p>{{ user.matching_rate }}%</p>
-                    </div>
-                </div>
                 <div class="match_card_picture">
-                    <img class="rounded-circle matching_profil_picture" src="{{ asset('images/profils/avatar.jpg') }}" alt="photo du profil">
+                    {% if user.picture is not empty %}
+                        <img class="rounded-circle matching_profil_picture" src="{{ asset('images/profils/'~user.picture.pictureName) }}" alt="photo du profil">
+                    {% else %}
+                        <img class="rounded-circle matching_profil_picture" src="{{ asset('images/profils/avatar.jpg') }}" alt="photo du profil">
+                    {% endif %}
                 </div>
                 <div class="match_card_description">
-                    {#        {% if user.entityName is not empty %}#}
-                    {#            <div class="align-self-center">#}
-                    {#                <p>{{ user.entityName | upper }} </p>#}
-                    {#            </div>#}
-                    {#        {% endif %}#}
-                    {#        {% if user.cause is not empty %}#}
-                    {#            <div>#}
-                    {#                <p>{{user.cause}}</p>#}
-                    {#            </div>#}
-                    {#        {% endif %}#}
+                    {% if user.entityName is not empty %}
+                        <h4 class="match_card_entity_name">{{ user.entityName | upper }}</h4>
+                        <a class="link_candidate_name" href="{{ path('show_recruiter_profil', {'id':user.id}) }}">{{ user.entityName | upper }}</a>
+                    {% endif %}
+                    {% if user.mainCause is not empty %}
+                        <strong>Cause : </strong>{{user.mainCause.text}}
+                    {% endif %}
                     <div class="match_card_description">
-                        <p>Ville non renseignée</p>
+                        {% if user.department is not empty and user.city %}
+                            {{ user.department.name }} {{ user.department.cp }} - {{ user.city }}
+                        {% else %}
+                            Ville non renseignée
+                        {% endif %}
                     </div>
                 </div>
             </div>
             <div class="second_section_card_matching">
                 <div class="match_card_btn">
-                    <a href="" type="button" class="btn">Voir le profil</a> {# TODO : mettre le lien vers le profil #}
+                    <a href="{{ path('show_recruiter_profil', {'id':user.id}) }}" type="button" class="btn">Voir le profil</a> {# TODO : mettre le lien vers le profil #}
                 </div>
             </div>
-        </div>
-    </div>
-
-
-
-
-
-
-
-
-
-    <div class="row match_card">
-        <div class="illus_matching_rate">
-            <div class="rounded-circle match_card_sensrate">
-                <p>{{ user.matching_rate }}%</p>
-            </div>
-        </div>
-        <div class="match_card_picture">
-            <div>
-               <img class="rounded-circle" src="{{ asset('images/profils/avatar.jpg') }}" alt="photo du profil">
-            </div>
-        </div>
-        <div class="match_card_description">
-
-        </div>
-        <div class="match_card_btn">
-            <a href="#" type="button" class="btn">Voir le profil</a>
         </div>
     </div>
 {% endif %}

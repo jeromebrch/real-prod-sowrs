@@ -130,10 +130,14 @@ class ApiMatchingController extends AbstractController
                 }
             }
             $scoring = $this->getUser()->getScoring();
-
+            $matchingUser = [];
+            foreach($matchingArray as $matching){
+                array_push($matchingUser, $userRepo->find($matching['sowrs_id']));
+            }
             return $this->render('dash_board/senseRate/resultSensRate.html.twig', [
                 'scoringUser' => $scoring,
-                'matchingArray' => $matchingArray
+                'matchingArray' => $matchingArray,
+                'matchingUser' => $matchingUser
             ]);
         }
     }

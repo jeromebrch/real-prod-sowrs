@@ -63,8 +63,8 @@
                     </div>
                     <div class="row">
                         {% if recruiter.about %}
-                            <p>
-                                {{ recruiter.about }}
+                            <p class="about_entity">
+                                {{ recruiter.about|capitalize }}
                             </p>
                         {% else %}
                             <p class="alert alert-success">
@@ -90,8 +90,8 @@
                     </div>
                     <div class="row">
                         {% if recruiter.reasonToBe %}
-                            <p>
-                                {{ recruiter.reasonToBe }}
+                            <p class="about_entity">
+                                {{ recruiter.reasonToBe|capitalize }}
                             </p>
                         {% else %}
                             <p class="alert alert-success">

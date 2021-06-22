@@ -10,6 +10,9 @@
 .left_part_profil *{
     font-family: 'KohinoorBangla', Arial, serif;
 }
+.container_category_profil div .show_candidate_about{
+    text-align: left!important;
+}
 .entity_title{
     display: flex;
     flex-direction: column;

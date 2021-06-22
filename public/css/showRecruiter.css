@@ -10,6 +10,10 @@
 #btn_doughnut{
     padding: 10px;
 }
+.about_entity{
+    text-align: left!important;
+    padding-left: 25px;
+}
 .mini_contract{
     padding: 10px;
     border-radius: 30px;
