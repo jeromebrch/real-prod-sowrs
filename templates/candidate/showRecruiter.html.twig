@@ -112,14 +112,32 @@
                                     <div class="container_job_offer container_job_offer_recruiter_profil">
                                         <div class="offer_title_contract">
                                             <h3 class="job_offer_title">{{ jobOffer.title }}</h3>
-                                            <div class="contract_type"><div>{{ jobOffer.contractType.wording }}</div></div>
+{#                                            <div class="contract_type"><div>{{ jobOffer.contractType.wording }}</div>#}
+{#                                            </div>#}
+                                            {% if jobOffer.contractType.wording == 'CDI' %}
+                                                <div class="contract_type taille"><div class="">{{ jobOffer.contractType.wording }}</div></div>
+                                            {% elseif jobOffer.contractType.wording == 'CDD' %}
+                                                <div class="contract_type_Associe"><div>{{ jobOffer.contractType.wording }}</div></div>
+                                            {% elseif jobOffer.contractType.wording == 'Freelance - Indépendant' %}
+                                                <div class="contract_type_Autre"><div>{{ jobOffer.contractType.wording }}</div></div>
+                                            {% elseif jobOffer.contractType.wording == 'Associé(e)' %}
+                                                <div class="contract_type_CDD"><div>{{ jobOffer.contractType.wording }}</div></div>
+                                            {% elseif jobOffer.contractType.wording == 'Stage' %}
+                                                <div class="contract_type_Freelance"><div>{{ jobOffer.contractType.wording }}</div></div>
+                                            {% elseif jobOffer.contractType.wording == 'Intérim' %}
+                                                <div class="contract_type_Interim"><div>{{ jobOffer.contractType.wording }}</div></div>
+                                            {% elseif jobOffer.contractType.wording == 'Service bénévole' %}
+                                                <div class="contract_type_Service"><div>{{ jobOffer.contractType.wording }}</div></div>
+                                            {% elseif jobOffer.contractType.wording == 'Autre' %}
+                                                <div class="contract_type_Stage"><div>{{ jobOffer.contractType.wording }}</div></div>
+                                            {% endif %}
                                         </div>
                                         <div class="offer_localization">
                                             <h4 class="localisation_job_offer">{{ jobOffer.city }} - {{ jobOffer.country.name }}</h4>
                                         </div>
-                                        <div class="mini_contract_type">
-                                            <div class="mini_contract">{{ jobOffer.contractType.wording }}</div>
-                                        </div>
+{#                                        <div class="mini_contract_type">#}
+{#                                            <div class="mini_contract">{{ jobOffer.contractType.wording }}</div>#}
+{#                                        </div>#}
                                         <div class="show_offer">
                                             <a class="btn required link_offer_details" href="{{ path('jobOffer_show', {"id":jobOffer.id}) }}">Voir l'offre</a>
                                         </div>
