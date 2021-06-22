@@ -9,38 +9,120 @@
 {% endblock %}
 
 {% block body %}
-    <div class="container p-2 mt-4">
-        {{ form_start(formContact, {'attr': {'class': 'row'}}) }}
-            <div class="col-lg-5 container_info_contact">
-                {{ form_row(formContact.nom) }}
-                {{ form_row(formContact.email) }}
-                {{ form_row(formContact.telephone) }}
-                <div class="col-lg-12 input-group-text">
-                    <label for="uploadedFile" class="btn">+ Ajouter un fichier</label>
-                    {{ form_row(formContact.fichier,{'id': 'uploadedFile'})}}
-                    <a class="ButtonTrash col-lg-3 m-2 text-center btn align-self-center"
-                       href="#" role="button">
-                        <img alt="logo_poubelle" title="Poubelle" class="bi-trash"  src="{{ asset('img/boostrap/trash-fill-white.svg') }}">
-                    </a>
-                </div>
-                <div class="col-lg-12 input-group-text">
-                    {{ form_row(formContact.autreFichier,{'id': 'contact_file'}) }}
-                    <label for="contact_file" class="btn required"> + Ajouter un autre fichier</label>
-                    <a class="ButtonTrash col-lg-3 m-2 text-center btn align-self-center"
-                       href="#" role="button">
-                        <img alt="logo_poubelle" title="Poubelle" class="bi-trash" src="{{ asset('img/boostrap/trash-fill-white.svg') }}">
-                    </a>
-                </div>
-            </div>
-            <div class="col-lg-7">
-                <div class="row container_message_contact">
-                    {{ form_row(formContact.message)}}
-                    <div class="g-recaptcha col-lg-4" data-sitekey="6LcqEgIaAAAAAEtDy88bfJXRtrhQDfRxwFD-0_Ca"></div>
-                    <div class="col-lg-6 offset-2 container_send_button">
-                        <button type="submit" class="btn col-lg-4">Envoyer</button>
+{#    <div class="container-fluid">#}
+{#        {{ form_start(formContact, {'attr': {'class': 'row'}}) }}#}
+{#            <div class="col-lg-5 container_info_contact">#}
+{#                {{ form_row(formContact.nom) }}#}
+{#                {{ form_row(formContact.email) }}#}
+{#                {{ form_row(formContact.telephone) }}#}
+{#                <div class="col-lg-12 input-group-text">#}
+{#                    <label for="uploadedFile" class="btn">+ Ajouter un fichier</label>#}
+{#                    {{ form_row(formContact.fichier,{'id': 'uploadedFile'})}}#}
+{#                    <a class="ButtonTrash col-lg-3 m-2 text-center btn align-self-center"#}
+{#                       href="#" role="button">#}
+{#                        <img alt="logo_poubelle" title="Poubelle" class="bi-trash"  src="{{ asset('img/boostrap/trash-fill-white.svg') }}">#}
+{#                    </a>#}
+{#                </div>#}
+{#                <div class="col-lg-12 input-group-text">#}
+{#                    {{ form_row(formContact.autreFichier,{'id': 'contact_file'}) }}#}
+{#                    <label for="contact_file" class="btn required"> + Ajouter un autre fichier</label>#}
+{#                    <a class="ButtonTrash col-lg-3 m-2 text-center btn align-self-center"#}
+{#                       href="#" role="button">#}
+{#                        <img alt="logo_poubelle" title="Poubelle" class="bi-trash" src="{{ asset('img/boostrap/trash-fill-white.svg') }}">#}
+{#                    </a>#}
+{#                </div>#}
+{#            </div>#}
+{#            <div class="col-lg-7">#}
+{#                <div class="row container_message_contact">#}
+{#                    {{ form_row(formContact.message)}}#}
+{#                    <div class="g-recaptcha col-lg-4" data-sitekey="6LcqEgIaAAAAAEtDy88bfJXRtrhQDfRxwFD-0_Ca"></div>#}
+{#                    <div class="col-lg-6 offset-2 container_send_button">#}
+{#                        <button type="submit" class="btn col-lg-4">Envoyer</button>#}
+{#                    </div>#}
+{#                </div>#}
+{#            </div>#}
+{#        {{ form_end(formContact) }}#}
+{#    </div>#}
+    <div class="container-fluid">
+        <div class="row gx-0 m-3">
+            <div class="col-lg-12">
+                {{ form_start(formContact, {'attr': {'class': 'row'}}) }}
+                <div class="m-3">
+                    <h3 class="contactTitle">Contactez-nous !</h3>
+                    <span class="textContact ">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque sit amet luctus odio. Duis ullamcorper aliquet felis quis hendrerit. Nam mollis metus vel nibh sodales, viverra molestie nisi semper. Proin porta in justo maximus pharetra. Quisque fermentum a lorem ut vestibulum. Nulla sollicitudin gravida molestie. Vivamus in mauris sollicitudin, sodales ipsum ac, feugiat tortor. Integer pellentesque gravida sem, eu semper justo euismod et. Nunc vitae congue lectus. Nam hendrerit sodales laoreet. Nunc convallis dolor ut euismod dignissim. In laoreet elementum condimentum. Nam bibendum lectus quis dui lobortis, ultrices aliquam justo porttitor. In finibus, felis vel tempus consectetur, orci est elementum nisl, vel dignissim leo neque quis mi. Nullam consequat viverra lacus, sit amet ornare ex volutpat eu. In sit amet rhoncus magna.</span>
+
+                    <h3 class="contactTitle mt-5">Vous êtes :</h3>
+                    <div class="row">
+                        <div class="col-sm-4 col-lg-4">
+                            {{ form_row(formContact.nom) }}
+                        </div>
+                        <div class="col-sm-4 col-lg-4">
+                            {{ form_row(formContact.email) }}
+                        </div>
+                        <div class="col-sm-4 col-lg-4">
+                            {{ form_row(formContact.telephone) }}
+                        </div>
                     </div>
+
+                    <h3 class="contactTitle mt-5">Message :</h3>
+                    <div class="col-sm-12 col-lg-12">
+                        {{ form_row(formContact.message,{'attr': {'class': 'specific-textarea'}})}}
+                    </div>
+
+                    <h3 class="contactTitle mt-5">Ajoutez une pièce jointe :</h3>
+
+                    <div class="pjOption">
+                        <div class="pjContainer">
+                            <div class="">
+                                <label class="btn btnFile" for="uploadedFile">Choisir un fichier</label>
+                                {{ form_row(formContact.fichier,{'id': 'uploadedFile'})}}
+                                <label for="contact_file" class="btn mt-3 btnFile">Ajouter un autre fichier</label>
+                                {{ form_row(formContact.autreFichier,{'id': 'contact_file'}) }}
+                            </div>
+                        </div>
+                        <div class="container_uploaded_document">
+                            <h3 class="title_uploaded_documents">Pièces jointes</h3>
+                            <div class="first_uploaded_document"></div>
+                            <div class="second_uploaded_document"></div>
+                        </div>
+                    </div>
+
+                    <div class="validationOption">
+                        <div class="g-recaptcha" data-sitekey="6LcqEgIaAAAAAEtDy88bfJXRtrhQDfRxwFD-0_Ca"></div>
+                        <div class="container_send_button mt-3">
+                            <button type="submit" class="btn">Envoyer</button>
+                        </div>
+                    </div>
+
+                    {{ form_end(formContact) }}
                 </div>
             </div>
-        {{ form_end(formContact) }}
+        </div>
     </div>
+{% endblock %}
+
+{% block javascripts %}
+    <script>
+        window.addEventListener('load', function (){
+            let firstDocument = document.querySelector('#uploadedFile');
+            let secondDocument = document.querySelector('#contact_file');
+            let containerUploadedDocuments = document.querySelector('.container_uploaded_document');
+            let firstUploadedDocument = document.querySelector('.first_uploaded_document');
+            let secondUploadedDocument = document.querySelector('.second_uploaded_document');
+            firstDocument.addEventListener('change', function (){
+                containerUploadedDocuments.setAttribute('style', 'display:block;');
+                firstUploadedDocument.setAttribute('style', 'display:block;');
+                firstUploadedDocument.innerHTML = firstDocument.value;
+
+            });
+            secondDocument.addEventListener('change', function (){
+                containerUploadedDocuments.setAttribute('style', 'display:block;');
+                secondUploadedDocument.setAttribute('style', 'display:block;');
+                secondUploadedDocument.innerHTML = secondDocument.value;
+
+            });
+        });
+
+    </script>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 {% endblock %}

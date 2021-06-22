@@ -370,7 +370,7 @@ body .form-control{
 
 .specific-textarea{
     height: 200px;
->>>>>>> 8b9106dbb66a1a9e63f22a39c11d77c5e6d39a45
+
 }
 
 @media screen and (max-width: 520px){
@@ -473,7 +473,7 @@ body .form-control{
         /*position: relative;*/
         /*left: 10px;*/
         /*height: 130px;*/
-        width: 120px;
+        width: 110px;
     }
 }
 @media only screen and (max-width: 570px) and (min-width: 376px){
@@ -496,7 +496,7 @@ body .form-control{
         font-size: small;
     }
     .cardJobButton{
-
+        width: 120px;
 
     }
     .cardJobContract{
@@ -687,7 +687,84 @@ body .form-control{
     }
 }
 @media only screen and (max-width: 280px){
-
+    .button-creerUne{
+        display: inline-flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        font-size: x-small;
+        width: 100px;
+        height: 25px;
+    }
+    .abstract_contract_type_SERVICE{
+        font-size: x-small;
+        display: inline;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .abstract_contract_type{
+        font-size: x-small
+    }
+    .abstract_contract_type_ASSOCIE{
+        font-size: x-small
+    }
+    .abstract_contract_type_AUTRE{
+        font-size: x-small
+    }
+    .abstract_contract_type_CDD{
+        font-size: x-small
+    }
+    .abstract_contract_type_FREELANCE{
+        font-size: x-small
+    }
+    .abstract_contract_type_INTERIM{
+        font-size: x-small
+    }
+    .abstract_contract_type_STAGE{
+        font-size: x-small;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+    }
+    .margright{
+        margin-right: 0rem;
+    }
+    .cardJobButton{
+        align-content: center;
+        align-items: center;
+        justify-content: center;
+    }
+    .abstractJobOfferButton{
+        width: 1.5em;
+        height: 1em;
+    }
+    .abstractJobOfferImgPencil{
+        width: auto;
+        height: 0.6em;
+    }
+    .abstractJobOfferImgRepeat{
+        width: auto;
+        height: 0.7em;
+    }
+    .abstractJobOfferButtonPause {
+        width: 1.5em;
+        height: 1em;
+    }
+    .abstractJobOfferPause {
+        height: 0.7em;
+        width: auto;
+    }
+    .abstractJobOfferButtonTrash {
+        width: 1.5em;
+        height: 1em;
+        margin-left: 0.9rem;
+    }
+    .abstractJobOfferImgTrash {
+        height: 0.7em;
+        width: auto;
+    }
 }
 @media screen and (orientation: landscape) and (max-width: 736px) and (min-width: 640px){
     .btn_save_commitment{

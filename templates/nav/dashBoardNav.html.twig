@@ -120,7 +120,7 @@
                 <a class="nav-link" href="{{ path('apply-list') }}">Candidatures reçus</a>
             </li>
             <li>
-                <a class="nav-link" href="{{ path('messaging') }}">Messagerie</a>
+                <a class="nav-link" href="{{ path('messaging') }}">Messagerie {% if nonlu != 0 %}({{ nonlu }}){% endif %}</a>
             </li>
             <li>
                 <a class="nav-link" href="{{ path('app_logout') }}">Déconnexion</a>

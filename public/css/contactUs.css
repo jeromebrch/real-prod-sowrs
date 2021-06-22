@@ -87,3 +87,65 @@ input[type='radio']:focus{
     justify-content: center;
     align-items: center;
 }
+.contactTitle{
+    color: #1dca91;
+    text-transform: uppercase;
+    font-family: 'KohinoorBangla', Arial, serif;
+}
+.textContact {
+    text-align: left;
+    font-family: 'KohinoorBangla', Arial, serif;
+    color: #555555;
+}
+.pjOption{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: start;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.container_uploaded_document{
+    display: none;
+    background-color: white;
+    padding: 20px;
+    border-radius: 30px;
+    width: 60%;
+    height: auto;
+    border: 1px solid #55555544;
+    margin: 20px 0 20px 0;
+}
+.first_uploaded_document{
+    display: none;
+}
+.first_uploaded_document, .second_uploaded_document{
+    color: #555555;
+    font-family: 'KohinoorBangla', Arial, serif;
+    font-size: 1em;
+    margin-left: 10px;
+}
+.title_uploaded_documents{
+    color: #555555;
+    font-size: 1.2em;
+    font-weight: bold;
+}
+.second_uploaded_document{
+    display: none;
+}
+.pjContainer{
+    width: 40%;
+    height: auto;
+    margin: 0px 0 20px 0;
+    padding-top: 20px;
+ }
+.btnFile{
+    margin-left: 2em;
+}
+.validationOption{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 3em;
+}
