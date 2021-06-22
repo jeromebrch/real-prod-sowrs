@@ -159,7 +159,7 @@
                     {
                         method: "POST",
                         headers: {
-                            'Content-Type': 'application/json'
+                            'Content-Type' : 'application/json'
                         },
                         //on passe les arguments à l'api au format json
                         body: JSON.stringify({"choices": matchingValuesArr, "id": "{{ app.user.id }}", "type": type})
@@ -178,7 +178,7 @@
                     //si l'api pas ok
                     .catch(e => {
                         $('#matching-inner').removeClass('spinner-border');
-                        alert("Oups !");
+                        console.log(e);
                     });
             } else {
                 alert("Merci de sélectionner 5 causes");

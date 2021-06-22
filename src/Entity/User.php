@@ -91,7 +91,7 @@ class User implements UserInterface, \Serializable
 
 
     /**
-     * @ORM\OneToOne(targetEntity=Scoring::class, inversedBy="user", cascade={"remove"})
+     * @ORM\OneToOne(targetEntity=Scoring::class, inversedBy="user", cascade={"persist", "remove"})
      */
     protected $scoring;
 
