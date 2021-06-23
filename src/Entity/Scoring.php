@@ -185,16 +185,16 @@ class Scoring
     public function getDominantPourcent(){
         $pourcent = 0;
         switch ($this->greatestValue){
-            case 'social':
+            case 'sociale':
                 $pourcent = $this->social;
                 break;
             case 'economique':
                 $pourcent = $this->economy;
                 break;
-            case 'societal':
+            case 'societale':
                 $pourcent = $this->societal;
                 break;
-            case 'environnemental':
+            case 'environnementale':
                 $pourcent = $this->environment;
                 break;
         }
