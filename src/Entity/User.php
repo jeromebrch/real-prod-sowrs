@@ -96,7 +96,7 @@ class User implements UserInterface, \Serializable
     protected $scoring;
 
     /**
-     * @ORM\OneToOne(targetEntity=Picture::class, cascade={"remove"})
+     * @ORM\OneToOne(targetEntity=Picture::class, cascade={"persist", "remove"})
      * @ORM\JoinColumn(nullable=true)
      */
     protected $picture;
