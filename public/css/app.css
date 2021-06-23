@@ -150,3 +150,6 @@ input[type="email"], input[type="tel"]{
 body .doughnut{
     width: 100% !important;
 }
+body .select2-container--default{
+    height: 30px!important;
+}

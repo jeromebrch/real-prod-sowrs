@@ -13,6 +13,12 @@
 .container_category_profil div .show_candidate_about{
     text-align: left!important;
 }
+.container_category_profil div .about_user{
+    padding-left: 25px;
+}
+.container_category_profil div .recruiter_reason_to_be{
+    padding-left: 25px;
+}
 .entity_title{
     display: flex;
     flex-direction: column;

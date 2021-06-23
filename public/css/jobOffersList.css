@@ -17,6 +17,9 @@
     border: 2px solid lightgray;
     border-radius: 20px;
 }
+.job_text{
+    color: #555555;
+}
 .jobOffer_img{
     margin-left: 15px;
 }
