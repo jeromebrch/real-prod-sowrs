@@ -163,16 +163,16 @@ class Scoring
 
         switch ($maxValue){
             case $social:
-                $bigValue = 'social';
+                $bigValue = 'sociale';
                 break;
             case $environment:
-                $bigValue = 'environnemental';
+                $bigValue = 'environnementale';
                 break;
             case $economy:
                 $bigValue = 'economique';
                 break;
             case $societal:
-                $bigValue = 'societal';
+                $bigValue = 'societale';
                 break;
         }
         return $bigValue;
