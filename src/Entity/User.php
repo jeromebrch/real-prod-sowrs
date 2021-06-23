@@ -65,7 +65,7 @@ class User implements UserInterface, \Serializable
     /**
      * @ORM\Column(type="string")
      * @Assert\NotBlank(message="Veuillez renseignez ce champ !")
-     * @Assert\Length(max="15", maxMessage="Numéro de téléphone invalide")
+     * @Assert\Regex(pattern="/[0]{1}[1-9]{1}[0-9]{8}/", message="Format non valide, merci de vérifier votre numéro !")
      */
     protected $phone;
 
