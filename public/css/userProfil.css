@@ -320,7 +320,8 @@
 .commitment_candidate p{
     font-family: 'KohinoorBangla', Arial, serif;
     font-size: 0.8em;
-    color: #937FA4;
+    color: #555555;
+    text-align: left;
 }
 #btn_doughnut{
     margin: 0;
