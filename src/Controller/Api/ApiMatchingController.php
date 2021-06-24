@@ -30,7 +30,6 @@ class ApiMatchingController extends AbstractController
      */
     public function matching(UserRepository $userRepo): Response
     {
-
         $client = HttpClient::create();
 
         $url = 'https://sowrs.green/api/match/';
@@ -39,7 +38,6 @@ class ApiMatchingController extends AbstractController
         } else {
             $type = 'applicant';
         }
-
         $response = $client->request('POST', $url, [
             'headers' => [
                 'Authorization' => 'zaCELgL.0imfnc8mVLWwsAawjYr4Rx-Af50DDqtlx',
@@ -65,9 +63,9 @@ class ApiMatchingController extends AbstractController
             //stocker les ids dans un tableau
             $ids = array();
             array_push($ids,
-                31, //$matchingArray[0]["sowrs_id"],
-                36, //$matchingArray[1]["sowrs_id"],
-                37); //$matchingArray[2]["sowrs_id"]);
+                $matchingArray[0]["sowrs_id"],
+                $matchingArray[1]["sowrs_id"],
+                $matchingArray[2]["sowrs_id"]);
 
             //récuperer les utilisateurs correspondants dans un tableau
             $users = $userRepo->findBy(['id' => $ids]);
@@ -75,64 +73,81 @@ class ApiMatchingController extends AbstractController
                 //boucler sur le tableau de user
                 //et vérifier à chaque passage de la boucle quel est le taux de match associé
                 foreach ($users as $user) {
-                    switch ($user->getId()) {
-                        case $matchingArray[0]["sowrs_id"]:
-                            $matchingArray[0]["first_name"] = $user->getFirstname();
-                            $matchingArray[0]["last_name"] = $user->getLastname();
-                            $matchingArray[0]["business_profile"] = $user->getBusinessProfile()->getWording();
-                            if ($user->getPicture()) {
-                                $matchingArray[0]["picture"] = $user->getPicture()->getPictureName();
-                            }
-                            break;
-                        case $matchingArray[1]["sowrs_id"]:
-                            $matchingArray[1]["first_name"] = $user->getFirstname();
-                            $matchingArray[1]["last_name"] = $user->getLastname();
-                            $matchingArray[1]["business_profile"] = $user->getBusinessProfile()->getWording();
-                            if ($user->getPicture()) {
-                                $matchingArray[1]["picture"] = $user->getPicture()->getPictureName();
-                            }
-                            break;
-                        case $matchingArray[2]["sowrs_id"]:
-                            $matchingArray[2]["first_name"] = $user->getFirstname();
-                            $matchingArray[2]["last_name"] = $user->getLastname();
-                            $matchingArray[2]["business_profile"] = $user->getBusinessProfile()->getWording();
-                            if ($user->getPicture()) {
-                                $matchingArray[2]["picture"] = $user->getPicture()->getPictureName();
-                            }
-                            break;
+                    if($user instanceof Candidate){
+                        switch ($user->getId()) {
+                            case $matchingArray[0]["sowrs_id"]:
+                                $matchingArray[0]["first_name"] = $user->getFirstname();
+                                $matchingArray[0]["last_name"] = $user->getLastname();
+                                $matchingArray[0]["business_profile"] = $user->getBusinessProfile()->getWording();
+                                if ($user->getPicture()) {
+                                    $matchingArray[0]["picture"] = $user->getPicture()->getPictureName();
+                                }
+                                break;
+                            case $matchingArray[1]["sowrs_id"]:
+                                $matchingArray[1]["first_name"] = $user->getFirstname();
+                                $matchingArray[1]["last_name"] = $user->getLastname();
+                                $matchingArray[1]["business_profile"] = $user->getBusinessProfile()->getWording();
+                                if ($user->getPicture()) {
+                                    $matchingArray[1]["picture"] = $user->getPicture()->getPictureName();
+                                }
+                                break;
+                            case $matchingArray[2]["sowrs_id"]:
+                                $matchingArray[2]["first_name"] = $user->getFirstname();
+                                $matchingArray[2]["last_name"] = $user->getLastname();
+                                $matchingArray[2]["business_profile"] = $user->getBusinessProfile()->getWording();
+                                if ($user->getPicture()) {
+                                    $matchingArray[2]["picture"] = $user->getPicture()->getPictureName();
+                                }
+                                break;
+                        }
                     }
                 }
             } else {
                 foreach ($users as $user) {
-                    switch ($user->getId()) {
-                        case $matchingArray[0]["sowrs_id"]:
-                            $matchingArray[0]["entity_name"] = $user->getEntityName();
-                            $matchingArray[0]["cause"] = $user->getMainCause()->getText();
-                            if ($user->getPicture()) {
-                                $matchingArray[0]["picture"] = $user->getPicture()->getPictureName();
-                            }
-                            break;
-                        case $matchingArray[1]["sowrs_id"]:
-                            $matchingArray[1]["entity_name"] = $user->getEntityName();
-                            $matchingArray[1]["cause"] = $user->getMainCause()->getText();
-                            if ($user->getPicture()) {
-                                $matchingArray[1]["picture"] = $user->getPicture()->getPictureName();
-                            }
-                            break;
-                        case $matchingArray[2]["sowrs_id"]:
-                            $matchingArray[2]["entity_name"] = $user->getEntityName();
-                            $matchingArray[2]["cause"] = $user->getMainCause()->getText();
-                            if ($user->getPicture()) {
-                                $matchingArray[2]["picture"] = $user->getPicture()->getPictureName();
-                            }
-                            break;
+                    if($user instanceof Recruiter){
+                        switch ($user->getId()) {
+                            case $matchingArray[0]["sowrs_id"]:
+                                $matchingArray[0]["entity_name"] = $user->getEntityName();
+                                $matchingArray[0]["cause"] = $user->getMainCause()->getText();
+                                if ($user->getPicture()) {
+                                    $matchingArray[0]["picture"] = $user->getPicture()->getPictureName();
+                                }
+                                break;
+                            case $matchingArray[1]["sowrs_id"]:
+                                $matchingArray[1]["entity_name"] = $user->getEntityName();
+                                $matchingArray[1]["cause"] = $user->getMainCause()->getText();
+                                if ($user->getPicture()) {
+                                    $matchingArray[1]["picture"] = $user->getPicture()->getPictureName();
+                                }
+                                break;
+                            case $matchingArray[2]["sowrs_id"]:
+                                $matchingArray[2]["entity_name"] = $user->getEntityName();
+                                $matchingArray[2]["cause"] = $user->getMainCause()->getText();
+                                if ($user->getPicture()) {
+                                    $matchingArray[2]["picture"] = $user->getPicture()->getPictureName();
+                                }
+                                break;
+                        }
                     }
                 }
             }
             $scoring = $this->getUser()->getScoring();
             $matchingUser = [];
-            foreach($matchingArray as $matching){
-                array_push($matchingUser, $userRepo->find($matching['sowrs_id']));
+            if($this->getUser() instanceof Recruiter){
+                foreach($matchingArray as $matching){
+                    $matchUser = $userRepo->find($matching['sowrs_id']);
+                    if($matchUser instanceof Candidate){
+                        array_push($matchingUser, $matchUser);
+                    }
+                }
+            }
+            else{
+                foreach($matchingArray as $matching){
+                    $matchUser = $userRepo->find($matching['sowrs_id']);
+                    if($matchUser instanceof Recruiter){
+                        array_push($matchingUser, $matchUser);
+                    }
+                }
             }
             return $this->render('dash_board/senseRate/resultSensRate.html.twig', [
                 'scoringUser' => $scoring,

@@ -63,7 +63,7 @@ body .btn_applies_options{
     font-size: 1.3em;
     margin-bottom: 1em;
     text-align: left;
-    color: #937FA4;
+    color: #555555;
     font-family: 'KohinoorBangla', Arial, serif;
 }
 .btnCandid{
@@ -74,7 +74,6 @@ body .btn_applies_options{
         width: 170px;
     }
 }
-
 @media only screen and (max-width: 570px) and (min-width: 376px){
     .btn_applies_options{
         font-size: small;

@@ -148,6 +148,7 @@
 {% endblock %}
 
 {% block javascripts %}
+    {{ parent() }}
     <script>
         let btnDeleteMessage = document.querySelectorAll(".messageButtonTrash");
         btnDeleteMessage.forEach(element =>

@@ -102,6 +102,7 @@
 {% endblock %}
 
 {% block javascripts %}
+    {{ parent() }}
     <script>
         window.addEventListener('load', function (){
             let firstDocument = document.querySelector('#uploadedFile');

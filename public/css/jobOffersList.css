@@ -109,8 +109,9 @@
 .info_card_job_offer{
     padding: 10px 0 0 15px;
 }
+
 @media screen and (max-width: 530px){
-    .card_job_offer{
+    body .card_job_offer{
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -119,8 +120,9 @@
     .first_section_card_job_offer{
         display: flex;
         flex-direction: column;
-        justify-content: center;
+        justify-content: flex-start;
         align-items: center;
+        width: 70%;
     }
     .contract_type_card_job_offer>div{
         margin-top: 15px;

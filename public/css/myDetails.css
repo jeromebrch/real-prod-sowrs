@@ -375,9 +375,40 @@ body .form-control{
 
 .specific-textarea{
     height: 200px;
-
+}
+.p_commitment {
+    color: #555555;
+}
+.fa-times-circle{
+    color: #937FA4;
+}
+.select2-container--default .select2-selection--multiple .select2-selection__rendered{
+    overflow: scroll;
+    max-height: 30px;
 }
 
+@media screen and (max-width: 576px){
+    .check_telecommute{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        width: 100% !important;
+    }
+}
+@media screen and (max-width: 767px){
+    .p_activities{
+        display: none;
+    }
+    .p_commitment{
+        font-size: 1.2em;
+    }
+}
+@media screen and (max-width: 992px){
+    .title_my_recognitions{
+        display: none;
+    }
+}
 @media screen and (max-width: 520px){
     body .details_checkbox_input{
         padding: 0;
@@ -416,6 +447,12 @@ body .form-control{
     #formOne {
         position: relative;
         bottom: 600px;
+    }
+    .delete_video_url{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
     }
 }
 @media screen and (max-width: 1082px){

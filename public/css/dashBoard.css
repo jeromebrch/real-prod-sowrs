@@ -159,6 +159,19 @@ body .container_link_profil{
     font-size: 30px;
     color: white;
 }
+@media screen and (max-width: 339px){
+    .block_info_sense_rate{
+        font-size: 0.9em;
+    }
+}
+@media screen and (max-width: 425px){
+    .mini_webzine_title{
+        font-size: 0.9em!important;
+    }
+    .mini_webzine_date div h4, .mini_webzine_date div h2{
+        font-size: 0.9em!important;
+    }
+}
 @media only screen and (max-width: 570px) and (min-width: 376px){
     .btn_responsive{
         font-size: small;

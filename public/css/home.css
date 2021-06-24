@@ -117,6 +117,12 @@
 .presentation_popup p{
     text-align: left;
 }
+.btn_close_popup{
+    background-color: white;
+    color: #555555;
+    border: 1px solid #55555588;
+}
+
 @media screen and (max-width: 365px){
     .btn_close_popup{
         width: 100% !important;

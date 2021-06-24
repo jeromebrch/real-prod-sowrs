@@ -31,7 +31,7 @@
         <div class="col-lg-5 mx-auto">
             <h4 class="show_candidate_jumbotron_name job_offer_title_jumbotron">{{ jobOffer.title | capitalize }}</h4>
         </div>
-        <h5 class="show_candidate_jumbotron_infos">{{ jobOffer.city | capitalize }}
+        <h5 class="show_candidate_jumbotron_infos offer_infos">{{ jobOffer.city | capitalize }}
             - {{ jobOffer.contractType.wording |capitalize }}
 
             {% if jobOffer.remuneration.text %}
@@ -146,9 +146,11 @@
                 </div>
             </div>
             {% endif %}
-            <div class="container_button_postuler">
-                <a class="btn_postuler btn required" href="{{ path('apply', {'id': jobOffer.id}) }}">Postuler à cette offre</a>
-            </div>
+            {% if jobOffer.entity != app.user %}
+                <div class="container_button_postuler">
+                    <a class="btn_postuler btn required" href="{{ path('apply', {'id': jobOffer.id}) }}">Postuler à cette offre</a>
+                </div>
+            {% endif %}
         </div>
     </div>
 {% endblock %}

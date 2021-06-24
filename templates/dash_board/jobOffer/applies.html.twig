@@ -26,7 +26,7 @@
                         {% for candidature in candidatures %}
                             {% if candidature.userRecipient is same as app.user %}
                                 <div class="row abstractJobOffer border border-2 p-3 m-4 gx-0 shadow bg-light">
-                                    <div class="col-lg-3 align-self-center">
+                                    <div class="col-lg-3 align-self-center container_picture_applie">
                                         {% if candidature.userSender.picture is not empty %}
                                             <img id="photo_profile" src="{{ asset('images/profils/' ~ candidature.userSender.picture.pictureName )}}"
                                                  alt="photo du profil">
@@ -36,8 +36,7 @@
                                         {% endif %}
                                     </div>
 
-                                    <div class="apply_div content-box col-lg-5">
-                                        <div>
+                                    <div class="apply_div content-box col-lg-5 container_info_applie_list">
                                         {% if candidature.userSender.firstname and candidature.userSender.lastname %}
                                             <span class="apply titreCandid" ><strong>{{ candidature.userSender.firstName|capitalize}} {{ candidature.userSender.lastName|upper }}</strong></span>
                                         {% endif %}
@@ -50,11 +49,10 @@
                                             <br>
                                         {% endif %}
                                         {% if candidature.userSender.scoring is not empty %}
-                                            <strong>Taux de sens : </strong>{{ candidature.userSender.scoring.dominantsens}} {{ candidature.userSender.scoring.societal }}%</span>
+                                            <strong>Taux de sens : </strong>{{ candidature.userSender.scoring.dominantsens}}</span>
                                         {% endif %}
-                                        </div>
                                     </div>
-                                    <div class="align-self-center col-lg-4">
+                                    <div class="align-self-center col-lg-4 container_btn_applie_list">
                                         <div class="btnCandid">
                                             <a href="{{ path('read_message', {'id': candidature.id}) }}" class="btn btnCandid">Voir la candidature</a>
                                         </div>

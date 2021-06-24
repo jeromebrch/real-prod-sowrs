@@ -233,7 +233,7 @@
     color: #555555;
 }
 .job_text_title{
-    color: #937FA4!important;
+    color: #555555!important;
     font-weight: bold;
     padding-bottom: 10px;
     font-family: 'KohinoorBangla', Arial, serif;
@@ -315,6 +315,21 @@
         align-items: center;
     }
 }
+@media screen and (max-width: 530px){
+    body .first_section_card_job{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+    }
+    body .card_job{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+}
 @media screen and (max-width: 575px) and (min-width: 301px){
     .mini_btn_title_my_offers{
         /*position: relative;*/
@@ -352,6 +367,24 @@
         /*justify-content: center;*/
         /*align-items: center;*/
         width: auto;
+    }
+    .container_picture_applie{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+    }
+    .container_info_applie_list{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center!important;
+    }
+    .container_btn_applie_list{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
     }
 }
 @media screen and (max-width: 1082px) and (min-width: 571px){

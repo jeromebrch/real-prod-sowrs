@@ -152,6 +152,17 @@ a{
         display: none;
     }
 }
+@media screen and (max-width: 768px){
+    .container_picture_profil_favorite{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+    }
+    .delete_favorite{
+        margin-top: 20px;
+    }
+}
 @media screen and (max-width: 800px){
     .container_message_info th{
         font-size: 0.9em;

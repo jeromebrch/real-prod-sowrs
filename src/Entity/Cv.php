@@ -49,7 +49,7 @@ class Cv
 
     /**
      * @ORM\OneToMany(targetEntity=Candidate::class, mappedBy="cv")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(onDelete="CASCADE")
      */
     private $candidate;
 

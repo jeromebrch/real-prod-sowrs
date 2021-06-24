@@ -12,7 +12,7 @@ use Doctrine\ORM\Mapping as ORM;
 class Candidate extends User
 {
     /**
-     * @ORM\ManyToOne(targetEntity=Cv::class, inversedBy="candidate", cascade={"remove"})
+     * @ORM\ManyToOne(targetEntity=Cv::class, inversedBy="candidate", cascade={"persist"})
      */
     public $cv;
 

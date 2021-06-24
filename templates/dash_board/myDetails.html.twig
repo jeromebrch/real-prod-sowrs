@@ -141,8 +141,8 @@
                             </div>
 
                             <div class="row mt-4">
-                                <p class="col-6 engagement">Engagements quotidiens</p>
-                                <p class="col-6 engagement">Vos activités engagées</p>
+                                <p class="col-6 engagement p_commitment">Engagements quotidiens</p>
+                                <p class="col-6 engagement p_activities">Vos activités engagées</p>
                             </div>
                             <div class="row">
                                 <div class="col-lg-6 col-md-5 col-sm-12  block_commitment">
@@ -216,13 +216,13 @@
                             {# Save change #}
                             <button type="submit" class="btn btn-lg long_btn col-4 col-sm-12">Enregistrer</button>
                             {# delete the user account #}
-                            <a href="{{ path('unsubscribe') }}" class="col-4 link_action_mydetails big_link_action">Supprimer mon compte</a>
+                            <a href="{{ path('unsubscribe') }}" class="col-4 link_action_mydetails big_link_action btn_delete_account">Supprimer mon compte</a>
                         </div>
                         <div class="mini_actions_mydetails">
                             {# reset password with Reset Password Feature #}
                             <a href="{{ path('app_forgot_password_request') }}" class="col-4 link_action_mydetails">Réinitialiser le mot de passe</a>
                             {# delete the user account #}
-                            <a href="{{ path('unsubscribe') }}" class="col-4 link_action_mydetails">Supprimer mon compte</a>
+                            <a href="{{ path('unsubscribe') }}" class="col-4 link_action_mydetails btn_delete_account">Supprimer mon compte</a>
                         </div>
                     </div>
                     {{ form_row(modifyUserForm.socialNetwork.facebook.setRendered()) }}
@@ -367,8 +367,8 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <p class="col-6 engagement">Engagements quotidiens</p>
-                                    <p class="col-6 engagement">Vos activités engagées</p>
+                                    <p class="col-6 engagement p_commitment">Engagements quotidiens</p>
+                                    <p class="col-6 engagement p_activities">Vos activités engagées</p>
                                 </div>
                                 <div class="row">
                                     <div class="col-lg-6 col-md-5 col-sm-12 block_commitment">
@@ -397,7 +397,7 @@
                                     <h5 class="recognition_title">Reconnaissances et labels</h5>
                                 </div>
                                 <div class="col-lg-6">
-                                    <h5 class="recognition_title">Mes reconnaissances</h5>
+                                    <h5 class="recognition_title title_my_recognitions">Mes reconnaissances</h5>
                                 </div>
                             </div>
                             <div class="row">
@@ -435,13 +435,13 @@
                                 {# Save change #}
                                 <button type="submit" class="btn btn-lg long_btn col-4 col-sm-12">Enregistrer</button>
                                 {# delete the user account #}
-                                <a href="{{ path('unsubscribe') }}" class="col-4 link_action_mydetails big_link_action">Supprimer mon compte</a>
+                                <a href="{{ path('unsubscribe') }}" class="col-4 link_action_mydetails big_link_action btn_delete_account">Supprimer mon compte</a>
                             </div>
                             <div class="mini_actions_mydetails">
                                 {# reset password with Reset Password Feature #}
                                 <a href="{{ path('app_forgot_password_request') }}" class="col-4 link_action_mydetails">Réinitialiser le mot de passe</a>
                                 {# delete the user account #}
-                                <a href="{{ path('unsubscribe') }}" class="col-4 link_action_mydetails">Supprimer mon compte</a>
+                                <a href="{{ path('unsubscribe') }}" class="col-4 link_action_mydetails btn_delete_account">Supprimer mon compte</a>
                             </div>
                         </div>
 
@@ -591,6 +591,16 @@
                        alert("Merci d'indiquer une description de 280 caractères maximum, vous en avez renseigné : " + nbrChar);
                    }
                 });
+            });
+        </script>
+
+        <script>
+            $('.btn_delete_account').on('click', function (event){
+                if(window.confirm("Souhaitez-vous vraiment supprimer ce compte ? La suppression est irrémédiable !")){
+
+                }else{
+                    event.preventDefault();
+                };
             });
         </script>
     {% endblock %}

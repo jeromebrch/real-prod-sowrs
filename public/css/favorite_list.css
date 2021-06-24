@@ -18,6 +18,9 @@
 .title{
     color: white;
 }
+.favorite_entity_name{
+    font-weight: bold;
+}
 
 .messageImgTrash {
     width: 52px;
@@ -77,6 +80,11 @@
     font-family: 'KohinoorBangla', Arial, serif;
 }
 
+@media screen and (max-width: 1025px){
+    .favorite_offer_title{
+        font-size: 1.2em;
+    }
+}
 @media screen and (max-width: 500px){
     .container_no_favorites h4{
         text-align: center;

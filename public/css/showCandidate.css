@@ -132,9 +132,15 @@ label[for="message_mediaFile"]{
     align-items: center;
     flex-wrap: wrap;
 }
+
 @media screen and (max-width: 376px){
     .show_candidate_sens_rate{
         width: 100% !important;
+    }
+}
+@media screen and (max-width: 446px){
+    body .offer_infos{
+        font-size: 1em;
     }
 }
 @media screen and (max-width: 769px){

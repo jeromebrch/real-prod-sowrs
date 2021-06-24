@@ -54,3 +54,16 @@
     align-items: center;
     padding: 20px;
 }
+
+@media screen and (min-width: 765px) and (min-height: 1165px){
+    .container_login_page{
+        margin-top: 200px;
+        margin-bottom: 200px;
+    }
+}
+@media screen and (min-width: 1365px) and (min-height: 1020px){
+    .container_login_page{
+        margin-top: 100px;
+        margin-bottom: 100px;
+    }
+}
