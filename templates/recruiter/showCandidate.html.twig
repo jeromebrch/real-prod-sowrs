@@ -14,7 +14,7 @@
 {% block body %}
     <div class="show_candidate_jumbotron pt-3">
         <div class="col-lg-1 mx-auto">
-             <div class="candidate_picture">
+             <div class="candidate_picture text-center">
             {% if candidate.picture %}
                 {% if candidate.picture.pictureName is same as '' %}
                     <img id="show_joboffer_photo_profile" src="{{ asset('images/profils/avatar.jpg') }}"
@@ -30,7 +30,7 @@
             {% endif %}
              </div>
         </div>
-        <div class="col-lg-5 mx-auto">
+        <div class="col-lg-5 mx-auto mt-3">
             <h4 class="show_candidate_jumbotron_name">{{ candidate.firstName | capitalize }} {{ candidate.lastName | upper }}</h4>
         </div>
         <h5 class="show_candidate_jumbotron_infos">

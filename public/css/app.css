@@ -5,7 +5,8 @@ global styles
 @font-face{
     font-family: 'KohinoorBangla';
     src: url('polices/KohinoorBangla.ttc') format("truetype"),
-    url('polices/kit_font/KohinoorBangla-webfont.woff') format("woff");
+    url('polices/kit_font/KohinoorBangla-webfont.woff') format("woff"),
+    url('polices/kit_font/KohinoorBangla-webfont.woff2') format("woff2"),
     url('polices/KohinoorBangla.ttf') format("truetype");
     font-weight: normal;
     font-style: normal;

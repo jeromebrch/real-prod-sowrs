@@ -807,6 +807,7 @@ body .form-control{
         height: 0.7em;
         width: auto;
     }
+
 }
 @media screen and (orientation: landscape) and (max-width: 736px) and (min-width: 640px){
     .btn_save_commitment{

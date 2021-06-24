@@ -10,8 +10,13 @@
     color: #555555;
 }
 .header_messaging{
-    height: 600px;
+    min-height: 300px;
+    max-height: 810px;
     padding: 5px 0 5px 0;
+    overflow-y: auto;
+}
+.header_messaging > table td {
+    overflow: hidden;
 }
 .thead{
     padding: 10px;
@@ -124,6 +129,7 @@ a{
 .mini_options_message{
     display: none!important;
 }
+
 @media screen and (max-width: 418px){
     .user_sender_message_section{
         display: none;
