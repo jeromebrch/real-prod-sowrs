@@ -36,7 +36,8 @@
                                                         {% endif %}
                                                         <td class="message_array_section user_sender_message_section"><a href="{{ path('show_recruiter_profil', {'id':message.userSender.id}) }}" class="link_messaging_page note_learn"><strong>{{ message.userSender.entityName }}</strong></a></td>
                                                         <td class="message_array_section"><a href="{{ path('read_message', {'id':message.id}) }}" class="link_messaging_page note_learn"><strong>{{ message.subject|capitalize }}</strong></a></td>
-                                                        <td class="message_array_section date_message_section"><strong class="message_date note_learn">{{ message.createdAt|date("d/m/Y h:m") }}</strong></td>
+                                                        <td class="message_array_section date_message_section"><strong class="message_date note_learn">{{ message.createdAt|date("d/m/Y H
+                                                        :m") }}</strong></td>
                                                         <td class="message_array_section options_message_section">
                                                             <a class="messageButton btn" href="{{ path('response', {'id':message.id}) }}">
                                                                 <span title="Répondre au message">
@@ -57,7 +58,7 @@
                                                         {% endif %}
                                                         <td class="message_array_section user_sender_message_section"><a href="{{ path('show_recruiter_profil', {'id':message.userSender.id}) }}" class="link_messaging_page">{{ message.userSender.entityName }}</a></td>
                                                         <td class="message_array_section"><a href="{{ path('read_message', {'id':message.id}) }}" class="link_messaging_page">{{ message.subject|capitalize }}</a></td>
-                                                        <td class="message_array_section date_message_section"><strong class="message_date">{{ message.createdAt|date("d/m/Y h:m") }}</strong></td>
+                                                        <td class="message_array_section date_message_section"><strong class="message_date">{{ message.createdAt|date("d/m/Y H:m") }}</strong></td>
                                                         <td class="message_array_section options_message_section">
                                                             <a class="messageButton btn" href="{{ path('response', {'id':message.id}) }}">
                                                                 <span title="Répondre au message">
@@ -86,7 +87,7 @@
                                                         {% endif %}
                                                         <td class="message_array_section user_sender_message_section"><a href="{{ path('candidate_show', {'id':message.userSender.id}) }}" class="link_messaging_page note_learn"><strong>{{ message.userSender.firstName~ ' ' ~message.userSender.lastName }}</strong></a></td>
                                                         <td class="message_array_section"><a href="{{ path('read_message', {'id':message.id}) }}" class="link_messaging_page note_learn"><strong>{{ message.subject|capitalize }}</strong></a></td>
-                                                        <td class="message_array_section date_message_section"><strong class="message_date note_learn">{{ message.createdAt|date("d/m/Y h:m") }}</strong></td>
+                                                        <td class="message_array_section date_message_section"><strong class="message_date note_learn">{{ message.createdAt|date("d/m/Y H:m") }}</strong></td>
                                                         <td class="message_array_section options_message_section">
                                                             <a class="messageButton btn" href="{{ path('response', {'id':message.id}) }}"
                                                                  role="button">
@@ -108,7 +109,7 @@
                                                         {% endif %}
                                                         <td class="message_array_section user_sender_message_section"><a href="{{ path('candidate_show', {'id':message.userSender.id}) }}" class="link_messaging_page">{{ message.userSender.firstName~ ' ' ~message.userSender.lastName }}</a></td>
                                                         <td class="message_array_section"><a href="{{ path('read_message', {'id':message.id}) }}" class="link_messaging_page">{{ message.subject|capitalize }}</a></td>
-                                                        <td class="message_array_section date_message_section"><strong class="message_date">{{ message.createdAt|date("d/m/Y h:m") }}</strong></td>
+                                                        <td class="message_array_section date_message_section"><strong class="message_date">{{ message.createdAt|date("d/m/Y H:m") }}</strong></td>
                                                         <td class="message_array_section options_message_section">
                                                             <a class="messageButton btn" href="{{ path('response', {'id':message.id}) }}"
                                                                 role="button">

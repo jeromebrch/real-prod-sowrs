@@ -173,3 +173,10 @@ body .container_link_profil{
         text-align: center;
     }
 }
+@media only screen and (max-width: 281px) {
+    .btn-title2 {
+        font-size: small; !important;
+        position: relative; !important;
+        bottom: 50px;!important;
+    }
+}
