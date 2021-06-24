@@ -224,4 +224,32 @@
             {% endif %}
         </div>
     </div>
+    <div class="container_pop_up">
+        <div class="presentation_popup">
+            <p>
+                Bienvenue sur SOWRS !
+            </p>
+            <hr />
+            <p>
+                Bienvenue sur Sowrs, la nouvelle plateforme d’ITmakeSense ! 🌱
+                Nouveau nom, améliorations et possibilité de calculer votre taux
+                de sens pour trouver des candidat.e.s ou structures qui partagent
+                vos valeurs : on espère que ça vous plaira !
+                Si vous ne nous connaissez pas encore, découvrez notre mission 👇
+            </p>
+            <div>
+                <a class="btn btn_about_popup" href="{{ path('main_about_sowrs') }}" >Qui sommes-Nous ?</a>
+                <button class="btn btn_close_popup">J'ai compris !</button>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        $('.btn_close_popup').on('click', function (){
+           $('.container_pop_up').attr('style', 'display:none;');
+        });
+    </script>
 {% endblock %}
