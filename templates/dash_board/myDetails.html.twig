@@ -479,128 +479,127 @@
     </div>
 {% endblock %}
 
-
-    {% block javascripts %}
-        {{ parent() }}
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
-
+{% block javascripts %}
+    {{ parent() }}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
 
 
-        <script type="text/javascript">
-            //double select pour causes secondaires
-            $("select").select2();
-        </script>
 
-        <script>
-            //----MUTLI SELECT RECONNAISSANCES
+    <script type="text/javascript">
+        //double select pour causes secondaires
+        $("select").select2();
+    </script>
 
-            // on mémorise le user connecté
-            const recruiter = {{ app.user.id }};
-            // variable pour la sélection de l'action de gauche
-            let idCause = 0;
-        </script>
+    <script>
+        //----MUTLI SELECT RECONNAISSANCES
 
-        <script src="{{ asset('js/myDetails.js') }}"></script>
+        // on mémorise le user connecté
+        const recruiter = {{ app.user.id }};
+        // variable pour la sélection de l'action de gauche
+        let idCause = 0;
+    </script>
 
-        <script>
-            // for add a commitment to the actual user (recruiter)
-            // cf to RecruiterController for backend
-            const monBtn = $("button.btn_save_commitment");
-            monBtn.on("click", function (){
-                const maValeur = $("#commitment").val();
-                const textareaValue = $("#commitment_text").val();
-                fetch("{{ path('set_commitment') }}", {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json"
-                    },
-                    body: JSON.stringify({
-                        'commitment': maValeur,
-                        'textareaValue': textareaValue
-                    })
+    <script src="{{ asset('js/myDetails.js') }}"></script>
+
+    <script>
+        // for add a commitment to the actual user (recruiter)
+        // cf to RecruiterController for backend
+        const monBtn = $("button.btn_save_commitment");
+        monBtn.on("click", function (){
+            const maValeur = $("#commitment").val();
+            const textareaValue = $("#commitment_text").val();
+            fetch("{{ path('set_commitment') }}", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    'commitment': maValeur,
+                    'textareaValue': textareaValue
                 })
-                    .then(response => response.json())
-                    .then(response => {
-                        if (response.success) {
-                            alert("L'engagement a été enregistré avec succés !")
-                            $('input[name=input_commitment]').val(''); //empty the input for commitment
-                            $('textarea[name=textarea_commitment]').val(''); //empty the input for commitment
-                        } else {
-                            alert("Merci d'indiquer l'engagement dans le champ pour pouvoir l'ajouter")
-                        }
-                    })
-                    .catch(e => {
-                        alert(e);
-                    })
-                ;
             })
-        </script>
-
-        <script>
-            //delete the video URL
-            $(".delete_video_url i").on("click", function (){
-                fetch("{{ path('delete_video_URL') }}", {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json"
-                    },
-                    body: JSON.stringify({
-                    })
+                .then(response => response.json())
+                .then(response => {
+                    if (response.success) {
+                        alert("L'engagement a été enregistré avec succés !")
+                        $('input[name=input_commitment]').val(''); //empty the input for commitment
+                        $('textarea[name=textarea_commitment]').val(''); //empty the input for commitment
+                    } else {
+                        alert("Merci d'indiquer l'engagement dans le champ pour pouvoir l'ajouter")
+                    }
                 })
-                    .then(response => response.json())
-                    .then(response => {
-                        if (response.success) {
-                            alert("La vidéo a bien été supprimée");
-                            document.getElementById("recruiter_modification_presentationVideoURL").setAttribute("value", "");
-                        } else {
-                            alert("Il y a eu un problème lors du traitement");
-                        }
-                    })
-                    .catch(e => {
-                        alert(e);
-                    })
-                ;
-            });
-        </script>
+                .catch(e => {
+                    alert(e);
+                })
+            ;
+        })
+    </script>
 
-        <script>
-            //delete recognition
-            let btnDeleteReco = document.querySelector(".btn_delete_recognition");
-            btnDeleteReco.addEventListener('click', function (event){
-                alert("La reconnaissance a bien été supprimée !");
+    <script>
+        //delete the video URL
+        $(".delete_video_url i").on("click", function (){
+            fetch("{{ path('delete_video_URL') }}", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                })
             })
-        </script>
+                .then(response => response.json())
+                .then(response => {
+                    if (response.success) {
+                        alert("La vidéo a bien été supprimée");
+                        document.getElementById("recruiter_modification_presentationVideoURL").setAttribute("value", "");
+                    } else {
+                        alert("Il y a eu un problème lors du traitement");
+                    }
+                })
+                .catch(e => {
+                    alert(e);
+                })
+            ;
+        });
+    </script>
 
-        <script>
-            let infos = $("i.fa-question-circle");
-            infos.on("mouseover", function (){
-                $("div.info_message").show(300);
-            });
-            infos.on("mouseout", function (){
-                $("div.info_message").hide(300);
-            });
-        </script>
+    <script>
+        //delete recognition
+        let btnDeleteReco = document.querySelector(".btn_delete_recognition");
+        btnDeleteReco.addEventListener('click', function (event){
+            alert("La reconnaissance a bien été supprimée !");
+        })
+    </script>
 
-        <script>
-            window.addEventListener('load', function (){
-                let recognitionText = document.querySelector('#recognition_text');
-                recognitionText.addEventListener('change', function (){
-                   let nbrChar = recognitionText.value.length;
-                   if(nbrChar > 280){
-                       alert("Merci d'indiquer une description de 280 caractères maximum, vous en avez renseigné : " + nbrChar);
-                   }
-                });
-            });
-        </script>
+    <script>
+        let infos = $("i.fa-question-circle");
+        infos.on("mouseover", function (){
+            $("div.info_message").show(300);
+        });
+        infos.on("mouseout", function (){
+            $("div.info_message").hide(300);
+        });
+    </script>
 
-        <script>
-            $('.btn_delete_account').on('click', function (event){
-                if(window.confirm("Souhaitez-vous vraiment supprimer ce compte ? La suppression est irrémédiable !")){
-
-                }else{
-                    event.preventDefault();
-                };
+    <script>
+        window.addEventListener('load', function (){
+            let recognitionText = document.querySelector('#recognition_text');
+            recognitionText.addEventListener('change', function (){
+               let nbrChar = recognitionText.value.length;
+               if(nbrChar > 280){
+                   alert("Merci d'indiquer une description de 280 caractères maximum, vous en avez renseigné : " + nbrChar);
+               }
             });
-        </script>
-    {% endblock %}
+        });
+    </script>
+
+    <script>
+        $('.btn_delete_account').on('click', function (event){
+            if(window.confirm("Souhaitez-vous vraiment supprimer ce compte ? La suppression est irrémédiable !")){
+
+            }else{
+                event.preventDefault();
+            };
+        });
+    </script>
+{% endblock %}
