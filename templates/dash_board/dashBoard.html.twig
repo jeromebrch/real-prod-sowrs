@@ -380,33 +380,4 @@
 {% endblock %}
 {% block javascripts %}
     {{ parent() }}
-    <script>
-        const elementFormPicture = document.getElementById('updateavatarform');
-        const elementInputPicture = document.getElementById('dash_board_nav_pictureFile');
-        const elementPhotoProfile = document.getElementById('photo_profile');
-
-        elementInputPicture.addEventListener("change", function () {
-            console.log("onchange");
-            let formData = new FormData(elementFormPicture);
-            fetch('{{ path('register_picture') }}', {method: 'POST', body: formData})
-                .then(response => response.json())
-                .then(response => {
-                    console.log(response);
-                    if (response.status === 400) {
-                        alert('Le format');
-                    } else {
-                        alert('ok ça passe');
-                    }
-                    elementPhotoProfile.src = baseURL + '/images/profils/' + response.pictureName;
-                }).catch(e => {
-                alert('erreur de fichier');
-            });
-        });
-        elementFormPicture.addEventListener("submit", function (e) {
-            e.preventDefault();
-            console.log("submit");
-
-        });
-    </script>
-
 {% endblock %}
