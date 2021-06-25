@@ -20,13 +20,13 @@ class ContactType extends AbstractType
             ->add('nom', TextType::class, [
                 'label' => false,
                 'attr' => [
-                    'placeholder' => 'Nom / Prénom / Société'
+                    'placeholder' => 'Nom / Prénom / Société *'
                 ]
             ])
             ->add('email', EmailType::class, [
                 'label' => false,
                 'attr' => [
-                    'placeholder' => 'Adresse mail'
+                    'placeholder' => 'Adresse mail *'
                 ],
                 'constraints' => [
                     new NotBlank([
@@ -42,7 +42,7 @@ class ContactType extends AbstractType
                 'label' => false,
                 'attr' =>[
                     'rows' =>6,
-                    'placeholder' => 'Votre message'
+                    'placeholder' => 'Votre message *'
                 ],
                 'constraints' => [
                     new NotBlank([

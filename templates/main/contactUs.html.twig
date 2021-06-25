@@ -45,53 +45,58 @@
 {#    </div>#}
     <div class="container-fluid">
         <div class="row gx-0 m-3">
-            <div class="col-lg-12">
+            <div class="col-lg-12 paddingContainer">
                 {{ form_start(formContact, {'attr': {'class': 'row'}}) }}
                 <div class="row m-3">
-                        <h3 class="contactTitle">Contactez-nous !</h3>
-                        <span class="textContact ">Vous n'avez pas trouvé la réponse à votre question sur le site SOWRS, complétez le formulaire ci-dessous afin que nous puissions vous contacter dans les meilleurs délais.</span>
-                    <div class="col-lg-6">
-                        <h3 class="contactTitle mt-5">Vous êtes :</h3>
-                            <div class="col-sm-8 col-lg-8 mt-3 align-items-center">
+                    <h3 class="contactTitle mt-5">Contactez-nous !</h3>
+                    <span class="textContact">Vous n'avez pas trouvé la réponse à votre question sur le site SOWRS, complétez le formulaire ci-dessous afin que nous puissions vous contacter dans les meilleurs délais.</span>
+                        <div class="col-lg-5">
+                            <h3 class="contactTitle mt-5">Vous êtes :</h3>
+                            <div class="col-sm-10 col-lg-12 mt-3 align-items-center">
                                 {{ form_row(formContact.nom) }}
                             </div>
-                            <div class="col-sm-8 col-lg-8 mt-3">
+                            <div class="col-sm-10 col-lg-12 mt-3">
                                 {{ form_row(formContact.email) }}
                             </div>
-                            <div class="col-sm-8 col-lg-8 mt-3">
+                            <div class="col-sm-10 col-lg-12 mt-3">
                                 {{ form_row(formContact.telephone) }}
                             </div>
-                    </div>
-                    <div class="col-lg-6">
+                            <p class="textP">* Champs obligatoires</p>
+                        </div>
+                    <div class="col-lg-7">
                         <h3 class="contactTitle mt-5">Message :</h3>
                         <div class="col-sm-12 col-lg-12">
-                            {{ form_row(formContact.message,{'attr': {'class': 'specific-textarea'}})}}
+                            {{ form_row(formContact.message,{'attr': {'class': 'messageTextarea'}})}}
                         </div>
-                    </div>
-                    <h3 class="contactTitle mt-5">Ajoutez une pièce jointe :</h3>
+                        <h3 class="contactTitle mt-5">Ajoutez une pièce jointe :</h3>
+                        <div class="pjOption">
 
-                    <div class="pjOption">
-                        <div class="pjContainer">
-                            <div class="">
-                                <label class="btn btnFile" for="uploadedFile">Choisir un fichier</label>
-                                {{ form_row(formContact.fichier,{'id': 'uploadedFile'})}}
-                                <label for="contact_file" class="btn mt-3 btnFile">Ajouter un autre fichier</label>
-                                {{ form_row(formContact.autreFichier,{'id': 'contact_file'}) }}
+                            <div class="col-lg-4 pjContainer">
+
+                                <div class="">
+                                    <label class="btn btnFile" for="uploadedFile">Choisir un fichier</label>
+                                    {{ form_row(formContact.fichier,{'id': 'uploadedFile'})}}
+                                    <label for="contact_file" class="btn mt-3 btnFile">Ajouter un autre fichier</label>
+                                    {{ form_row(formContact.autreFichier,{'id': 'contact_file'}) }}
+                                </div>
+                            </div>
+                            <div class="col-lg-8 container_uploaded_document">
+                                <h3 class="title_uploaded_documents">Pièces jointes</h3>
+                                <div class="first_uploaded_document"></div>
+                                <div class="second_uploaded_document"></div>
                             </div>
                         </div>
-                        <div class="container_uploaded_document">
-                            <h3 class="title_uploaded_documents">Pièces jointes</h3>
-                            <div class="first_uploaded_document"></div>
-                            <div class="second_uploaded_document"></div>
+                        <div class="validationOption">
+                            <div class="marginCaptcha g-recaptcha" data-sitekey="6LcqEgIaAAAAAEtDy88bfJXRtrhQDfRxwFD-0_Ca"></div>
+                            <button type="submit" class="btn marginSend">Envoyer</button>
+{#                            <div class="container_send_button marginSend">#}
+{#                                #}
+{#                            </div>#}
                         </div>
                     </div>
 
-                    <div class="validationOption">
-                        <div class="g-recaptcha" data-sitekey="6LcqEgIaAAAAAEtDy88bfJXRtrhQDfRxwFD-0_Ca"></div>
-                        <div class="container_send_button mt-3">
-                            <button type="submit" class="btn">Envoyer</button>
-                        </div>
-                    </div>
+
+
 
                     {{ form_end(formContact) }}
                 </div>
