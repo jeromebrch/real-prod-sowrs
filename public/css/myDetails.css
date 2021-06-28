@@ -807,6 +807,16 @@ body .form-control{
         height: 0.7em;
         width: auto;
     }
+    .btnImportResponsive{
+        position: relative;
+        bottom: 50px;
+
+        font-size: medium;
+        width: 160px;
+    }
+    .btn_save_commitment{
+        margin-bottom: 20px;
+    }
 
 }
 @media screen and (orientation: landscape) and (max-width: 736px) and (min-width: 640px){

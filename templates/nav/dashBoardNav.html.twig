@@ -64,7 +64,7 @@
         {% if app.user.private %}
             <a class="btn" type="button" href="{{ path('dash_board_account_status') }}">Enlever la cape d'invisibilité</a>
         {% else %}
-            <a class="btn" type="button" href="{{ path('dash_board_account_status') }}">Mettre la cape d'invisibilité</a>
+            <a class="btn capeBtn" type="button" href="{{ path('dash_board_account_status') }}">Mettre la cape d'invisibilité</a>
         {% endif %}
         <br>
         <h5 class="text-dash-board">Vous avez rejoint la bande<br>de ceux qui veulent rendre<br>le monde meilleur
@@ -130,7 +130,7 @@
         {% if app.user.private %}
             <a class="btn" type="button" href="{{ path('dash_board_account_status') }}">Mettre le compte en ligne</a>
         {% else %}
-            <a class="btn" type="button" href="{{ path('dash_board_account_status') }}">Mettre le compte hors ligne</a>
+            <a class="btn capeBtn" type="button" href="{{ path('dash_board_account_status') }}">Mettre le compte hors ligne</a>
         {% endif %}
         <br>
         <h5 class="text-dash-board">Nous recrutons ensemble<br>depuis

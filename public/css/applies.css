@@ -110,6 +110,14 @@ body .btn_applies_options{
         bottom: 20px;
         font-size: small;
     }
+    .pgn{
+        display: flow;
+    }
+    .title{
+        color: white;
+        font-size: large;
+
+    }
 
 }
 @media only screen and (orientation: landscape) and (max-width: 570px) and (min-width: 376px){
