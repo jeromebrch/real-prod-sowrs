@@ -180,10 +180,6 @@ font-size: medium;
     .btnFile{
         font-size: small;
     }
-    .btn{
-        width: 100px;
-        margin-right: 5px;
-    }
     .g-recaptcha{
         transform:scale(0.77);
         -webkit-transform:scale(0.77);
@@ -201,12 +197,6 @@ font-size: medium;
     .btnFile{
         font-size: small;
     }
-    .btn{
-        width: 100px;
-        margin-right: 5px;
-        font-size: small;
-    }
-
     .marginCaptcha{
         margin-right: 0;
     }
@@ -287,7 +277,6 @@ font-size: medium;
     }
     .btn{
         width: 100px;
-        margin-right: 5px;
         font-size: small;
     }
     .g-recaptcha{

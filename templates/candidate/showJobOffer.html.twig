@@ -146,10 +146,12 @@
                 </div>
             </div>
             {% endif %}
-            {% if jobOffer.entity != app.user %}
-                <div class="container_button_postuler">
-                    <a class="btn_postuler btn required" href="{{ path('apply', {'id': jobOffer.id}) }}">Postuler à cette offre</a>
-                </div>
+            {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+                {% if jobOffer.entity != app.user %}
+                    <div class="container_button_postuler">
+                        <a class="btn_postuler btn required" href="{{ path('apply', {'id': jobOffer.id}) }}">Postuler à cette offre</a>
+                    </div>
+                {% endif %}
             {% endif %}
         </div>
     </div>

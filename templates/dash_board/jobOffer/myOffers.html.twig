@@ -39,6 +39,7 @@
 {% endblock %}
 
 {% block javascripts %}
+    {{ parent() }}
     <script>
         window.addEventListener('load', function (){
             let btnDelete = document.querySelector(".btn_delete_offer");

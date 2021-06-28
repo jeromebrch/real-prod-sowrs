@@ -252,23 +252,23 @@
                         {% endif %}
                     {% endif %}
                 </div>
-
-                {# contact form #}
-
-                <div class="row container_contact">
-                    <div>
-                        <h3 class="profil_category_title_bottom">Contact </h3>
-                        {{ form_start(formMessage, {'attr': {'class': 'form_contact_recruiter'}}) }}
-                        {{ form_row(formMessage.subject) }}
-                        {{ form_row(formMessage.body) }}
-                        <div class="container_upload_files">
-                            {{ form_row(formMessage.cvFile) }}
-                            {{ form_row(formMessage.mediaFile) }}
+                {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+                    {# contact form #}
+                    <div class="row container_contact">
+                        <div>
+                            <h3 class="profil_category_title_bottom">Contact </h3>
+                            {{ form_start(formMessage, {'attr': {'class': 'form_contact_recruiter'}}) }}
+                            {{ form_row(formMessage.subject) }}
+                            {{ form_row(formMessage.body) }}
+                            <div class="container_upload_files">
+                                {{ form_row(formMessage.cvFile) }}
+                                {{ form_row(formMessage.mediaFile) }}
+                            </div>
+                            <button type="submit" class="btn required btn_send_message">Envoyer</button>
+                            {{ form_end(formMessage) }}
                         </div>
-                        <button type="submit" class="btn required btn_send_message">Envoyer</button>
-                        {{ form_end(formMessage) }}
                     </div>
-                </div>
+                {% endif %}
             </div>
         </div>
 {% endblock %}
