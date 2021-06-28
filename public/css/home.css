@@ -18,6 +18,9 @@
     text-decoration: none;
     padding: 10px;
 }
+.home_link:hover{
+    color: #FFFFFF;
+}
 .btn-filter-home {
     font-family: 'KohinoorBangla', Arial, serif;
     width: 100%;
@@ -28,6 +31,9 @@
     font-size: medium;
     color: white;
     margin: auto;
+}
+.btn-filter-home:hover {
+    background: #555555;
 }
 .title-background {
     font-size: 2.3em;
