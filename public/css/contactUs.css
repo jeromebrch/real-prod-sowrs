@@ -179,6 +179,7 @@ font-size: medium;
 @media screen and (max-width: 1366px) and (min-width: 571px){
     .btnFile{
         font-size: small;
+        width: 90px;
     }
     .g-recaptcha{
         transform:scale(0.77);
@@ -196,6 +197,7 @@ font-size: medium;
 @media only screen and (max-width: 570px) and (min-width: 376px){
     .btnFile{
         font-size: small;
+        width: 90px;
     }
     .marginCaptcha{
         margin-right: 0;
