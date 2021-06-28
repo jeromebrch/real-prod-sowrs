@@ -191,3 +191,11 @@ a{
         align-items: center;
     }
 }
+@media screen and (max-width: 281px) {
+    .messageImgageTrash{
+        height: 15px;
+    }
+    .messageButtonTrash{
+        align-items: center;
+    }
+}

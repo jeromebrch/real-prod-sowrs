@@ -104,6 +104,16 @@
         position: relative!important;
         bottom: 10px!important;
     }
+    /*.buttonDashBoardNav {*/
+    /*    display: block;*/
+    /*    margin: 1rem auto;*/
+    /*    position: relative;*/
+    /*    right: 70px;*/
+    /*}*/
+    /*.capeBtn{*/
+    /*    position: relative;*/
+    /*    right: 70px;*/
+    /*}*/
 
 }
 @media screen and (max-width: 498px){
