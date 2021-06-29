@@ -87,20 +87,6 @@
                     </h4>
                 {% endif %}
             {% endif %}
-
-
-{#        #}{# inspiration or main cause #}
-
-{#            {% if "ROLE_CANDIDATE" in user.roles %}#}
-{#                {% if user.inspiration %}#}
-{#                    "{{ user.inspiration | capitalize }}"#}
-{#                {% endif %}#}
-{#            {% else %}#}
-{#                {% if user.mainCause is not empty %}#}
-{#                    Cause : {{ user.mainCause.text |capitalize }}#}
-{#                {% endif %}#}
-{#            {% endif %}#}
-
     </div>
 
     {# BODY PAGE #}
@@ -282,7 +268,7 @@
                         {% endif %}
                     {% else %}
                         <p class="alert alert-light">
-                            Candidat pas présente sur les réseaux
+                            Pas présent sur les réseaux
                         </p>
                     {% endif %}
                 </div>
@@ -546,7 +532,7 @@
                         {% endif %}
                     {% else %}
                         <p class="alert alert-light">
-                            Entreprise pas présente sur les réseaux
+                            Pas présent sur les réseaux
                         </p>
                     {% endif %}
                 </div>
