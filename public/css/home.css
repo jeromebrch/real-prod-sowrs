@@ -123,6 +123,8 @@
 }
 .presentation_popup p{
     text-align: left;
+    font-family: 'KohinoorBangla', Arial, serif;
+    color: #555555;
 }
 .btn_close_popup{
     background-color: white;
