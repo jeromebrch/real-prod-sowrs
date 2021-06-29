@@ -154,3 +154,7 @@ body .doughnut{
 body .select2-container--default{
     height: 30px!important;
 }
+.container_info_offer *{
+    font-family: 'KohinoorBangla', Arial, serif;
+    color: #555555;
+}
