@@ -10,6 +10,10 @@
                     <a href="{{ path('main_job_offers_list') }}">CONSULTER LES OFFRES</a>
                 </div>
             {% endif %}
+        {% else %}
+            <div>
+                <a href="{{ path('app_register') }}">CONSULTER LES CV</a>
+            </div>
         {% endif %}
         <div>
             <a href="{{ path('main_about_sowrs') }}">QUI SOMMES-NOUS ?</a>
@@ -39,6 +43,10 @@
                         <a href="{{ path('main_job_offers_list') }}">CONSULTER LES OFFRES</a>
                     </div>
                 {% endif %}
+            {% else %}
+                <div>
+                    <a href="{{ path('app_register') }}">CONSULTER LES CV</a>
+                </div>
             {% endif %}
             <div>
                 <a href="{{ path('main_about_sowrs') }}">QUI SOMMES-NOUS ?</a>

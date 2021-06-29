@@ -97,3 +97,13 @@
         /*left: 200px;*/
     }
 }
+@media screen and (max-width: 1360px){
+    .h_favorites_candidates{
+        font-size: 1.2em;
+    }
+}
+@media screen and (max-width: 1042px){
+    .h_favorites_candidates{
+        font-size: 1em;
+    }
+}

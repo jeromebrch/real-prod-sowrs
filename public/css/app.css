@@ -158,3 +158,8 @@ body .select2-container--default{
     font-family: 'KohinoorBangla', Arial, serif;
     color: #555555;
 }
+@media screen and (max-width: 344px){
+    .principal_nav_mini div a{
+        font-size: 1em!important;
+    }
+}
