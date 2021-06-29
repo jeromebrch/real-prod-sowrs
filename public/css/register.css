@@ -114,6 +114,10 @@
 #btnRecruteurMini *{
     color: white;
 }
+.container_choice_profil{
+    margin-bottom: 100px;
+}
+
 @media screen and (max-width: 769px) and (min-width: 766px){
     body .explanation_block{
         display: none!important;
