@@ -27,6 +27,7 @@ class CandidateListController extends AbstractController
     {
         $user = $this->getUser();
         $data = new SearchCandidate();
+        $userFavorites = [];
         $formSearch = $this->createForm(SearchCandidateType::class, $data);
         $formSearch->handleRequest($request);
 

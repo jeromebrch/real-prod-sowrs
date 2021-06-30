@@ -23,22 +23,6 @@ class CandidateRepository extends ServiceEntityRepository
         parent::__construct($registry, Candidate::class);
     }
 
-    // /**
-    //  * @return Candidate[] Returns an array of Candidate objects
-    //  */
-    /*
-    public function findByExampleField($value)
-    {
-        return $this->createQueryBuilder('c')
-            ->andWhere('c.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('c.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
-    }
-    */
 
     /*
     * @return User
@@ -110,7 +94,7 @@ class CandidateRepository extends ServiceEntityRepository
             $arrayResearch = explode(" ", $data->txt);
             for($i=0;$i<count($arrayResearch);$i++){
                 $query = $query
-                    ->andWhere('c.currentRole LIKE :job OR o.jobTitle LIKE :job')
+                    ->andWhere('c.currentJob LIKE :job OR o.jobTitle LIKE :job')
                     ->setParameter('job', "%$arrayResearch[$i]%");
             }
         }
