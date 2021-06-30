@@ -101,7 +101,7 @@
                 <div class="container_category_profil">
                     <div class="row">
                         {% if user.firstname %}
-                            <h3 class="profil_category_title">&Agrave; propos de {{ user.firstname }}</h3>
+                            <h3 class="profil_category_title">&Agrave; propos de {{ user.firstname|capitalize }}</h3>
                         {% else %}
                             <h3 class="profil_category_title">&Agrave; propos ...</h3>
                         {% endif %}
@@ -109,7 +109,7 @@
                     <div class="row">
                         {% if user.about %}
                         <p class="about_user">
-                            {{ user.about }}
+                            {{ user.about|capitalize|nl2br }}
                         </p>
                         {% else %}
                             <p class="alert alert-success">
@@ -122,7 +122,7 @@
                 <div class="container_category_profil">
                     <div class="row">
                         {% if user.firstname %}
-                            <h3 class="profil_category_title">{{ user.firstname }} est engagé dans :</h3>
+                            <h3 class="profil_category_title">{{ user.firstname|capitalize }} est engagé dans :</h3>
                         {% else %}
                             <h3 class="profil_category_title">Engagements :</h3>
                         {% endif %}
@@ -317,7 +317,7 @@
                     <div class="row">
                         {% if user.about %}
                             <p class="about_user">
-                                {{ user.about }}
+                                {{ user.about|capitalize|nl2br }}
                             </p>
                         {% else %}
                             <p class="alert alert-success">
@@ -348,7 +348,7 @@
                     <div class="row">
                         {% if user.reasonToBe %}
                             <p class="recruiter_reason_to_be">
-                                {{ user.reasonToBe }}
+                                {{ user.reasonToBe|capitalize|nl2br }}
                             </p>
                         {% else %}
                             <p class="alert alert-success">
@@ -390,9 +390,6 @@
                                         <div class="offer_localization">
                                             <h4 class="localisation_job_offer">{{ jobOffer.city }} - {{ jobOffer.country.name }}</h4>
                                         </div>
-{#                                        <div class="mini_contract_type">#}
-{#                                            <div class="mini_contract">{{ jobOffer.contractType.wording }}</div>#}
-{#                                        </div>#}
                                         <div class="show_offer">
                                             <a class="btn required link_offer_details" href="{{ path('jobOffer_show', {"id":jobOffer.id}) }}">Voir l'offre</a>
                                         </div>

@@ -92,7 +92,7 @@
             {% if jobOffer.description %}
                 <h3 class="subtitle">Descriptif du poste</h3>
                 <p>
-                    {{ jobOffer.description }}
+                    {{ jobOffer.description|nl2br }}
                 </p>
             {% endif %}
         </div>

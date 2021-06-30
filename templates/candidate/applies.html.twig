@@ -45,7 +45,7 @@
                                         {% if applie.body is not empty %}
                                             <h4>Votre message :</h4>
                                             <p>
-                                                {{ applie.body }}
+                                                {{ applie.body|nl2br }}
                                             </p>
                                         {% endif %}
                                         {% if applie.cv is not empty or applie.media is not empty %}

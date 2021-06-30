@@ -29,7 +29,7 @@
                             <div class="p_read_message col-12 read_message_subject">Réponse au sujet : <strong>{{ message.subject|capitalize }}</strong></div>
                         </div>
                         <div class="row">
-                            <div class="body_message p_read_message">{{ message.body }}</div>
+                            <div class="body_message p_read_message">{{ message.body|nl2br }}</div>
                             {% if message.cv or message.media %}
                                 <div class="container_uploaded_files">
                                     {% if message.cv %}

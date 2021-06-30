@@ -64,7 +64,7 @@
                     <div class="row">
                         {% if recruiter.about %}
                             <p class="about_entity">
-                                {{ recruiter.about|capitalize }}
+                                {{ recruiter.about|capitalize|nl2br }}
                             </p>
                         {% else %}
                             <p class="alert alert-success">
@@ -91,7 +91,7 @@
                     <div class="row">
                         {% if recruiter.reasonToBe %}
                             <p class="about_entity">
-                                {{ recruiter.reasonToBe|capitalize }}
+                                {{ recruiter.reasonToBe|capitalize|nl2br }}
                             </p>
                         {% else %}
                             <p class="alert alert-success">
@@ -112,8 +112,6 @@
                                     <div class="container_job_offer container_job_offer_recruiter_profil">
                                         <div class="offer_title_contract">
                                             <h3 class="job_offer_title">{{ jobOffer.title }}</h3>
-{#                                            <div class="contract_type"><div>{{ jobOffer.contractType.wording }}</div>#}
-{#                                            </div>#}
                                             {% if jobOffer.contractType.wording == 'CDI' %}
                                                 <div class="contract_type taille"><div class="">{{ jobOffer.contractType.wording }}</div></div>
                                             {% elseif jobOffer.contractType.wording == 'CDD' %}

@@ -53,7 +53,7 @@
             {% endif %}
         </h5>
         {% if candidate.inspiration %}
-            <p class="show_candidate_jumbotron_inspiration">" {{ candidate.inspiration }} "</p><br>
+            <p class="show_candidate_jumbotron_inspiration">" {{ candidate.inspiration|capitalize }} "</p><br>
         {% endif %}
         {% if candidate.cv is not empty %}
             <a class="btn position-absolute start-50 translate-middle" href="{{ asset('file/cv/' ~ candidate.cv.cvName) }}" target="_blank">Télécharger le CV</a>
@@ -69,7 +69,7 @@
                 <div class="row">
                     {% if candidate.about %}
                         <p class="show_candidate_about">
-                            {{ candidate.about }}
+                            {{ candidate.about|capitalize|nl2br }}
                         </p>
                     {% else %}
                         <p class="alert alert-success">
@@ -81,7 +81,7 @@
             {# engagements #}
             <div class="container_category_profil">
                 <div class="row">
-                    <h3 class="profil_category_title">{{ candidate.firstname }} est engagé dans :</h3>
+                    <h3 class="profil_category_title">{{ candidate.firstname|capitalize }} est engagé dans :</h3>
                 </div>
                 {% if(candidate.commitments is not empty) %}
                     <div class="row">
@@ -89,7 +89,7 @@
                             <div class="commitment_candidate col-12">
                                 <h3>{{ commitment.title }}</h3>
                                 <p>
-                                    {{ commitment.text }}
+                                    {{ commitment.text|capitalize }}
                                 </p>
                             </div>
                         {% endfor %}
