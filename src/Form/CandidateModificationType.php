@@ -60,7 +60,7 @@ class CandidateModificationType extends AbstractType
                 'label' => false,
                 'placeholder' => 'Autorisé(e) à travailler en'
             ])
-            ->add('currentRole', TextType::class, [
+            ->add('currentJob', TextType::class, [
                 'required' => false,
                 'label' => false,
                 'attr' => [

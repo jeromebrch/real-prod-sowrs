@@ -101,8 +101,8 @@
                                             {% if candidat.firstname and candidat.lastname %}
                                         <h4 class="offer favorite_offer_title">{{ candidat.firstName|capitalize}} {{ candidat.lastName|upper}}</h4>
                                         {% endif %}
-                                        {% if candidat.currentRole %}
-                                            <span class="offer">{{ candidat.currentRole }}</span>
+                                        {% if candidat.currentJob %}
+                                            <span class="offer">{{ candidat.currentJob }}</span>
                                         {% endif %}
                                         {% if candidat.jobSearch is not empty %}
                                             <br><span class="offer">{{ candidat.jobSearch.region.name|capitalize}} ({{ candidat.jobSearch.department.cp }})</span>

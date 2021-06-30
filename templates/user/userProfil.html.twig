@@ -49,8 +49,8 @@
         {# complementary informations #}
             {% if "ROLE_CANDIDATE" in user.roles %}
                 <h5 class="show_candidate_jumbotron_infos">
-                    {% if user.currentRole %}
-                        {{ user.currentRole | capitalize }} &bull;
+                    {% if user.currentJob %}
+                        {{ user.currentJob | capitalize }} &bull;
                     {% endif %}
                     {% if user.jobSearch is not empty %}
                         {% if user.jobSearch.city and user.jobSearch.region %}

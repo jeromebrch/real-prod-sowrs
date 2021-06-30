@@ -90,7 +90,7 @@ class CandidateType extends AbstractType
                     'placeholder' => 'Département'
                 ]
             ])
-            ->add('currentRole', TextType::class, [
+            ->add('currentJob', TextType::class, [
                 'label' => false,
                 'attr' => [
                     'placeholder' => 'Poste actuel'

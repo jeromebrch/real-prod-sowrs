@@ -19,7 +19,7 @@ class Candidate extends User
     /**
      * @ORM\Column(type="string", length=150, nullable=true)
      */
-    private $currentRole;
+    private $currentJob;
 
     /**
      * @ORM\Column(type="text", nullable=true)
@@ -168,14 +168,14 @@ class Candidate extends User
         return parent::setRoles($roles);
     }
 
-    public function getCurrentRole(): ?string
+    public function getCurrentJob(): ?string
     {
-        return $this->currentRole;
+        return $this->currentJob;
     }
 
-    public function setCurrentRole(?string $currentRole): self
+    public function setCurrentJob(?string $currentJob): self
     {
-        $this->currentRole = $currentRole;
+        $this->currentJob = $currentJob;
 
         return $this;
     }

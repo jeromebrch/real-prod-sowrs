@@ -41,8 +41,8 @@
                                             <span class="apply titreCandid" ><strong>{{ candidature.userSender.firstName|capitalize}} {{ candidature.userSender.lastName|upper }}</strong></span>
                                         {% endif %}
                                             <br>
-                                        {% if candidature.userSender.currentRole is not empty %}
-                                            <span class=" textCandid"> {{ candidature.userSender.currentRole }}<br>
+                                        {% if candidature.userSender.currentJob is not empty %}
+                                            <span class=" textCandid"> {{ candidature.userSender.currentJob }}<br>
                                         {% endif %}
                                         {% if candidature.userSender.city and candidature.userSender.department is not empty %}
                                             {{ candidature.userSender.city|capitalize}} ({{ candidature.userSender.department.cp }})

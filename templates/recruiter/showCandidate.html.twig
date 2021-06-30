@@ -34,8 +34,8 @@
             <h4 class="show_candidate_jumbotron_name">{{ candidate.firstName | capitalize }} {{ candidate.lastName | upper }}</h4>
         </div>
         <h5 class="show_candidate_jumbotron_infos">
-            {% if candidate.currentRole %}
-            {{ candidate.currentRole | capitalize }}
+            {% if candidate.currentjob %}
+            {{ candidate.currentJob | capitalize }}
             {% endif %}
             {% if candidate.jobSearch %}
                 {% if candidate.jobSearch.country.name %}

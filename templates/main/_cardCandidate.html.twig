@@ -14,9 +14,9 @@
                 <span>
                     <a class="candidate_text_title name_card_candidate" href="{{ path('candidate_show', {'id':candidate.id}) }}"><strong>{{ candidate.firstname|capitalize }} {{ candidate.lastname|upper }}</strong></a>
                 </span><br>
-                {% if candidate.currentRole %}
+                {% if candidate.currentJob %}
                     <span>
-                        <strong>{{ candidate.currentRole | capitalize}}</strong><br>
+                        <strong>{{ candidate.currentJob | capitalize}}</strong><br>
                 {% endif %}
                 {% if candidate.city and candidate.department is not empty %}
                         {{ candidate.city }} &bull; {{ candidate.department.name }} ({{ candidate.department.cp }})<br>
