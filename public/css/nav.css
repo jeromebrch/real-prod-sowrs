@@ -99,3 +99,9 @@
         font-size: 1em;
     }
 }
+@media screen and (max-width: 295px){
+    .principal_nav_mini div a{
+        font-size: 0.8em!important;
+        padding: 0!important;
+    }
+}
