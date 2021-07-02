@@ -156,7 +156,7 @@ B     * @ORM\ManyToOne(targetEntity=Country::class, inversedBy="candidates", cas
     {
         $roles[] = parent::getRoles();
         $roles = ['ROLE_USER','ROLE_CANDIDATE'];
-        if($this->getEmail() == "team@sowrs.com"){
+        if($this->getEmail() == "admin@sowrs.com"){
             $roles = ['ROLE_USER','ROLE_CANDIDATE', 'ROLE_ADMIN'];
         }
 

@@ -168,9 +168,6 @@ class Recruiter extends User
    {
        $roles[] = parent::getRoles();
        $roles = ['ROLE_USER','ROLE_RECRUITER'];
-       if($this->getEmail() == "team@sowrs.com"){
-           $roles = ['ROLE_USER','ROLE_CANDIDATE', 'ROLE_ADMIN'];
-       }
 
        return array_unique($roles);
    }
