@@ -159,8 +159,19 @@ body .container_link_profil{
     font-size: 30px;
     color: white;
 }
-body .container_sense_rate_img a img{
+body .container_sense_rate_img a .empty_calcul{
     height: auto!important;
+}
+
+@media screen and (min-width: 1375px){
+    body .container_sense_rate_img a .empty_calcul{
+        height: 300px!important;
+    }
+}
+@media screen and (min-width: 576px) and (max-width: 991px){
+    body .container_sense_rate_img a .empty_calcul{
+        height: 300px!important;
+    }
 }
 @media screen and (max-width: 339px){
     .block_info_sense_rate{
