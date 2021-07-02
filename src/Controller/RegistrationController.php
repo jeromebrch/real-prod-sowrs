@@ -109,10 +109,6 @@ class RegistrationController extends AbstractController
                 }
             }
             if($validator){
-                //attribution du rôle à l'admin voulu
-                if($recruiter->getEmail() == "team@sowrs.com"){
-                    $recruiter->setRoles((array)'ROLE_ADMIN');
-                }
                 $recruiter->setPassword(
                     $passwordEncoder->encodePassword(
                         $recruiter, $formRecruiter->get('plainPassword')->getData()
