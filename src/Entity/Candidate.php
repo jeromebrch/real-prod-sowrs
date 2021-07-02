@@ -156,7 +156,7 @@ class Candidate extends User
     {
         $roles[] = parent::getRoles();
         $roles = ['ROLE_USER','ROLE_CANDIDATE'];
-        if($this->getEmail() == "jerome.brch@gmail.com"){ // todo : modifier pour avoir l'admin voulu
+        if($this->getEmail() == "team@sowrs.com"){
             $roles = ['ROLE_USER','ROLE_CANDIDATE', 'ROLE_ADMIN'];
         }
 
