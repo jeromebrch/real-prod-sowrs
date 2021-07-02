@@ -2,7 +2,11 @@
 
 {% block meta %}
     <meta name="description" content="{{ post.metaDescription }}">
-    <meta name="robots" content="index, follow" />
+    <meta property="og:title" content="{{ post.title }}">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{ path('post_details', {'id':post.id}) }}">
+    <meta property="og:image" content="https://sowrs.com/{{ asset('uploads/illustrations/' ~ post.pictureFilename) }}">
+    <meta property="og:description" content="{{ post.metaDescription }}" />
 {% endblock %}
 
 {% block stylesheets %}
