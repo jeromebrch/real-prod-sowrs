@@ -52,7 +52,7 @@ class Candidate extends User
     private $jobSearch;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Country::class, inversedBy="candidates", cascade="persist")
+B     * @ORM\ManyToOne(targetEntity=Country::class, inversedBy="candidates", cascade="persist")
      */
     private $authorizedCountry;
 
