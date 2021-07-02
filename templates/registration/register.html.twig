@@ -27,12 +27,12 @@
         <div class="col-6 d-none d-md-block d-lg-block d-xl-block explanation_block">
             <ul>
                 <li>
-                    <p class="text-register">Vous êtes candidat ? Vous pouvez créer votre CV,postuler et matcher avec
+                    <p class="text-register">Vous êtes candidat ? Vous pouvez créer votre CV, postuler et matcher avec
                         des entreprises à impact positif !</p>
                 </li>
                 <li>
-                    <p class="text-register">Vous êtes recruteur ? Vous pouvez créer des offres,accéder à la CVthèque et
-                        matcher avec des candidat sengagés !</p>
+                    <p class="text-register">Vous êtes recruteur ? Vous pouvez créer des offres, accéder à la CVthèque et
+                        matcher avec des candidats engagés !</p>
                 </li>
             </ul>
         </div>
@@ -45,14 +45,14 @@
         <div class="col-10 offset-1 d-md-none d-lg-none d-xl-none mt-4 mini_explanation_block">
             <ul>
                 <li>
-                    <p class="text-register">Vous êtes candidat ? Vous pouvez créer votre CV,postuler et matcher avec
+                    <p class="text-register">Vous êtes candidat ? Vous pouvez créer votre CV, postuler et matcher avec
                         des entreprises à
-                        impactpositif !</p>
+                        impact positif !</p>
                 </li>
                 <li>
-                    <p class="text-register">Vous êtes recruteur ? Vous pouvez créer des offres,accéder à la CVthèque et
+                    <p class="text-register">Vous êtes recruteur ? Vous pouvez créer des offres, accéder à la CVthèque et
                         matcher avec des
-                        candidatsengagés !</p>
+                        candidats engagés !</p>
                 </li>
             </ul>
         </div>
@@ -127,7 +127,7 @@
             <div class="row">
                 <div class="container_captcha_legal_notice">
                     {# recaptcha #}
-                    <div class="g-recaptcha" data-sitekey="6LcqEgIaAAAAAEtDy88bfJXRtrhQDfRxwFD-0_Ca"></div>
+                    <div class="g-recaptcha" data-sitekey="6LfWlWobAAAAAC-IUj3rDz7HitMrrL5JAmQIse-S"></div>
                     <div>
                         <a class="legalNotice" href="{{ path('main_legalNotice') }}">Mentions légales & conditions générales
                             d'utilisation</a>
@@ -203,7 +203,7 @@
             <div class="row">
                 <div class="container_captcha_legal_notice">
                     {# recaptcha #}
-                    <div class="g-recaptcha" data-sitekey="6LcqEgIaAAAAAEtDy88bfJXRtrhQDfRxwFD-0_Ca"></div>
+                    <div class="g-recaptcha" data-sitekey="6LfWlWobAAAAAC-IUj3rDz7HitMrrL5JAmQIse-S"></div>
                     <div>
                         <a class="legalNotice" href="{{ path('main_legalNotice') }}">Mentions légales & conditions générales
                             d'utilisation</a>
@@ -224,6 +224,7 @@
 {% endblock %}
 
 {% block javascripts %}
+    {{ parent() }}
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
     <script src="{{ asset('js/register.js') }}"></script>
 {% endblock %}

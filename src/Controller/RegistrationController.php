@@ -76,7 +76,7 @@ class RegistrationController extends AbstractController
             //génération d'un email afin de demander confirmation de l'email
             $this->emailVerifier->sendEmailConfirmation('app_verify_email', $candidate,
                 (new TemplatedEmail())
-                    ->from(new Address('mailer@sowrs.com', 'Sowrs bot'))
+                    ->from(new Address('team@sowrs.com', 'Sowrs bot'))
                     ->to($candidate->getEmail())
                     ->subject('Merci de confirmer votre email')
                     ->htmlTemplate('registration/confirmation_email.html.twig')
@@ -122,10 +122,10 @@ class RegistrationController extends AbstractController
                 $entityManager->persist($recruiter);
                 $entityManager->flush();
 
-                // generate a signed url and email it to the user
+                // generate a signed url andB email it to the user
                 $this->emailVerifier->sendEmailConfirmation('app_verify_email', $recruiter,
                     (new TemplatedEmail())
-                        ->from(new Address('mailer@sowrs.com', 'Sowrs bot'))
+                        ->from(new Address('team@sowrs.com', 'Sowrs bot'))
                         ->to($recruiter->getEmail())
                         ->subject('Merci de confirmer votre email')
                         ->htmlTemplate('registration/confirmation_email.html.twig')
