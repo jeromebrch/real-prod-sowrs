@@ -159,6 +159,9 @@ body .container_link_profil{
     font-size: 30px;
     color: white;
 }
+body .container_sense_rate_img a img{
+    height: auto!important;
+}
 @media screen and (max-width: 339px){
     .block_info_sense_rate{
         font-size: 0.9em;

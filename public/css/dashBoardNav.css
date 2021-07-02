@@ -99,6 +99,9 @@
     height: 350px; !important;
     width: auto;
 }
+.nav #photo_profile{
+    height: 140px;
+}
 @media screen and (max-width: 306px){
     body .container_upload{
         position: relative!important;

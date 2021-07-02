@@ -1,6 +1,4 @@
-
 <nav class="nav flex-column">
-
     {% if "ROLE_CANDIDATE" in app.user.roles %}
         {% if app.user.picture %}
             <img id="photo_profile" src="{{ asset('images/profils/' ~ app.user.picture.pictureName )}}"
