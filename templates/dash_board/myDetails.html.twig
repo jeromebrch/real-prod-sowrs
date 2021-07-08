@@ -318,12 +318,12 @@
                                     {{ form_row(modifyUserForm.socialNetwork.linkedin) }}
                                 </div>
                                 <div class="col-sm-4 pt-3">
-                                    {{ form_row(modifyUserForm.socialNetwork.stackOverflow) }}
+                                    {{ form_row(modifyUserForm.socialNetwork.facebook) }}
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-sm-4 pt-3">
-                                    {{ form_row(modifyUserForm.socialNetwork.github) }}
+                                    {{ form_row(modifyUserForm.socialNetwork.twitter) }}
                                 </div>
                                 <div class="col-sm-7 pt-3">
                                     {{ form_row(modifyUserForm.presentationVideoURL) }}
@@ -445,8 +445,8 @@
                         </div>
 
 
-                        {{ form_row(modifyUserForm.socialNetwork.facebook.setRendered()) }}
-                        {{ form_row(modifyUserForm.socialNetwork.twitter.setRendered()) }}
+                        {{ form_row(modifyUserForm.socialNetwork.github.setRendered()) }}
+                        {{ form_row(modifyUserForm.socialNetwork.stackOverflow.setRendered()) }}
                         {{ form_row(modifyUserForm.socialNetwork.skype.setRendered()) }}
 
 
@@ -467,8 +467,8 @@
                             {{ form_end(recognitionForm) }}
                         </div>
                     </div>
-                    {{ form_row(modifyUserForm.socialNetwork.facebook.setRendered()) }}
-                    {{ form_row(modifyUserForm.socialNetwork.twitter.setRendered()) }}
+                    {{ form_row(modifyUserForm.socialNetwork.github.setRendered()) }}
+                    {{ form_row(modifyUserForm.socialNetwork.stackOverflow.setRendered()) }}
                     {{ form_row(modifyUserForm.socialNetwork.skype.setRendered()) }}
                     {{ form_end(modifyUserForm) }}
                 {% endif %}
