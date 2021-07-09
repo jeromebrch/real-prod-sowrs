@@ -67,18 +67,6 @@ class FavoriteCvController extends AbstractController
     public function RemoveFavoritecv($id, CandidateRepository $repoCandidate, EntityManagerInterface $em): Response
     {
         $user = $this->getUser();
-//<<<<<<< HEAD
-//        $favorite = $favRepo->find($id);
-//
-//        try {
-//            $user->removeFavoriteCv($favorite);
-//            $em->persist($favorite);
-//            $em->flush();
-//
-//            $this->addFlash('success', 'Le cv a été retiré de vos favoris');
-//        }catch (Exception $e){
-//            $e->getMessage();
-//=======
         $candidate = $repoCandidate->find($id);
         if($user instanceof Recruiter){
             $userFavorites = $user->getFavoriteCandidates()->getValues();
@@ -88,7 +76,6 @@ class FavoriteCvController extends AbstractController
                 $em->flush();
                 $this->addFlash('success', 'Le candidat à bien été retiré de vos favoris !');
             }
-//>>>>>>> b9ed6813639f8d61b34de841d2f13d2020bfc8d6
         }
         return $this->redirectToRoute('main_candidate_list');
     }
@@ -106,13 +93,7 @@ class FavoriteCvController extends AbstractController
                 $user->removeFavoriteCandidate($candidate);
                 $em->persist($user);
                 $em->flush();
-//<<<<<<< HEAD
-//                $this->addFlash('success', 'Le cv a été retirée de vos favoris');
-//            } catch (Exception $e) {
-//                $e->getMessage();
-//=======
                 $this->addFlash('success', 'Le candidat à bien été retiré de vos favoris !');
-//>>>>>>> b9ed6813639f8d61b34de841d2f13d2020bfc8d6
             }
         }
         return $this->redirectToRoute('favorites');
