@@ -44,14 +44,14 @@ class ContactUsController extends AbstractController
             $otherFile = $formContact->get('autreFichier')->getData();
             //sending email
             $email = (new Email())
-                ->from($contact->getEmail())
+                ->from('team@sowrs.com')
                 ->to($contact->getDestinataire())
                 ->subject($contact->getNom())
                 ->text($contact->getTelephone())
                 ->text($contact->getMessage());
             if ($file){
                 $email = (new Email())
-                    ->from($contact->getEmail())
+                    ->from('team@sowrs.com')
                     ->to($contact->getDestinataire())
                     ->subject($contact->getNom())
                     ->text($contact->getTelephone())
@@ -59,7 +59,7 @@ class ContactUsController extends AbstractController
                     ->attach($contact->getFichier());
             }elseif ($otherFile){
                 $email = (new Email())
-                    ->from($contact->getEmail())
+                    ->from('team@sowrs.com')
                     ->to($contact->getDestinataire())
                     ->subject($contact->getNom())
                     ->text($contact->getTelephone())

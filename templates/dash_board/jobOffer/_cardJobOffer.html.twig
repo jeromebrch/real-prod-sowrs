@@ -23,6 +23,14 @@
                 {% endif %}
                 <br>vues</p>
         </div>
+        {% if jobOffer.creationDate is not empty %}
+            <div class="content-box align-self-center info_card_job">
+                <p class="offer_views">
+                    <strong>Date</strong><br />
+                    {{ jobOffer.creationDate|date('d/m/Y') }}
+                </p>
+            </div>
+        {% endif %}
     </div>
     <div class="second_section_card_job ">
         <div class="content-box align-self-center ">

@@ -429,3 +429,9 @@
         /*left: 200px;*/
     }
 }
+@media screen and (min-width: 1215px){
+    .info_card_job{
+        padding-left: 20px!important;
+        padding-right: 20px!important;
+    }
+}
