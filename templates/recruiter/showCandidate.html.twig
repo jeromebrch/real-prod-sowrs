@@ -69,7 +69,7 @@
                 <div class="row">
                     {% if candidate.about %}
                         <p class="show_candidate_about">
-                            {{ candidate.about|capitalize|nl2br }}
+                            {{ candidate.about|nl2br }}
                         </p>
                     {% else %}
                         <p class="alert alert-success">
@@ -89,7 +89,7 @@
                             <div class="commitment_candidate col-12">
                                 <h3>{{ commitment.title }}</h3>
                                 <p>
-                                    {{ commitment.text|capitalize }}
+                                    {{ commitment.text }}
                                 </p>
                             </div>
                         {% endfor %}

@@ -109,7 +109,7 @@
                     <div class="row">
                         {% if user.about %}
                         <p class="about_user">
-                            {{ user.about|capitalize|nl2br }}
+                            {{ user.about|nl2br }}
                         </p>
                         {% else %}
                             <p class="alert alert-success">
@@ -317,7 +317,7 @@
                     <div class="row">
                         {% if user.about %}
                             <p class="about_user">
-                                {{ user.about|capitalize|nl2br }}
+                                {{ user.about|nl2br }}
                             </p>
                         {% else %}
                             <p class="alert alert-success">
@@ -348,7 +348,7 @@
                     <div class="row">
                         {% if user.reasonToBe %}
                             <p class="recruiter_reason_to_be">
-                                {{ user.reasonToBe|capitalize|nl2br }}
+                                {{ user.reasonToBe|nl2br }}
                             </p>
                         {% else %}
                             <p class="alert alert-success">

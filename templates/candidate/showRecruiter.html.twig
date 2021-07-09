@@ -64,7 +64,7 @@
                     <div class="row">
                         {% if recruiter.about %}
                             <p class="about_entity">
-                                {{ recruiter.about|capitalize|nl2br }}
+                                {{ recruiter.about|nl2br }}
                             </p>
                         {% else %}
                             <p class="alert alert-success">
@@ -91,7 +91,7 @@
                     <div class="row">
                         {% if recruiter.reasonToBe %}
                             <p class="about_entity">
-                                {{ recruiter.reasonToBe|capitalize|nl2br }}
+                                {{ recruiter.reasonToBe|nl2br }}
                             </p>
                         {% else %}
                             <p class="alert alert-success">
