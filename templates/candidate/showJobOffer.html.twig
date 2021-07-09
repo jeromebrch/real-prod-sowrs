@@ -101,6 +101,24 @@
         {# RIGHT PART #}
 
         <div class="col-lg-5">
+            {% if jobOffer.telecommuting %}
+                <div class="col-12">
+                    <div class="show_candidate_sens_rate offer_right_part_section">
+                        {% if jobOffer.telecommuting %}
+                            {% if jobOffer.creationDate is not empty %}
+                                <h3 class="profil_category_title_candidate title_telecommuting">Parution : <span>{{ jobOffer.creationDate|date('d/m/Y') }}</span></h3>
+                            {% endif %}
+                            <h3 class="profil_category_title_candidate title_telecommuting">Télétravail accepté : <span>Oui</span></h3>
+                        {% endif %}
+                    </div>
+                </div>
+            {% else %}
+                <div class="show_candidate_sens_rate offer_right_part_section">
+                    {% if jobOffer.creationDate is not empty %}
+                        <h3 class="profil_category_title_candidate title_telecommuting">Parution : <span>{{ jobOffer.creationDate|date('d/m/Y') }}</span></h3>
+                    {% endif %}
+                </div>
+            {% endif %}
             {% if entity.scoring is not empty %}
                 <div class="show_candidate_sens_rate offer_right_part_section">
                     {% if entity.scoring is not empty %}
@@ -134,17 +152,12 @@
                         </p>
                     {% endif %}
                 </div>
-            {% endif %}
-            {% if jobOffer.telecommuting %}
-            <div class="col-12">
+            {% else %}
                 <div class="show_candidate_sens_rate offer_right_part_section">
-                    {% if jobOffer.telecommuting %}
-                        <h3 class="profil_category_title_candidate title_telecommuting">Télétravail accepté : <span>Oui</span></h3>
-                    {% else %}
-                        <h3 class="profil_category_title_candidate title_telecommuting">Télétravail accepté : <span>Non</span></h3>
-                    {% endif %}
+                    <p class="alert alert-success">
+                        Le recruteur n'a pas encore calculé son taux de sens
+                    </p>
                 </div>
-            </div>
             {% endif %}
             {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
                 {% if jobOffer.entity != app.user %}
@@ -152,6 +165,10 @@
                         <a class="btn_postuler btn required" href="{{ path('apply', {'id': jobOffer.id}) }}">Postuler à cette offre</a>
                     </div>
                 {% endif %}
+            {% else %}
+                <div class="container_button_postuler">
+                    <a class="btn_postuler btn required" href="{{ path('app_register') }}">Postuler à cette offre</a>
+                </div>
             {% endif %}
         </div>
     </div>
