@@ -125,7 +125,6 @@ class User implements UserInterface, \Serializable
         $this->updatedAt = new DateTime();
         $this->comments = new ArrayCollection();
         $this->messages = new ArrayCollection();
-
     }
 
     /**
