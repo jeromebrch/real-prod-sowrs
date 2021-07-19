@@ -109,7 +109,16 @@
                                 <h3 class="profil_category_title_candidate title_telecommuting">Parution : <span>{{ jobOffer.creationDate|date('d/m/Y') }}</span></h3>
                             {% endif %}
                             <h3 class="profil_category_title_candidate title_telecommuting">Télétravail accepté : <span>Oui</span></h3>
+                            <h3 class="profil_category_title_candidate">Localisation du poste : <span>{{ jobOffer.city }}</span></h3>
+
                         {% endif %}
+                        <div class="mapContainer">
+                            <div class="map" id="map"></div>
+                        </div>
+                        <div class="row">
+                            <a class="btn btnItinéraire" target="_blank" href="https://www.google.com/maps/dir//{{ jobOffer.numberAddress }}+{{ jobOffer.Address }}+{{ jobOffer.postalCode }}+{{ jobOffer.city }}">Itinéraire vers votre nouveau job</a>
+                        </div>
+
                     </div>
                 </div>
             {% else %}
@@ -172,6 +181,12 @@
             {% endif %}
         </div>
     </div>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+          integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+          crossorigin=""/>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" />
+
+
 {% endblock %}
 
 {% block javascripts %}
@@ -211,5 +226,70 @@
                 options: {}
             });
         </script>
+
     {% endif %}
+
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+            integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+            crossorigin=""></script>
+    <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
+
+    <script>
+        let lat;
+        let lon;
+        let mymap;
+        let marker;
+
+        //On récupère la ville du candidat
+        //Todo: Si ville vide
+        let city = "{{ jobOffer.numberAddress}} {{ jobOffer.address }} {{ jobOffer.postalCode }}{{ jobOffer.city }}";
+        console.log(`Vérif' ville ${city}`)
+
+        let sowrsIcon = L.icon({
+            iconUrl: '../../img/map-marker-alt-solid.svg',
+            iconSize:     [35, 65], // size of the icon
+            iconAnchor:   [15, 52], // point of the icon which will correspond to marker's location
+
+            popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+        });
+
+
+        //On fais la requète au pres de l'api NOMINATIM
+        //Todo: refaire propre les xml status (si requete ne passe pas ou autres ..)
+
+        const xmlhttp = new XMLHttpRequest()
+        xmlhttp.onreadystatechange = () => {
+            if(xmlhttp.readyState === 4){
+                //si la requète passe on recupère la ville, les coordonnées et on init la map + marqueur
+                if (xmlhttp.status === 200){
+                    let response = JSON.parse(xmlhttp.response)
+                    console.log(response)
+
+                    lat = response[0]["lat"];
+                    lon = response[0]["lon"];
+
+                    mymap = L.map('map').setView([lat, lon], 13);
+
+
+                    marker = L.marker([lat, lon], {icon: sowrsIcon}).addTo(mymap);
+
+                    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                        attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery ©',
+                        maxZoom: 25,
+                    }).addTo(mymap);
+
+                    console.log(`la ville est ${city} aux coordonnées ${lat} et ${lon}`)
+
+
+                }
+            }
+        }
+
+        xmlhttp.open("get", `https://nominatim.openstreetmap.org/search?q=${city}&format=json&adressdetails=1&limit=1`)
+
+        xmlhttp.send()
+
+
+
+    </script>
 {% endblock %}

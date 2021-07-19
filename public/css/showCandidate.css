@@ -132,6 +132,36 @@ label[for="message_mediaFile"]{
     align-items: center;
     flex-wrap: wrap;
 }
+.mapContainer{
+    margin-top: 12px;
+}
+.mapContainerCandidate{
+    margin-top: 7px;
+    justify-content: center;
+    align-items: center;
+}
+.mapContainerRecruiter{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    margin-left: 20px;
+    margin-right: 20px;
+    background-color: #ffffff;
+    border-radius: 30px;
+    border: #E6E9E9;
+}
+.mapCandidate{
+    height: 30vh;
+    width: 100%;
+}
+.map{
+    justify-content: center;
+    align-items: center;
+    height: 30em;
+    width: 100%;
+}
 
 @media screen and (max-width: 376px){
     .show_candidate_sens_rate{

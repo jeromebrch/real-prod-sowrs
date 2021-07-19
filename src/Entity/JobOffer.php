@@ -119,6 +119,21 @@ class JobOffer
      */
     private $interestedCandidates;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $address;
+
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $numberAddress;
+
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $postalCode;
+
     public function __construct(){
         $this->creationDate = new DateTime();
         $this->published = true;
@@ -382,6 +397,42 @@ class JobOffer
         if ($this->interestedCandidates->removeElement($interestedCandidate)) {
             $interestedCandidate->removeFavoriteOffer($this);
         }
+
+        return $this;
+    }
+
+    public function getAddress(): ?string
+    {
+        return $this->address;
+    }
+
+    public function setAddress(?string $address): self
+    {
+        $this->address = $address;
+
+        return $this;
+    }
+
+    public function getNumberAddress(): ?int
+    {
+        return $this->numberAddress;
+    }
+
+    public function setNumberAddress(?int $numberAddress): self
+    {
+        $this->numberAddress = $numberAddress;
+
+        return $this;
+    }
+
+    public function getPostalCode(): ?int
+    {
+        return $this->postalCode;
+    }
+
+    public function setPostalCode(?int $postalCode): self
+    {
+        $this->postalCode = $postalCode;
 
         return $this;
     }
