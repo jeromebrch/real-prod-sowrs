@@ -1,8 +1,17 @@
 <div class="nav_top">
-    <div class="container_logo_home">
-        <a href="{{ path('main') }}" title="Sowrs | Home">
-            <img id="logo_sowrs" src="{{ asset('img/logo-base-50px-haut.png') }}" alt="Sowrs" title="SOWRS">
-        </a>
+    <div class="container_top_nav">
+        <i class="fas fa-bars fa-3x burger_menu"></i>
+        <i class="fas fa-bars fa-3x burger_menu_restore"></i>
+        <div class="container_logo_home">
+            <a href="{{ path('main') }}" title="Sowrs | Home">
+                <img id="logo_sowrs" src="{{ asset('img/logo-base-50px-haut.png') }}" alt="Sowrs" title="SOWRS">
+            </a>
+        </div>
+        {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+            <a href="{{ path('main_dash_board') }}"><i class="fas fa-user fa-3x user_icon"></i></a>
+        {% else %}
+            <a href="{{ path('app_login') }}"><i class="fas fa-user fa-3x user_icon"></i></a>
+        {% endif %}
     </div>
     <div class="container_nav_top">
         {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
@@ -93,33 +102,4 @@
         </div>
     </div>
 </div>
-
-
-
-
-
-
-{#
-<nav class="navbar navbar-expand-lg navbar-light" id="main_navbar">
-<div class="container-fluid">
-
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-            data-bs-target="#navbarNav"
-            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-
-    </div>
-</div>
-</nav>
-
-{% block javascripts %}
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
-        crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.5.4/umd/popper.min.js"></script>
-{% endblock %}
-
-#}
 

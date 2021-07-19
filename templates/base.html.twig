@@ -103,13 +103,21 @@
 
     <script>
         window.addEventListener("load", function(event) {
-            let btnShowNavMini = document.querySelector('.fa-chevron-circle-down');
+            let btnShowNavMini = document.querySelector('.burger_menu');
             let bigPrincipalNav = document.querySelector('.container_principal_nav');
             let miniPrincipalNav = document.querySelector('.container_principal_nav_mini');
+            let btnMenuRestore = document.querySelector(".burger_menu_restore");
+            let userIcon = document.querySelector(".user_icon");
             btnShowNavMini.addEventListener('click', function () {
                 bigPrincipalNav.setAttribute('style', 'display:none;');
                 miniPrincipalNav.setAttribute('style', 'display:flex;');
                 btnShowNavMini.setAttribute('style', 'display:none;')
+                btnMenuRestore.setAttribute('style', 'display:block');
+            });
+            btnMenuRestore.addEventListener('click', function (){
+               miniPrincipalNav.setAttribute('style', 'display:none');
+               btnShowNavMini.setAttribute('style', 'display:block');
+               btnMenuRestore.setAttribute('style', 'display:none');s
             });
         });
     </script>

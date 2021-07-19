@@ -12,6 +12,9 @@
             {% endif %}
         {% else %}
             <div>
+                <a href="{{ path('main_job_offers_list') }}">CONSULTER LES OFFRES</a>
+            </div>
+            <div>
                 <a href="{{ path('app_register') }}">CONSULTER LES CV</a>
             </div>
         {% endif %}
@@ -27,9 +30,6 @@
         <div>
             <a href="{{ path('main_contact_us') }}" aria-current="page">CONTACTEZ-NOUS</a>
         </div>
-    </div>
-    <div class="btn_principal_nav_mini">
-        <i class="fas fa-chevron-circle-down"></i>
     </div>
     <div class="container_principal_nav_mini">
         <div class="principal_nav_mini">
@@ -63,6 +63,11 @@
             <div>
                 <a href="{{ path('main_contact_us') }}" aria-current="page">CONTACTEZ-NOUS</a>
             </div>
+            {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+                <div>
+                    <a href="{{ path('app_logout') }}" aria-current="page">DÉCONNEXION</a>
+                </div>
+            {% endif %}
         </div>
     </div>
 </nav>
