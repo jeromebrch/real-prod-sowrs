@@ -99,7 +99,10 @@ class RegistrationController extends AbstractController
             $status = $formRecruiter->get('legalStatus')->getData()->getText();
             if($status == "Association"){
                 $regex = '#^[W]{1}[0-9]{9}$#';
+                $regexSIRET = '#^[0-9]{14}$#';
                 if(preg_match($regex, $siret)){
+                    $validator = true;
+                }elseif(preg_match($regexSIRET, $siret)){
                     $validator = true;
                 }
             }else{
