@@ -10,6 +10,9 @@ const validateCandidatePassword = document.querySelector("#candidate_plainPasswo
 const validateRecruiterPassword = document.querySelector("#recruiter_plainPassword_second");
 const passwordCandidate = document.querySelector("#candidate_plainPassword_first");
 const passwordRecruiter = document.querySelector("#recruiter_plainPassword_first");
+const siretInput = document.querySelector("#recruiter_activityNumber");
+const recruiterLegalStatus = document.querySelector('#recruiter_legalStatus');
+let valueStatus = 0;
 
 
 btnCandidat.addEventListener('click', function (e) {
@@ -42,11 +45,28 @@ btnRecruteurMini.addEventListener('click', function (e) {
     formCandidat.classList.add("d-none");
     formRecruteur.classList.remove("d-none");
 });
-
-btnContactCandidate.addEventListener('click', function (e){
-
+recruiterLegalStatus.addEventListener('change', function (){
+   valueStatus = recruiterLegalStatus.value;
 });
-btnContactRecruiter.addEventListener('click', function (e){
-
+//Dynamic verification for the legal status, in case of Association (number 13) or other status
+siretInput.addEventListener('blur', function (){
+    let regexAssoc = new RegExp('^[W][0-9]{9}$');
+    let regexSIRET = new RegExp('^[0-9]{14}$');
+    let myValidator = false;
+    console.log(valueStatus);
+    if(valueStatus === '13'){
+        if(regexAssoc.test(siretInput.value)){
+            myValidator = true
+        }
+        if(regexSIRET.test(siretInput.value)){
+            myValidator = true
+        }
+        if(!myValidator){
+            alert('Merci de vérifier votre numéro de SIRET ou votre code RNA');
+        }
+    }else{
+        if(!regexSIRET.test(siretInput.value)){
+            alert('Merci d\'indiquer un numéro de SIRET valide');
+        }
+    }
 });
-
