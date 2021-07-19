@@ -10,11 +10,7 @@
 /vendor/
 /public/file/cv/
 /public/bundles/
-<<<<<<< HEAD
-/public/uploads/illustrations
-=======
-/public/uploads/illustrations/
->>>>>>> eab1670447f98f04e6617222738c0cdf6b373b6d
+/public/uploads/illustrations/*
 /public/file/uploads/
 /public/file/uploads/illustrations/
 /public/file/uploads/illustrations/.tmb/
