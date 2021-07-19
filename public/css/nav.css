@@ -8,6 +8,18 @@
 #logo_sowrs{
     padding: 20px;
 }
+.burger_menu{
+    display: none;
+}
+.user_icon{
+    display: none;
+}
+.burger_menu_restore{
+    display: none;
+}
+.burger_menu, .burger_menu_restore, .user_icon{
+    color: #937FA4;
+}
 .container_logo_home{
     display: flex;
     flex-direction: row;
@@ -87,6 +99,31 @@
     .container_nav_top{
         display: none;
     }
+    .container_nav_top{
+        display: none;
+    }
+    .container_nav_top_mini{
+        display: none;
+    }
+    .burger_menu{
+        display: block;
+        padding-left: 20px;
+    }
+    .burger_menu_restore{
+        padding-left: 20px;
+    }
+    .user_icon{
+        display: block;
+        padding-right: 20px;
+    }
+    .container_top_nav{
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between!important;
+        align-items: center;
+        padding: 15px;
+    }
 }
 @media screen and (max-width: 470px){
     #link_job_board{
@@ -99,9 +136,30 @@
         font-size: 1em;
     }
 }
+@media screen and (max-width: 490px){
+    .container_main_options a{
+        text-align: center;
+    }
+}
 @media screen and (max-width: 295px){
     .principal_nav_mini div a{
         font-size: 0.8em!important;
         padding: 0!important;
+    }
+}
+@media screen and (max-width: 415px){
+    .burger_menu{
+        padding-left: 0!important;
+    }
+    .burger_menu_restore{
+        padding-left: 0!important;
+    }
+    .user_icon{
+        padding-right: 0!important;
+    }
+}
+@media screen and (max-width: 370px){
+    #logo_sowrs{
+        max-width: 150px!important;
     }
 }

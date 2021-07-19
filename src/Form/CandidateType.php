@@ -103,7 +103,6 @@ class CandidateType extends AbstractType
                 'required' => false,
                 'placeholder' => '---Sélectionner un niveau d\'expérience---'
             ])
-
             ->add('businessProfile', EntityType::class, [
                 'class' => BusinessProfile::class,
                 'choice_label' => 'wording',

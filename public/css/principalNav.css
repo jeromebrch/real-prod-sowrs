@@ -5,11 +5,11 @@
     align-items: center;
 }
 .container_principal_nav>div{
-    padding: 10px 30px 10px 30px;
+    padding: 10px 20px 10px 20px;
 }
 .container_principal_nav>div>a{
     color: #1dca91;
-    font-size: 1.5em;
+    font-size: 1.2em;
     font-weight: bold;
     font-family: 'KohinoorBangla', Arial, serif;
 }
@@ -79,5 +79,10 @@
         flex-direction: row;
         justify-content: center;
         align-items: center;
+    }
+}
+@media screen and (max-width: 1135px){
+    .container_principal_nav>div>a{
+        font-size: 1em;
     }
 }

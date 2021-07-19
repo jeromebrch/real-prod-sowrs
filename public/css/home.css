@@ -131,6 +131,23 @@
     color: #555555;
     border: 1px solid #55555588;
 }
+.container_main_options{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    padding-bottom: 20px;
+}
+.container_main_options a{
+    padding: 5px 15px 5px 15px;
+    border-radius: 30px;
+    border: 1px solid white;
+    color: white;
+    margin-right: 15px;
+}
+.container_main_options a:hover{
+    background-color: #1dca91;
+}
 
 @media screen and (max-width: 365px){
     .btn_close_popup{
@@ -142,6 +159,17 @@
     }
     .presentation_popup{
         padding: 3px!important;
+    }
+}
+@media screen and (max-width: 455px){
+    .container_main_options a{
+        font-size: 0.8em!important;
+        text-align: center;
+    }
+}
+@media screen and (max-width: 500px){
+    .home_subtitle{
+        font-size: 1em;
     }
 }
 @media screen and (max-width: 992px){
