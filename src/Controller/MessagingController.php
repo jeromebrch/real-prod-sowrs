@@ -7,6 +7,7 @@ use App\Entity\Message;
 use App\Entity\User;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -19,7 +20,7 @@ class MessagingController extends AbstractController
      * @param EntityManagerInterface $em
      * @return Response
      */
-    public function seeMessaging(EntityManagerInterface $em): Response
+    public function seeMessaging(EntityManagerInterface $em, Request $request): Response
     {
         /**
          * @var User $user
@@ -31,6 +32,7 @@ class MessagingController extends AbstractController
         $messageState = $em->getRepository(Message::class)->count(['userRecipient' => $user, 'state' => 'non lu']);
         $nonlu = 'non lu';
         $category = $this->getDoctrine()->getRepository(Category::class)->findAll();
+        $applieSended = $request->query->get('applieSended');
 
 
         return $this->render('messaging/messaging_page.html.twig', [
@@ -38,7 +40,8 @@ class MessagingController extends AbstractController
             'messages' => $messages,
             'category' => $category,
             'nonlus' => $messageState,
-            'nonlu' => $nonlu
+            'nonlu' => $nonlu,
+            'applieSended' => $applieSended
 
         ]);
     }

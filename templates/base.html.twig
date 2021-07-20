@@ -122,6 +122,19 @@
         });
     </script>
 
+    <script>
+        let btnCreateOffer = document.querySelector(".create_offer_option");
+        let createOfferModal = document.querySelector(".create_offer_modal");
+        let btnCloseModal = document.querySelector(".fa-window-close");
+        // btnCreateOffer.addEventListener('click', function (e){
+        //     e.preventDefault();
+        //     createOfferModal.setAttribute('style', 'display:block');
+        // });
+        btnCloseModal.addEventListener('click', function (){
+            createOfferModal.setAttribute('style', 'display:none;');
+        });
+    </script>
+
     <script src="{{ asset('js/footer_btn.js') }}"></script>
 
 {% endblock %}

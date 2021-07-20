@@ -27,10 +27,13 @@ class CandidateListController extends AbstractController
     {
         $user = $this->getUser();
         $data = new SearchCandidate();
+        $research = 0;
         $userFavorites = [];
         $formSearch = $this->createForm(SearchCandidateType::class, $data);
         $formSearch->handleRequest($request);
-
+        if($formSearch->isSubmitted() && $formSearch->isValid()){
+            $research = true;
+        }
         $donnees = $repoCandidate->searchCandidate($data);
         $candidates = $paginator->paginate(
             $donnees,
@@ -46,7 +49,8 @@ class CandidateListController extends AbstractController
             'formSearch' => $formSearch->createView(),
             'listCandidates' => $candidates,
             'candidates' => $candidateList,
-            'favorites' => $userFavorites
+            'favorites' => $userFavorites,
+            'research' => $research
         ]);
     }
 }

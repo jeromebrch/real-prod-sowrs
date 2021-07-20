@@ -37,13 +37,15 @@ class RecruiterController extends AbstractController
      * @param JobOfferRepository $jobOfferRepo
      * @return Response
      */
-    public function myOffers(JobOfferRepository $jobOfferRepo): Response
+    public function myOffers(JobOfferRepository $jobOfferRepo, Request $request): Response
     {
         $id = $this->getUser()->getId();
+        $offerCreated = $request->query->get('offerCreated');
         $jobOffers = $jobOfferRepo->findJobOffersByRecruiterId($id);
 
         return $this->render('dash_board/jobOffer/myOffers.html.twig', [
             'jobOffers' => $jobOffers,
+            'offerCreated' => $offerCreated
         ]);
     }
 

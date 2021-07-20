@@ -39,6 +39,7 @@ class JobofferController extends AbstractController
 
 
         if ($jobOfferForm->isSubmitted() && $jobOfferForm->isValid()) {
+            $offerCreated = 1;
           //getting the recruiter
             $offer->setEntity($this->getUser());
             $em->persist($offer);
@@ -60,7 +61,9 @@ class JobofferController extends AbstractController
 
             $mailer->send($email);
 
-            return $this->redirectToRoute('dash_board_my_offers');
+            return $this->redirectToRoute('dash_board_my_offers', [
+                'offerCreated' => true
+            ]);
         }
 
         return $this->render('dash_board/jobOffer/jobOfferCreation.html.twig', [

@@ -26,8 +26,12 @@ class JobOfferListController extends AbstractController
     {
         $user = $this->getUser();
         $data = new SearchJobOffers();
+        $research = false;
         $formSearch = $this->createForm(SearchJobOfferType::class, $data);
         $formSearch->handleRequest($request);
+        if($formSearch->isSubmitted() && $formSearch->isValid()){
+            $research = true;
+        }
         $donnees = $jobOfferRepo->SearchJobOffers($data);
         $jobOffers = $paginator->paginate(
             $donnees,
@@ -38,11 +42,13 @@ class JobOfferListController extends AbstractController
             return $this->render('main/jobOffersList.html.twig', [
                 'jobOffers' => $jobOffers,
                 'formSearch' => $formSearch->createView(),
+                'research' => $research
             ]);
         }else{
             return $this->render('main/jobOffersList.html.twig', [
                 'jobOffers' => $jobOffers,
-                'formSearch' => $formSearch->createView()
+                'formSearch' => $formSearch->createView(),
+                'research' => false
             ]);
         }
     }

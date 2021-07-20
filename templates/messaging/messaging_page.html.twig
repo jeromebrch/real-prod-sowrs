@@ -145,6 +145,24 @@
                     </div>
                 {% endif %}
             </div>
+            {% if applieSended %}
+                <div class="create_offer_modal">
+                    <div class="modal_content">
+                        <div class="container_close_modal">
+                            <i class="far fa-2x fa-window-close"></i>
+                        </div>
+                        <h4>Soutenez SOWRS, le jobboard solidaire</h4>
+                        <p>
+                            SOWRS n’a pas d’autres ressources que vos participations.
+                            Chaque utilisateur donne à hauteur de ses moyens pour que chacun puisse profiter de tous
+                            les services sans distinction. Aidez-nous à atteindre notre objectif commun : travailler à rendre le monde meilleur !
+                        </p>
+                        <div class="container_options_modal">
+                            <a target="_blank" class="btn btn_tipeee_modal" href="https://fr.tipeee.com/sowrs">Je participe</a>
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
         </div>
 {% endblock %}
 
