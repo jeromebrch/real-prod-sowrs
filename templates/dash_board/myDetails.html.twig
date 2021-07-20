@@ -289,11 +289,6 @@
                                     {{ form_row(modifyUserForm.department) }}
                                 </div>
                             </div>
-                            {% if app.user.CarbonFootPrintProofFilename %}
-                                <div class="row">
-                                    <a class="btn" id="download_actual_proof" href="{{ asset('uploads/carbonFootPrintProof/' ~ user.CarbonFootPrintProofFilename) }}">Votre justificatif actuel</a>
-                                </div>
-                            {% endif %}
                             <div class="row">
                                 <div class="col-sm-6 col-lg-6 pt-3">
                                     {{ form_row(modifyUserForm.entityName) }}
@@ -310,7 +305,7 @@
                                     {{ form_row(modifyUserForm.secondaryCauses) }}
                                 </div>
                             </div>
-                            <div class="row">
+                            <div class="row pt-2">
                                 <div class="col-sm-4 pt-3">
                                     {{ form_row(modifyUserForm.socialNetwork.webSite) }}
                                 </div>
@@ -333,14 +328,22 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-sm-6 col-lg-6 pt-5">
+                                <div class="col-sm-4 col-lg-4 pt-3">
                                     {{ form_row(modifyUserForm.carbonFootPrint) }}
                                 </div>
-                                <div class="col-sm-6 col-lg-6 pt-5 container_input_file_proof">
+                                <div class="col-sm-4 col-lg-5 pt-3 container_input_file_proof">
                                     {# send the carbon footprint proof in PDF #}
                                     <div class="btn required">
                                         {{ form_row(modifyUserForm.carbonFootPrintProof) }}
                                     </div>
+                                </div>
+                                {% if app.user.CarbonFootPrintProofFilename %}
+                                    <div class="col-sm-4 col-lg-3 container_actual_proof">
+                                        <a target="_blank" title="justificatif actuel" id="download_actual_proof" href="{{ asset('uploads/carbonFootPrintProof/' ~ user.CarbonFootPrintProofFilename) }}"><i class="far fa-2x fa-file-image"></i></a>
+                                    </div>
+                                {% endif %}
+                                <div class="col-sm-4 col-lg-3 pt-3 valide_footprint">
+                                    <i class="fas fa-2x fa-check check_footprint"></i>
                                 </div>
                             </div>
                         </div>
@@ -600,5 +603,17 @@
                 event.preventDefault();
             };
         });
+    </script>
+
+    <script>
+        let inputFootPrint = document.querySelector("#recruiter_modification_carbonFootPrintProof");
+        let containerActualProof = document.querySelector(".container_actual_proof");
+        let valideFootprint = document.querySelector(".valide_footprint");
+        inputFootPrint.addEventListener('change', function(){
+            containerActualProof.setAttribute('style', 'display:none;');
+            valideFootprint.setAttribute('style', 'display:flex;');
+           alert('Votre justificatif a bien été uploadé');
+        });
+
     </script>
 {% endblock %}

@@ -372,7 +372,27 @@ body .form-control{
     font-family: 'KohinoorBangla', Arial, serif;
     color: #555555;
 }
-
+.container_actual_proof{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
+}
+.valide_footprint{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
+}
+#download_actual_proof{
+    color: #937FA4;
+}
+.valide_footprint{
+    display: none;
+}
+.check_footprint{
+    color: #1dca91;
+}
 .specific-textarea{
     height: 200px;
 }

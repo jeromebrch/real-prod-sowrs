@@ -56,6 +56,25 @@
             {# LEFT PART #}
 
             <div class=" col-lg-8 col-md-12 left_part_profil">
+                {# reason to be #}
+                {% if recruiter.reasonToBe is not null %}
+                    <div class="container_category_profil">
+                        <div class="row">
+                            <h3 class="profil_category_title">Raison d'être de {{ recruiter.entityName }}</h3>
+                        </div>
+                        <div class="row">
+                            {% if recruiter.reasonToBe %}
+                                <p class="about_entity">
+                                    {{ recruiter.reasonToBe|nl2br }}
+                                </p>
+                            {% else %}
+                                <p class="alert alert-success">
+                                    Le recruteur n'a pas encore renseigné les raisons d'être de l'entreprise
+                                </p>
+                            {% endif %}
+                        </div>
+                    </div>
+                {% endif %}
                 {# about the entity #}
                 <div class="container_category_profil">
                     <div class="row">
@@ -72,6 +91,7 @@
                             </p>
                         {% endif %}
                     </div>
+                    {# the presentation video #}
                     {% if recruiter.presentationVideoURL is not empty %}
                         <div class="row">
                             <iframe width="560" height="450"
@@ -82,23 +102,6 @@
                             </iframe>
                         </div>
                     {% endif %}
-                </div>
-                {# reason to be #}
-                <div class="container_category_profil">
-                    <div class="row">
-                        <h3 class="profil_category_title">Raison d'être de {{ recruiter.entityName }}</h3>
-                    </div>
-                    <div class="row">
-                        {% if recruiter.reasonToBe %}
-                            <p class="about_entity">
-                                {{ recruiter.reasonToBe|nl2br }}
-                            </p>
-                        {% else %}
-                            <p class="alert alert-success">
-                                Le recruteur n'a pas encore renseigné les raisons d'être de l'entreprise
-                            </p>
-                        {% endif %}
-                    </div>
                 </div>
                 {# jobOffers #}
                 <div class="container_category_profil">

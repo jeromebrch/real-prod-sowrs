@@ -305,6 +305,29 @@
         <div class="row">
             {# LEFT PART #}
             <div class=" col-lg-8 col-md-12 left_part_profil">
+                {% if user.reasonToBe is not null %}
+                    {# reason to be #}
+                    <div class="container_category_profil">
+                        <div class="row">
+                            {% if user.entityName %}
+                                <h3 class="profil_category_title">Raison d'être de {{ user.entityName }}</h3>
+                            {% else %}
+                                <h3 class="profil_category_title">Raison d'être</h3>
+                            {% endif %}
+                        </div>
+                        <div class="row">
+                            {% if user.reasonToBe %}
+                                <p class="recruiter_reason_to_be">
+                                    {{ user.reasonToBe|nl2br }}
+                                </p>
+                            {% else %}
+                                <p class="alert alert-success">
+                                    Vous n'avez pas encore défini la raison d'être de votre entreprise
+                                </p>
+                            {% endif %}
+                        </div>
+                    </div>
+                {% endif %}
                 {# about the entity #}
                 <div class="container_category_profil">
                     <div class="row">
@@ -335,27 +358,6 @@
                             </iframe>
                         </div>
                     {% endif %}
-                </div>
-                {# reason to be #}
-                <div class="container_category_profil">
-                    <div class="row">
-                        {% if user.entityName %}
-                            <h3 class="profil_category_title">Raison d'être de {{ user.entityName }}</h3>
-                        {% else %}
-                            <h3 class="profil_category_title">Raison d'être</h3>
-                        {% endif %}
-                    </div>
-                    <div class="row">
-                        {% if user.reasonToBe %}
-                            <p class="recruiter_reason_to_be">
-                                {{ user.reasonToBe|nl2br }}
-                            </p>
-                        {% else %}
-                            <p class="alert alert-success">
-                                Vous n'avez pas encore défini la raison d'être de votre entreprise
-                            </p>
-                        {% endif %}
-                    </div>
                 </div>
                 {# jobOffers #}
                 <div class="container_category_profil">

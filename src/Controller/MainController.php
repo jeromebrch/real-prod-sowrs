@@ -64,7 +64,8 @@ class MainController extends AbstractController
                 'jobOffers' => $jobOffers,
                 'favorites' => $userFavoritesOffers,
                 'formSearchHome' => $formSearchHome->createView(),
-                'user' => $user
+                'user' => $user,
+                'research' => false
             ]);
         }elseif($formSearchCandidate->isSubmitted() && $formSearchCandidate->isValid()){
             $candidates = $candidateRepo->searchCandidate($formSearchCandidate->getData());
@@ -81,7 +82,8 @@ class MainController extends AbstractController
                 'formSearch' => $formSearchCandidate->createView(),
                 'user' => $user,
                 'listCandidates' => $listCandidates,
-                'favorites' => $userFavoritesOffers
+                'favorites' => $userFavoritesOffers,
+                'research' => false
             ]);
         }else{
             return $this->render('main/home.html.twig', [
