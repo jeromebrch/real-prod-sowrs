@@ -479,6 +479,26 @@
         </div>
     </div>
     </div>
+    <div class="delete_video_modal general_modal">
+        <div class="loader_box">
+            <div class="lds-dual-ring"></div>
+        </div>
+    </div>
+    <div class="general_modal success_delete_video_modal">
+        <div class="just_simple_info_modal">
+            <h4>La vidéo a bien été supprimée &#128077</h4>
+        </div>
+    </div>
+    <div class="general_modal problem_delete_video_modal">
+        <div class="just_simple_info_modal">
+            <h4>Problème pendant le traitement...</h4>
+        </div>
+    </div>
+    <div class="general_modal success_footprint_video_modal">
+        <div class="just_simple_info_modal">
+            <h4>Le justificatif a bien été uploadé &#128077</h4>
+        </div>
+    </div>
 {% endblock %}
 
 {% block javascripts %}
@@ -539,6 +559,9 @@
     </script>
 
     <script>
+        const deleteVideoModal = document.querySelector(".success_delete_video_modal");
+        const deleteVideoLoader = document.querySelector(".delete_video_modal");
+        const deleteVideoProblemModal = document.querySelector(".problem_delete_video_modal");
         //delete the video URL
         $(".delete_video_url i").on("click", function (){
             fetch("{{ path('delete_video_URL') }}", {
@@ -549,13 +572,22 @@
                 body: JSON.stringify({
                 })
             })
+                .then(deleteVideoLoader.setAttribute('style', 'display:flex'))
                 .then(response => response.json())
                 .then(response => {
                     if (response.success) {
-                        alert("La vidéo a bien été supprimée");
                         document.getElementById("recruiter_modification_presentationVideoURL").setAttribute("value", "");
+                        deleteVideoLoader.setAttribute('style', 'display:none');
+                        deleteVideoModal.setAttribute('style', 'display:flex');
+                        setTimeout(function (){
+                            deleteVideoModal.setAttribute('style', 'display:none');
+                        }, 2000);
                     } else {
-                        alert("Il y a eu un problème lors du traitement");
+                        deleteVideoLoader.setAttribute('style', 'display:none')
+                        deleteVideoProblemModal.setAttribute('style', 'display:flex');
+                        setTimeout(function (){
+                            deleteVideoProblemModal.setAttribute('style', 'display:none');
+                        }, 2000);
                     }
                 })
                 .catch(e => {
@@ -609,10 +641,14 @@
         let inputFootPrint = document.querySelector("#recruiter_modification_carbonFootPrintProof");
         let containerActualProof = document.querySelector(".container_actual_proof");
         let valideFootprint = document.querySelector(".valide_footprint");
+        const uploadFootPrintModal = document.querySelector(".success_footprint_video_modal");
         inputFootPrint.addEventListener('change', function(){
             containerActualProof.setAttribute('style', 'display:none;');
             valideFootprint.setAttribute('style', 'display:flex;');
-           alert('Votre justificatif a bien été uploadé');
+            uploadFootPrintModal.setAttribute('style', 'display:flex');
+            setTimeout(function (){
+                uploadFootPrintModal.setAttribute('style', 'display:none');
+            }, 2000);
         });
 
     </script>

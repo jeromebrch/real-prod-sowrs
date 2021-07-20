@@ -3,6 +3,14 @@
     src: url('polices/KohinoorBangla.ttc'),
     url('polices/KohinoorBangla.ttf');
 }
+@keyframes lds-dual-ring {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
 .job_offer_row{
     border: 2px solid lightgray;
     border-radius: 20px;
@@ -416,6 +424,22 @@ body .form-control{
 .btn_modify_informations{
     width: 80% !important;
     height: auto;
+}
+.lds-dual-ring {
+    display: inline-block;
+    width: 80px;
+    height: 80px;
+}
+.lds-dual-ring:after {
+    content: " ";
+    display: block;
+    width: 64px;
+    height: 64px;
+    margin: 8px;
+    border-radius: 50%;
+    border: 6px solid #fff;
+    border-color: #fff transparent #fff transparent;
+    animation: lds-dual-ring 1.2s linear infinite;
 }
 
 @media screen and (max-width: 576px){

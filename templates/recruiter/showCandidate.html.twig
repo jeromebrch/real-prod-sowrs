@@ -230,6 +230,11 @@
             </div>
         </div>
     </div>
+    <div class="general_modal uploaded_file_message_recruiter_modal">
+        <div class="just_simple_info_modal">
+            <h4>Fichier uploadé avec succès &#128077</h4>
+        </div>
+    </div>
 {% endblock %}
 
 {% block javascripts %}
@@ -284,6 +289,7 @@
 
     {# Change the upload appaerance when file is uploaded #}
     <script>
+        const fileUploadMessageRecruiter = document.querySelector(".uploaded_file_message_recruiter_modal");
 
         window.addEventListener('load', function (){
             let firstDocument = document.querySelector('#message_cvFile');
@@ -293,12 +299,18 @@
             firstDocument.addEventListener('change', function (){
                 btn_upload_first.setAttribute('style', 'color:#1DCA91!important;');
                 btn_upload_first.setAttribute('title', firstDocument.value);
-                alert('Votre fichier est bien importé !');
+                fileUploadMessageRecruiter.setAttribute('style', 'display:flex');
+                setTimeout(function (){
+                    fileUploadMessage.setAttribute('style', 'display:none');
+                }, 2000);
             });
             secondDocument.addEventListener('change', function (){
                 btn_upload_second.setAttribute('style', 'color:#1DCA91!important;');
                 btn_upload_second.setAttribute('title', secondDocument.value);
-                alert('Votre fichier est bien importé !');
+                fileUploadMessageRecruiter.setAttribute('style', 'display:flex');
+                setTimeout(function (){
+                    fileUploadMessage.setAttribute('style', 'display:none');
+                }, 2000);
             });
         });
 

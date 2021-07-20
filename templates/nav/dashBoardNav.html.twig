@@ -134,6 +134,32 @@
         <h5 class="text-dash-board">Nous recrutons ensemble<br>depuis
             le {{ app.user.registrationDate | date('d/m/Y') }} </h5>
     {% endif %}
+    {# modal boxes #}
+    <div class="loaded_modal general_modal">
+        <div class="loader_box">
+            <div class="lds-dual-ring"></div>
+        </div>
+    </div>
+    <div class="picture_loaded_modal">
+        <div class="just_simple_info_modal">
+            <h4>Votre photo est uploadée &#128077</h4>
+        </div>
+    </div>
+    <div class="general_modal bad_file_modal">
+        <div class="just_simple_info_modal">
+            <h4>Impossible d'uploader votre photo &#128532</h4>
+        </div>
+    </div>
+    <div class="general_modal cv_loaded_modal">
+        <div class="just_simple_info_modal">
+            <h4>Votre CV est uploadée &#128077</h4>
+        </div>
+    </div>
+    <div class="general_modal bad_cv_modal">
+        <div class="just_simple_info_modal">
+            <h4>Impossible d'uploader votre CV &#128532</h4>
+        </div>
+    </div>
 </nav>
 {% block javascripts %}
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
@@ -145,21 +171,34 @@
         const elementFormPicture = document.getElementById('updateavatarform');
         const elementInputPicture = document.getElementById('dash_board_nav_pictureFile');
         const elementPhotoProfile = document.getElementById('photo_profile');
+        const loaderModal = document.querySelector(".loaded_modal");
+        const pictureLoadedModal = document.querySelector(".picture_loaded_modal");
+        const cvLoadedModal = document.querySelector(".cv_loaded_modal");
+        const badFileModal = document.querySelector(".bad_file_modal");
+        const badCVModal = document.querySelector(".bad_cv_modal");
 
         elementInputPicture.addEventListener("change", function () {
             let formData = new FormData(elementFormPicture);
             fetch('{{ path('register_picture') }}', {method: 'POST', body: formData})
+                .then(loaderModal.setAttribute('style', 'display:flex'))
                 .then(response => response.json())
                 .then(response => {
                     elementPhotoProfile.src = baseURL + '/images/profils/' + response.pictureName;
-                }).catch(e => {
-                alert('erreur de fichier');
-                console.log(e);
+                    loaderModal.setAttribute('style', 'display:none');
+                    pictureLoadedModal.setAttribute('style', 'display:flex;');
+                    setTimeout(function (){
+                        pictureLoadedModal.setAttribute('style', 'display:none;');
+                    }, 2000);
+                })
+                .catch(e => {
+                    badFileModal.setAttribute('style', 'display:flex;');
+                    setTimeout(function (){
+                        badFileModal.setAttribute('style', 'display:none;');
+                    }, 2000);
             });
         });
         elementFormPicture.addEventListener("submit", function (e) {
             e.preventDefault();
-            console.log("submit");
         });
 
         const elementFormCv = document.getElementById('updatecvform');
@@ -174,19 +213,27 @@
                     method: 'POST',
                     body: formData
                 })
+                .then(loaderModal.setAttribute('style', 'display:flex'))
                 .then(response => response.json())
                 .then(response => {
-                    console.log(response);
-                    alert(response.succes)
+                    loaderModal.setAttribute('style', 'display:none');
+                    cvLoadedModal.setAttribute('style', 'display:flex;');
+                    setTimeout(function (){
+                        cvLoadedModal.setAttribute('style', 'display:none');
+                    }, 2000);
                 })
                 .catch(e => {
-                    alert(e);
+                    loaderModal.setAttribute('style', 'display:none');
+                    badCVModal.setAttribute('style', 'display:flex');
+                    setTimeout(function (){
+                        badCVModal.setAttribute('style', 'display:none;');
+                    }, 2000);
+                    console.log(e);
                 });
         });
 
         elementFormCv.addEventListener("submit", function (e) {
             e.preventDefault();
-            console.log("submit");
         });
     </script>
 {% endblock %}
