@@ -156,12 +156,17 @@ label[for="message_mediaFile"]{
     height: 30vh;
     width: 100%;
 }
-.map{
+#map{
     justify-content: center;
     align-items: center;
     height: 30em;
     width: 100%;
+    font-family: 'KohinoorBangla', Arial, serif;
+    font-size: 1.4rem;
+    color: #555555;
+    font-weight: bold;
 }
+
 
 @media screen and (max-width: 376px){
     .show_candidate_sens_rate{
