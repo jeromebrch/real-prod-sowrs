@@ -239,17 +239,16 @@
         let lon;
         let mymap;
         let marker;
-        let errorContent = 'La localisation depuis la carte n\'est pas disponible.';
+        let errorContent = 'La localisation depuis la carte n\'est pas disponible.'; //Pas utilisé pour le moment
         let mapId = document.getElementById('map');
         let nbAddress = '{{ jobOffer.numberAddress}}';
         let address = '{{ jobOffer.address }}';
         let postalCode = '{{ jobOffer.postalCode }}';
         let city = '{{ jobOffer.city }}';
 
-        //div cachée
-        mapId.hidden = true
+        //Todo: voir si comment gerer pour avoir le minimum d'erreur de recherche form regex ..
 
-        //Si au moin la ville est renseignée
+        //Si au moins la ville est renseignée
         if (city != '') {
 
             //On récupère la ville du candidat
@@ -316,6 +315,12 @@
             xmlhttp.send()
 
 
+
+        }else {
+
+            //Todo: Gestion du else
+            //div cachée
+            mapId.hidden = true
 
         }
 
