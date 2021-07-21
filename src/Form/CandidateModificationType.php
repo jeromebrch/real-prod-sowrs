@@ -134,7 +134,8 @@ class CandidateModificationType extends AbstractType
             ])
             ->add('socialNetwork', SocialNetworkType::class)
             ->add('isHandicaped', CheckboxType::class, [
-                'label' => 'Travailleur handicapé'
+                'label' => 'Travailleur handicapé',
+                'required' => false
             ])
 
             ->add('jobSearch', JobSearchType::class);
