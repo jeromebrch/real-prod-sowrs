@@ -31,6 +31,10 @@ body .job_offer_title_jumbotron{
     height: 150px;
     border-radius: 50%;
 }
+.btnItinéraire{
+    margin-top: 15px;
+    width: 90%;
+}
 
 @media screen and (max-width: 310px){
     .title_telecommuting{

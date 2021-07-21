@@ -65,29 +65,40 @@
                     </div>
                     <div class="row">
                         <div class="col-sm-6 col-lg-6 pt-3">
-                            {{ form_row(jobOfferForm.country) }}
+                            {{ form_row(jobOfferForm.numberAddress) }}
+                        </div>
+                        <div class="col-sm-6 col-lg-6 pt-3">
+                            {{ form_row(jobOfferForm.address) }}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6 col-lg-6 pt-3">
+                            {{ form_row(jobOfferForm.postalCode) }}
                         </div>
                         <div class="col-sm-6 col-lg-6 pt-3">
                             {{ form_row(jobOfferForm.city) }}
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-sm-6 col-lg-6 pt-3">
+                        <div class="col-sm-4 col-lg-4 pt-3">
                             {{ form_row(jobOfferForm.department) }}
                         </div>
-                        <div class="col-sm-6 col-lg-6 pt-3">
+                        <div class="col-sm-4 col-lg-4 pt-3">
                             {{ form_row(jobOfferForm.region) }}
+                        </div>
+                        <div class="col-sm-4 col-lg-4 pt-3">
+                            {{ form_row(jobOfferForm.country) }}
                         </div>
                     </div>
 
                     <div class="row mt-4">
                         <div class="container_options_job_offer ">
-                            <div class="pt-3 option_job_offer ">
-                                <button type="submit" class="btn btn-lg btn-primary ">Publier !</button>
-                            </div>
                             <div class="pt-3 option_job_offer">
                                 <a class="btn btn-lg btn_reset_job_offer" href="{{ path('main_dash_board') }}"
                                    role="button">Annuler</a>
+                            </div>
+                            <div class="pt-3 option_job_offer ">
+                                <button type="submit" class="btn btn-lg btn-primary ">Publier !</button>
                             </div>
                         </div>
                     </div>

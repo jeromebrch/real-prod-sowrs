@@ -37,18 +37,29 @@
                     </div>
                     <div class="row">
                         <div class="col-6">
-                            {{ form_row(jobOfferForm.city) }}
+                            {{ form_row(jobOfferForm.numberAddress) }}
                         </div>
                         <div class="col-6">
-                            {{ form_row(jobOfferForm.country) }}
+                            {{ form_row(jobOfferForm.address) }}
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-6">
-                            {{ form_row(jobOfferForm.department) }}
+                            {{ form_row(jobOfferForm.postalCode) }}
                         </div>
                         <div class="col-6">
+                            {{ form_row(jobOfferForm.city) }}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-4">
+                            {{ form_row(jobOfferForm.department) }}
+                        </div>
+                        <div class="col-4">
                             {{ form_row(jobOfferForm.region) }}
+                        </div>
+                        <div class="col-4">
+                            {{ form_row(jobOfferForm.country) }}
                         </div>
                     </div>
                     <div class="row">
@@ -77,8 +88,8 @@
                     </div>
                     <div class="row">
                         <div class="container_options">
-                            <button type="submit" class="btn btn-lg btn-primary">Modifier</button>
                             <a class="btn btn-lg" href="{{ path('dash_board_my_offers') }}" role="button">Annuler</a>
+                            <button type="submit" class="btn btn-lg btn-primary">Modifier</button>
                         </div>
                     </div>
                     {{ form_end(jobOfferForm) }}

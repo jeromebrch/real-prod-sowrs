@@ -5,7 +5,10 @@
 {% block stylesheets %}
     {{ parent() }}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"></script>
-
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+          integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+          crossorigin=""/>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" />
 {% endblock %}
 
 {% block body %}
@@ -109,7 +112,16 @@
                                 <h3 class="profil_category_title_candidate title_telecommuting">Parution : <span>{{ jobOffer.creationDate|date('d/m/Y') }}</span></h3>
                             {% endif %}
                             <h3 class="profil_category_title_candidate title_telecommuting">Télétravail accepté : <span>Oui</span></h3>
+                            <h3 class="profil_category_title_candidate">Localisation du poste : <span>{{ jobOffer.city }}</span></h3>
+
                         {% endif %}
+                        <div class="mapContainer">
+                            <div class="map" id="map"></div>
+                        </div>
+                        <div class="row">
+                            <a class="btn btnItinéraire" target="_blank" href="https://www.google.com/maps/dir//{{ jobOffer.numberAddress }}+{{ jobOffer.Address }}+{{ jobOffer.postalCode }}+{{ jobOffer.city }}">Itinéraire vers votre nouveau job</a>
+                        </div>
+
                     </div>
                 </div>
             {% else %}
@@ -172,6 +184,8 @@
             {% endif %}
         </div>
     </div>
+
+
 {% endblock %}
 
 {% block javascripts %}
@@ -211,5 +225,104 @@
                 options: {}
             });
         </script>
+
     {% endif %}
+
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+            integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+            crossorigin=""></script>
+    <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
+
+    <script>
+        let lat;
+        let lon;
+        let mymap;
+        let marker;
+        let errorContent = 'La localisation depuis la carte n\'est pas disponible.'; //Pas utilisé pour le moment
+        let mapId = document.getElementById('map');
+        let nbAddress = '{{ jobOffer.numberAddress}}';
+        let address = '{{ jobOffer.address }}';
+        let postalCode = '{{ jobOffer.postalCode }}';
+        let city = '{{ jobOffer.city }}';
+
+        //Todo: voir si comment gerer pour avoir le minimum d'erreur de recherche form regex ..
+
+        //Si au moins la ville est renseignée
+        if (city != '') {
+
+            //On récupère la ville du candidat
+            let completeAddress = nbAddress + ' ' + address + ' ' + postalCode + ' ' + city;
+            console.log(`Vérif' ville ${completeAddress}`)
+
+            //Gestion de l'icone personnalisé
+            let sowrsIcon = L.icon({
+                iconUrl: '../../img/map-marker-alt-solid.svg',
+                iconSize:     [35, 65], // size of the icon
+                iconAnchor:   [15, 52], // point of the icon which will correspond to marker's location
+                popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+            });
+
+            //On fais la requète au pres de l'api NOMINATIM (recherche addresse)
+            const xmlhttp = new XMLHttpRequest()
+            xmlhttp.onreadystatechange = () => {
+
+                //Todo: est ce que faire des decla et au cas ou des div hidden dans 1 2 et 3
+                console.log(xmlhttp.readyState)
+                if(xmlhttp.readyState === 4){
+
+                    //si la requète passe on recupère la ville, les coordonnées et on init la map + marqueur
+                    if (xmlhttp.status === 200){
+
+                        //on affiche la div si ready et status ok
+                        mapId.hidden = false
+
+                        //On recupère les infos
+                        let response = JSON.parse(xmlhttp.response)
+                        console.log(response)
+
+                        //On prend la latitude et la longitude
+                        lat = response[0]["lat"];
+                        lon = response[0]["lon"];
+
+                        //Affichage aux coordonnées récupérées
+                        mymap = L.map('map').setView([lat, lon], 13);
+
+                        //On place le marqueur
+                        marker = L.marker([lat, lon], {icon: sowrsIcon}).addTo(mymap);
+
+                        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                            attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery ©',
+                            maxZoom: 25,
+                        }).addTo(mymap);
+
+                        console.log(`la ville est ${completeAddress} aux coordonnées ${lat} et ${lon}`)
+
+
+                    }else {
+                        //On cache la div en cas d'erreur
+                        mapId.hidden = true
+
+                        //La localisation n'est pas disponible
+                        console.log(`${errorContent}`)
+
+                    }
+                }
+            }
+
+            //XML.Open Requete faite status 1
+            xmlhttp.open("get", `https://nominatim.openstreetmap.org/search?q=${completeAddress}&format=json&adressdetails=1&limit=1`)
+            xmlhttp.send()
+
+
+
+        }else {
+
+            //Todo: Gestion du else
+            //div cachée
+            mapId.hidden = true
+
+        }
+
+
+    </script>
 {% endblock %}
