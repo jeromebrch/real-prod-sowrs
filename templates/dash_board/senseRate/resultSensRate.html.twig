@@ -12,9 +12,15 @@
             </div>
             <div class="col-lg-9">
                 <div class="matching_back_ground">
-                    <h1 class="matching_big_title">
-                        Votre entité a un profil à dominante {{ scoringUser.dominantSens }}
-                    </h1>
+                    {% if scoringuser.dominantSens == "environnemental" %}
+                        <h1 class="matching_big_title">
+                            Votre entité a un profil à dominante {{ scoringUser.dominantSens }}e
+                        </h1>
+                    {% else %}
+                        <h1 class="matching_big_title">
+                            Votre entité a un profil à dominante {{ scoringUser.dominantSens }}
+                        </h1>
+                    {% endif %}
                     {% if "ROLE_RECRUITER" in app.user.roles %}
                         <div class="matching_text">
                             <p>
