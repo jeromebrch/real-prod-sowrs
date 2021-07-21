@@ -253,6 +253,9 @@
                         {% endif %}
                     {% endif %}
                 </div>
+                <div class="mapContainerRecruiter">
+                    <div class="map" id="map"></div>
+                </div>
                 {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
                     {# contact form #}
                     <div class="row container_contact">
@@ -277,6 +280,9 @@
             <h4>Fichier uploadé avec succès &#128077</h4>
         </div>
     </div>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+          integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+          crossorigin=""/>
 {% endblock %}
 
 {% block javascripts %}
@@ -355,6 +361,55 @@
                 }, 2000);
             });
         });
+
+    </script>
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+            integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+            crossorigin=""></script>
+    <script>
+        let lat;
+        let lon;
+        let mymap;
+        let marker;
+
+        //On récupère la ville du candidat
+        //Todo: Si ville vide
+        let city = "{{ recruiter.city }}";
+        console.log(`Vérif' ville ${city}`)
+
+        //On fais la requète au pres de l'api NOMINATIM
+        //Todo: refaire propre les xml status (si requete ne passe pas ou autres ..)
+
+        const xmlhttp = new XMLHttpRequest()
+        xmlhttp.onreadystatechange = () => {
+            if(xmlhttp.readyState === 4){
+                //si la requète passe on recupère la ville, les coordonnées et on init la map + marqueur
+                if (xmlhttp.status === 200){
+                    let response = JSON.parse(xmlhttp.response)
+                    console.log(response)
+
+                    lat = response[0]["lat"];
+                    lon = response[0]["lon"];
+
+                    mymap = L.map('map').setView([lat, lon], 10);
+
+                    marker = L.marker([lat, lon]).addTo(mymap);
+
+                    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                        attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery ©',
+                        maxZoom: 25,
+                    }).addTo(mymap);
+
+                    console.log(`la ville est ${city} aux coordonnées ${lat} et ${lon}`)
+                }
+            }
+        }
+
+        xmlhttp.open("get", `https://nominatim.openstreetmap.org/search?q=${city}&format=json&adressdetails=1&limit=1`)
+
+        xmlhttp.send()
+
+
 
     </script>
 {% endblock %}

@@ -14,6 +14,7 @@ use App\Entity\Remuneration;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -50,6 +51,28 @@ class JobOfferType extends AbstractType
 //                    'placeholder' => 'Tags (séparés par une virgule)'
 //                ]
 //            ])
+
+            ->add('numberAddress', IntegerType::class, [
+                'label' => false,
+                'attr' => [
+                    'placeholder' => 'Numéro de voie'
+                ]
+            ])
+
+            ->add('address', TextType::class, [
+                'label' => false,
+                'attr' => [
+                    'placeholder' => 'Nom de la voie'
+                ]
+            ])
+
+            ->add('postalCode', IntegerType::class, [
+                'label' => false,
+                'attr' => [
+                    'placeholder' => 'Code Postal'
+                ]
+            ])
+
             ->add('city', TextType::class, [
                 'label' => false,
                 'attr' => [
