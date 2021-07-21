@@ -143,11 +143,19 @@ label[for="message_mediaFile"]{
 }
 .mapContainer{
     margin-top: 12px;
+    max-height: 250px;
+}
+.map{
+    max-height: 250px;
+}
+.mapCandidate{
+    max-height: 250px;
 }
 .mapContainerCandidate{
     margin-top: 7px;
     justify-content: center;
     align-items: center;
+    max-height: 250px;
 }
 .mapContainerRecruiter{
     display: flex;
@@ -160,6 +168,7 @@ label[for="message_mediaFile"]{
     background-color: #ffffff;
     border-radius: 30px;
     border: #E6E9E9;
+    margin-top: 15px;
 }
 .mapCandidate{
     height: 30vh;
