@@ -7,11 +7,13 @@ use App\Entity\Candidate;
 use App\Entity\Cause;
 use App\Entity\Country;
 use App\Entity\Department;
+use App\Entity\Language;
 use App\Entity\LevelExperience;
 use App\Entity\LevelStudy;
 use App\Entity\Region;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -120,7 +122,20 @@ class CandidateModificationType extends AbstractType
                 'required' => false,
                 'placeholder' => '---Sélectionner une cause principale---'
             ])
+            ->add('languages', EntityType::class, [
+                'class' => Language::class,
+                'choice_label' => 'name',
+                'label' => false,
+                'required' => false,
+                'multiple' => true,
+                'attr' => [
+                    'title' => 'Langue parlées'
+                ]
+            ])
             ->add('socialNetwork', SocialNetworkType::class)
+            ->add('isHandicaped', CheckboxType::class, [
+                'label' => 'Travailleur handicapé'
+            ])
 
             ->add('jobSearch', JobSearchType::class);
 

@@ -132,6 +132,15 @@ label[for="message_mediaFile"]{
     align-items: center;
     flex-wrap: wrap;
 }
+.fa-wheelchair{
+    background-color: #0074C799;
+    padding: 8px;
+    color: white;
+    border-radius: 50%;
+    font-size: 0.5em!important;
+    position: relative;
+    bottom: 3px;
+}
 
 @media screen and (max-width: 376px){
     .show_candidate_sens_rate{

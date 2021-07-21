@@ -91,12 +91,23 @@ B     * @ORM\ManyToOne(targetEntity=Country::class, inversedBy="candidates", cas
      */
     private $favoriteOffers;
 
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $isHandicaped;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=Language::class, inversedBy="candidates")
+     */
+    private $languages;
+
     public function __construct()
     {
         parent::__construct();
         $this->commitments = new ArrayCollection();
         $this->interestedRecruiters = new ArrayCollection();
         $this->favoriteOffers = new ArrayCollection();
+        $this->languages = new ArrayCollection();
     }
 
     /**
@@ -365,6 +376,45 @@ B     * @ORM\ManyToOne(targetEntity=Country::class, inversedBy="candidates", cas
     public function removeFavoriteOffer(JobOffer $favoriteOffer): self
     {
         $this->favoriteOffers->removeElement($favoriteOffer);
+
+        return $this;
+    }
+
+    public function getIsHandicaped(): ?bool
+    {
+        return $this->isHandicaped;
+    }
+
+    public function setIsHandicaped(?bool $isHandicaped): self
+    {
+        $this->isHandicaped = $isHandicaped;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Language[]
+     */
+    public function getLanguages(): ?Collection
+    {
+        return $this->languages;
+    }
+
+    public function addLanguage(Language $language): self
+    {
+        if(empty($this->languages)){
+            $this->languages = new ArrayCollection();
+        }
+        if (!$this->languages->contains($language)) {
+            $this->languages[] = $language;
+        }
+
+        return $this;
+    }
+
+    public function removeLanguage(Language $language): self
+    {
+        $this->languages->removeElement($language);
 
         return $this;
     }

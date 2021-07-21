@@ -64,19 +64,25 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-sm-6 col-lg-6 pt-3">
+                                <div class="col-sm-4 col-lg-4 pt-3">
                                     {{ form_row(modifyUserForm.email) }}
                                 </div>
-                                <div class="col-sm-6 col-lg-6 pt-3">
+                                <div class="col-sm-4 col-lg-4 pt-3">
                                     {{ form_row(modifyUserForm.currentJob) }}
+                                </div>
+                                <div class="col-sm-4 col-lg-4 pt-3">
+                                    {{ form_row(modifyUserForm.languages) }}
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-sm-6 col-lg-6 pt-3">
+                                <div class="col-sm-4 col-lg-4 pt-3">
                                     {{ form_row(modifyUserForm.phone) }}
                                 </div>
-                                <div class="col-sm-6 col-lg-6 pt-3">
+                                <div class="col-sm-4 col-lg-4 pt-3">
                                     {{ form_row(modifyUserForm.mainCause) }}
+                                </div>
+                                <div class="col-sm-4 col-lg-4 pt-3 handicap_input">
+                                    {{ form_row(modifyUserForm.isHandicaped) }}
                                 </div>
                             </div>
                             <div class="row">
@@ -301,7 +307,7 @@
                                 <div class="col-sm-6 col-lg-6 pt-3">
                                     {{ form_row(modifyUserForm.mainCause) }}
                                 </div>
-                                <div class="col-sm-6 col-lg-6 pt-3">
+                                <div class="col-sm-6 col-lg-6 pt-3 secondary_cause_input">
                                     {{ form_row(modifyUserForm.secondaryCauses) }}
                                 </div>
                             </div>
@@ -650,6 +656,5 @@
                 uploadFootPrintModal.setAttribute('style', 'display:none');
             }, 2000);
         });
-
     </script>
 {% endblock %}

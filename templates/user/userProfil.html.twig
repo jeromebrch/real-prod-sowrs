@@ -240,7 +240,8 @@
                         {% else %}
                             <h3 class="profil_category_title_candidate">Autorisé à travailler : <span>Non renseigné</span></h3>
                         {% endif %}
-                    </div>{# open to telecommuting #}
+                    </div>
+                    {# open to telecommuting #}
                     <div class="row">
                         {% if user.jobSearch is not empty %}
                             {% if user.jobSearch.telecommute is not empty %}
@@ -248,6 +249,17 @@
                             {% else %}
                                 <h3 class="profil_category_title_candidate">Ouvert au télétravail : <span>Non</span></h3>
                             {% endif %}
+                        {% endif %}
+                    </div>
+                    {# languages #}
+                    <div class="row">
+                        {% if user.languages is not empty %}
+                            <h3 class="profil_category_title_candidate">Langues :
+                                <span>&bull;</span>
+                                {% for language in user.languages %}
+                                    <span>{{ language.name }} &bull;</span>
+                                {% endfor %}
+                            </h3>
                         {% endif %}
                     </div>
                 </div>

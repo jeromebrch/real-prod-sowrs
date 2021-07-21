@@ -141,7 +141,9 @@ class RecruiterModificationType extends AbstractType
                 'multiple' => true,
                 'required' => false,
                 'label' => false,
-                'placeholder' => '---Causes secondaire---'
+                'attr' => [
+                    'title' => 'Cause secondaire'
+                ]
             ])
             ->add('socialNetwork', SocialNetworkType::class, [
 

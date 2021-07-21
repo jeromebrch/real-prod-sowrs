@@ -441,6 +441,17 @@ body .form-control{
     border-color: #fff transparent #fff transparent;
     animation: lds-dual-ring 1.2s linear infinite;
 }
+.handicap_input .form-group{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding-top: 5px;
+}
+.handicap_input .form-group label{
+    color: #555555;
+    font-family: 'KohinoorBangla', Arial, serif;
+}
 
 @media screen and (max-width: 576px){
     .check_telecommute{

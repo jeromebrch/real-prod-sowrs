@@ -15,23 +15,28 @@
     <div class="show_candidate_jumbotron pt-3">
         <div class="col-lg-1 mx-auto">
              <div class="candidate_picture text-center">
-            {% if candidate.picture %}
-                {% if candidate.picture.pictureName is same as '' %}
-                    <img id="show_joboffer_photo_profile" src="{{ asset('images/profils/avatar.jpg') }}"
-                         alt="photo du profil" title="Photo de profil">
+                {% if candidate.picture %}
+                    {% if candidate.picture.pictureName is same as '' %}
+                        <img id="show_joboffer_photo_profile" src="{{ asset('images/profils/avatar.jpg') }}"
+                             alt="photo du profil" title="Photo de profil">
+                    {% else %}
+                        <img id="show_joboffer_photo_profile" src="{{ asset('images/profils/' ~ candidate.picture.pictureName )}}"
+                             alt="photo du profil" title="{{ candidate.lastname }} {{ candidate.firstname }}">
+                    {% endif %}
                 {% else %}
-                    <img id="show_joboffer_photo_profile" src="{{ asset('images/profils/' ~ candidate.picture.pictureName )}}"
-                         alt="photo du profil" title="{{ candidate.lastname }} {{ candidate.firstname }}">
-                {% endif %}
-            {% else %}
                 <img id="show_candidate_photo_profile" class="rounded-circle"
                      src="{{ asset('images/profils/avatar.jpg') }}"
                      alt="photo du profil">
-            {% endif %}
+                {% endif %}
              </div>
         </div>
         <div class="col-lg-5 mx-auto mt-3">
-            <h4 class="show_candidate_jumbotron_name">{{ candidate.firstName | capitalize }} {{ candidate.lastName | upper }}</h4>
+            <h4 class="show_candidate_jumbotron_name">
+                {{ candidate.firstName | capitalize }} {{ candidate.lastName | upper }}
+                {% if candidate.isHandicaped %}
+                    <i class="fas fa-wheelchair"></i>
+                {% endif %}
+            </h4>
         </div>
         <h5 class="show_candidate_jumbotron_infos">
             {% if candidate.currentjob %}
@@ -189,6 +194,17 @@
                         <h3 class="profil_category_title_candidate">Autorisé à travailler : <span>Non renseigné</span></h3>
                     {% endif %}
                 </div>
+                {# languages #}
+                <div class="row">
+                    {% if candidate.languages is not empty %}
+                        <h3 class="profil_category_title_candidate">Langues :
+                            <span>&bull;</span>
+                            {% for language in candidate.languages %}
+                                <span>{{ language.name }} &bull;</span>
+                            {% endfor %}
+                        </h3>
+                    {% endif %}
+                </div>
             </div>
             <br>
             <div class="row container_social_link">
@@ -247,7 +263,6 @@
             btn_doughnut.addEventListener('click', function (e) {
                 e.currentTarget.classList.toggle('rotate');
                 doughnut.classList.toggle('collapse');
-
             })
 
 
@@ -301,7 +316,7 @@
                 btn_upload_first.setAttribute('title', firstDocument.value);
                 fileUploadMessageRecruiter.setAttribute('style', 'display:flex');
                 setTimeout(function (){
-                    fileUploadMessage.setAttribute('style', 'display:none');
+                    fileUploadMessageRecruiter.setAttribute('style', 'display:none');
                 }, 2000);
             });
             secondDocument.addEventListener('change', function (){
@@ -309,7 +324,7 @@
                 btn_upload_second.setAttribute('title', secondDocument.value);
                 fileUploadMessageRecruiter.setAttribute('style', 'display:flex');
                 setTimeout(function (){
-                    fileUploadMessage.setAttribute('style', 'display:none');
+                    fileUploadMessageRecruiter.setAttribute('style', 'display:none');
                 }, 2000);
             });
         });
