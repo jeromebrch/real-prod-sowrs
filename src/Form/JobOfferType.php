@@ -54,13 +54,17 @@ class JobOfferType extends AbstractType
 
             ->add('numberAddress', IntegerType::class, [
                 'label' => false,
+                'required' => false,
                 'attr' => [
-                    'placeholder' => 'Numéro de voie'
+                    'placeholder' => 'Numéro de voie',
+                    'min' => '0',
+                    'max' => '500',
                 ]
             ])
 
             ->add('address', TextType::class, [
                 'label' => false,
+                'required' => false,
                 'attr' => [
                     'placeholder' => 'Nom de la voie'
                 ]
@@ -68,6 +72,7 @@ class JobOfferType extends AbstractType
 
             ->add('postalCode', IntegerType::class, [
                 'label' => false,
+                'required' => false,
                 'attr' => [
                     'placeholder' => 'Code Postal'
                 ]

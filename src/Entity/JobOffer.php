@@ -8,6 +8,7 @@ use DateTimeInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=JobOfferRepository::class)
@@ -131,6 +132,7 @@ class JobOffer
 
     /**
      * @ORM\Column(type="integer", nullable=true)
+     * @Assert\Regex(pattern="/^[0-9]{5}$/", message="Format non valide, merci de vérifier le code postal !")
      */
     private $postalCode;
 

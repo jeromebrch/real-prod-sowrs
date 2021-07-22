@@ -112,14 +112,14 @@
                                 <h3 class="profil_category_title_candidate title_telecommuting">Parution : <span>{{ jobOffer.creationDate|date('d/m/Y') }}</span></h3>
                             {% endif %}
                             <h3 class="profil_category_title_candidate title_telecommuting">Télétravail accepté : <span>Oui</span></h3>
-                            <h3 class="profil_category_title_candidate">Localisation du poste : <span>{{ jobOffer.city }}</span></h3>
+                            <h3 class="profil_category_title_candidate">Localisation du poste : <span>{{ jobOffer.numberAddress }} {{ jobOffer.address}} {{ jobOffer.postalCode }} {{ jobOffer.city }}</span></h3>
 
                         {% endif %}
                         <div class="mapContainer">
                             <div class="map" id="map"></div>
                         </div>
                         <div class="row">
-                            <a class="btn btnItinéraire" target="_blank" href="https://www.google.com/maps/dir//{{ jobOffer.numberAddress }}+{{ jobOffer.Address }}+{{ jobOffer.postalCode }}+{{ jobOffer.city }}">Itinéraire vers votre nouveau job</a>
+                            <a id="mapGoogle" class="btn btnItinéraire" target="_blank" href="https://www.google.com/maps/dir//{{ jobOffer.numberAddress }}+{{ jobOffer.Address }}+{{ jobOffer.postalCode }}+{{ jobOffer.city }}">Itinéraire vers votre nouveau job</a>
                         </div>
 
                     </div>
@@ -238,7 +238,9 @@
         let lon;
         let mymap;
         let marker;
+        let popupContent = '{{ jobOffer.numberAddress }} {{ jobOffer.address}} {{ jobOffer.postalCode }} {{ jobOffer.city }}'
         let errorContent = 'La localisation depuis la carte n\'est pas disponible.'; //Pas utilisé pour le moment
+        let mapGoogle = document.getElementById('mapGoogle');
         let mapId = document.getElementById('map');
         let nbAddress = '{{ jobOffer.numberAddress}}';
         let address = '{{ jobOffer.address }}';
@@ -252,7 +254,6 @@
 
             //On récupère la ville du candidat
             let completeAddress = nbAddress + ' ' + address + ' ' + postalCode + ' ' + city;
-            console.log(`Vérif' ville ${completeAddress}`)
 
             //Gestion de l'icone personnalisé
             let sowrsIcon = L.icon({
@@ -267,7 +268,6 @@
             xmlhttp.onreadystatechange = () => {
 
                 //Todo: est ce que faire des decla et au cas ou des div hidden dans 1 2 et 3
-                console.log(xmlhttp.readyState)
                 if(xmlhttp.readyState === 4){
 
                     //si la requète passe on recupère la ville, les coordonnées et on init la map + marqueur
@@ -278,33 +278,36 @@
 
                         //On recupère les infos
                         let response = JSON.parse(xmlhttp.response)
-                        console.log(response)
 
-                        //On prend la latitude et la longitude
-                        lat = response[0]["lat"];
-                        lon = response[0]["lon"];
+                        if (response != ''){
 
-                        //Affichage aux coordonnées récupérées
-                        mymap = L.map('map').setView([lat, lon], 13);
+                            //On prend la latitude et la longitude
+                            lat = response[0]["lat"];
+                            lon = response[0]["lon"];
 
-                        //On place le marqueur
-                        marker = L.marker([lat, lon], {icon: sowrsIcon}).addTo(mymap);
+                            //Affichage aux coordonnées récupérées
+                            mymap = L.map('map').setView([lat, lon], 13);
 
-                        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                            attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery ©',
-                            maxZoom: 25,
-                        }).addTo(mymap);
+                            //On place le marqueur
+                            marker = L.marker([lat, lon], {icon: sowrsIcon}).addTo(mymap);
 
-                        console.log(`la ville est ${completeAddress} aux coordonnées ${lat} et ${lon}`)
+                            //Popup précision que c'est sur paris
+                            marker.bindPopup(popupContent).openPopup();
 
+                            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                                attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery ©',
+                                maxZoom: 25,
+                            }).addTo(mymap);
+
+                        }else {
+                            //On cache les div en cas d'erreur
+                            mapId.hidden = true
+                            mapGoogle.hidden = true
+                        }
 
                     }else {
                         //On cache la div en cas d'erreur
                         mapId.hidden = true
-
-                        //La localisation n'est pas disponible
-                        console.log(`${errorContent}`)
-
                     }
                 }
             }
@@ -313,13 +316,12 @@
             xmlhttp.open("get", `https://nominatim.openstreetmap.org/search?q=${completeAddress}&format=json&adressdetails=1&limit=1`)
             xmlhttp.send()
 
-
-
         }else {
 
             //Todo: Gestion du else
-            //div cachée
+            //div cachées
             mapId.hidden = true
+            mapGoogle.hidden = true
 
         }
 

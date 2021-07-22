@@ -256,9 +256,14 @@
                         {% endif %}
                     {% endif %}
                 </div>
+                {% if recruiter.city is not null %}
                 <div class="mapContainerRecruiter">
+                    <h3 class="profil_category_title_candidate align-self-start">Localisation de {{ recruiter.entityName }} : <span>{{ recruiter.city }}</span></h3>
                     <div class="map" id="map"></div>
                 </div>
+                {% else %}
+
+                {% endif %}
                 {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
                     {# contact form #}
                     <div class="row container_contact">
@@ -371,44 +376,90 @@
         let lon;
         let mymap;
         let marker;
+        let popupContent = '{{ recruiter.entityName }} se situe dans la ville de {{ recruiter.city }}'
+        let errorContent = 'La localisation depuis la carte n\'est pas disponible.'; //Pas utilisé pour le moment
+        let mapGoogle = document.getElementById('mapGoogle');
+        let mapId = document.getElementById('map');
 
-        //On récupère la ville du candidat
-        //Todo: Si ville vide
-        let city = "{{ recruiter.city }}";
-        console.log(`Vérif' ville ${city}`)
+        let city = '{{ recruiter.city }}';
 
-        //On fais la requète au pres de l'api NOMINATIM
-        //Todo: refaire propre les xml status (si requete ne passe pas ou autres ..)
+        //Todo: voir si comment gerer pour avoir le minimum d'erreur de recherche form regex ..
 
-        const xmlhttp = new XMLHttpRequest()
-        xmlhttp.onreadystatechange = () => {
-            if(xmlhttp.readyState === 4){
-                //si la requète passe on recupère la ville, les coordonnées et on init la map + marqueur
-                if (xmlhttp.status === 200){
-                    let response = JSON.parse(xmlhttp.response)
-                    console.log(response)
+        //Si au moins la ville est renseignée
+        if (city != '') {
 
-                    lat = response[0]["lat"];
-                    lon = response[0]["lon"];
+            //On récupère la ville du candidat
+            let completeAddress = city;
 
-                    mymap = L.map('map').setView([lat, lon], 10);
+            //Gestion de l'icone personnalisé
+            let sowrsIcon = L.icon({
+                iconUrl: '../../img/map-marker-alt-solid.svg',
+                iconSize:     [35, 65], // size of the icon
+                iconAnchor:   [15, 52], // point of the icon which will correspond to marker's location
+                popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+            });
 
-                    marker = L.marker([lat, lon]).addTo(mymap);
+            //On fais la requète au pres de l'api NOMINATIM (recherche addresse)
+            const xmlhttp = new XMLHttpRequest()
+            xmlhttp.onreadystatechange = () => {
 
-                    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                        attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery ©',
-                        maxZoom: 25,
-                    }).addTo(mymap);
+                //Todo: est ce que faire des decla et au cas ou des div hidden dans 1 2 et 3
+                if(xmlhttp.readyState === 4){
 
-                    console.log(`la ville est ${city} aux coordonnées ${lat} et ${lon}`)
+                    //si la requète passe on recupère la ville, les coordonnées et on init la map + marqueur
+                    if (xmlhttp.status === 200){
+
+                        //on affiche la div si ready et status ok
+                        mapId.hidden = false
+
+                        //On recupère les infos
+                        let response = JSON.parse(xmlhttp.response)
+
+                        if (response != ''){
+
+                            //On prend la latitude et la longitude
+                            lat = response[0]["lat"];
+                            lon = response[0]["lon"];
+
+                            //Affichage aux coordonnées récupérées
+                            mymap = L.map('map').setView([lat, lon], 11);
+
+                            //On place le marqueur
+                            marker = L.marker([lat, lon], {icon: sowrsIcon}).addTo(mymap);
+
+                            //Popup précision que c'est sur paris
+                            marker.bindPopup(popupContent).openPopup();
+
+                            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                                attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery ©',
+                                maxZoom: 25,
+                            }).addTo(mymap);
+
+                        }else {
+                            //On cache les div en cas d'erreur
+                            mapId.hidden = true
+                            mapGoogle.hidden = true
+                        }
+
+                    }else {
+                        //On cache la div en cas d'erreur
+                        mapId.hidden = true
+                    }
                 }
             }
+
+            //XML.Open Requete faite status 1
+            xmlhttp.open("get", `https://nominatim.openstreetmap.org/search?q=${completeAddress}&format=json&adressdetails=1&limit=1`)
+            xmlhttp.send()
+
+        }else {
+
+            //Todo: Gestion du else
+            //div cachées
+            mapId.hidden = true
+            mapGoogle.hidden = true
+
         }
-
-        xmlhttp.open("get", `https://nominatim.openstreetmap.org/search?q=${city}&format=json&adressdetails=1&limit=1`)
-
-        xmlhttp.send()
-
 
 
     </script>

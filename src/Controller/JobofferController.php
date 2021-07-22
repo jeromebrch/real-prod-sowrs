@@ -40,30 +40,67 @@ class JobofferController extends AbstractController
 
         if ($jobOfferForm->isSubmitted() && $jobOfferForm->isValid()) {
             $offerCreated = 1;
-          //getting the recruiter
-            $offer->setEntity($this->getUser());
-            $em->persist($offer);
-            $em->flush();
 
-            $this->addFlash('success', 'Votre offre a bien été publiée');
+            $regexPostal = '/^[0-9]{5}$/';
+            $postalCode = $jobOfferForm->get('postalCode')->getData();
 
-            //sending email
-            $email = (new Email())
-                ->from('team@sowrs.com')
-                ->to($this->getUser()->getEmail())
-                ->subject('Création de votre offre' . $offer->getTitle())
-                ->text($this->renderView(
-                // getting text for email from html page
-                    'textEmail/emailJobOfferCreation.html.twig',
-                    ['jobOffer' => $offer,
-                        'user' => $this->getUser()]
-                ), 'text/html');
+            if($postalCode){
+                if (preg_match($regexPostal, $postalCode)){
+                    $offer->setEntity($this->getUser());
+                    $em->persist($offer);
+                    $em->flush();
 
-            $mailer->send($email);
+                    $this->addFlash('success', 'Votre offre a bien été publiée');
 
-            return $this->redirectToRoute('dash_board_my_offers', [
-                'offerCreated' => true
-            ]);
+                    //sending email
+                    $email = (new Email())
+                        ->from('team@sowrs.com')
+                        ->to($this->getUser()->getEmail())
+                        ->subject('Création de votre offre' . $offer->getTitle())
+                        ->text($this->renderView(
+                        // getting text for email from html page
+                            'textEmail/emailJobOfferCreation.html.twig',
+                            ['jobOffer' => $offer,
+                                'user' => $this->getUser()]
+                        ), 'text/html');
+
+                    $mailer->send($email);
+
+                    return $this->redirectToRoute('dash_board_my_offers', [
+                        'offerCreated' => true
+                    ]);
+                }else {
+                    $this->addFlash('error', 'Le code postal n\'est pas valide !');
+                    return $this->render('dash_board/jobOffer/jobOfferCreation.html.twig', [
+                        'jobOfferForm' => $jobOfferForm->createView(),
+                    ]);
+                }
+            }else{
+                //getting the recruiter
+                $offer->setEntity($this->getUser());
+                $em->persist($offer);
+                $em->flush();
+
+                $this->addFlash('success', 'Votre offre a bien été publiée');
+
+                //sending email
+                $email = (new Email())
+                    ->from('team@sowrs.com')
+                    ->to($this->getUser()->getEmail())
+                    ->subject('Création de votre offre' . $offer->getTitle())
+                    ->text($this->renderView(
+                    // getting text for email from html page
+                        'textEmail/emailJobOfferCreation.html.twig',
+                        ['jobOffer' => $offer,
+                            'user' => $this->getUser()]
+                    ), 'text/html');
+
+                $mailer->send($email);
+
+                return $this->redirectToRoute('dash_board_my_offers', [
+                    'offerCreated' => true
+                ]);
+            }
         }
 
         return $this->render('dash_board/jobOffer/jobOfferCreation.html.twig', [
