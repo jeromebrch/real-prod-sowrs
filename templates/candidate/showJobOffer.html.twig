@@ -238,16 +238,14 @@
         let lon;
         let mymap;
         let marker;
-        let popupContent = '{{ jobOffer.numberAddress }} {{ jobOffer.address}} {{ jobOffer.postalCode }} {{ jobOffer.city }}'
-        let errorContent = 'La localisation depuis la carte n\'est pas disponible.'; //Pas utilisé pour le moment
+        let popupContent = '{{ jobOffer.numberAddress }} {{ jobOffer.address}} {{ jobOffer.postalCode }} {{ jobOffer.city }}'; //Pas utilisé
+        let errorContent = 'La localisation depuis la carte n\'est pas disponible.'; //Pas utilisé
         let mapGoogle = document.getElementById('mapGoogle');
         let mapId = document.getElementById('map');
         let nbAddress = '{{ jobOffer.numberAddress}}';
         let address = '{{ jobOffer.address }}';
         let postalCode = '{{ jobOffer.postalCode }}';
         let city = '{{ jobOffer.city }}';
-
-        //Todo: voir si comment gerer pour avoir le minimum d'erreur de recherche form regex ..
 
         //Si au moins la ville est renseignée
         if (city != '') {
@@ -292,7 +290,7 @@
                             marker = L.marker([lat, lon], {icon: sowrsIcon}).addTo(mymap);
 
                             //Popup précision que c'est sur paris
-                            marker.bindPopup(popupContent).openPopup();
+                            // marker.bindPopup(popupContent).openPopup();
 
                             L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
                                 attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery ©',
