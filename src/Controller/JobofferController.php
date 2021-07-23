@@ -37,15 +37,31 @@ class JobofferController extends AbstractController
         $jobOfferForm = $this->createForm(JobOfferType::class, $offer);
         $jobOfferForm->handleRequest($request);
 
-
         if ($jobOfferForm->isSubmitted() && $jobOfferForm->isValid()) {
+
             $offerCreated = 1;
 
             $regexPostal = '/^[0-9]{5}$/';
             $postalCode = $jobOfferForm->get('postalCode')->getData();
 
+            //On met en place le regex et on recupère la description écrite par le recruteur
+            $regexEmail = '/([a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\.[a-zA-Z0-9_-]+)/';
+            $descriptionCheck = $jobOfferForm->get('description')->getData();
+
+            //Si on match au moins un email contenue dans la description
+            if (preg_match($regexEmail, $descriptionCheck, $matchEmail )){
+
+                //Création d'une variable et d'une fonction qui prend comme sujet la description et qui remplace par une string si un pattern (regex) est trouvé à l'intérieur
+                $new =  preg_replace($regexEmail, 'Ce contenu n\'est pas disponible', $descriptionCheck);
+
+                //Sur l'offre en création on set la nouvelle description
+                $offer->setDescription($new);
+
+            }
+
             if($postalCode){
                 if (preg_match($regexPostal, $postalCode)){
+
                     $offer->setEntity($this->getUser());
                     $em->persist($offer);
                     $em->flush();
@@ -76,6 +92,7 @@ class JobofferController extends AbstractController
                     ]);
                 }
             }else{
+
                 //getting the recruiter
                 $offer->setEntity($this->getUser());
                 $em->persist($offer);
