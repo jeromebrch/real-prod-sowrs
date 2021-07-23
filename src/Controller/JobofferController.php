@@ -200,12 +200,47 @@ class JobofferController extends AbstractController
             $jobOfferForm->handleRequest($request);
 
             if ($jobOfferForm->isSubmitted() && $jobOfferForm->isValid()) {
-                $entityManager->persist($jobOffer);
-                $entityManager->flush();
 
-                $this->addFlash('success', 'Votre offre a été modifiée');
+                //On met en place le regex et on recupère la description écrite par le recruteur
+                $regexEmail = '/([a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\.[a-zA-Z0-9_-]+)/';
+                $descriptionCheck = $jobOfferForm->get('description')->getData();
 
-                return $this->redirectToRoute('dash_board_my_offers');
+                //Si on match au moins un email contenue dans la description
+                if (preg_match($regexEmail, $descriptionCheck, $matchEmail )){
+
+                    //Création d'une variable et d'une fonction qui prend comme sujet la description et qui remplace par une string si un pattern (regex) est trouvé à l'intérieur
+                    $new =  preg_replace($regexEmail, 'Ce contenu n\'est pas disponible', $descriptionCheck);
+
+                    //Sur l'offre en création on set la nouvelle description
+                    $jobOffer->setDescription($new);
+
+                }
+
+                $regexPostal = '/^[0-9]{5}$/';
+                $postalCode = $jobOfferForm->get('postalCode')->getData();
+
+                if($postalCode){
+                    if (preg_match($regexPostal, $postalCode)){
+                        $entityManager->persist($jobOffer);
+                        $entityManager->flush();
+
+                        $this->addFlash('success', 'Votre offre a été modifiée');
+
+                        return $this->redirectToRoute('dash_board_my_offers');
+                    }else {
+                        $this->addFlash('error', 'Le code postal n\'est pas valide !');
+                        return $this->render('/dash_board/jobOffer/modifyJobOffer.html.twig', [
+                            'jobOfferForm' => $jobOfferForm->createView(),
+                        ]);
+                    }
+                }else {
+                    $entityManager->persist($jobOffer);
+                    $entityManager->flush();
+
+                    $this->addFlash('success', 'Votre offre a été modifiée');
+
+                    return $this->redirectToRoute('dash_board_my_offers');
+                }
             }
         } else {
             return $this->render('error/notFound.html.twig');

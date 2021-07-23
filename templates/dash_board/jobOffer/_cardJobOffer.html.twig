@@ -11,7 +11,7 @@
         </div>
         <div class="content-box align-self-center info_card_job">
             <span class="job_text_title">{{ jobOffer.title }}</span>
-            <span class="abstractTextRegion abstractJobOfferText">{{ jobOffer.city }} ({{ jobOffer.department.cp}})<br>{{ jobOffer.country.name }}</span>
+            <span class="abstractTextRegion abstractJobOfferText">{{ jobOffer.city }} {% if jobOffer.department is not empty %}({{ jobOffer.department.cp}}){% endif %}<br>{{ jobOffer.country.name }}</span>
         </div>
         <div class="content-box align-self-center info_card_job">
             {# <img class="abstractJobOfferImgEye col-lg-3" src="{{ asset('img/boostrap/eye.svg') }}" alt="number of views" title="Nombre de vues de l'offre"/> #}
