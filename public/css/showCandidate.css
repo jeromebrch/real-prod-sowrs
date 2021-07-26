@@ -187,6 +187,12 @@ label[for="message_mediaFile"]{
     color: #555555;
     font-weight: bold;
 }
+.custom .leaflet-popup-tip,
+.custom .leaflet-popup-content-wrapper {
+    background: #555555;
+    color: #FFFFFF;
+    font-size: small;
+}
 
 @media screen and (max-width: 376px){
     .show_candidate_sens_rate{

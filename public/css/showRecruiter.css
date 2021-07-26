@@ -11,6 +11,14 @@
 #btn_doughnut{
     padding: 10px;
 }
+
+.custom .leaflet-popup-tip,
+.custom .leaflet-popup-content-wrapper {
+    background: #555555;
+    color: #FFFFFF;
+    font-size: small;
+}
+
 .about_entity{
     text-align: left!important;
     padding-left: 25px;

@@ -112,7 +112,7 @@
                                 <h3 class="profil_category_title_candidate title_telecommuting">Parution : <span>{{ jobOffer.creationDate|date('d/m/Y') }}</span></h3>
                             {% endif %}
                             <h3 class="profil_category_title_candidate title_telecommuting">Télétravail accepté : <span>Oui</span></h3>
-                            <h3 class="profil_category_title_candidate">Localisation du poste : <span>{{ jobOffer.numberAddress }} {{ jobOffer.address}} {{ jobOffer.postalCode }} {{ jobOffer.city }}</span></h3>
+                            <h3 class="profil_category_title_candidate">Localisation du poste :</h3>
 
                         {% endif %}
                         <div class="mapContainer">
@@ -246,6 +246,10 @@
         let address = '{{ jobOffer.address }}';
         let postalCode = '{{ jobOffer.postalCode }}';
         let city = '{{ jobOffer.city }}';
+        let customOptions =
+            {
+                'className' : 'custom'
+            }
 
         //Si au moins la ville est renseignée
         if (city != '') {
@@ -258,7 +262,7 @@
                 iconUrl: '../../img/map-marker-alt-solid.svg',
                 iconSize:     [35, 65], // size of the icon
                 iconAnchor:   [15, 52], // point of the icon which will correspond to marker's location
-                popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+                popupAnchor:  [2, -42] // point from which the popup should open relative to the iconAnchor
             });
 
             //On fais la requète au pres de l'api NOMINATIM (recherche addresse)
@@ -290,7 +294,8 @@
                             marker = L.marker([lat, lon], {icon: sowrsIcon}).addTo(mymap);
 
                             //Popup précision que c'est sur paris
-                            // marker.bindPopup(popupContent).openPopup();
+                            marker.bindPopup(popupContent, customOptions).openPopup();
+
 
                             L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
                                 attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery ©',

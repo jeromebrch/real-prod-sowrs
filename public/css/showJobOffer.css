@@ -11,6 +11,14 @@ body .job_offer_title_jumbotron{
     text-align: center;
     margin-bottom: 40px;
 }
+
+.custom .leaflet-popup-tip,
+.custom .leaflet-popup-content-wrapper {
+    background: #555555;
+    color: #FFFFFF;
+    font-size: small;
+}
+
 .btn_doughnut{
     margin: 0;
 }
