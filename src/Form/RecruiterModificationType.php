@@ -33,7 +33,7 @@ class RecruiterModificationType extends AbstractType
                 'required' => true,
                 'label' => false,
                 'attr' => [
-                    'placeholder' => 'Adresse e-mail de remplacement']
+                    'placeholder' => ' Si vous souhaitez recevoir les candidatures sur une adresse email différente merci de l\'indiquer ']
             ])
             ->add('firstname', TextType::class, [
                 'required' => true,
