@@ -113,6 +113,11 @@ class Recruiter extends User
      */
     private $favoriteCandidates;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $alternateMail;
+
 
    public function __construct()
    {
@@ -446,6 +451,18 @@ class Recruiter extends User
     public function removeFavoriteCandidate(Candidate $favoriteCandidate): self
     {
         $this->favoriteCandidates->removeElement($favoriteCandidate);
+
+        return $this;
+    }
+
+    public function getAlternateMail(): ?string
+    {
+        return $this->alternateMail;
+    }
+
+    public function setAlternateMail(?string $alternateMail): self
+    {
+        $this->alternateMail = $alternateMail;
 
         return $this;
     }

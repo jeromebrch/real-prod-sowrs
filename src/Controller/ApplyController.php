@@ -83,17 +83,39 @@ class ApplyController extends AbstractController
             $em->persist($message);
             $em->flush();
 
-            //sending email
-            $email = (new Email())
-                ->from('team@sowrs.com')
-                ->to($jobOffer->getEntity()->getEmail())
-                ->subject($message->getSubject())
-                ->text($this->renderView(
-                // getting text for email from html page
-                    'textEmail/textEmailApplyReceved.html.twig',
-                    ['joboffer' => $jobOffer,
-                        'message' => $message]
-                ), 'text/html');
+            //Récupère le mail alternatif
+            $alternateMail = $jobOffer->getEntity()->getAlternateMail();
+
+            //Check si il est rentré
+            if($alternateMail != NULL) {
+
+                //sending email alternatif
+                $email = (new Email())
+                    ->from('team@sowrs.com')
+                    ->to($jobOffer->getEntity()->getalternateMail())
+                    ->subject($message->getSubject())
+                    ->text($this->renderView(
+                    // getting text for email from html page
+                        'textEmail/textEmailApplyReceved.html.twig',
+                        ['joboffer' => $jobOffer,
+                            'message' => $message]
+                    ), 'text/html');
+
+            }else {
+
+                //sending email basic
+                $email = (new Email())
+                    ->from('team@sowrs.com')
+                    ->to($jobOffer->getEntity()->getEmail())
+                    ->subject($message->getSubject())
+                    ->text($this->renderView(
+                    // getting text for email from html page
+                        'textEmail/textEmailApplyReceved.html.twig',
+                        ['joboffer' => $jobOffer,
+                            'message' => $message]
+                    ), 'text/html');
+
+            }
 
             $mailer->send($email);
 

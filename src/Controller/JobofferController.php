@@ -6,6 +6,8 @@ use App\Data\SearchCandidate;
 use App\Entity\Category;
 use App\Entity\JobOffer;
 use App\Entity\Message;
+use App\Entity\Recruiter;
+use App\Entity\User;
 use App\Form\ApplyType;
 use App\Form\JobOfferType;
 use App\Repository\JobOfferRepository;
@@ -27,11 +29,12 @@ class JobofferController extends AbstractController
     /**
      * returns the job offer creation form
      * @Route("/recruiter/jobOffer/create", name="dash_board_job_offer_create")
+     * @param $id
      * @param Request $request
      * @param EntityManagerInterface $em
      * @return Response
      */
-    public function creationJobOffer(Request $request, EntityManagerInterface $em, MailerInterface $mailer): Response
+    public function creationJobOffer( Request $request, RecruiterRepository $recruiterRepo,EntityManagerInterface $em, MailerInterface $mailer): Response
     {
         $offer = new JobOffer();
         $jobOfferForm = $this->createForm(JobOfferType::class, $offer);
@@ -68,17 +71,39 @@ class JobofferController extends AbstractController
 
                     $this->addFlash('success', 'Votre offre a bien été publiée');
 
-                    //sending email
-                    $email = (new Email())
-                        ->from('team@sowrs.com')
-                        ->to($this->getUser()->getEmail())
-                        ->subject('Création de votre offre' . $offer->getTitle())
-                        ->text($this->renderView(
-                        // getting text for email from html page
-                            'textEmail/emailJobOfferCreation.html.twig',
-                            ['jobOffer' => $offer,
-                                'user' => $this->getUser()]
-                        ), 'text/html');
+                    //Récupère le mail alternatif
+                    $alternateMail = $this->getUser()->getAlternateMail();
+
+                    //Check si il est rentré
+                    if($alternateMail != NULL) {
+
+                        //sending email alternatif
+                        $email = (new Email())
+                            ->from('team@sowrs.com')
+                            ->to($this->getUser()->getAlternateMail())
+                            ->subject('Création de votre offre' . $offer->getTitle())
+                            ->text($this->renderView(
+                            // getting text for email from html page
+                                'textEmail/emailJobOfferCreation.html.twig',
+                                ['jobOffer' => $offer,
+                                    'user' => $this->getUser()]
+                            ), 'text/html');
+
+                    }else {
+
+                        //sending email basic
+                        $email = (new Email())
+                            ->from('team@sowrs.com')
+                            ->to($this->getUser()->getEmail())
+                            ->subject('Création de votre offre' . $offer->getTitle())
+                            ->text($this->renderView(
+                            // getting text for email from html page
+                                'textEmail/emailJobOfferCreation.html.twig',
+                                ['jobOffer' => $offer,
+                                    'user' => $this->getUser()]
+                            ), 'text/html');
+
+                    }
 
                     $mailer->send($email);
 
@@ -100,17 +125,37 @@ class JobofferController extends AbstractController
 
                 $this->addFlash('success', 'Votre offre a bien été publiée');
 
-                //sending email
-                $email = (new Email())
-                    ->from('team@sowrs.com')
-                    ->to($this->getUser()->getEmail())
-                    ->subject('Création de votre offre' . $offer->getTitle())
-                    ->text($this->renderView(
-                    // getting text for email from html page
-                        'textEmail/emailJobOfferCreation.html.twig',
-                        ['jobOffer' => $offer,
-                            'user' => $this->getUser()]
-                    ), 'text/html');
+                $alternateMail = $this->getUser()->getAlternateMail();
+
+                if($alternateMail != NULL) {
+
+                    //sending email
+                    $email = (new Email())
+                        ->from('team@sowrs.com')
+                        ->to($this->getUser()->getAlternateMail())
+                        ->subject('Création de votre offre' . $offer->getTitle())
+                        ->text($this->renderView(
+                        // getting text for email from html page
+                            'textEmail/emailJobOfferCreation.html.twig',
+                            ['jobOffer' => $offer,
+                                'user' => $this->getUser()]
+                        ), 'text/html');
+
+                }else {
+
+                    //sending email
+                    $email = (new Email())
+                        ->from('team@sowrs.com')
+                        ->to($this->getUser()->getEmail())
+                        ->subject('Création de votre offre' . $offer->getTitle())
+                        ->text($this->renderView(
+                        // getting text for email from html page
+                            'textEmail/emailJobOfferCreation.html.twig',
+                            ['jobOffer' => $offer,
+                                'user' => $this->getUser()]
+                        ), 'text/html');
+
+                }
 
                 $mailer->send($email);
 

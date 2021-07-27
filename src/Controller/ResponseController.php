@@ -91,21 +91,42 @@ class ResponseController extends AbstractController
             $em->flush();
 
             if ($user instanceof Candidate){
-                //sending email
-                $email = (new Email())
-                    ->from('team@sowrs.com')
-                    ->to($userSender->getEmail())
-                    ->subject($message->getSubject())
-                    ->text($this->renderView(
-                    // getting text for email from html page
-                        'textEmail/emailTextResponseCandidate.html.twig',
-                        ['message' => $message,
-                            'messageRecu' => $messageRecu]
-                    ), 'text/html');
+
+                $alternateMail = $userSender->getAlternateMail();
+
+                if($alternateMail != NULL) {
+
+                    $email = (new Email())
+                        ->from('team@sowrs.com')
+                        ->to($userSender->getAlternateMail())
+                        ->subject($message->getSubject())
+                        ->text($this->renderView(
+                        // getting text for email from html page
+                            'textEmail/emailTextResponseCandidate.html.twig',
+                            ['message' => $message,
+                                'messageRecu' => $messageRecu]
+                        ), 'text/html');
+
+                }else {
+
+                    //sending email
+                    $email = (new Email())
+                        ->from('team@sowrs.com')
+                        ->to($userSender->getEmail())
+                        ->subject($message->getSubject())
+                        ->text($this->renderView(
+                        // getting text for email from html page
+                            'textEmail/emailTextResponseCandidate.html.twig',
+                            ['message' => $message,
+                                'messageRecu' => $messageRecu]
+                        ), 'text/html');
+
+                }
 
                 $mailer->send($email);
 
             }elseif ($user instanceof Recruiter){
+
                 //sending email
                 $email = (new Email())
                     ->from('team@sowrs.com')
@@ -117,6 +138,7 @@ class ResponseController extends AbstractController
                         ['message' => $message,
                             'messageRecu' => $messageRecu]
                     ), 'text/html');
+
                 $mailer->send($email);
 
             }

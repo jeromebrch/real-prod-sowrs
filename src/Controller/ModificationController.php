@@ -91,15 +91,35 @@ class ModificationController extends AbstractController
                     } catch (FileException $e) {
                         $this->addFlash('error', 'Il y a eu une erreur lors de l\'upload du fichier');
                     }
-                    // send email to sowrs with the PDF file in attachment
-                    $email = (new Email())
-                        ->from('team@sowrs.com')
-                        ->to('team@sowrs.com')
-                        ->subject('Footprint proof from ' . $this->getUser()->getEmail())
-                        ->text('La preuve de l\'empreinte carbone')
-                        ->attachFromPath('uploads/carbonFootPrintProof/' . $newFilename)
-                        ->html('<p>Veuillez trouver ci-joint mon justificatif.</p><p>Cordialement</p>');
+
+                    $alternateMail = $this->getUser()->getAlternateMail();
+
+                    if($alternateMail != NULL) {
+
+                        //sending email
+                        $email = (new Email())
+                            ->from('team@sowrs.com')
+                            ->to('team@sowrs.com')
+                            ->subject('Footprint proof from ' . $this->getUser()->getAlternateMail())
+                            ->text('La preuve de l\'empreinte carbone')
+                            ->attachFromPath('uploads/carbonFootPrintProof/' . $newFilename)
+                            ->html('<p>Veuillez trouver ci-joint mon justificatif.</p><p>Cordialement</p>');
+
+                    }else {
+
+                        //sending email
+                        $email = (new Email())
+                            ->from('team@sowrs.com')
+                            ->to('team@sowrs.com')
+                            ->subject('Footprint proof from ' . $this->getUser()->getEmail())
+                            ->text('La preuve de l\'empreinte carbone')
+                            ->attachFromPath('uploads/carbonFootPrintProof/' . $newFilename)
+                            ->html('<p>Veuillez trouver ci-joint mon justificatif.</p><p>Cordialement</p>');
+
+                    }
+
                     $mailer->send($email);
+
                     $user->setCarbonFootPrintProofFilename($newFilename);
                 }
                 if($user instanceof Recruiter){

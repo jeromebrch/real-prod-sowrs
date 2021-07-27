@@ -85,17 +85,37 @@ class MessageSentByCandidateController extends AbstractController
                 $em->persist($message);
                 $em->flush();
 
-                //sending email
-                $email = (new Email())
-                    ->from('team@sowrs.com')
-                    ->to($recruiter->getEmail())
-                    ->subject($message->getSubject())
-                    ->text($this->renderView(
-                    // getting text for email from html page
-                        'textEmail/emailTextRecruiter.html.twig',
-                        ['message' => $message]
-                    ), 'text/html');
+                //Récupère le mail alternatif
+                $alternateMail = $recruiter->getAlternateMail();
 
+                //Check si il est rentré
+                if($alternateMail != NULL) {
+
+                    //sending email alternatif
+                    $email = (new Email())
+                        ->from('team@sowrs.com')
+                        ->to($alternateMail)
+                        ->subject($message->getSubject())
+                        ->text($this->renderView(
+                        // getting text for email from html page
+                            'textEmail/emailTextRecruiter.html.twig',
+                            ['message' => $message, 'recruiter' => $recruiter]
+                        ), 'text/html');
+
+                }else {
+
+                    //sending email basic
+                    $email = (new Email())
+                        ->from('team@sowrs.com')
+                        ->to($recruiter->getEmail())
+                        ->subject($message->getSubject())
+                        ->text($this->renderView(
+                        // getting text for email from html page
+                            'textEmail/emailTextRecruiter.html.twig',
+                            ['message' => $message, 'recruiter' => $recruiter]
+                        ), 'text/html');
+
+                }
                 $mailer->send($email);
             }
 
