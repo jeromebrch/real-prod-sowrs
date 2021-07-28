@@ -284,4 +284,66 @@ class WebzineController extends AbstractController
         ]);
     }
 
+    /**
+     * @Route("/admin/modifyPost/{id}", name="modify_post", requirements={"id":"\d+"})
+     * @param $id
+     * @param PostRepository $postRepo
+     * @param Request $req
+     * @param EntityManagerInterface $em
+     * @param SluggerInterface $slugger
+     * @return Response
+     */
+    public function modifyPost($id, PostRepository $postrepo, CommentRepository $commentRepo,Request $req, EntityManagerInterface $em, SluggerInterface $slugger, PostRepository $postRepo) : Response{
+
+        $post = $postRepo->find($id);
+        $posts = $postrepo->findPublishedPost();
+        $comments = $commentRepo->findAllUnpublished();
+
+        $postForm = $this->createForm(PostType::class, $post);
+        $postForm->handleRequest($req);
+        if($postForm->isSubmitted() && $postForm->isValid()){
+            // upload the post illustration
+            $pictureFile = $postForm->get('picture')->getData();
+            if ($pictureFile) {
+                $originalFilename = pathinfo($pictureFile->getClientOriginalName(), PATHINFO_FILENAME);
+                $safeFilename = $slugger->slug($originalFilename);
+                $newFilename = $safeFilename.'-'.uniqid().'.'.$pictureFile->guessExtension();
+                try {
+                    $pictureFile->move(
+                        $this->getParameter('post_illus_directory'),
+                        $newFilename
+                    );
+                } catch (FileException $e) {
+                    $this->render('bundles/TwigBundle/Exception/error500.html.twig', [
+
+                    ]);
+                }
+                $post->setPictureFilename($newFilename);
+            }
+            if($post->getIsPublished() == false){
+                $post->setIsPublished(false);
+                $em->persist($post);
+                $em->flush();
+                $posts = $postRepo->findUnpublishedPost();
+                return $this->render('webzine/unpublishedPost.html.twig', [
+                    'unpublishedPosts' => $posts
+                ]);
+            }else{
+                $post->setIsPublished(true);
+                $em->persist($post);
+                $em->flush();
+//                $posts = $postRepo->findPublishedPost();
+                return $this->render('webzine/homeWebzine.html.twig', [
+                    'posts' => $posts,
+                    'nbrUnpublishedComments' => count($comments)
+                ]);
+            }
+
+
+        }
+        return $this->render('webzine/modifyPost.html.twig', [
+            'postForm' => $postForm->createView()
+        ]);
+    }
+
 }

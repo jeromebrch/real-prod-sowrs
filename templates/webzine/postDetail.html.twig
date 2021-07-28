@@ -21,6 +21,7 @@
             {% if "ROLE_ADMIN" in app.user.roles %}
                 <div class="admin_options">
                     <h6 class="admin_options_title">Espace admin</h6>
+                    <a href="{{ path('modify_post', {'id': post.id}) }}" class="btn required btn_admin">Modifier l'article</a>
                     {% if post.isPublished %}
                         <a href="{{ path('hide_post', {"id":post.id}) }}" class="btn required btn_admin">Masquer</a>
                     {% else %}

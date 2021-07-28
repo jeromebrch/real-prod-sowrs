@@ -22,19 +22,40 @@
     flex-wrap: wrap;
 }
 .illustration_post{
+    min-height: 300px;
+    max-height: 300px;
     height: auto;
+}
+.titleArticle{
+    /*text-align: center;*/
+    font-family: 'KohinoorBangla', Arial, serif;
+    text-decoration: none;
+    font-weight: bold;
+    margin-top: 15px;
+}
+.titleArticle a{
+    color: #827399;
+    font-size: 1.3em;
+}
+.textPresentation{
+    margin-top: 20px;
+    font-family: 'KohinoorBangla', Arial, serif;
 }
 .post_abstract{
     padding: 10px;
 }
 .post_mini{
+    font-family: 'KohinoorBangla', Arial, serif;
     padding: 10px;
 }
+.read_more{
+    margin-top: 20px;
+}
 .post_mini *{
-    margin-bottom: 20px;
+    /*margin-bottom: 20px;*/
 }
 .post_mini .post_mini_date{
-    padding-left: 20px;
+    /*padding-left: 20px;*/
 }
 blockquote{
     border-left: 3px solid #55555555;
