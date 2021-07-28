@@ -22,8 +22,6 @@
     flex-wrap: wrap;
 }
 .illustration_post{
-    min-height: 300px;
-    max-height: 300px;
     height: auto;
 }
 .titleArticle{
