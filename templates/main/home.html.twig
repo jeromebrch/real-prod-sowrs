@@ -30,6 +30,7 @@
             <div class="col-lg-6 p-3 d-none d-md-block d-lg-block d-xl-block">
                 <p class="title-background">Trouvez un sens à votre travail et sauvons le monde ensemble !</p>
                 <br>
+                <br>
                 {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
                     {%  if 'ROLE_CANDIDATE' in app.user.roles %}
                         <div class="container_main_options">
@@ -48,6 +49,7 @@
                         <a href="{{ path('app_register') }}">Déposez votre CV</a>
                     </div>
                 {% endif %}
+                <br />
                 <p class="sub-subtitle-background">Pour profils techs engagés & entreprises à mission</p>
             </div>
             <div class="d-md-none d-lg-none d-xl-none">

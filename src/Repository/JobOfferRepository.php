@@ -64,6 +64,11 @@ class JobOfferRepository extends ServiceEntityRepository
                     ->andWhere('j.country = :coun')
                     ->setParameter('coun', $search->country);
             }
+            if(!empty($search->department)){
+                $query = $query
+                    ->andWhere('j.department = :dep')
+                    ->setParameter('dep', $search->department);
+            }
             if (!empty($search->contractType)){
                 $query = $query
                     ->andWhere('j.contractType = :con')

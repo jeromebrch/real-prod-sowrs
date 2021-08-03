@@ -146,7 +146,8 @@
     margin-right: 15px;
 }
 .container_main_options a:hover{
-    background-color: #1dca91;
+    background-color: white!important;
+    color: #555555!important;
 }
 
 @media screen and (max-width: 365px){

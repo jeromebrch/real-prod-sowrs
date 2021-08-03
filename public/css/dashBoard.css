@@ -162,6 +162,9 @@ body .container_link_profil{
 body .container_sense_rate_img a .empty_calcul{
     height: auto!important;
 }
+.link_show_profil{
+    padding: 10px 15px 10px 15px!important;
+}
 
 @media screen and (min-width: 1375px){
     body .container_sense_rate_img a .empty_calcul{

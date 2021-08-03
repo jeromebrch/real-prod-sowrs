@@ -19,6 +19,8 @@
 }
 .burger_menu, .burger_menu_restore, .user_icon{
     color: #937FA4;
+    position: relative!important;
+    bottom: 5px!important;
 }
 .container_logo_home{
     display: flex;

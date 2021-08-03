@@ -1,16 +1,16 @@
 <div class="nav_top">
     <div class="container_top_nav">
-        <i class="fas fa-bars fa-3x burger_menu"></i>
-        <i class="fas fa-bars fa-3x burger_menu_restore"></i>
+        <i class="fas fa-bars fa-2x burger_menu"></i>
+        <i class="fas fa-bars fa-2x burger_menu_restore"></i>
         <div class="container_logo_home">
             <a href="{{ path('main') }}" title="Sowrs | Home">
                 <img id="logo_sowrs" src="{{ asset('img/logo-base-50px-haut.png') }}" alt="Sowrs" title="SOWRS">
             </a>
         </div>
         {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
-            <a href="{{ path('main_dash_board') }}"><i class="fas fa-user fa-3x user_icon"></i></a>
+            <a href="{{ path('main_dash_board') }}"><i class="fas fa-user fa-2x user_icon"></i></a>
         {% else %}
-            <a href="{{ path('app_login') }}"><i class="fas fa-user fa-3x user_icon"></i></a>
+            <a href="{{ path('app_login') }}"><i class="fas fa-user fa-2x user_icon"></i></a>
         {% endif %}
     </div>
     <div class="container_nav_top">
