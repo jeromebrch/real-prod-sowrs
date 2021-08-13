@@ -474,6 +474,9 @@ body .form-control{
     .title_my_recognitions{
         display: none;
     }
+    .info_mailing>p{
+        font-size: 0.8em;
+    }
 }
 @media screen and (max-width: 520px){
     body .details_checkbox_input{

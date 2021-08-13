@@ -55,6 +55,7 @@
 .profil_category_title{
     color: #1DCA91;
     font-family: 'KohinoorBangla', Arial, serif;
+    margin-bottom: 25px;
 }
 .profil_category_title_bottom{
     color: #1DCA91;
@@ -89,24 +90,28 @@
     margin: 40px;
 }
 .container_all_job_offer{
-    padding: 30px;
-    border: 1px solid #1dca9133;
-    border-radius: 30px;
-    background-color: white;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+    /*padding: 30px;*/
+    /*border: 1px solid #1dca9133;*/
+    /*border-radius: 30px;*/
+    /*background-color: white;*/
+    /*display: flex;*/
+    /*flex-direction: column;*/
+    /*justify-content: center;*/
 }
 .container_job_offer{
     border: 1px solid #937FA455;
     padding: 20px;
     border-radius: 30px;
     margin-bottom: 20px;
+    background-color: white;
 }
 .job_offer_title{
     color: #937FA4;
     font-size: 1.3em;
     font-family: 'KohinoorBangla', Arial, serif;
+}
+.title_in_profil{
+    width: 100% !important;
 }
 .contract_type{
     padding: 10px;

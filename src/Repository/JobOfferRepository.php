@@ -48,6 +48,7 @@ class JobOfferRepository extends ServiceEntityRepository
         $query = $this->createQueryBuilder('j')
             ->addSelect('r')
             ->join('j.entity', 'r')
+            ->join('j.category', 'c')
             ->andWhere('j.published = :p')
             ->setParameter('p', true);
 
@@ -55,7 +56,7 @@ class JobOfferRepository extends ServiceEntityRepository
                 $arrayResearch = explode(" ", $search->q);
                 for($i = 0;$i<count($arrayResearch);$i++){
                     $query = $query
-                        ->andWhere('j.title LIKE :q')
+                        ->andWhere('j.title LIKE :q OR c.wording LIKE :q')
                         ->setParameter('q', "%$arrayResearch[$i]%");
                 }
             }

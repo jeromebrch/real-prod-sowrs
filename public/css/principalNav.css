@@ -59,6 +59,11 @@
 .principal_nav_mini>div>a:hover{
     color: #937FA4;
 }
+@media screen and (max-width: 400px){
+    .principal_nav_mini>div>a{
+        font-size: 1.1em!important;
+    }
+}
 @media screen and (max-width: 1225px){
     .container_principal_nav{
         justify-content: space-around;

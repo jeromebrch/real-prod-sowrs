@@ -11,6 +11,7 @@ use App\Entity\LevelExperience;
 use App\Entity\LevelStudy;
 use App\Entity\Region;
 use App\Entity\Remuneration;
+use App\Repository\BusinessProfileRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
@@ -102,7 +103,12 @@ class JobOfferType extends AbstractType
                 'class' => BusinessProfile::class,
                 'choice_label' => 'wording',
                 'label' => false,
-                'placeholder' => 'Catégorie'
+                'placeholder' => 'Catégorie',
+                'query_builder' => function(BusinessProfileRepository $businessProfileRepository){
+                    return $businessProfileRepository->createQueryBuilder('b')
+                        ->orderBy('b.wording', 'ASC')
+                        ;
+                }
             ])
             ->add('remuneration', EntityType::class, [
                 'class' => Remuneration::class,

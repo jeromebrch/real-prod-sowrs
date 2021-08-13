@@ -43,6 +43,7 @@ class JobofferController extends AbstractController
         if ($jobOfferForm->isSubmitted() && $jobOfferForm->isValid()) {
 
             $offerCreated = 1;
+            $offer->setTitle($offer->getTitle() . " F/H");
 
             $regexPostal = '/^[0-9]{5}$/';
             $postalCode = $jobOfferForm->get('postalCode')->getData();

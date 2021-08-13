@@ -382,7 +382,7 @@
                                 {% for jobOffer in user.jobOffers %}
                                     <div class="container_job_offer container_job_offer_recruiter_profil offer_recruiter_profil">
                                         <div class="offer_title_contract">
-                                            <h3 class="job_offer_title">{{ jobOffer.title }}</h3>
+                                            <a href="{{ path('jobOffer_show', {'id':jobOffer.id}) }}"><h3 class="job_offer_title title_in_profil">{{ jobOffer.title }}</h3></a>
                                             {% if jobOffer.contractType.wording == 'CDI' %}
                                                 <div class="contract_type taille"><div class="">{{ jobOffer.contractType.wording }}</div></div>
                                             {% elseif jobOffer.contractType.wording == 'CDD' %}
@@ -402,10 +402,9 @@
                                             {% endif %}
                                         </div>
                                         <div class="offer_localization">
-                                            <h4 class="localisation_job_offer">{{ jobOffer.city }} - {{ jobOffer.country.name }}</h4>
+                                            <h4 class="localisation_job_offer">{{ jobOffer.city|capitalize }} - {{ jobOffer.country.name|capitalize }}</h4>
                                         </div>
                                         <div class="show_offer">
-                                            <a class="btn required link_offer_details" href="{{ path('jobOffer_show', {"id":jobOffer.id}) }}">Voir l'offre</a>
                                         </div>
                                     </div>
                                 {% endfor %}

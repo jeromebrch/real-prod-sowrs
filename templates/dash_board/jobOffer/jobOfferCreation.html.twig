@@ -28,15 +28,22 @@
                         <div class="error_form mb-3">{{ form_errors(jobOfferForm) }}</div>
                     {% endif %}
                     <h3 class="job_offer_creation_title text-uppercase">Descriptif de l'offre <i class="fas fa-xs fa-question-circle"></i></h3>
-                    <div class="info_message">
-                                <p>
-                                    Pensez à préciser la techno principale dans le titre de votre
-                                    annonce afin de donner un maximum de visibilité à votre offre.
-                                </p>
+                    <div class="info_message info_creation">
+                        <p>
+                            Pensez à préciser la techno principale dans le titre de votre
+                            annonce afin de donner un maximum de visibilité à votre offre.
+                        </p>
                     </div>
-                    <span class="col-lg-8 offer">Dans cette rubrique, décrivez les missions confiées au / à la futur.e colaborateur.rice ainsi que le profil recherché. N'indiquez pas d'adresse e-mail ou de numéro de téléphone, les candidats postuleront directement à partir de Sowrs</span>
+                    <span class="col-lg-8 offer">Dans cette rubrique, décrivez les missions confiées
+                        au / à la futur.e colaborateur.rice ainsi que le profil recherché</span>
                     <div class="col-lg-8 col-lg-12">
                         {{ form_row(jobOfferForm.description,{'attr': {'class': 'specific-textarea'}}) }}
+                    </div>
+                    <div class="info_message info_mailing">
+                        <p>
+                            Vous pouvez choisir une adresse mail de réception de candidature dans "Vos informations".
+                            Merci de ne pas ajouter d'adresse mail ou de lien dans l'annonce &#128519;
+                        </p>
                     </div>
                     <h3 class="job_offer_creation_title mt-5 text-uppercase">Critères de recherche</h3>
                     <div class="col-sm-12 col-lg-12">
@@ -113,10 +120,21 @@
     {{ parent() }}
     <script>
         $("i.fa-question-circle").on("mouseover", function (){
-            $("div.info_message").show(300);
+            $("div.info_creation").show(300);
         });
-        $("i.fa-question-circle").on("click", function (){
-            $("div.info_message").hide(300);
+        $("i.fa-question-circle").on("mouseout", function (){
+            $("div.info_creation").hide(300);
+        });
+    </script>
+
+    <script>
+        let infoMailing = $(".info_mailing")
+        $("#job_offer_description").on('click', function (){
+            infoMailing.show(300);
+            infoMailing.on('click', function (){
+                infoMailing.hide(300);
+            });
+
         });
     </script>
 {% endblock %}

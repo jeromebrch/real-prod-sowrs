@@ -162,10 +162,29 @@
         padding: 3px!important;
     }
 }
+
+@media screen and (max-width: 350px) {
+    .texte-green{
+        display: none;
+    }
+}
+
 @media screen and (max-width: 455px){
     .container_main_options a{
         font-size: 0.8em!important;
         text-align: center;
+    }
+    form[name="search_candidate"]>div>div>input{
+        font-size: 0.8em;
+    }
+    form[name="search_candidate"]>div>div>select{
+        font-size: 0.8em;
+    }
+    form[name="search_candidate"]>div>div>div>div>div>label{
+        font-size: 0.8em;
+    }
+    .texte-green{
+        font-size: 0.8em;
     }
 }
 @media screen and (max-width: 500px){
@@ -183,5 +202,12 @@
     }
     .btn_about_popup{
         display: none;
+    }
+    .texte-green{
+        font-weight: bold!important;
+        background-color: #ffffff88;
+        padding: 5px 15px 5px 15px;
+        border-radius: 30px;
+        border: 0;
     }
 }
