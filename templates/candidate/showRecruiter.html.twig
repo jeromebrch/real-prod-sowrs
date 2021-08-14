@@ -112,12 +112,14 @@
                         <h3 class="profil_category_title">Offres d'emploi de {{ recruiter.entityName }}</h3>
                     </div>
                     <div class="row">
-                        <div class="col-12 container_commitment_recruiter">
+                        <div class="col-12 container_commitment_recruiter container_offer_recruiter">
                             {% if recruiter.jobOffers is not empty %}
                                 {% for jobOffer in recruiter.jobOffers %}
                                     <div class="container_job_offer container_job_offer_recruiter_profil">
                                         <div class="offer_title_contract">
-                                            <h3 class="job_offer_title">{{ jobOffer.title }}</h3>
+                                            <a href="{{ path('jobOffer_show', {"id":jobOffer.id}) }}">
+                                                <h3 class="job_offer_title show_recruiter_title">{{ jobOffer.title }}</h3>
+                                            </a>
                                             {% if jobOffer.contractType.wording == 'CDI' %}
                                                 <div class="contract_type taille"><div class="">{{ jobOffer.contractType.wording }}</div></div>
                                             {% elseif jobOffer.contractType.wording == 'CDD' %}
@@ -138,9 +140,6 @@
                                         </div>
                                         <div class="offer_localization">
                                             <h4 class="localisation_job_offer">{{ jobOffer.city }} - {{ jobOffer.country.name }}</h4>
-                                        </div>
-                                        <div class="show_offer">
-                                            <a class="btn required link_offer_details" href="{{ path('jobOffer_show', {"id":jobOffer.id}) }}">Voir l'offre</a>
                                         </div>
                                     </div>
                                 {% endfor %}

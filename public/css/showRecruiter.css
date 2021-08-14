@@ -36,7 +36,7 @@
     min-width: 100px;
 }
 .container_job_offer_recruiter_profil{
-    width: 90%;
+    width: 100%;
 }
 .container_job_offer{
     display: flex;
@@ -71,6 +71,12 @@
 }
 .mini_contract_type{
     display: none;
+}
+.show_recruiter_title{
+    width: 100% !important;
+}
+.container_offer_recruiter{
+    justify-content: flex-start!important;
 }
 
 @media screen and (max-width: 296px){
