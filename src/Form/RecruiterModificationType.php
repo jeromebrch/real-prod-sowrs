@@ -92,12 +92,18 @@ class RecruiterModificationType extends AbstractType
                 'required' => true,
                 'label' => false,
                 'attr' => [
-                    'placeholder' => 'fonction']
+                    'placeholder' => 'Fonction']
             ])
             ->add('city', TextType::class, [
                 'label' => false,
                 'attr' => [
                     'placeholder' => 'Ville']
+            ])
+            ->add('postalCode', TextType::class, [
+                'label' => false,
+                'required' => false,
+                'attr' => [
+                    'placeholder' => 'Code postal']
             ])
             ->add('country', TextType::class, [
                 'required' => false,

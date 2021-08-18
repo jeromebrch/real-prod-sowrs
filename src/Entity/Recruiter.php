@@ -87,7 +87,6 @@ class Recruiter extends User
      */
     private $region;
 
-
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
@@ -117,6 +116,14 @@ class Recruiter extends User
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $alternateMail;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     *@Assert\Regex(
+           pattern="/[0-9]{5}/", message="Code postal invalide"
+     * )
+     */
+    private $postalCode;
 
 
    public function __construct()
@@ -463,6 +470,18 @@ class Recruiter extends User
     public function setAlternateMail(?string $alternateMail): self
     {
         $this->alternateMail = $alternateMail;
+
+        return $this;
+    }
+
+    public function getPostalCode(): ?string
+    {
+        return $this->postalCode;
+    }
+
+    public function setPostalCode(?string $postalCode): self
+    {
+        $this->postalCode = $postalCode;
 
         return $this;
     }

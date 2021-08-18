@@ -375,21 +375,22 @@
         let lon;
         let mymap;
         let marker;
-        let popupContent = '{{ recruiter.entityName }} se situe dans la ville de {{ recruiter.city }}'; //Pas utilisé
+        let popupContent = '{{ recruiter.entityName }} se situe dans la ville de {{ recruiter.postalCode }} {{ recruiter.city }}'; //Pas utilisé
         let errorContent = 'La localisation depuis la carte n\'est pas disponible.'; //Pas utilisé
         let mapGoogle = document.getElementById('mapGoogle');
         let mapId = document.getElementById('map');
         let city = '{{ recruiter.city }}';
+        let postalCode = '{{ recruiter.postalCode }}';
         let customOptions =
             {
                 'className' : 'custom'
             }
 
         //Si au moins la ville est renseignée
-        if (city != '') {
+        if (city != '' && postalCode != ''){
 
             //On récupère la ville du candidat(Zone géographique)
-            let completeAddress = city;
+            let completeAddress = postalCode + " " + city;
 
             //Gestion de l'icone personnalisé
             let sowrsIcon = L.icon({
