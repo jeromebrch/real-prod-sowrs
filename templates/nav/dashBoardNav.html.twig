@@ -205,7 +205,6 @@
         const elementInputCv = document.getElementById('create_cv_cvFile');
 
         elementInputCv.addEventListener("change", function () {
-            console.log("onchange");
             let formData = new FormData(elementFormCv);
             console.log(elementInputCv)
             fetch('{{ path('register_cv') }}',

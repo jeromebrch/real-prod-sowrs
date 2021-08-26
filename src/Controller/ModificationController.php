@@ -4,8 +4,10 @@ namespace App\Controller;
 
 use App\Entity\Candidate;
 use App\Entity\Cv;
+use App\Entity\Picture;
 use App\Entity\Recruiter;
 use App\Form\CandidateModificationType;
+use App\Form\ChangePictureRecruiterType;
 use App\Form\CreateCvType;
 use App\Form\RecognitionType;
 use App\Form\RecruiterModificationType;
@@ -65,9 +67,10 @@ class ModificationController extends AbstractController
                 'formCv'=>$formCv->createView()
             ]);
         } else {
-
             $modifyUserForm = $this->createForm(RecruiterModificationType::class, $user);
             $modifyUserForm->handleRequest($request);
+            $picture = new Picture();
+            $changePictureForm = $this->createForm(ChangePictureRecruiterType::class, $picture);
 
             $listeCauses = $causeRepository->exclusionCauses($user);
 
@@ -131,6 +134,11 @@ class ModificationController extends AbstractController
                         }
                     }
                 }
+                if(!preg_match("/^[https][a-zA-Z0-9:%_+.,#?\/!@&=-]{1,256}$/", $user->getSocialNetwork()->getWebSite())){
+                    $website = $user->getSocialNetwork()->getWebSite();
+                    $website = "https://" . $website;
+                    $user->getSocialNetwork()->setWebSite($website);
+                }
                 $em->persist($user);
                 $em->flush();
                 $this->addFlash("success", "Vos modifications ont bien été enregistrées");
@@ -151,6 +159,7 @@ class ModificationController extends AbstractController
                 'recognitions' => $listeRecognitionRecruiter,
                 'recognitionForm' => $recognitionForm->createView(),
                 'user' => $user,
+                'formPictureRecruiter' => $changePictureForm->createView()
 
             ]);
         }

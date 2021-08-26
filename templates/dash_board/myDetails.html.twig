@@ -242,10 +242,10 @@
                             <div class="col-sm-6 text-center align-self-center text-white">
                                 <h3 class="title">Mes informations</h3>
                             </div>
-                            <div class="col-sm-6 text-center align-self-center container_upload">
-                                <button class="float-right btn btn-title btn-lg">Importer le logo de votre entité
-                                </button>
-                            </div>
+{#                            <div class="col-sm-6 text-center align-self-center container_upload">#}
+{#                                <button class="float-right btn btn-title btn-lg btn_change_picture">Importer le logo de votre entité#}
+{#                                </button>#}
+{#                            </div>#}
                         </div>
                     </div>
                     <div class="m-5">
@@ -492,9 +492,19 @@
         </div>
     </div>
     </div>
+    {# MODALS #}
     <div class="delete_video_modal general_modal">
         <div class="loader_box">
             <div class="lds-dual-ring"></div>
+        </div>
+    </div>
+    <div class="general_modal change_picture_modal">
+        <div class="block_change_picture">
+            <form method="post" class="change_picture_form">
+                <label for="picture"></label>
+                <input type="file" id="picture" name="picture" placeholder="Votre image..." />
+                <button type="button" class="btn_send_picture">Changer !</button>
+            </form>
         </div>
     </div>
     <div class="general_modal success_delete_video_modal">
@@ -518,8 +528,6 @@
     {{ parent() }}
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
-
-
 
     <script type="text/javascript">
         //double select pour causes secondaires

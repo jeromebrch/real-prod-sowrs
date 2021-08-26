@@ -48,4 +48,5 @@ class PictureController extends AbstractController
         return new JsonResponse($formPicture->getErrors(), 400);
     }
 
+
 }

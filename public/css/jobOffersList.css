@@ -17,6 +17,10 @@
     border: 2px solid lightgray;
     border-radius: 20px;
 }
+.modal_content>p>em{
+    font-weight: bold;
+    font-style: normal;
+}
 .job_text{
     color: #555555;
 }
@@ -98,6 +102,12 @@
     justify-content: flex-start;
     align-items: center;
     width: 70%;
+}
+.fa-times{
+    cursor: pointer;
+    position: relative;
+    right: 15px;
+    top: 5px;
 }
 .second_section_card_job_offer{
     display: flex;

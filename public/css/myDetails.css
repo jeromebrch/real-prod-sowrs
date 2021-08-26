@@ -452,6 +452,16 @@ body .form-control{
     color: #555555;
     font-family: 'KohinoorBangla', Arial, serif;
 }
+.block_change_picture{
+    padding: 25px;
+    background-color: white;
+    border-radius: 30px;
+    border: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
 
 @media screen and (max-width: 576px){
     .check_telecommute{

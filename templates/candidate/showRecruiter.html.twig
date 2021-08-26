@@ -263,7 +263,7 @@
                 {% else %}
 
                 {% endif %}
-                {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+                {% if is_granted('IS_AUTHENTICATED_REMEMBERED') and app.user != recruiter %}
                     {# contact form #}
                     <div class="row container_contact">
                         <div>

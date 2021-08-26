@@ -267,6 +267,10 @@
     align-items: center;
     width: 30%;
 }
+.link_offer_view>span:hover{
+    color: #937FA4!important;
+}
+
 @media screen and (max-width: 310px){
     .my_offers_title{
         margin: 0!important;
