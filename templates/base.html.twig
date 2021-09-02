@@ -99,6 +99,20 @@
     <footer>
         {% include'footer/footerMain.html.twig' %}
     </footer>
+    {# AXEPTIO #}
+    <script>
+        window.axeptioSettings = {
+            clientId: "613074521880cd1941a5e05c",
+            cookiesVersion: "sowrs-base",
+        };
+
+        (function(d, s) {
+            var t = d.getElementsByTagName(s)[0], e = d.createElement(s);
+            e.async = true; e.src = "//static.axept.io/sdk.js";
+            t.parentNode.insertBefore(e, t);
+        })(document, "script");
+    </script>
+
 </body>
 
 {% block javascripts %}
