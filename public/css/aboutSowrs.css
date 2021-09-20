@@ -1,87 +1,297 @@
-#main_content_about{
-
-}
-.about_us_banner{
-    width: 100%;
-    height: 300px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 20px;
-   ;
-}
-#about_banner_top{
-    background: url("../img/about-us-banner.jpg") no-repeat center;
-}
-#about_banner_bottom{
-    background: url("../img/valeur-metier-banner.jpg") no-repeat center;
-}
-#about_banner_bottom h2{
-    color: #827399;
-}
-body #title_about_banner{
-    font-size: 1.8em;
-    margin: 0;
-}
-.about_illustration {
-    padding: 20px;
-}
 .interest_point_about{
     color: #1DCA91;
     font-weight: normal;
     text-align: left;
 }
-h2.interest_point_about{
-    margin-top: 50px;
+.about_header{
+    width: 100%;
+    padding: 15px;
 }
-h3.interest_point_about{
-    font-size: 1.4em;
-}
-.block_info_about{
-    padding: 20px;
-    text-align: left;
-    font-size: 1em;
-    vertical-align: middle;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-.block_info_about p{
+.about_header>h1{
+    font-size: 2.2em;
     color: #555555;
-    text-align: left;
-}
-.about_logo{
-    height: 120px;
-    width: auto;
-}
-.about_nav{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-.about_nav p{
-    color: #555555;
-}
-.about_nav h3,p{
-    padding: 10px;
     text-align: center;
+    width: 100%;
+    padding-top: 25px;
 }
-.about_nav img{
-    margin: 20px;
+.img_main_content_about{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    border: 0;
 }
-.about_nav_btn{
-    width: 300px;
+.img_main_content_about>img{
+    padding: 100px;
+    width: 100%;
+    height: auto;
+    border: 0;
 }
-.important_sentence_about{
-    color: #1DCA91;
+.text_main_content_about{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 25px;
+}
+.text_main_content_about>p{
+    color: white;
+    font-size: 1em;
+    font-family: 'KohinoorBangla', Arial, serif;
     font-weight: bold;
 }
+.main_content_about{
+    background: linear-gradient(180deg, #F7FAF7 50%, #937FA4 50%);
+}
+.second_main_content_about{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 25px;
+}
+.second_main_content_about>p{
+    color: #555555;
+    font-family: 'KohinoorBangla', Arial, serif;
+    font-weight: bold;
+    padding: 25px;
+}
+.second_main_content_about>h3{
+    color: #1dca91;
+    font-size: 1.6em;
+    text-align: center;
+    padding: 25px;
+}
+.link_section_about{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+.link_section_about>div{
+    width: 50%;
+    padding: 25px;
+}
+.first_link_section, .second_link_section{
+    border-radius: 30px;
+    background-color: white;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    min-height: 460px;
+    height: auto;
+}
+.first_link_section>div, .second_link_section>div{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.first_link_section>div>h3, .second_link_section>div>h3{
+    font-size: 4em;
+}
+.first_link_section>div>h2, .second_link_section>div>h2{
+    font-size: 1.2em;
+    color: #1dca91;
+    text-align: center;
+    padding: 15px;
+}
+.first_link_section>div>p, .second_link_section>div>p{
+    font-size: 1em;
+    font-family: 'KohinoorBangla', Arial, serif;
+    color: #555555;
+    padding: 15px;
+    font-weight: bold;
+    text-align: center;
+}
+.container_link_about>a{
+    padding: 15px 25px 15px 25px;
+    background-color: #1dca91;
+    color: white;
+    font-family: 'KohinoorBangla', Arial, serif;
+    font-weight: bold;
+    text-decoration: none;
+    border-radius: 30px;
+}
+.container_link_about>a:hover{
+    text-decoration: none;
+    background-color: #555555;
+}
+.friends_section{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.friends_section>h3{
+    font-size: 2em;
+    color: #555555;
+    font-weight: bold;
+    text-align: center;
+    padding: 25px;
+}
+.logo_friends_container{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+.logo_friends_container>img{
+    padding: 10px 25px 10px 25px;
+    width: 200px;
+    height: auto;
+}
 
-@media screen and (max-width: 540px){
-    .about_nav{
-        margin-bottom: 40px;
-        margin-top: 20px;
+
+@media screen and (max-device-width: 700px){
+    .img_main_content_about>img{
+        padding: 10px;
+        width: 100%;
+    }
+    .link_section_about{
+        flex-direction: column;
+    }
+    .link_section_about>div{
+        width: 100%;
     }
 }
+@media screen and (max-device-width: 1060px){
+    .main_content_about{
+        background: linear-gradient(360deg, #937FA4 75%, #F7FAF7 25%);
+    }
+}
+@media screen and (max-device-width: 500px){
+    body .main_content_about{
+        background-color: #937FA4!important;
+        border-radius: 30px!important;
+    }
+    .img_main_content_about{
+        border-top-right-radius: 30px;
+        border-top-left-radius: 30px;
+    }
+    .img_main_content_about>img{
+        border-radius: 30px;
+    }
+    .main_content_about>div{
+        background-color: #937FA4;
+    }
+    .text_main_content_about{
+        border-bottom-left-radius: 30px;
+        border-bottom-right-radius: 30px;
+    }
+    .second_main_content_about>p{
+        font-size:1.6em;
+        padding: 0;
+        text-align: center;
+    }
+    .second_main_content_about>h3{
+        padding: 40px 0 40px 0;
+        font-size: 1.8em;
+    }
+    .first_link_section>div>h2, .second_link_section>div>h2{
+        font-size: 1.4em;
+    }
+    .first_link_section>div>p, .second_link_section>div>p{
+        font-size: 1.2em;
+    }
+    .container_link_about>a{
+        font-size: 1.2em;
+        text-align: center;
+    }
+    .logo_friends_container{
+        flex-direction: column;
+    }
+    .logo_friends_container>img{
+        padding: 15px 0 15px 0;
+        margin-bottom: 15px;
+    }
+    .text_main_content_about>p{
+        font-size: 1.4em;
+        text-align: center;
+    }
+}
+
+/*#main_content_about{*/
+
+/*}*/
+/*.about_us_banner{*/
+/*    width: 100%;*/
+/*    height: 300px;*/
+/*    display: flex;*/
+/*    justify-content: center;*/
+/*    align-items: center;*/
+/*    margin-top: 20px;*/
+/*   ;*/
+/*}*/
+/*#about_banner_top{*/
+/*    background: url("../img/about-us-banner.jpg") no-repeat center;*/
+/*}*/
+/*#about_banner_bottom{*/
+/*    background: url("../img/valeur-metier-banner.jpg") no-repeat center;*/
+/*}*/
+/*#about_banner_bottom h2{*/
+/*    color: #827399;*/
+/*}*/
+/*body #title_about_banner{*/
+/*    font-size: 1.8em;*/
+/*    margin: 0;*/
+/*}*/
+/*.about_illustration {*/
+/*    padding: 20px;*/
+/*}
+/*h2.interest_point_about{*!*/
+/*    margin-top: 50px;*/
+/*}*/
+/*h3.interest_point_about{*/
+/*    font-size: 1.4em;*/
+/*}*/
+/*.block_info_about{*/
+/*    padding: 20px;*/
+/*    text-align: left;*/
+/*    font-size: 1em;*/
+/*    vertical-align: middle;*/
+/*    display: flex;*/
+/*    flex-direction: column;*/
+/*    justify-content: center;*/
+/*    align-items: center;*/
+/*}*/
+/*.block_info_about p{*/
+/*    color: #555555;*/
+/*    text-align: left;*/
+/*}*/
+/*.about_logo{*/
+/*    height: 120px;*/
+/*    width: auto;*/
+/*}*/
+/*.about_nav{*/
+/*    display: flex;*/
+/*    flex-direction: column;*/
+/*    justify-content: center;*/
+/*    align-items: center;*/
+/*}*/
+/*.about_nav p{*/
+/*    color: #555555;*/
+/*}*/
+/*.about_nav h3,p{*/
+/*    padding: 10px;*/
+/*    text-align: center;*/
+/*}*/
+/*.about_nav img{*/
+/*    margin: 20px;*/
+/*}*/
+/*.about_nav_btn{*/
+/*    width: 300px;*/
+/*}*/
+/*.important_sentence_about{*/
+/*    color: #1DCA91;*/
+/*    font-weight: bold;*/
+/*}*/
+
+/*@media screen and (max-width: 540px){*/
+/*    .about_nav{*/
+/*        margin-bottom: 40px;*/
+/*        margin-top: 20px;*/
+/*    }*/
+/*}*/
