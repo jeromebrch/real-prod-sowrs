@@ -43,6 +43,9 @@ class ModificationController extends AbstractController
         $user = $this->getUser();
         //modification form
         if ($user instanceof Candidate) {
+            if(empty($user->getCV()) or $user->getJobSearch() == null){
+                $this->addFlash('error', 'Pensez à uploadé un CV et à indiquer le job recherché pour apparaître dans les recherches ! ');
+            }
             $modifyUserForm = $this->createForm(CandidateModificationType::class, $user);
             $modifyUserForm->handleRequest($request);
             $cv = new Cv();

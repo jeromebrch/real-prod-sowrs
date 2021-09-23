@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Data\SearchJobOffers;
+use App\Entity\Candidate;
 use App\Form\SearchJobOfferType;
 use App\Repository\JobOfferRepository;
 use Knp\Component\Pager\PaginatorInterface;
@@ -39,6 +40,11 @@ class JobOfferListController extends AbstractController
             5
         );
         if($this->getUser()){
+            if($user instanceof Candidate){
+                if(empty($user->getCV()) or $user->getJobSearch() == null){
+                    $this->addFlash('error', 'Pensez à uploadé un CV et à indiquer le job recherché pour apparaître dans les recherches ! ');
+                }
+            }
             return $this->render('main/jobOffersList.html.twig', [
                 'jobOffers' => $jobOffers,
                 'formSearch' => $formSearch->createView(),
