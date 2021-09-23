@@ -100,6 +100,12 @@ input[type="email"], input[type="tel"]{
 .alert-error{
     color: white;
     background-color: #B0413E;
+    font-weight: bold;
+    font-family: 'KohinoorBangla', Arial, serif;
+}
+.alert-success{
+    font-weight: bold;
+    font-family: 'KohinoorBangla', Arial, serif;
 }
 .check_telecommuting{
     display: flex;
@@ -250,6 +256,10 @@ body .select2-container--default{
     align-items: center;
     width: 100%;
     height: 100%;
+}
+#show_joboffer_photo_profile, #photo_profile, .matching_profil_picture{
+    object-fit: cover;
+    object-position: center;
 }
 
 

@@ -50,6 +50,11 @@ class DashBoardController extends AbstractController
                 'applies' => $userApplies
             ]);
         } else {
+            if($user instanceof Candidate){
+                if(empty($user->getCV()) or $user->getJobSearch() == null){
+                    $this->addFlash('error', 'Pensez à uploadé un CV et à indiquer le job recherché pour apparaître dans les recherches ! ');
+                }
+            }
             return $this->render('dash_board/dashBoard.html.twig', [
                 'latestPosts' => $latestPosts
             ]);
