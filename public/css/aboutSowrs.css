@@ -140,7 +140,7 @@
     justify-content: center;
     align-items: center;
 }
-.logo_friends_container>img{
+.logo_friends_container>a>img{
     padding: 10px 25px 10px 25px;
     width: 200px;
     height: auto;
