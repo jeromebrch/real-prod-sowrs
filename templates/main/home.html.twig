@@ -84,7 +84,7 @@
                         <div class="col-lg-6 text-end">
                             {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
                                 {% if "ROLE_CANDIDATE" in user.roles %}
-                                    <p>
+                                    <p class="link_show_all_home">
                                         <a class="texte-green home_link" href="{{ path('main_job_offers_list') }}">Voir toutes les offres</a>
                                     </p>
                                 {% else %}
@@ -93,7 +93,7 @@
                                     </p>
                                 {% endif %}
                             {% else %}
-                                <p>
+                                <p class="link_show_all_home">
                                     <a class="texte-green home_link" href="{{ path('main_job_offers_list') }}">Voir toutes les offres</a>
                                 </p>
                             {% endif %}
@@ -128,12 +128,12 @@
                                     {{ form_row(formSearchHome.remuneration) }}
                                 </div>
                                 <div class="row">
-                                    <div class="col-6">
+                                    <div class="col-md-6 col-sm-12">
                                         <div class="p-1">
                                             {{ form_row(formSearchHome.freshness) }}
                                         </div>
                                     </div>
-                                    <div class="col-6">
+                                    <div class="col-md-6 col-sm-12">
                                         <div class="p-1">
                                             {{ form_row(formSearchHome.telecommute) }}
                                         </div>
@@ -211,12 +211,12 @@
                                 {{ form_row(formSearchHome.remuneration) }}
                             </div>
                             <div class="row">
-                                <div class="col-6">
+                                <div class="col-md-6 col-sm-12">
                                     <div class="p-1">
                                         {{ form_row(formSearchHome.freshness) }}
                                     </div>
                                 </div>
-                                <div class="col-6">
+                                <div class="col-md-6 col-sm-12">
                                     <div class="p-1">
                                         {{ form_row(formSearchHome.telecommute) }}
                                     </div>

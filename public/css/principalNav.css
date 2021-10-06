@@ -54,7 +54,7 @@
     font-size: 1.3em;
     font-family: 'KohinoorBangla', Arial, serif;
     font-weight: bold;
-    padding: 20px;
+    /*padding: 20px;*/
 }
 .principal_nav_mini>div>a:hover{
     color: #937FA4;

@@ -79,9 +79,9 @@ body .mini_webzine_title {
     justify-content: center;
     align-items: flex-start;
 }
-.block_info_mini_webzine *{
-    font-weight: normal;
-}
+/*.block_info_mini_webzine *{*/
+/*    font-weight: normal;*/
+/*}*/
 .beside_webzine{
     height: 100px;
     width: auto;
@@ -95,6 +95,7 @@ body .container_link_profil{
 }
 .button-creerUne{
     padding: 10px;
+    font-weight: bold;
 }
 .button-creerUne:hover{
     color: white;
@@ -165,6 +166,16 @@ body .container_sense_rate_img a .empty_calcul{
 .link_show_profil{
     padding: 10px 15px 10px 15px!important;
 }
+.pourcent{
+    text-align: left!important;
+}
+body .cardJobContract>div{
+    font-family: 'KohinoorBangla', Arial, serif;
+}
+.container_options_offers>div>a{
+    padding: 20px 10px 20px 10px;
+    border-radius: 50%;
+}
 
 @media screen and (min-width: 1375px){
     body .container_sense_rate_img a .empty_calcul{
@@ -181,12 +192,57 @@ body .container_sense_rate_img a .empty_calcul{
         font-size: 0.9em;
     }
 }
+@media screen and (max-width: 992px){
+    body .cardJobContract{
+        display: flex;
+        flex-direction: row;
+        justify-content: center!important;
+        align-items: center;
+    }
+    body .cardJobContract>div{
+        width: auto;!important;
+        padding: 10px 15px 10px 15px;
+        font-weight: bold;
+    }
+    .container_options_offers>div{
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around!important;
+        align-items: center;
+    }
+    .container_options_offers>div>a{
+        font-size: 1.5em;
+        padding: 18px 10px 18px 10px;
+        border-radius: 50%;
+    }
+}
 @media screen and (max-width: 425px){
     .mini_webzine_title{
         font-size: 0.9em!important;
     }
     .mini_webzine_date div h4, .mini_webzine_date div h2{
         font-size: 0.9em!important;
+    }
+    .empty_offer_list>a{
+        font-size: 1em!important;
+        padding: 10px 15px 10px 15px!important;
+        width: auto!important;
+        font-weight: bold;
+    }
+    .create_offer_option_text{
+        text-align: center;
+        padding-top: 0;
+    }
+    .empty_offer_list{
+        padding: 10px 15px 10px 15px;
+    }
+    .in_section{
+        min-height: auto;
+        padding: 20px 5px 5px 5px;
+    }
+    img[class="beside_webzine"]{
+        display: none;
     }
 }
 @media only screen and (max-width: 570px) and (min-width: 376px){
@@ -201,6 +257,9 @@ body .container_sense_rate_img a .empty_calcul{
         font-size: small;
         width: 120px;
         text-align: center;
+    }
+    .container_options_offers>div>a{
+        padding: 24px 10px 24px 10px;
     }
 }
 @media only screen and (max-width: 281px) {
