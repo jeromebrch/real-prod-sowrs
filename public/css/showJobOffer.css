@@ -11,6 +11,9 @@ body .job_offer_title_jumbotron{
     text-align: center;
     margin-bottom: 40px;
 }
+#cke_job_offer_description{
+    margin-bottom: 25px;
+}
 
 .custom .leaflet-popup-tip,
 .custom .leaflet-popup-content-wrapper {

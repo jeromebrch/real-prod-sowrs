@@ -1,0 +1,96 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Sowrs &bull; Back Office{% endblock %}
+
+{% block meta %}
+    <meta name="robots" content="noindex, nofollow" />
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('css/backOffice.css') }}" />
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        $(window).on('load', function (){
+            let deleteBtn = $('.delete_btn');
+            deleteBtn.each(function (){
+                $(this).on('click', function (event){
+                    if(confirm('Voulez-vous vraiment supprimer ça ?')){
+
+                    }else{
+                        event.preventDefault();
+                    }
+                })
+            });
+        });
+    </script>
+{% endblock %}
+
+{% block body %}
+    <div class="container_back_office">
+        <h1>Zone Admin ! </h1>
+        <section class="stats_container">
+            <h3><em>{{ allOffer|length }}</em> offre d'emploi</h3>
+            <h3><em>{{ allRecruiter|length }}</em> recruteurs</h3>
+            <h3><em>{{ allCandidate|length }}</em> candidats</h3>
+        </section>
+        {# OFFERS SECTION #}
+        <section>
+            <h2>Les offres d'emploi</h2>
+            <div class="list_container">
+                <ul>
+                    {% for offer in allOffer|reverse %}
+                        <li class="offer_line">
+                            <p>
+                                <a href="{{ path('jobOffer_show', {'id': offer.id}) }}"><strong>{{ offer.title }}</strong></a> &bull; {{ offer.entity.entityName }} &bull; {{ offer.contractType.wording }} &bull;
+                            </p>
+                            <p>
+{#                                <a href="{{ path('jobOffer_modifyJobOffer', {'id':offer.id}) }}"><em>Modifier</em></a>#}
+                                <a class="delete_btn" href="{{ path('delete_offer_admin', {'id': offer.id}) }}"><em>Supprimer</em></a>
+                            </p>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </section>
+        {# CANDIDATE SECTION #}
+        <section>
+            <h2>Les candidats</h2>
+            <div class="list_container">
+                <ul>
+                    {% for candidate in allCandidate|reverse %}
+                        <li class="offer_line">
+                            <p>
+                                <a href="{{ path('candidate_show', {'id':candidate.id}) }}"><em>{{ candidate.lastname }} {{ candidate.firstname}}</em></a> &bull; {{ candidate.email }} &bull;
+                            </p>
+                            <p>
+                                <a class="delete_btn" href="{{ path('delete_user', {'id': candidate.id}) }}"><em>Supprimer</em></a>
+                            </p>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </section>
+        {# RECRUITER SECTION #}
+        <section>
+            <h2>Les recruteurs</h2>
+            <div class="list_container">
+                <ul>
+                    {% for recruiter in allRecruiter|reverse %}
+                        <li class="offer_line">
+                            <p>
+                                <a href="{{ path('show_recruiter_profil', {'id': recruiter.id}) }}"><em>{{ recruiter.entityName }}</em></a> &bull; {{ recruiter.email }} &bull; {{ recruiter.firstname }} {{ recruiter.lastname}} &bull;
+                            </p>
+                            <p>
+                                <a class="delete_btn" href="{{ path('delete_user', {'id': recruiter.id}) }}"><em>Supprimer</em></a>
+                            </p>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </section>
+    </div>
+{% endblock %}

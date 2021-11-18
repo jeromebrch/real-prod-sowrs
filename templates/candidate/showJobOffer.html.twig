@@ -88,14 +88,14 @@
         <div class="col-lg-7 container_info_offer">
             {% if entity.about %}
                 <h3 class="subtitle">À propos de {{ entity.entityName }}</h3>
-                <p>
+                <p class="about_p">
                     {{ entity.about }}
                 </p>
             {% endif %}
             {% if jobOffer.description %}
                 <h3 class="subtitle">Descriptif du poste</h3>
                 <p>
-                    {{ jobOffer.description|nl2br }}
+                    {{ jobOffer.description|raw }}
                 </p>
             {% endif %}
         </div>

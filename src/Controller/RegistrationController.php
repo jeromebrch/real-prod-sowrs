@@ -3,9 +3,16 @@
 namespace App\Controller;
 
 use App\Entity\Candidate;
+use App\Entity\JobSearch;
 use App\Entity\Recruiter;
 use App\Form\CandidateType;
 use App\Form\RecruiterType;
+use App\Repository\CauseRepository;
+use App\Repository\ContractTypeRepository;
+use App\Repository\CountryRepository;
+use App\Repository\DepartmentRepository;
+use App\Repository\RegionRepository;
+use App\Repository\RemunerationRepository;
 use App\Security\EmailVerifier;
 use App\Security\UserAuthenticator;
 use ReCaptcha\ReCaptcha;
@@ -39,7 +46,10 @@ class RegistrationController extends AbstractController
      * @return Response
      */
     public function register(Request $request, UserPasswordEncoderInterface $passwordEncoder,
-                             GuardAuthenticatorHandler $guardHandler, UserAuthenticator $authenticator): Response
+                             GuardAuthenticatorHandler $guardHandler, UserAuthenticator $authenticator,
+                             ContractTypeRepository $contractRepo, CountryRepository $countryRepo,
+                             CauseRepository $causeRepo, RemunerationRepository $remuRepo,
+                             RegionRepository $regionRepo, DepartmentRepository $departmentRepo): Response
     {
         //création d'une instance de candidat
         $candidate = new Candidate();
@@ -68,6 +78,21 @@ class RegistrationController extends AbstractController
                     $candidate, $formCandidate->get('plainPassword')->getData()
                 )
             );
+            try{
+                //Création d'une recherche d'emploi
+                $jobSearch = new JobSearch();
+                $jobSearch->setJobTitle($candidate->getCurrentJob());
+                $jobSearch->setContractType($contractRepo->find(1));
+                $jobSearch->setCountry($countryRepo->find(1));
+                $jobSearch->setCause($causeRepo->find(1));
+                $jobSearch->setDesiredRemuneration($remuRepo->find(1));
+                $jobSearch->setRegion($regionRepo->find(1));
+                $jobSearch->setDepartment($departmentRepo->find(1));
+                //set au candidat
+                $candidate->setJobSearch($jobSearch);
+            }catch (\Exception $exception){
+                $this->addFlash('success', 'Pensez à indiquer une recherche de poste pour apparaître dans les rechercher !');
+            }
             //persistance en BDD
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($candidate);
@@ -91,6 +116,8 @@ class RegistrationController extends AbstractController
                 $authenticator,
                 'dashboard_details' // firewall name in security.yaml
             );
+        }elseif ($formCandidate->isSubmitted() && !$formCandidate->isValid()){
+            $this->addFlash('error', 'Problème dans les données transmises, merci de vérifier votre saisie !');
         }
         //vérification pour le formulaire recruiter si tel est celui rendu
         if ($formRecruiter->isSubmitted() && $formRecruiter->isValid() && $resp->isSuccess()) {
@@ -145,6 +172,8 @@ class RegistrationController extends AbstractController
                 ]);
             }
 
+        }elseif ($formRecruiter->isSubmitted() && !$formRecruiter->isValid()){
+            $this->addFlash('error', 'Problème dans les données transmises, merci de vérifier votre saisie !');
         }
         //mise en place d'un message si le recaptcha n'est pas ou plus valide
         if ($formRecruiter->isSubmitted() && $resp->isSuccess() == false) {

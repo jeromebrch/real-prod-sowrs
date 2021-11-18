@@ -12,6 +12,7 @@ use App\Entity\LevelStudy;
 use App\Entity\Region;
 use App\Entity\Remuneration;
 use App\Repository\BusinessProfileRepository;
+use FOS\CKEditorBundle\Form\Type\CKEditorType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
@@ -33,8 +34,9 @@ class JobOfferType extends AbstractType
                     'placeholder' => 'Titre de l\'annonce F/H'
                 ]
             ])
-            ->add('description', TextareaType::class, [
+            ->add('description', CKEditorType::class, [
                 'label' => false,
+                'config_name' => 'offer_config',
                 'attr' => [
                     'placeholder' => 'Descriptif de l\'offre',
                 ],

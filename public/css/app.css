@@ -162,6 +162,11 @@ body .select2-container--default{
 }
 .container_info_offer *{
     font-family: 'KohinoorBangla', Arial, serif;
+}
+.link_back_office{
+    color: #B0413E!important;
+}
+.container_info_offer p, .container_info_offer li{
     color: #555555;
 }
 .create_offer_modal{

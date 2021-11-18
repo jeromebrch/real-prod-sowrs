@@ -17,3 +17,9 @@ fos_ck_editor:
                                             'TextColor', 'BGColor', 'Source', '-', 'Smiley', 'Preview', 'Find'] }
             filebrowserBrowseRoute: elfinder
             filebrowserBrowseRouteParameters: []
+        offer_config:
+            toolbar:
+                - { name: "styles", items: [ 'Bold', 'Italic', 'Underline', 'Strike', 'Blockquote', '-',
+                                             'NumberedList', 'BulletedList', '-',
+                                             'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock', '-',
+                                             'TextColor', '-', 'Smiley', ] }
