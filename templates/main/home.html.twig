@@ -5,16 +5,16 @@
 {% endblock %}
 
 {% block meta %}
-    <meta property="og:title" content="Sowrs">
+    <meta property="og:title" content="Sowrs | Le job board solidaire qui met en relation les tech et les sociétés à impact | Tech For Good">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://sowrs.com/">
+    <meta property="og:url" content="{{ app.request.uri }}">
     <meta property="og:image" content="https://sowrs.com/img/welcome_sowrs.jpg">
     <meta property="og:description" content="Donnez du sens à votre carrière au sein d'une société à impact qui partage vos valeurs ou retrouvez des profils engagés dans notre CVthèque gratuite en ligne." />
     <meta name="description" content="Donnez du sens à votre carrière au sein d'une société à impact qui partage vos valeurs ou retrouvez des profils engagés dans notre CVthèque gratuite en ligne.">
     <link rel="image_src" href="https://sowrs.com/img/welcome_sowrs.jpg" />
 {% endblock %}
 
-{% block title %}SOWRS | Le job board solidaire qui met en relation les tech et les sociétés à impact | Tech For Good{% endblock %}
+{% block title %}Sowrs | Le job board solidaire qui met en relation les tech et les sociétés à impact | Tech For Good{% endblock %}
 
 {% block body %}
     {# Flash message #}
@@ -34,19 +34,19 @@
                 {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
                     {%  if 'ROLE_CANDIDATE' in app.user.roles %}
                         <div class="container_main_options">
-                            <a href="{{ path('main_dash_board') }}">Espace candidat</a>
-                            <a href="{{ path('dashboard_details') }}">Déposez votre CV</a>
+                            <a title="candidate profile space" href="{{ path('main_dash_board') }}">Espace candidat</a>
+                            <a title="upload CV" href="{{ path('dashboard_details') }}">Déposez votre CV</a>
                         </div>
                     {% elseif 'ROLE_RECRUITER' in app.user.roles %}
                         <div class="container_main_options">
-                            <a href="{{ path('main_dash_board') }}">Espace recruteur</a>
-                            <a href="{{ path('dash_board_job_offer_create') }}">Créez votre offre</a>
+                            <a title="recruiter profile space" href="{{ path('main_dash_board') }}">Espace recruteur</a>
+                            <a title="create offer" href="{{ path('dash_board_job_offer_create') }}">Créez votre offre</a>
                         </div>
                     {% endif %}
                 {% else %}
                     <div class="container_main_options">
-                        <a href="{{ path('app_register') }}">Créez votre offre</a>
-                        <a href="{{ path('app_register') }}">Déposez votre CV</a>
+                        <a title="create offer" href="{{ path('app_register') }}">Créez votre offre</a>
+                        <a title="upload CV" href="{{ path('app_register') }}">Déposez votre CV</a>
                     </div>
                 {% endif %}
                 <br />
@@ -58,19 +58,19 @@
                 {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
                     {%  if 'ROLE_CANDIDATE' in app.user.roles %}
                         <div class="container_main_options">
-                            <a href="{{ path('main_dash_board') }}">Espace candidat</a>
-                            <a href="{{ path('dashboard_details') }}">Déposez votre CV</a>
+                            <a title="candidate profile space" href="{{ path('main_dash_board') }}">Espace candidat</a>
+                            <a title="upload CV" href="{{ path('dashboard_details') }}">Déposez votre CV</a>
                         </div>
                     {% elseif 'ROLE_RECRUITER' in app.user.roles %}
                         <div class="container_main_options">
-                            <a href="{{ path('main_dash_board') }}">Espace recruteur</a>
-                            <a href="{{ path('dash_board_job_offer_create') }}">Créez votre offre</a>
+                            <a title="recruiter profile space" href="{{ path('main_dash_board') }}">Espace recruteur</a>
+                            <a title="create job offer" href="{{ path('dash_board_job_offer_create') }}">Créez votre offre</a>
                         </div>
                     {% endif %}
                 {% else %}
                     <div class="container_main_options">
-                        <a href="{{ path('app_register') }}">Créez votre offre</a>
-                        <a href="{{ path('app_register') }}">Déposez votre CV</a>
+                        <a title="create job offer" href="{{ path('app_register') }}">Créez votre offre</a>
+                        <a title="upload CV" href="{{ path('app_register') }}">Déposez votre CV</a>
                     </div>
                 {% endif %}
                 <h4 class="home_subtitle">Pour profils techs engagés & entreprises à mission</h4>
@@ -85,16 +85,16 @@
                             {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
                                 {% if "ROLE_CANDIDATE" in user.roles %}
                                     <p class="link_show_all_home">
-                                        <a class="texte-green home_link" href="{{ path('main_job_offers_list') }}">Voir toutes les offres</a>
+                                        <a title="job offer list" class="texte-green home_link" href="{{ path('main_job_offers_list') }}">Voir toutes les offres</a>
                                     </p>
                                 {% else %}
                                     <p>
-                                        <a class="texte-green home_link" href="{{ path('main_candidate_list') }}">Voir tous les candidats</a>
+                                        <a title="CVthèque" class="texte-green home_link" href="{{ path('main_candidate_list') }}">Voir tous les candidats</a>
                                     </p>
                                 {% endif %}
                             {% else %}
                                 <p class="link_show_all_home">
-                                    <a class="texte-green home_link" href="{{ path('main_job_offers_list') }}">Voir toutes les offres</a>
+                                    <a title="job offer list" class="texte-green home_link" href="{{ path('main_job_offers_list') }}">Voir toutes les offres</a>
                                 </p>
                             {% endif %}
                         </div>
@@ -241,7 +241,7 @@
                             <img class="col-12" src="{{ asset('uploads/illustrations/' ~ post.pictureFilename) }}" alt="illustration_article" title="{{ post.metaTitle }}" />
                         {% endif %}
                         {% if post.title %}
-                            <a href="{{ path('post_details', {"id":post.id}) }}">{{ post.title }}</a>
+                            <a title="article" href="{{ path('post_details', {"id":post.id}) }}">{{ post.title }}</a>
                         {% endif %}
                         {% if post.creationDate %}
                             <h3 class="col-12">{{ post.creationDate|date('d/m/Y') }}</h3>
@@ -271,7 +271,7 @@
                     Si vous ne nous connaissez pas encore, découvrez notre mission 👇
                 </p>
                 <div>
-                    <a class="btn btn_about_popup" href="{{ path('main_about_sowrs') }}" >Qui sommes-Nous ?</a>
+                    <a title="about sowrs" class="btn btn_about_popup" href="{{ path('main_about_sowrs') }}" >Qui sommes-Nous ?</a>
                     <button class="btn btn_close_popup">J'ai compris !</button>
                 </div>
             </div>

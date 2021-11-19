@@ -1,6 +1,15 @@
 {% extends 'base.html.twig' %}
 
-{% block title %} Sowrs | {{ jobOffer.title }}{% endblock %}
+{% block title %} Sowrs | Offre d'emploi : {{ jobOffer.title }}{% endblock %}
+
+{% block meta %}
+    <meta name="description" content="Retrouvez d'autres offres de jobs tech à impact positif sur notre CVthèque gratuite en ligne. Donnez du sens à votre carrière !" />
+    <meta property="og:title" content="Poste de {{ jobOffer.title }} en {{ jobOffer.contractType.wording }}">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="{{ app.request.uri }}">
+    <meta property="og:image" content="https://sowrs.com/img/welcome_sowrs.jpg">
+    <meta property="og:description" content="Poste de {{ jobOffer.title }} en {{ jobOffer.contractType.wording }}. Retrouvez d'autres offres de jobs tech à impact positif sur notre CVthèque gratuite en ligne !" />
+{% endblock %}
 
 {% block stylesheets %}
     {{ parent() }}
@@ -14,7 +23,7 @@
 {% block body %}
     <div class="show_candidate_jumbotron pt-3">
         <div class="col-lg-2 mx-auto container_entity_picture">
-            <a href="{{ path('show_recruiter_profil', {"id":entity.id}) }}" class="link_recruiter">
+            <a title="recruiter profile" href="{{ path('show_recruiter_profil', {"id":entity.id}) }}" class="link_recruiter">
                 {% if entity.picture %}
                     <img id="show_joboffer_photo_profile" class="img-fluid mb-3"
                          src="{{ asset('images/profils/' ~entity.picture.pictureName ) }}"
@@ -27,7 +36,7 @@
             </a>
         </div>
         <div class="col-lg-5 mx-auto pt-3">
-            <a href="{{ path('show_recruiter_profil', {"id":entity.id}) }}" class="link_recruiter">
+            <a title="" href="{{ path('show_recruiter_profil', {"id":entity.id}) }}" class="link_recruiter">
                 <h5 class="show_candidate_jumbotron_name">{{ entity.entityName | capitalize }}</h5>
             </a>
         </div>
@@ -48,28 +57,28 @@
                 <ul class="list-unstyled list-inline">
                     {% if entity.socialNetwork.website %}
                         <li class="list-inline-item">
-                            <a class="nav-link" id="secondary-nav" href="{{ entity.socialNetwork.website }}"
+                            <a title="recruiter website" class="nav-link" id="secondary-nav" href="{{ entity.socialNetwork.website }}"
                                target="_blank"><img class="logo_website" src="{{ asset('img/lieux_mini.png') }}"
                                                     alt="Site internet" title="Website"></a>
                         </li>
                     {% endif %}
                     {% if entity.socialNetwork.linkedin %}
                         <li class="list-inline-item">
-                            <a class="nav-link"
+                            <a title="recruiter linkedin profile" class="nav-link"
                                href="{{ entity.socialNetwork.linkedin }}" target="_blank"><img
                                         class="logo_linkedin_job_offer" src="{{ asset('img/linkedin_grist-10mm.png') }}" alt="Page linkedin" title="LinkedIn"></a>
                         </li>
                     {% endif %}
                     {% if entity.socialNetwork.github %}
                         <li class="list-inline-item">
-                            <a class="nav-link" href="{{ entity.socialNetwork.github }}"
+                            <a title="recruiter github profile" class="nav-link" href="{{ entity.socialNetwork.github }}"
                                target="_blank"><img class="logo_github" src="{{ asset('img/logo_github_mini.png') }}"
                                                     alt="Page Github" title="Github"></a>
                         </li>
                     {% endif %}
                     {% if entity.socialNetwork.stackOverflow %}
                         <li class="list-inline-item">
-                            <a class="nav-link" id="secondary-nav" href="{{ entity.socialNetwork.stackOverflow }}"
+                            <a title="recruiter stackoverflow profile" class="nav-link" id="secondary-nav" href="{{ entity.socialNetwork.stackOverflow }}"
                                target="_blank"><img class="logo_stackoverflow" src="{{ asset('img/logo_stackoverflow_mini.png') }}"
                                                     alt="Stack Overflow" title="Stack Overflow"></a>
                         </li>
@@ -78,7 +87,7 @@
             </div>
         {% endif %}
         <div class="row">
-            <a class="btn position-absolute start-50 translate-middle" href="{{ path('show_recruiter_profil', {"id":entity.id}) }}">Consulter le profil</a>
+            <a title="recruiter profile" class="btn position-absolute start-50 translate-middle" href="{{ path('show_recruiter_profil', {"id":entity.id}) }}">Consulter le profil</a>
         </div>
     </div>
 
@@ -119,7 +128,7 @@
                             <div class="map" id="map"></div>
                         </div>
                         <div class="row">
-                            <a id="mapGoogle" class="btn btnItinéraire" target="_blank" href="https://www.google.com/maps/dir//{{ jobOffer.numberAddress }}+{{ jobOffer.Address }}+{{ jobOffer.postalCode }}+{{ jobOffer.city }}">Itinéraire vers votre nouveau job</a>
+                            <a title="recruiter location" id="mapGoogle" class="btn btnItinéraire" target="_blank" href="https://www.google.com/maps/dir//{{ jobOffer.numberAddress }}+{{ jobOffer.Address }}+{{ jobOffer.postalCode }}+{{ jobOffer.city }}">Itinéraire vers votre nouveau job</a>
                         </div>
 
                     </div>
@@ -174,12 +183,12 @@
             {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
                 {% if jobOffer.entity != app.user %}
                     <div class="container_button_postuler">
-                        <a class="btn_postuler btn required" href="{{ path('apply', {'id': jobOffer.id}) }}">Postuler à cette offre</a>
+                        <a title="send apply" class="btn_postuler btn required" href="{{ path('apply', {'id': jobOffer.id}) }}">Postuler à cette offre</a>
                     </div>
                 {% endif %}
             {% else %}
                 <div class="container_button_postuler">
-                    <a class="btn_postuler btn required" href="{{ path('app_register') }}">Postuler à cette offre</a>
+                    <a title="send apply" class="btn_postuler btn required" href="{{ path('app_register') }}">Postuler à cette offre</a>
                 </div>
             {% endif %}
         </div>

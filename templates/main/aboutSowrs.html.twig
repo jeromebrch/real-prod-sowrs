@@ -4,8 +4,12 @@
 
 {% block meta %}
     <meta name="robots" content="index, follow" />
-    <meta name="description" content="SOWRS est le spécialiste du recrutement dans le domaine de l'IT. Nous mettons en relation candidats et
-                                entreprises qui partagent les même valeurs écologiques et sociales">
+    <meta name="description" content="Sowrs est le spécialiste du recrutement dans le domaine de l'IT. Retrouvez de nombreux candidats dans notre CVthèque gratuite en ligne ainsi que de nombreuses offres d'emploi à impact positif" />
+    <meta property="og:title" content="Sowrs">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="{{ app.request.uri }}">
+    <meta property="og:image" content="https://sowrs.com/img/welcome_sowrs.jpg">
+    <meta property="og:description" content="Sowrs est le spécialiste du recrutement dans le domaine de l'IT. Retrouvez de nombreux candidats dans notre CVthèque gratuite en ligne ainsi que de nombreuses offres d'emploi à impact positif" />
 {% endblock %}
 
 {% block body %}
@@ -75,9 +79,9 @@
                     </div>
                     <div class="container_link_about">
                         {% if is_granted("IS_AUTHENTICATED_REMEMBERED") and "ROLE_CANDIDATE" in app.user.roles %}
-                            <a href="{{ path('main_job_offers_list') }}">Consultez les offres</a>
+                            <a title="job offer list" href="{{ path('main_job_offers_list') }}">Consultez les offres</a>
                         {% else %}
-                            <a href="{{ path('app_register') }}">Créez votre compte candidat</a>
+                            <a title="create account" href="{{ path('app_register') }}">Créez votre compte candidat</a>
                         {% endif %}
                     </div>
                 </div>
@@ -100,9 +104,9 @@
                     </div>
                     <div class="container_link_about">
                         {% if is_granted("IS_AUTHENTICATED_REMEMBERED") and "ROLE_RECRUITER" in app.user.roles %}
-                            <a href="{{ path('dash_board_job_offer_create') }}">Diffusez une offre</a>
+                            <a title="create job offer" href="{{ path('dash_board_job_offer_create') }}">Diffusez une offre</a>
                         {% else %}
-                            <a href="{{ path('app_register') }}">Créez votre compte recruteur</a>
+                            <a title="create account" href="{{ path('app_register') }}">Créez votre compte recruteur</a>
                         {% endif %}
                     </div>
                 </div>

@@ -6,11 +6,15 @@
 
 {% block meta %}
     <meta name="robots" content="index, follow" />
-    <meta name="description" content="Retrouvez des articles engagés écologiquement et socialement. Le webzine SOWRS partage vos valeurs
-                                et vous fait découvrir de nouvelles méthodes de travail, pour une vie plus simple" />
+    <meta name="description" content="Retrouvez des articles engagés écologiquement et socialement. Le webzine SOWRS partage vos valeurs et vous fait découvrir de nouvelles méthodes de travail, pour une vie plus simple" />
+    <meta property="og:title" content="Sowrs | Webzine">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="{{ app.request.uri }}">
+    <meta property="og:image" content="https://sowrs.com/img/welcome_sowrs.jpg">
+    <meta property="og:description" content="Retrouvez des articles engagés écologiquement et socialement. Le webzine SOWRS partage vos valeurs et vous fait découvrir de nouvelles méthodes de travail, pour une vie plus simple" />
 {% endblock %}
 
-{% block title %}SOWRS | Webzine{% endblock %}
+{% block title %}Sowrs | Webzine{% endblock %}
 
 {% block body %}
     {% if app.user %}
@@ -18,9 +22,9 @@
             {% if "ROLE_ADMIN" in app.user.roles %}
                 <div class="admin_options">
                     <h6 class="admin_options_title">Espace admin</h6>
-                    <a href="{{ path('create_post') }}" class="btn_admin">Nouvel article</a>
-                    <a href="{{ path('unpublished_post') }}" class="btn_admin">Articles non publiés</a>
-                    <a href="{{ path('waiting_comments') }}" class="btn_admin">Commentaires en attente | {{ nbrUnpublishedComments }}
+                    <a title="create an article" href="{{ path('create_post') }}" class="btn_admin">Nouvel article</a>
+                    <a title="not published article" href="{{ path('unpublished_post') }}" class="btn_admin">Articles non publiés</a>
+                    <a title="not published comments" href="{{ path('waiting_comments') }}" class="btn_admin">Commentaires en attente | {{ nbrUnpublishedComments }}
                     </a>
                     <div class="block_create_tag">
                         <label for="create_tag">Créer un tag</label>
@@ -37,17 +41,15 @@
             {% for post in posts %}
                 <div class="col-lg-4 col-md-6 col-sm-12 post_mini">
                     <div class="row">
-                        <a href="{{ path('post_details', {'id':post.id}) }}">
+                        <a title="show article" href="{{ path('post_details', {'id':post.id}) }}">
                             <img class="illustration_post col-12" src="{{ asset('uploads/illustrations/' ~ post.pictureFilename) }}"
                                  alt="illus_post" title="Illustration de l'article" />
                         </a>
-
                     </div>
                     <div class="post_abstract">
-
                         <div class="row">
                             <div class="col-12 titleArticle">
-                                <a href="{{ path('post_details', {'id':post.id}) }}">
+                                <a title="show article" href="{{ path('post_details', {'id':post.id}) }}">
                                     {{ post.title }}
                                 </a>
                             </div>
@@ -63,7 +65,7 @@
                             </div>
                         </div>
                         <div class="row">
-                            <a href="{{ path('post_details', {'id':post.id}) }}" class="btn required col-12 read_more">Lire plus</a>
+                            <a title="show article" href="{{ path('post_details', {'id':post.id}) }}" class="btn required col-12 read_more">Lire plus</a>
                         </div>
                     </div>
                 </div>

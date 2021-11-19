@@ -23,7 +23,7 @@
                                         revoir<br>{{ app.user.firstname }} {{ app.user.lastname }}</h3>
                                 </div>
                                 <div class="col-sm-6 container_link_profil">
-                                    <a id="link_recruiter_profil" href="{{ path('candidat_profil') }}" type="button" class="link_show_profil btn-title">Aperçu de mon profil</a>
+                                    <a title="show user profile" id="link_recruiter_profil" href="{{ path('candidat_profil') }}" type="button" class="link_show_profil btn-title">Aperçu de mon profil</a>
                                 </div>
                             </div>
                         </div>
@@ -92,7 +92,7 @@
                                                                             <h5 class="mini_webzine_date">{{ latestPost.creationDate|date('d-m-Y') }}</h5>
                                                                         </div>
                                                                         <div class="row">
-                                                                            <a href="{{ path('post_details', {"id":latestPost.id}) }}" class="mini_webzine_title">{{ latestPost.title }}</a>
+                                                                            <a title="latest post" href="{{ path('post_details', {"id":latestPost.id}) }}" class="mini_webzine_title">{{ latestPost.title }}</a>
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -143,7 +143,7 @@
                                                                             <h5 class="mini_webzine_date">{{ latestPost.creationDate|date('d-m-Y') }}</h5>
                                                                         </div>
                                                                         <div class="row">
-                                                                            <a href="{{ path('post_details', {"id":latestPost.id}) }}" class="mini_webzine_title">{{ latestPost.title }}</a>
+                                                                            <a title="latest post" href="{{ path('post_details', {"id":latestPost.id}) }}" class="mini_webzine_title">{{ latestPost.title }}</a>
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -167,7 +167,7 @@
                                     <h3 class="title-dashBoard">Heureux de vous revoir {{ app.user.entityName }}</h3>
                                 </div>
                                 <div class="col-sm-6 text-center align-self-center container_upload">
-                                    <a id="link_recruiter_profil" href="{{ path('recruiter_profil') }}" type="button" class="btn-title btn-title2 align-middle">Aperçu de mon profil</a>
+                                    <a title="show user profile" id="link_recruiter_profil" href="{{ path('recruiter_profil') }}" type="button" class="btn-title btn-title2 align-middle">Aperçu de mon profil</a>
                                 </div>
                             </div>
                         </div>
@@ -236,7 +236,7 @@
                                                                             <h5 class="mini_webzine_date">{{ latestPost.creationDate|date('d-m-Y') }}</h5>
                                                                         </div>
                                                                         <div class="row">
-                                                                            <a href="{{ path('post_details', {"id":latestPost.id}) }}" class="mini_webzine_title">{{ latestPost.title }}</a>
+                                                                            <a title="latest post" href="{{ path('post_details', {"id":latestPost.id}) }}" class="mini_webzine_title">{{ latestPost.title }}</a>
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -287,7 +287,7 @@
                                                                             <h5 class="mini_webzine_date">{{ latestPost.creationDate|date('d-m-Y') }}</h5>
                                                                         </div>
                                                                         <div class="row">
-                                                                            <a href="{{ path('post_details', {"id":latestPost.id}) }}" class="mini_webzine_title">{{ latestPost.title }}</a>
+                                                                            <a title="latest post" href="{{ path('post_details', {"id":latestPost.id}) }}" class="mini_webzine_title">{{ latestPost.title }}</a>
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -310,7 +310,7 @@
                                                 <h4 class="subtitle m-0">Vos offres</h4>
                                             </div>
                                             <div class="col-lg-6 text-end">
-                                                <a href="{{ path('dash_board_job_offer_create') }}" class="button-creerUne m-0">Créer une offre</a>
+                                                <a title="create job offer" href="{{ path('dash_board_job_offer_create') }}" class="button-creerUne m-0">Créer une offre</a>
                                             </div>
                                         </div>
                                         <div class="row">
@@ -324,7 +324,7 @@
                                                         <p class="create_offer_option_text">
                                                             Vous n'avez pour le moment aucune offre en ligne,
                                                             trouvez rapidement notre nouveau collaborateur en
-                                                            <a href="{{ path('dash_board_job_offer_create') }}" class="link_create_offer_intext">créant une offre</a> &#128521
+                                                            <a title="create job offer" href="{{ path('dash_board_job_offer_create') }}" class="link_create_offer_intext">créant une offre</a> &#128521
                                                         </p>
                                                     </div>
                                                 {% endif %}
@@ -365,7 +365,7 @@
                                                         Vous n'avez pour le moment aucune candidature en cours,
                                                         pourquoi ne pas contacter directement les candidats potentiels ? &#128521
                                                     </p>
-                                                    <a href="{{ path('main_candidate_list') }}" class="btn m-0">Consulter les profils</a>
+                                                    <a title="CVthèque" href="{{ path('main_candidate_list') }}" class="btn m-0">Consulter les profils</a>
                                                 </div>
                                             {% endif %}
                                         </div>

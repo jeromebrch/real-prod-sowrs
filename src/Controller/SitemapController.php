@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Repository\JobOfferRepository;
 use App\Repository\PostRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -16,7 +17,7 @@ class SitemapController extends AbstractController
      * @param PostRepository $postRepo
      * @return Response
      */
-    public function index(Request $req, PostRepository $postRepo): Response {
+    public function index(Request $req, PostRepository $postRepo, JobOfferRepository $offerRepo): Response {
 
         $hostname = $req->getSchemeAndHttpHost();
 
@@ -41,10 +42,15 @@ class SitemapController extends AbstractController
             ];
             $urls[] = [
                 'priority' => 0.9,
-                'changefreq' => "monthly",
-                'loc' => "/sowrs/postdetail/" . $post->getId(), //Define the post url
+                'loc' => "/postdetail/" . $post->getId(), //Define the post url
                 'lastmod' => $post->getCreationDate()->format('Y-m-d'),
                 'image' => $image
+            ];
+        }
+        foreach($offerRepo->findAll() as $offer){
+            $urls[] = [
+                'priority' => 0.9,
+                'loc' => "/jobOffer/show/" . $offer->getId(), //Define the offer url
             ];
         }
 

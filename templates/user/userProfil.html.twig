@@ -12,6 +12,10 @@
     {% endif %}
 {% endblock %}
 
+{% block meta %}
+    <meta name="robots" content="noindex, nofollow" />
+{% endblock %}
+
 {% block body %}
 
     {# HEADER PAGE #}
@@ -150,7 +154,7 @@
                             <object type="application/pdf" width="100%" height="100%" class="cv_object">
                                 <param name="src" value="{{ asset("file/cv/" ~user.cv.cvName) }}" />
                                 <p>Votre navigateur ne semble pas configuré pour lire des PDF.
-                                    Pas de panique, <a href="{{ asset("file/cv/" ~user.cv.cvName) }}">Téléchargez-le</a>
+                                    Pas de panique, <a title="CV" href="{{ asset("file/cv/" ~user.cv.cvName) }}">Téléchargez-le</a>
                                 </p>
                             </object>
                         </div>

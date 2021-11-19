@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}SOWRS | CV en ligne{% endblock %}
+{% block title %}Sowrs | CVthèque en ligne{% endblock %}
 
 {% block stylesheets %}
     {{ parent() }}
@@ -9,8 +9,12 @@
 
 {% block meta %}
     <meta name="robots" content="index, follow" />
-    <meta name="description" content="Recruteur ? Retrouvez une liste de candidats dans notre CVthèque IT gratuite en ligne. Votre futur collaborateur
-                                vous attend sur sowrs.com">
+    <meta name="description" content="Recruteur ? Retrouvez une liste de candidats dans notre CVthèque IT gratuite en ligne. Votre futur collaborateur vous attend sur sowrs.com" />
+    <meta property="og:title" content="Sowrs">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="{{ app.request.uri }}">
+    <meta property="og:image" content="https://sowrs.com/img/welcome_sowrs.jpg">
+    <meta property="og:description" content="Recruteur ? Retrouvez une liste de candidats dans notre CVthèque IT gratuite en ligne. Votre futur collaborateur vous attend sur sowrs.com" />
 {% endblock %}
 
 {% block body %}
@@ -77,7 +81,7 @@
                             les services sans distinction. Aidez-nous à atteindre notre objectif commun : travailler à rendre le monde meilleur !
                         </p>
                         <div class="container_options_modal">
-                            <a target="_blank" class="btn btn_tipeee_modal" href="https://fr.tipeee.com/sowrs">Je participe</a>
+                            <a title="donate to sowrs" target="_blank" class="btn btn_tipeee_modal" href="https://fr.tipeee.com/sowrs">Je participe</a>
                         </div>
                     </div>
                 </div>

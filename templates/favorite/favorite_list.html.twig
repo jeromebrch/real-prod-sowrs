@@ -52,7 +52,7 @@
                                         </p>
                                     </div>
                                     <div class="col-md-4 align-self-center text-center options_offer">
-                                        <a href="{{ path('jobOffer_show', {'id': favorite.id}) }}" class="btn">Voir l'offre</a>
+                                        <a title="show job offer" href="{{ path('jobOffer_show', {'id': favorite.id}) }}" class="btn">Voir l'offre</a>
                                     </div>
                                     <div class="col-md-2 align-self-center text-center options_offer">
                                         <span title="Effacer l'offre" class="delete_favorite">
@@ -67,7 +67,7 @@
                     {% else %}
                         <div class="row container_no_favorites">
                             <h4 class="col-md-6 col-sm-12">Vous n'avez pas d'offre favorite</h4>
-                            <a href="{{ path('main_job_offers_list') }}" class="btn col-md-6 col-sm-12">Consulter les offres</a>
+                            <a title="job offer list" href="{{ path('main_job_offers_list') }}" class="btn col-md-6 col-sm-12">Consulter les offres</a>
                         </div>
                     {% endif %}
                     {{ knp_pagination_render(favorite) }}

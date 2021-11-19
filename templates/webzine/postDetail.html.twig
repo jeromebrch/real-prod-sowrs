@@ -3,7 +3,7 @@
 {% block meta %}
     <meta name="description" content="{{ post.metaDescription }}">
     <meta property="og:title" content="{{ post.title }}">
-    <meta property="og:type" content="website">
+    <meta property="og:type" content="article">
     <meta property="og:url" content="{{ path('post_details', {'id':post.id}) }}">
     <meta property="og:image" content="https://sowrs.com{{ asset('uploads/illustrations/' ~ post.pictureFilename) }}">
     <meta property="og:description" content="{{ post.metaDescription }}" />
@@ -13,7 +13,7 @@
     {{ parent() }}
 {% endblock %}
 
-{% block title %}SOWRS | {{ post.metaTitle }}{% endblock %}
+{% block title %}Sowrs | {{ post.metaTitle }}{% endblock %}
 
 {% block body %}
     {% if app.user %}
@@ -21,13 +21,13 @@
             {% if "ROLE_ADMIN" in app.user.roles %}
                 <div class="admin_options">
                     <h6 class="admin_options_title">Espace admin</h6>
-                    <a href="{{ path('modify_post', {'id': post.id}) }}" class="btn required btn_admin">Modifier l'article</a>
+                    <a title="modify post" href="{{ path('modify_post', {'id': post.id}) }}" class="btn required btn_admin">Modifier l'article</a>
                     {% if post.isPublished %}
-                        <a href="{{ path('hide_post', {"id":post.id}) }}" class="btn required btn_admin">Masquer</a>
+                        <a title="hide article" href="{{ path('hide_post', {"id":post.id}) }}" class="btn required btn_admin">Masquer</a>
                     {% else %}
-                        <a href="{{ path('publish_post', {"id":post.id}) }}" class="btn required btn_admin">Valider la publication</a>
+                        <a title="show article" href="{{ path('publish_post', {"id":post.id}) }}" class="btn required btn_admin">Valider la publication</a>
                     {% endif %}
-                    <a href="{{ path('delete_post', {"id":post.id}) }}" class="btn required btn_admin">Supprimer l'article</a>
+                    <a title="delete article" href="{{ path('delete_post', {"id":post.id}) }}" class="btn required btn_admin">Supprimer l'article</a>
                 </div>
             {% endif %}
         {% endif %}
@@ -43,7 +43,7 @@
                 {% if post.tags %}
                     <p>&nbsp; &bull;&nbsp;
                         {% for tag in post.tags %}
-                            <a href="{{ path('show_tag', {"id":tag.id}) }}">{{ tag.text }}</a>&nbsp; &bull;&nbsp;
+                            <a title="article tags" href="{{ path('show_tag', {"id":tag.id}) }}">{{ tag.text }}</a>&nbsp; &bull;&nbsp;
                         {% endfor %}
                     </p>
                 {% endif %}
@@ -63,7 +63,7 @@
                 <div id="utils-icon-share-fb">
                     <div id="utils-icon-share-fb">
                         {# fonctionne parfaitement avec un lien externe #}
-                        <a href="https://www.facebook.com/sharer.php?u={{ app.request.uri }}"
+                        <a title="share the article on facebook" href="https://www.facebook.com/sharer.php?u={{ app.request.uri }}"
                            onclick="window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=500,width=700');return false;">
                             <img src="{{ asset('img/facebook_violet.png') }}" alt="facebook" title="Partager le poste sur facebook" />
                         </a>
@@ -74,7 +74,7 @@
                     <div id="utils-icon-share-twitter">
                         <a href="https://twitter.com/intent/tweet?text=Petit%20partage%20%3A&url={{ app.request.uri }}"
                            onclick="window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=500,width=700');return false;"
-                           title="Partager le poste">
+                           title="Share the article on twitter">
                             <img src="{{ asset('img/twitter_violet.png') }}" alt="twitter" title="Partager le poste sur Twitter" />
                         </a>
                     </div>
@@ -83,7 +83,7 @@
                 <div>
                     <a href="https://www.linkedin.com/shareArticle?mini=true&amp;url={{ app.request.uri }}"
                        onclick="window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=500,width=700');return false;"
-                       title="Partager le poste">
+                       title="share the article on linkedin">
                         <img src="{{ asset('img/linkedin_violet.png') }}" alt="linkedin" title="Partager le poste sur linkedin" />
                     </a>
                 </div>
@@ -114,7 +114,7 @@
                                         <img class="col-12" src="{{ asset('uploads/illustrations/' ~ post.pictureFilename) }}" alt="illus_post" title="{{ post.title }}" />
                                     </div>
                                     <div class="row">
-                                        <a class="link_post" href="{{ path('post_details', {"id":post.id}) }}"><h4 class="latest_post_title">{{ post.title }}</h4></a>
+                                        <a title="show article" class="link_post" href="{{ path('post_details', {"id":post.id}) }}"><h4 class="latest_post_title">{{ post.title }}</h4></a>
                                     </div>
                                     <div class="row">
                                         <p class="latest_post_date">{{ post.creationDate|date('d/m/Y') }}</p>
@@ -122,7 +122,7 @@
                                 </div>
                             {% endfor %}
                             <div class="row background_link">
-                                <a href="{{ path('home_webzine') }}" class="link_read_more col-12">Lire plus +</a>
+                                <a title="sowrs webzine" href="{{ path('home_webzine') }}" class="link_read_more col-12">Lire plus +</a>
                             </div>
                         </div>
                     </div>
@@ -137,7 +137,7 @@
                                     <img class="col-12" src="{{ asset('uploads/illustrations/' ~ post.pictureFilename) }}" alt="illus_post" title="{{ post.title }}" />
                                 </div>
                                 <div class="row">
-                                    <a class="link_post" href="{{ path('post_details', {"id":post.id}) }}"><h4 class="latest_post_title">{{ post.title }}</h4></a>
+                                    <a title="show article" class="link_post" href="{{ path('post_details', {"id":post.id}) }}"><h4 class="latest_post_title">{{ post.title }}</h4></a>
                                 </div>
                                 <div class="row">
                                     <p class="latest_post_date">{{ post.creationDate|date('d/m/Y') }}</p>
@@ -145,7 +145,7 @@
                             </div>
                         {% endfor %}
                         <div class="row background_link">
-                            <a href="{{ path('home_webzine') }}" class="link_read_more col-12">Lire plus +</a>
+                            <a title="sowrs webzine" href="{{ path('home_webzine') }}" class="link_read_more col-12">Lire plus +</a>
                         </div>
                     </div>
                 </div>
@@ -163,7 +163,7 @@
                                     <img src="{{ asset('uploads/illustrations/' ~ post.pictureFilename) }}" alt="illus_post" title="{{ post.title }}" />
                                 </div>
                                 <div class="row">
-                                    <a class="link_post" href="{{ path('post_details', {"id":post.id}) }}"><h4 class="latest_post_title">{{ post.title }}</h4></a>
+                                    <a title="show article" class="link_post" href="{{ path('post_details', {"id":post.id}) }}"><h4 class="latest_post_title">{{ post.title }}</h4></a>
                                 </div>
                                 <div class="row">
                                     <p class="latest_post_date">{{ post.creationDate|date('d/m/Y') }}</p>
@@ -172,7 +172,7 @@
                         {% endfor %}
                     </div>
                     <div class="row">
-                        <a href="{{ path('home_webzine') }}" class="mini_link_read_more btn">Lire plus +</a>
+                        <a title="webzine article" href="{{ path('home_webzine') }}" class="mini_link_read_more btn">Lire plus +</a>
                     </div>
                 {% endif %}
             </div>
@@ -189,7 +189,7 @@
                                     <img class="col-12" src="{{ asset('uploads/illustrations/' ~ post.pictureFilename) }}" alt="illus_post" title="{{ post.title }}" />
                                 </div>
                                 <div class="row">
-                                    <a class="link_post" href="{{ path('post_details', {"id":post.id}) }}"><h4 class="latest_post_title">{{ post.title }}</h4></a>
+                                    <a title="show article" class="link_post" href="{{ path('post_details', {"id":post.id}) }}"><h4 class="latest_post_title">{{ post.title }}</h4></a>
                                 </div>
                                 <div class="row">
                                     <p class="latest_post_date">{{ post.creationDate|date('d/m/Y') }}</p>
@@ -216,11 +216,11 @@
                                 {% for comment in comments %}
                                     <div class="comment">
                                         {% if 'ROLE_CANDIDATE' in comment.writeruser.roles %}
-                                            <a href="{{ path('candidate_show', {'id':comment.writerUser.id}) }}">
+                                            <a title="comment" href="{{ path('candidate_show', {'id':comment.writerUser.id}) }}">
                                                 <h4 class="comment_writer">{{ comment.writeruser.lastname|upper }} {{ comment.writeruser.firstname|capitalize }}</h4>
                                             </a>
                                         {% elseif 'ROLE_RECRUITER' in comment.writeruser.roles %}
-                                            <a href="{{ path('show_recruiter_profil', {'id':comment.writerUser.id}) }}">
+                                            <a title="comment" href="{{ path('show_recruiter_profil', {'id':comment.writerUser.id}) }}">
                                                 <h4 class="comment_writer">{{ comment.writeruser.entityName }}</h4>
                                             </a>
                                         {% endif %}

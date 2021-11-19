@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}SOWRS | Offres d'emplois dans le secteur de l'IT{% endblock %}
+{% block title %}Sowrs | Offres d'emplois IT{% endblock %}
 
 {% block stylesheets %}
     {{ parent() }}
@@ -9,8 +9,12 @@
 
 {% block meta %}
     <meta name="robots" content="index, follow" />
-    <meta name="description" content="En recherche de sens dans votre carrière ? Consultez les offres d'emploi sur sowrs.com pour trouver
-                                l'employeur qui partage vos valeurs écologiques et sociales">
+    <meta name="description" content="Désireux de mettre du sens dans votre carrière ? Retrouvez nos offres d'emploi IT pour un job à impact positif | Tech For Good">
+    <meta property="og:title" content="Sowrs | Offres d'emplois IT">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="{{ app.request.uri }}">
+    <meta property="og:image" content="https://sowrs.com/img/welcome_sowrs.jpg">
+    <meta property="og:description" content="Désireux de mettre du sens dans votre carrière ? Retrouvez nos offres d'emploi IT pour un job à impact positif | Tech For Good" />
 {% endblock %}
 
 {% block body %}
@@ -83,7 +87,7 @@
                             Aidez-nous à atteindre notre objectif commun : <em>travailler à rendre le monde meilleur</em> ! 🌳🌳🌳
                         </p>
                         <div class="container_options_modal">
-                            <a target="_blank" class="btn btn_tipeee_modal" href="https://fr.tipeee.com/sowrs">Je participe</a>
+                            <a title="donate to sowrs" target="_blank" class="btn btn_tipeee_modal" href="https://fr.tipeee.com/sowrs">Je participe</a>
                         </div>
                     </div>
                 </div>
