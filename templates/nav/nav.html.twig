@@ -3,54 +3,54 @@
         <i class="fas fa-bars fa-2x burger_menu"></i>
         <i class="fas fa-bars fa-2x burger_menu_restore"></i>
         <div class="container_logo_home">
-            <a href="{{ path('main') }}" title="Sowrs | Home">
+            <a href="{{ path('main') }}" title="Sowrs Home">
                 <img id="logo_sowrs" src="{{ asset('img/logo-base-50px-haut.png') }}" alt="Sowrs" title="SOWRS">
             </a>
         </div>
         {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
-            <a href="{{ path('main_dash_board') }}"><i class="fas fa-user fa-2x user_icon"></i></a>
+            <a title="user dashboard" href="{{ path('main_dash_board') }}"><i class="fas fa-user fa-2x user_icon"></i></a>
         {% else %}
-            <a href="{{ path('app_login') }}"><i class="fas fa-user fa-2x user_icon"></i></a>
+            <a title="login" href="{{ path('app_login') }}"><i class="fas fa-user fa-2x user_icon"></i></a>
         {% endif %}
     </div>
     <div class="container_nav_top">
         {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
             <div>{{ render(controller('App\\Controller\\ReadController::countMessageReaded')) }}</div>
             <div>
-                <a href="{{ path('main_dash_board') }}">DASHBOARD</a>
+                <a title="dashboard" href="{{ path('main_dash_board') }}">DASHBOARD</a>
             </div>
             <div>
-                <a href="{{ path('app_logout') }}">DÉCONNEXION</a>
+                <a title="logout" href="{{ path('app_logout') }}">DÉCONNEXION</a>
             </div>
         {% else %}
             <div>
-                <a href="{{ path('app_login') }}">CONNEXION</a>
+                <a title="login" href="{{ path('app_login') }}">CONNEXION</a>
             </div>
             <div>
-                <a href="{{ path('app_register') }}">CRÉER UN COMPTE</a>
+                <a title="create an account" href="{{ path('app_register') }}">CRÉER UN COMPTE</a>
             </div>
         {% endif %}
         <div>
-            <a href="https://www.facebook.com/sowrscom" target="_blank">
+            <a title="sowrs faceb ook profile" href="https://www.facebook.com/sowrscom" target="_blank">
                 <img src="{{ asset('img/facebook_violet.png') }}" alt="Page Facebook" title="Facebook" />
             </a>
         </div>
         <div>
-            <a href="https://www.linkedin.com/company/sowrs/" target="_blank">
+            <a title="sowrs linkedin profile" href="https://www.linkedin.com/company/sowrs/" target="_blank">
                 <img src="{{ asset('img/linkedin_violet.png') }}" alt="Page linkedin" title="LinkedIn" />
             </a>
         </div>
         <div>
-            <a href="https://www.instagram.com/we.are.sowrs/" target="_blank">
+            <a title="sowrs instagram profile" href="https://www.instagram.com/we.are.sowrs/" target="_blank">
                 <img src="{{ asset('img/instagram_violet.png') }}" alt="Page instagram" title="Instagram" />
             </a>
         </div>
-        <div><a href="https://twitter.com/sowrs_com" target="_blank">
+        <div><a title="sowrs twitter profile" href="https://twitter.com/sowrs_com" target="_blank">
                 <img src="{{ asset('img/twitter_violet.png') }}" alt="Page twitter" title="Twitter">
             </a>
         </div>
         <div>
-            <a href="https://fr.tipeee.com/sowrs" target="_blank">
+            <a title="sowrs tipeee profile" href="https://fr.tipeee.com/sowrs" target="_blank">
                 <img src="{{ asset('img/tipeee_violet.png') }}" alt="Page tipeee" title="Tipeee">
             </a>
         </div>
@@ -60,42 +60,42 @@
             {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
                 <div>{{ render(controller('App\\Controller\\ReadController::countMessageReaded')) }}</div>
                 <div>
-                    <a id="link_job_board" href="{{ path('main_dash_board') }}">DASHBOARD</a>
+                    <a title="dashboard" id="link_job_board" href="{{ path('main_dash_board') }}">DASHBOARD</a>
                 </div>
                 <div>
-                    <a href="{{ path('app_logout') }}">DÉCONNEXION</a>
+                    <a title="logout" href="{{ path('app_logout') }}">DÉCONNEXION</a>
                 </div>
             {% else %}
                 <div>
-                    <a href="{{ path('app_login') }}">CONNEXION</a>
+                    <a title="login" href="{{ path('app_login') }}">CONNEXION</a>
                 </div>
                 <div>
-                    <a href="{{ path('app_register') }}">CRÉER UN COMPTE</a>
+                    <a title="create an account" href="{{ path('app_register') }}">CRÉER UN COMPTE</a>
                 </div>
             {% endif %}
         </div>
         <div class="container_social_network_mini">
             <div>
-                <a href="https://www.facebook.com/sowrscom" target="_blank">
+                <a title="sowrs facebook profile" href="https://www.facebook.com/sowrscom" target="_blank">
                     <img src="{{ asset('img/facebook_violet.png') }}" alt="Page Facebook" title="Facebook" />
                 </a>
             </div>
             <div>
-                <a href="https://www.linkedin.com/company/sowrs/" target="_blank">
+                <a title="sowrs linkedin profile" href="https://www.linkedin.com/company/sowrs/" target="_blank">
                     <img src="{{ asset('img/linkedin_violet.png') }}" alt="Page linkedin" title="LinkedIn" />
                 </a>
             </div>
             <div>
-                <a href="https://www.instagram.com/we.are.sowrs/" target="_blank">
+                <a title="sowrs instagram profile" href="https://www.instagram.com/we.are.sowrs/" target="_blank">
                     <img src="{{ asset('img/instagram_violet.png') }}" alt="Page instagram" title="Instagram" />
                 </a>
             </div>
-            <div><a href="https://twitter.com/sowrs_com" target="_blank">
+            <div><a title="sowrs twitter profile" href="https://twitter.com/sowrs_com" target="_blank">
                     <img src="{{ asset('img/twitter_violet.png') }}" alt="Page twitter" title="Twitter">
                 </a>
             </div>
             <div>
-                <a href="https://fr.tipeee.com/sowrs" target="_blank">
+                <a title="sowrs tipeee profile" href="https://fr.tipeee.com/sowrs" target="_blank">
                     <img src="{{ asset('img/tipeee_violet.png') }}" alt="Page tipeee" title="Tipeee">
                 </a>
             </div>

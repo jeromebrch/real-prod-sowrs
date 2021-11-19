@@ -3,32 +3,32 @@
         {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
             {% if "ROLE_RECRUITER" in app.user.roles %}
                 <div>
-                    <a aria-current="page" href="{{ path('main_candidate_list') }}">CONSULTER LES CV</a>
+                    <a title="CVthèque" aria-current="page" href="{{ path('main_candidate_list') }}">CONSULTER LES CV</a>
                 </div>
             {% elseif "ROLE_CANDIDATE" in app.user.roles %}
                 <div>
-                    <a href="{{ path('main_job_offers_list') }}">CONSULTER LES OFFRES</a>
+                    <a title="job offer list" href="{{ path('main_job_offers_list') }}">CONSULTER LES OFFRES</a>
                 </div>
             {% endif %}
         {% else %}
             <div>
-                <a href="{{ path('main_job_offers_list') }}">CONSULTER LES OFFRES</a>
+                <a title="job offer list" href="{{ path('main_job_offers_list') }}">CONSULTER LES OFFRES</a>
             </div>
             <div>
-                <a href="{{ path('app_register') }}">CONSULTER LES CV</a>
+                <a title="CVthèque" href="{{ path('app_register') }}">CONSULTER LES CV</a>
             </div>
         {% endif %}
         <div>
-            <a href="{{ path('main_about_sowrs') }}">QUI SOMMES-NOUS ?</a>
+            <a title="about sowrs" href="{{ path('main_about_sowrs') }}">QUI SOMMES-NOUS ?</a>
         </div>
         <div>
-            <a href="https://fr.tipeee.com/sowrs" target="_blank">SOUTENEZ SOWRS</a>
+            <a title="sowrs tipeee profile" href="https://fr.tipeee.com/sowrs" target="_blank">SOUTENEZ SOWRS</a>
         </div>
         <div>
-            <a href="{{ path('home_webzine') }}">WEBZINE</a>
+            <a title="webzine article" href="{{ path('home_webzine') }}">WEBZINE</a>
         </div>
         <div>
-            <a href="{{ path('main_contact_us') }}" aria-current="page">CONTACTEZ-NOUS</a>
+            <a title="contact sowrs" href="{{ path('main_contact_us') }}" aria-current="page">CONTACTEZ-NOUS</a>
         </div>
     </div>
     <div class="container_principal_nav_mini">
@@ -36,36 +36,36 @@
             {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
                 {% if "ROLE_RECRUITER" in app.user.roles %}
                     <div>
-                        <a aria-current="page" href="{{ path('main_candidate_list') }}">CONSULTER LES CV</a>
+                        <a title="CVthèque" aria-current="page" href="{{ path('main_candidate_list') }}">CONSULTER LES CV</a>
                     </div>
                 {% elseif "ROLE_CANDIDATE" in app.user.roles %}
                     <div>
-                        <a href="{{ path('main_job_offers_list') }}">CONSULTER LES OFFRES</a>
+                        <a title="job offer list" href="{{ path('main_job_offers_list') }}">CONSULTER LES OFFRES</a>
                     </div>
                 {% endif %}
             {% else %}
                 <div>
-                    <a href="{{ path('app_register') }}">CONSULTER LES CV</a>
+                    <a title="CVthèque" href="{{ path('app_register') }}">CONSULTER LES CV</a>
                 </div>
                 <div>
-                    <a href="{{ path('main_job_offers_list') }}">CONSULTER LES OFFRES</a>
+                    <a title="job offer list" href="{{ path('main_job_offers_list') }}">CONSULTER LES OFFRES</a>
                 </div>
             {% endif %}
             <div>
-                <a href="{{ path('main_about_sowrs') }}">QUI SOMMES-NOUS ?</a>
+                <a title="about sowrs" href="{{ path('main_about_sowrs') }}">QUI SOMMES-NOUS ?</a>
             </div>
             <div>
-                <a href="https://fr.tipeee.com/sowrs" target="_blank">SOUTENEZ SOWRS</a>
+                <a title="sowrs tipeee profile" href="https://fr.tipeee.com/sowrs" target="_blank">SOUTENEZ SOWRS</a>
             </div>
             <div>
-                <a href="{{ path('home_webzine') }}">WEBZINE</a>
+                <a title="webzine article" href="{{ path('home_webzine') }}">WEBZINE</a>
             </div>
             <div>
-                <a href="{{ path('main_contact_us') }}" aria-current="page">CONTACTEZ-NOUS</a>
+                <a title="contact sowrs" href="{{ path('main_contact_us') }}" aria-current="page">CONTACTEZ-NOUS</a>
             </div>
             {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
                 <div>
-                    <a href="{{ path('app_logout') }}" aria-current="page">DÉCONNEXION</a>
+                    <a title="logout" href="{{ path('app_logout') }}" aria-current="page">DÉCONNEXION</a>
                 </div>
             {% endif %}
         </div>

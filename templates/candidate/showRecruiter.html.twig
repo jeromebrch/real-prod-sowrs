@@ -7,8 +7,17 @@
           crossorigin=""/>
 {% endblock %}
 
+{% block meta %}
+    <meta name="description" content="Retrouvez des entreprises qui recrutent dans le domaine de l'IT et proposent de nombreuses offres d'emploi" />
+    <meta property="og:title" content="{{ recruiter.entityName }}">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="{{ app.request.uri }}">
+    <meta property="og:image" content="https://sowrs.com/img/welcome_sowrs.jpg">
+    <meta property="og:description" content="Retrouvez des entreprises qui recrutent dans le domaine de l'IT et proposent de nombreuses offres d'emploi" />
+{% endblock %}
+
 {% block title %}
-    SOWRS - {{ recruiter.entityName }}
+    Sowrs | {{ recruiter.entityName }}
 {% endblock %}
 
 {% block body %}
@@ -117,7 +126,7 @@
                                 {% for jobOffer in recruiter.jobOffers %}
                                     <div class="container_job_offer container_job_offer_recruiter_profil">
                                         <div class="offer_title_contract">
-                                            <a href="{{ path('jobOffer_show', {"id":jobOffer.id}) }}">
+                                            <a title="recruiter job offer" href="{{ path('jobOffer_show', {"id":jobOffer.id}) }}">
                                                 <h3 class="job_offer_title show_recruiter_title">{{ jobOffer.title }}</h3>
                                             </a>
                                             {% if jobOffer.contractType.wording == 'CDI' %}
@@ -242,16 +251,16 @@
                 <div class="row container_social_link">
                     {% if recruiter.socialNetwork %}
                         {% if recruiter.socialNetwork.website %}
-                            <a href="{{ recruiter.socialNetwork.website }}" target="_blank" class="btn required btn_social"><img src="{{ asset('img/lieux_mini.png') }}" alt="mon facebook" title="Facebook" class="social_link_mini" /></a>
+                            <a title="recruiter website" href="{{ recruiter.socialNetwork.website }}" target="_blank" class="btn required btn_social"><img src="{{ asset('img/lieux_mini.png') }}" alt="mon facebook" title="Facebook" class="social_link_mini" /></a>
                         {% endif %}
                         {% if recruiter.socialNetwork.linkedin %}
-                            <a href="{{ recruiter.socialNetwork.linkedin }}" target="_blank" class="btn required btn_social"><img src="{{ asset('img/linkedin_grist-10mm.png') }}" alt="mon linkedIn" title="LinkedIn" class="social_link_mini" /></a>
+                            <a title="recruiter linkedin profile" href="{{ recruiter.socialNetwork.linkedin }}" target="_blank" class="btn required btn_social"><img src="{{ asset('img/linkedin_grist-10mm.png') }}" alt="mon linkedIn" title="LinkedIn" class="social_link_mini" /></a>
                         {% endif %}
                         {% if recruiter.socialNetwork.facebook %}
-                            <a href="{{ recruiter.socialNetwork.facebook }}" target="_blank" class="btn required btn_social"><img src="{{ asset('img/facebook_gris-10mm.png') }}" alt="mon Facebook" title="Facebook" class="social_link_mini" /></a>
+                            <a title="recruiter facebook profile" href="{{ recruiter.socialNetwork.facebook }}" target="_blank" class="btn required btn_social"><img src="{{ asset('img/facebook_gris-10mm.png') }}" alt="mon Facebook" title="Facebook" class="social_link_mini" /></a>
                         {% endif %}
                         {% if recruiter.socialNetwork.twitter %}
-                            <a href="{{ recruiter.socialNetwork.twitter }}" target="_blank" class="btn required btn_social"><img src="{{ asset('img/twitter_gris-10mm.png') }}" alt="mon twitter" title="Twitter" class="social_link_mini" /></a>
+                            <a title="recruiter twitter profile" href="{{ recruiter.socialNetwork.twitter }}" target="_blank" class="btn required btn_social"><img src="{{ asset('img/twitter_gris-10mm.png') }}" alt="mon twitter" title="Twitter" class="social_link_mini" /></a>
                         {% endif %}
                     {% endif %}
                 </div>

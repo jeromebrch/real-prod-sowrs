@@ -4,8 +4,12 @@
 
 {% block meta %}
     <meta name="robots" content="index, follow" />
-    <meta name="description" content="Contactez SOWRS pour de plus amples informations, nos équipes sont disponible pour répondre
-                                à vos questions en tant que candidat, ou recruteur">
+    <meta name="description" content="Contactez SOWRS pour de plus amples informations, nos équipes sont disponible pour répondre à vos questions en tant que candidat, ou recruteur" />
+    <meta property="og:title" content="Sowrs">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="{{ app.request.uri }}">
+    <meta property="og:image" content="https://sowrs.com/img/welcome_sowrs.jpg">
+    <meta property="og:description" content="Contactez SOWRS pour de plus amples informations, nos équipes sont disponible pour répondre à vos questions en tant que candidat, ou recruteur" />
 {% endblock %}
 
 {% block body %}
