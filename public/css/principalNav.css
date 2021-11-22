@@ -64,12 +64,12 @@
         font-size: 1.1em!important;
     }
 }
-@media screen and (max-width: 1225px){
+@media screen and (max-width: 1285px){
     .container_principal_nav{
         justify-content: space-around;
     }
     .container_principal_nav>div>a{
-        font-size: 1.3em;
+        font-size: 1.2em;
     }
     .container_principal_nav>div{
         padding: 10px 10px 10px 10px;
@@ -88,6 +88,6 @@
 }
 @media screen and (max-width: 1135px){
     .container_principal_nav>div>a{
-        font-size: 1em;
+        font-size: 0.9em;
     }
 }

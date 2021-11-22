@@ -1,0 +1,155 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello RSEController!{% endblock %}
+
+{% block meta %}
+
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('css/homeRSE.css') }}" />
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+{% endblock %}
+
+{% block body %}
+    <div class="rse_container col-12">
+        <h1>Conseil RSE</h1>
+        <p class="presentation_text">
+            Nous vous aidons à mesurer, améliorer et suivre votre impact social et environnemental grâce à une
+            démarche itérative, collaborative et engageante pour vos collaborateurs et parties prenantes.
+        </p>
+        <section class="first_section col-12">
+            <div class="green_square">
+                <h3>NOTRE OFFRE</h3>
+                <p>
+                    Nous échangeons avec vous pour affiner votre besoin et vous proposer un tarif sur-mesure. <br />
+                    Nos prestations incluent des solutions d'accompagnement personnalisées (conformité, certification, formation
+                    de vos collaborateurs, visibilité et marque employeur, conduite de changement, etc...) pour soutenir et améliorer
+                    votre impact RSE :
+                </p>
+                <p>
+                    Audit / État des lieux<br />
+                    Rapport et préconisations<br />
+                    Élaboration de la charte et stratégie RSE de l'entreprise<br />
+                    Plan d'action et objectifs<br />
+                    Gamification et évènements RSE internes
+                </p>
+                <a href="{{ path('main_contact_us') }}" title="contact sowrs">Contactez-nous</a>
+            </div>
+        </section>
+        <section class="col-12 container_infos_rse">
+            <div class="col-6 container_text_rse">
+                <h4>RSE : QUE METTRE EN PLACE ?</h4>
+                <p>
+                    L'audit nous permet de structurer votre démarche RSE afin qu'elle soit en pleine adéquation et intégration
+                    avec votre stratégie globale, en commençant par la définition de votre raison d'être. À partir de là,
+                    plusieurs actions peuvent être mises en place :
+                </p>
+                <ul class="ul_no_style">
+                    <li>
+                        👉 Réalisation de votre Déclaration de Performance Extra Financière afin d'apporter plus de transparence
+                        à vos activités en matière de RSE
+                    </li>
+                    <li>
+                        👉 Formalisation et amélioration de vos processus afin de renforcer leur adéquation avec votre stratégie RSE
+                        et mieux vous confronter aux référentiels
+                    </li>
+                    <li>
+                        👉 Accompagnement sur vos projets de certification, études de faisabilité à l'obtention (Ecovadis, B-CORP, ISO, etc...)
+                    </li>
+                    <li>
+                        👉 Réalisation d'un bilan carbone pour quantifier votre impact sur les différents scopes, identifier vos
+                        principaux pôles d'émission et établir un plan d'action d'amélioration et de réduction ciblé
+                    </li>
+                    <li>
+                        👉 Bilan énergétique de vos activités et définition d'actions d'amélioration pour une meilleure efficience énergétique
+                    </li>
+                    <li>
+                        👉 Benchmark de votre avancée en matière de RSE pour mieux définir ou redéfinir votre positionnement
+                        sur votre marché ou marché-cible
+                    </li>
+                </ul>
+            </div>
+            <div class="col-6 container_img_rse">
+                <img src="{{ asset('img/comment-devenir-rse.webp') }}" title="Action RSE" alt="Les actions RSE" />
+            </div>
+        </section>
+        <section class="col-12 container_infos_rse second_section_infos_rse">
+            <div class="col-6 container_img_rse">
+                <img src="{{ asset('img/ateliers-rse.webp') }}" title="Ateliers RSE" alt="Les ateliers RSE" />
+            </div>
+            <div class="col-6 container_text_rse">
+                <h4>EXEMPLES D'ATELIERS DE SENSIBILISATION RSE ET ATELIERS PRATIQUES</h4>
+                <ul>
+                    <li>Évaluer son impact carbone</li>
+                    <li>Le sens au travail</li>
+                    <li>Accessibilité, inclusion et diversité</li>
+                    <li>Égalité professionnelle</li>
+                    <li>Les enjeux de la RSE pour les entreprises</li>
+                    <li>Les initiatives existantes en matière de développement durable</li>
+                    <li>Tendre vers le zéro déchet en entreprise</li>
+                    <li>Bonnes pratiques / Posture au travail / Sécurité au travail</li>
+                    <li>Qualité de vie / Bien être au travail</li>
+                    <li>La responsabilité numérique en entreprise</li>
+                </ul>
+            </div>
+        </section>
+        <section class="purple_section col-12">
+            <h4>POURQUOI DÉVELOPPER VOTRE STRATÉGIE RSE ?</h4>
+            <div class="container_white_blocks col-12">
+                <div class="col-md-4">
+                    <div>
+                        <h5>Améliorer la qualité et la productivité</h5>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-6">
+                    <div>
+                        <h5>Accéder à de nouveaux marchés</h5>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-6">
+                    <div>
+                        <h5>Développer votre business et votre notoriété</h5>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-6">
+                    <div>
+                        <h5>Réduire les coûts de production</h5>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-6">
+                    <div>
+                        <h5>
+                            Attirer et fidéliser les talents<br/>
+                            (marque employeur)
+                        </h5>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-6">
+                    <div>
+                        <h5>Fédérer autour d'enjeux communs (sens)</h5>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-6">
+                    <div>
+                        <h5>Anticiper les risques</h5>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-6">
+                    <div>
+                        <h5>Valoriser l'expérience de toutes les parties prenantes</h5>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-6">
+                    <div>
+                        <h5>Vous démarquer et promouvoir vos valeurs</h5>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+{% endblock %}
