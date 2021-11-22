@@ -1,0 +1,296 @@
+.presentation_text{
+    text-align: center;
+    font-size: 1em;
+    color: #555555;
+    padding: 0 80px 0 80px;
+}
+.rse_container *{
+    font-family: 'KohinoorBangla', Arial, serif;
+}
+.rse_container>h1{
+    text-align: center;
+    padding: 25px;
+    color: #555555;
+    font-size: 3em;
+}
+.first_section{
+    padding: 25px;
+}
+.green_square{
+    background-color: #1dca91;
+    border-radius: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 30px;
+}
+.green_square>h3{
+    color: white;
+    font-size: 2em;
+    font-weight: bold;
+    padding: 15px;
+    font-family: 'KohinoorBangla', Arial, serif;
+}
+.green_square>p{
+    color: white;
+    padding: 25px;
+    text-align: center;
+    font-weight: bold;
+    font-family: 'KohinoorBangla', Arial, serif;
+    font-size: 1.1em;
+}
+.green_square>a{
+    padding: 15px 25px 15px 25px;
+    background-color: white;
+    color: #1dca91;
+    font-family: 'KohinoorBangla', Arial, serif;
+    border-radius: 30px;
+    font-weight: bold;
+    font-size: 1.2em;
+}
+.green_square>a:hover{
+    background-color: #937FA4;
+    color: white;
+}
+.container_infos_rse{
+    display: flex;
+    flex-direction: row;
+    margin-top: 15px;
+    margin-bottom: 25px;
+}
+.ul_no_style{
+    list-style: none;
+}
+li{
+    margin-bottom: 15px;
+}
+.container_img_rse{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+.container_text_rse{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+.container_text_rse *{
+    font-family: 'KohinoorBangla', Arial, serif;
+    color: #555555;
+}
+.container_text_rse h4{
+    color: #1dca91;!important;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+.container_img_rse>img{
+    width: 60%;
+    height: auto;
+}
+.purple_section{
+    background-color: #937FA4;
+}
+.container_white_blocks{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+.purple_section>h4{
+    color: white;
+    font-family: 'KohinoorBangla', Arial, serif;
+    text-align: center;
+    padding: 25px;
+    font-size: 2em;
+}
+.purple_section>div{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 25px;
+}
+.container_white_blocks>div>div{
+    border-radius: 10px;
+    width: 80% !important;
+    height: 130px!important;
+    background-color: white!important;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 35px;
+}
+.container_white_blocks>div>div>h5{
+    color: #555555;
+    text-align: center;
+    font-size: 1.2em;
+}
+
+@media screen and (max-device-width: 350px){
+    .rse_container>h1{
+        font-size: 4em;
+    }
+    .presentation_text{
+        font-size: 1.5em;
+        padding: 15px;
+    }
+    .first_section{
+        padding: 10px;
+    }
+    .green_square>h3{
+        font-size: 2em;
+        padding: 0!important;
+    }
+    .green_square>p{
+        font-size: 1.4em;
+        padding: 0!important;
+    }
+    .green_square>a{
+        font-size: 1.7em;
+        border-radius: 80px;
+        text-align: center;
+    }
+    .container_infos_rse{
+        flex-direction: column!important;
+    }
+    .container_infos_rse>div{
+        width: 100% !important;
+    }
+    .second_section_infos_rse{
+        flex-direction: column-reverse!important;
+    }
+    .container_text_rse h4{
+        font-size: 1.8em;
+    }
+    .container_text_rse p{
+        font-size: 1.3em;
+    }
+    .container_text_rse li{
+        font-size: 1.2em;
+    }
+    .container_white_blocks>div{
+        width: 100%!important;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+    }
+    body .container_white_blocks>div>div{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 180px!important;
+    }
+}
+@media screen and (max-device-width: 550px) and (min-device-width: 351px){
+    .rse_container>h1{
+        font-size: 4em;
+    }
+    .presentation_text{
+        font-size: 1.5em;
+        padding: 15px;
+    }
+    .first_section{
+        padding: 10px;
+    }
+    .green_square>h3{
+        font-size: 2.5em;
+    }
+    .green_square>p{
+        font-size: 1.5em;
+        padding: 0!important;
+    }
+    .green_square>a{
+        font-size: 1.7em;
+        border-radius: 50px;
+    }
+    .container_infos_rse{
+        flex-direction: column!important;
+    }
+    .container_infos_rse>div{
+        width: 100% !important;
+    }
+    .second_section_infos_rse{
+        flex-direction: column-reverse!important;
+    }
+    .container_text_rse h4{
+        font-size: 2em;
+    }
+    .container_text_rse p{
+        font-size: 1.2em;
+    }
+    .container_text_rse li{
+        font-size: 1.1em;
+    }
+    .container_white_blocks>div{
+        width: 50%!important;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+    }
+    body .container_white_blocks>div>div{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 200px!important;
+    }
+}
+@media screen and (max-device-width: 850px) and (min-device-width: 551px){
+    .rse_container>h1{
+        font-size: 4em;
+    }
+    .presentation_text{
+        font-size: 1.5em;
+    }
+    .green_square>h3{
+        font-size: 2.5em;
+    }
+    .green_square>p{
+        font-size: 1.5em;
+    }
+    .green_square>a{
+        font-size: 1.7em;
+        border-radius: 50px;
+    }
+    .container_infos_rse{
+        flex-direction: column!important;
+    }
+    .container_infos_rse>div{
+        width: 100% !important;
+    }
+    .second_section_infos_rse{
+        flex-direction: column-reverse!important;
+    }
+    .container_text_rse h4{
+        font-size: 2em;
+    }
+    .container_text_rse p{
+        font-size: 1.2em;
+    }
+    .container_text_rse li{
+        font-size: 1.1em;
+    }
+    .container_white_blocks>div{
+        width: 50%!important;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+    }
+    body .container_white_blocks>div>div{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 200px!important;
+    }
+}

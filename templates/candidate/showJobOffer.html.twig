@@ -4,11 +4,11 @@
 
 {% block meta %}
     <meta name="description" content="Retrouvez d'autres offres de jobs tech à impact positif sur notre CVthèque gratuite en ligne. Donnez du sens à votre carrière !" />
-    <meta property="og:title" content="Poste de {{ jobOffer.title }} en {{ jobOffer.contractType.wording }}">
+    <meta property="og:title" content="Poste de {{ jobOffer.title }} en {{ jobOffer.contractType.wording|upper }}">
     <meta property="og:type" content="article">
     <meta property="og:url" content="{{ app.request.uri }}">
     <meta property="og:image" content="https://sowrs.com/img/welcome_sowrs.jpg">
-    <meta property="og:description" content="Poste de {{ jobOffer.title }} en {{ jobOffer.contractType.wording }}. Retrouvez d'autres offres de jobs tech à impact positif sur notre CVthèque gratuite en ligne !" />
+    <meta property="og:description" content="Poste de {{ jobOffer.title }} en {{ jobOffer.contractType.wording|upper }}. Retrouvez d'autres offres de jobs tech à impact positif sur notre CVthèque gratuite en ligne !" />
 {% endblock %}
 
 {% block stylesheets %}
@@ -44,7 +44,7 @@
             <h4 class="show_candidate_jumbotron_name job_offer_title_jumbotron">{{ jobOffer.title | capitalize }}</h4>
         </div>
         <h5 class="show_candidate_jumbotron_infos offer_infos">{{ jobOffer.city | capitalize }}
-            - {{ jobOffer.contractType.wording |capitalize }}
+            - {{ jobOffer.contractType.wording |upper }}
 
             {% if jobOffer.remuneration.text %}
                 - {{ jobOffer.remuneration.text |capitalize }}
