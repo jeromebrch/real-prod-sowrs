@@ -46,6 +46,9 @@
                         <li class="offer_line">
                             <p>
                                 <a href="{{ path('jobOffer_show', {'id': offer.id}) }}"><strong>{{ offer.title }}</strong></a> &bull; {{ offer.entity.entityName }} &bull; {{ offer.contractType.wording }} &bull;
+                                {% if offer.entity.alternateMail %}
+                                    <em class="blue_mail">{{ offer.entity.alternateMail }}</em> (mail alternatif)
+                                {% endif %}
                             </p>
                             <p>
 {#                                <a href="{{ path('jobOffer_modifyJobOffer', {'id':offer.id}) }}"><em>Modifier</em></a>#}

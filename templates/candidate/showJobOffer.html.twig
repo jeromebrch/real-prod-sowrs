@@ -116,13 +116,15 @@
             {% if jobOffer.telecommuting %}
                 <div class="col-12">
                     <div class="show_candidate_sens_rate offer_right_part_section">
+                        {% if "ROLE_ADMIN" in app.user.roles and jobOffer.entity.alternateMail %}
+                            <h3 class="profil_category_title_candidate">Postuler à : <span>{{ jobOffer.entity.alternateMail }}</span></h3>
+                        {% endif %}
                         {% if jobOffer.telecommuting %}
                             {% if jobOffer.creationDate is not empty %}
                                 <h3 class="profil_category_title_candidate title_telecommuting">Parution : <span>{{ jobOffer.creationDate|date('d/m/Y') }}</span></h3>
                             {% endif %}
                             <h3 class="profil_category_title_candidate title_telecommuting">Télétravail accepté : <span>Oui</span></h3>
                             <h3 class="profil_category_title_candidate">Localisation du poste :</h3>
-
                         {% endif %}
                         <div class="mapContainer">
                             <div class="map" id="map"></div>
