@@ -28,6 +28,7 @@ class SitemapController extends AbstractController
         $urls[] = ['loc' => $this->generateUrl('app_register')];
         $urls[] = ['loc' => $this->generateUrl('app_login')];
         $urls[] = ['loc' => $this->generateUrl('main_about_sowrs')];
+        $urls[] = ['loc' => $this->generateUrl('rse')];
         $urls[] = ['loc' => $this->generateUrl('main_contact_us')];
         $urls[] = ['loc' => $this->generateUrl('main_job_offers_list')];
         $urls[] = ['loc' => $this->generateUrl('main_candidate_list')];
