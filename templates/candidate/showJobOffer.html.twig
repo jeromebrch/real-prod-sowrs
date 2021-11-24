@@ -159,6 +159,13 @@
                     {% if jobOffer.entity.mainCause %}
                         <h3 class="profil_category_title_candidate title_telecommuting">Cause : <span>{{ jobOffer.entity.mainCause.text }}</span></h3>
                     {% endif %}
+                    <h3 class="profil_category_title_candidate">Localisation du poste :</h3>
+                    <div class="mapContainer">
+                        <div class="map" id="map"></div>
+                    </div>
+                    <div class="row">
+                        <a title="recruiter location" id="mapGoogle" class="btn btnItinéraire" target="_blank" href="https://www.google.com/maps/dir//{{ jobOffer.numberAddress }}+{{ jobOffer.Address }}+{{ jobOffer.postalCode }}+{{ jobOffer.city }}">Itinéraire vers votre nouveau job</a>
+                    </div>
                 </div>
             {% endif %}
             {% if entity.scoring is not empty %}

@@ -17,6 +17,9 @@ body .job_offer_title_jumbotron{
 .container_info_offer img, .container_info_offer iframe, .container_info_offer video{
     display: none!important;
 }
+.container_info_offer p{
+    color: #555555!important;
+}
 
 .custom .leaflet-popup-tip,
 .custom .leaflet-popup-content-wrapper {
