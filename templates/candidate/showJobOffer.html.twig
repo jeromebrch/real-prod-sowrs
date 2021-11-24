@@ -116,14 +116,25 @@
             {% if jobOffer.telecommuting %}
                 <div class="col-12">
                     <div class="show_candidate_sens_rate offer_right_part_section">
-                        {% if "ROLE_ADMIN" in app.user.roles and jobOffer.entity.alternateMail %}
-                            <h3 class="profil_category_title_candidate">Postuler à : <span>{{ jobOffer.entity.alternateMail }}</span></h3>
+                        {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+                            {% if "ROLE_ADMIN" in app.user.roles and jobOffer.entity.alternateMail %}
+                                <h3 class="profil_category_title_candidate">Postuler à : <span>{{ jobOffer.entity.alternateMail }}</span></h3>
+                            {% endif %}
                         {% endif %}
                         {% if jobOffer.telecommuting %}
                             {% if jobOffer.creationDate is not empty %}
                                 <h3 class="profil_category_title_candidate title_telecommuting">Parution : <span>{{ jobOffer.creationDate|date('d/m/Y') }}</span></h3>
                             {% endif %}
                             <h3 class="profil_category_title_candidate title_telecommuting">Télétravail accepté : <span>Oui</span></h3>
+                            {% if jobOffer.levelStudy %}
+                                <h3 class="profil_category_title_candidate title_telecommuting">Niveau d'études : <span>{{ jobOffer.levelStudy.wording }}</span></h3>
+                            {% endif %}
+                            {% if jobOffer.levelExperience %}
+                                <h3 class="profil_category_title_candidate title_telecommuting">Expérience souhaité : <span>{{ jobOffer.levelExperience.wording }}</span></h3>
+                            {% endif %}
+                            {% if jobOffer.entity.mainCause %}
+                                <h3 class="profil_category_title_candidate title_telecommuting">Cause : <span>{{ jobOffer.entity.mainCause.text }}</span></h3>
+                            {% endif %}
                             <h3 class="profil_category_title_candidate">Localisation du poste :</h3>
                         {% endif %}
                         <div class="mapContainer">
@@ -132,13 +143,21 @@
                         <div class="row">
                             <a title="recruiter location" id="mapGoogle" class="btn btnItinéraire" target="_blank" href="https://www.google.com/maps/dir//{{ jobOffer.numberAddress }}+{{ jobOffer.Address }}+{{ jobOffer.postalCode }}+{{ jobOffer.city }}">Itinéraire vers votre nouveau job</a>
                         </div>
-
                     </div>
                 </div>
             {% else %}
                 <div class="show_candidate_sens_rate offer_right_part_section">
                     {% if jobOffer.creationDate is not empty %}
                         <h3 class="profil_category_title_candidate title_telecommuting">Parution : <span>{{ jobOffer.creationDate|date('d/m/Y') }}</span></h3>
+                    {% endif %}
+                    {% if jobOffer.levelStudy %}
+                        <h3 class="profil_category_title_candidate title_telecommuting">Niveau d'études : <span>{{ jobOffer.levelStudy.wording }}</span></h3>
+                    {% endif %}
+                    {% if jobOffer.levelExperience %}
+                        <h3 class="profil_category_title_candidate title_telecommuting">Expérience souhaité : <span>{{ jobOffer.levelExperience.wording }}</span></h3>
+                    {% endif %}
+                    {% if jobOffer.entity.mainCause %}
+                        <h3 class="profil_category_title_candidate title_telecommuting">Cause : <span>{{ jobOffer.entity.mainCause.text }}</span></h3>
                     {% endif %}
                 </div>
             {% endif %}
