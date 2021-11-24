@@ -269,3 +269,9 @@ body .cardJobContract>div{
         bottom: 50px;!important;
     }
 }
+@media screen and (min-device-width: 1519px){
+    .pourcent{
+        position: relative;
+        left: 25px;
+    }
+}

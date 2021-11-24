@@ -55,6 +55,7 @@ class MainController extends AbstractController
             $request->query->getInt('page', 1),
             5
         );
+        $jobOffers->setUsedRoute('main_job_offers_list');
         if ($formSearchHome->isSubmitted() && $formSearchHome->isValid()) {
             $userFavoritesOffers = [];
             if($user instanceof Candidate){
@@ -78,6 +79,7 @@ class MainController extends AbstractController
                 $request->query->getInt('page', 1),
                 5
             );
+            $listCandidates->setUsedRoute('main_candidate_list');
             return $this->render('main/candidateList.html.twig', [
                 'formSearch' => $formSearchCandidate->createView(),
                 'user' => $user,

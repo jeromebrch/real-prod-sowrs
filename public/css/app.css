@@ -281,3 +281,12 @@ body .select2-container--default{
         width: 80% !important;
     }
 }
+@media screen and (max-device-width: 500px){
+    .pagination{
+        overflow: auto;
+    }
+    .pagination::-webkit-scrollbar {
+        width: 3px!important;
+        height: 5px!important;
+    }
+}
