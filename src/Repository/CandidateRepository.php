@@ -81,14 +81,14 @@ class CandidateRepository extends ServiceEntityRepository
             ->leftJoin('c.jobSearch', 'o')
             ->andWhere('c.private = :f')
             ->setParameter('f', false)
-            ->andWhere("c.authorizedCountry != ''")
-            ->andWhere("c.authorizedCountry IS NOT NULL")
-            ->andWhere("o.contractType != ''")
-            ->andWhere("o.contractType IS NOT NULL")
-            ->andWhere("o.cause != ''")
-            ->andWhere("o.cause IS NOT NULL")
-            ->andWhere("o.jobTitle != ''")
-            ->andWhere("o.jobTitle IS NOT NULL")
+//            ->andWhere("c.authorizedCountry != ''")
+//            ->andWhere("c.authorizedCountry IS NOT NULL")
+//            ->andWhere("o.contractType != ''")
+//            ->andWhere("o.contractType IS NOT NULL")
+//            ->andWhere("o.cause != ''")
+//            ->andWhere("o.cause IS NOT NULL")
+//            ->andWhere("o.jobTitle != ''")
+//            ->andWhere("o.jobTitle IS NOT NULL")
             ;
         if (!empty($data->txt)) {
             $arrayResearch = explode(" ", $data->txt);

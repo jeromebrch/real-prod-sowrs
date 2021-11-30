@@ -47,7 +47,7 @@
         </div>
         <h5 class="show_candidate_jumbotron_infos">
             {% if candidate.currentjob %}
-            {{ candidate.currentJob | capitalize }}
+                {{ candidate.currentJob | capitalize }}
             {% endif %}
             {% if candidate.jobSearch %}
                 {% if candidate.jobSearch.country.name %}
@@ -66,6 +66,8 @@
         </h5>
         {% if candidate.inspiration %}
             <p class="show_candidate_jumbotron_inspiration">" {{ candidate.inspiration|capitalize }} "</p><br>
+        {% else %}
+            <br>
         {% endif %}
         {% if candidate.cv is not empty %}
             <a title="candidate CV" class="btn position-absolute start-50 translate-middle" href="{{ asset('file/cv/' ~ candidate.cv.cvName) }}" target="_blank">Télécharger le CV</a>
@@ -213,18 +215,19 @@
                         </h3>
                     {% endif %}
                 </div>
-                {% if candidate.jobsearch.city is not null %}
-                    <div class="row">
-                        <h3 class="profil_category_title_candidate">Localisation du poste recherché : </h3>
-                        <div class="mapContainerCandidate">
-                            <div class="mapCandidate" id="map"></div>
+                {% if candidate.jobSearch %}
+                    {% if candidate.jobsearch.city is not null %}
+                        <div class="row">
+                            <h3 class="profil_category_title_candidate">Localisation du poste recherché : </h3>
+                            <div class="mapContainerCandidate">
+                                <div class="mapCandidate" id="map"></div>
+                            </div>
                         </div>
-                    </div>
-
-                {% else %}
-                    <div class="row">
-                        <h3 class="profil_category_title_candidate">Localisation du poste recherché : <span>Non renseigné</span></h3>
-                    </div>
+                    {% else %}
+                        <div class="row">
+                            <h3 class="profil_category_title_candidate">Localisation du poste recherché : <span>Non renseigné</span></h3>
+                        </div>
+                    {% endif %}
                 {% endif %}
             </div>
 
@@ -358,94 +361,97 @@
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
             integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
             crossorigin=""></script>
-    <script>
-        let lat;
-        let lon;
-        let mymap;
-        let marker;
-        let popupContent = '{{ candidate.firstname }} recherche un emploi à {{ candidate.jobsearch.city }}' //Pas utilisé
-        let errorContent = 'La localisation depuis la carte n\'est pas disponible.'; //Pas utilisé
-        let mapGoogle = document.getElementById('mapGoogle');
-        let mapId = document.getElementById('map');
-        let city = '{{ candidate.jobsearch.city }}';
-        let customOptions =
-            {
-                'className' : 'custom'
-            }
 
-        //Si au moins la ville est renseignée
-        if (city != '') {
+    {% if candidate.jobSearch %}
+        <script>
+            let lat;
+            let lon;
+            let mymap;
+            let marker;
+            let popupContent = '{{ candidate.firstname }} recherche un emploi à {{ candidate.jobsearch.city }}' //Pas utilisé
+            let errorContent = 'La localisation depuis la carte n\'est pas disponible.'; //Pas utilisé
+            let mapGoogle = document.getElementById('mapGoogle');
+            let mapId = document.getElementById('map');
+            let city = '{{ candidate.jobsearch.city }}';
+            let customOptions =
+                {
+                    'className' : 'custom'
+                }
 
-            //On récupère la ville du candidat(Zone geographique)
-            let completeAddress = city;
+            //Si au moins la ville est renseignée
+            if (city != '') {
 
-            //Gestion de l'icone personnalisé
-            let sowrsIcon = L.icon({
-                iconUrl: '../../img/map-marker-alt-solid.svg',
-                iconSize:     [35, 65], // size of the icon
-                iconAnchor:   [15, 52], // point of the icon which will correspond to marker's location
-                popupAnchor:  [2, -42] // point from which the popup should open relative to the iconAnchor
-            });
+                //On récupère la ville du candidat(Zone geographique)
+                let completeAddress = city;
 
-            //On fais la requète au pres de l'api NOMINATIM (recherche addresse)
-            const xmlhttp = new XMLHttpRequest()
-            xmlhttp.onreadystatechange = () => {
+                //Gestion de l'icone personnalisé
+                let sowrsIcon = L.icon({
+                    iconUrl: '../../img/map-marker-alt-solid.svg',
+                    iconSize:     [35, 65], // size of the icon
+                    iconAnchor:   [15, 52], // point of the icon which will correspond to marker's location
+                    popupAnchor:  [2, -42] // point from which the popup should open relative to the iconAnchor
+                });
 
-                if(xmlhttp.readyState === 4){
+                //On fais la requète au pres de l'api NOMINATIM (recherche addresse)
+                const xmlhttp = new XMLHttpRequest()
+                xmlhttp.onreadystatechange = () => {
 
-                    //si la requète passe on recupère la ville, les coordonnées et on init la map + marqueur
-                    if (xmlhttp.status === 200){
+                    if(xmlhttp.readyState === 4){
 
-                        //on affiche la div si ready et status ok
-                        mapId.hidden = false
+                        //si la requète passe on recupère la ville, les coordonnées et on init la map + marqueur
+                        if (xmlhttp.status === 200){
 
-                        //On recupère les infos
-                        let response = JSON.parse(xmlhttp.response)
+                            //on affiche la div si ready et status ok
+                            mapId.hidden = false
 
-                        if (response != ''){
+                            //On recupère les infos
+                            let response = JSON.parse(xmlhttp.response)
 
-                            //On prend la latitude et la longitude
-                            lat = response[0]["lat"];
-                            lon = response[0]["lon"];
+                            if (response != ''){
 
-                            //Affichage aux coordonnées récupérées
-                            mymap = L.map('map').setView([lat, lon], 11);
+                                //On prend la latitude et la longitude
+                                lat = response[0]["lat"];
+                                lon = response[0]["lon"];
 
-                            //On place le marqueur
-                            marker = L.marker([lat, lon], {icon: sowrsIcon}).addTo(mymap);
+                                //Affichage aux coordonnées récupérées
+                                mymap = L.map('map').setView([lat, lon], 11);
 
-                            //Popup précision que c'est sur paris
-                            marker.bindPopup(popupContent, customOptions).openPopup();
+                                //On place le marqueur
+                                marker = L.marker([lat, lon], {icon: sowrsIcon}).addTo(mymap);
 
-                            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                                attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery ©',
-                                maxZoom: 25,
-                            }).addTo(mymap);
+                                //Popup précision que c'est sur paris
+                                marker.bindPopup(popupContent, customOptions).openPopup();
+
+                                L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                                    attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery ©',
+                                    maxZoom: 25,
+                                }).addTo(mymap);
+
+                            }else {
+                                //On cache les div en cas d'erreur
+                                mapId.hidden = true
+                                mapGoogle.hidden = true
+                            }
 
                         }else {
-                            //On cache les div en cas d'erreur
+                            //On cache la div en cas d'erreur
                             mapId.hidden = true
-                            mapGoogle.hidden = true
                         }
-
-                    }else {
-                        //On cache la div en cas d'erreur
-                        mapId.hidden = true
                     }
                 }
+
+                //XML.Open Requete faite status 1
+                xmlhttp.open("get", `https://nominatim.openstreetmap.org/search?q=${completeAddress}&format=json&adressdetails=1&limit=1`)
+                xmlhttp.send()
+
+            }else {
+
+                //Todo: Gestion du else
+                //div cachées
+                mapId.hidden = true
+                mapGoogle.hidden = true
+
             }
-
-            //XML.Open Requete faite status 1
-            xmlhttp.open("get", `https://nominatim.openstreetmap.org/search?q=${completeAddress}&format=json&adressdetails=1&limit=1`)
-            xmlhttp.send()
-
-        }else {
-
-            //Todo: Gestion du else
-            //div cachées
-            mapId.hidden = true
-            mapGoogle.hidden = true
-
-        }
-    </script>
+        </script>
+    {% endif %}
 {% endblock %}
