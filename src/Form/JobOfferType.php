@@ -72,7 +72,6 @@ class JobOfferType extends AbstractType
                     'placeholder' => 'Nom de la voie'
                 ]
             ])
-
             ->add('postalCode', IntegerType::class, [
                 'label' => false,
                 'required' => false,
@@ -80,7 +79,6 @@ class JobOfferType extends AbstractType
                     'placeholder' => 'Code Postal'
                 ]
             ])
-
             ->add('city', TextType::class, [
                 'label' => false,
                 'attr' => [
