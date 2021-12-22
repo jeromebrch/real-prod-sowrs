@@ -266,6 +266,47 @@ body .select2-container--default{
     object-fit: cover;
     object-position: center;
 }
+.pop_up_calendar{
+    width: 300px;
+    max-width: 80%;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 9;
+    display: none;
+}
+.close_pop_up{
+    cursor: pointer;
+}
+.container_calendar_pop_up{
+    padding: 25px 25px 0 25px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    background-color: white;
+    border-top-right-radius: 30px;
+    border-top-left-radius: 30px;
+}
+.container_calendar_pop_up p{
+    text-align: center;
+}
+.container_link_pop_up_calendar{
+    width: 100% !important;
+    background-color: #1dca91;
+    border-bottom-right-radius: 30px;
+    border-bottom-left-radius: 30px;
+    padding: 15px 25px 15px 25px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-content: center;
+}
+.container_link_pop_up_calendar>a{
+    color: white;
+    font-weight: bold;
+    font-family: 'KohinoorBangla', Arial, serif;
+}
 
 
 @media screen and (max-width: 344px){

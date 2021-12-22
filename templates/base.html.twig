@@ -158,6 +158,23 @@
     {% endblock %}
     {% block body %}{% endblock %}
     <br>
+    {# CALENDAR POP UP BOTTOM RIGHT #}
+    <div class="pop_up_calendar">
+        <div class="container_close_pop_up">
+            <i class="fas fa-times close_pop_up"></i>
+        </div>
+        <div class="container_calendar_pop_up">
+            <p>
+                Téléchargez le calendrier 2022 du développement durable et de la RSE
+            </p>
+            <p>
+                Ne manquez plus les dates et évènements marquants pour une année plus responsable
+            </p>
+        </div>
+        <div class="container_link_pop_up_calendar">
+            <a href="{{ path('calendar_rse') }}">Télécharger</a>
+        </div>
+    </div>
 </div>
 
     <footer>
@@ -221,6 +238,22 @@
         btnCloseModal.addEventListener('click', function (){
             createOfferModal.setAttribute('style', 'display:none;');
         });
+    </script>
+
+    <script>
+        $(window).on('load', function (){
+            let popUpCalendar = $('.pop_up_calendar');
+            let btnCloseCalendarPopUp = $('.close_pop_up');
+            if(popUpCalendar){
+                setTimeout(function (){
+                    popUpCalendar.show(500);
+                }, 2000);
+
+                btnCloseCalendarPopUp.on('click', function (){
+                    popUpCalendar.hide(500);
+                });
+            }
+        })
     </script>
 
     <script src="{{ asset('js/footer_btn.js') }}"></script>

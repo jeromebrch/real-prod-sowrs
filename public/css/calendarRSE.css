@@ -1,0 +1,122 @@
+.calendar_rse_container{
+    display: flex;
+    flex-direction: row;
+}
+.calendar_rse_container>section{
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    padding: 100px 50px 100px 50px;
+}
+.container_sowrs_logo{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-content: center;
+}
+.logo_sowrs{
+    width: 80%;
+    height: auto;
+    margin-bottom: 40px;
+}
+.left_part_calendar>h1{
+    text-align: center;
+    font-size: 1.5em;
+    padding: 15px;
+    color: #555555;
+}
+.left_part_calendar>p{
+    color: #555555;
+    font-size: 1.1em;
+    text-align: center;
+    font-family: 'KohinoorBangla', Arial, serif;
+}
+form[name="calendar"]{
+    background-color: #1dca91;
+    padding: 40px;
+    border-radius: 30px;
+    width: 80% !important;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+}
+form[name="calendar"] .form-group{
+    margin-bottom: 20px;
+}
+form[name="calendar"] input{
+    border-radius: 30px;
+}
+.btn_download_calendar{
+    background-color: white;
+    color: #555555;
+    font-weight: bold;
+    border-radius: 30px;
+    border: 0;
+    font-family: 'KohinoorBangla', Arial, serif;
+    padding: 15px 25px 15px 25px;
+    outline-width: 0;
+}
+body .right_part_calendar{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-content: center;
+}
+
+@media screen and (max-device-width: 1100px) and (min-device-width: 911px){
+    .calendar_rse_container>section{
+        padding: 50px 25px 50px 25px;
+    }
+}
+@media screen and (max-device-width: 910px) and (min-device-width: 601px){
+    .calendar_rse_container{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-content: center;
+    }
+    .calendar_rse_container>section{
+        width: 100% !important;
+        padding: 70px 25px 70px 25px;
+    }
+}
+@media screen and (max-device-width: 600px) and (min-device-width: 372px){
+    .calendar_rse_container{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-content: center;
+    }
+    .calendar_rse_container>section{
+        width: 100% !important;
+        padding: 70px 25px 70px 25px;
+    }
+    form[name="calendar"]{
+        width: 90% !important;
+    }
+}
+@media screen and (max-device-width: 371px){
+    .calendar_rse_container{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-content: center;
+    }
+    .calendar_rse_container>section{
+        width: 100% !important;
+        padding: 50px 25px 25px 25px;
+    }
+    form[name="calendar"]{
+        width: 100% !important;
+    }
+    .btn_download_calendar{
+        border-radius: 80px!important;
+    }
+    .left_part_calendar>h1{
+        padding: 0;
+    }
+}

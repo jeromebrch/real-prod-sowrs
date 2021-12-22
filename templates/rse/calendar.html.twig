@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    Calendrier des évènements RSE
+{% endblock %}
+
+{% block meta %}
+    <meta name="description" content="Télécharger notre calendrier des évènements RSE directement sur sowrs.com" />
+    <meta property="og:title" content="Calendrier des évènements RSE | Sowrs">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="{{ app.request.uri }}">
+    <meta property="og:image" content="https://sowrs.com/img/welcome_sowrs.jpg">
+    <meta property="og:description" content="Télécharger notre calendrier des évènements RSE directement sur sowrs.com" />
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('css/calendarRSE.css') }}"
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+{% endblock %}
+
+{% block body %}
+    <div class="calendar_rse_container">
+        <section class="left_part_calendar">
+            <div class="container_sowrs_logo">
+                <img class="logo_sowrs" src="{{ asset('img/logo-base.png') }}" alt="logo sowrs" title="Sowrs" />
+            </div>
+            <h1>Téléchargez le calendrier 2022 du développement durable</h1>
+            <p>
+                Ne manquez plus les dates et évènements marquants pour une année plus responsable
+            </p>
+        </section>
+        <section class="right_part_calendar">
+            {{ form_start(calendarForm) }}
+            {{ form_widget(calendarForm) }}
+            <button class="btn_download_calendar" type="submit">Obtenir mon calendrier</button>
+            {{ form_end(calendarForm) }}
+        </section>
+    </div>
+{% endblock %}

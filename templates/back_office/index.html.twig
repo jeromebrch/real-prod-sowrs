@@ -8,7 +8,7 @@
 
 {% block stylesheets %}
     {{ parent() }}
-    <link rel="stylesheet" href="{{ asset('css/backOffice.css') }}" />
+    <link rel="stylesheet" href="{{ asset('css/backOFfice.css') }}" />
 {% endblock %}
 
 {% block javascripts %}
@@ -94,6 +94,10 @@
                     {% endfor %}
                 </ul>
             </div>
+        </section>
+        <section>
+            <h2>Plus d'options</h2>
+            <a target="_blank" class="btn_calendar_data" href="{{ app.request.basePath }}/calendarData.txt">Données du calendrier</a>
         </section>
     </div>
 {% endblock %}

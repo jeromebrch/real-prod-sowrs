@@ -49,6 +49,19 @@ section>h2{
     font-weight: bold;
     margin-right: 10px;
 }
+.btn_calendar_data{
+    background-color: #1dca91;
+    color: white;
+    border-radius: 30px;
+    padding: 15px 25px 15px 25px;
+    outline-width: 0;
+    font-weight: bold;
+    font-family: 'KohinoorBangla', Arial, serif;
+}
+.btn_calendar_data:hover{
+    color: white;
+    background-color: #937FA4;
+}
 
 @media screen and (max-device-width: 700px){
     .stats_container{

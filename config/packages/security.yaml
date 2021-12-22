@@ -46,6 +46,7 @@ security:
         - { path: ^/user, roles: ROLE_USER }
         - { path: ^/recruiter, roles: ROLE_RECRUITER }
         - { path: ^/admin, roles: ROLE_ADMIN }
+        - { path: ^/backOffice, roles: ROLE_ADMIN }
         - { path: ^/admin/*, roles: ROLE_ADMIN }
         - { path: ^/efconnect, role: ROLE_ADMIN }
         - { path: ^/elfinder, role: ROLE_ADMIN }
