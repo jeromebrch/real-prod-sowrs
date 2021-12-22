@@ -287,13 +287,14 @@ body .select2-container--default{
     background-color: white;
     border-top-right-radius: 30px;
     border-top-left-radius: 30px;
+    box-shadow: 1px 1px 4px 4px #55555522;
 }
 .container_calendar_pop_up p{
     text-align: center;
 }
 .container_link_pop_up_calendar{
     width: 100% !important;
-    background-color: #1dca91;
+    background-color: #937FA4;
     border-bottom-right-radius: 30px;
     border-bottom-left-radius: 30px;
     padding: 15px 25px 15px 25px;
@@ -301,11 +302,21 @@ body .select2-container--default{
     flex-direction: row;
     justify-content: center;
     align-content: center;
+    box-shadow: 1px 1px 4px 4px #55555533;
 }
 .container_link_pop_up_calendar>a{
     color: white;
     font-weight: bold;
     font-family: 'KohinoorBangla', Arial, serif;
+}
+.fake_img_container{
+    width: 100%;
+}
+.fake_img_container>img{
+    width: 100%;
+    height: auto;
+    margin-bottom: 15px;
+    border-radius: 30px;
 }
 
 
