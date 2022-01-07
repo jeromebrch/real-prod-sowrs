@@ -12,14 +12,26 @@
             </div>
             <div class="col-lg-9">
                 <div class="matching_back_ground">
-                    {% if scoringUser.dominantSens == "environnemental" %}
-                        <h1 class="matching_big_title">
-                            Votre entité a un profil à dominante {{ scoringUser.dominantSens }}e
-                        </h1>
-                    {% else %}
-                        <h1 class="matching_big_title">
-                            Votre entité a un profil à dominante {{ scoringUser.dominantSens }}
-                        </h1>
+                    {% if is_granted'"IS_AUTHENTICATED_REMEMBERED' and "ROLE_RECRUITER" in app.user.roles %}
+                        {% if scoringUser.dominantSens == "environnemental" %}
+                            <h1 class="matching_big_title">
+                                Votre entité a un profil à dominante {{ scoringUser.dominantSens }}e
+                            </h1>
+                        {% else %}
+                            <h1 class="matching_big_title">
+                                Votre entité a un profil à dominante {{ scoringUser.dominantSens }}
+                            </h1>
+                        {% endif %}
+                    {% elseif is_granted'"IS_AUTHENTICATED_REMEMBERED' and "ROLE_CANDIDATE" in app.user.roles %}
+                        {% if scoringUser.dominantSens == "environnemental" %}
+                            <h1 class="matching_big_title">
+                                Vous avez un profil à dominante {{ scoringUser.dominantSens }}e
+                            </h1>
+                        {% else %}
+                            <h1 class="matching_big_title">
+                                Vous avez un profil à dominante {{ scoringUser.dominantSens }}
+                            </h1>
+                        {% endif %}
                     {% endif %}
                     {% if "ROLE_RECRUITER" in app.user.roles %}
                         <div class="matching_text">

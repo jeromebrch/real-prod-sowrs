@@ -66,6 +66,9 @@ body .right_part_calendar{
     justify-content: center;
     align-content: center;
 }
+body .pop_up_calendar *{
+    display: none!important;
+}
 
 @media screen and (max-device-width: 1100px) and (min-device-width: 911px){
     .calendar_rse_container>section{

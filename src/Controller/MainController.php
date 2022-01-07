@@ -19,12 +19,14 @@ use Doctrine\ORM\EntityManagerInterface;
 use Knp\Component\Pager\PaginatorInterface;
 use ReCaptcha\ReCaptcha;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Mailer\Exception\TransportExceptionInterface;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Mime\Email;
 use Symfony\Component\Routing\Annotation\Route;
+use function mysql_xdevapi\getSession;
 
 class MainController extends AbstractController
 {
@@ -105,5 +107,22 @@ class MainController extends AbstractController
     public function legalNotice(): Response
     {
         return $this->render('legalNotice/legalNotice.html.twig');
+    }
+
+    /**
+     * @Route("/closePopUp", name="close_pop_up")
+     */
+    public function closePopUp(Request $request): JsonResponse{
+        try{
+            $request->getSession()->set('close_pop_up', true);
+            return new JsonResponse([
+                'success' => true
+            ]);
+        }catch (\Exception $exception){
+            return new JsonResponse([
+                'success' => false,
+                'error' => $exception->getMessage()
+            ]);
+        }
     }
 }
