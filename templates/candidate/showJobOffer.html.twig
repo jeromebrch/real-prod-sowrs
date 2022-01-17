@@ -98,7 +98,7 @@
             {% if entity.about %}
                 <h3 class="subtitle">À propos de {{ entity.entityName }}</h3>
                 <p class="about_p">
-                    {{ entity.about }}
+                    {{ entity.about|nl2br }}
                 </p>
             {% endif %}
             {% if jobOffer.description %}
