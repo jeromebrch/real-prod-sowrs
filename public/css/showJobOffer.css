@@ -50,6 +50,7 @@ body .container_info_offer p>span{
     width: 150px;
     height: 150px;
     border-radius: 50%;
+    background-color: white;
 }
 .btnItinéraire{
     margin-top: 15px;
