@@ -272,7 +272,7 @@ body .select2-container--default{
     position: fixed;
     bottom: 20px;
     right: 20px;
-    z-index: 9;
+    z-index: 1001;
     display: none;
 }
 .close_pop_up{
