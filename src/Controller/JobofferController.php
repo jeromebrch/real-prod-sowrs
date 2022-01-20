@@ -37,19 +37,37 @@ class JobofferController extends AbstractController
     public function creationJobOffer( Request $request, RecruiterRepository $recruiterRepo,EntityManagerInterface $em, MailerInterface $mailer): Response
     {
         $offer = new JobOffer();
+        $user = $this->getUser();
         $jobOfferForm = $this->createForm(JobOfferType::class, $offer);
         $jobOfferForm->handleRequest($request);
 
         if ($jobOfferForm->isSubmitted() && $jobOfferForm->isValid()) {
 
             $offerCreated = 1;
-            $offer->setTitle($offer->getTitle() . " F/H");
-
+            $regexTitle = '/F\/H|H\/F/';
             $regexPostal = '/^[0-9]{5}$/';
+            $regexEmail = '/([a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\.[a-zA-Z0-9_-]+)/';
+
+            if(!preg_match($regexTitle, $offer->getTitle())){
+                $offer->setTitle($offer->getTitle() . " F/H");
+            }
             $postalCode = $jobOfferForm->get('postalCode')->getData();
 
+            if($user instanceof Recruiter and $user->getAbout()){
+                $newDescription = str_replace(array("\n", "\r", "<br />", "<p>", "</p>"), "", $offer->getDescription());
+                $regexAbout = '/^' . nl2br($user->getAbout()) . '/';
+                $regexAbout = str_replace(array("<br />", "\n", "\r"), "", $regexAbout);
+
+                if(preg_match($regexAbout, $newDescription)){
+                    $this->addFlash('error', 'Merci de retirer votre "à propos" du corps de votre offre, il sera rappelé automatiquement');
+                    return $this->render('dash_board/jobOffer/jobOfferCreation.html.twig', [
+                        'jobOfferForm' => $jobOfferForm->createView()
+                    ]);
+                }
+
+            }
+
             //On met en place le regex et on recupère la description écrite par le recruteur
-            $regexEmail = '/([a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\.[a-zA-Z0-9_-]+)/';
             $descriptionCheck = $jobOfferForm->get('description')->getData();
 
             //Si on match au moins un email contenue dans la description
@@ -66,7 +84,7 @@ class JobofferController extends AbstractController
             if($postalCode){
                 if (preg_match($regexPostal, $postalCode)){
 
-                    $offer->setEntity($this->getUser());
+                    $offer->setEntity($user);
                     $em->persist($offer);
                     $em->flush();
 

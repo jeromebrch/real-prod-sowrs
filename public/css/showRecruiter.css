@@ -78,6 +78,19 @@
 .container_offer_recruiter{
     justify-content: flex-start!important;
 }
+.block_img_sense_rate_recruiter{
+    height: auto!important;
+}
+.container_show_candidate_sense_rate_recruiter{
+    justify-content: center!important;
+}
+.sense_rate_subtitle{
+    text-align: center;
+}
+.entity_offer_list{
+    max-height: 500px!important;
+    overflow: auto;
+}
 
 @media screen and (max-width: 296px){
     .recruiter_right_title{

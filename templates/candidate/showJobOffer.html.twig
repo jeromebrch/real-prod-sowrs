@@ -135,7 +135,7 @@
                             {% if jobOffer.entity.mainCause %}
                                 <h3 class="profil_category_title_candidate title_telecommuting">Cause : <span>{{ jobOffer.entity.mainCause.text }}</span></h3>
                             {% endif %}
-                            <h3 class="profil_category_title_candidate">Localisation du poste :</h3>
+                            <h3 class="profil_category_title_candidate title_localisation">Localisation du poste :</h3>
                         {% endif %}
                         <div class="mapContainer">
                             <div class="map" id="map"></div>
@@ -157,9 +157,9 @@
                         <h3 class="profil_category_title_candidate title_telecommuting">Expérience souhaité : <span>{{ jobOffer.levelExperience.wording }}</span></h3>
                     {% endif %}
                     {% if jobOffer.entity.mainCause %}
-                        <h3 class="profil_category_title_candidate title_telecommuting">Cause : <span>{{ jobOffer.entity.mainCause.text }}</span></h3>
+                        <h3 class="profil_category_title_candidate title_telecommuting title_main_cause">Cause : <span>{{ jobOffer.entity.mainCause.text }}</span></h3>
                     {% endif %}
-                    <h3 class="profil_category_title_candidate">Localisation du poste :</h3>
+                    <h3 class="profil_category_title_candidate title_localisation">Localisation du poste :</h3>
                     <div class="mapContainer">
                         <div class="map" id="map"></div>
                     </div>
@@ -171,8 +171,8 @@
             {% if entity.scoring is not empty %}
                 <div class="show_candidate_sens_rate offer_right_part_section">
                     {% if entity.scoring is not empty %}
-                        <div class="container_show_candidate_sense_rate">
-                            <div class="block_img_sense_rate">
+                        <div class="container_show_candidate_sense_rate container_show_candidate_sense_rate_offer">
+                            <div class="block_img_sense_rate block_img_sense_rate_offer">
                                 {% if entity.scoring.dominantSens is same as 'social' %}
                                     <img class="mini_img_sense_rate" src="{{ asset('img/social500.png') }}" alt="taux de sens">
                                 {% elseif entity.scoring.dominantSens is same as 'economique' %}
@@ -184,8 +184,7 @@
                                 {% endif %}
                             </div>
                             <div class="text_sense_rate_show_candidate">
-                                <h5>Taux de sens</h5>
-                                <h5>{{ entity.scoring.dominantPourcent }}% {{ entity.scoring.dominantSens }}</h5>
+                                <h5>Taux de sens {{ entity.scoring.dominantPourcent }}% {{ entity.scoring.dominantSens }}</h5>
                             </div>
                             <div class="btn_sense_rate_show_candidate">
                                 <img src="{{ asset('img/boostrap/flecheBas.svg') }}" alt="flèche vers le bas" title="Détails du taux de sens" id="btn_doughnut">
@@ -236,7 +235,6 @@
                 e.currentTarget.classList.toggle('rotate');
                 doughnut.classList.toggle('collapse');
             })
-
 
             var ctx = document.getElementById('myChart');
             var myChart = new Chart(ctx, {
@@ -343,11 +341,17 @@
                             //On cache les div en cas d'erreur
                             mapId.hidden = true
                             mapGoogle.hidden = true
+                            $('.title_localisation').hide()
+                            $('.title_main_cause').css('margin', '0')
+                            $('.mapContainer').css('margin', '0')
                         }
 
                     }else {
                         //On cache la div en cas d'erreur
                         mapId.hidden = true
+                        $('.title_localisation').hide()
+                        $('.title_main_cause').css('margin', '0')
+                        $('.mapContainer').css('margin', '0')
                     }
                 }
             }

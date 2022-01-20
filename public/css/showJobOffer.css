@@ -56,6 +56,18 @@ body .container_info_offer p>span{
     margin-top: 15px;
     width: 90%;
 }
+.show_candidate_doughnutmx-auto{
+    display: block!important;
+}
+.btn_sense_rate_show_candidate{
+    display: none!important;
+}
+.block_img_sense_rate_offer{
+    height: auto!important;
+}
+.container_show_candidate_sense_rate_offer{
+    justify-content: center!important;
+}
 
 @media screen and (max-width: 310px){
     .title_telecommuting{
