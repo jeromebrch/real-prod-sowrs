@@ -18,6 +18,7 @@ use App\Repository\PostRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Knp\Component\Pager\PaginatorInterface;
 use ReCaptcha\ReCaptcha;
+use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -124,5 +125,29 @@ class MainController extends AbstractController
                 'error' => $exception->getMessage()
             ]);
         }
+    }
+
+    /**
+     * @Route("/bilanRSE", name="send_email_bilan_rse")
+     */
+    public function sendEmailRSE(MailerInterface $mailer):JsonResponse{
+        try {
+            $email = (new TemplatedEmail())
+                ->from('team@sowrs.com')
+//                ->to($this->getUser()->getEmail)
+                ->to('jerome.brch@gmail.com')
+                ->subject('Votre bilan RSE')
+                ->htmlTemplate('textEmail/emailBilanRSE.html.twig');
+            $mailer->send($email);
+            return new JsonResponse([
+                'success' => true
+            ]);
+        }catch (\Exception $exception){
+            return new JsonResponse([
+                'success' => false,
+                'error' => $exception->getMessage()
+            ]);
+        }
+
     }
 }

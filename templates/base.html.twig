@@ -165,17 +165,18 @@
         </div>
         <div class="container_calendar_pop_up">
             <div class="fake_img_container">
-                <img src="{{ asset('img/calendar_background.png') }}" title="Calendrier du développement durable" />
+                <img src="{{ asset('img/illus_bilan_rse.png') }}" title="Calendrier du développement durable" />
             </div>
+{#            <p>#}
+{#                Faites un bilan de votre RSE en ligne !#}
+{#            </p>#}
             <p>
-                Téléchargez le calendrier 2022 du développement durable et de la RSE
-            </p>
-            <p>
-                Ne manquez plus les dates et évènements marquants pour une année plus responsable
+                Accédez à votre formulaire d'auto-évaluation en ligne et faites votre bilan RSE
             </p>
         </div>
         <div class="container_link_pop_up_calendar">
-            <a href="{{ path('calendar_rse') }}">Télécharger</a>
+{#            <a href="{{ path('calendar_rse') }}">Télécharger</a>#}
+            <a class="btn_rse_bilan" target="_blank" href="https://docs.google.com/forms/d/e/1FAIpQLScUO4-ZlfXxmXRC4wWeAhg_jtaDqgSfmLMZd84qs-O0PeNVnw/viewform">Télécharger</a>
         </div>
     </div>
 </div>
@@ -247,6 +248,35 @@
 
     {% if not app.request.session.get('close_pop_up') %}
         <script src="{{ asset('js/calendarPopUp.js') }}"></script>
+    {% endif %}
+
+    {% if app.user %}
+        <script>
+            $(window).on('load', function (){
+                let btnRSE = $('.btn_rse_bilan');
+                if(btnRSE){
+                    btnRSE.on('click', function (){
+                        $.ajax(
+                            {
+                                url: baseURL + "/bilanRSE",
+                                method: "POST",
+                                error: function (e){
+                                    alert('Il y a eu une erreur');
+                                    console.log(e);
+                                }
+                            }
+                        )
+                        .done(function (data){
+                            alert('Un email vous a été envoyé contenant le lien vers votre calendrier')
+                            // console.log(data.error);
+                        })
+                        .fail(function (){
+                            // alert('Erreur pendant le traitement');
+                        })
+                    });
+                }
+            });
+        </script>
     {% endif %}
 
 {% endblock %}
