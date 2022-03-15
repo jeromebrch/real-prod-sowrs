@@ -64,4 +64,9 @@ class SearchCandidate
      */
     public $telecommute;
 
+    /**
+     * @var Language
+     */
+    public $language;
+
 }

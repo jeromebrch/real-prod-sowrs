@@ -11,6 +11,7 @@ use Doctrine\DBAL\Driver\Exception;
 use Doctrine\ORM\EntityManagerInterface;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -21,35 +22,51 @@ class FavoriteJobofferController extends AbstractController
     /**
      * @Route("/favorite/addFavoriteOffer/{id}", name="add_favorite_offer")
      */
-    function addFavoriteOffer($id, JobOfferRepository $offerRepo, EntityManagerInterface $em){
-        $offer = $offerRepo->find($id);
-        $user = $this->getUser();
-        $userFavorites = $user->getFavoriteOffers()->getValues();
-        if(!in_array($offer, $userFavorites)){
-            $user->addFavoriteOffer($offer);
-            $em->persist($user);
-            $em->flush();
-            $this->addFlash('success', 'L\'offre a bien été ajoutée de vos favoris');
+    function addFavoriteOffer($id, JobOfferRepository $offerRepo, EntityManagerInterface $em) :JsonResponse{
+        try {
+            $offer = $offerRepo->find($id);
+            $user = $this->getUser();
+            $userFavorites = $user->getFavoriteOffers()->getValues();
+            if(!in_array($offer, $userFavorites)){
+                $user->addFavoriteOffer($offer);
+                $em->persist($user);
+                $em->flush();
+//                $this->addFlash('success', 'L\'offre a bien été ajoutée de vos favoris');
+            }
+            return new JsonResponse([
+                'success' => true
+            ]);
+        }catch (\Exception $exception){
+            return new JsonResponse([
+                'success' => false
+            ]);
         }
-        return $this->redirectToRoute('main_job_offers_list');
     }
 
 
     /**
      * @Route("/favorite/removeOffer/{id}", name="remove_favorite_offer")
      */
-    public function RemoveFavoriteOffer($id, JobOfferRepository $offerRepo, EntityManagerInterface $em): Response
+    public function RemoveFavoriteOffer($id, JobOfferRepository $offerRepo, EntityManagerInterface $em): JsonResponse
     {
-        $offer = $offerRepo->find($id);
-        $user = $this->getUser();
-        $userFavorites = $user->getFavoriteOffers()->getValues();
-        if(in_array($offer, $userFavorites)){
-            $user->removeFavoriteOffer($offer);
-            $em->persist($user);
-            $em->flush();
-            $this->addFlash('success', 'L\'offre a bien été retirée de vos favoris');
+        try {
+            $offer = $offerRepo->find($id);
+            $user = $this->getUser();
+            $userFavorites = $user->getFavoriteOffers()->getValues();
+            if(in_array($offer, $userFavorites)){
+                $user->removeFavoriteOffer($offer);
+                $em->persist($user);
+                $em->flush();
+//                $this->addFlash('success', 'L\'offre a bien été retirée de vos favoris');
+            }
+            return new JsonResponse([
+                'success' => true
+            ]);
+        }catch (\Exception $exception){
+            return new JsonResponse([
+                'success' => false
+            ]);
         }
-        return $this->redirectToRoute('main_job_offers_list');
 
     }
 

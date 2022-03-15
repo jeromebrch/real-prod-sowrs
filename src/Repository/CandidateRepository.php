@@ -79,6 +79,7 @@ class CandidateRepository extends ServiceEntityRepository
         $query = $this->createQueryBuilder('c')
             ->addSelect('o')
             ->leftJoin('c.jobSearch', 'o')
+            ->leftJoin('c.languages', 'l')
             ->andWhere('c.private = :f')
             ->setParameter('f', false)
 //            ->andWhere("c.authorizedCountry != ''")
@@ -102,6 +103,11 @@ class CandidateRepository extends ServiceEntityRepository
             $query = $query
                 ->andWhere('o.country = :c')
                 ->setParameter('c', $data->localization);
+        }
+        if (!empty($data->language)) {
+            $query = $query
+                ->andWhere('l = :name')
+                ->setParameter('name', $data->language);
         }
         if (!empty($data->remuneration)) {
             $query = $query
