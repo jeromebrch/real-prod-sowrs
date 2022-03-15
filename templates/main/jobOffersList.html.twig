@@ -68,7 +68,7 @@
             <div class="col-lg-9 p-3">
                     {% for jobOffer in jobOffers %}
                             <div class="job_offer_row bg-white p-3 mb-3">
-                                {% include 'main/_cardJobOfferMain.html.twig' with {jobOffer: jobOffer} only %}
+                                {% include 'main/_cardJobOfferMain.html.twig' with {jobOffer: jobOffer, idElement: jobOffer.id} only %}
                             </div>
                     {% endfor %}
                 {{ knp_pagination_render(jobOffers) }}
@@ -94,4 +94,77 @@
             {% endif %}
         </div>
     </div>
+{% endblock %}
+
+{% block javascripts %}
+
+    {{ parent() }}
+    <script>
+        $(window).on('load', function (){
+            let removeFavorite = document.querySelectorAll('.remove_favorite');
+            let setFavorite = document.querySelectorAll('.set_favorite');
+
+            // SET THE OFFER FROM THE FAVORITES
+            function addToFavorite(id, element){
+                fetch(
+                    baseURL + "/favorite/addFavoriteOffer/" + id,
+                    {
+                    method: 'POST'
+                })
+                .then(response => response.json())
+                .then(response => {
+                    if (response.success){
+                        // alert('Ajouté aux favoris');
+                        element.innerHTML = '<img class="favorite" src="{{ asset('img/suit-heart-fill.svg') }}" alt="remove favorites" title="Retirer des favoris"/>';
+                        element.addEventListener('click', function (event){
+                            event.preventDefault();
+                            removeToFavorite(element.id, element);
+                            event.stopPropagation();
+                            event.stopImmediatePropagation();
+                        })
+                    }else{
+                        alert('Problème pendant le traitement, veuillez réessayer ultérieurement');
+                    }
+                })
+            }
+            // REMOVE THE OFFER FROM THE FAVORITES
+            function removeToFavorite(id, element){
+                fetch(
+                    baseURL + "/favorite/removeOffer/" + id,
+                    {
+                        method: 'POST'
+                    })
+                    .then(response => response.json())
+                    .then(response => {
+                        if (response.success){
+                            // alert('Retiré des favoris');
+                            element.innerHTML = '<img class="favorite" src="{{ asset('img/suit-heart.svg') }}" alt="add favorites" title="Ajouter aux favoris"/>';
+                            element.addEventListener('click', function (event){
+                                event.preventDefault();
+                                addToFavorite(element.id, element);
+                                event.stopPropagation();
+                                event.stopImmediatePropagation();
+                                event.stopImmediatePropagation();
+                            })
+                        }else{
+                            alert('Problème pendant le traitement, veuillez réessayer ultérieurement');
+                        }
+                    })
+            }
+
+            removeFavorite.forEach(function (element){
+                element.addEventListener('click', function (){
+                    removeToFavorite(element.id, element);
+                })
+            });
+
+            setFavorite.forEach(function (element){
+                element.addEventListener('click', function (){
+                    addToFavorite(element.id, element);
+                })
+            });
+
+        })
+    </script>
+
 {% endblock %}

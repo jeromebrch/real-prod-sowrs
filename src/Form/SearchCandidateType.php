@@ -9,6 +9,7 @@ use App\Entity\Cause;
 use App\Entity\ContractType;
 use App\Entity\Country;
 use App\Entity\Department;
+use App\Entity\Language;
 use App\Entity\LevelExperience;
 use App\Entity\LevelStudy;
 use App\Entity\Remuneration;
@@ -83,7 +84,13 @@ class SearchCandidateType extends AbstractType
                 'class' => Country::class,
                 'choice_label' => 'name',
                 'placeholder' => '---Autorisé à travailler en---'
-
+            ])
+            ->add('language', EntityType::class, [
+                'label' => false,
+                'required' => false,
+                'class' => Language::class,
+                'choice_label' => 'name',
+                'placeholder' => '---Langue du candidat---'
             ])
             ->add('telecommute', CheckboxType::class, [
                 'label' => "Télétravailleur",
@@ -96,7 +103,6 @@ class SearchCandidateType extends AbstractType
                 'class' =>Department::class,
                 'choice_label' => 'name',
                 'placeholder' => '---Localisation du poste recherché---'
-
             ]);
     }
 

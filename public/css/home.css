@@ -149,6 +149,38 @@
     background-color: white!important;
     color: #555555!important;
 }
+.RSE_link_main{
+    background-color: #1dca9100;
+    color: white;
+    text-decoration: none;
+    padding: 15px 25px 15px 25px;
+    border: 2px solid white;
+    border-radius: 30px;
+    font-weight: bold;
+    font-family: 'KohinoorBangla', Arial, serif;
+}
+.RSE_link_main:hover{
+    color: white;
+}
+.bottom_section_illus{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: auto;
+    background-image: url("../img/bottom_main_illus.png");
+    background-position: center;
+    background-size: cover;
+    padding-top: 200px;
+    padding-bottom: 200px;
+}
+.bottom_section_illus>h4{
+    font-family: 'KohinoorBangla', Arial, serif;
+    color: white;
+    margin: 150px 200px 150px 200px;
+    text-align: center;
+}
 
 @media screen and (max-width: 365px){
     .btn_close_popup{
