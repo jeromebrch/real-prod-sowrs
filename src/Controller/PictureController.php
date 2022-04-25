@@ -15,6 +15,7 @@ class PictureController extends AbstractController
 {
 
     /**
+     * FOR SET AN ACCOUNT PICTURE
      * @Route("/user/register/picture", name="register_picture")
      * @param Request $request
      * @param EntityManagerInterface $em

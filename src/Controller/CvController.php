@@ -15,6 +15,7 @@ class CvController extends AbstractController
 {
 
     /**
+     * FOR SET A CV
      * @Route("/user/register/cv", name="register_cv")
      * @param Request $request
      * @param EntityManagerInterface $em

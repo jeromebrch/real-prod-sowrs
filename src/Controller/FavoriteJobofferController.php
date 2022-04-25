@@ -20,6 +20,7 @@ class FavoriteJobofferController extends AbstractController
 {
 
     /**
+     * TO ADD AN OFFER TO FAVORITES
      * @Route("/favorite/addFavoriteOffer/{id}", name="add_favorite_offer")
      */
     function addFavoriteOffer($id, JobOfferRepository $offerRepo, EntityManagerInterface $em) :JsonResponse{
@@ -45,6 +46,7 @@ class FavoriteJobofferController extends AbstractController
 
 
     /**
+     * TO REMOVE AN OFFER FROM FAVORITES
      * @Route("/favorite/removeOffer/{id}", name="remove_favorite_offer")
      */
     public function RemoveFavoriteOffer($id, JobOfferRepository $offerRepo, EntityManagerInterface $em): JsonResponse

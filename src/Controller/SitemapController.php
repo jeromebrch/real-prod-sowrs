@@ -12,6 +12,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class SitemapController extends AbstractController
 {
     /**
+     * GENERATE THE SITEMAP FOR GOOGLE BOTS
      * @Route("/sitemap.xml", name="sitemap", defaults={"_format"="xml"})
      * @param Request $req
      * @param PostRepository $postRepo

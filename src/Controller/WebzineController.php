@@ -24,6 +24,7 @@ use Symfony\Component\String\Slugger\SluggerInterface;
 class WebzineController extends AbstractController
 {
     /**
+     * WEBZINE HOME PAGE
      * @Route("/webzine", name="home_webzine")
      * @param CommentRepository $commentRepo
      * @param PostRepository $postrepo
@@ -41,6 +42,7 @@ class WebzineController extends AbstractController
     }
 
     /**
+     * FOR CREATING A POST (ADMIN)
      * @Route("/admin/createpost", name="create_post")
      * @param PostRepository $postRepo
      * @param Request $req
@@ -87,6 +89,7 @@ class WebzineController extends AbstractController
     }
 
     /**
+     * TO SHOW THE POST DETAILS
      * @Route("/postdetail/{id}", name="post_details", requirements={"id":"\d+"})
      */
     public function postDetails($id,
@@ -166,6 +169,7 @@ class WebzineController extends AbstractController
     }
 
     /**
+     * FOR THE ADMIN TO SEE THE UNPUBLISHED POST
      * @Route("/admin/unpublishedpost", name="unpublished_post")
      */
     public function unpublishedPost(PostRepository $postRepo){
@@ -178,6 +182,7 @@ class WebzineController extends AbstractController
     }
 
     /**
+     * FOR PUBLISH AN UNPUBLISHED POST
      * @Route("/admin/publish/{id}", name="publish_post", requirements={"id":"\d+"})
      */
     public function publishPost($id, PostRepository $postrepo, EntityManagerInterface $em){
@@ -190,6 +195,7 @@ class WebzineController extends AbstractController
     }
 
     /**
+     * FOR DELETING A POST
      * @Route("/admin/delete/{id}", name="delete_post", requirements={"id":"\d+"})
      */
     public function deletePost($id, EntityManagerInterface $em, PostRepository $postRepo){
@@ -202,6 +208,7 @@ class WebzineController extends AbstractController
     }
 
     /**
+     * TO UNPUBLISHED A POST
      * @Route("/admin/hide/{id}", name="hide_post", requirements={"id":"\d+"})
      */
     public function hidePost($id, PostRepository $postRepo, EntityManagerInterface $em){
@@ -248,6 +255,7 @@ class WebzineController extends AbstractController
     }
 
     /**
+     * FOR THE ADMIN TO MANAGE THE INCOMING USER COMMENTS
      * @Route("/admin/comments", name="waiting_comments")
      */
     public function waitingComments(CommentRepository $commentRepo){
@@ -259,6 +267,7 @@ class WebzineController extends AbstractController
     }
 
     /**
+     * FOR DELETING A COMMENT
      * @Route("/admin/deletecomment/{id}", name="delete_comment", requirements={"id"="\d+"})
      */
     public function deleteComment($id, EntityManagerInterface $em, CommentRepository $commentRepo){
@@ -272,6 +281,7 @@ class WebzineController extends AbstractController
     }
 
     /**
+     * FOR VALIDATE A COMMENT
      * @Route("/admin/validatecomment/{id}", name="validate_comment", requirements={"id"="\d+"})
      */
     public function validateComment($id, EntityManagerInterface $em, CommentRepository $commentRepo){
@@ -285,6 +295,7 @@ class WebzineController extends AbstractController
     }
 
     /**
+     * FOR THE ADMIN TO MODIFY A POST
      * @Route("/admin/modifyPost/{id}", name="modify_post", requirements={"id":"\d+"})
      * @param $id
      * @param PostRepository $postRepo

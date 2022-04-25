@@ -13,6 +13,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class RSEController extends AbstractController
 {
     /**
+     * GOING ON THE RSE MAIN PAGE
      * @Route("/rse", name="rse")
      */
     public function index(): Response
@@ -24,6 +25,7 @@ class RSEController extends AbstractController
 
 
     /**
+     * SHOW THE RSE CALENDAR FORM AND PUSH THE EMAIL
      * @Route("/calendar", name="calendar_rse")
      */
     public function calendarRSE(Request $request, MailerInterface $mailer){

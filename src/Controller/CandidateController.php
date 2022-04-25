@@ -13,6 +13,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class CandidateController extends AbstractController
 {
     /**
+     * TO GOING ON THE CANDIDATS DETAILS PAGE
      * @Route("/recruiter/candidate/show/{id}", name="candidate_show", requirements={"id":"\d+"})
      * @param $id
      * @param CandidateRepository $candidateRepo
@@ -48,6 +49,8 @@ class CandidateController extends AbstractController
     }
 
     /**
+     * FOR GET THE APPLIES OF A CANDIDATE
+     * PLEASE NOTICE THAT THE APPLIES IS NOT AN ENTITY HERE, JUST SOME MESSAGES
      * @Route("/candidate/applies", name="candidate_applies")
      */
     public function candidateApplies(){

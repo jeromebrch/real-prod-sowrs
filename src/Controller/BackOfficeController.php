@@ -14,6 +14,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class BackOfficeController extends AbstractController
 {
     /**
+     * FOR GOING IN THE BACK OFFICE
      * @Route("/backOffice", name="back_office")
      */
     public function index(CandidateRepository $candidateRepo, RecruiterRepository $recruiterRepo, JobOfferRepository $offerRepo): Response
@@ -29,6 +30,7 @@ class BackOfficeController extends AbstractController
     }
 
     /**
+     * FOR DELETING A USER
      * @Route("/deleteUser/{id}", name="delete_user")
      */
     public function deleteUser($id, UserRepository $userRepo, EntityManagerInterface $em){
@@ -46,6 +48,7 @@ class BackOfficeController extends AbstractController
     }
 
     /**
+     * FOR DELETING AN OFFER
      * @Route("/deleteOfferAdmin/{id}", name="delete_offer_admin")
      */
     public function deleteOffer($id, JobOfferRepository $offerRepo, EntityManagerInterface $em){

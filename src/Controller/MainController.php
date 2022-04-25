@@ -111,6 +111,7 @@ class MainController extends AbstractController
     }
 
     /**
+     * FOR CLOSE THE ACTUAL POP UP
      * @Route("/closePopUp", name="close_pop_up")
      */
     public function closePopUp(Request $request): JsonResponse{
@@ -128,14 +129,14 @@ class MainController extends AbstractController
     }
 
     /**
+     * SEND THE EMAIL FOR THE RSE CHECKUP
      * @Route("/bilanRSE", name="send_email_bilan_rse")
      */
     public function sendEmailRSE(MailerInterface $mailer):JsonResponse{
         try {
             $email = (new TemplatedEmail())
                 ->from('team@sowrs.com')
-//                ->to($this->getUser()->getEmail)
-                ->to('jerome.brch@gmail.com')
+                ->to($this->getUser()->getEmail)
                 ->subject('Votre bilan RSE')
                 ->htmlTemplate('textEmail/emailBilanRSE.html.twig');
             $mailer->send($email);
