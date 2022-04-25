@@ -15,7 +15,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class FavoriteCvController extends AbstractController
 {
     /**
-     * display favorite list
+     * display favorite cv list
      * @Route("/favorite/favorite_page", name="favorites")
      */
     public function seeFavorites(EntityManagerInterface $em, PaginatorInterface $paginator, Request $request): Response
@@ -43,6 +43,7 @@ class FavoriteCvController extends AbstractController
     }
 
     /**
+     * TO ADD A CV IN FAVORITES
      * @Route("/favorite/addFavoriteCv/{id}", name="add_favorite_cv")
      */
     public function addFavoriteCv($id, CandidateRepository $repoCandidate, EntityManagerInterface $em): Response
@@ -62,6 +63,7 @@ class FavoriteCvController extends AbstractController
     }
 
     /**
+     * TO REMOVE A CV FROM FAVORITES
      * @Route("/favorite/remove_cv/{id}", name="remove_favorite_cv")
      */
     public function RemoveFavoritecv($id, CandidateRepository $repoCandidate, EntityManagerInterface $em): Response
@@ -81,6 +83,7 @@ class FavoriteCvController extends AbstractController
     }
 
     /**
+     * YOU CAN SEE IN THIS DUPLICATED CONTENT, IT'S A BIG MESS...
      * @Route("/favorite/remove_cv_list/{id}", name="remove_favorite_cv_list")
      */
     public function RemoveFavoritecvFromList($id, CandidateRepository $repoCandidate, EntityManagerInterface $em): Response

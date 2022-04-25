@@ -20,6 +20,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class ApplyController extends AbstractController
 {
     /**
+     * FOR APPLIED TO AN OFFER
      * @Route("/messaging/sendMessageApply/{id}", name="apply")
      * @param $id
      * @param MailerInterface $mailer

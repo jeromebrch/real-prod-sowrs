@@ -15,8 +15,8 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class DashBoardNavController extends AbstractController
 {
-    //To display side navbar
     /**
+     * TO DISPLAY SIDE NAVBAR
      * @Route("/user/dash/board/nav", name="dash_board_nav")
      * @return Response
      */

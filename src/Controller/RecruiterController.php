@@ -20,6 +20,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class RecruiterController extends AbstractController
 {
     /**
+     * FOR GET A RECRUITER PROFIL
      * @Route("/recruiter/profil", name="recruiter_profil")
      */
     public function recruiterProfil(): Response
